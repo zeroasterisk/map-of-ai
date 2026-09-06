@@ -11,3 +11,6 @@ https://news.smol.ai/
 https://x.ai/news
 # doi.org resolves to cambridge.org, which hangs bot requests past 25s (302 then stall); DOI is cited as text in research/01
 https://doi.org/10.1086/286788
+# dspace.mit.edu returns 405 to every non-browser request (bot block); MIT AI Memo 306 (Minsky frames) and Winograd thesis AI-TR-235, both pre-existing citations in research/02
+https://dspace.mit.edu/handle/1721.1/6089
+https://dspace.mit.edu/handle/1721.1/7095
