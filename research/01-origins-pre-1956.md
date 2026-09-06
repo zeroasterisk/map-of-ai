@@ -3,7 +3,7 @@
 > **Status:** verified
 > **Date range:** 1666–1955 (dense core 1936–1955; thin antecedent strip back to Leibniz/Boole/Babbage)
 > **Map placement (proposed):** X = far west edge, up to 1955; Y = mixed — a northern *symbolic/logic pole* strand (Leibniz → Boole → Frege → Hilbert → Gödel → Church → Turing) and a southern *connectionist/cybernetic pole* strand (McCulloch–Pitts → Wiener → Ashby → Hebb → SNARC → early perceptron work), converging on the 1956 Dartmouth border
-> **Altitude:** A1 continent ("Foundations / Pre-AI"); A2 countries ("Mathematical Logic & Computability", "Cybernetics & Neural Modelling"); A3 cities (Turing 1936, Turing 1950, McCulloch–Pitts 1943, Macy Conferences, Ratio Club); A4 streets (individual papers/machines)
+> **Altitude:** **two** A1 continents from this file, split at 1943 per `AXES.md` §1 — (i) *The Antecedent Isles* (pre-1943, `offshore: true`; Leibniz → Boole → Frege → Hilbert → Gödel → Church → Turing 1936) and (ii) *Cybernetic Shore* (1943–1955 mainland coast; McCulloch–Pitts → Wiener/Macy → Hebb → Turing 1950 → SNARC → Samuel → Dartmouth proposal). A2 countries ("Mathematical Logic & Computability" on the isles; "Cybernetics", "Neural Modelling & Learning Machines", "Information Theory & Game Search", "Machine Translation" on the shore); A3 cities (Turing 1936, Turing 1950, McCulloch–Pitts 1943, Macy Conferences, Ratio Club); see "Archipelago / shore split" table in Map notes
 
 ## One-paragraph summary
 Before anyone called it "artificial intelligence", two intellectual rivers were already flowing toward it. The first is the **logic/computability** river: Leibniz's dream of a *calculus ratiocinator*, Boole's algebra of thought (1854), Frege's *Begriffsschrift* (1879), Hilbert's programme to formalise all mathematics, Gödel's incompleteness theorems (1931), and then in 1936 Church's lambda calculus and Turing's universal machine, which together answered Hilbert's *Entscheidungsproblem* in the negative and, as a by-product, defined what a computer *is*. Turing then asked in 1950 whether such a machine could think, proposing the imitation game. The second is the **cybernetic/neural** river: McCulloch and Pitts (1943) showed networks of idealised neurons could compute any logical function; Wiener's *Cybernetics* (1948) and the Macy Conferences (1946–1953) built an interdisciplinary science of feedback and control; Ashby's Homeostat and Grey Walter's tortoises embodied adaptive behaviour in hardware; Hebb (1949) proposed the synaptic learning rule that still bears his name; and Minsky's SNARC (1951) was the first neural-network learning machine. By 1955 the ingredients — stored-program computers, formal logic, neuron models, learning rules, game-playing heuristics (Shannon 1950, Samuel's checkers from 1952) — were on the table, and McCarthy's Dartmouth proposal named the field. On the map this era is the west coast: the place every later road ultimately leads back to, with the symbolic and connectionist poles already visibly distinct.
@@ -92,6 +92,79 @@ Before anyone called it "artificial intelligence", two intellectual rivers were 
 - **Rivers/borders:** the "Hilbert–Gödel–Turing river" flows from the logic highlands south-east into Dartmouth; the "Wiener–McCulloch river" flows from the cybernetic lowlands. They meet at the 1955–56 delta (Dartmouth proposal). A range of hills ("the Symbolic Divide") should begin here and run east, separating symbolic from connectionist territory for the next three regions.
 - **Bridges east:** *Principia Mathematica* → Logic Theorist (1956); lambda calculus → Lisp (1958); Hebb/SNARC → perceptron (1957–58); Shannon/Samuel game search → Newell–Simon heuristics and computer chess; Georgetown MT → ALPAC 1966.
 - **Open questions for curation:** (a) how far to extend the antecedent archipelago (Llull? Hobbes' "reasoning is reckoning"? Jaquet-Droz automata?) — recommend a single "Myths & Automata" islet only; (b) whether Macy Conferences deserve A3 city status or an A4 street inside "Cybernetics"; (c) placing Turing 1948 "Intelligent Machinery" — it is chronologically connectionist (unorganised machines) yet authored by the symbolic pole's founder; suggest a mid-latitude placement.
+
+### Archipelago / shore split (P1-T11; input to `data/continents/REGISTRY.md`)
+
+`AXES.md` §1 (decided): the mainland west coast is 1943 (McCulloch–Pitts); everything earlier is an offshore archipelago on a log-compressed scale. This file therefore yields **two** continents. Every timeline row, school bullet and key person of this file is assigned exactly once below. Rule: an item goes to *shore* if its date is ≥ 1943; a person goes with the item that carries their AI significance (Turing: 1950, not 1936). Cross-checked against the overview histories [31], [32].
+
+**Timeline rows (27)**
+
+| # | Timeline row | Continent | Note |
+|---|---|---|---|
+| 1 | 1666–1679 Leibniz, *characteristica universalis* | archipelago (pre-1943, offshore) | outermost isle |
+| 2 | 1837–1843 Babbage / Lovelace | archipelago (pre-1943, offshore) | |
+| 3 | 1854 Boole, *Laws of Thought* | archipelago (pre-1943, offshore) | |
+| 4 | 1879 Frege, *Begriffsschrift* | archipelago (pre-1943, offshore) | |
+| 5 | 1910–1913 *Principia Mathematica* | archipelago (pre-1943, offshore) | bridge to Logic Theorist (era 02) starts here |
+| 6 | 1920s Hilbert's programme | archipelago (pre-1943, offshore) | |
+| 7 | 1931 Gödel, incompleteness | archipelago (pre-1943, offshore) | |
+| 8 | 1936 Church, lambda calculus | archipelago (pre-1943, offshore) | |
+| 9 | 1936–37 Turing, *On Computable Numbers* | archipelago (pre-1943, offshore) | largest, nearest isle; the shore is in sight |
+| 10 | 1943 McCulloch & Pitts | shore (1943–1955) | **the west coast itself** (`AXES.md` §1) |
+| 11 | 1943 Rosenblueth, Wiener & Bigelow | shore (1943–1955) | |
+| 12 | 1945 von Neumann, EDVAC report | shore (1943–1955) | |
+| 13 | 1946–1953 Macy Conferences | shore (1943–1955) | |
+| 14 | 1948 Wiener, *Cybernetics* | shore (1943–1955) | |
+| 15 | 1948 Shannon, information theory | shore (1943–1955) | |
+| 16 | 1948 Turing, *Intelligent Machinery* | shore (1943–1955) | |
+| 17 | 1948–1949 Grey Walter's tortoises | shore (1943–1955) | |
+| 18 | 1949 Hebb, *Organization of Behavior* | shore (1943–1955) | |
+| 19 | 1949 Ashby's Homeostat; Ratio Club | shore (1943–1955) | |
+| 20 | 1950 Turing, *Computing Machinery and Intelligence* | shore (1943–1955) | |
+| 21 | 1950 Shannon, chess programming | shore (1943–1955) | |
+| 22 | 1951 Minsky & Edmonds, SNARC | shore (1943–1955) | |
+| 23 | 1951 Strachey / Prinz on the Ferranti Mark 1 | shore (1943–1955) | |
+| 24 | 1952 Ashby, *Design for a Brain* | shore (1943–1955) | |
+| 25 | 1952–1955 Samuel's checkers | shore (1943–1955) | |
+| 26 | 1954 Georgetown–IBM experiment | shore (1943–1955) | |
+| 27 | 1955 Dartmouth proposal | shore (1943–1955) | eastern border; the 1956 workshop itself belongs to era 02 |
+
+**School bullets (7)**
+
+| School bullet | Continent | Note |
+|---|---|---|
+| Formal logic & foundations of mathematics | archipelago | entirely pre-1943 |
+| Computability / theory of computation | archipelago | Church/Turing 1936 are isles; the von Neumann architecture (1945) item is folded into the shore's cybernetics/computing coast, not a separate school |
+| Turing test & philosophy of machine intelligence | shore | anchored on 1950; the Lovelace objection (1843) is its offshore antecedent |
+| Cybernetics | shore | |
+| Neural modelling & learning machines | shore | |
+| Information theory & game search | shore | |
+| Machine translation (proto-NLP) | shore | Weaver memo 1949, Georgetown 1954 |
+
+**Key people (18 entries)**
+
+| Person | Continent | Anchoring item |
+|---|---|---|
+| Leibniz | archipelago | 1666–1679 |
+| Babbage & Lovelace | archipelago | 1843 |
+| Boole | archipelago | 1854 |
+| Frege | archipelago | 1879 |
+| Hilbert | archipelago | 1920s |
+| Gödel | archipelago | 1931 |
+| Church | archipelago | 1936 |
+| Turing | shore | 1950 (*Computing Machinery and Intelligence*); his 1936 paper stays an isle, drawn with a causeway to the shore |
+| McCulloch & Pitts | shore | 1943 |
+| Wiener | shore | 1943 / 1948 |
+| von Neumann | shore | 1945 |
+| Shannon | shore | 1948 / 1950 |
+| Hebb | shore | 1949 |
+| Ashby | shore | 1949 / 1952 |
+| Grey Walter | shore | 1948–49 |
+| Minsky | shore | 1951 (SNARC) |
+| Samuel | shore | 1952– |
+| McCarthy | shore | 1955 proposal |
+
+Consequences for `REGISTRY.md`: the archipelago continent has `offshore: true`, ends 1942 at the latest (V-14), sits in the reasoning bands (N1–N2) and is drawn as islands; the shore runs 1943–1955 (Dartmouth proposal), spans N1 (Turing 1950, Shannon) to S2 (Walter, Ashby, SNARC) and is the first mainland. Its eastern neighbour is the Dartmouth/symbolic continent of era 02.
 
 ## Sources
 [1] Leibniz's Influence on 19th Century Logic — Stanford Encyclopedia of Philosophy — https://plato.stanford.edu/entries/leibniz-logic-influence/ (accessed 2026-09-06)
