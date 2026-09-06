@@ -1,6 +1,6 @@
 # Cross-Cutting Threads (rivers and roads spanning the whole map)
 
-> **Status:** verified
+> **Status:** reviewed
 > **Date range:** 1942–2026 (each thread spans several eras; see per-thread "Eras crossed")
 > **Map placement (proposed):** X = full width of the map; Y = varies per thread — RL and hardware run along the connectionist/scaling bank, robotics and game-playing zig-zag between poles, safety/ethics and open-vs-closed run across both banks as roads rather than rivers
 > **Altitude:** A1 (rivers/roads visible at continent scale), A2 (named reaches/junctions), A3 (individual milestone landmarks along each thread)
@@ -11,7 +11,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 ## Threads
 
 ### (a) Reinforcement learning — "the RL River"
-**Description.** Learning from reward rather than labelled examples has its headwaters in Bellman's dynamic programming (1957) and Samuel's self-improving checkers player, is formalised in the 1980s–90s by Sutton and Barto (temporal-difference learning, 1988) and Watkins (Q-learning, 1989), and first startles the world with Tesauro's TD-Gammon (1992). It runs underground during the statistical-ML years, resurfaces as *deep* RL with DQN (2013/2015) and AlphaGo (2016), and then turns unexpectedly into the main channel of the LLM era: RLHF (2017 preferences paper → InstructGPT 2022 → ChatGPT) and RL-trained reasoning models (o1 2024, DeepSeek-R1 2025). The 2024 Turing Award to Barto and Sutton (announced March 2025) marks the river's canonisation. [a1]–[a10]
+**Description.** Learning from reward rather than labelled examples has its headwaters in Bellman's dynamic programming (1957) and Samuel's self-improving checkers player, is formalised in the 1980s–90s by Sutton and Barto (temporal-difference learning, 1988) and Watkins (Q-learning, 1989), and first startles the world with Tesauro's TD-Gammon (1992). It runs underground during the statistical-ML years, resurfaces as *deep* RL with DQN (2013/2015) and AlphaGo (2016), and then turns unexpectedly into the main channel of the LLM era: RLHF (2017 preferences paper → InstructGPT 2022 → ChatGPT) and RL-trained reasoning models (o1 2024, DeepSeek-R1 2025). The 2024 Turing Award to Barto and Sutton (announced March 2025) marks the river's canonisation. [a1]–[a12]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -19,7 +19,9 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 1957 | Richard Bellman publishes *Dynamic Programming*; the Bellman equation becomes the mathematical core of RL | [a1] |
 | 1959 | Arthur Samuel's checkers program (IBM) learns from self-play; Samuel coins "machine learning" | [a2] |
 | 1988 | Richard Sutton, "Learning to Predict by the Methods of Temporal Differences" (Machine Learning 3) — TD(λ) | [a3] |
+| 1983 | Barto, Sutton & Anderson, "Neuronlike adaptive elements that can solve difficult learning control problems" (IEEE SMC) — the actor–critic architecture, demonstrated on pole-balancing | [a11] |
 | 1989 | Chris Watkins introduces Q-learning (PhD thesis *Learning from Delayed Rewards*); convergence proof with Dayan, 1992 | [a4] |
+| 1992 | Ronald Williams, REINFORCE (Machine Learning 8) — the first policy-gradient method; the policy-gradient family later powers Ng's Stanford autonomous helicopter (2004) and, via PPO, RLHF | [a12] |
 | 1992 | Gerald Tesauro's TD-Gammon (IBM) reaches world-class backgammon via TD learning and self-play | [a5] |
 | 1998 | Sutton & Barto, *Reinforcement Learning: An Introduction* (MIT Press; 2nd ed. 2018) | [a6] |
 | 2013/2015 | DeepMind DQN plays Atari from pixels (arXiv 1312.5602, Dec 2013; Nature, Feb 2015) | [a7] |
@@ -30,7 +32,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 **Eras crossed.** Cybernetics/foundations (1940s–50s) → symbolic era (dynamic programming, checkers) → connectionist revival (TD-Gammon) → statistical ML → deep learning (DQN, AlphaGo) → Transformer plateau (RLHF) → Generative Coast (reasoning models). Y-position: connectionist bank, but with a symbolic-side tributary (search/planning: MCTS in AlphaGo, MuZero's learned model).
 
 ### (b) Robotics / embodied AI — "the Embodiment Road"
-**Description.** Robotics is where AI meets the physical world and where each era's dominant paradigm is tested hardest. Shakey (SRI, 1966–72) was the first mobile robot to reason about its actions with symbolic planning (STRIPS) and gave us A* search; Brooks's subsumption architecture (1986) rejected central world models in favour of layered reactive behaviours; the DARPA Grand and Urban Challenges (2004–2007) and Robotics Challenge (2012–2015) turned autonomy into a competitive engineering discipline and seeded the self-driving industry; Boston Dynamics (founded 1992) made dynamic legged locomotion iconic (BigDog 2005, Atlas 2013, Spot); and since 2022–23 the Transformer plateau has reached the road via vision-language-action (VLA) models — RT-1 (Dec 2022), RT-2 (Jul 2023), π0 (Oct 2024), Figure's Helix and Gemini Robotics (2025). [b1]–[b9]
+**Description.** Robotics is where AI meets the physical world and where each era's dominant paradigm is tested hardest. Shakey (SRI, 1966–72) was the first mobile robot to reason about its actions with symbolic planning (STRIPS) and gave us A* search; Brooks's subsumption architecture (1986) rejected central world models in favour of layered reactive behaviours; the DARPA Grand and Urban Challenges (2004–2007) and Robotics Challenge (2012–2015) turned autonomy into a competitive engineering discipline and seeded the self-driving industry; Boston Dynamics (founded 1992) made dynamic legged locomotion iconic (BigDog 2005, Atlas 2013, Spot); and since 2022–23 the Transformer plateau has reached the road via vision-language-action (VLA) models — RT-1 (Dec 2022), RT-2 (Jul 2023), π0 (Oct 2024), Figure's Helix and Gemini Robotics (2025). [b1]–[b12]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -38,9 +40,11 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 1961 | Unimate, the first industrial robot, works a General Motors assembly line | [b1] |
 | 1966–1972 | Shakey the Robot (SRI): first general-purpose mobile robot to reason about its actions; STRIPS planner, A* search, Hough transform emerge from the project | [b2] |
 | 1979–1980 | Hans Moravec's Stanford Cart negotiates cluttered obstacle courses using stereo vision | [b3] |
-| 1986 | Rodney Brooks, "A Robust Layered Control System for a Mobile Robot" — the subsumption architecture and behaviour-based robotics | [b4] |
+| 1986 | Rodney Brooks, "A Robust Layered Control System for a Mobile Robot" — the subsumption architecture and behaviour-based robotics; the six-legged walker Genghis (described in Brooks's 1989 "A Robot that Walks") embodies it; Brooks co-founds iRobot (1990) | [b4] [b11] |
 | 1992 | Boston Dynamics founded as an MIT spin-off (Marc Raibert); BigDog 2005; Atlas unveiled 11 Jul 2013; acquired by Google 2013, SoftBank 2017, Hyundai 2020–21 | [b5] |
+| 2000 (Oct) | Honda unveils ASIMO, the humanoid that made bipedal walking robots a public icon (retired 2022) | [b10] |
 | 2004–2007 | DARPA Grand Challenge (2004, no finisher; 2005 won by Stanford's Stanley) and Urban Challenge (2007) | [b6] |
+| 2009–2020 | Google's self-driving car project begins (Jan 2009) → Waymo (Dec 2016) → first public rides with no safety driver (Oct 2020); Amazon buys Kiva Systems for $775M (Mar 2012), industrialising warehouse robots | [b12] |
 | 2012–2015 | DARPA Robotics Challenge for disaster-response humanoids | [b7] |
 | 2022 (Dec) – 2023 (Jul) | Google's RT-1 Robotics Transformer (arXiv 2212.06817) and RT-2 vision-language-action model (arXiv 2307.15818) | [b8] |
 | 2024–2025 | Physical Intelligence π0 (arXiv 2410.24164, Oct 2024); OpenVLA (arXiv 2406.09246); Gemini Robotics (12 Mar 2025); Figure Helix VLA | [b9] |
@@ -48,7 +52,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 **Eras crossed.** Symbolic era (Shakey) → AI winter/behaviour-based reaction (Brooks) → probabilistic robotics & DARPA challenges (2000s) → deep learning (perception) → Generative Coast (VLA models). Y-position: starts at the symbolic pole, swings hard to the anti-representational pole with Brooks, and ends "mixed" as LLM planners drive learned controllers.
 
 ### (c) AI safety, alignment and ethics — "the Conscience Road"
-**Description.** Worries about machines pursuing the wrong goals are as old as the field: Asimov's Three Laws (1942) in fiction, Wiener's 1960 *Science* essay "Some Moral and Technical Consequences of Automation" (the earliest statement of the alignment problem), and Weizenbaum's *Computer Power and Human Reason* (1976). The road splits in the 2010s into an *existential-risk* lane (MIRI, Bostrom's *Superintelligence* 2014, FLI open letter 2015, "Concrete Problems in AI Safety" 2016, Asilomar Principles 2017) and a *present-harms* lane (ProPublica's COMPAS investigation 2016, Gender Shades 2018, "Stochastic Parrots" 2021), before both lanes converge in the policy district of the Generative Coast: the 2023 pause letter and extinction statement, the Bletchley Declaration (Nov 2023), US EO 14110 (Oct 2023), and the EU AI Act (in force Aug 2024). [c1]–[c10]
+**Description.** Worries about machines pursuing the wrong goals are as old as the field: Asimov's Three Laws (1942) in fiction, Wiener's 1960 *Science* essay "Some Moral and Technical Consequences of Automation" (the earliest statement of the alignment problem), and Weizenbaum's *Computer Power and Human Reason* (1976). The road splits in the 2010s into an *existential-risk* lane (MIRI, Bostrom's *Superintelligence* 2014, FLI open letter 2015, "Concrete Problems in AI Safety" 2016, Asilomar Principles 2017) and a *present-harms* lane (ProPublica's COMPAS investigation 2016, Gender Shades 2018, "Stochastic Parrots" 2021), before both lanes converge in the policy district of the Generative Coast: the 2023 pause letter and extinction statement, the Bletchley Declaration (Nov 2023), US EO 14110 (Oct 2023), and the EU AI Act (in force Aug 2024). [c1]–[c13]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -59,15 +63,15 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 2014 | Nick Bostrom, *Superintelligence: Paths, Dangers, Strategies*; 2015 FLI open letter (Hawking, Musk, AI researchers) | [c4] |
 | 2016 | Amodei et al., "Concrete Problems in AI Safety" (arXiv 1606.06565); ProPublica's "Machine Bias" COMPAS investigation; Partnership on AI founded | [c5] |
 | 2017 | Asilomar AI Principles (FLI conference, 5–8 Jan 2017) | [c6] |
-| 2018–2021 | Gender Shades (Buolamwini & Gebru, 2018); Model Cards (arXiv 1810.03993); "On the Dangers of Stochastic Parrots" (FAccT, Mar 2021) | [c7] |
+| 2018–2021 | Gender Shades (Buolamwini & Gebru, 2018); Model Cards (arXiv 1810.03993); Google ends Timnit Gebru's employment over the "Stochastic Parrots" paper (Dec 2020); "On the Dangers of Stochastic Parrots" (FAccT, Mar 2021) | [c7] [c11] |
 | 2023 | "Pause Giant AI Experiments" letter (Mar); CAIS Statement on AI Risk (30 May); Hinton leaves Google (May); Bletchley Declaration (1–2 Nov); US EO 14110 (30 Oct) | [c8] |
-| 2024 | EU AI Act passes Parliament 13 Mar, in force 1 Aug 2024 | [c9] |
-| 2022–2024 | Technical alignment toolkit matures: Constitutional AI (Dec 2022), DPO (2023), mechanistic interpretability; safety institutes founded | [c10] |
+| 2024 | EU AI Act passes Parliament 13 Mar, in force 1 Aug 2024; California's SB 1047 frontier-model bill passes the legislature but is vetoed by Gov. Newsom (29 Sep 2024) | [c9] [c13] |
+| 2022–2024 | Technical alignment toolkit matures: Constitutional AI (Dec 2022), DPO (2023), mechanistic interpretability; lab and state governance: Anthropic's Responsible Scaling Policy (19 Sep 2023), UK and US AI Safety Institutes (Nov 2023) | [c10] [c12] |
 
 **Eras crossed.** Every era from cybernetics onward; densest at the symbolic-era ELIZA controversy (Weizenbaum), the 2010s deep-learning ethics reckoning, and the 2023–24 policy district. Y-position: a road that runs across both banks — it is deliberately paradigm-agnostic.
 
 ### (d) Hardware and compute — "the Silicon River"
-**Description.** Compute has repeatedly decided which paradigm wins. The symbolic era built specialised Lisp machines (MIT 1973 → Symbolics/LMI in the 1980s) and Thinking Machines' Connection Machine (CM-1, 1985); their collapse against commodity workstations in 1987 helped trigger the second AI winter. The connectionist revival was carried by commodity graphics chips: Nvidia's GeForce 256 (1999, marketed as the first "GPU"), CUDA (2007) turning GPUs into general-purpose parallel machines, and AlexNet's two GTX 580s (2012). Once scaling laws (2020) made compute a strategy, purpose-built accelerators and data-centre GPUs became geopolitical assets — Google's TPU (announced May 2016), Nvidia's DGX-1 (2016), A100, Hopper H100 (announced Mar 2022) and Blackwell (Mar 2024) — and Nvidia became the first company to exceed $4 trillion in market value (2025). [d1]–[d9]
+**Description.** Compute has repeatedly decided which paradigm wins. The symbolic era built specialised Lisp machines (MIT 1973 → Symbolics/LMI in the 1980s) and Thinking Machines' Connection Machine (CM-1, 1985); their collapse against commodity workstations in 1987 helped trigger the second AI winter. The connectionist revival was carried by commodity graphics chips: Nvidia's GeForce 256 (1999, marketed as the first "GPU"), CUDA (2007) turning GPUs into general-purpose parallel machines, and AlexNet's two GTX 580s (2012). Once scaling laws (2020) made compute a strategy, purpose-built accelerators and data-centre GPUs became geopolitical assets — Google's TPU (announced May 2016), Nvidia's DGX-1 (2016), A100, Hopper H100 (announced Mar 2022) and Blackwell (Mar 2024) — and Nvidia became the first company to exceed $4 trillion in market value (2025). [d1]–[d12]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -78,18 +82,21 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 2007 | Nvidia releases CUDA (created 2004), enabling general-purpose GPU computing | [d4] |
 | 2012 | AlexNet trained on GPUs wins ILSVRC 2012, launching the deep-learning boom | [d5] |
 | 2016 | Google announces the Tensor Processing Unit at I/O (May 2016), after >1 year of internal use; Nvidia announces DGX-1 (6 Apr 2016) | [d6] |
-| 2020 | Kaplan et al. scaling laws; compute becomes the planning variable for frontier labs | [d7] |
+| 2017–2019 | Nvidia Volta V100 (May 2017) — first Tensor Cores; Cerebras WSE-1 wafer-scale engine (Aug 2019, 1.2 trillion transistors) — specialised AI silicon returns | [d11] |
+| 2020 | Kaplan et al. scaling laws; compute becomes the planning variable for frontier labs (Epoch AI: frontier training compute growing ~5×/year since 2020) | [d7] [d12] |
 | 2022 (Mar) | Nvidia Hopper architecture / H100 announced at GTC 2022, with a "transformer engine" | [d8] |
+| 2022 (Aug–Oct) | US CHIPS and Science Act signed (9 Aug 2022); US export controls on advanced computing chips to China take effect (7 Oct 2022) — compute becomes statecraft | [d10] |
 | 2024 (18 Mar) | Nvidia Blackwell announced at GTC 2024; Nvidia passes $1T (2023), $4T and $5T (2025) market capitalisation | [d9] |
 
 **Eras crossed.** Symbolic era (Lisp machines) → AI winter (their collapse) → deep learning (GPUs/CUDA) → Transformer plateau (TPU, scaling laws) → Generative Coast (H100/Blackwell, export controls). Y-position: connectionist/scaling bank after 1999; symbolic bank before.
 
 ### (e) Open vs closed — "the Commons Road"
-**Description.** Whether AI artefacts are shared or withheld has oscillated with each era. Academic openness (Weka 1993, Torch, Theano, Caffe 2014) gave way to corporate-but-open frameworks (TensorFlow 2015, PyTorch 2016–17, Hugging Face Transformers 2019) that made deep learning a commons. OpenAI's staged GPT-2 release (2019) was the first deliberate withholding on safety grounds; GPT-3 (2020) shipped as an API only, and GPT-4 (2023) without architectural details. The counter-movement — EleutherAI (2020), BLOOM (2022), Stable Diffusion (Aug 2022) — became mainstream when Meta's LLaMA weights leaked (3 Mar 2023) and Meta then embraced open weights with Llama 2 (Jul 2023) and Llama 3 (Apr 2024); Mistral (2023), Qwen and DeepSeek (V3 Dec 2024, R1 Jan 2025) extended the commons to Europe and China; even OpenAI returned with gpt-oss (Aug 2025). The Open Source Initiative's 2024 Open Source AI Definition formalised the "open weights ≠ open source" debate. [e1]–[e10]
+**Description.** Whether AI artefacts are shared or withheld has oscillated with each era. Academic openness (Weka 1993, Torch, Theano, Caffe 2014) gave way to corporate-but-open frameworks (TensorFlow 2015, PyTorch 2016–17, Hugging Face Transformers 2019) that made deep learning a commons. OpenAI's staged GPT-2 release (2019) was the first deliberate withholding on safety grounds; GPT-3 (2020) shipped as an API only, and GPT-4 (2023) without architectural details. The counter-movement — EleutherAI (2020), BLOOM (2022), Stable Diffusion (Aug 2022) — became mainstream when Meta's LLaMA weights leaked (3 Mar 2023) and Meta then embraced open weights with Llama 2 (Jul 2023) and Llama 3 (Apr 2024); Mistral (2023), Qwen and DeepSeek (V3 Dec 2024, R1 Jan 2025) extended the commons to Europe and China; even OpenAI returned with gpt-oss (Aug 2025). The Open Source Initiative's 2024 Open Source AI Definition formalised the "open weights ≠ open source" debate. [e1]–[e11]
 
 **Milestones.**
 | Year | Milestone | Source |
 |------|-----------|--------|
+| 1991–2010 | Commons infrastructure: arXiv (Ginsparg, Aug 1991) makes preprints the field's publishing norm; scikit-learn (2007; INRIA rewrite 2010); Kaggle founded (Apr 2010) | [e11] |
 | 1993–2014 | Open ML tooling era: Weka (GPL), Torch, Theano, Caffe (Berkeley, 2014) | [e1] |
 | 2015–2017 | Google open-sources TensorFlow (Apache 2.0, 2015); Facebook releases PyTorch (2016–17) | [e2] |
 | 2019 | OpenAI staggers GPT-2 release over misuse concerns (Feb → Nov 2019); Hugging Face Transformers becomes the open model hub | [e3] |
@@ -104,7 +111,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 **Eras crossed.** Statistical ML (open toolkits) → deep learning (open frameworks) → Transformer plateau (GPT-2 withholding, EleutherAI) → Generative Coast (Llama, Mistral, DeepSeek). Y-position: a road that hugs the connectionist bank, with toll-gates (closed APIs) and free crossings (open weights).
 
 ### (f) Natural language processing lineage — "the Language River"
-**Description.** NLP is the thread that most directly leads to today's LLMs. It begins with the Georgetown–IBM machine-translation demo (1954) and the optimism ALPAC crushed in 1966; runs through symbolic dialogue systems (ELIZA 1964–67, SHRDLU 1968–70); turns statistical with IBM's speech and translation work (Jelinek from 1972; IBM alignment models, early 1990s) and hidden Markov models; becomes neural with word2vec (2013), seq2seq and attention (2014), Google Neural Machine Translation (2016) and LSTMs; and then floods into the Transformer plateau — ELMo, GPT, BERT (2018), GPT-3 (2020) — and the Generative Coast (ChatGPT 2022). [f1]–[f9]
+**Description.** NLP is the thread that most directly leads to today's LLMs. It begins with the Georgetown–IBM machine-translation demo (1954) and the optimism ALPAC crushed in 1966; runs through symbolic dialogue systems (ELIZA 1964–67, SHRDLU 1968–70); turns statistical with IBM's speech and translation work (Jelinek from 1972; IBM alignment models, early 1990s) and hidden Markov models; becomes neural with word2vec (2013), seq2seq and attention (2014), Google Neural Machine Translation (2016) and LSTMs; and then floods into the Transformer plateau — ELMo, GPT, BERT (2018), GPT-3 (2020) — and the Generative Coast (ChatGPT 2022). [f1]–[f10]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -112,6 +119,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 1954 (7 Jan) | Georgetown–IBM experiment translates 60+ Russian sentences; 1966 ALPAC report cuts MT funding | [f1] |
 | 1964–1967 | Joseph Weizenbaum's ELIZA (MIT) — pattern-matching chatbot | [f2] |
 | 1968–1970 | Terry Winograd's SHRDLU (MIT) — natural-language understanding in a blocks world | [f3] |
+| 1961–1993 | Corpora: Brown Corpus (Kučera & Francis, Brown University, 1961 texts; manual 1964) and the Penn Treebank (Marcus et al., Computational Linguistics 1993) — the data behind statistical NLP | [f10] |
 | 1972–1993 | Statistical turn: Jelinek's IBM speech group (from 1972); IBM alignment models for statistical MT (early 1990s) | [f4] |
 | 1997 | Hochreiter & Schmidhuber, Long Short-Term Memory (Neural Computation) | [f5] |
 | 2013 | Mikolov et al., word2vec (Google) — dense word embeddings at scale | [f6] |
@@ -122,7 +130,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 **Eras crossed.** Foundations/symbolic (Georgetown, ELIZA, SHRDLU) → AI winter (ALPAC) → statistical ML (HMMs, IBM models) → deep learning (word2vec, seq2seq) → Transformer plateau → Generative Coast. Y-position: begins at the symbolic pole (grammars, rules) and crosses fully to the connectionist pole by 2014.
 
 ### (g) Computer vision lineage — "the Vision River"
-**Description.** Vision starts in neuroscience — Hubel and Wiesel's 1959 cat-cortex recordings of orientation-selective cells — and in Larry Roberts's 1963 MIT thesis "Machine Perception of Three-Dimensional Solids"; MIT's 1966 "Summer Vision Project" famously underestimated the problem. Fukushima's Neocognitron (1979) and LeCun's LeNet convolutional networks (1989–1998) laid the neural groundwork while hand-engineered features (SIFT 1999, Viola–Jones 2001) dominated the 2000s. ImageNet (2009) and AlexNet's 2012 ILSVRC win flipped the field to deep learning; ResNet (2015), Faster R-CNN and YOLO (2015) made detection real-time; GANs (2014) began the generative turn; and the Vision Transformer (2020), CLIP (2021), diffusion models (Stable Diffusion 2022, Sora 2024) and Segment Anything (2023) merged vision into the multimodal foundation-model mainstream. [g1]–[g10]
+**Description.** Vision starts in neuroscience — Hubel and Wiesel's 1959 cat-cortex recordings of orientation-selective cells — and in Larry Roberts's 1963 MIT thesis "Machine Perception of Three-Dimensional Solids"; MIT's 1966 "Summer Vision Project" famously underestimated the problem. Fukushima's Neocognitron (1979) and LeCun's LeNet convolutional networks (1989–1998) laid the neural groundwork while hand-engineered features (SIFT 1999, Viola–Jones 2001) dominated the 2000s. ImageNet (2009) and AlexNet's 2012 ILSVRC win flipped the field to deep learning; ResNet (2015), Faster R-CNN and YOLO (2015) made detection real-time; GANs (2014) began the generative turn; and the Vision Transformer (2020), CLIP (2021), diffusion models (Stable Diffusion 2022, Sora 2024) and Segment Anything (2023) merged vision into the multimodal foundation-model mainstream. [g1]–[g13]
 
 **Milestones.**
 | Year | Milestone | Source |
@@ -131,9 +139,10 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 1963–1966 | Larry Roberts's "Machine Perception of Three-Dimensional Solids"; MIT Summer Vision Project (1966) | [g2] |
 | 1979 | Kunihiko Fukushima's Neocognitron — hierarchical, shift-invariant network inspiring CNNs | [g3] |
 | 1989–1998 | Yann LeCun's LeNet convolutional networks at Bell Labs read handwritten digits and cheques | [g4] |
-| 1999–2001 | David Lowe's SIFT features (1999); Viola–Jones face detector (2001) | [g5] |
+| 1982–1991 | David Marr's *Vision* (posthumous, 1982) — the computational theory of vision; Canny edge detector (1986); eigenfaces face recognition (Turk & Pentland, 1991) | [g11] |
+| 1999–2005 | David Lowe's SIFT features (1999); Viola–Jones face detector (2001); HOG (Dalal & Triggs, INRIA, 2005) | [g5] [g12] |
 | 2009–2012 | ImageNet presented at CVPR 2009; ILSVRC from 2010; AlexNet wins ILSVRC 2012 on GPUs | [g6] |
-| 2014–2015 | GANs (Goodfellow, Jun 2014); ResNet wins ILSVRC 2015; Faster R-CNN and YOLO (2015) | [g7] |
+| 2014–2017 | GANs (Goodfellow, Jun 2014); ResNet wins ILSVRC 2015; Faster R-CNN and YOLO (2015); Mask R-CNN (Mar 2017) | [g7] [g13] |
 | 2020–2021 | Vision Transformer (Oct 2020); CLIP and DALL-E (Jan 2021) | [g8] |
 | 2022–2024 | Latent diffusion / Stable Diffusion (Aug 2022), DALL-E 2, Midjourney; Segment Anything (Apr 2023); Sora (Feb 2024) | [g9] |
 | 2023–2025 | Vision feeds robotics: RT-2, π0, Gemini Robotics (VLA models) | [g10] |
@@ -141,11 +150,12 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 **Eras crossed.** Cybernetics/neuroscience → symbolic era (Roberts, blocks world) → connectionist revival (Neocognitron, LeNet) → statistical ML (SIFT, Viola–Jones) → deep learning (AlexNet, ResNet) → Transformer plateau (ViT, CLIP) → Generative Coast (diffusion, SAM). Y-position: connectionist bank throughout, with a hand-engineered-features meander in the 2000s.
 
 ### (h) Game-playing milestones — "the Tournament Road"
-**Description.** Games have been AI's public proving ground since Samuel's checkers (1950s), because they offer clear rules and clear scores. The road passes IBM's landmark spectacles — Deep Blue beating Kasparov (May 1997) and Watson winning *Jeopardy!* (Feb 2011) — and Chinook, the first program to win a human world championship (checkers, 1994; game solved 2007). Deep RL then swept imperfect-information and real-time games: AlphaGo (2016), AlphaGo Zero/AlphaZero (2017), Libratus (2017) and Pluribus (2019) in poker, OpenAI Five in Dota 2 (2018–19), AlphaStar in StarCraft II (2019), and MuZero (2019/2020) learning rules from scratch. After 2020 the road merges into the RL river's LLM reach (reasoning models). [h1]–[h10]
+**Description.** Games have been AI's public proving ground since Samuel's checkers (1950s), because they offer clear rules and clear scores. The road passes IBM's landmark spectacles — Deep Blue beating Kasparov (May 1997) and Watson winning *Jeopardy!* (Feb 2011) — and Chinook, the first program to win a human world championship (checkers, 1994; game solved 2007). Deep RL then swept imperfect-information and real-time games: AlphaGo (2016), AlphaGo Zero/AlphaZero (2017), Libratus (2017) and Pluribus (2019) in poker, OpenAI Five in Dota 2 (2018–19), AlphaStar in StarCraft II (2019), and MuZero (2019/2020) learning rules from scratch. After 2020 the road merges into the RL river's LLM reach (reasoning models). [h1]–[h12]
 
 **Milestones.**
 | Year | Milestone | Source |
 |------|-----------|--------|
+| 1948–1967 | Turing & Champernowne's Turochamp (1948; hand-executed 1952) — chess program before the hardware existed; Greenblatt's Mac Hack VI (MIT, 1967) is the first program to beat a person in tournament play | [h11] |
 | 1959 | Arthur Samuel's self-learning checkers program (IBM) | [h1] |
 | 1994 & 2007 | Chinook (Jonathan Schaeffer, U. Alberta) becomes Man–Machine checkers champion (1994); checkers solved (2007) | [h2] |
 | 1996–1997 | IBM Deep Blue loses to Kasparov 1996 (Feb), wins rematch 3½–2½ in May 1997 | [h3] |
@@ -155,18 +165,80 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 2018–2019 | OpenAI Five plays pros at The International 2018 and beats champions OG (Apr 2019) | [h7] |
 | 2019 | AlphaStar reaches Grandmaster in StarCraft II (Nature, Oct/Nov 2019); Pluribus beats pros in six-player no-limit hold'em | [h8] |
 | 2019–2020 | MuZero masters Go, chess, shogi and Atari without being told the rules (Nature, Dec 2020) | [h9] |
+| 2022 | Gran Turismo Sophy outraces champion drivers (Nature, Feb 2022); DeepNash masters Stratego (arXiv Jun 2022); Meta's Cicero plays Diplomacy at human level by negotiating in natural language (22 Nov 2022) | [h12] |
 | 2024 | AlphaGeometry solves IMO-level geometry (Nature, Jan 2024) — games give way to olympiad mathematics | [h10] |
 
 **Eras crossed.** Symbolic era (Samuel, minimax search) → expert-systems/IBM engineering (Deep Blue, Watson) → deep learning (AlphaGo) → Transformer plateau (MuZero era) → Generative Coast (reasoning models, olympiad maths). Y-position: starts at the symbolic pole (search), ends at the connectionist pole (learned evaluation + search hybrids — a true "mixed" road).
 
+## Timeline of key events
+Cross-index of *junctions* — dated events where two or more threads meet. Each thread's own milestones live in its subsection above; this table only lists confluences, citing the same per-thread source keys.
+
+| Year | Event | Why it matters | Source |
+|------|-------|----------------|--------|
+| 1948–1952 | Turing's Turochamp chess program, hand-executed in 1952 | Tournament Road (h) begins with the same person who framed the Language River's test (Turing test, attempted by ELIZA) | [h11] [f2] |
+| 1959 | Samuel's self-learning checkers program | Headwaters shared by the RL River (a) and the Tournament Road (h); coins "machine learning" | [a2] [h1] |
+| 1960 | Wiener, "Some Moral and Technical Consequences of Automation" | Conscience Road (c) opens from the cybernetics that also fed learning control (a) | [c2] |
+| 1966–1972 | Shakey (SRI): STRIPS planning, A*, Hough transform | Embodiment Road (b) meets symbolic planning and early machine vision (g) | [b2] |
+| 1976 | Weizenbaum, *Computer Power and Human Reason* | The ELIZA author (f) becomes the field's first insider critic (c) | [c3] [f2] |
+| 1992 | Tesauro's TD-Gammon | TD learning (a) proves itself on a game (h): the first RL × Tournament junction | [a5] |
+| 1997 | Deep Blue defeats Kasparov | Tournament Road (h) carried by custom VLSI chess chips — a Silicon River (d) crossing | [h3] |
+| 2009–2012 | ImageNet (2009) → AlexNet on two GTX 580 GPUs (2012) | Vision River (g) is carried across the deep-learning rapids by the Silicon River (d); the dataset is itself a commons (e) | [g6] [d5] |
+| 2013/2015 | DQN plays Atari from pixels | RL (a) merges with deep vision (g) on a game platform (h) | [a7] |
+| 2016 | AlphaGo defeats Lee Sedol; TPU announced | RL (a) × Tournament (h) × Silicon (d): TPUs ran the match | [a8] [h5] [d6] |
+| 2019 | GPT-2 staged release | Conscience Road (c) and Commons Road (e) cross for the first time: withholding on misuse grounds | [e3] |
+| 2021 | CLIP; Stochastic Parrots | Vision (g) joins Language (f); the present-harms lane of (c) targets the LLM era | [g8] [c7] |
+| 2022 | InstructGPT/RLHF → ChatGPT; Cicero plays Diplomacy | RL River (a) empties into the Language River (f); a game (h) is won by negotiating in language (f) | [a10] [f9] [h12] |
+| 2022 (Oct) | US export controls on advanced chips | Silicon River (d) becomes a toll-gate on the Commons Road (e) and a policy issue (c) | [d10] |
+| 2023 | LLaMA leak (Mar); RT-2 (Jul); Bletchley Declaration (Nov) | Commons (e) forks; Vision (g) + Language (f) reach robots (b); Conscience Road (c) gets its first intergovernmental toll-gate | [e5] [b8] [c8] |
+| 2024–2025 | o1 and DeepSeek-R1 reasoning models; R1 under MIT licence | RL (a) × Language (f) × Commons (e): RL-trained reasoning arrives open-weight | [a10] [e9] |
+
+## Key people
+People who appear on two or more threads (thread letters in brackets); single-thread figures stay in their thread's description.
+- **Alan Turing** (Manchester) — Turochamp (1948) on the Tournament Road; the imitation game that ELIZA was measured against on the Language River. [h11] [f2]
+- **Norbert Wiener** (MIT) — cybernetic headwaters of learning control and the 1960 statement of the alignment problem. [c2] (a, c)
+- **Arthur Samuel** (IBM) — self-play checkers (1959): the shared source of the RL River and the Tournament Road. [a2] [h1]
+- **Joseph Weizenbaum** (MIT) — ELIZA (1964–67) and *Computer Power and Human Reason* (1976). [f2] [c3]
+- **Richard Sutton & Andrew Barto** (UMass) — actor–critic (1983), TD(λ) (1988), the textbook (1998); 2024 Turing Award. [a11] [a3] [a6] [a10] (a, h via TD-Gammon and AlphaGo)
+- **Gerald Tesauro** (IBM) — TD-Gammon (1992), the first RL × games landmark. [a5] (a, h)
+- **Rodney Brooks** (MIT) — subsumption architecture (1986), Genghis, iRobot; the anti-representational pole of the Embodiment Road, arguing against symbolic planning. [b4] [b11] (b, and the symbolic/behaviour-based border)
+- **Geoffrey Hinton** (Toronto/Google) — AlexNet (2012) on the Vision and Silicon rivers; leaves Google to warn about risk (May 2023) on the Conscience Road; 2024 Nobel Prize in Physics. [d5] [g6] [c8]
+- **Yann LeCun** (Bell Labs/Meta) — LeNet (1989–98) on the Vision River; Meta's chief AI scientist during the Llama open-weights turn. [g4] [e5] [e6]
+- **Yoshua Bengio** (Montréal) — his group's attention mechanism (2014) on the Language River; chairs the International AI Safety Report (2024–25) commissioned at Bletchley. [f7] [c8]
+- **Fei-Fei Li** (Princeton/Stanford) — ImageNet (2009): a Vision River dataset that is also Commons infrastructure. [g6]
+- **Ilya Sutskever** (Toronto/Google/OpenAI) — AlexNet (2012), seq2seq (2014), AlphaGo co-author, OpenAI "Superalignment" (2023). [g6] [f7] [c10]
+- **Demis Hassabis** (DeepMind) — AlphaGo, AlphaZero, MuZero, AlphaGeometry on the RL River and Tournament Road; UK government AI adviser; 2024 Nobel Prize in Chemistry. [a8] [h5] [h9] [h10]
+- **Dario Amodei** (OpenAI/Anthropic) — "Concrete Problems in AI Safety" (2016), co-author of the 2017 preferences paper, Anthropic's RSP (2023). [c5] [a9] [c12]
+- **Sam Altman** (OpenAI) — GPT-2 withholding (2019) and API-only GPT-3 on the Commons Road; Senate testimony on AI oversight (16 May 2023) on the Conscience Road. [e3] [c8]
+- **Jensen Huang** (Nvidia) — CUDA (2007) to Blackwell (2024): the Silicon River's main engineer; the same GPUs carried the Vision River in 2012. [d4] [d5] [d9]
+- **Timnit Gebru** (Microsoft/Google/DAIR) — Gender Shades (2018), Stochastic Parrots (2021), dismissal from Google (Dec 2020). [c7] [c11]
+
+## Key papers / artifacts
+Artifacts that sit at junctions of two or more threads (see the Timeline above); each is sourced in its thread's list.
+- Barto, Sutton & Anderson. *Neuronlike adaptive elements that can solve difficult learning control problems*. IEEE Trans. SMC, 1983. [a11] (a, b — control)
+- Tesauro. *TD-Gammon* (1992). [a5] (a, h)
+- Shakey the Robot / STRIPS (SRI, 1966–72). [b2] (b, g, symbolic planning)
+- IBM Deep Blue (1997). [h3] (h, d)
+- Deng et al. *ImageNet* (CVPR 2009) and Krizhevsky, Sutskever & Hinton, *AlexNet* (2012). [g6] [d5] (g, d, e)
+- Mnih et al. *Human-level control through deep reinforcement learning*. Nature, 2015. [a7] (a, g, h)
+- Silver et al. *Mastering the game of Go with deep neural networks and tree search*. Nature, 2016. [a8] [h5] (a, h, d)
+- Google *Tensor Processing Unit* (2016). [d6] (d, h)
+- Vaswani et al. *Attention Is All You Need* (2017). [f8] (f, g via ViT, b via RT-1/2)
+- OpenAI *GPT-2* and its staged release (2019). [e3] (e, c, f)
+- Radford et al. *CLIP* (2021). [g8] (g, f)
+- Bender, Gebru et al. *On the Dangers of Stochastic Parrots* (FAccT 2021). [c7] (c, f)
+- Ouyang et al. *InstructGPT* (2022). [a10] [f9] (a, f)
+- Meta *LLaMA* weights and their leak (Feb–Mar 2023). [e5] (e, c)
+- Brohan et al. *RT-2: Vision-Language-Action Models* (2023). [b8] [g10] (b, g, f)
+- DeepSeek *R1* (Jan 2025, MIT licence). [a10] [e9] (a, e, f)
+
 ## Schools of thought / sub-clusters
-- **Rivers (technical lineages)** — RL (a), hardware (d), NLP (f), vision (g): drawn as watercourses that widen as they approach the Generative Coast, where (a), (f) and (g) merge into one delta (LLMs + RLHF + multimodality). Borders: each rises in a specific western era (cybernetics, symbolic) and touches every continent en route.
-- **Roads (social/institutional debates)** — safety/ethics (c) and open-vs-closed (e): drawn as roads with milestones and toll-gates crossing rivers via bridges (e.g. the GPT-2 staged release is a bridge where (c) and (e) cross). Borders: paradigm-agnostic; they connect symbolic-era critics (Weizenbaum) to connectionist-era critics (Gebru/Bender).
-- **Applied frontiers** — robotics (b) and game-playing (h): drawn as roads that alternate between banks because each era used them as demonstrations of its paradigm (STRIPS vs subsumption; minimax vs self-play).
+- **Rivers (technical lineages)** — RL (a), hardware (d), NLP (f), vision (g): drawn as watercourses that widen as they approach the Generative Coast, where (a), (f) and (g) merge into one delta (LLMs + RLHF + multimodality). borders: each rises in a specific western era (cybernetics, symbolic) and touches every continent en route; (a) borders (h) wherever self-play appears, (d) borders (g) at AlexNet.
+- **Roads (social/institutional debates)** — safety/ethics (c) and open-vs-closed (e): drawn as roads with milestones and toll-gates crossing rivers via bridges (e.g. the GPT-2 staged release is a bridge where (c) and (e) cross). borders: paradigm-agnostic; they connect symbolic-era critics (Weizenbaum) to connectionist-era critics (Gebru/Bender), and (e) borders (d) at export controls.
+- **Applied frontiers** — robotics (b) and game-playing (h): drawn as roads that alternate between banks because each era used them as demonstrations of its paradigm (STRIPS vs subsumption; minimax vs self-play); borders: (b) borders (g) at VLA models and (a) at policy-gradient control; (h) borders (a) from TD-Gammon onward and (d) at Deep Blue's custom chips.
 
 ## Map notes
 - Suggested A1 labels: **RL River**, **Language River**, **Vision River**, **Silicon River**, **Conscience Road**, **Commons Road**, **Embodiment Road**, **Tournament Road**.
-- Rivers/borders/bridges: key confluences to mark — *Bellman → TD-Gammon → DQN → AlphaGo → RLHF* (RL joins Language at InstructGPT 2022); *CLIP bridge* (Vision joins Language, 2021); *AlexNet junction* (Silicon River carries Vision River across the deep-learning rapids, 2012); *LLaMA leak fork* (Commons Road splits the Generative Coast, Mar 2023); *Bletchley/EU AI Act toll-gates* (Conscience Road, 2023–24).
+- Rivers/borders/bridges: key confluences to mark — *Bellman → TD-Gammon → DQN → AlphaGo → RLHF* (RL joins Language at InstructGPT 2022); *CLIP bridge* (Vision joins Language, 2021); *AlexNet junction* (Silicon River carries Vision River across the deep-learning rapids, 2012); *LLaMA leak fork* (Commons Road splits the Generative Coast, Mar 2023); *Bletchley/EU AI Act toll-gates* (Conscience Road, 2023–24); *export-control lock* (Silicon River meets Commons Road, Oct 2022); *Cicero crossing* (Tournament Road meets Language River, Nov 2022). The full junction list is the Timeline table above.
 - Open questions for curation: (1) whether Game-playing should be a branch of the RL River rather than its own road; (2) whether to draw a ninth thread for "AI in science" (AlphaFold, Nobel 2024) or fold it into Vision/RL; (3) how to depict the 2024 Nobel/Turing awards (monuments at the RL and connectionist confluences?); (4) how far east to extend each thread given the "Needs verification" strip in file 08.
 
 ## Sources
@@ -182,6 +254,9 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [a9] Christiano et al., "Deep Reinforcement Learning from Human Preferences" — arXiv 1706.03741 — https://arxiv.org/abs/1706.03741; Schulman et al., "Proximal Policy Optimization Algorithms" — arXiv 1707.06347 — https://arxiv.org/abs/1707.06347 (accessed 2026-09-06)
 [a10] Ouyang et al., InstructGPT — arXiv 2203.02155 — https://arxiv.org/abs/2203.02155; Wikipedia: OpenAI o1 — https://en.wikipedia.org/wiki/OpenAI_o1; DeepSeek-R1 — arXiv 2501.12948 — https://arxiv.org/abs/2501.12948; Wikipedia: Richard S. Sutton (2024 Turing Award) — https://en.wikipedia.org/wiki/Richard_S._Sutton (accessed 2026-09-06)
 
+[a11] Barto, Sutton & Anderson, "Neuronlike adaptive elements that can solve difficult learning control problems", IEEE Trans. Systems, Man, and Cybernetics 13(5), 1983 — Semantic Scholar record — https://api.semanticscholar.org/graph/v1/paper/DOI:10.1109/TSMC.1983.6313077?fields=title,year,authors,venue; PDF — http://incompleteideas.net/papers/barto-sutton-anderson-83.pdf (accessed 2026-09-06)
+[a12] Wikipedia: Ronald J. Williams (REINFORCE, 1992) — https://en.wikipedia.org/wiki/Ronald_J._Williams; Williams, "Simple statistical gradient-following algorithms for connectionist reinforcement learning", Machine Learning 8, 1992 — https://link.springer.com/article/10.1007/BF00992696; Wikipedia: Andrew Ng (Stanford Autonomous Helicopter) — https://en.wikipedia.org/wiki/Andrew_Ng; Ng et al., "Inverted autonomous helicopter flight via reinforcement learning", ISER 2004 — https://ai.stanford.edu/~ang/papers/iser04-invertedflight.pdf (accessed 2026-09-06)
+
 **Thread (b) — Robotics / embodied AI**
 [b1] Wikipedia: Unimate — https://en.wikipedia.org/wiki/Unimate (accessed 2026-09-06)
 [b2] Wikipedia: Shakey the robot — https://en.wikipedia.org/wiki/Shakey_the_robot (accessed 2026-09-06); SRI: Shakey the Robot — https://www.sri.com/hoi/shakey-the-robot/
@@ -192,6 +267,10 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [b7] Wikipedia: DARPA Robotics Challenge — https://en.wikipedia.org/wiki/DARPA_Robotics_Challenge (accessed 2026-09-06)
 [b8] RT-1: Robotics Transformer — arXiv 2212.06817 — https://arxiv.org/abs/2212.06817; RT-2 — arXiv 2307.15818 — https://arxiv.org/abs/2307.15818; Wikipedia: Vision–language–action model — https://en.wikipedia.org/wiki/Vision%E2%80%93language%E2%80%93action_model (accessed 2026-09-06)
 [b9] π0: A Vision-Language-Action Flow Model — arXiv 2410.24164 — https://arxiv.org/abs/2410.24164; OpenVLA — arXiv 2406.09246 — https://arxiv.org/abs/2406.09246; Wikipedia: Gemini Robotics — https://en.wikipedia.org/wiki/Gemini_Robotics; Wikipedia: Figure AI — https://en.wikipedia.org/wiki/Figure_AI (accessed 2026-09-06)
+
+[b10] Wikipedia: ASIMO (unveiled October 2000; retired 2022) — https://en.wikipedia.org/wiki/ASIMO (accessed 2026-09-06)
+[b11] Wikipedia: Genghis (robot) — https://en.wikipedia.org/wiki/Genghis_%28robot%29; Wikipedia: Rodney Brooks (1989 "A Robot that Walks"; iRobot) — https://en.wikipedia.org/wiki/Rodney_Brooks; Wikipedia: iRobot — https://en.wikipedia.org/wiki/IRobot (accessed 2026-09-06)
+[b12] Wikipedia: Waymo (project Jan 2009; renamed Dec 2016; driverless public service Oct 2020) — https://en.wikipedia.org/wiki/Waymo; Wikipedia: Amazon Robotics (Kiva acquisition, Mar 2012) — https://en.wikipedia.org/wiki/Amazon_Robotics (accessed 2026-09-06)
 
 **Thread (c) — AI safety, alignment and ethics**
 [c1] Wikipedia: Three Laws of Robotics (Asimov, "Runaround", 1942) — https://en.wikipedia.org/wiki/Three_Laws_of_Robotics (accessed 2026-09-06)
@@ -205,6 +284,10 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [c9] Wikipedia: Artificial Intelligence Act — https://en.wikipedia.org/wiki/Artificial_Intelligence_Act (accessed 2026-09-06); Regulation (EU) 2024/1689 — https://eur-lex.europa.eu/eli/reg/2024/1689/oj
 [c10] Constitutional AI — arXiv 2212.08073 — https://arxiv.org/abs/2212.08073; DPO — arXiv 2305.18290 — https://arxiv.org/abs/2305.18290; Wikipedia: Mechanistic interpretability — https://en.wikipedia.org/wiki/Mechanistic_interpretability (accessed 2026-09-06)
 
+[c11] Wikipedia: Timnit Gebru (exit from Google, Dec 2020) — https://en.wikipedia.org/wiki/Timnit_Gebru (accessed 2026-09-06)
+[c12] Anthropic, "Announcing Anthropic's Responsible Scaling Policy" (19 Sep 2023) — https://www.anthropic.com/news/anthropics-responsible-scaling-policy; GOV.UK, "AI Safety Institute: overview" (published 2 Nov 2023) — https://www.gov.uk/government/publications/ai-safety-institute-overview; Wikipedia: AI Safety Institute (United Kingdom) — https://en.wikipedia.org/wiki/AI_Safety_Institute_%28United_Kingdom%29 (accessed 2026-09-06)
+[c13] Wikipedia: Safe and Secure Innovation for Frontier Artificial Intelligence Models Act (SB 1047; vetoed 29 Sep 2024) — https://en.wikipedia.org/wiki/Safe_and_Secure_Innovation_for_Frontier_Artificial_Intelligence_Models_Act (accessed 2026-09-06)
+
 **Thread (d) — Hardware and compute**
 [d1] Wikipedia: Lisp machine — https://en.wikipedia.org/wiki/Lisp_machine (accessed 2026-09-06); Wikipedia: History of artificial intelligence (1987 Lisp-machine collapse) — https://en.wikipedia.org/wiki/History_of_artificial_intelligence
 [d2] Wikipedia: Connection Machine — https://en.wikipedia.org/wiki/Connection_Machine (accessed 2026-09-06)
@@ -215,6 +298,10 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [d7] Kaplan et al., Scaling Laws for Neural Language Models — arXiv 2001.08361 — https://arxiv.org/abs/2001.08361 (accessed 2026-09-06)
 [d8] Wikipedia: Hopper (microarchitecture) — https://en.wikipedia.org/wiki/Hopper_%28microarchitecture%29 (accessed 2026-09-06); Nvidia Newsroom, Hopper announcement (GTC 2022) — https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing; Nvidia H100 product page — https://www.nvidia.com/en-us/data-center/h100/
 [d9] Wikipedia: Blackwell (microarchitecture) — https://en.wikipedia.org/wiki/Blackwell_%28microarchitecture%29; Nvidia Newsroom, Blackwell (18 Mar 2024) — https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing; Wikipedia: Nvidia (market capitalisation) — https://en.wikipedia.org/wiki/Nvidia (accessed 2026-09-06)
+
+[d10] Wikipedia: CHIPS and Science Act (signed 9 Aug 2022) — https://en.wikipedia.org/wiki/CHIPS_and_Science_Act; Wikipedia: United States New Export Controls on Advanced Computing and Semiconductors to China (effective 7 Oct 2022) — https://en.wikipedia.org/wiki/United_States_New_Export_Controls_on_Advanced_Computing_and_Semiconductors_to_China (accessed 2026-09-06)
+[d11] Wikipedia: Volta (microarchitecture) (May 2017; first Tensor Cores; V100) — https://en.wikipedia.org/wiki/Volta_%28microarchitecture%29; Wikipedia: Cerebras (WSE-1, Aug 2019) — https://en.wikipedia.org/wiki/Cerebras (accessed 2026-09-06)
+[d12] Epoch AI, "Key trends and figures in machine learning" (training compute ~5×/year since 2020) — https://epoch.ai/trends (accessed 2026-09-06)
 
 **Thread (e) — Open vs closed**
 [e1] Wikipedia: Weka (software) — https://en.wikipedia.org/wiki/Weka_%28software%29; Wikipedia: Torch (machine learning) — https://en.wikipedia.org/wiki/Torch_%28machine_learning%29; Wikipedia: Theano (software) — https://en.wikipedia.org/wiki/Theano_%28software%29; Wikipedia: Caffe (software) — https://en.wikipedia.org/wiki/Caffe_%28software%29 (accessed 2026-09-06)
@@ -228,6 +315,8 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [e9] DeepSeek-V3 — arXiv 2412.19437 — https://arxiv.org/abs/2412.19437; DeepSeek-R1 — arXiv 2501.12948 — https://arxiv.org/abs/2501.12948; Wikipedia: DeepSeek — https://en.wikipedia.org/wiki/DeepSeek; Wikipedia: Qwen — https://en.wikipedia.org/wiki/Qwen (accessed 2026-09-06)
 [e10] Wikipedia: Products and applications of OpenAI (GPT-OSS, 5 Aug 2025) — https://en.wikipedia.org/wiki/Products_and_applications_of_OpenAI (accessed 2026-09-06)
 
+[e11] Wikipedia: arXiv (begun 14 Aug 1991) — https://en.wikipedia.org/wiki/ArXiv; Wikipedia: scikit-learn (2007; 2010 INRIA) — https://en.wikipedia.org/wiki/Scikit-learn; Wikipedia: Kaggle (founded Apr 2010) — https://en.wikipedia.org/wiki/Kaggle (accessed 2026-09-06)
+
 **Thread (f) — NLP lineage**
 [f1] Wikipedia: Georgetown–IBM experiment — https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment; Wikipedia: ALPAC — https://en.wikipedia.org/wiki/ALPAC (accessed 2026-09-06)
 [f2] Wikipedia: ELIZA — https://en.wikipedia.org/wiki/ELIZA (accessed 2026-09-06)
@@ -238,6 +327,8 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [f7] Sutskever et al., seq2seq — arXiv 1409.3215 — https://arxiv.org/abs/1409.3215; Bahdanau et al. — arXiv 1409.0473 — https://arxiv.org/abs/1409.0473; Wikipedia: Google Neural Machine Translation — https://en.wikipedia.org/wiki/Google_Neural_Machine_Translation (accessed 2026-09-06)
 [f8] Attention Is All You Need — arXiv 1706.03762 — https://arxiv.org/abs/1706.03762; ELMo — arXiv 1802.05365 — https://arxiv.org/abs/1802.05365; BERT — arXiv 1810.04805 — https://arxiv.org/abs/1810.04805; Wikipedia: GPT-1 — https://en.wikipedia.org/wiki/GPT-1 (accessed 2026-09-06)
 [f9] GPT-3 — arXiv 2005.14165 — https://arxiv.org/abs/2005.14165; Wikipedia: ChatGPT — https://en.wikipedia.org/wiki/ChatGPT (accessed 2026-09-06)
+
+[f10] Wikipedia: Brown Corpus — https://en.wikipedia.org/wiki/Brown_Corpus; Marcus, Santorini & Marcinkiewicz, "Building a Large Annotated Corpus of English: The Penn Treebank", Computational Linguistics 19(2), 1993 — https://aclanthology.org/J93-2004/ (accessed 2026-09-06)
 
 **Thread (g) — Computer vision lineage**
 [g1] Wikipedia: David H. Hubel — https://en.wikipedia.org/wiki/David_H._Hubel (accessed 2026-09-06)
@@ -251,6 +342,10 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [g9] Latent diffusion — arXiv 2112.10752 — https://arxiv.org/abs/2112.10752; Segment Anything — arXiv 2304.02643 — https://arxiv.org/abs/2304.02643; Wikipedia: Midjourney — https://en.wikipedia.org/wiki/Midjourney; Wikipedia: Sora (text-to-video model) — https://en.wikipedia.org/wiki/Sora_%28text-to-video_model%29 (accessed 2026-09-06)
 [g10] RT-2 — arXiv 2307.15818 — https://arxiv.org/abs/2307.15818; Wikipedia: Gemini Robotics — https://en.wikipedia.org/wiki/Gemini_Robotics (accessed 2026-09-06)
 
+[g11] Wikipedia: David Marr (neuroscientist) (*Vision*, 1982) — https://en.wikipedia.org/wiki/David_Marr_%28neuroscientist%29; Wikipedia: Canny edge detector (1986) — https://en.wikipedia.org/wiki/Canny_edge_detector; Wikipedia: Eigenface (Turk & Pentland, 1991) — https://en.wikipedia.org/wiki/Eigenface (accessed 2026-09-06)
+[g12] Wikipedia: Histogram of oriented gradients (Dalal & Triggs, 2005) — https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients (accessed 2026-09-06)
+[g13] He et al., Mask R-CNN — arXiv 1703.06870 (Mar 2017) — https://arxiv.org/abs/1703.06870; Wikipedia: Region Based Convolutional Neural Networks — https://en.wikipedia.org/wiki/Region_Based_Convolutional_Neural_Networks (accessed 2026-09-06)
+
 **Thread (h) — Game-playing milestones**
 [h1] Wikipedia: Arthur Samuel (computer scientist) — https://en.wikipedia.org/wiki/Arthur_Samuel_%28computer_scientist%29 (accessed 2026-09-06)
 [h2] Wikipedia: Chinook (computer program) — https://en.wikipedia.org/wiki/Chinook_%28computer_program%29 (accessed 2026-09-06)
@@ -262,3 +357,5 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 [h8] Vinyals et al., "Grandmaster level in StarCraft II", Nature 2019 — https://www.nature.com/articles/s41586-019-1724-z; Wikipedia: AlphaStar (software) — https://en.wikipedia.org/wiki/AlphaStar_%28software%29; Wikipedia: Pluribus (poker bot) — https://en.wikipedia.org/wiki/Pluribus_%28poker_bot%29; Brown & Sandholm, "Superhuman AI for multiplayer poker", Science 2019 (PDF) — https://www.cs.cmu.edu/~noamb/papers/19-Science-Superhuman.pdf (accessed 2026-09-06)
 [h9] Schrittwieser et al., MuZero, Nature 2020 — https://www.nature.com/articles/s41586-020-03051-4; arXiv 1911.08265 — https://arxiv.org/abs/1911.08265; Wikipedia: MuZero — https://en.wikipedia.org/wiki/MuZero (accessed 2026-09-06)
 [h10] Trinh et al., "Solving olympiad geometry without human demonstrations", Nature 2024 — https://www.nature.com/articles/s41586-023-06747-5; Wikipedia: AlphaGeometry — https://en.wikipedia.org/wiki/AlphaGeometry (accessed 2026-09-06)
+[h11] Wikipedia: Turochamp (Turing & Champernowne, 1948) — https://en.wikipedia.org/wiki/Turochamp; Wikipedia: Mac Hack (Greenblatt, 1967) — https://en.wikipedia.org/wiki/Mac_Hack (accessed 2026-09-06)
+[h12] Wurman et al., "Outracing champion Gran Turismo drivers with deep reinforcement learning", Nature 602, 9 Feb 2022 — https://www.nature.com/articles/s41586-021-04357-7; Perolat et al., "Mastering the Game of Stratego with Model-Free Multiagent Reinforcement Learning" — arXiv 2206.15378 — https://arxiv.org/abs/2206.15378; Wikipedia: Stratego (DeepNash) — https://en.wikipedia.org/wiki/Stratego; Meta AI, "CICERO: An AI agent that negotiates, persuades, and cooperates with people" (22 Nov 2022) — https://ai.meta.com/blog/cicero-ai-negotiates-persuades-and-cooperates-with-people/ (accessed 2026-09-06)

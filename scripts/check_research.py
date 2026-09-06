@@ -60,9 +60,9 @@ def check(path: Path, do_links: bool) -> list[tuple[str, bool, str]]:
 
     # R-04
     body_wo_sources = text[: text.find("## Sources")] if "## Sources" in text else text
-    used = {int(n) for n in re.findall(r"\[(\d+)\]", body_wo_sources)}
+    used = set(re.findall(r"\[([a-h]?\d+)\]", body_wo_sources))  # [12] or [a3] (research/09 style)
     src = section(text, "## Sources")
-    defined = {int(n) for n in re.findall(r"^\[(\d+)\]", src, flags=re.M)}
+    defined = set(re.findall(r"^\[([a-h]?\d+)\]", src, flags=re.M))
     undefined = sorted(used - defined)
     unreferenced = sorted(defined - used)
     # timeline rows must have a non-empty Source cell
@@ -86,7 +86,7 @@ def check(path: Path, do_links: bool) -> list[tuple[str, bool, str]]:
     # R-05 every source entry has URL + accessed date
     bad05 = []
     for line in src.splitlines():
-        m = re.match(r"^\[(\d+)\]", line)
+        m = re.match(r"^\[([a-h]?\d+)\]", line)
         if not m:
             continue
         if not re.search(r"https?://", line) or not re.search(r"\(accessed \d{4}-\d{2}-\d{2}\)", line):
