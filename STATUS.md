@@ -1,118 +1,120 @@
-# STATUS — end of session 2026-09-06
+# STATUS — as of 2026-09-06 (session 2: spec + plan)
+
+## One-line status
+
+Framework decided, `SPEC.md` and `PLAN.md` written. **Ready to execute,
+awaiting Alan's go-ahead (gate G0 in `PLAN.md`).** No execution work
+(research edits, `data/` entities, scripts) happened this session, by
+design.
+
+## Where to look
+
+| Question | File |
+|---|---|
+| What is this project? | `BRIEF.md` (Alan's intent), `README.md` |
+| What are the coordinates? | `AXES.md` — **decided** |
+| What are the zoom levels? | `ALTITUDES.md` — **decided** |
+| What does "correct" look like for any artifact? | `SPEC.md` — normative; schema, validation rules `V-nn`, acceptance criteria `R-nn` / `A-xx`, status lifecycle, DoD per level, non-goals |
+| What is the work, in what order, who can do it in parallel? | `PLAN.md` — 31 unit templates (~70 dispatchable instances), DAG + waves, dispatch checklist |
+| Where do frontier sources come from? | `SOURCING.md` |
+| Historical plan (goal, risks, render sketch) | `PROJECT_PLAN.md` — task breakdown superseded by `PLAN.md` |
+
+## Decisions (recorded; do not re-open)
+
+| # | Decision | Status | Where recorded |
+|---|---|---|---|
+| 1 | **Y axis = Candidate E** (reasoning ↔ embodiment), five bands N1/N2/C/S1/S2, symbolic ↔ learned as biome, open ↔ closed as eastern overlay. **Bands are soft**: a clustering guideline, not a scoring formula; neighbourhood and curatorial appeal beat band purity. | **Confirmed** by Alan | `AXES.md` §0 rule 2, §3, §5 |
+| 2 | **X mainland starts 1943** (McCulloch–Pitts); pre-1943 (Turing 1936, Gödel, Boole, Leibniz…) is an offshore archipelago. | **Confirmed** by Alan | `AXES.md` §1, §5 |
+| 3 | **Three altitudes: continent / country / city.** No street level. Major individual figures (Hassabis, Ng, Hinton…) are `type: person` cities. | **Confirmed** by Alan | `ALTITUDES.md` §0–§5, §8; `SPEC.md` §2.8 |
+| 4 | **Naming: evocative region name + neutral subtitle** for continents and countries ("The Statistical Isthmus" / "Bayesian & probabilistic ML, 1988–2011"). Cities use plain names + date. | **Confirmed** by Alan | `ALTITUDES.md` §0; `SPEC.md` §2.3, V-12 |
+| 5 | **Scope edge: adjacent fields case-by-case only.** Control theory, cognitive science, OR, HCI etc. get no territory; a specific person/paper/event is included only when it directly fed an AI milestone, tagged `adjacent_field: {field, fed}`. | **Soft default** — relayed on Alan's behalf without an explicit answer. Revisit if wrong; changing it touches only `SPEC.md` §2.9 and rule V-40. | `SPEC.md` §2.9, §6 item 7 |
+| 6 | X scale (piecewise vs density-weighted) | Deferred to render phase; does not block content | `AXES.md` §5 |
+| 7 | Frontier review sign-off | Open, low-stakes: `PLAN.md` P5-R4 accepts "Alan or a second model" | `PLAN.md` §7 |
 
 ## What exists in the repo
 
 | File | State | Notes |
 |---|---|---|
 | `BRIEF.md` | Alan's verbatim intent | unchanged |
-| `PROJECT_PLAN.md` | draft for review | goal restatement, 5 phases, 8 milestones, 7 open decisions, risks |
-| `AXES.md` | proposal for decision | X origin + non-linear scale; 5 Y candidates compared; recommendation |
-| `ALTITUDES.md` | proposal for decision | 4 zoom levels with entity types, counts, worked examples, data-model sketch |
-| `SOURCING.md` | draft; endpoints probed | 3 source tiers with live curl status, monthly cadence, filters, triangulation, aging rules |
+| `AXES.md` | decided | X origin + non-linear scale; Y = E soft bands; decision record table in §5 |
+| `ALTITUDES.md` | decided | 3 levels; people at city; data-model sketch removed in favour of `SPEC.md` |
+| `SPEC.md` | normative, v1 | see "Where to look" |
+| `PLAN.md` | ready, gated on G0 | see "Where to look" |
+| `PROJECT_PLAN.md` | partially superseded | §3–§4 task breakdown replaced by `PLAN.md`; goal/risks/render sketch still valid |
+| `SOURCING.md` | draft; endpoints probed | 3 source tiers with live curl status, monthly cadence, filters, triangulation, aging |
 | `research/01`–`08` | **verified** (links) / first-draft (coverage) | 8 era files, ~1,250 lines, 10–30 timeline rows each, numbered sources |
-| `research/09-cross-cutting-threads.md` | verified (links) | 8 threads (RL, robotics, safety, compute, open/closed, NLP, vision, games) with dated milestones |
+| `research/09-cross-cutting-threads.md` | verified (links) | 8 threads with dated milestones |
 | `research/TEMPLATE.md` | stable | template every era file follows |
-| `scripts/check_links.sh` | working | 737 URLs checked across repo; 0 failures outside the documented allowlist |
-| `scripts/wiki.sh` | working | Wikipedia plaintext fetch for fact-checking (no retry; API 429s after ~25 rapid calls) |
-| `scripts/link_allowlist.txt` | | URLs known to block bots (openai.com HTML) or template/API URLs |
+| `scripts/check_links.sh` | working | 737 URLs checked; 0 failures outside the documented allowlist |
+| `scripts/wiki.sh` | working, no back-off | Wikipedia 429s after ~25 rapid calls — fixed by `PLAN.md` P0-T1 |
+| `scripts/link_allowlist.txt` | | URLs known to block bots or template/API URLs |
+| `data/` | **does not exist yet** | created by `PLAN.md` P2 onwards, per `SPEC.md` §1 |
+| `scripts/validate.py` | **does not exist yet** | `PLAN.md` P0-T2 |
 
 Commits are incremental on `main`; nothing is uncommitted.
 
 ## What "verified" means here, honestly
 
-- **Verified:** every URL in the file resolves (HTTP < 400) and the writing
-  agent cross-checked each date/name against the fetched Wikipedia extract or
-  primary paper (Crossref/arXiv) before writing it. Several draft claims were
-  corrected in the process (e.g. SAIL founding year, Alvey dates, FGCS end).
-- **Not yet verified:** *coverage*. Nobody has yet asked "what important thing
-  is missing from this era?" That review is the next content task and should
-  be done by a different model or a human, not by the authors.
-- **Provisional:** `research/08` has an explicit "Needs verification (recent,
-  mid-2025 → Sept 2026)" section. Those items are single-sourced from
-  Wikipedia extracts and must go through the `SOURCING.md` triangulation
-  before they get map positions. Everything east of ~mid-2025 should be
-  treated as frontier haze.
-- The research files were written by three parallel model runs against a
-  shared template. Voice and density vary by file (01–03 lean academic;
-  06–08 lean dense). A copy-edit pass for a single voice is Phase 3 work.
+- **Verified (research files):** every URL resolves (HTTP < 400) and the
+  writing agent cross-checked each date/name against the fetched Wikipedia
+  extract or primary paper before writing it.
+- **Not yet verified:** *coverage*. Nobody has asked "what important thing is
+  missing from this era?" — that is `PLAN.md` P1-T1…T9, to be done by a
+  different model than the authors (`SPEC.md` R-07).
+- **Provisional:** `research/08` has a "Needs verification (mid-2025 →
+  Sept 2026)" section, single-sourced. `PLAN.md` P1-T10 triangulates it.
+- Going forward, "verified" for entities has the precise meaning in
+  `SPEC.md` §5.1 (reviewer ≠ author, source minimums, V-50).
 
-## Decisions Alan needs to make
+## What happens when Alan says go
 
-1. **Y axis.** Recommended: reasoning ↔ embodiment in five bands (Candidate E),
-   with symbolic ↔ learned as terrain biome and open ↔ closed as an eastern
-   overlay. Fallback: symbolic ↔ connectionist (Candidate A) with the
-   mitigations in `AXES.md` §4. The argument that decides it: A is
-   time-correlated and leaves the 2012–present half of the map with no
-   vertical structure; E populates every era top to bottom and agrees with A
-   on the west half anyway.
-2. **X origin.** Recommended: mainland coast at 1943 (McCulloch–Pitts), with
-   1936 Turing / Gödel / Boole / Leibniz as an off-shore archipelago.
-3. **X scale.** Piecewise (widths per year growing eastward) vs. density-
-   weighted. Rendering decision; principle (non-linear, with a visible year
-   graticule) proposed now.
-4. **Altitudes.** Ship A1–A3 everywhere, A4 only for 2017+ initially.
-5. **Naming.** Evocative region names ("The Statistical Isthmus") with neutral
-   subtitles, or neutral only.
-6. **Scope edge.** Include OR / control theory / computational neuroscience /
-   HCI as coastal territories, or leave them as sea?
-7. **Frontier review.** Who signs off the monthly intake.
+`PLAN.md` wave 0 dispatches immediately and in parallel: P0-T1 (wiki.sh
+back-off), P0-T2 (validate.py), P1-T11 (research/01 archipelago split note).
+Wave 1 then fans out to nine parallel research coverage reviews plus the
+continent registry (P2-T1). Critical path to the first drawable content is
+G0 → P0-T2 → P2-T1 → continents → basin countries → basin city pilot →
+retrospective (P4-T8), which is where the schema gets its first real
+correction before scaling to the other nine continents.
 
-## Recommended next steps (in order)
+Alan can also override anything in `SPEC.md` first; the plan says to apply
+that as a `SPEC:` commit before re-reading affected units.
 
-1. Alan reads `AXES.md` §3 and decides 1–2 above. Everything downstream
-   depends on it. Suggested validation before committing: sketch four vertical
-   slices (1965, 1990, 2015, 2025) on paper under the chosen axis and check
-   that neighbours feel right.
-2. Coverage review of `research/01`–`09` by a second model with a different
-   training cut, prompt: "list ten things a historian of AI would expect in
-   this era that are absent". Add, source, re-run `check_links.sh`.
-3. Fix the `data/` schema (`ALTITUDES.md` §7) and author A1 + A2 entities for
-   all nine continents (~60 countries). This converts prose into positions and
-   is the first point where the map can be drawn at all.
-4. Run one frontier intake for 2026-08 end-to-end per `SOURCING.md` to test
-   the cadence and produce `research/frontier/2026-08.md`. Get a Semantic
-   Scholar API key; write a scraper or manual checklist for Anthropic / Meta /
-   xAI which have no bot-readable feed.
-5. Author A3 cities (~400) with band + biome + parent.
-6. Phase 4 spike in parallel with 5: one continent (Deep Learning Basin is
-   densest and best-sourced) rendered at three altitudes.
+## Ideas noted, NOT scope
+
+- **Street level via citation-graph projection (Phase 5+).** Instead of
+  hand-curating thousands of paper/model/person entities, project an
+  external graph (Semantic Scholar / OpenAlex / Connected Papers / Papers
+  with Code lineage) onto a fourth zoom level anchored at our city ids. The
+  only preparation being made now is that every city carries `sources`
+  (ideally a DOI/arXiv id) so a future join key exists. Not committed.
+- Voice/copy-edit pass to unify research files (later; `SPEC.md` §6 item 8).
+- Render/frontend (Phase 4 in `PROJECT_PLAN.md`) — blocked on content and on
+  a visual spec that does not exist yet. The engine sketch below still stands.
 
 ## How the visual map would eventually be built (plan only, not started)
 
 - **Content → data.** Markdown research stays the human-readable source of
-  truth; a `data/` directory of YAML entities (one per A1–A4 item) carries
-  positions, band, biome, parent, sources, status. A build script validates
-  that every entity has sources and a parent, and that no A3 point sits
-  outside its A2 polygon.
-- **Layout.** A1/A2 polygons are hand-drawn by the curator (SVG/GeoJSON in a
-  vector editor or a small in-browser tool). A3/A4 points are placed inside
-  their parent by the curator; an automated local relaxation step only
-  removes overlaps. Algorithms nudge; humans decide neighbourhood. This is the
-  mapofmetal approach and the reason it looks curated rather than generated.
-- **Terrain.** Biome polygons plus noise, hillshade and coastline treatment
-  rendered offline into a raster tile pyramid (Python/PIL or Blender or a
-  hand-painted layer in Procreate/Photoshop for the "loved" look), one
-  pyramid per altitude range.
-- **Engine.** MapLibre GL JS with a custom style: raster terrain underneath,
-  vector layers for borders, rivers/roads (cross-cutting threads), labels
-  with proper collision handling and zoom-dependent visibility. Fallback:
-  Leaflet + image pyramid if we decide vector labels are more trouble than
-  they're worth for a first release.
-- **Interaction.** Click region → side panel with the mapofmetal-style
-  write-up and a "notable places" list; click city → card with summary,
-  dates, sources; search box; year slider that highlights a vertical band;
-  toggles for threads and the open/closed overlay; "frontier haze" style for
-  provisional items.
+  truth; `data/` YAML entities (schema in `SPEC.md`) carry time range, band,
+  biome, parent, sources, status. `validate.py` enforces `SPEC.md` §3.
+- **Layout.** Continent/country polygons hand-drawn by the curator; city
+  points placed inside their parent by the curator; an automated relaxation
+  step only removes overlaps. Algorithms nudge; humans decide neighbourhood.
+- **Terrain.** Biome polygons plus noise, hillshade and coastline rendered
+  offline into a raster tile pyramid, one per altitude range.
+- **Engine.** MapLibre GL JS with a custom style; fallback Leaflet + image
+  pyramid.
+- **Interaction.** Click region → side panel; click city → card with summary,
+  dates, sources; search; year slider; thread and open/closed toggles;
+  "frontier haze" for `draft` entities.
 - **Delivery.** Static build to GitHub Pages; monthly `frontier:` commits
   trigger a rebuild.
 
 ## Known issues / tooling notes
 
-- `scripts/wiki.sh` has no back-off; parallel agents hit Wikipedia 429s. Add
-  a sleep/retry or move to a cached fetcher before the coverage review.
+- `scripts/wiki.sh` has no back-off (→ P0-T1).
 - Publisher DOI landing pages (ACM, OUP, MIT Press, Science, AAAI) return 403
-  to curl. The files cite the DOI as text and link an open mirror or
-  Wikipedia; this is fine but worth knowing when adding sources.
-- One subagent run crashed after writing `research/04` (file is complete and
-  passes checks) — no content lost, noted for transparency.
-- OpenReview API is 403 to bots; ICLR proceedings need a browser or a key.
+  to curl; files cite the DOI as text and link an open mirror or Wikipedia.
+- OpenReview API is 403 to bots; Semantic Scholar 429s without a key;
+  Anthropic / Meta / xAI / Microsoft have no bot-readable feed (→ P5-T0).
+- One subagent run crashed after writing `research/04` in session 1 (file
+  complete and passing checks) — no content lost.

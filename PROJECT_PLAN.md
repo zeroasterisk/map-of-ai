@@ -1,5 +1,13 @@
 # PROJECT PLAN — Map of AI
 
+> **Partially superseded (2026-09-06).** The phase/milestone task breakdown
+> and the "open decisions" list in this file are replaced by `PLAN.md`
+> (decomposed, verifiable units) and by the decision records in `AXES.md` §5,
+> `ALTITUDES.md` §8 and `STATUS.md`. What still holds here: the goal
+> restatement, the risks, and the Phase 4/5 render sketch. Where this file
+> and `SPEC.md`/`PLAN.md` disagree, `SPEC.md`/`PLAN.md` win. Note this file
+> still describes four altitudes (A1–A4); the decided model is three.
+>
 > Source of intent: `BRIEF.md` (Alan Blount, verbatim). This document is the
 > plan derived from it. Design decisions live in `AXES.md`, `ALTITUDES.md`,
 > `SOURCING.md`; content lives in `research/`; current state in `STATUS.md`.
