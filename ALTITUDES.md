@@ -1,7 +1,10 @@
 # ALTITUDES — zoom levels for the Map of AI
 
-> Status: design proposal. Depends on `AXES.md` (Y = reasoning ↔ embodiment
-> bands; biome = symbolic ↔ learned).
+> **Status: DECIDED (Alan, 2026-09-06). Three altitudes: continent / country /
+> city.** There is no "street" level in scope. Major individual figures live
+> at city level. Naming is evocative name + neutral subtitle. Depends on
+> `AXES.md` (Y = reasoning ↔ embodiment soft bands; biome = symbolic ↔
+> learned). The normative, checkable form is `SPEC.md`.
 
 ## 0. Principles
 
@@ -15,30 +18,39 @@
 - **Every entity has a parent** (except continents) and a position inherited
   from, but adjustable within, its parent. This is what makes the content model
   a tree and the map navigable.
-- **Labels carry a date.** Every entity at A2–A4 shows a year or year range on
+- **Labels carry a date.** Every entity at A2–A3 shows a year or year range on
   hover/click, so the X axis is always legible even where the scale is
   non-linear.
-- **Four altitudes, the fourth optional per region.** Continents, countries,
-  cities, streets. A4 is only authored where the content justifies it (dense
-  modern regions) and is the natural home for monthly updates.
+- **Three altitudes: continent, country, city.** The formerly proposed fourth
+  "street" level (individual papers, model versions, tools) is out of scope.
+  Rationale (Alan): existing citation-graph tools (Connected Papers, Semantic
+  Scholar graphs, Papers with Code lineage) could later be *projected* onto a
+  street layer instead of hand-curating thousands of entities. That is
+  recorded as a Phase 5+ idea in `STATUS.md`, not committed scope. Monthly
+  frontier intake therefore lands at **city** level with `status: draft`
+  (see `SPEC.md` §5 and `SOURCING.md`), not at a street level.
+- **Names are evocative + a neutral subtitle** at continent and country level
+  (mapofmetal style): "The Statistical Isthmus" / "Bayesian & probabilistic
+  ML, 1988–2011". Cities use their plain, recognisable name ("AlexNet",
+  "Dartmouth 1956") with the date in the subtitle.
 
 ## 1. Altitude table
 
-| | A1 Continent | A2 Country | A3 City | A4 Street |
-|---|---|---|---|---|
-| Entity | era-paradigm | school of thought / subfield | lab, group, landmark system, landmark paper, event | person, paper, model, dataset, tool |
-| Count (target) | 8–10 | 40–70 | 300–600 | 2,000+ (open-ended) |
-| Source in repo | `research/0N-*.md` file headers | `## Schools of thought` sections | timeline + key papers + key people sections | future `data/` entries; monthly `SOURCING.md` intake |
-| Label style | large serif, letter-spaced, follows terrain | medium, with date range | small, with year, icon by type | tiny, on demand |
-| Terrain visible | biome colour, rivers, roads | + borders, mountains, coast detail | + city markers, routes | + street grid, building footprints |
-| What clicking does | fly to A2 | fly to A3, show 1-paragraph summary | open card: summary, dates, sources | open card: full citation, link out |
-| Analogy | mapofmetal top level (Heavy Metal / Thrash / Death …) | mapofmetal sub-genre regions | mapofmetal band markers | (mapofmetal has no equivalent; albums would be) |
+| | A1 Continent | A2 Country | A3 City |
+|---|---|---|---|
+| Entity | era-paradigm | school of thought / subfield / lab-cluster | lab, group, landmark system or model, landmark paper, event, dataset/benchmark, institution, **major person** |
+| Count (target) | 10–15 (incl. archipelago) | ~60 (5–9 per continent) | 300–600 overall; pilot = one continent first |
+| Source in repo | `research/0N-*.md` file headers + map notes | `## Schools of thought` sections | timeline + key papers + key people sections |
+| Label style | large serif, letter-spaced, follows terrain | medium, with date range | small, with year, icon by type |
+| Terrain visible | biome colour, rivers, roads | + borders, mountains, coast detail | + city markers, routes |
+| What clicking does | fly to A2 | fly to A3, show 1-paragraph summary | open card: summary, dates, sources |
+| Analogy | mapofmetal top level (Heavy Metal / Thrash / Death …) | mapofmetal sub-genre regions | mapofmetal band markers |
 
 ## 2. A1 — Continents (era-paradigms)
 
 One per research file, roughly. Each continent spans a time range on X and a
-characteristic set of bands on Y. Names are working titles; the final names
-should have the same evocative quality as mapofmetal's region names.
+characteristic set of bands on Y. Names below are working titles; final names
+must follow the evocative-name + neutral-subtitle rule (`SPEC.md` §2.3).
 
 | Continent | X span | Dominant Y bands | Source file |
 |---|---|---|---|
@@ -66,8 +78,9 @@ Notes:
 
 Roughly 5–9 per continent, drawn straight from each file's
 `## Schools of thought / sub-clusters` section. Each is an irregular territory
-inside its parent continent, positioned in the band where it belongs. Borders
-between countries are drawn where the research notes say "borders:".
+inside its parent continent, positioned in the band(s) where it belongs —
+bands are soft, so a country that genuinely spans N2→S2 records the span.
+Borders between countries are drawn where the research notes say "borders:".
 
 Example — countries of the Symbolic Heartland (from `research/02`):
 
@@ -94,12 +107,16 @@ Example — countries of the Generative Frontier (from `research/08`):
 | Alignment, Safety & Governance | N1 |
 | Embodied / VLA Robotics | S2 |
 
-## 4. A3 — Cities (labs, landmark systems, landmark papers, events)
+## 4. A3 — Cities (labs, landmark systems, landmark papers, events, major people)
 
 The densest authored level. Everything in the timeline tables, key papers,
 and key people sections of the research files is an A3 candidate, filtered
-by "would a well-read practitioner recognise this name?". City *types* get
-different icons:
+by "would a well-read practitioner recognise this name?". **People are
+cities**: the founders and major figures (Turing, McCarthy, Minsky, Hinton,
+Hassabis, Ng, Fei-Fei Li, …) get their own city, typed `person`, placed
+inside the country where they did their defining work; a person who moved
+between schools is placed once, at the defining work, with the moves noted in
+the card. City *types* get different icons:
 
 | Type | Icon (proposal) | Examples |
 |---|---|---|
@@ -109,6 +126,7 @@ different icons:
 | Event | flag | Dartmouth 1956, Lighthill 1973, NIPS 1987, ILSVRC 2012, Lee Sedol 2016, ChatGPT launch 2022, Bletchley 2023, Nobel 2024 |
 | Dataset / benchmark | anchor (harbour) | MNIST, ImageNet, Netflix Prize, GLUE, HumanEval |
 | Institution / conference | town hall | AAAI, NeurIPS, ICML, ICLR, ICOT, MCC |
+| Person | monument / bust | Turing, McCarthy, Minsky, Newell & Simon, Rosenblatt, Pearl, Hinton, LeCun, Bengio, Schmidhuber, Fei-Fei Li, Ng, Hassabis, Sutskever, Amodei |
 
 Example — cities of the Connectionist Revival, arranged by band:
 
@@ -117,21 +135,27 @@ Example — cities of the Connectionist Revival, arranged by band:
 - S1: TD-Gammon (1992)
 - N2: Universal approximation (Cybenko 1989), Hopfield (1982), Boltzmann (1985)
 - harbour: NIPS 1987
+- people: Hinton (Toronto), Rumelhart & McClelland (UCSD), LeCun (Bell Labs),
+  Hochreiter & Schmidhuber (TU Munich / IDSIA)
 
-## 5. A4 — Streets (people, individual papers, models, tools)
+## 5. Below city level — not in scope
 
-Optional per region; authored where density justifies it and as the intake
-level for monthly updates. Modern east-edge regions will be street-dense (every
-notable model release, every major paper); 1950s regions may have none, with
-the A3 card carrying the people instead.
+Individual papers that are not landmarks, individual model versions
+(GPT-1/2/3/3.5/4/4o as separate entries), tools, tricks (ReLU, dropout,
+Adam) and minor people are **not authored as entities**. Where the research
+files mention them, they live in the parent city's card text (e.g. the
+"OpenAI GPT series" city card lists the versions) and nowhere else.
 
-- People appear at A4 as residents of their lab-city, with tenure dates. A
-  person who moved (Hinton: Carnegie → Toronto → Google) appears in each with
-  the respective date range; the card links them.
-- Model families render as street grids: GPT-1/2/3/3.5/4/4o/o1 as consecutive
-  streets in the OpenAI city.
-- Monthly update rule: new items enter at A4 with `status: provisional`. After
-  the retention window in `SOURCING.md` they are promoted to A3 or pruned.
+Future idea, explicitly *not* committed (Phase 5+, see `STATUS.md`): project
+an external citation graph (Semantic Scholar / OpenAlex / Connected Papers)
+onto a fourth zoom level, anchored to our A3 cities, instead of hand-curating
+it. That would give paper-level detail for free once cities have stable IDs
+and at least one DOI/arXiv identifier each — which is why `SPEC.md` requires
+`sources` on every city.
+
+Monthly update rule under three levels: new items enter at **A3 with
+`status: draft`** (frontier haze) and are promoted, kept or pruned on the
+`SOURCING.md` aging schedule. Most months add zero to a handful of cities.
 
 ## 6. Non-positional layers (every altitude)
 
@@ -147,35 +171,15 @@ the A3 card carrying the people instead.
 
 ## 7. Data model sketch (for Phase 3/4)
 
-Not built yet; recorded so content authoring converges on it.
+Superseded. The authoritative schema, field types, enums and validation rules
+are in `SPEC.md` §2–§3. Do not author entities against the sketch that used
+to be here.
 
-```yaml
-id: alexnet-2012
-type: system            # lab | system | paper | event | dataset | institution | person | model | tool
-altitude: 3
-parent: gpu-convnet-school   # A2 id
-continent: deep-learning-basin
-x: 2012-09              # ISO date or year; X derived by scale function
-band: S2                # N1 | N2 | C | S1 | S2
-biome: forest
-label: AlexNet
-years: 2012
-summary: "..."
-sources:
-  - https://en.wikipedia.org/wiki/AlexNet
-  - https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks
-threads: [vision, compute]
-status: verified        # provisional | draft | verified
-```
+## 8. Decision record
 
-## 8. Open decisions
-
-1. Three altitudes shipped first (A1–A3), A4 later? Recommended: yes; A4 only
-   for 2017+ initially.
-2. Whether people are A3 (own city) or A4 (residents). Recommended: A4, with
-   the "founders" (Turing, McCarthy, Minsky, Hinton, …) also promoted to A3
-   monuments.
-3. Label language: neutral ("Symbolic AI 1956–1974") or evocative ("The
-   Symbolic Heartland")? mapofmetal uses genre names straight; our regions have
-   no canonical names, so evocative labels with a neutral subtitle is the
-   proposal.
+| # | Question | Decision | Status |
+|---|---|---|---|
+| 1 | How many altitudes | Three: continent / country / city. No street level. | **Confirmed** (Alan, 2026-09-06) |
+| 2 | Where do people live | City level (`type: person`), major figures only | **Confirmed** (Alan, 2026-09-06) |
+| 3 | Label language | Evocative name + neutral subtitle for continents and countries; plain name + date for cities | **Confirmed** (Alan, 2026-09-06) |
+| 4 | Street level via citation-graph projection | Noted as a Phase 5+ idea; not scope | Idea only |

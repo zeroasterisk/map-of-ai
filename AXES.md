@@ -1,18 +1,31 @@
 # AXES — coordinate system for the Map of AI
 
-> Status: proposal for Alan's decision. Recommendation at the bottom.
+> **Status: DECIDED (Alan, 2026-09-06).** X mainland starts 1943 with a
+> pre-1943 archipelago; Y = Candidate E (reasoning ↔ embodiment) in five
+> *soft* bands; symbolic ↔ learned is terrain biome; open ↔ closed is an
+> eastern overlay. Sections 1–3 are now the record of the decision and its
+> reasoning, not a proposal. Section 4 (the Candidate-A fallback) is kept for
+> history only. The normative, checkable form of these decisions is `SPEC.md`.
 > Everything in `research/` carries a "Map placement" line written in terms of
 > the *symbolic ↔ connectionist* poles. Section 3 explains why those placements
-> stay valid under the recommended axis.
+> stay valid under the chosen axis.
 
 ## 0. Design rules
 
 1. **X is time, full stop.** West = oldest, east = present. Nothing else may
    leak into X.
-2. **Y must be time-invariant.** Because X already encodes chronology, any Y
-   candidate that is itself strongly correlated with time collapses the map
-   into a diagonal band with empty corners. Every era must be able to populate
-   the whole height of the map.
+2. **Y should be time-invariant, and Y is a soft clustering guideline, not a
+   scoring formula.** Because X already encodes chronology, a Y candidate that
+   is strongly correlated with time collapses the map into a diagonal band
+   with empty corners; every era should be able to populate the whole height
+   of the map. That is the reason for choosing the axis. It is *not* a rule
+   for placing individual entities. When placing an entity, the question is
+   "does this feel like the right neighbourhood?" and "does the map read
+   well?", not "what is its abstraction score?". Band boundaries are
+   gradients, not borders; entities may sit between bands, and a curator may
+   move an entity off its "pure" band position to keep it next to its actual
+   intellectual neighbours. This is the mapofmetal.com lesson: that site is a
+   curator's eye, not a taxonomy.
 3. **Locality is the product.** Alan's goal is that "similar schools of thought"
    sit near each other. A Y axis is good to the degree that intellectual
    neighbours become geographic neighbours *in every era*, not only in the one
@@ -35,7 +48,7 @@ Candidates for the western edge, with what each implies:
 | Turing 1936 (*On Computable Numbers*) | Defines the universal machine that everything runs on; Church, Post, Kleene in the same 12 months | It is theory of computation, not of intelligence; putting it on the mainland drags in all of CS |
 | Boole 1854 / Leibniz / Lovelace 1843 / Hobbes 1651 / Aristotle | Genuine intellectual ancestry ("reasoning is reckoning") | Millennia of near-empty ocean if X is linear; nobody would call this AI research |
 
-**Recommendation for X:**
+**Decision for X (confirmed):**
 
 - **Mainland west coast = 1943** (McCulloch–Pitts). This is the first artifact
   that every subsequent school claims as an ancestor: the logic camp (it is a
@@ -178,14 +191,14 @@ abstract to the most embodied. Five latitude bands, north to south:
 | Recognisable to AI researchers | **very** | yes | yes | yes | yes |
 | Objectively scoreable | mostly | no | no | yes | mostly |
 
-## 3. Recommendation
+## 3. Decision
 
 **Y position = Candidate E (reasoning ↔ embodiment), rendered as five named
-latitude bands.**
+latitude bands with soft, gradient boundaries.** (Confirmed by Alan.)
 **Methodology (Candidate A, symbolic ↔ learned) = terrain biome, not position.**
 **Open ↔ closed (Candidate D) = toggleable overlay for the eastern third.**
 
-Why this combination:
+Why this combination (the reasoning that led to the decision):
 
 1. E is the only candidate that satisfies rule 2. With X fixed to time, this is
    close to decisive: a Y axis that empties out for whole eras produces a map
@@ -229,10 +242,26 @@ linear features: hardware/compute as a **road** (Lisp machines → GPUs → TPUs
 H100), RL as a **river** running through S1, safety/ethics as a **ridge** along
 the northern edge, open-vs-closed as a **border** drawn only east of ~2015.
 
-## 4. If Alan prefers Candidate A
+How the five bands are used in practice (see `SPEC.md` §2 for the field
+definition):
 
-It is the conservative, most-recognisable choice and the compendium already
-uses its vocabulary. If chosen, adopt these mitigations:
+- Every entity records a *home band* (`N1|N2|C|S1|S2`) or an explicit
+  multi-band span. This is a **neighbourhood hint** for the curator who
+  eventually draws the polygon or places the point, and a filter for the
+  viewer. It is not a coordinate.
+- Countries and continents are irregular territories and routinely straddle
+  bands (the 1987–98 NIPS community spans N2→S2; multimodal work spans C/S2).
+  Record them as spans. Do not split a real community to satisfy the grid.
+- When band purity and neighbourhood conflict, neighbourhood wins. Record
+  the override in the entity's `notes` so the next curator knows it was
+  deliberate.
+- Band labels on the rendered map are large, faint, and background — like
+  the tropics on a world map — not fences.
+
+## 4. Fallback that was NOT chosen: Candidate A as Y (kept for the record)
+
+Alan chose E. This section stays so a future reader can see what the
+alternative was and why it would have needed mitigations:
 
 - Give the south pole internal structure for the modern era by sub-banding
   it with E's bands (reasoning models at the top of the south, robotics at the
@@ -242,13 +271,12 @@ uses its vocabulary. If chosen, adopt these mitigations:
 - Compress the east edge less aggressively in X to compensate for the lost
   vertical room.
 
-## 5. Open decisions for Alan
+## 5. Decision record
 
-1. Confirm Y = E with A as biome (recommended) vs. Y = A.
-2. Confirm mainland start 1943 with a pre-1943 archipelago vs. starting at
-   1936 or 1950.
-3. Piecewise X scale vs. density-weighted X scale (rendering-time decision,
-   but it affects how much content A3 needs per era).
-4. Whether N1 (philosophy/safety) is a full band or a thin northern ridge.
-5. Band boundaries: hard borders (like mapofmetal's genre regions) or soft
-   gradients with entities free to sit between bands.
+| # | Question | Decision | Status |
+|---|---|---|---|
+| 1 | Y axis | Candidate E (reasoning ↔ embodiment), 5 bands; A as biome; D as eastern overlay | **Confirmed** (Alan, 2026-09-06) |
+| 2 | X origin | Mainland coast 1943 (McCulloch–Pitts); pre-1943 as offshore archipelago | **Confirmed** (Alan, 2026-09-06) |
+| 3 | Band boundaries | Soft gradients; entities may sit between bands; neighbourhood beats band purity | **Confirmed** (Alan, 2026-09-06) — see rule 2 |
+| 4 | X scale | Non-linear with visible graticule (principle decided); piecewise vs density-weighted | Deferred to the render phase; does not block content authoring |
+| 5 | N1 as full band vs thin ridge | Treat as a band for data purposes (entities get `band: N1`); render width is a Phase 4 choice | Default; revisit at render time |
