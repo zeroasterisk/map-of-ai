@@ -1,1 +1,8 @@
 https://openai.com/index/chatgpt/
+https://api.github.com/search/repositories?
+https://api.semanticscholar.org/graph/v1/paper/arXiv
+https://huggingface.co/api/daily_papers?limit=N
+https://icml.cc/virtual/
+https://neurips.cc/virtual/
+https://news.smol.ai/
+https://x.ai/news

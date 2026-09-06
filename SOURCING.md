@@ -48,7 +48,7 @@ moderate number of provisional A4 streets, most of which will be pruned.
 | The Batch (deeplearning.ai) | `https://www.deeplearning.ai/the-batch/` | 200 | weekly, mainstream |
 | Interconnects (Nathan Lambert) | `https://www.interconnects.ai/feed` | 200 | open models, RLHF, post-training |
 | Simon Willison | `https://simonwillison.net/atom/everything/` | 200 | tooling, agents, practical LLM use |
-| AI News (Latent Space / smol.ai) | `https://news.smol.ai/` | | daily digest of Discord/X/Reddit |
+| AI News (Latent Space / smol.ai) | `https://news.smol.ai/` | 402 at probe time; unverified — confirm the URL before relying on it | daily digest of Discord/X/Reddit |
 | Language Models & Co (Jay Alammar) | `https://newsletter.languagemodels.co/feed` | 200 | |
 | LessWrong / Alignment Forum | `https://www.lesswrong.com/feed.xml` | 200 | safety/alignment discourse |
 | Hacker News | `https://hn.algolia.com/api/v1/search?query=...&tags=story` | 200 | attention signal, not authority |
