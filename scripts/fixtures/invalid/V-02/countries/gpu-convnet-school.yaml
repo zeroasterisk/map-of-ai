@@ -1,0 +1,18 @@
+id: gpu-convnet-school
+level: country
+name: The ImageNet Escarpment
+subtitle: "GPU-trained convolutional networks for vision, 2009–2015"
+summary: >
+  Stanford (Raina, Madhavan and Ng) showed in 2009 that GPUs could train deep models seventy times faster than CPUs; Ciresan and Schmidhuber's IDSIA group won contests with GPU convnets in 2011; Krizhevsky, Sutskever and Hinton's AlexNet then won ILSVRC 2012 by a wide margin and made the method impossible to ignore. Oxford's VGG (2014), Google's Inception (2014) and Microsoft Research Asia's ResNet (2015, 152 layers, surpassing the estimated human top-5 error on ImageNet) form the escarpment's eastern ridge. The country is entirely forest biome and sits in the perception band; it borders the neural NLP school to the north via shared tooling and the Bell Labs convnet lineage to the west.
+time_range: {start: 2009, end: 2015}
+band: S2
+biome: forest
+parent_id: deep-learning-basin
+sources:
+  - {url: https://en.wikipedia.org/wiki/ImageNet_Large_Scale_Visual_Recognition_Challenge, title: "Wikipedia: ILSVRC", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/1512.03385, title: "He et al., Deep Residual Learning, 2015", kind: primary, accessed: 2026-09-06}
+threads: [vision, compute]
+status: sourced
+notes: >
+  Fixture copy of SPEC.md §2.10. Spec example's neighbours (convnets-bell-labs,
+  neural-nlp-sequence-school) omitted: not present in the fixture set.
