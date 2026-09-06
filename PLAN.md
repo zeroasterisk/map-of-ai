@@ -41,7 +41,9 @@ G0
  │                                                                 │
  ├─► P2 continents  (needs P0-T2, P1-T11; benefits from P1 done)   │
  │    P2-T1  continent registry: ids, names, subtitles, spans (M)  │
- │    P2-T2..T11 author one continent each (S each, parallel) ◄─ P2-T1
+ │    P2-T1-RENDER static review prototype on GitHub Pages (S) ◄─ P2-T1
+ │        ▲ REVIEW GATE: Alan reviews the rendered registry before P2-T2+ │
+ │    P2-T2..T11 author one continent each (S each, parallel) ◄─ P2-T1 + Alan's review
  │    P2-T12 X-axis tiling + west/east neighbour pass (S) ◄─ all P2-T2..T11
  │    P2-T13 continent review → verified (M, reviewer) ◄─ P2-T12   │
  │                                                                 │
@@ -79,10 +81,11 @@ P4-T1 → P4-T2..T6 → P4-T7 → P4-T8. Everything else hangs off it in paralle
 |---|---|---|
 | 0 | P0-T1, P0-T2, P1-T11 | G0 |
 | 1 | P0-T3, P0-T4, P1-T1…P1-T9, P1-T10, P2-T1 | wave 0 (P1-Tn only needs P0-T1; P2-T1 needs P0-T2 + P1-T11) |
-| 2 | P2-T2…P2-T11 (10 units), P5-T0 | P2-T1 |
+| 1b | P2-T1-RENDER | P2-T1 — then **stop**: Alan reviews the rendered registry (review gate) |
+| 2 | P2-T2…P2-T11 (10 units) | P2-T1 + Alan's review of P2-T1-RENDER. (P5-T0 removed from this wave — see §7, DEFERRED) |
 | 3 | P3-T1…P3-T10 (each as soon as *its* continent from wave 2 merges), P2-T12 | per-continent |
 | 4 | P2-T13, P3-T11, P4-T1 (as soon as P3-T6 basin merges), P6-T1 | wave 3 |
-| 5 | P4-T2…P4-T6, P3-T12 (split by continent), P5-R1 (first month) | wave 4 |
+| 5 | P4-T2…P4-T6, P3-T12 (split by continent) | wave 4 (P5-R1 removed — §7 DEFERRED) |
 | 6 | P4-T7, P6-T2 (per continent), P6-T3 | wave 5 |
 | 7 | P4-T8, P6-T4, P6-T5 | wave 6 |
 
@@ -165,6 +168,13 @@ reports and research-file edits only* — no entities.
 - **Outputs:** `data/continents/REGISTRY.md` — table: `id | name | subtitle | start | end | band span | biome | research file | offshore? | split-of`; plus the decision record for any split/merge of era files.
 - **Check:** PASS if 9 ≤ rows ≤ 15; every `research/0[1-8]` file is the source of ≥ 1 row; ids match the V-03 regex and are unique; subtitles match V-12 regex; sorted `start`s tile from ≤ 1943 (archipelago row has `offshore: true`) to `present` with no uncovered year; a reviewer answers "understand from subtitle alone" yes for every row (A-C2 pre-check, recorded at the bottom of the file).
 - **Deps:** P0-T2, P1-T11. **Size:** M. **Note:** this is the single most load-bearing unit; do it once, carefully. `AXES.md` rule 2 applies: choose spans that feel right, not spans that satisfy a formula.
+
+### P2-T1-RENDER — Static review prototype of the continent registry (added 2026-09-06)
+- **Objective:** Give Alan a rendered map strip to review the registry against ("do these feel like the right regions and neighbours?") instead of raw Markdown. This is the reviewer-optimised bundle that gates P2-T2 onward.
+- **Inputs:** `data/continents/REGISTRY.md` (source of truth); `AXES.md` §1 (piecewise X scale, offshore archipelago), §3 (bands, biome palette); `SPEC.md` §2.6.
+- **Outputs:** `site/index.html` (single self-contained page: SVG map strip, time graticule, biome-coloured continents with evocative name + neutral subtitle, offshore archipelago, hover/click card, reviewer banner, legend, registry table); `site/build_registry_json.py` (REGISTRY.md → `registry.json`, reusing `scripts/check_registry.py`'s parser); `.github/workflows/pages.yml` (Pages deploy on push to `main`); `site/README.md`.
+- **Check:** PASS if the Pages workflow run is green (`gh run watch`), `curl` of the live `html_url` from `gh api /repos/zeroasterisk/map-of-ai/pages` returns 200 and contains the title text "Map of AI — Continent Registry (review prototype)", a headless browser draws exactly as many `g.continent` elements as registry rows with zero JS errors, and no two continents' label bounding boxes overlap.
+- **Deps:** P2-T1. **Size:** S. **Gate:** after this unit, wait for Alan's review before dispatching P2-T2…P2-T13. Live URL recorded in `STATUS.md`.
 
 ### P2-T2 … P2-T11 — Author one continent entity (template unit, one instance per registry row)
 Instances are created from `REGISTRY.md` rows once P2-T1 merges; name them `P2-T<2+row index>` and list them in `REGISTRY.md`'s last column so ids are stable. Expected instances (subject to P2-T1): antecedent-isles, cybernetic-shore, symbolic-heartland, winter-steppes / expert-systems-plateau, connectionist-revival, statistical-isthmus, deep-learning-basin, transformer-plateau, generative-frontier.
@@ -255,6 +265,8 @@ Batches are defined in P4-T1's output. Suggested grouping by parent country: (T2
 - **Deps:** P4-T7. **Size:** S.
 
 ## 7. Phase 5 — Frontier intake (recurring, monthly)
+
+> **DEFERRED — Alan has explicitly deprioritized monthly frontier intake indefinitely ("Let's not worry about monthly updates for now. Let's get the history and current correct."). Do not schedule or dispatch P5 units (P5-T0, P5-R1…R6) without new instruction.** The east edge of the map stays at the last row triangulated by P1-T10 (Sept 2026) until further notice.
 
 One-time setup, then six sequential units per month. Each month's run is a
 fresh instance: `P5-R1[2026-09]`, etc. Runs are independent across months
