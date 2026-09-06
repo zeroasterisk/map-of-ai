@@ -1,0 +1,46 @@
+name: Deploy review prototype to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "data/continents/REGISTRY.md"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble Pages artifact (site/ + registry source of truth)
+        run: |
+          mkdir -p _site/data/continents
+          cp -r site/. _site/
+          cp data/continents/REGISTRY.md _site/data/continents/REGISTRY.md
+          python3 site/build_registry_json.py data/continents/REGISTRY.md _site/registry.json
+          test -s _site/registry.json
+          ls -la _site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
