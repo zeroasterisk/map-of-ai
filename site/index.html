@@ -315,7 +315,10 @@ fetch('registry.json').then(r => r.json()).then(data => {
           for (let i = 0; i < 60 && !inFill(land, ax, ay); i++) { ax += 1; }
           ax += 5;
           // elbow leader: horizontal from the label's right edge at the row nearest the dot, then straight to the dot
-          const ey = Math.min(Math.max(ay, u.y + 8), u.b - 8), ex = u.r + 4;
+          const ey = Math.min(Math.max(ay, u.y + 8), u.b - 8);
+          // start at the right edge of the text line on that row (not the block's max-right), so the leader touches the text
+          const row = ts.map(t => t.getBBox()).find(b => ey >= b.y && ey <= b.y + b.height) || ts[0].getBBox();
+          const ex = row.x + row.width + 4;
           const kx = Math.max(ex + 8, ax - Math.abs(ay - ey));
           el('path', {d: `M${ex},${ey} L${kx},${ey} L${ax},${ay}`, class: 'leader', 'data-for': c.id}, gLeaders);
         } else {
