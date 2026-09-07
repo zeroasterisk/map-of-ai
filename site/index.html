@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v2 (atlas restyle) -->
+<!-- map-of-ai site build: P2-T1-RENDER v3 (precision pass) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -22,11 +22,15 @@
   .wrap { position: relative; margin: 18px auto 0; max-width: 1720px; padding: 0 24px; overflow-x: auto; }
   svg#map { display: block; width: 100%; height: auto; min-width: 900px; border: 1px solid #8f7b57; outline: 4px solid var(--paper); box-shadow: 0 0 0 5px #b9a683, 0 10px 30px rgba(60,40,10,.25); background: var(--sea); }
   .continent { cursor: pointer; }
-  .continent .land { stroke: #4a3a24; stroke-width: 1.1; stroke-linejoin: round; filter: url(#landshadow); }
+  .continent .land { stroke: #4a3a24; stroke-width: 1.1; stroke-linejoin: round; }
+  .shadow { fill: #3a2a12; fill-opacity: .38; filter: url(#landshadow); pointer-events: none; }
+  .halo { fill: none; stroke: #e6d9bd; stroke-width: 5; stroke-linejoin: round; stroke-opacity: .9; pointer-events: none; }
   .continent:hover .land { stroke: #2a1f10; stroke-width: 1.8; }
   .continent .land-inner { fill: none; stroke: #f6ecd6; stroke-opacity: .5; stroke-width: 1; pointer-events: none; }
   .cname { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2f2416; letter-spacing: 1.2px; paint-order: stroke; stroke: rgba(246,236,214,.7); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
   .csub { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3d29; paint-order: stroke; stroke: rgba(246,236,214,.65); stroke-width: 2.4px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  .leader { fill: none; stroke: #4a3a24; stroke-width: .9; stroke-opacity: .85; pointer-events: none; }
+  .leader-dot { fill: #4a3a24; pointer-events: none; }
   .ruler, .ruler-tick { stroke: #5b4a30; stroke-width: 1; }
   .ruler-num { font-family: Lora, Georgia, serif; font-size: 12px; fill: #4b3d29; text-anchor: middle; }
   .ruler-cap { font-family: Lora, Georgia, serif; font-style: italic; font-size: 11px; fill: #6e5f47; text-anchor: middle; letter-spacing: .4px; }
@@ -106,46 +110,56 @@ function bandTop(b) { return MAP_TOP + BANDS.indexOf(b) * bandH; }
 const BY = (b, f) => bandTop(b) + f * bandH;   // y at fraction f (0 top → 1 bottom) of band b
 
 // ---- Placement (render-only; not registry data).
-// Each continent owns a CELL — a polygon in (year, y) that no other cell touches (≥ ~8px of sea between any two cells).
-// Its coastline is a smooth Bézier through a handful of control points that stay inside the cell, so separate
-// landmasses can never overlap (hard requirement, P2-T1-RENDER v2 review). The 1974–2011 cluster is resolved as:
-//   winter-steppes      — N1 + upper N2 (northern steppe)
-//   expert-systems-plat — lower N2 (+ a sliver of C): the "warm valley" nested directly under the steppe (REGISTRY D2)
-//   connectionist-revival — S1–S2, with a cape reaching into C before 1988
-//   statistical-isthmus — begins 1988 as a thin neck in band C between plateau and revival (hence "isthmus"),
-//                         widens to N2–S1 after the steppe/plateau (1993) and revival (1998) end
-//   deep-learning-basin — S1–S2 until the isthmus ends (2011), then the full C–S2 span
+// v3 (precision pass): each continent is a closed uniform cubic B-spline through a SMALL number of control points
+// (5–9). A B-spline never passes through its control points and every curve segment lies inside the convex hull of
+// four consecutive points, so the coastline stays strictly inside the control polygon — no clip path needed, no
+// straight clipped edges, and the gap between two continents is at least the gap between their control polygons.
+// Each polygon is authored so the sea between any two of them is >= 12 px (checked mechanically by check_layout.py,
+// which samples the rendered fills, not the polygons). The 1974–2011 cluster (REGISTRY D2/D4 overlaps) is resolved as:
+//   winter-steppes        — N1 + upper N2 (northern steppe)
+//   expert-systems-plat   — lower N2 + upper C: the "warm valley" nested directly under the steppe (REGISTRY D2)
+//   connectionist-revival — S1–S2, with a cape reaching into lower C before 1988
+//   statistical-isthmus   — from 1988 a neck in band C between plateau and revival (hence "isthmus"), broadening to
+//                           N2–S1 after the steppe/plateau (1993) and revival (1998) end; a southern bay faces the basin
+//   deep-learning-basin   — S1–S2 foothills from 2006 under the isthmus's bay, rising to C once the isthmus ends (2011)
 const E = PRESENT - 0.06;
-const CELL = {
-  'cybernetic-shore':       [[1943.3, BY('N1', .10)], [1955.7, BY('N1', .10)], [1955.7, BY('S2', .92)], [1943.3, BY('S2', .92)]],
-  'symbolic-heartland':     [[1956.5, BY('N2', .05)], [1973.6, BY('N2', .05)], [1973.6, BY('S1', .95)], [1956.5, BY('S1', .95)]],
-  'winter-steppes':         [[1974.5, BY('N1', .08)], [1992.6, BY('N1', .08)], [1992.6, BY('N2', .42)], [1974.5, BY('N2', .42)]],
-  'expert-systems-plateau': [[1980.4, BY('N2', .52)], [1992.6, BY('N2', .52)], [1992.6, BY('C', .40)], [1980.4, BY('C', .40)]],
-  'connectionist-revival':  [[1982.3, BY('C', .60)], [1987.6, BY('C', .60)], [1988.0, BY('S1', .02)], [1997.6, BY('S1', .02)], [1997.6, BY('S2', .92)], [1982.3, BY('S2', .92)]],
-  'statistical-isthmus':    [[1988.6, BY('C', .52)], [1993.4, BY('C', .52)], [1993.4, BY('N2', .08)], [2010.8, BY('N2', .08)], [2010.8, BY('C', .92)], [2005.6, BY('C', .92)], [2005.6, BY('S1', .90)], [1998.6, BY('S1', .90)], [1998.6, BY('C', .92)], [1988.6, BY('C', .92)]],
-  'deep-learning-basin':    [[2006.3, BY('S1', .05)], [2011.3, BY('S1', .05)], [2011.6, BY('C', .05)], [2016.7, BY('C', .05)], [2016.7, BY('S2', .92)], [2006.3, BY('S2', .92)]],
-  'transformer-plateau':    [[2017.2, BY('N2', .05)], [2021.8, BY('N2', .05)], [2021.8, BY('S2', .92)], [2017.2, BY('S2', .92)]],
-  'generative-coast':       [[2022.2, BY('N1', .10)], [E, BY('N1', .10)], [E, BY('S2', .92)], [2022.2, BY('S2', .92)]],
-};
-// Coastline control points (year, y), clockwise from the north-west; a few deliberate bays/capes, no noise.
+// Control polygons in (year, y). Clockwise from the north-west. Comments name the deliberate coastal features.
 const COAST = {
-  'cybernetic-shore': [[1944.2, BY('N1', .22)], [1949, BY('N1', .14)], [1955.2, BY('N1', .32)], [1954.3, BY('N2', .6)], [1955.3, BY('C', .3)], [1955.2, BY('S1', .5)], [1953.6, BY('S1', .95)], [1955.2, BY('S2', .5)], [1952, BY('S2', .88)], [1946, BY('S2', .84)], [1943.7, BY('S2', .4)], [1945.6, BY('S1', .5)], [1943.7, BY('N2', .8)], [1944.8, BY('N2', .1)]],
-  'symbolic-heartland': [[1957.1, BY('N2', .16)], [1963, BY('N2', .08)], [1970, BY('N2', .11)], [1973.1, BY('N2', .32)], [1973.2, BY('C', .5)], [1973.1, BY('S1', .3)], [1972, BY('S1', .9)], [1965, BY('S1', .85)], [1961, BY('S1', .92)], [1957.1, BY('S1', .6)], [1958.3, BY('C', .72)], [1957.0, BY('C', .1)]],
-  'winter-steppes': [[1975.1, BY('N1', .2)], [1980, BY('N1', .13)], [1986, BY('N1', .11)], [1992.3, BY('N1', .24)], [1992.3, BY('N2', .1)], [1990, BY('N2', .38)], [1985, BY('N2', .3)], [1981.5, BY('N2', .38)], [1976, BY('N2', .35)], [1975.0, BY('N1', .8)]],
-  'expert-systems-plateau': [[1981.0, BY('N2', .62)], [1986, BY('N2', .56)], [1992.1, BY('N2', .62)], [1992.1, BY('C', .1)], [1990, BY('C', .34)], [1984, BY('C', .3)], [1981.0, BY('C', .2)]],
-  'connectionist-revival': [[1982.9, BY('C', .74)], [1986.6, BY('C', .72)], [1988.6, BY('S1', .14)], [1993, BY('S1', .08)], [1997.1, BY('S1', .2)], [1997.0, BY('S1', .7)], [1996.0, BY('S2', .6)], [1997.0, BY('S2', .86)], [1990, BY('S2', .88)], [1984, BY('S2', .8)], [1982.9, BY('S2', .3)], [1983.7, BY('S1', .6)], [1982.9, BY('S1', .1)]],
-  'statistical-isthmus': [[1989.1, BY('C', .62)], [1993.0, BY('C', .6)], [1994.2, BY('N2', .35)], [1996, BY('N2', .18)], [2002, BY('N2', .12)], [2008, BY('N2', .18)], [2010.3, BY('N2', .5)], [2010.3, BY('C', .5)], [2009.4, BY('C', .84)], [2006.2, BY('C', .84)], [2005.1, BY('S1', .5)], [2004, BY('S1', .82)], [2000, BY('S1', .8)], [1999.2, BY('S1', .3)], [1998.1, BY('C', .84)], [1994.2, BY('C', .84)], [1993.2, BY('C', .86)], [1989.1, BY('C', .84)]],
-  'deep-learning-basin': [[2006.9, BY('S1', .2)], [2010.6, BY('S1', .12)], [2012.0, BY('C', .18)], [2014, BY('C', .1)], [2016.3, BY('C', .2)], [2016.3, BY('S1', .5)], [2015.2, BY('S2', .3)], [2016.2, BY('S2', .7)], [2014, BY('S2', .88)], [2009, BY('S2', .85)], [2006.8, BY('S2', .5)], [2007.6, BY('S1', .8)], [2006.8, BY('S1', .5)]],
-  'transformer-plateau': [[2017.9, BY('N2', .2)], [2019.5, BY('N2', .1)], [2021.2, BY('N2', .3)], [2021.5, BY('C', .4)], [2021.1, BY('S1', .6)], [2021.4, BY('S2', .3)], [2020.4, BY('S2', .88)], [2018.3, BY('S2', .82)], [2017.5, BY('S2', .3)], [2017.9, BY('S1', .3)], [2017.5, BY('C', .3)], [2017.6, BY('N2', .75)]],
-  'generative-coast': [[2022.6, BY('N1', .25)], [2024, BY('N1', .13)], [E - 0.35, BY('N1', .3)], [E - 0.45, BY('N2', .7)], [E - 0.3, BY('C', .8)], [E - 0.7, BY('S1', .7)], [E - 0.35, BY('S2', .3)], [E - 0.9, BY('S2', .88)], [2023, BY('S2', .8)], [2022.6, BY('S2', .3)], [2022.7, BY('S1', .55)], [2022.6, BY('C', .2)], [2022.6, BY('N1', .9)]],
+  // shore: a tall ribbon; one western bay (mid) and a southern cape
+  'cybernetic-shore': [[1943.4, BY('N1', .05)], [1955.5, BY('N1', .05)], [1955.5, BY('C', .4)], [1954.3, BY('S1', .4)], [1955.5, BY('S2', .96)], [1943.4, BY('S2', .96)], [1946.2, BY('C', .55)], [1943.4, BY('N2', .3)]],
+  // heartland: broad block; deep southern bay (Shakey/GPS S1 shore), rounded eastern escarpment
+  'symbolic-heartland': [[1957.3, BY('N2', .0)], [1973.7, BY('N2', .0)], [1973.7, BY('S1', .98)], [1970.0, BY('S1', .98)], [1967.0, BY('S1', .45)], [1963.0, BY('S1', .45)], [1960.0, BY('S1', .98)], [1957.3, BY('S1', .98)]],
+  // steppes: long low slab; one shallow southern bay over the plateau
+  'winter-steppes': [[1974.6, BY('N1', .0)], [1992.6, BY('N1', .0)], [1992.6, BY('N2', .44)], [1980.6, BY('N2', .44)], [1979.4, BY('N2', .15)], [1974.6, BY('N2', .15)]],
+  // plateau: compact block; single eastern point toward the isthmus
+  'expert-systems-plateau': [[1980.9, BY('N2', .62)], [1991.6, BY('N2', .62)], [1992.4, BY('C', .08)], [1991.2, BY('C', .28)], [1980.9, BY('C', .28)]],
+  // revival: southern block with a northern cape (Hopfield 1982–86) reaching into band C
+  'connectionist-revival': [[1982.6, BY('C', .62)], [1986.4, BY('C', .55)], [1988.8, BY('S1', .12)], [1997.4, BY('S1', .38)], [1997.4, BY('S2', .96)], [1982.6, BY('S2', .96)]],
+  // isthmus: neck in C from 1988 (Pearl), broad head N2–C after 1993, southern bay hollowed out over 2000–2006 for the basin
+  'statistical-isthmus': [[1989.0, BY('C', .55)], [1993.4, BY('C', .5)], [1996.6, BY('N2', .05)], [2010.5, BY('N2', .05)], [2010.5, BY('C', .95)], [2005.1, BY('C', .95)], [2004.6, BY('S1', .82)], [1999.6, BY('S1', .82)], [1998.4, BY('C', .9)], [1993.0, BY('C', .9)], [1989.0, BY('C', .84)]],
+  // basin: low foothills S1–S2 from 2006, one bold northern peninsula in C after the isthmus ends (2011); western bay
+  'deep-learning-basin': [[2006.5, BY('S1', .12)], [2011.4, BY('S1', .12)], [2013.0, BY('C', .0)], [2015.6, BY('C', .0)], [2016.7, BY('C', .3)], [2016.7, BY('S2', .96)], [2006.5, BY('S2', .96)]],
+  // transformer plateau: tall block; western bay at C (the 2017 attention river mouth)
+  'transformer-plateau': [[2017.5, BY('N2', .0)], [2021.7, BY('N2', .0)], [2021.7, BY('S2', .96)], [2017.5, BY('S2', .96)], [2018.2, BY('S1', .4)], [2017.5, BY('C', .5)]],
+  // coast: full-height eastern seaboard; one large western peninsula at N2–C, open ragged east edge (terra incognita)
+  'generative-coast': [[2022.4, BY('N1', .0)], [E, BY('N1', .0)], [E - 0.4, BY('N2', .5)], [E, BY('C', .8)], [E - 0.3, BY('S1', .9)], [E, BY('S2', .96)], [2022.4, BY('S2', .96)], [2022.4, BY('S1', .5)], [2022.4, BY('N2', .7)]],
 };
 // Antecedent isles: a small chain of 4 islands offshore, upper-left of the 1943 coast (N1–N2). No connector line.
 const ISLES = [ {y: 1666, cy: BY('N1', .55), r: 12, s: 1}, {y: 1847, cy: BY('N2', .3), r: 15, s: 2}, {y: 1900, cy: BY('N1', .8), r: 14, s: 3}, {y: 1936, cy: BY('N2', .6), r: 20, s: 4} ];
-// Label centres (year, y) — inside each landmass's widest part.
+// Label anchors (year, y). `inside: true` places the block centred here inside the landmass.
+// Small landmasses are labelled OUTSIDE in open sea with a leader line to a point on the coast (standard small-island
+// technique), because there is no legible size (>= MIN_FONT) that fits inside them.
+const MIN_FONT = 12;  // px at 1x (viewBox px). Never rendered smaller than this.
 const LABEL = {
-  'cybernetic-shore': [1949.4, BY('C', .0)], 'symbolic-heartland': [1965, BY('C', .25)], 'winter-steppes': [1983.5, BY('N1', .62)],
-  'expert-systems-plateau': [1986.5, BY('N2', .9)], 'connectionist-revival': [1990.5, BY('S1', .85)], 'statistical-isthmus': [2002, BY('C', .18)],
-  'deep-learning-basin': [2012, BY('S1', .9)], 'transformer-plateau': [2019.5, BY('C', .15)], 'generative-coast': [2024.4, BY('N2', .85)],
+  'cybernetic-shore':       {inside: false, px: PAD_L + ARCH_W / 2 - 8, at: [null, BY('S2', .3)], anchorYr: 1944.0, anchorBand: ['S2', .3], side: 'left', maxW: 118},
+  'symbolic-heartland':     {inside: true,  at: [1965.2, BY('C', .3)]},
+  'winter-steppes':         {inside: true,  at: [1984.2, BY('N1', .78)]},
+  'expert-systems-plateau': {inside: false, px: 484, at: [null, BY('S1', .12)], anchorYr: 1983.6, anchorBand: ['C', .14], side: 'left', maxW: 80},
+  'connectionist-revival':  {inside: true,  at: [1990.6, BY('S2', .12)]},
+  'statistical-isthmus':    {inside: true,  at: [2003.4, BY('C', .25)]},
+  'deep-learning-basin':    {inside: true,  at: [2012.2, BY('S1', .95)]},
+  'transformer-plateau':    {inside: true,  at: [2019.6, BY('C', .1)]},
+  'generative-coast':       {inside: true,  at: [2024.6, BY('N2', .8)]},
 };
 
 const svg = document.getElementById('map');
@@ -155,20 +169,26 @@ function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); f
 function txt(x, y, s, cls, parent, extra) { const t = el('text', Object.assign({x, y, class: cls}, extra||{}), parent); t.textContent = s; return t; }
 const P = ([yr, y]) => [X(yr), y];
 
-// Smooth closed coastline through control points (Catmull-Rom → cubic Bézier).
-function smoothPath(pts, tension = 0.5) {
-  const n = pts.length; let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+// Closed uniform cubic B-spline through control points → cubic Béziers. Large-radius curves; the curve stays strictly
+// inside the control polygon (convex-hull property), so polygons that are >= G px apart give coasts >= G px apart.
+function bsplinePath(pts) {
+  const n = pts.length; const f = v => v.toFixed(1);
+  const B = i => pts[((i % n) + n) % n];
+  let d = '';
   for (let i = 0; i < n; i++) {
-    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
-    const c1 = [p1[0] + (p2[0] - p0[0]) * tension / 3, p1[1] + (p2[1] - p0[1]) * tension / 3];
-    const c2 = [p2[0] - (p3[0] - p1[0]) * tension / 3, p2[1] - (p3[1] - p1[1]) * tension / 3];
-    d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+    const p0 = B(i - 1), p1 = B(i), p2 = B(i + 1), p3 = B(i + 2);
+    const s = [(p0[0] + 4 * p1[0] + p2[0]) / 6, (p0[1] + 4 * p1[1] + p2[1]) / 6];
+    const c1 = [(2 * p1[0] + p2[0]) / 3, (2 * p1[1] + p2[1]) / 3];
+    const c2 = [(p1[0] + 2 * p2[0]) / 3, (p1[1] + 2 * p2[1]) / 3];
+    const e2 = [(p1[0] + 4 * p2[0] + p3[0]) / 6, (p1[1] + 4 * p2[1] + p3[1]) / 6];
+    if (i === 0) d = `M${f(s[0])},${f(s[1])}`;
+    d += ` C${f(c1[0])},${f(c1[1])} ${f(c2[0])},${f(c2[1])} ${f(e2[0])},${f(e2[1])}`;
   }
   return d + ' Z';
 }
 function islandPts(cx, cy, r, seed) {
-  const n = 7; const pts = [];
-  for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + seed; const rr = r * (0.8 + 0.35 * Math.sin(a * 2 + seed * 1.7)); pts.push([cx + rr * Math.cos(a) * 1.25, cy + rr * Math.sin(a)]); }
+  const n = 6; const pts = [];
+  for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + seed; const rr = r * (1.0 + 0.45 * Math.sin(a * 2 + seed * 1.7)); pts.push([cx + rr * Math.cos(a) * 1.3, cy + rr * Math.sin(a)]); }
   return pts;
 }
 function wrap(s, maxChars) { const out = []; let line = ''; s.split(' ').forEach(w => { if ((line + ' ' + w).trim().length > maxChars && line) { out.push(line); line = w; } else line = (line ? line + ' ' : '') + w; }); out.push(line); return out; }
@@ -177,7 +197,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const C = data.continents;
   const defs = el('defs', {});
   const f = el('filter', {id: 'landshadow', x: '-10%', y: '-10%', width: '125%', height: '130%'}, defs);
-  el('feDropShadow', {dx: 3, dy: 4, stdDeviation: 3.5, 'flood-color': '#3a2a12', 'flood-opacity': .38}, f);
+  el('feGaussianBlur', {stdDeviation: 3.5}, f);
   const g2 = el('filter', {id: 'grain'}, defs);
   el('feTurbulence', {type: 'fractalNoise', baseFrequency: '.035 .012', numOctaves: 3, seed: 7, result: 't'}, g2);
   el('feColorMatrix', {in: 't', type: 'matrix', values: '0 0 0 0 .33  0 0 0 0 .26  0 0 0 0 .14  0 0 0 .10 0'}, g2);
@@ -192,7 +212,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     el('line', {x1: PAD_L, x2: W - PAD_R + 30, y1: BY(b, .5), y2: BY(b, .5), stroke: '#8f7b57', 'stroke-opacity': .22, 'stroke-dasharray': '1 5'});
     txt(W - 12, BY(b, .5) - 1, b, 'band-code'); txt(W - 12, BY(b, .5) + 11, BAND_NAME[b], 'band-label');
   });
-  txt(PAD_L + ARCH_W / 2 - 4, MAP_BOT - 26, 'WESTERN', 'ocean-label'); txt(PAD_L + ARCH_W / 2 - 4, MAP_BOT - 10, 'SEA', 'ocean-label');
+  txt(PAD_L + ARCH_W / 2 - 4, MAP_TOP + 16, 'WESTERN SEA', 'ocean-label', null, {'font-size': 11});
   txt(W - PAD_R / 2, MAP_TOP + 14, 'TERRA INCOGNITA', 'ocean-label', null, {'font-size': 10});
   // compass rose (bottom-right margin)
   const cx = W - PAD_R / 2, cy = RULER_Y + 18;
@@ -201,53 +221,113 @@ fetch('registry.json').then(r => r.json()).then(data => {
   el('path', {d: `M${cx},${cy+34} L${cx+5},${cy+5} L${cx},${cy} L${cx-5},${cy+5} Z M${cx-34},${cy} L${cx-5},${cy-5} L${cx},${cy} L${cx-5},${cy+5} Z M${cx+34},${cy} L${cx+5},${cy-5} L${cx},${cy} L${cx+5},${cy+5} Z`, fill: 'none', stroke: '#5b4a30', 'stroke-width': .9});
   txt(cx, cy - 39, 'N', 'ruler-num', null, {'font-size': 10}); txt(cx + 46, cy + 4, 'E', 'ruler-num', null, {'font-size': 10});
 
-  // time ruler: thin ruled line, major ticks only (density-adapted), serif numerals
+  // time ruler: thin ruled line, major ticks only (density-adapted), serif numerals.
+  // Offshore (log) segment: ticks at 1666 / 1800 / 1900 but numerals only at 1666 and 1900 — 1800 and 1900 are 13 px
+  // apart on this scale, and two 4-digit numerals need ~32 px. The gate measures every adjacent pair of numerals.
   el('line', {x1: X(1943), x2: X(PRESENT), y1: RULER_Y, y2: RULER_Y, class: 'ruler'});
   el('line', {x1: PAD_L + 10, x2: X(1942), y1: RULER_Y, y2: RULER_Y, class: 'ruler', 'stroke-dasharray': '2 4'});
   const yearOf = y => Math.floor(y);
-  const major = [1666, 1800, 1900, 1943, 1956, 1974, 1990, 2006, 2017, 2022];
+  const major = [1666, 1900, 1943, 1956, 1974, 1990, 2006, 2017, 2022];
   for (let y = 1950; y < 2006; y += 10) if (!major.includes(y)) major.push(y);
   [2012, 2020, 2024, 2026].forEach(y => { if (y <= PRESENT) major.push(y); });
-  const minor = []; for (let y = 1944; y <= yearOf(PRESENT); y++) if (!major.includes(y) && ((y < 2006 && y % 5 === 0) || (y >= 2006 && y % 2 === 0))) minor.push(y);
+  const minor = [1800]; for (let y = 1944; y <= yearOf(PRESENT); y++) if (!major.includes(y) && ((y < 2006 && y % 5 === 0) || (y >= 2006 && y % 2 === 0))) minor.push(y);
   minor.forEach(y => el('line', {x1: X(y), x2: X(y), y1: RULER_Y, y2: RULER_Y + 4, class: 'ruler-tick', 'stroke-opacity': .5}));
-  major.sort((a, b) => a - b).forEach(y => { const x = X(y); el('line', {x1: x, x2: x, y1: RULER_Y - 5, y2: RULER_Y + 7, class: 'ruler-tick'}); txt(x, RULER_Y + 22, y, 'ruler-num', null, y < 1943 ? {'font-size': 11} : {}); });
+  const gRuler = el('g', {id: 'ruler-nums'});
+  major.sort((a, b) => a - b).forEach(y => { const x = X(y); el('line', {x1: x, x2: x, y1: RULER_Y - 5, y2: RULER_Y + 7, class: 'ruler-tick'}); txt(x, RULER_Y + 22, y, 'ruler-num', gRuler); });
   txt((X(1943) + X(PRESENT)) / 2, RULER_Y + 42, 'westward is earlier · the scale stretches toward the present (1× · 1½× · 3× · 6× per year) · the east coast is the last completed month', 'ruler-cap');
   txt(PAD_L + ARCH_W / 2, RULER_Y + 42, 'pre-1943: offshore, logarithmic', 'ruler-cap');
 
-  const gShapes = el('g', {id: 'shapes'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none'});
+  const gShadow = el('g', {id: 'shadows', transform: 'translate(3,4)'}); const gHalo = el('g', {id: 'halos'}); const gShapes = el('g', {id: 'shapes'}); const gLeaders = el('g', {id: 'leaders'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none'});
   const card = document.getElementById('card');
   const order = C.slice().sort((a,b) => a.start - b.start);
+  const pt = svg.createSVGPoint();
+  const inFill = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInFill(pt); };
+
+  // Label block: name lines (Cinzel) + subtitle lines (Lora) + years. Measured with getBBox after insertion.
+  function labelBlock(c, lx, ly, sizeN, sizeS, maxW, withSub) {
+    const nameLines = wrap(c.name, Math.max(8, Math.floor(maxW / (sizeN * 0.72 + 1.2))));
+    const subLines = withSub ? wrap(c.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor(maxW / (sizeS * 0.5)))) : [];
+    const totalH = nameLines.length * (sizeN + 3) + subLines.length * (sizeS + 2) + sizeS + 3;
+    let yy = ly - totalH / 2 + sizeN * 0.8;
+    const ts = [];
+    nameLines.forEach(l => { ts.push(txt(lx, yy, l, 'cname', gLabels, {'font-size': sizeN, 'data-for': c.id})); yy += sizeN + 3; });
+    yy += 1;
+    subLines.forEach(l => { ts.push(txt(lx, yy, l, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id})); yy += sizeS + 2; });
+    ts.push(txt(lx, yy + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id}));
+    return ts;
+  }
+  const union = ts => { const bs = ts.map(t => t.getBBox()); const x = Math.min(...bs.map(b => b.x)), y = Math.min(...bs.map(b => b.y)); return {x, y, r: Math.max(...bs.map(b => b.x + b.width)), b: Math.max(...bs.map(b => b.y + b.height))}; };
+  // does the label block sit inside `land` with `m` px margin on every side (sampled along the block outline)?
+  const fitsInside = (land, u, m) => {
+    for (let x = u.x - m; x <= u.r + m; x += 3) if (!inFill(land, x, u.y - m) || !inFill(land, x, u.b + m)) return false;
+    for (let y = u.y - m; y <= u.b + m; y += 3) if (!inFill(land, u.x - m, y) || !inFill(land, u.r + m, y)) return false;
+    return true;
+  };
+
   order.forEach((c) => {
     const g = el('g', {class: 'continent', 'data-id': c.id}, gShapes);
     const fill = BIOME[c.biome].c;
     if (c.offshore) {
-      ISLES.forEach(is => el('path', {d: smoothPath(islandPts(X(is.y), is.cy, is.r, is.s), .9), fill, class: 'land'}, g));
-      const lx = PAD_L + ARCH_W / 2 - 4; let ly = BY('C', .32);
-      wrap(c.name, 14).forEach(l => { txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id}); ly += 15; });
+      ISLES.forEach(is => { const d = bsplinePath(islandPts(X(is.y), is.cy, is.r, is.s)); el('path', {d, class: 'shadow'}, gShadow); el('path', {d, class: 'halo'}, gHalo); el('path', {d, fill, class: 'land'}, g); });
+      // label in open sea below the chain, with a leader to the largest isle (Turing 1936)
+      const lx = X(ISLES[3].y) - 4; let ly = BY('C', .18);
+      const ts = [];
+      wrap(c.name, 14).forEach(l => { ts.push(txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id})); ly += 15; });
       ly += 1;
-      wrap('logic & computability prehistory', 22).forEach(l => { txt(lx, ly, l, 'csub', gLabels, {'font-size': 10.5, 'data-for': c.id}); ly += 12.5; });
-      txt(lx, ly + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': 10.5, 'data-for': c.id});
+      wrap('logic & computability prehistory', 22).forEach(l => { ts.push(txt(lx, ly, l, 'csub', gLabels, {'font-size': MIN_FONT, 'data-for': c.id})); ly += 14; });
+      ts.push(txt(lx, ly + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': MIN_FONT, 'data-for': c.id}));
+      const u = union(ts); const big = ISLES[3];
+      const ax = X(big.y) - 4, ay = big.cy + big.r * .55;
+      el('path', {d: `M${ax},${ay} L${ax},${u.y - 4}`, class: 'leader', 'data-for': c.id}, gLeaders);
+      el('circle', {cx: ax, cy: ay, r: 1.8, class: 'leader-dot'}, gLeaders);
     } else {
-      const cell = CELL[c.id].map(P), ctrl = COAST[c.id].map(P);
-      const clip = el('clipPath', {id: 'clip-' + c.id}, defs);
-      el('polygon', {points: cell.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ')}, clip);
-      const d = smoothPath(ctrl, 0.5);
-      el('path', {d, fill, class: 'land', 'clip-path': `url(#clip-${c.id})`}, g);
-      el('path', {d, class: 'land-inner', 'clip-path': `url(#clip-${c.id})`}, g);
-      // label block, centred on LABEL, sized by land width; a post-pass shrinks any line wider than the land at its row
-      const [lyr, ly] = LABEL[c.id]; const lx = X(lyr);
-      const xs = cell.map(p => p[0]), ys = cell.map(p => p[1]);
-      const wland = Math.max(...xs) - Math.min(...xs), hland = Math.max(...ys) - Math.min(...ys);
-      const small = hland < 90; // nested / minor landmass: name + years only (subtitle lives in the hover card)
-      const sizeN = small ? 12 : wland > 260 ? 17 : wland > 150 ? 14 : 12, sizeS = wland > 260 ? 12 : wland > 150 ? 10.5 : 10;
-      const nameLines = wrap(c.name, Math.max(6, Math.floor((wland - 14) / (sizeN * 0.66 + 1.2))));
-      const subLines = small ? [] : wrap(c.subtitle.replace(/, \d{4}.*$/, ''), Math.max(12, Math.floor((wland - 22) / (sizeS * 0.5))));
-      const totalH = nameLines.length * (sizeN + 3) + subLines.length * (sizeS + 2) + sizeS + 3;
-      let yy = ly - totalH / 2 + sizeN * 0.8;
-      nameLines.forEach(l => { txt(lx, yy, l, 'cname', gLabels, {'font-size': sizeN, 'data-for': c.id}); yy += sizeN + 3; });
-      yy += 1;
-      subLines.forEach(l => { txt(lx, yy, l, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id}); yy += sizeS + 2; });
-      txt(lx, yy + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id});
+      const ctrl = COAST[c.id].map(P);
+      const d = bsplinePath(ctrl);
+      el('path', {d, class: 'shadow'}, gShadow); el('path', {d, class: 'halo'}, gHalo);
+      const land = el('path', {d, fill, class: 'land'}, g);
+      el('path', {d, class: 'land-inner'}, g);
+      const L = LABEL[c.id];
+      const bb = land.getBBox();
+      if (L.inside) {
+        // Try sizes from large to MIN_FONT; keep the first whose block (with margin) sits wholly inside the fill.
+        // If none fits at MIN_FONT with the subtitle, drop the subtitle before dropping below the floor.
+        const [lyr, ly] = L.at; const lx = X(lyr);
+        const tries = [[17, 12, true], [16, 12, true], [15, 12, true], [14, 12, true], [13, 12, true], [12, 12, true], [14, 12, false], [12, 12, false]];
+        let placed = null;
+        for (const [sN, sS, withSub] of tries) {
+          const ts = labelBlock(c, lx, ly, sN, sS, bb.width - 24, withSub);
+          if (fitsInside(land, union(ts), 6)) { placed = ts; break; }
+          ts.forEach(t => t.remove());
+        }
+        if (!placed) { placed = labelBlock(c, lx, ly, MIN_FONT, MIN_FONT, bb.width - 24, false); placed.forEach(t => t.setAttribute('data-unfit', '1')); }
+      } else {
+        // Outside label with a leader line to the coast.
+        const lx = L.px !== undefined ? L.px : X(L.at[0]);
+        const ts = labelBlock(c, lx, 0, 13, MIN_FONT, L.maxW || 150, true);
+        const u0 = union(ts); const h = u0.b - u0.y;
+        const ly = L.side === 'above' ? (L.at[1] - h / 2 - 2) : L.side === 'below' ? (L.at[1] + h / 2 + 2) : L.at[1];
+        ts.forEach(t => t.setAttribute('y', (parseFloat(t.getAttribute('y')) + ly).toFixed(1)));
+        const u = union(ts);
+        // anchor: walk from the requested coast point inward until inside the fill, so the dot sits on land
+        let ax = X(L.anchorYr), ay = BY(L.anchorBand[0], L.anchorBand[1]);
+        if (L.side === 'left') {
+          // walk diagonally (up-right) from the requested point until on land, then 4 px further in
+          for (let i = 0; i < 60 && !inFill(land, ax, ay); i++) { ax += 1; }
+          ax += 5;
+          // elbow leader: horizontal from the label's right edge at the row nearest the dot, then straight to the dot
+          const ey = Math.min(Math.max(ay, u.y + 8), u.b - 8), ex = u.r + 4;
+          const kx = Math.max(ex + 8, ax - Math.abs(ay - ey));
+          el('path', {d: `M${ex},${ey} L${kx},${ey} L${ax},${ay}`, class: 'leader', 'data-for': c.id}, gLeaders);
+        } else {
+          const dir = L.side === 'above' ? 1 : -1;
+          for (let i = 0; i < 40 && !inFill(land, ax, ay); i++) ay += dir;
+          ay += dir * 4;
+          const ex = Math.min(Math.max(ax, u.x + 10), u.r - 10);
+          const ey = L.side === 'above' ? u.b + 3 : u.y - 3;
+          el('path', {d: `M${ax},${ay} L${ax},${ey + (L.side === 'above' ? 8 : -8)} L${ex},${ey}`, class: 'leader', 'data-for': c.id}, gLeaders);
+        }
+        el('circle', {cx: ax, cy: ay, r: 1.8, class: 'leader-dot'}, gLeaders);
+      }
     }
     const show = (ev) => {
       card.style.display = 'block';
@@ -268,29 +348,23 @@ fetch('registry.json').then(r => r.json()).then(data => {
     g.addEventListener('click', show);
   });
 
-  // fit pass: if any label line is wider than its landmass at that row (measured against the actual coastline fill),
-  // shrink the WHOLE label group uniformly so name/subtitle keep consistent sizing
-  const fit = () => {
-    const pt = svg.createSVGPoint();
-    gShapes.querySelectorAll('.continent').forEach(g => {
-      const lands = g.querySelectorAll('path.land'); if (lands.length !== 1) return; const land = lands[0];
-      const ts = [...gLabels.querySelectorAll(`text[data-for="${g.dataset.id}"]`)];
-      for (let k = 0; k < 10; k++) {
-        let scale = 1;
-        ts.forEach(t => {
-          const b = t.getBBox(); const x = parseFloat(t.getAttribute('x'));
-          const reach = (dir, y) => { let i = 0; while (i < 500) { pt.x = x + dir * i; pt.y = y; if (!land.isPointInFill(pt)) break; i++; } return i; };
-          const free = Math.min(...[b.y + 1, b.y + b.height / 2, b.y + b.height - 1].flatMap(y => [reach(-1, y), reach(1, y)])) * 2 - 8;
-          if (b.width > free) scale = Math.min(scale, Math.max(0.85, free / b.width));
-        });
-        if (scale >= 1) break;
-        ts.forEach(t => { const fs = parseFloat(t.getAttribute('font-size')); t.setAttribute('font-size', Math.max(8, fs * scale).toFixed(1)); });
-        if (ts.every(t => parseFloat(t.getAttribute('font-size')) <= 8)) break;
+  // Fonts load after first layout; re-run the inside-label fit once the web fonts are ready so measurements are real.
+  const relayout = () => {
+    order.filter(c => !c.offshore && LABEL[c.id].inside).forEach(c => {
+      const g = gShapes.querySelector(`.continent[data-id="${c.id}"]`); const land = g.querySelector('path.land');
+      const old = [...gLabels.querySelectorAll(`text[data-for="${c.id}"]`)]; old.forEach(t => t.remove());
+      const [lyr, ly] = LABEL[c.id].at; const lx = X(lyr); const bb = land.getBBox();
+      const tries = [[17, 12, true], [16, 12, true], [15, 12, true], [14, 12, true], [13, 12, true], [12, 12, true], [14, 12, false], [12, 12, false]];
+      let placed = null;
+      for (const [sN, sS, withSub] of tries) {
+        const ts = labelBlock(c, lx, ly, sN, sS, bb.width - 24, withSub);
+        if (fitsInside(land, union(ts), 6)) { placed = ts; break; }
+        ts.forEach(t => t.remove());
       }
+      if (!placed) { placed = labelBlock(c, lx, ly, MIN_FONT, MIN_FONT, bb.width - 24, false); placed.forEach(t => t.setAttribute('data-unfit', '1')); }
     });
   };
-  fit();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fit(); document.dispatchEvent(new Event('map:ready')); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { relayout(); document.dispatchEvent(new Event('map:ready')); });
   else document.dispatchEvent(new Event('map:ready'));
 
   // legend
