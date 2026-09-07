@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-"""Headless layout gate for site/index.html (P2-T1-RENDER v3 precision pass).
+"""Headless layout gate for site/index.html (P2-T1-RENDER v4: atlas textures, one supercontinent).
 
 Serves site/ locally (or takes --url), renders in headless Chromium (Playwright), then asserts on the
-RENDERED geometry (isPointInFill / getBBox on the live SVG — never on the authoring polygons):
+RENDERED geometry (isPointInFill / getBBox on the live SVG — never on the authoring grid):
 
-  1. landmass gap — for EVERY pair of distinct continents' land paths (no bbox pre-filter): no point of A's
-     fill lies inside B's fill, and no point of A's fill lies within GAP px of B's fill. Implemented by
-     sampling every 1 px over A's bbox and testing B with a temporary stroke of 2*GAP px (isPointInStroke).
-     The closest approach per pair is also reported (min over samples of distance-to-B, binary searched).
-  2. label vs label — no two continents' text bboxes come within LABEL_GAP px of each other.
-  3. label vs land — inside labels: the whole text bbox (with INSIDE_MARGIN) is inside the OWN fill;
-     every label (inside or outside): no text bbox (with LABEL_GAP) touches a FOREIGN land fill.
-  4. leader lines — every outside label has a leader whose land end is inside the owning fill and whose
-     text end is not inside any land fill.
-  5. font floor — no label text has font-size < MIN_FONT; no label carries data-unfit.
-  6. ruler numerals — adjacent tick labels have >= RULER_GAP px of clear space (bboxes measured).
+  1. contiguity — exactly ONE mainland coastline loop (#coast has 1 + 4 isle paths); every mainland continent
+     fill is inside it; every pair of chronologically adjacent continents TOUCHES (fills within ADJ px);
+     no pair of continents OVERLAPS (no pixel inside two different fills).
+  2. texture — each continent's land fill is a url(#tex-*) pattern (not a flat colour) and the sampled
+     luminance inside every continent has stddev >= TEX_STD (i.e. visible glyph texture, not a flat fill).
+  3. labels — no two continents' text bboxes come within LABEL_GAP px; no two text elements anywhere overlap; inside labels sit wholly inside their
+     own fill; no label touches a foreign fill; every text is inside the viewBox with EDGE px margin.
+  4. leaders — outside labels have a leader whose land end is on the owning fill and text end is on no land.
+  5. font floor — no label text < MIN_FONT; no data-unfit.
+  6. ruler numerals — adjacent tick labels have >= RULER_GAP px of clear space.
+  7. assets — every texture image the page references returned HTTP 200 and nothing was fetched from a
+     non-local origin except Google Fonts.
 
 Writes a screenshot. Usage:
   PLAYWRIGHT_BROWSERS_PATH=... python3 site/check_layout.py [--url URL] [--shot out.png]
@@ -29,113 +30,140 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-GAP = 12          # px of sea required between two different landmasses (rendered fills)
-LABEL_GAP = 6     # px between label boxes / between a label and a foreign coast
-INSIDE_MARGIN = 5 # px of own land required around an inside label
-MIN_FONT = 12     # px floor for any label glyph
-RULER_GAP = 6     # px between adjacent ruler numerals
-BUILD_MARKER = "P2-T1-RENDER v3"
+ADJ = 2           # px: chronologically adjacent continents must come at least this close (shared border)
+LABEL_GAP = 6
+INSIDE_MARGIN = 5
+MIN_FONT = 12
+RULER_GAP = 6
+EDGE = 2
+TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
+BUILD_MARKER = "P2-T1-RENDER v4"
+ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
+         "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
+# pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
+ADJACENT = [("cybernetic-shore", "symbolic-heartland"), ("symbolic-heartland", "winter-steppes"),
+            ("winter-steppes", "expert-systems-plateau"), ("expert-systems-plateau", "connectionist-revival"),
+            ("expert-systems-plateau", "statistical-isthmus"), ("connectionist-revival", "statistical-isthmus"),
+            ("statistical-isthmus", "deep-learning-basin"), ("deep-learning-basin", "transformer-plateau"),
+            ("transformer-plateau", "generative-coast"), ("symbolic-heartland", "cybernetic-shore")]
 
 JS = r"""
 (cfg) => {
-  const {GAP, LABEL_GAP, INSIDE_MARGIN, MIN_FONT, RULER_GAP} = cfg;
+  const {ADJ, LABEL_GAP, INSIDE_MARGIN, MIN_FONT, RULER_GAP, EDGE, ADJACENT} = cfg;
   const svg = document.getElementById('map');
   const pt = svg.createSVGPoint();
-  const conts = [...document.querySelectorAll('#shapes .continent')].map(g => ({
-    id: g.dataset.id, lands: [...g.querySelectorAll('path.land')] }));
+  const vb = svg.viewBox.baseVal;
+  const conts = [...document.querySelectorAll('#shapes .continent')].map(g => ({ id: g.dataset.id, lands: [...g.querySelectorAll('path.land')] }));
   const bb = e => { const b = e.getBBox(); return {x: b.x, y: b.y, r: b.x + b.width, b: b.y + b.height}; };
   const grow = (b, m) => ({x: b.x - m, y: b.y - m, r: b.r + m, b: b.b + m});
   const inter = (a, b) => a.x < b.r && b.x < a.r && a.y < b.b && b.y < a.b;
   const inFill = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInFill(pt); };
   const inStroke = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInStroke(pt); };
-  const allLands = conts.flatMap(c => c.lands.map(l => ({id: c.id, el: l})));
-
-  // 1. landmass gap, every pair, sampled on A's fill at 1px, B stroked 2*GAP
-  const fillOverlaps = [], gapViolations = [], closest = [];
-  for (let i = 0; i < allLands.length; i++) for (let j = 0; j < allLands.length; j++) {
-    if (i === j) continue;
-    const A = allLands[i], B = allLands[j]; if (A.id === B.id) continue;
-    if (j < i && A.id !== B.id) { /* still test both directions: A-samples vs B-stroke is not symmetric */ }
-    const a = bb(A.el);
-    const savedW = B.el.style.strokeWidth, savedF = B.el.style.filter; B.el.style.strokeWidth = (2 * GAP) + 'px'; B.el.style.filter = 'none';
-    let both = 0, near = 0, minD = Infinity;
-    for (let x = Math.floor(a.x); x <= a.r; x += 1) for (let y = Math.floor(a.y); y <= a.b; y += 1) {
-      if (!inFill(A.el, x, y)) continue;
-      if (inFill(B.el, x, y)) { both++; minD = 0; continue; }
-      if (inStroke(B.el, x, y)) near++;
-    }
-    B.el.style.strokeWidth = savedW; B.el.style.filter = savedF;
-    if (both) fillOverlaps.push({a: A.id, b: B.id, px: both});
-    if (near) gapViolations.push({a: A.id, b: B.id, px: near});
-    if (i < j) {
-      // closest approach (px), by widening B's stroke until any A-fill sample touches it (coarse 2px grid, 1px steps)
-      let d = 0;
-      const bB = bb(B.el);
-      if (inter(grow(a, 60), bB)) {
-        B.el.style.filter = 'none';
-        for (d = 1; d <= 60; d++) {
-          B.el.style.strokeWidth = (2 * d) + 'px'; let hit = false;
-          const x0 = Math.max(a.x, bB.x - d), x1 = Math.min(a.r, bB.r + d), y0 = Math.max(a.y, bB.y - d), y1 = Math.min(a.b, bB.b + d);
-          for (let x = Math.floor(x0); x <= x1 && !hit; x += 1) for (let y = Math.floor(y0); y <= y1; y += 1) if (inFill(A.el, x, y) && (inStroke(B.el, x, y) || inFill(B.el, x, y))) { hit = true; break; }
-          if (hit) break;
-        }
-        B.el.style.strokeWidth = savedW; B.el.style.filter = savedF;
-        closest.push({a: A.id, b: B.id, px: both ? 0 : d > 60 ? '>60' : d});
-      }
-    }
+  const byId = Object.fromEntries(conts.map(c => [c.id, c]));
+  const mainland = conts.filter(c => c.id !== 'antecedent-isles');
+  const coastPaths = [...document.querySelectorAll('#coast path')];
+  // 1a. overlaps: sample every mainland fill at 2px, test every other fill. A sample lying exactly ON the shared
+  // border polyline satisfies isPointInFill for both sides (edge inclusive) — those are not overlaps, so points
+  // within 1px of B's outline are excluded; anything else inside both fills is a real overlap.
+  const overlaps = [];
+  for (const A of mainland) for (const B of mainland) {
+    if (A.id >= B.id) continue; const a = bb(A.lands[0]), b = bb(B.lands[0]); if (!inter(a, b)) continue;
+    const Bp = B.lands[0]; const sw = Bp.style.strokeWidth; Bp.style.strokeWidth = '2px'; Bp.style.stroke = '#000';
+    let n = 0, edge = 0;
+    for (let x = Math.floor(Math.max(a.x, b.x)); x <= Math.min(a.r, b.r); x += 2) for (let y = Math.floor(Math.max(a.y, b.y)); y <= Math.min(a.b, b.b); y += 2) if (inFill(A.lands[0], x, y) && inFill(Bp, x, y)) { if (inStroke(Bp, x, y)) edge++; else n++; }
+    Bp.style.strokeWidth = sw; Bp.style.stroke = '';
+    if (n) overlaps.push({a: A.id, b: B.id, samples: n, onEdge: edge});
   }
-  // 2. labels vs labels
+  // 1b. adjacency: A's fill samples within ADJ px of B (B stroked 2*ADJ)
+  const notAdjacent = [];
+  for (const [ai, bi] of ADJACENT) {
+    const A = byId[ai].lands[0], B = byId[bi].lands[0]; const a = bb(A);
+    const sw = B.style.strokeWidth; B.style.strokeWidth = (2 * ADJ) + 'px'; B.style.stroke = '#000';
+    let hit = 0;
+    for (let x = Math.floor(a.x); x <= a.r && hit < 3; x += 1) for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(A, x, y) && inStroke(B, x, y)) { hit++; if (hit >= 3) break; }
+    B.style.strokeWidth = sw; B.style.stroke = '';
+    if (hit < 3) notAdjacent.push([ai, bi]);
+  }
+  // 1c. every mainland fill inside the single mainland coast loop; isles inside isle coasts
+  const coastMain = coastPaths[0];
+  const outsideCoast = [];
+  for (const c of mainland) { const a = bb(c.lands[0]); let bad = 0, tot = 0; for (let x = a.x; x <= a.r; x += 4) for (let y = a.y; y <= a.b; y += 4) if (inFill(c.lands[0], x, y)) { tot++; if (!inFill(coastMain, x, y)) bad++; } if (bad) outsideCoast.push({id: c.id, bad, tot}); }
+  // 1d. registry fidelity: each mainland fill stays inside its REGISTRY band span (± BAND_SLACK px of hand-drawn
+  //     wobble) and its X extent matches its start/end years (± YEAR_SLACK px)
+  const {BANDS_Y, SPANS, BAND_SLACK, YEAR_SLACK} = cfg;
+  const bandViol = [];
+  for (const c of mainland) {
+    const s = SPANS[c.id]; if (!s) continue; const a = bb(c.lands[0]);
+    const yTop = BANDS_Y[s.bands[0]][0] - BAND_SLACK, yBot = BANDS_Y[s.bands[1]][1] + BAND_SLACK;
+    const dx0 = a.x - s.x0, dx1 = a.r - s.x1;
+    if (a.y < yTop || a.b > yBot || Math.abs(dx0) > YEAR_SLACK || Math.abs(dx1) > YEAR_SLACK) bandViol.push({id: c.id, y: [+a.y.toFixed(0), +a.b.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
+  }
+  // 2. texture fills
+  const flatFills = conts.filter(c => !c.lands.every(l => (l.getAttribute('fill') || '').startsWith('url(#tex-'))).map(c => c.id);
+  const fillSamples = {}; // centre points for pixel sampling in python (client px)
+  const ctm = svg.getScreenCTM();
+  for (const c of conts) { const a = bb(c.lands[0]); const pts = []; for (let x = a.x; x <= a.r; x += 3) for (let y = a.y; y <= a.b; y += 3) if (inFill(c.lands[0], x, y)) { const p = pt; p.x = x; p.y = y; const q = p.matrixTransform(ctm); pts.push([q.x, q.y]); } fillSamples[c.id] = pts.filter((_, i) => i % 4 === 0).slice(0, 1500); }
+  // 3. labels
   const texts = [...document.querySelectorAll('#labels text')];
-  const groups = {};
-  texts.forEach(t => (groups[t.dataset.for] = groups[t.dataset.for] || []).push(t));
-  const labelOverlaps = [];
-  const ids = Object.keys(groups);
-  for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++)
-    for (const ta of groups[ids[i]]) for (const tb of groups[ids[j]]) if (inter(grow(bb(ta), LABEL_GAP), bb(tb))) labelOverlaps.push([ids[i], ids[j], ta.textContent, tb.textContent]);
-  // 3. labels vs land
-  const outside = [], foreign = [];
+  const groups = {}; texts.forEach(t => (groups[t.dataset.for] = groups[t.dataset.for] || []).push(t));
+  const labelOverlaps = []; const ids = Object.keys(groups);
+  for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) for (const ta of groups[ids[i]]) for (const tb of groups[ids[j]]) if (inter(grow(bb(ta), LABEL_GAP), bb(tb))) labelOverlaps.push([ids[i], ids[j], ta.textContent, tb.textContent]);
   const boxEdge = (b, step, fn) => { for (let x = b.x; x <= b.r; x += step) { if (fn(x, b.y) || fn(x, b.b)) return true; } for (let y = b.y; y <= b.b; y += step) { if (fn(b.x, y) || fn(b.r, y)) return true; } return false; };
   const boxAny = (b, step, fn) => { for (let x = b.x; x <= b.r; x += step) for (let y = b.y; y <= b.b; y += step) if (fn(x, y)) return true; return fn(b.r, b.b); };
-  const insideIds = new Set([...document.querySelectorAll('#labels text')].filter(t => !document.querySelector(`#leaders [data-for="${t.dataset.for}"]`)).map(t => t.dataset.for));
-  for (const c of conts) {
-    for (const t of groups[c.id] || []) {
-      const b = bb(t);
-      if (c.lands.length === 1 && insideIds.has(c.id)) {
-        const g = grow(b, INSIDE_MARGIN);
-        if (boxEdge(g, 2, (x, y) => !inFill(c.lands[0], x, y))) outside.push({id: c.id, text: t.textContent});
-      }
-      for (const L of allLands) if (L.id !== c.id && boxAny(grow(b, LABEL_GAP), 2, (x, y) => inFill(L.el, x, y))) foreign.push({label: c.id, text: t.textContent, land: L.id});
-    }
+  const insideIds = new Set(texts.filter(t => !document.querySelector(`#leaders [data-for="${t.dataset.for}"]`)).map(t => t.dataset.for));
+  const outside = [], foreign = [], clipped = [];
+  for (const c of conts) for (const t of groups[c.id] || []) {
+    const b = bb(t);
+    if (c.lands.length === 1 && insideIds.has(c.id) && boxEdge(grow(b, INSIDE_MARGIN), 2, (x, y) => !inFill(c.lands[0], x, y))) outside.push({id: c.id, text: t.textContent});
+    for (const L of conts) if (L.id !== c.id && L.lands.some(l => boxAny(grow(b, LABEL_GAP), 2, (x, y) => inFill(l, x, y)))) foreign.push({label: c.id, text: t.textContent, land: L.id});
   }
+  // no two text elements anywhere on the plate may overlap (labels, margins, ocean names, titles, ruler)
+  const allT = [...svg.querySelectorAll('text')].filter(t => t.textContent.trim());
+  const textClash = [];
+  // stacked lines of one block touch by a couple of px (ascender/descender slack) — a real clash overlaps by
+  // >= 40% of the shorter line's height AND >= 4px horizontally
+  const realClash = (a, b) => { const oy = Math.min(a.b, b.b) - Math.max(a.y, b.y), ox = Math.min(a.r, b.r) - Math.max(a.x, b.x); return oy > .4 * Math.min(a.b - a.y, b.b - b.y) && ox > 4; };
+  for (let i = 0; i < allT.length; i++) for (let j = i + 1; j < allT.length; j++) if (realClash(bb(allT[i]), bb(allT[j]))) textClash.push([allT[i].textContent, allT[j].textContent]);
+  // every text on the map (labels, margins, ruler, titles) must be inside the viewBox
+  for (const t of svg.querySelectorAll('text')) { const b = bb(t); if (b.x < EDGE || b.y < EDGE || b.r > vb.width - EDGE || b.b > vb.height - EDGE) clipped.push({text: t.textContent, x: +b.x.toFixed(1), r: +b.r.toFixed(1), y: +b.y.toFixed(1), b: +b.b.toFixed(1)}); }
   // 4. leaders
+  const allLands = conts.flatMap(c => c.lands.map(l => ({id: c.id, el: l})));
   const leaderProblems = [];
   for (const p of document.querySelectorAll('#leaders path.leader')) {
-    const id = p.dataset.for; const own = conts.find(c => c.id === id);
-    const L = p.getTotalLength(); const s = p.getPointAtLength(0), e = p.getPointAtLength(L);
-    // one end must be on the owning land (the dot), the other end in open sea (the text side)
+    const id = p.dataset.for; const own = byId[id]; const L = p.getTotalLength(); const s = p.getPointAtLength(0), e = p.getPointAtLength(L);
     const sOwn = own.lands.some(l => inFill(l, s.x, s.y)), eOwn = own.lands.some(l => inFill(l, e.x, e.y));
     const sLand = allLands.some(l => inFill(l.el, s.x, s.y)), eLand = allLands.some(l => inFill(l.el, e.x, e.y));
     const startOnOwn = sOwn || eOwn; const endOnLand = sOwn ? eLand : sLand;
-    // the leader may only cross its OWN land (near the dot); never a foreign fill
-    let crossesForeign = false;
-    for (let k = 0; k <= L; k += 2) { const q = p.getPointAtLength(k); if (allLands.some(l => l.id !== id && inFill(l.el, q.x, q.y))) { crossesForeign = true; break; } }
+    let crossesForeign = false; for (let k = 0; k <= L; k += 2) { const q = p.getPointAtLength(k); if (allLands.some(l => l.id !== id && inFill(l.el, q.x, q.y))) { crossesForeign = true; break; } }
     if (!startOnOwn || endOnLand || crossesForeign || L < 14) leaderProblems.push({id, startOnOwn, endOnLand, crossesForeign, length: +L.toFixed(1)});
   }
   // 5. font floor
   const smallFonts = texts.filter(t => parseFloat(t.getAttribute('font-size')) < MIN_FONT - 1e-6 || t.dataset.unfit).map(t => ({id: t.dataset.for, text: t.textContent, size: t.getAttribute('font-size'), unfit: !!t.dataset.unfit}));
   // 6. ruler numerals
   const nums = [...document.querySelectorAll('#ruler-nums text')].map(t => ({y: t.textContent, b: bb(t)})).sort((a, b) => a.b.x - b.b.x);
-  const rulerGaps = []; const rulerClashes = [];
-  for (let i = 1; i < nums.length; i++) { const g = nums[i].b.x - nums[i - 1].b.r; rulerGaps.push([nums[i - 1].y, nums[i].y, +g.toFixed(1)]); if (g < RULER_GAP) rulerClashes.push([nums[i - 1].y, nums[i].y, +g.toFixed(1)]); }
-  const vb = svg.viewBox.baseVal;
-  return {continents: conts.length, labels: texts.length, lands: allLands.length, fillOverlaps, gapViolations, closest, labelOverlaps, outside, foreign, leaderProblems, smallFonts, rulerGaps, rulerClashes, viewBox: [vb.width, vb.height]};
+  const rulerClashes = []; for (let i = 1; i < nums.length; i++) { const g = nums[i].b.x - nums[i - 1].b.r; if (g < RULER_GAP) rulerClashes.push([nums[i - 1].y, nums[i].y, +g.toFixed(1)]); }
+  const images = [...svg.querySelectorAll('image')].map(i => i.getAttribute('href'));
+  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
+# geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
+JS_GEOM = r"""
+() => { const out = {BANDS_Y: {}, X: {}}; BANDS.forEach(b => out.BANDS_Y[b] = [bandTop(b), bandTop(b) + bandH]);
+  return out; }
+"""
+# hand-drawn wobble budget = vertex jitter (≤5px x / ≤9px y) + edge noise (≤9px) + 3-octave warp (≤6+4.5+1.2px)
+BAND_SLACK = 24
+YEAR_SLACK = 24
 
 
 def serve(root: Path, port: int):
-    handler = lambda *a, **k: http.server.SimpleHTTPRequestHandler(*a, directory=str(root), **k)  # noqa: E731
-    httpd = http.server.ThreadingHTTPServer(("127.0.0.1", port), handler)
+    class Quiet(http.server.SimpleHTTPRequestHandler):
+        def __init__(self, *a, **k):
+            super().__init__(*a, directory=str(root), **k)
+
+        def log_message(self, *a, **k):  # noqa: D102
+            pass
+    httpd = http.server.ThreadingHTTPServer(("127.0.0.1", port), Quiet)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd
 
@@ -152,27 +180,56 @@ def main():
     if not url:
         httpd = serve(Path(__file__).resolve().parent, a.port)
         url = f"http://127.0.0.1:{a.port}/"
+    from PIL import Image  # noqa: WPS433 (only needed for the texture-variance sample)
+    import io, statistics  # noqa: E401
     with sync_playwright() as p:
         b = p.chromium.launch()
-        pg = b.new_page(viewport={"width": a.width, "height": 900})
+        pg = b.new_page(viewport={"width": a.width, "height": 900}, device_scale_factor=1)
+        responses = []
+        pg.on("response", lambda r: responses.append((r.url, r.status)))
         pg.goto(url, wait_until="networkidle")
         pg.wait_for_selector("#shapes .continent")
         pg.evaluate("document.fonts.ready")
-        pg.wait_for_timeout(800)
-        res = pg.evaluate(JS, dict(GAP=GAP, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP))
+        pg.wait_for_timeout(1000)
+        reg = json.loads((Path(__file__).resolve().parent / "registry.json").read_text())
+        geom = pg.evaluate(JS_GEOM)
+        spans = {}
+        for c in reg["continents"]:
+            if c.get("offshore"):
+                continue
+            bands = c["band_span_text"].split(" ")[0].split("–")
+            bands = bands if len(bands) == 2 else [bands[0], bands[0]]
+            end_expr = "PRESENT - 0.06" if c["end"] == "present" else str(c["end"])
+            x0, x1 = pg.evaluate(f"() => [X({c['start']}), X({end_expr})]")
+            spans[c["id"]] = {"bands": bands, "x0": x0, "x1": x1}
+        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK))
         pg.screenshot(path=a.shot, full_page=True)
+        pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
+        png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
         html = pg.content()
         b.close()
     if httpd:
         httpd.shutdown()
-    for k in ("continents", "labels", "lands", "viewBox"):
+    # 2b. texture variance from real pixels
+    im = Image.open(io.BytesIO(png)).convert("L")
+    texStd = {}
+    for cid, pts in res["fillSamples"].items():
+        vals = [int(im.getpixel((int(x), int(y))) or 0) for x, y in pts if 0 <= x < im.width and 0 <= y < im.height]  # type: ignore[arg-type]
+        texStd[cid] = round(statistics.pstdev(vals), 1) if len(vals) > 10 else 0.0
+    lowTex = {k: v for k, v in texStd.items() if v < TEX_STD}
+    # 7. assets
+    badAssets = [(u, s) for u, s in responses if s >= 400]
+    offsite = [u for u, _ in responses if not u.startswith(url) and "fonts.g" not in u]
+    for k in ("continents", "lands", "coastLoops", "viewBox", "images"):
         print(f"{k}: {res[k]}")
-    print(f"closest approach per neighbouring pair (px; require >= {GAP}): {json.dumps(res['closest'])}")
-    print(f"ruler numeral gaps (px; require >= {RULER_GAP}): {json.dumps(res['rulerGaps'])}")
-    fails = ("fillOverlaps", "gapViolations", "labelOverlaps", "outside", "foreign", "leaderProblems", "smallFonts", "rulerClashes")
-    for k in fails:
-        print(f"{k} ({len(res[k])}): {json.dumps(res[k], ensure_ascii=False)}")
-    ok = res["continents"] == 10 and res["lands"] == 13 and all(not res[k] for k in fails) and BUILD_MARKER in html
+    print(f"texture luminance stddev per continent (require >= {TEX_STD}): {json.dumps(texStd)}")
+    fails = {k: res[k] for k in ("overlaps", "notAdjacent", "outsideCoast", "bandViol", "flatFills", "labelOverlaps", "textClash", "outside", "foreign", "clipped", "leaderProblems", "smallFonts", "rulerClashes")}
+    fails["lowTexture"] = lowTex
+    fails["badAssets"] = badAssets
+    fails["offsiteRequests"] = offsite
+    for k, v in fails.items():
+        print(f"{k} ({len(v)}): {json.dumps(v, ensure_ascii=False)}")
+    ok = res["continents"] == 10 and res["lands"] == 13 and res["coastLoops"] == 5 and all(not v for v in fails.values()) and BUILD_MARKER in html
     print("screenshot:", a.shot)
     print("build marker present:", BUILD_MARKER in html)
     print("RESULT:", "PASS" if ok else "FAIL")
