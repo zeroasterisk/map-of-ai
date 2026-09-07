@@ -126,6 +126,15 @@ verification" section is empty; the east edge is Sept 2026 with
   Isthmus) overlaps by design (ALTITUDES.md §2 "continents overlap in X on
   purpose"); translucency is used so all four read. Real Phase-4 polygons will
   replace this.
+- Render pass v8 (2026-09-07, "the funnel"): the mainland now has a GLOBAL
+  outer envelope (`ENV` in `site/index.html`, documented in the comment block
+  above it) — 2 half-band rows of land at the 1943 tip, 9 rows by 2022, with
+  bays (the Winter Gulf 1974–82, the isthmus' southern bay 1998–2006) and a
+  tilted north bank so the widening is irregular, not a cone. Regions are
+  clipped to the envelope; the v5–v7 internal-border work lives inside it.
+  `site/check_layout.py` gained `envelopeViol` (rendered land beyond ENV) and
+  `notFunnel` (tip ≤150 px, max ≥3× tip, east-quarter mean ≥2× west-quarter).
+  Rendered profile: 88 px at 1943 → 415 px at 2024 (4.7×).
 - GitHub Actions warns that `actions/checkout@v4`, `configure-pages@v5`,
   `upload-pages-artifact@v3`, `deploy-pages@v4` target Node 20 (forced to
   Node 24); bump to the next majors when convenient — deploy is green as is.

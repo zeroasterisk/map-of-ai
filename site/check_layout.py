@@ -37,7 +37,7 @@ MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
-BUILD_MARKER = "P2-T1-RENDER v7"
+BUILD_MARKER = "P2-T1-RENDER v8"
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -111,6 +111,25 @@ JS = r"""
     const okEnd = dx1 <= YEAR_SLACK + (lic.end || 0) && dx1 >= -(YEAR_SLACK + (lic.endEarly || 0));
     if (pyMin < yTop || pyMax > yBot || !okStart || !okEnd) bandViol.push({id: c.id, plateY: [+pyMin.toFixed(0), +pyMax.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
   }
+  // 1f. v8 ENVELOPE CONFORMANCE + FUNNEL PROFILE. The renderer publishes its global outer envelope (ENV: per time
+  //     column the outermost half-band rows land may occupy, ROWY: the row edges in plate px, COLS: the column
+  //     years). Sample the rendered MAINLAND coast fill (not the authoring grid) at every column's mid-year over the
+  //     full band height: no land pixel may lie beyond the envelope's plate-y bounds (+ BAND_SLACK of wobble), and
+  //     the measured land thickness per column must realise the funnel — the west tip (first column) must be at
+  //     most FUNNEL_TIP_MAX px thick and the thickest column at least FUNNEL_RATIO × the tip.
+  const envViol = [], profile = [];
+  if (typeof ENV !== 'undefined') {
+    for (let i = 0; i < ENV.length; i++) {
+      const x = X((COLS[i] + COLS[i + 1]) / 2), yN = ROWY[ENV[i][0]] - BAND_SLACK, yS = ROWY[ENV[i][1] + 1] + BAND_SLACK;
+      let top = null, bot = null, beyond = 0;
+      for (let y = ROWY[0] - 40; y <= ROWY[ROWY.length - 1] + 40; y += 1) { const sy = y + spineY(x); if (inFill(coastMain, x, sy)) { if (top === null) top = y; bot = y; if (y < yN || y > yS) beyond++; } }
+      profile.push({yr: +COLS[i].toFixed(1), env: [+ROWY[ENV[i][0]].toFixed(0), +ROWY[ENV[i][1] + 1].toFixed(0)], land: top === null ? null : [top, bot], thick: top === null ? 0 : bot - top});
+      if (beyond) envViol.push({yr: COLS[i], beyond, land: [top, bot], env: [yN, yS]});
+    }
+  }
+  const thick = profile.map(p => p.thick), funnel = {tip: thick[0] || 0, max: Math.max(...thick, 0), westMean: 0, eastMean: 0};
+  if (thick.length) { const q = Math.floor(thick.length / 4); funnel.westMean = Math.round(thick.slice(0, q).reduce((a, b) => a + b, 0) / q); funnel.eastMean = Math.round(thick.slice(-q).reduce((a, b) => a + b, 0) / q); }
+  const funnelOK = typeof ENV !== 'undefined' && funnel.tip <= cfg.FUNNEL_TIP_MAX && funnel.max >= cfg.FUNNEL_RATIO * funnel.tip && funnel.eastMean >= 2 * funnel.westMean;
   // 1e. v5 border audit: no internal border may be a straight vertical (or straight horizontal) line. For each
   //     adjacent pair, collect the shared-border pixels (A's fill ∩ B's 2px stroke), fit the best straight line
   //     through them and measure (i) the RMS lateral deviation from that line and (ii) the line's angle from
@@ -200,7 +219,7 @@ JS = r"""
     for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(t - spineY(x)); bots.push(bt - spineY(x)); hs.push(bt - t); } }
     if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
   }
-  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, envViol, profile, funnel, funnelOK, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -217,6 +236,12 @@ YEAR_SLACK = 44
 # Generative Coast's diffusion toe starts at 2021.3, so those two edges may overshoot the registered 2022 border by
 # up to LICENSE_YR years (converted to px in-page) on top of YEAR_SLACK. Every other edge keeps the plain slack.
 LICENSE_YR = {"transformer-plateau": {"end": 0.9}, "generative-coast": {"start": 0.9}}
+# v8 funnel: the rendered mainland's north-south thickness at the 1943 tip column may be at most FUNNEL_TIP_MAX px
+# (2 half-bands = 82 plate px + coast wobble) and the thickest column must be >= FUNNEL_RATIO x the tip; the mean
+# thickness of the eastern quarter of columns must be >= 2x the western quarter. envViol lists any land pixel
+# beyond the renderer's published ENV bounds (+ BAND_SLACK).
+FUNNEL_TIP_MAX = 150
+FUNNEL_RATIO = 3.0
 # v5 border audit thresholds: a border counts as a straight vertical cut only if it deviates < MIN_WANDER px RMS
 # from its best-fit line AND that line is within MIN_TILT° of vertical. Any real border must clear at least one.
 MIN_WANDER = 4.0
@@ -277,7 +302,7 @@ def main():
             spans[c["id"]] = {"bands": bands, "x0": x0, "x1": x1}
         yr_px = pg.evaluate("() => X(2023) - X(2022)")   # px per year in the 6× era
         license_px = {cid: {k: round(v * yr_px, 1) for k, v in d.items()} for cid, d in LICENSE_YR.items()}
-        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, LICENSE=license_px, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG))
+        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, LICENSE=license_px, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG, FUNNEL_TIP_MAX=FUNNEL_TIP_MAX, FUNNEL_RATIO=FUNNEL_RATIO))
         pg.screenshot(path=a.shot, full_page=True)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
         png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
@@ -304,6 +329,9 @@ def main():
     print("in-region shape (v6; plate px over each region's own span): north/south coast peak-to-peak, height range:")
     for cid, s in res["shape"].items():
         print("  ", cid, json.dumps(s))
+    print(f"v8 funnel profile (mainland thickness in plate px per time column; envelope rows -> land rows): {json.dumps(res['funnel'])}")
+    for pr in res["profile"]:
+        print("  ", json.dumps(pr))
     print("border audit (per adjacent pair: rmsDev px from best-fit line, tilt° from vertical, straightVertical?):")
     for bd in res["borders"]:
         print("  ", json.dumps(bd))
@@ -313,6 +341,8 @@ def main():
     fails["straightBorders"] = [bd["pair"] for bd in res["borders"] if bd.get("n", 0) < 10 or bd.get("straightVertical")]
     fails["flatSpine"] = [] if res["spineRise"] >= MIN_SPINE_RISE else [res["spineRise"]]
     fails["hairpins"] = res["hairpins"]
+    fails["envelopeViol"] = res["envViol"]
+    fails["notFunnel"] = [] if res["funnelOK"] else [res["funnel"]]
     fails["slabRegions"] = [cid for cid in WIDE if max(res["shape"][cid]["northP2P"], res["shape"][cid]["southP2P"]) < MIN_COAST_P2P]
     fails["badAssets"] = badAssets
     fails["offsiteRequests"] = offsite
