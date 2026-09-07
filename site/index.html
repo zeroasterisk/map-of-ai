@@ -554,7 +554,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const tbl = document.getElementById('tbl');
   tbl.innerHTML = '<tr><th>#</th><th>id</th><th>name</th><th>subtitle</th><th>span</th><th>band span</th><th>biome</th><th>research</th><th>offshore</th><th>split-of</th></tr>' +
     order.map(c => `<tr><td>${c.n}</td><td><code>${c.id}</code></td><td>${c.name}</td><td>${c.subtitle}</td><td>${c.start}–${c.end}</td><td>${c.band_span_text}</td><td><span class="sw" style="background:${BIOME[c.biome].c}"></span>${c.biome}</td><td>${c.research_file}</td><td>${c.offshore ? 'true' : ''}</td><td>${c.split_of}</td></tr>`).join('');
-  document.getElementById('foot').textContent = `${C.length} continents · generated from ${data.generated_from} · X scale per AXES.md §1 · Y bands are neighbourhood hints (AXES.md §3), not coordinates · terrain = methodology, not position · terrain textures generated once with gemini-2.5-flash-image and committed as static assets. Source of truth: data/continents/REGISTRY.md.`;
+  document.getElementById('foot').textContent = `${C.length} continents · generated from ${data.generated_from} · X scale per AXES.md §1 · Y bands are neighbourhood hints (AXES.md §3), not coordinates · terrain = methodology, not position · terrain textures generated once with gemini-3-pro-image and committed as static assets. Source of truth: data/continents/REGISTRY.md.`;
 });
 </script>
 </body>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn the raw 1024x1024 gemini-2.5-flash-image outputs (from gen_textures.py) into the small static
+"""Turn the raw 1024x1024 gemini-3-pro-image outputs (from gen_textures.py) into the small static
 assets committed under site/assets/textures/. Run once after (re)generating; the site never calls an API.
 
 - tiles (parchment, sea, biomes):
@@ -25,8 +25,10 @@ PAPER = (233, 220, 192)
 TILES = {"parchment": (768, 0.0, 6), "sea": (512, 0.0, 10), "highland": (512, 0.12, 10),
          "grassland": (512, -0.6, 10), "forest": (512, 0.18, 10), "jungle": (512, 0.32, 10),
          "wetland": (512, 0.22, 10), "harbour": (512, -0.4, 10), "mixed": (512, 0.12, 10)}
-# name -> (max px, pre-crop box in raw 1024px coords to drop torn-paper edge artefacts outside the element)
-CUTOUTS = {"compass": (600, None), "cartouche": (1024, (100, 215, 925, 810))}
+# name -> (max px, pre-crop box in raw px to drop torn-paper edge artefacts outside the element, or None)
+# gemini-3-pro-image (3:2 request -> 1264x848 raw) puts the whole frame inside the image with clean margins
+# (0 ink px on every edge), so no pre-crop; the old 2.5 box (100,215,925,810) would clip its top and right.
+CUTOUTS = {"compass": (600, None), "cartouche": (1024, None)}
 
 
 def flatten(im: Image.Image, n: int = 10) -> Image.Image:

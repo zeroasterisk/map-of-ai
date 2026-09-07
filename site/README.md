@@ -12,9 +12,13 @@ No build step, no API calls from the browser — everything is static.
   `parchment.jpg` (page + plate ground), `sea.jpg`, one seamless tile per biome
   (`highland` `grassland` `forest` `jungle` `wetland` `harbour` `mixed`, 512 px), plus two
   alpha cut-outs: `compass.png` (16-point rose, no letters) and `cartouche.png` (blank frame).
-- `gen_textures.py` — one-off generator: one call per asset to Vertex AI `gemini-2.5-flash-image`
-  (project `alanblount-sandbox`, `us-central1`, ADC via `gcloud auth print-access-token`), a single
-  shared prompt template with only the terrain clause swapped, raw 1024² PNGs to `/tmp/tex/raw`.
+- `gen_textures.py` — one-off generator: one call per asset to Vertex AI `gemini-3-pro-image`
+  (Nano Banana Pro, GA; project `alanblount-sandbox`, **global endpoint only** —
+  `aiplatform.googleapis.com/v1/.../locations/global/...`, regional endpoints 404 for this model;
+  ADC via `gcloud auth print-access-token`), a single shared prompt template with only the terrain
+  clause swapped, `imageConfig` pinned to 1:1 / 1K (default output is 1408×768), raw PNGs to
+  `/tmp/tex/raw`. Model policy (Alan, 2026-09-07): no Gemini 2.x anywhere; latest tier per
+  docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image.
   Every output was vision-checked; prompts were iterated until no fake text, no grids, no
   vignette framing. Not run in CI, not run at page load.
 - `prep_textures.py` — deterministic post-processing of the raw PNGs into `assets/textures/`:

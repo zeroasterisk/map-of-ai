@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 """One-off texture generator for the atlas render (P2-T1-RENDER v4).
 
-Calls Vertex AI `gemini-2.5-flash-image` ONCE per asset and writes raw 1024x1024 PNGs to
+Calls Vertex AI `gemini-3-pro-image` (Nano Banana Pro, GA) ONCE per asset and writes raw PNGs to
 --out (default /tmp/tex/raw). The committed assets in site/assets/textures/ are made from
 these by `prep_textures.py` (downscale + JPEG). Nothing in the deployed site calls any API.
 
-Auth: gcloud ADC (`gcloud auth print-access-token`). Project/region are fixed below.
+Auth: gcloud ADC (`gcloud auth print-access-token`). Project is fixed below.
+
+Model choice (Alan, 2026-09-07: "no Gemini 2.x; latest tier of each model, confirmed against Cloud docs"):
+  - https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-pro-image
+    Model ID `gemini-3-pro-image`, Launch stage GA, Model availability "Global: global" only.
+  - `gcloud ai model-garden models list` on alanblount-sandbox lists google/gemini-3-pro-image@default CAN_PREDICT=Yes.
+  - It is NOT served from regional endpoints (us-central1 etc. return 404) — must use the global hostname
+    `aiplatform.googleapis.com` AND `locations/global`. Regional hostname + locations/global also 404s.
 
 Usage:  python3 site/gen_textures.py [--only parchment,forest] [--out DIR] [--force]
 """
@@ -19,10 +26,16 @@ import urllib.request
 from pathlib import Path
 
 PROJECT = "alanblount-sandbox"
-REGION = "us-central1"
-MODEL = "gemini-2.5-flash-image"
-URL = (f"https://{REGION}-aiplatform.googleapis.com/v1/projects/{PROJECT}/locations/{REGION}"
+MODEL = "gemini-3-pro-image"
+URL = (f"https://aiplatform.googleapis.com/v1/projects/{PROJECT}/locations/global"
        f"/publishers/google/models/{MODEL}:generateContent")
+
+# gemini-3-pro-image specifics (observed 2026-09-07, first full batch):
+#   - default output is 1408x768 unless imageConfig.aspectRatio is set -> every asset now requests 1:1 (cartouche 3:2)
+#   - it likes to add ships / sea serpents / compass roses / castles and paper fold-creases unless told not to,
+#     and lays symbols out on a rigid lattice unless told to jitter -> explicit NEGATIVE list + jitter clause in TILE
+#   - still tends to a mild vignette; prep_textures.flatten() removes it, as before
+ASPECT = {"cartouche": "3:2"}  # everything else 1:1
 
 # One template; only the bracketed part changes, so the ink style stays consistent across fills.
 # v5: an explicit, identical scale clause for every biome so glyph size reads as one zoom level across tiles
@@ -30,17 +43,23 @@ URL = (f"https://{REGION}-aiplatform.googleapis.com/v1/projects/{PROJECT}/locati
 TILE = ("Seamless tileable texture, top-down view, hand-drawn antique atlas cartography style, aged parchment "
         "paper background, warm sepia and muted earth-tone ink illustration, {what}, medium density: each individual "
         "symbol is small, roughly 3 to 4 percent of the image width, dozens of symbols per row, all symbols the same "
-        "scale, no text, no labels, no border, "
+        "scale, symbols placed at randomly jittered irregular positions (never a regular grid, never aligned rows), "
+        "no text, no labels, no border, "
         "consistent ink linework style throughout, illustration only, no photorealism, evenly distributed across "
-        "the whole image with no vignette, no central focus and no framing so the image repeats without seams.")
+        "the whole image with no vignette, no central focus and no framing so the image repeats without seams. "
+        "Strictly exclude: ships, boats, sea monsters, animals, people, buildings, castles, towers, compass roses, "
+        "coastlines, rivers, roads, paper folds, creases, wrinkles, torn edges, stains, frames, banners, cartouches.")
 
 ASSETS = {
     # page/base
-    "parchment": TILE.format(what="plain aged parchment paper only: subtle fibre grain and faint even mottling, "
-                             "uniform brightness from edge to edge with NO darker corners, NO drawings, NO symbols, "
-                             "NO lines, NO stains, just the empty flat paper surface"),
+    # parchment does NOT use TILE: on gemini-3-pro-image the long "strictly exclude: ... compass roses ..." list
+    # seeded exactly those glyphs onto what must be a blank sheet. Short positive-only prompt instead.
+    "parchment": ("Seamless tileable texture of plain blank aged parchment paper, top-down flat scan, warm cream "
+                  "sepia tone, subtle fibre grain and faint even mottling, uniform brightness from edge to edge, "
+                  "completely empty paper surface with nothing drawn on it, no vignette, no framing."),
     "sea": TILE.format(what="calm open sea drawn as sparse fine horizontal ripple linework in pale sepia ink on "
-                       "parchment, very light and airy, mostly empty paper with occasional short wave strokes"),
+                       "parchment, very light and airy, mostly empty paper with occasional short wave strokes, "
+                       "ONLY wave strokes and empty paper, nothing else"),
     # biome fills (colour legend order)
     "highland": TILE.format(what="dense hachure-shaded mountain range peaks drawn as small repeated hand-inked "
                             "mountain symbols with short slope shading strokes, a few rocky crags"),
@@ -51,29 +70,41 @@ ASSETS = {
     "forest": TILE.format(what="temperate forest: many small round-crowned deciduous tree symbols with short "
                           "trunks and light stippled canopy shading, placed at RANDOM irregular positions with "
                           "varying sizes (never a regular grid), moderate density, sepia ink only, no green"),
-    "jungle": TILE.format(what="dense tropical jungle: tightly packed small palm and broadleaf tree symbols drawn "
+    "jungle": TILE.format(what="dense tropical jungle: tightly packed TINY palm and broadleaf tree symbols (each tree "
+                          "about 3 percent of the image width, at least 15 trees across each row) drawn "
                           "in dark sepia ink ON LIGHT PARCHMENT with light cross-hatch shading between them, "
-                          "high density but the pale paper still shows through, sepia ink only, no green, no "
-                          "black background"),
-    "wetland": TILE.format(what="marsh and wetland: horizontal reed tufts and short grass strokes over small "
-                           "ripple-lines of standing water, scattered evenly"),
+                          "high density but the pale paper still shows through, tree symbols scattered at random "
+                          "irregular positions and slightly varying sizes, shading only as short strokes inside each "
+                          "tree crown (no continuous hatch lattice across the background), sepia ink only, no green, "
+                          "no black background"),
+    "wetland": TILE.format(what="marsh and wetland: TINY reed tufts and short grass strokes over small ripple-lines "
+                           "of standing water (each tuft-and-ripple group about 3 percent of the image width, at "
+                           "least 15 groups across each row), scattered evenly at random positions"),
     "harbour": TILE.format(what="sand and shingle foreshore: fine ink stipple dots of slightly varying size and "
-                           "density drifting in loose irregular bands, like engraved sandbank shading on an old "
-                           "sea chart, purely dots and a few short dashes, no symbols, no objects, no coastlines, "
-                           "no landforms"),
+                           "density with only very gentle, subtle density variation (never distinct stripes, streaks "
+                           "or bands, never empty channels), like engraved sandbank shading on an old sea chart, "
+                           "purely small dots and a few very short dashes, no rings, no circles, no symbols, no "
+                           "objects, no coastlines, no landforms"),
     "mixed": TILE.format(what="transitional terrain: small low rolling hill symbols, small round tree symbols and "
                          "scattered stipple mixed together in alternating patches, every hill and tree the same "
-                         "small size as the others, no large mountain ranges, no big vignettes"),
+                         "small size as the others (a hill symbol is no wider than a tree symbol), no large mountain "
+                         "ranges, no big vignettes"),
     # one-off decorative elements (not tiles)
-    "compass": ("A single ornate antique compass rose, hand-drawn in dark sepia ink in the style of a 17th-century "
+    "compass": ("A single complete ornate antique compass rose, the WHOLE rose fully visible and centred with generous "
+                "empty parchment margin on all four sides (nothing cut off by the image edge), hand-drawn in dark "
+                "sepia ink in the style of a 17th-century "
                 "atlas, sixteen-point star with alternating shaded and unshaded points, a decorative fleur-de-lis "
                 "ornament marking north, fine engraved hatching, centred on a plain flat warm aged parchment square "
                 "background with uniform brightness, ABSOLUTELY NO LETTERS of any kind (no N, no E, no S, no W), "
-                "no text, no labels, no border, illustration only, no photorealism."),
+                "no text, no labels, no border, no page edges, no creases, no stains, illustration only, "
+                "no photorealism."),
     "cartouche": ("An empty ornate antique map cartouche frame, hand-drawn in dark sepia ink in the style of a "
                   "17th-century atlas, baroque scrollwork and ribbons around a completely BLANK plain parchment "
                   "interior panel suitable for a title, wide landscape aspect, centred on a plain warm aged "
-                  "parchment background, absolutely no text, no letters, no labels, illustration only."),
+                  "parchment background with generous empty margin on all sides, scrollwork and foliage only: "
+                  "no cherubs, no putti, no people, no animals, no fish, no dolphins, no crests, no shields, "
+                  "absolutely no text, no letters, no labels, no page edges, no creases, no stains, "
+                  "illustration only."),
 }
 
 
@@ -82,8 +113,13 @@ def token() -> str:
 
 
 def generate(prompt: str, tok: str) -> bytes:
+    return generate_cfg(prompt, tok, "1:1")
+
+
+def generate_cfg(prompt: str, tok: str, aspect: str) -> bytes:
     body = json.dumps({"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-                       "generationConfig": {"responseModalities": ["IMAGE"]}}).encode()
+                       "generationConfig": {"responseModalities": ["IMAGE"],
+                                            "imageConfig": {"aspectRatio": aspect, "imageSize": "1K"}}}).encode()
     req = urllib.request.Request(URL, data=body, headers={"Authorization": f"Bearer {tok}",
                                                           "Content-Type": "application/json"})
     for attempt in range(4):
@@ -118,7 +154,7 @@ def main():
             print(f"{n}: exists, skip")
             continue
         t0 = time.time()
-        dst.write_bytes(generate(ASSETS[n], tok))
+        dst.write_bytes(generate_cfg(ASSETS[n], tok, ASPECT.get(n, "1:1")))
         print(f"{n}: {dst.stat().st_size // 1024} KB in {time.time() - t0:.1f}s")
 
 
