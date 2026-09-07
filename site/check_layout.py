@@ -37,7 +37,7 @@ MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
-BUILD_MARKER = "P2-T1-RENDER v4"
+BUILD_MARKER = "P2-T1-RENDER v5"
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -89,17 +89,48 @@ JS = r"""
   const outsideCoast = [];
   for (const c of mainland) { const a = bb(c.lands[0]); let bad = 0, tot = 0; for (let x = a.x; x <= a.r; x += 4) for (let y = a.y; y <= a.b; y += 4) if (inFill(c.lands[0], x, y)) { tot++; if (!inFill(coastMain, x, y)) bad++; } if (bad) outsideCoast.push({id: c.id, bad, tot}); }
   // 1d. registry fidelity: each mainland fill stays inside its REGISTRY band span (± BAND_SLACK px of hand-drawn
-  //     wobble) and its X extent matches its start/end years (± YEAR_SLACK px)
+  //     wobble) and its X extent matches its start/end years (± YEAR_SLACK px). v5: the plate is bent along the
+  //     spine, so band membership is judged in PLATE coordinates: y_plate = y_screen - spineY(x), sampled over the
+  //     fill (a bbox would mix the spine's rise into the band extent).
   const {BANDS_Y, SPANS, BAND_SLACK, YEAR_SLACK} = cfg;
   const bandViol = [];
+  const plateExtent = {};
   for (const c of mainland) {
     const s = SPANS[c.id]; if (!s) continue; const a = bb(c.lands[0]);
     const yTop = BANDS_Y[s.bands[0]][0] - BAND_SLACK, yBot = BANDS_Y[s.bands[1]][1] + BAND_SLACK;
+    let pyMin = 1e9, pyMax = -1e9;
+    for (let x = Math.floor(a.x); x <= a.r; x += 2) for (let y = Math.floor(a.y); y <= a.b; y += 2) if (inFill(c.lands[0], x, y)) { const py = y - spineY(x); if (py < pyMin) pyMin = py; if (py > pyMax) pyMax = py; }
+    plateExtent[c.id] = [+pyMin.toFixed(0), +pyMax.toFixed(0)];
     const dx0 = a.x - s.x0, dx1 = a.r - s.x1;
-    if (a.y < yTop || a.b > yBot || Math.abs(dx0) > YEAR_SLACK || Math.abs(dx1) > YEAR_SLACK) bandViol.push({id: c.id, y: [+a.y.toFixed(0), +a.b.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
+    if (pyMin < yTop || pyMax > yBot || Math.abs(dx0) > YEAR_SLACK || Math.abs(dx1) > YEAR_SLACK) bandViol.push({id: c.id, plateY: [+pyMin.toFixed(0), +pyMax.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
+  }
+  // 1e. v5 border audit: no internal border may be a straight vertical (or straight horizontal) line. For each
+  //     adjacent pair, collect the shared-border pixels (A's fill ∩ B's 2px stroke), fit the best straight line
+  //     through them and measure (i) the RMS lateral deviation from that line and (ii) the line's angle from
+  //     vertical. A Gantt cut would give deviation ≈ 0 and angle ≈ 0; we require dev ≥ MIN_WANDER px OR
+  //     |angle| ≥ MIN_TILT deg, and we report both so the audit is explicit per border.
+  const borders = [];
+  const seen = new Set();
+  for (const [ai, bi] of ADJACENT) {
+    const pk = [ai, bi].sort().join('|'); if (seen.has(pk)) continue; seen.add(pk);
+    const A = byId[ai].lands[0], B = byId[bi].lands[0]; const a = bb(A), b = bb(B); if (!inter(a, b)) { borders.push({pair: [ai, bi], n: 0}); continue; }
+    const sw = B.style.strokeWidth; B.style.strokeWidth = '2px'; B.style.stroke = '#000';
+    const P = [];
+    for (let x = Math.floor(Math.max(a.x, b.x)); x <= Math.min(a.r, b.r); x += 1) for (let y = Math.floor(Math.max(a.y, b.y)); y <= Math.min(a.b, b.b); y += 1) if (inFill(A, x, y) && inStroke(B, x, y)) P.push([x, y]);
+    B.style.strokeWidth = sw; B.style.stroke = '';
+    const n = P.length; if (n < 10) { borders.push({pair: [ai, bi], n}); continue; }
+    const mx = P.reduce((s, p) => s + p[0], 0) / n, my = P.reduce((s, p) => s + p[1], 0) / n;
+    let sxx = 0, syy = 0, sxy = 0; for (const [x, y] of P) { sxx += (x - mx) ** 2; syy += (y - my) ** 2; sxy += (x - mx) * (y - my); }
+    const th = 0.5 * Math.atan2(2 * sxy, sxx - syy);            // principal axis angle from +x
+    const ux = Math.cos(th), uy = Math.sin(th);
+    let dev = 0; for (const [x, y] of P) { const d = -(x - mx) * uy + (y - my) * ux; dev += d * d; } dev = Math.sqrt(dev / n);
+    const len = Math.sqrt(Math.max(sxx, syy) / n) * 3.46;        // ≈ extent along the axis (uniform spread)
+    const tiltFromVertical = Math.abs(90 - Math.abs(th * 180 / Math.PI));
+    const xr = Math.max(...P.map(p => p[0])) - Math.min(...P.map(p => p[0]));
+    borders.push({pair: [ai, bi], n, rmsDev: +dev.toFixed(1), tiltDeg: +tiltFromVertical.toFixed(1), xRange: xr, len: +len.toFixed(0), straightVertical: dev < cfg.MIN_WANDER && tiltFromVertical < cfg.MIN_TILT});
   }
   // 2. texture fills
-  const flatFills = conts.filter(c => !c.lands.every(l => (l.getAttribute('fill') || '').startsWith('url(#tex-'))).map(c => c.id);
+  const flatFills = conts.filter(c => !c.lands.every(l => (l.getAttribute('fill') || '').startsWith('url(#tex-')) || (c.id !== 'antecedent-isles' && !document.querySelector(`#shapes .continent[data-id="${c.id}"] path.texbleed`))).map(c => c.id);
   const fillSamples = {}; // centre points for pixel sampling in python (client px)
   const ctm = svg.getScreenCTM();
   for (const c of conts) { const a = bb(c.lands[0]); const pts = []; for (let x = a.x; x <= a.r; x += 3) for (let y = a.y; y <= a.b; y += 3) if (inFill(c.lands[0], x, y)) { const p = pt; p.x = x; p.y = y; const q = p.matrixTransform(ctm); pts.push([q.x, q.y]); } fillSamples[c.id] = pts.filter((_, i) => i % 4 === 0).slice(0, 1500); }
@@ -143,7 +174,12 @@ JS = r"""
   const nums = [...document.querySelectorAll('#ruler-nums text')].map(t => ({y: t.textContent, b: bb(t)})).sort((a, b) => a.b.x - b.b.x);
   const rulerClashes = []; for (let i = 1; i < nums.length; i++) { const g = nums[i].b.x - nums[i - 1].b.r; if (g < RULER_GAP) rulerClashes.push([nums[i - 1].y, nums[i].y, +g.toFixed(1)]); }
   const images = [...svg.querySelectorAll('image')].map(i => i.getAttribute('href'));
-  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+  // 8. v5 spine: the coast's centreline must actually bend (not a strip). Sample the mainland coast's vertical
+  //    midpoint per x column and report the peak-to-peak rise of that centreline.
+  const cm = coastPaths[0]; const cb = bb(cm); const mids = [];
+  for (let x = Math.floor(cb.x) + 10; x < cb.r - 10; x += 20) { let t = null, bt = null; for (let y = Math.floor(cb.y); y <= cb.b; y += 2) if (inFill(cm, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) mids.push((t + bt) / 2); }
+  const spineRise = mids.length ? +(Math.max(...mids) - Math.min(...mids)).toFixed(0) : 0;
+  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, borders, spineRise, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -151,9 +187,16 @@ JS_GEOM = r"""
 () => { const out = {BANDS_Y: {}, X: {}}; BANDS.forEach(b => out.BANDS_Y[b] = [bandTop(b), bandTop(b) + bandH]);
   return out; }
 """
-# hand-drawn wobble budget = vertex jitter (≤5px x / ≤9px y) + edge noise (≤9px) + 3-octave warp (≤6+4.5+1.2px)
-BAND_SLACK = 24
-YEAR_SLACK = 24
+# hand-drawn wobble budget (v5) = vertex jitter (≤0.6·lat) + border wander (≤lat, lat ≤ 30px) + coast cape (≤26px)
+# + 3-octave warp (≤6+4.5+1.2px). The budget is what keeps the bend/wander from becoming "draw anything": a fill
+# may stray at most this far from its registry band / year edges, measured in plate coordinates (spine removed).
+BAND_SLACK = 44
+YEAR_SLACK = 44
+# v5 border audit thresholds: a border counts as a straight vertical cut only if it deviates < MIN_WANDER px RMS
+# from its best-fit line AND that line is within MIN_TILT° of vertical. Any real border must clear at least one.
+MIN_WANDER = 4.0
+MIN_TILT = 6.0
+MIN_SPINE_RISE = 40   # px: the mainland centreline must rise/fall at least this much across the page
 
 
 def serve(root: Path, port: int):
@@ -202,7 +245,7 @@ def main():
             end_expr = "PRESENT - 0.06" if c["end"] == "present" else str(c["end"])
             x0, x1 = pg.evaluate(f"() => [X({c['start']}), X({end_expr})]")
             spans[c["id"]] = {"bands": bands, "x0": x0, "x1": x1}
-        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK))
+        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT))
         pg.screenshot(path=a.shot, full_page=True)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
         png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
@@ -220,11 +263,16 @@ def main():
     # 7. assets
     badAssets = [(u, s) for u, s in responses if s >= 400]
     offsite = [u for u, _ in responses if not u.startswith(url) and "fonts.g" not in u]
-    for k in ("continents", "lands", "coastLoops", "viewBox", "images"):
+    for k in ("continents", "lands", "coastLoops", "viewBox", "images", "spineRise", "plateExtent"):
         print(f"{k}: {res[k]}")
+    print("border audit (per adjacent pair: rmsDev px from best-fit line, tilt° from vertical, straightVertical?):")
+    for bd in res["borders"]:
+        print("  ", json.dumps(bd))
     print(f"texture luminance stddev per continent (require >= {TEX_STD}): {json.dumps(texStd)}")
     fails = {k: res[k] for k in ("overlaps", "notAdjacent", "outsideCoast", "bandViol", "flatFills", "labelOverlaps", "textClash", "outside", "foreign", "clipped", "leaderProblems", "smallFonts", "rulerClashes")}
     fails["lowTexture"] = lowTex
+    fails["straightBorders"] = [bd["pair"] for bd in res["borders"] if bd.get("n", 0) < 10 or bd.get("straightVertical")]
+    fails["flatSpine"] = [] if res["spineRise"] >= MIN_SPINE_RISE else [res["spineRise"]]
     fails["badAssets"] = badAssets
     fails["offsiteRequests"] = offsite
     for k, v in fails.items():

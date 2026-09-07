@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v4 (atlas textures: one supercontinent, generated terrain fills, vector text) -->
+<!-- map-of-ai site build: P2-T1-RENDER v5 (curved spine, wandering shared borders, feathered texture blends, label halos) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
   .ocean-label { font-family: Cinzel, Georgia, serif; font-size: 12px; fill: #7f6d4c; letter-spacing: 4px; text-anchor: middle; opacity: .9; }
   .title { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 2.5px; text-anchor: middle; }
   .title-sub { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3d29; text-anchor: middle; }
-  .graticule { stroke: #5b4a30; stroke-width: .7; stroke-opacity: .22; stroke-dasharray: 1 4; }
+  .graticule { fill: none; stroke: #5b4a30; stroke-width: .7; stroke-opacity: .22; stroke-dasharray: 1 4; }
   .banner { max-width: 880px; margin: 18px auto 0; padding: 8px 14px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink-dim); font-size: 13.5px; font-style: italic; text-align: center; }
   .banner b { color: var(--ink); font-style: normal; }
   .card { position: absolute; max-width: 420px; max-height: 360px; overflow: hidden; background: #f6ecd6; color: #2f2416; border: 1px solid #8f7b57; box-shadow: 0 8px 24px rgba(60,40,10,.35); padding: 10px 14px; font-size: 13px; pointer-events: none; display: none; z-index: 5; }
@@ -73,11 +73,13 @@
 // Biome → generated terrain texture (site/assets/textures/*.jpg, made once by gen_textures.py + prep_textures.py)
 // and a hand-tint colour used for the border wash and the legend swatch.
 const BIOME = {
+  // k = per-biome tile-size multiplier (v5) so glyphs read at one zoom level: measured glyph size on the 512px
+  // tiles is ~7-9% of the tile for highland/forest/jungle/mixed, ~5.5% grassland, ~4% wetland → scale those up.
   highland: {c: '#b48a5c', label: 'highland — hand-authored logic & knowledge (symbolic)'},
-  grassland:{c: '#c8a85a', label: 'grassland — probabilistic / statistical models'},
+  grassland:{c: '#c8a85a', k: 1.3, label: 'grassland — probabilistic / statistical models'},
   forest:   {c: '#7d8f60', label: 'forest — learned neural representations'},
   jungle:   {c: '#5f8378', label: 'jungle — scaled self-supervised / foundation models'},
-  wetland:  {c: '#7f8f96', label: 'wetland — reinforcement learning & control'},
+  wetland:  {c: '#7f8f96', k: 1.75, label: 'wetland — reinforcement learning & control'},
   harbour:  {c: '#a59a84', label: 'harbour — benchmarks, datasets, tooling, venues'},
   mixed:    {c: '#7c6f8c', label: 'mixed — genuinely hybrid'}
 };
@@ -89,7 +91,7 @@ const BAND_NAME = {N1:'philosophy & foundations', N2:'logic, knowledge, reasonin
 // ---- X scale: AXES.md §1 piecewise (1943–74 1×, 1974–2006 1.5×, 2006–17 3×, 2017–present 6×); pre-1943 log-compressed archipelago.
 const NOW = new Date(); const PRESENT = NOW.getFullYear() + (NOW.getMonth()) / 12;
 const SEG = [[1943,1974,1],[1974,2006,1.5],[2006,2017,3],[2017,PRESENT,6]];
-const W = 1800, H = 642, PAD_L = 24, PAD_R = 200, ARCH_W = 150, MAP_TOP = 110, MAP_BOT = 532, RULER_Y = 562;
+const W = 1800, H = 700, PAD_L = 24, PAD_R = 200, ARCH_W = 150, MAP_TOP = 150, MAP_BOT = 560, RULER_Y = 618;
 const mainW = W - PAD_L - PAD_R - ARCH_W;
 const units = SEG.reduce((s,[a,b,k]) => s + (b-a)*k, 0);
 const pxPerUnit = mainW / units;
@@ -107,6 +109,15 @@ function X(y) { return y >= 1943 ? xMain(y) : xArch(y); }
 const bandH = (MAP_BOT - MAP_TOP) / BANDS.length;
 function bandTop(b) { return MAP_TOP + BANDS.indexOf(b) * bandH; }
 const BY = (b, f) => bandTop(b) + f * bandH;   // y at fraction f (0 top → 1 bottom) of band b
+
+// ---- v5 spine. The whole plate is sheared vertically along a gentle S-curve so the landmass reads as a winding
+// continent instead of a horizontal strip. x is STILL exactly time (the ruler is untouched); band rows follow the
+// spine, so "perpendicular offset from the spine" is the band. spineY(x) is what the graticule latitudes draw, and
+// what check_layout.py subtracts before comparing a fill's y-extent with its registry band span.
+const SPINE_AMP = 46;
+function spineY(x) { const t = (x - PAD_L) / (W - PAD_L - PAD_R); return SPINE_AMP * (Math.sin(t * Math.PI * 1.55 - 0.35) * 0.85 + Math.sin(t * Math.PI * 3.3 + 1.1) * 0.18); }
+const SY = (x, y) => y + spineY(x);       // plate → spine-bent screen y
+const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f at year yr
 
 // ---- Placement (render-only; not registry data). v4: ONE contiguous mainland.
 // The mainland is a partition of a (year × half-band) cell grid: every cell has exactly one owner (a continent or
@@ -151,11 +162,13 @@ const LABEL = {
   'cybernetic-shore':       {inside: false, px: PAD_L + ARCH_W / 2 - 10, at: [null, BY('S2', .38)], anchorYr: 1944.0, anchorBand: ['S2', .38], side: 'left', maxW: 118},
   'symbolic-heartland':     {inside: true,  at: [1965.0, BY('C', .3)]},
   'winter-steppes':         {inside: true,  at: [1983.5, BY('N1', .5)]},
-  'expert-systems-plateau': {inside: false, at: [1978.3, BY('C', .85)], anchorYr: 1981.6, anchorBand: ['N2', .90], side: 'center', maxW: 84, nosub: true},
+  // the plateau (N2, 1980–93) is too small for its name; the label sits in the Winter Gulf below it (open water
+  // between the heartland and the revival) with a leader up into the plateau
+  'expert-systems-plateau': {inside: false, at: [1979.1, BY('C', .80)], anchorYr: 1981.6, anchorBand: ['N2', .90], side: 'center', maxW: 66, nosub: true},
   'connectionist-revival':  {inside: true,  at: [1990.5, BY('S2', .4)]},
   'statistical-isthmus':    {inside: true,  at: [2002.3, BY('N2', .55)]},
   'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)]},
-  'transformer-plateau':    {inside: true,  at: [2019.6, BY('C', .6)]},
+  'transformer-plateau':    {inside: true,  at: [2019.3, BY('C', .6)]},
   'generative-coast':       {inside: true,  at: [2024.4, BY('C', .5)]},
 };
 
@@ -165,22 +178,75 @@ const h2 = (a, b, s) => hash((a * 73856093) ^ (b * 19349663) ^ (s * 83492791));
 const sm = f => f * f * (3 - 2 * f);
 function noise1(t, s) { const i = Math.floor(t), u = sm(t - i); return h2(i, 0, s) * (1 - u) + h2(i + 1, 0, s) * u; }
 function noise2(x, y, s) { const i = Math.floor(x), j = Math.floor(y), ux = sm(x - i), uy = sm(y - j); return (h2(i, j, s) * (1 - ux) + h2(i + 1, j, s) * ux) * (1 - uy) + (h2(i, j + 1, s) * (1 - ux) + h2(i + 1, j + 1, s) * ux) * uy; }
-function warp([x, y]) { const s0 = 1 / 210, s = 1 / 90, s2 = 1 / 18; return [x + (noise2(x * s0, y * s0, 5) - .5) * 12 + (noise2(x * s, y * s, 1) - .5) * 9 + (noise2(x * s2, y * s2, 2) - .5) * 2.4, y + (noise2(x * s0, y * s0, 6) - .5) * 12 + (noise2(x * s, y * s, 3) - .5) * 9 + (noise2(x * s2, y * s2, 4) - .5) * 2.4]; }
-// grid vertex → jittered position (shared by every cell touching it)
+// domain warp (3 octaves) then the spine shear. Both are continuous, so shared edges stay shared.
+function warp([x, y]) { const s0 = 1 / 210, s = 1 / 90, s2 = 1 / 18; const wx = x + (noise2(x * s0, y * s0, 5) - .5) * 12 + (noise2(x * s, y * s, 1) - .5) * 9 + (noise2(x * s2, y * s2, 2) - .5) * 2.4, wy = y + (noise2(x * s0, y * s0, 6) - .5) * 12 + (noise2(x * s, y * s, 3) - .5) * 9 + (noise2(x * s2, y * s2, 4) - .5) * 2.4; return [wx, SY(wx, wy)]; }
+// grid vertex → jittered position (shared by every cell touching it). v5: vertices slide along both grid lines by
+// up to 60% of the local wander budget, so no two vertices of a column share an x — every year border is already
+// a diagonal before its wander is added.
 const VX = {};
-function V(i, j) { const k = i + ',' + j; if (!VX[k]) VX[k] = [X(COLS[i]) + (h2(i, j, 11) - .5) * 10, ROWY[j] + (h2(i, j, 12) - .5) * 18]; return VX[k]; }
+// local cell sizes bound every displacement so neighbouring borders can never cross: vertex jitter ≤ 15% and
+// border wander ≤ 25% of the narrower adjacent column/row (worst case 2×(15+25)% = 80% < 100%).
+const colW = i => (i < 0 || i >= NC) ? 1e9 : X(COLS[i + 1]) - X(COLS[i]);
+const rowH = j => (j < 0 || j >= NR) ? 1e9 : ROWY[j + 1] - ROWY[j];
+// (cap 160 → up to 40px of wander on the wide 2006–present columns; the old 120 cap left those tall borders at
+// ±30px over ~300px of length, which still read as plumb lines. 240 was tried and pushed the 2022 border into the
+// Transformer Plateau label.)
+const latX = i => .25 * Math.min(colW(i - 1), colW(i), 160);   // max lateral wander of the year border at column line i
+const latY = j => .25 * Math.min(rowH(j - 1), rowH(j), 120);
+// the x-jitter alternates sign down each column (odd/even j) so consecutive vertices of a year line are always
+// offset in opposite directions → every year border segment is tilted, never plumb
+// v5b: on top of the zig-zag, every year border gets a systematic diagonal LEAN (top pushed one way, bottom the
+// other, direction alternating per column so consecutive regions become opposing trapezoids rather than a sheared
+// grid). The lean is whatever is left of the half-column budget after jitter+wander (so borders still can never
+// cross), capped at 24px (≈0.5yr on the widest columns, and inside the gate's 44px year tolerance together with
+// the wander): a tall border now tilts ~8–10° instead of ±3°.
+// The two widest columns (2017, 2022: 230–250px wide, 300px tall) get a larger cap (34px ≈ 0.7yr) — at 20px they
+// still read as plumb full-height seams.
+const leanCap = i => Math.min(colW(i - 1), colW(i)) >= 200 ? 30 : 20;
+const leanX = i => (i <= 0 || i >= NC) ? 0 : Math.max(0, Math.min(leanCap(i), .5 * Math.min(colW(i - 1), colW(i)) - 1.6 * latX(i)));
+function V(i, j) {
+  const k = i + ',' + j;
+  if (!VX[k]) {
+    const lean = leanX(i) * (i % 2 ? 1 : -1) * (2 * j / (NR) - 1);   // −lean at the top row → +lean at the bottom
+    // the zig-zag jitter is scaled down where the lean is large, so lean + jitter + wander stays inside the
+    // half-column budget (and the gate's ±44px year tolerance on the region's x-extent)
+    const jit = (j % 2 ? 1 : -1) * (0.35 + 0.65 * h2(i, j, 11)) * 0.6 * latX(i) * (1 - 0.6 * leanX(i) / leanCap(i));
+    VX[k] = [X(COLS[i]) + lean + jit, ROWY[j] + (h2(i, j, 12) - .5) * 1.2 * latY(j)];
+  }
+  return VX[k];
+}
 // grid edge → wobbly polyline (cached per undirected edge, oriented on demand)
+// v5: every edge wanders laterally like a river between provinces: a 1-lobe diagonal sweep + a 2-lobe meander +
+// low-frequency noise + fine hand wobble, all within the local budget `lat`. Edges on the outer coast get an
+// extra seaward bulge (capes/bays) so the silhouette is not a flat line. The polyline is computed once per
+// undirected edge, so the two cells sharing it interlock with zero gap and zero overlap.
 const EC = {};
 function edgePts(a, b) {
   const ka = a[1] * 1000 + a[0], kb = b[1] * 1000 + b[0]; const rev = ka > kb; const [p, q] = rev ? [b, a] : [a, b];
   const key = p[0] * 1000003 + p[1] * 1009 + q[0] * 37 + q[1];
   if (!EC[key]) {
     const P = V(p[0], p[1]), Q = V(q[0], q[1]); const L = Math.hypot(Q[0] - P[0], Q[1] - P[1]);
-    const n = Math.max(3, Math.round(L / 4.5)); const nx = -(Q[1] - P[1]) / L, ny = (Q[0] - P[0]) / L;
-    const A1 = Math.min(9, L * .11), A2 = Math.min(2.6, L * .035); const pts = [];
+    const vertical = p[0] === q[0];                     // a year border
+    const n = Math.max(4, Math.round(L / 4)); const nx = -(Q[1] - P[1]) / L, ny = (Q[0] - P[0]) / L;
+    // the two cells sharing this edge: +normal side first (left of a year edge, below a band edge)
+    const cPos = vertical ? ownerAt(p[0] - 1, p[1]) : ownerAt(p[0], p[1]), cNeg = vertical ? ownerAt(p[0], p[1]) : ownerAt(p[0], p[1] - 1);
+    const seaSide = (cPos === null) === (cNeg === null) ? 0 : (cPos === null ? 1 : -1);   // 0 = interior border
+    // year borders: the wander budget shrinks by the column's lean, so lean + jitter + wander never exceeds the
+    // half-column budget (keeps every region's x-extent within the gate's ±44px year tolerance)
+    const lat = Math.min(vertical ? latX(p[0]) * (1 - 0.7 * leanX(p[0]) / leanCap(p[0])) : latY(p[1]), L * .3);
+    const A0 = lat * .6, A1 = lat * .22, A3 = lat * .12;                    // diagonal sweep, meander, low-freq noise
+    const A2 = Math.min(2.8, L * .035);                                     // fine hand wobble
+    // seaward cape/bay bulge on the coast: full on north/south coasts, 40% on the west/east (time) coasts so the
+    // 1943 / present shorelines stay readable against the ruler
+    const AC = seaSide ? Math.min(lat * .9, 26) * (vertical ? .4 : 1) : 0;
+    const sgn = h2(p[0], p[1], 31) < .5 ? -1 : 1, ph = h2(q[0], q[1], 32) * 6.28; const pts = [];
     for (let k = 0; k <= n; k++) {
       const t = k / n; const env = Math.sin(Math.PI * t);
-      const off = env * ((noise1(t * 2.5 + key % 97, 21) - .5) * 2 * A1 + (noise1(t * 11 + key % 89, 22) - .5) * 2 * A2);
+      const off = env * (sgn * A0 * Math.sin(Math.PI * t + .25 * Math.sin(ph)) * (0.7 + 0.3 * Math.sin(ph + t * 2))
+                       + Math.sin(2 * Math.PI * t + ph) * A1 * (0.6 + 0.4 * noise1(t * 3 + key % 97, 23))
+                       + (noise1(t * 2.5 + key % 97, 21) - .5) * 2 * A3
+                       + (noise1(t * 11 + key % 89, 22) - .5) * 2 * A2)
+                  + seaSide * AC * Math.pow(env, 1.5) * (0.35 + 0.65 * noise1(t * 1.7 + key % 83, 24));
       pts.push(warp([P[0] + (Q[0] - P[0]) * t + nx * off, P[1] + (Q[1] - P[1]) * t + ny * off]));
     }
     EC[key] = pts;
@@ -231,6 +297,22 @@ function bsplinePath(pts) {
   }
   return d + ' Z';
 }
+// v5: offset every loop outward by `r` px along the per-vertex normal (average of the two adjacent edge normals),
+// orientation-aware. Used to build the oversized texture layer that feathers into the neighbouring region.
+function dilatePath(loops, r) {
+  return loops.map(pts => {
+    const n = pts.length; let area = 0;
+    for (let i = 0; i < n; i++) { const [x0, y0] = pts[i], [x1, y1] = pts[(i + 1) % n]; area += x0 * y1 - x1 * y0; }
+    const s = area > 0 ? -1 : 1;   // orientation-aware sign so the offset is always outward (verified via bbox growth)
+    return polyPath(pts.map((p, i) => {
+      const a = pts[(i - 1 + n) % n], b = pts[(i + 1) % n];
+      let nx = 0, ny = 0;
+      for (const [q0, q1] of [[a, p], [p, b]]) { const dx = q1[0] - q0[0], dy = q1[1] - q0[1], L = Math.hypot(dx, dy) || 1; nx += -dy / L; ny += dx / L; }
+      const L = Math.hypot(nx, ny) || 1;
+      return [p[0] + s * r * nx / L, p[1] + s * r * ny / L];
+    }));
+  }).join(' ');
+}
 function islandPts(cx, cy, r, seed) {
   const n = 8; const pts = [];
   for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + seed; const rr = r * (1.0 + 0.4 * Math.sin(a * 2 + seed * 1.7) + 0.15 * Math.sin(a * 3 + seed)); pts.push([cx + rr * Math.cos(a) * 1.3, cy + rr * Math.sin(a)]); }
@@ -243,9 +325,29 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const defs = el('defs', {});
   const f = el('filter', {id: 'landshadow', x: '-10%', y: '-10%', width: '125%', height: '130%'}, defs);
   el('feGaussianBlur', {stdDeviation: 3}, f);
-  // texture patterns: one per biome + sea. userSpaceOnUse so the tile scale is the same in every region.
+  // v5 feather: each region's texture is drawn slightly OVERSIZED (stroke = fill pattern, FEATHER px) with a blurred
+  // alpha edge, so where two regions meet their textures crossfade over a ~FEATHER px band instead of hard-clipping
+  // mid-glyph. The filter blurs the alpha of the oversized shape; the later-drawn region fades in over the earlier one.
+  const FEATHER = 28;   // stroke width → texture extends FEATHER/2 = 14px past the true border into the neighbour
+  const ff = el('filter', {id: 'feather', x: '-5%', y: '-5%', width: '110%', height: '110%'}, defs);
+  // blur ONLY the shape's alpha (SourceAlpha), then mask the un-blurred texture with it: glyphs stay crisp, the
+  // edge fades. Blurring SourceGraphic would smear the glyphs themselves into blotches. Blur radius ≈ the overhang
+  // so alpha ramps from ~1 at the true border to ~0 at the overhang's outer rim: the later-drawn neighbour's
+  // texture fades IN over this one across a ~14px band (and vice versa where it is drawn first).
+  el('feGaussianBlur', {in: 'SourceAlpha', stdDeviation: FEATHER * .32, result: 'soft'}, ff);
+  const fct = el('feComponentTransfer', {in: 'soft', result: 'mask'}, ff); el('feFuncA', {type: 'linear', slope: 1.25, intercept: -.05}, fct);
+  el('feComposite', {in: 'SourceGraphic', in2: 'mask', operator: 'in'}, ff);
+  // label halo: a soft parchment knockout behind every label so text stays legible over dark/busy textures
+  const fh = el('filter', {id: 'halo', x: '-12%', y: '-25%', width: '124%', height: '150%'}, defs);
+  el('feMorphology', {operator: 'dilate', radius: 2.2, in: 'SourceAlpha', result: 'd'}, fh);
+  el('feGaussianBlur', {stdDeviation: 2.6, in: 'd', result: 'bl'}, fh);
+  el('feFlood', {'flood-color': '#efe3c8', 'flood-opacity': .82, result: 'c'}, fh);
+  el('feComposite', {in: 'c', in2: 'bl', operator: 'in', result: 'h'}, fh);
+  const fm = el('feMerge', {}, fh); el('feMergeNode', {in: 'h'}, fm); el('feMergeNode', {in: 'SourceGraphic'}, fm);
+  // texture patterns: one per biome + sea. userSpaceOnUse so the tile scale is the same in every region; per-biome
+  // TILE_K normalises glyph size across textures (v5) so every biome reads at one zoom level.
   const pattern = (id, href, size) => { const p = el('pattern', {id, width: size, height: size, patternUnits: 'userSpaceOnUse'}, defs); img(href, 0, 0, size, size, p); return p; };
-  Object.keys(BIOME).forEach(k => pattern('tex-' + k, TEX(k), TILE));
+  Object.keys(BIOME).forEach(k => pattern('tex-' + k, TEX(k), TILE * (BIOME[k].k || 1)));
   pattern('tex-sea', TEX('sea'), 300);
 
   // sea
@@ -253,8 +355,18 @@ fetch('registry.json').then(r => r.json()).then(data => {
   el('rect', {x: 0, y: 0, width: W, height: H, fill: 'url(#tex-sea)', id: 'sea'});
   // graticule: faint dotted verticals at the major years, faint latitude dashes at band centres
   const gGrat = el('g', {id: 'graticule'});
-  BANDS.forEach(b => { el('line', {x1: PAD_L, x2: W - PAD_R + 30, y1: BY(b, .5), y2: BY(b, .5), class: 'graticule'}, gGrat); txt(W - 12, BY(b, .5) - 1, b, 'band-code'); txt(W - 12, BY(b, .5) + 11, BAND_NAME[b], 'band-label'); });
-  txt(PAD_L + ARCH_W / 2 - 4, MAP_TOP + 16, 'WESTERN SEA', 'ocean-label', null, {'font-size': 11});
+  // v5: latitudes follow the spine (they ARE the band coordinate), so a reader can still place a region in its band
+  const spinePath = (y0, x0, x1) => { let d = ''; for (let x = x0; x <= x1; x += 12) d += (d ? 'L' : 'M') + f1(x) + ',' + f1(SY(x, y0)); return d; };
+  BANDS.forEach(b => el('path', {d: spinePath(BY(b, .5), PAD_L, W - PAD_R + 30), class: 'graticule'}, gGrat));
+  // band legend: drawn later (after the coast) in a light parchment box so east-coast waterlines never run through it
+  const drawBandLegend = () => {
+    const g = el('g', {id: 'band-legend'});
+    const legX0 = W - 178, legY0 = SY(W - PAD_R + 30, BY('N1', .5)) - 16, legY1 = SY(W - PAD_R + 30, BY('S2', .5)) + 18;
+    el('rect', {x: legX0, y: legY0, width: W - 6 - legX0, height: legY1 - legY0, fill: '#e7dcbd', 'fill-opacity': .82, stroke: '#7f6d4c', 'stroke-width': .6, 'stroke-opacity': .5, rx: 3}, g);
+    BANDS.forEach(b => { const ye = SY(W - PAD_R + 30, BY(b, .5)); txt(W - 12, ye - 1, b, 'band-code', g); txt(W - 12, ye + 11, BAND_NAME[b], 'band-label', g); });
+  };
+  txt(PAD_L + ARCH_W / 2 - 4, SY(PAD_L + ARCH_W / 2, MAP_TOP) + 16, 'WESTERN', 'ocean-label', null, {'font-size': 10.5, 'letter-spacing': 3});
+  txt(PAD_L + ARCH_W / 2 - 4, SY(PAD_L + ARCH_W / 2, MAP_TOP) + 30, 'SEA', 'ocean-label', null, {'font-size': 10.5, 'letter-spacing': 3});
 
   // time ruler
   el('line', {x1: X(1943), x2: X(PRESENT), y1: RULER_Y, y2: RULER_Y, class: 'ruler'});
@@ -266,15 +378,17 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const minor = [1800]; for (let y = 1944; y <= yearOf(PRESENT); y++) if (!major.includes(y) && ((y < 2006 && y % 5 === 0) || (y >= 2006 && y % 2 === 0))) minor.push(y);
   minor.forEach(y => el('line', {x1: X(y), x2: X(y), y1: RULER_Y, y2: RULER_Y + 4, class: 'ruler-tick', 'stroke-opacity': .5}));
   const gRuler = el('g', {id: 'ruler-nums'});
-  major.sort((a, b) => a - b).forEach(y => { const x = X(y); el('line', {x1: x, x2: x, y1: RULER_Y - 5, y2: RULER_Y + 7, class: 'ruler-tick'}); txt(x, RULER_Y + 22, y, 'ruler-num', gRuler); if (y >= 1943) el('line', {x1: x, x2: x, y1: MAP_TOP - 40, y2: RULER_Y - 8, class: 'graticule'}, gGrat); });
+  major.sort((a, b) => a - b).forEach(y => { const x = X(y); el('line', {x1: x, x2: x, y1: RULER_Y - 5, y2: RULER_Y + 7, class: 'ruler-tick'}); txt(x, RULER_Y + 22, y, 'ruler-num', gRuler); if (y >= 1943) el('line', {x1: x, x2: x, y1: SY(x, MAP_TOP) - 60, y2: RULER_Y - 8, class: 'graticule'}, gGrat); });
   txt((X(1943) + X(PRESENT)) / 2, RULER_Y + 42, 'westward is earlier · the scale stretches toward the present (1× · 1½× · 3× · 6× per year) · the east coast is the last completed month', 'ruler-cap');
   txt(PAD_L + ARCH_W / 2, RULER_Y + 42, 'pre-1943: offshore, logarithmic', 'ruler-cap');
 
   // ---- land geometry
   const isLand = (i, j) => ownerAt(i, j) !== null;
   const coastLoops = trace(isLand);                 // expect exactly 1 loop: the mainland
-  const isleD = ISLES.map(is => bsplinePath(islandPts(X(is.y), is.cy, is.r, is.s)));
+  const isleD = ISLES.map(is => bsplinePath(islandPts(X(is.y), SY(X(is.y), is.cy), is.r, is.s)));
   const landPaths = coastLoops.map(polyPath).concat(isleD);
+  // the mainland silhouette as a clip, so feathered texture bleed stays on land (never over waterlines / sea)
+  const clipCoast = el('clipPath', {id: 'clip-coast'}, defs); coastLoops.forEach(pts => el('path', {d: polyPath(pts)}, clipCoast));
 
   const gShadow = el('g', {id: 'shadows', transform: 'translate(2,3)'});
   landPaths.forEach(d => el('path', {d, class: 'shadow'}, gShadow));
@@ -286,7 +400,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     el('path', {d, fill: 'none', stroke: 'url(#tex-sea)', 'stroke-width': d2 * 2 - 1.3}, gWater);
   }));
 
-  const gShapes = el('g', {id: 'shapes'}); const gCoast = el('g', {id: 'coast'}); const gLeaders = el('g', {id: 'leaders'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none'});
+  const gShapes = el('g', {id: 'shapes'}); const gCoast = el('g', {id: 'coast'}); const gLeaders = el('g', {id: 'leaders'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none', filter: 'url(#halo)'});
   const card = document.getElementById('card');
   const order = C.slice().sort((a,b) => a.start - b.start);
   const pt = svg.createSVGPoint();
@@ -312,7 +426,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
   };
   const TRIES = [[17, 12, true], [16, 12, true], [15, 12, true], [14, 12, true], [13, 12, true], [12, 12, true], [14, 12, false], [12, 12, false]];
   function placeInside(c, land) {
-    const [lyr, ly] = LABEL[c.id].at; const lx = X(lyr); const bb = land.getBBox();
+    const [lyr, ly0] = LABEL[c.id].at; const lx = X(lyr), ly = SY(lx, ly0); const bb = land.getBBox();
     for (const [sN, sS, withSub] of TRIES) {
       const ts = labelBlock(c, lx, ly, sN, sS, bb.width - 24, withSub);
       if (fitsInside(land, union(ts), 6)) return ts;
@@ -327,23 +441,35 @@ fetch('registry.json').then(r => r.json()).then(data => {
     let lands = [];
     if (c.offshore) {
       isleD.forEach(d => { lands.push(el('path', {d, fill, class: 'land'}, g)); el('path', {d, fill: tint, 'fill-opacity': .14, class: 'tint'}, g); });
-      const lx = PAD_L + ARCH_W / 2 - 12; let ly = BY('C', .06);
+      const lx = PAD_L + ARCH_W / 2 - 12; let ly = SY(lx, BY('C', .2));
       const ts = [];
       wrap(c.name, 10).forEach(l => { ts.push(txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id})); ly += 15; });
       ly += 1;
       wrap('logic & computability prehistory', 14).forEach(l => { ts.push(txt(lx, ly, l, 'csub', gLabels, {'font-size': MIN_FONT, 'data-for': c.id})); ly += 14; });
       ts.push(txt(lx, ly + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': MIN_FONT, 'data-for': c.id}));
-      const u = union(ts); const big = ISLES[3];
-      const ax = X(big.y) - 6, ay = big.cy + big.r * .35;
-      el('path', {d: `M${ax},${ay} L${ax},${u.y - 4}`, class: 'leader', 'data-for': c.id}, gLeaders);
+      // v5: leader from the top of the label block to the nearest (largest, 1936) isle — an elbow like the
+      // plateau/shore leaders — plus a dotted arc linking the isles so the archipelago reads as one chain
+      const u = union(ts); const big = ISLES[3]; const bigPath = lands[3];
+      let ax = X(big.y), ay = SY(ax, big.cy) + big.r * .55; for (let i = 0; i < 40 && !inFill(bigPath, ax, ay); i++) ay -= 1;
+      const ex = Math.min(Math.max(ax, u.x + 8), u.r - 8);
+      el('path', {d: `M${f1(ex)},${f1(u.y - 4)} L${f1(ex)},${f1((u.y - 4 + ay) / 2)} L${f1(ax)},${f1(ay)}`, class: 'leader', 'data-for': c.id}, gLeaders);
       el('circle', {cx: ax, cy: ay, r: 2.4, class: 'leader-dot'}, gLeaders);
+      const chain = ISLES.map(is => [X(is.y), SY(X(is.y), is.cy)]);
+      el('path', {d: 'M' + chain.map(p => f1(p[0]) + ',' + f1(p[1])).join('L'), class: 'chain', fill: 'none', stroke: '#3d2e1a', 'stroke-width': .9, 'stroke-dasharray': '1.5 4', 'stroke-opacity': .55}, gLeaders);
     } else {
       const loops = trace((i, j) => ownerAt(i, j) === c.id);
       const d = loops.map(polyPath).join(' ');
       const clip = el('clipPath', {id: 'clip-' + c.id}, defs); el('path', {d}, clip);
-      const land = el('path', {d, fill, class: 'land'}, g); lands = [land];
+      // v5 feather: the texture is painted as fill + an oversized FEATHER-px stroke of the same pattern, blurred, so it
+      // bleeds softly into the neighbour drawn before it; the neighbour drawn after bleeds back over this one. The
+      // crisp `.land` path on top carries only the hit-test / gate geometry (fill = pattern, but masked to the
+      // feather so it does not re-harden the edge).
+      // (the oversize is a geometric dilation, not a pattern stroke: Chromium renders pattern-paint strokes as
+      // transparent when the pattern is also the fill under a filter — verified pixel-by-pixel)
+      el('path', {d: dilatePath(loops, FEATHER / 2), fill, filter: 'url(#feather)', 'clip-path': 'url(#clip-coast)', class: 'texbleed'}, g);
+      const land = el('path', {d, fill, 'fill-opacity': 0, class: 'land'}, g); lands = [land];
       el('path', {d, fill: tint, 'fill-opacity': .13, class: 'tint'}, g);                                        // biome wash
-      el('path', {d, fill: 'none', stroke: tint, 'stroke-width': 16, 'stroke-opacity': .32, 'clip-path': `url(#clip-${c.id})`, class: 'tint'}, g); // hand-tinted border band
+      el('path', {d, fill: 'none', stroke: tint, 'stroke-width': 16, 'stroke-opacity': .26, 'clip-path': `url(#clip-${c.id})`, class: 'tint'}, g); // hand-tinted border band
       el('path', {d, class: 'border'}, g);
       const L = LABEL[c.id];
       if (L.inside) placeInside(c, land);
@@ -351,10 +477,11 @@ fetch('registry.json').then(r => r.json()).then(data => {
         const lx = L.px !== undefined ? L.px : X(L.at[0]);
         const ts = labelBlock(c, lx, 0, 13, MIN_FONT, L.maxW || 150, !L.nosub);
         const u0 = union(ts); const h = u0.b - u0.y;
-        const ly = L.side === 'above' ? (L.at[1] - h / 2 - 2) : L.side === 'below' ? (L.at[1] + h / 2 + 2) : L.at[1];
+        const aty = SY(lx, L.at[1]);
+        const ly = L.side === 'above' ? (aty - h / 2 - 2) : L.side === 'below' ? (aty + h / 2 + 2) : aty;
         ts.forEach(t => t.setAttribute('y', (parseFloat(t.getAttribute('y')) + ly).toFixed(1)));
         const u = union(ts);
-        let ax = X(L.anchorYr), ay = BY(L.anchorBand[0], L.anchorBand[1]);
+        let ax = X(L.anchorYr), ay = BYS(L.anchorYr, L.anchorBand[0], L.anchorBand[1]);
         for (let i = 0; i < 60 && !inFill(land, ax, ay); i++) { ax += 1; }
         ax += 6;
         let d;
@@ -390,9 +517,13 @@ fetch('registry.json').then(r => r.json()).then(data => {
   });
   // ink coastline on top of every fill (mainland + isles)
   landPaths.forEach(d => el('path', {d, class: 'coast'}, gCoast));
+  drawBandLegend();
   // eastern ocean label, in open water east of the present-day coast (drawn after the land so nothing covers it)
-  txt((X(PRESENT) + 12 + (W - 60)) / 2, BY('N1', .98), 'TERRA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
-  txt((X(PRESENT) + 12 + (W - 60)) / 2, BY('N2', .18), 'INCOGNITA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
+  // (v5: the legend box now owns the strip east of the coast, so the label moves into the open water south-east
+  // of the Generative Coast, above the ruler)
+  const tix = (X(PRESENT) + W - 190) / 2;
+  txt(tix, RULER_Y - 46, 'TERRA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
+  txt(tix, RULER_Y - 32, 'INCOGNITA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
 
   // title cartouche (generated frame as an image; the words are vector text) in the northern sea
   const CH = 172, CW = CH * 803 / 565, ccx = X(2004.5), ccy = 4 + CH / 2;

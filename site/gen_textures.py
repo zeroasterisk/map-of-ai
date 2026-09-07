@@ -25,8 +25,12 @@ URL = (f"https://{REGION}-aiplatform.googleapis.com/v1/projects/{PROJECT}/locati
        f"/publishers/google/models/{MODEL}:generateContent")
 
 # One template; only the bracketed part changes, so the ink style stays consistent across fills.
+# v5: an explicit, identical scale clause for every biome so glyph size reads as one zoom level across tiles
+# (v4 review: mixed/highland glyphs were 2-4x the size of forest/jungle ones; grassland was near-blank).
 TILE = ("Seamless tileable texture, top-down view, hand-drawn antique atlas cartography style, aged parchment "
-        "paper background, warm sepia and muted earth-tone ink illustration, {what}, no text, no labels, no border, "
+        "paper background, warm sepia and muted earth-tone ink illustration, {what}, medium density: each individual "
+        "symbol is small, roughly 3 to 4 percent of the image width, dozens of symbols per row, all symbols the same "
+        "scale, no text, no labels, no border, "
         "consistent ink linework style throughout, illustration only, no photorealism, evenly distributed across "
         "the whole image with no vignette, no central focus and no framing so the image repeats without seams.")
 
@@ -40,8 +44,9 @@ ASSETS = {
     # biome fills (colour legend order)
     "highland": TILE.format(what="dense hachure-shaded mountain range peaks drawn as small repeated hand-inked "
                             "mountain symbols with short slope shading strokes, a few rocky crags"),
-    "grassland": TILE.format(what="open grassland and plains: ONLY tiny short grass-tuft strokes and sparse "
-                             "stipple dots scattered evenly at random, mostly bare paper, very light and airy, "
+    "grassland": TILE.format(what="open grassland and plains: small hand-inked grass-tuft symbols (three or four "
+                             "short curved blades each) and a few tiny shrub dots scattered evenly at random, "
+                             "clearly visible tufts at medium spacing with paper between them, light and airy, "
                              "absolutely no contour lines, no hills, no roads, no rivers, no ridges"),
     "forest": TILE.format(what="temperate forest: many small round-crowned deciduous tree symbols with short "
                           "trunks and light stippled canopy shading, placed at RANDOM irregular positions with "
@@ -56,8 +61,9 @@ ASSETS = {
                            "density drifting in loose irregular bands, like engraved sandbank shading on an old "
                            "sea chart, purely dots and a few short dashes, no symbols, no objects, no coastlines, "
                            "no landforms"),
-    "mixed": TILE.format(what="transitional terrain: alternating patches of low rolling hill symbols, small "
-                         "tree clusters and scattered stipple, medium density"),
+    "mixed": TILE.format(what="transitional terrain: small low rolling hill symbols, small round tree symbols and "
+                         "scattered stipple mixed together in alternating patches, every hill and tree the same "
+                         "small size as the others, no large mountain ranges, no big vignettes"),
     # one-off decorative elements (not tiles)
     "compass": ("A single ornate antique compass rose, hand-drawn in dark sepia ink in the style of a 17th-century "
                 "atlas, sixteen-point star with alternating shaded and unshaded points, a decorative fleur-de-lis "

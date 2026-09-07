@@ -1,4 +1,4 @@
-# site/ — review prototype (P2-T1-RENDER v4)
+# site/ — review prototype (P2-T1-RENDER v5)
 
 Single static page rendering `data/continents/REGISTRY.md` as an antique-atlas plate
 (X = time, piecewise-scaled per AXES.md §1; Y = the five AXES.md §3 bands as faint
@@ -37,7 +37,7 @@ No build step, no API calls from the browser — everything is static.
 
 ## Placement model (render-only; not registry data)
 
-v4 draws **one contiguous mainland**, not floating shapes. The mainland is a partition of a
+v5 draws **one contiguous mainland**, not floating shapes. The mainland is a partition of a
 (year × half-band) cell grid — `COLS` are the registry start/end years, `ROWY` the band edges
 (N2 and C split in half) — and every cell has exactly one owner, so neighbours share their
 border by construction. Each grid edge becomes the *same* deterministic wobbly polyline for
@@ -47,6 +47,40 @@ is an SVG `<pattern>` of its biome texture plus a faint biome-tint wash and a ha
 border band; the ink coastline, waterlines, and province borders are vector strokes on top.
 The pre-1943 Antecedent Isles stay a separate offshore archipelago (B-spline islets, same
 texture/ink treatment).
+
+### v5 — from strip to landmass (geometry only; data mapping unchanged)
+
+v4 was rejected as "a bar chart": a straight horizontal strip cut by plumb year lines. v5
+keeps the two load-bearing encodings — **x is time** (AXES.md non-linear scale, unchanged
+`X(year)`) and **perpendicular offset is the domain band** — but bends and roughens the
+skeleton:
+
+- **Spine.** The whole plate is sheared vertically along a gentle S-curve `spineY(x)`
+  (±46px). Screen `y = plate y + spineY(x)`; bands are read as offset from the spine, and
+  the faint latitude graticule follows it so a reader can still place a region in its band.
+  x is untouched, so the ruler stays honest.
+- **Wandering shared borders.** Every grid edge is one cached polyline shared by both
+  cells: a diagonal sweep + 2-lobe meander + low-frequency noise + hand wobble, all bounded
+  by 25% of the narrower neighbouring column/row so borders can never cross. Year borders
+  additionally get a per-column diagonal **lean** (top pushed one way, bottom the other,
+  alternating per column) and an alternating zig-zag on the vertices, so no year border is
+  plumb. Coast edges get an extra seaward cape/bay bulge.
+- **Feathered textures.** Each region's texture is painted once more as a geometrically
+  dilated copy (+14px, `dilatePath`) under an alpha-only feather filter and clipped to the
+  mainland, so glyphs crossfade into the neighbour instead of being sliced at the border.
+  (Stroking the outline with the pattern paint does not work in Chromium — it renders
+  transparent — hence the dilation.)
+- **Texture scale.** `highland`, `grassland`, `mixed` regenerated with an explicit
+  "glyphs ≈ 3–4% of image width" scale clause (`gen_textures.py`); per-biome tile factors
+  `BIOME[k].k` equalise the on-map zoom of all seven fills. Forest/jungle/wetland/harbour
+  reused unchanged.
+- **Labels.** All labels carry a parchment halo filter; the band legend sits in its own
+  parchment box east of the coast; the Antecedent Isles get a leader like the Shore/Plateau.
+
+`check_layout.py` gained two v5 gates: `straightBorders` (every adjacent pair's shared
+border must wander ≥ 4px RMS from its best-fit line *or* tilt ≥ 6° from vertical) and
+`flatSpine` (the spine must actually bend); the band-fidelity check now works in plate
+coordinates (`y − spineY(x)`) so the bend cannot hide a band violation.
 
 The 1974–2011 cluster (REGISTRY.md D2/D4 overlaps) is realised as:
 
