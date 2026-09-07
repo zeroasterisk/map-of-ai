@@ -1,9 +1,19 @@
-# site/ — review prototype (P2-T1-RENDER v5)
+# site/ — review prototype (P2-T1-RENDER v7)
 
 Single static page rendering `data/continents/REGISTRY.md` as an antique-atlas plate
 (X = time, piecewise-scaled per AXES.md §1; Y = the five AXES.md §3 bands as faint
 latitudes; terrain texture = biome). Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 No build step, no API calls from the browser — everything is static.
+
+**Artistic license (v7, per Alan 2026-09-07):** the registered band span and time range are a
+rough directional *envelope*, not a box to fill edge to edge. A region may recede to open sea
+in some of its sub-bands for part of its span (see the "v7 east" comment block in `index.html`
+for the chosen story: the Transformer Plateau is language-first and never reaches S2; the
+Generative Coast arrives from the south in 2021, and its N1 reach is a late, thin cape; the
+present-day frontier is a three-step ragged coast). The map must stay roughly and directionally
+right — it is more art and information than a chart from which facts could be derived. The
+check_layout gate enforces only the *outer* bound of each envelope (plus a declared ≤ 0.9-yr
+`LICENSE_YR` overshoot for the two eastern regions' shared staircase seam).
 
 - `index.html` — all HTML/CSS/JS inline. Fonts: Cinzel (names/titles) + Lora (body) via Google
   Fonts, Georgia fallback. **All text is vector SVG text** (names, subtitles, years, ruler,

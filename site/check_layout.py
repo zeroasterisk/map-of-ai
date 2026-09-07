@@ -37,7 +37,7 @@ MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
-BUILD_MARKER = "P2-T1-RENDER v6"
+BUILD_MARKER = "P2-T1-RENDER v7"
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -94,15 +94,22 @@ JS = r"""
   //     fill (a bbox would mix the spine's rise into the band extent).
   const {BANDS_Y, SPANS, BAND_SLACK, YEAR_SLACK} = cfg;
   const bandViol = [];
-  const plateExtent = {};
+  const plateExtent = {}, yearExtent = {};
   for (const c of mainland) {
     const s = SPANS[c.id]; if (!s) continue; const a = bb(c.lands[0]);
     const yTop = BANDS_Y[s.bands[0]][0] - BAND_SLACK, yBot = BANDS_Y[s.bands[1]][1] + BAND_SLACK;
     let pyMin = 1e9, pyMax = -1e9;
     for (let x = Math.floor(a.x); x <= a.r; x += 2) for (let y = Math.floor(a.y); y <= a.b; y += 2) if (inFill(c.lands[0], x, y)) { const py = y - spineY(x); if (py < pyMin) pyMin = py; if (py > pyMax) pyMax = py; }
     plateExtent[c.id] = [+pyMin.toFixed(0), +pyMax.toFixed(0)];
+    yearExtent[c.id] = [+(a.x - s.x0).toFixed(0), +(a.r - s.x1).toFixed(0)];   // px offset of the drawn x-extent from the registry years (−: earlier, +: later)
+    // v7: a region may legitimately NOT fill its envelope (recede-to-sea is artistic license), so only the OUTER
+    // bound is enforced on the band axis; on the year axis the drawn extent must still sit within YEAR_SLACK of the
+    // registry years, plus the declared LICENSE overshoot (px) for the two eastern regions' shared L-seam.
+    const lic = cfg.LICENSE[c.id] || {};
     const dx0 = a.x - s.x0, dx1 = a.r - s.x1;
-    if (pyMin < yTop || pyMax > yBot || Math.abs(dx0) > YEAR_SLACK || Math.abs(dx1) > YEAR_SLACK) bandViol.push({id: c.id, plateY: [+pyMin.toFixed(0), +pyMax.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
+    const okStart = dx0 >= -(YEAR_SLACK + (lic.start || 0)) && dx0 <= YEAR_SLACK + (lic.startLate || 0);
+    const okEnd = dx1 <= YEAR_SLACK + (lic.end || 0) && dx1 >= -(YEAR_SLACK + (lic.endEarly || 0));
+    if (pyMin < yTop || pyMax > yBot || !okStart || !okEnd) bandViol.push({id: c.id, plateY: [+pyMin.toFixed(0), +pyMax.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
   }
   // 1e. v5 border audit: no internal border may be a straight vertical (or straight horizontal) line. For each
   //     adjacent pair, collect the shared-border pixels (A's fill ∩ B's 2px stroke), fit the best straight line
@@ -193,7 +200,7 @@ JS = r"""
     for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(t - spineY(x)); bots.push(bt - spineY(x)); hs.push(bt - t); } }
     if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
   }
-  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -206,6 +213,10 @@ JS_GEOM = r"""
 # may stray at most this far from its registry band / year edges, measured in plate coordinates (spine removed).
 BAND_SLACK = 44
 YEAR_SLACK = 44
+# v7 artistic license (site/index.html "v7 east"): the Transformer Plateau's language belt runs to 2022.8 and the
+# Generative Coast's diffusion toe starts at 2021.3, so those two edges may overshoot the registered 2022 border by
+# up to LICENSE_YR years (converted to px in-page) on top of YEAR_SLACK. Every other edge keeps the plain slack.
+LICENSE_YR = {"transformer-plateau": {"end": 0.9}, "generative-coast": {"start": 0.9}}
 # v5 border audit thresholds: a border counts as a straight vertical cut only if it deviates < MIN_WANDER px RMS
 # from its best-fit line AND that line is within MIN_TILT° of vertical. Any real border must clear at least one.
 MIN_WANDER = 4.0
@@ -264,7 +275,9 @@ def main():
             end_expr = "PRESENT - 0.06" if c["end"] == "present" else str(c["end"])
             x0, x1 = pg.evaluate(f"() => [X({c['start']}), X({end_expr})]")
             spans[c["id"]] = {"bands": bands, "x0": x0, "x1": x1}
-        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG))
+        yr_px = pg.evaluate("() => X(2023) - X(2022)")   # px per year in the 6× era
+        license_px = {cid: {k: round(v * yr_px, 1) for k, v in d.items()} for cid, d in LICENSE_YR.items()}
+        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, LICENSE=license_px, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG))
         pg.screenshot(path=a.shot, full_page=True)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
         png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
@@ -285,7 +298,8 @@ def main():
     # --url does not make the site's own registry.json / textures look like third-party requests
     base = url.split("?", 1)[0].rsplit("/", 1)[0] + "/"
     offsite = [u for u, _ in responses if not u.startswith(base) and "fonts.g" not in u]
-    for k in ("continents", "lands", "coastLoops", "viewBox", "images", "spineRise", "plateExtent"):
+    print(f"license slack px (v7, on top of YEAR_SLACK={YEAR_SLACK}): {json.dumps(license_px)}")
+    for k in ("continents", "lands", "coastLoops", "viewBox", "images", "spineRise", "plateExtent", "yearExtent"):
         print(f"{k}: {res[k]}")
     print("in-region shape (v6; plate px over each region's own span): north/south coast peak-to-peak, height range:")
     for cid, s in res["shape"].items():

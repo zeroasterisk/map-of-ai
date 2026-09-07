@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v6 (v5 + organic in-region coastlines: sub-column bays/capes inside each registry envelope, multi-lobe sea-side coast bulge) -->
+<!-- map-of-ai site build: P2-T1-RENDER v7 (v6 + artistic-license east: Transformer Plateau never reaches S2, Generative Coast arrives from the south, L-shaped shared seam at 2022.8, late N1a promontory) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -138,17 +138,31 @@ const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f 
 //   1988–93  the isthmus begins as a neck (Ca) between plateau and revival (Pearl 1988), broadening after 1993
 //   1998–06  a southern bay (S2) between the revival's end and the basin's 2006 foothills
 //   2011–17  the isthmus ends; the northern sea reaches down to the top of C over the basin
-// v6 east (the two wide jungle regions no longer read as two bars side by side):
+// v7 east — ARTISTIC LICENSE (per the brief: the registry band/time span is a rough directional envelope, not a
+// box to fill; the map should be roughly and directionally right, more art than chart). The two wide jungle regions
+// no longer hold their full N1–S2 height for their whole span, and their shared border is an L, not a plumb seam:
 //   2011–17  basin: the north shore steps back from Ca to Cb at 2014 (a bay opens in the north as the isthmus ends)
-//   2017–19.6 transformer opens narrow — N2b..S2a (home C, spreading) — a strait north of it and a bay south of it
-//   2019.6–22 transformer at full N2–S2 (AlphaFold north, CLIP/robotics south): it BULGES late, tapers early
-//   2022–24.3 generative opens at full northern height (N1a, policy/alignment) but S2b is still sea
-//   2024.3–now generative recedes from N1a (a northern bay) and fills S2b (VLA/robotics) — opposite of the plateau
-// So the north coast steps 5→3→2→0→1 and the south coast 8→7→8→7→8 across the eastern third: bays and capes
-// interlock instead of two full-height columns meeting at a plumb seam.
+//   2017–19.6 transformer opens as a language-first tongue, N2b..S1 (home C); S2 stays SEA — transformer work in
+//            perception/control/embodiment was thin until the generative era, so the plateau never reaches S2
+//   2019.6–21.3 a northern cape into N2a (knowledge & reasoning: T5 / GPT-3 few-shot, AlphaFold 2020)
+//   2021.3–22.8 the plateau's north recedes to N2b; the generative coast arrives from the SOUTH first — S1–S2b
+//            (DALL·E / diffusion image generation 2021–22, and the sequence-model take-over of the RL/planning line:
+//            Decision Transformer, Gato) tucked under the plateau's south-east shoulder. The plateau's language
+//            belt (N2b–Cb) runs to late 2022 (ChatGPT). So the shared border is a STAIRCASE, not a seam: down the
+//            2022.8 line through N2b–Cb, west along the Cb|S1 line to 2021.3, down the 2021.3 line through S1–S2b
+//   2022.8–24.3 generative N2a..S2a (language, agents, the reasoning/knowledge line) — S2b a southern bay, N1 sea
+//   2024.3–25.2 north to N1b only (foundations / alignment discourse — the coast never reaches the N1a heights
+//            of philosophy proper) and S2b filled (VLA / robotics): a late, thin, LOW northern cape, not a tower
+//   2025.2–25.9 N1b recedes; N2a–S2b
+//   2025.9–now  the frontier is ragged: only the N2b–S1 core (language, agents, reasoning models) reaches the last
+//            completed month; N2a and S2 lag by most of a year — so the present-day coast is a three-step cape
+//            (2025.2 / 2025.9 / now), not a plumb edge (the east keeps getting denser — see the margin note)
+// North coast steps 5→3→2→3→2→1→2→3 and the south coast 8→6→6→8→7→8→8→6 across the eastern third. Sub-column
+// years (2014, 2019.6, 2021.3, 2024.3, 2025.2, 2025.9) carry no registry meaning. The plateau's 2022.8 belt and the
+// coast's 2021.3 toe overshoot the registered 2022 border by ≤ 0.8 yr on purpose (check_layout.py: LICENSE slack).
 const E = PRESENT - 0.06;
-const COLS = [1943, 1956, 1974, 1980, 1982, 1988, 1993, 1998, 2006, 2011, 2014, 2017, 2019.6, 2022, 2024.3, E];
-const MINOR = new Set([10, 12, 14]);   // indices into COLS of the sub-columns (2014, 2019.6, 2024.3)
+const COLS = [1943, 1956, 1974, 1980, 1982, 1988, 1993, 1998, 2006, 2011, 2014, 2017, 2019.6, 2021.3, 2022.8, 2024.3, 2025.2, 2025.9, E];
+const MINOR = new Set([10, 12, 13, 15, 16, 17]);   // indices into COLS of the sub-columns (2014, 2019.6, 2021.3, 2024.3, 2025.2, 2025.9)
 const ROWY = [BY('N1',0), BY('N1',.5), BY('N2',0), BY('N2',.5), BY('C',0), BY('C',.5), BY('S1',0), BY('S2',0), BY('S2',.5), BY('S2',1)];
 const GRID = [
   //N1aN1bN2aN2bCa Cb S1 S2aS2b
@@ -163,10 +177,13 @@ const GRID = [
   '..sssdddd', // 2006–11 basin foothills
   '....ddddd', // 2011–14 basin C–S2
   '.....dddd', // 2014–17 basin: north shore recedes to Cb (minor column)
-  '...ttttt.', // 2017–19.6 transformer opens narrow: N2b–S2a (home C)
-  '..ttttttt', // 2019.6–22 transformer at full N2–S2 (minor column)
-  'gggggggg.', // 2022–24.3 generative: full north (N1a), S2b still sea
-  '.gggggggg', // 2024.3–present generative: N1a recedes, S2b filled (minor column)
+  '...tttt..', // 2017–19.6 transformer: language-first tongue N2b–S1; S2 is sea
+  '..tttt...', // 2019.6–21.3 transformer: northern cape into N2a while a southern bay opens in S1 (minor column)
+  '...tttggg', // 2021.3–22.8 transformer N2b–Cb (language belt to ChatGPT) over generative S1–S2b — the staircase
+  '..gggggg.', // 2022.8–24.3 generative N2a–S2a (language, agents, reasoning line); S2b a southern bay
+  '.gggggggg', // 2024.3–25.2 generative N1b–S2b (foundations discourse north, VLA south) (minor column)
+  '..ggggggg', // 2025.2–25.9 generative N2a–S2b: N1b recedes (minor column)
+  '...gggg..', // 2025.9–present: ragged frontier — only N2b–S1 reach the last completed month (minor column)
 ];
 const CODE = {y:'cybernetic-shore', h:'symbolic-heartland', w:'winter-steppes', p:'expert-systems-plateau', c:'connectionist-revival', s:'statistical-isthmus', d:'deep-learning-basin', t:'transformer-plateau', g:'generative-coast'};
 const NC = COLS.length - 1, NR = ROWY.length - 1;
@@ -185,8 +202,8 @@ const LABEL = {
   'connectionist-revival':  {inside: true,  at: [1990.5, BY('S2', .4)]},
   'statistical-isthmus':    {inside: true,  at: [2002.3, BY('N2', .55)]},
   'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)]},
-  'transformer-plateau':    {inside: true,  at: [2019.9, BY('C', .85)], maxW: 150},
-  'generative-coast':       {inside: true,  at: [2024.4, BY('C', .5)]},
+  'transformer-plateau':    {inside: true,  at: [2019.9, BY('C', .30)], maxW: 250},
+  'generative-coast':       {inside: true,  at: [2024.85, BY('C', .55)], maxW: 128},
 };
 
 // ---- deterministic noise (hand-drawn wobble). Same inputs → same output, so shared edges match exactly.
@@ -242,7 +259,8 @@ function V(i, j) {
   if (!VX[k]) {
     const [ja, jb] = seamRows(i); const u = 2 * (j - ja) / (jb - ja) - 1;
     const short = (jb - ja) <= 2;                      // a 1–2-row seam (e.g. 1974 heartland|steppes): lean carries the tilt alone
-    const coastRow = u < -1 || u > 1;                  // the year line is a coast here (land on one side only), not a seam
+    // v7: the present-day coast (i = NC) has no seam rows at all (nothing east of it), so every row is a coast row
+    const coastRow = u < -1 || u > 1 || i === NC;      // the year line is a coast here (land on one side only), not a seam
     const lean = (short ? leanCap(i) * .9 : leanX(i)) * leanSign(i) * (u < -1 ? -.75 : u > 1 ? .75 : u);   // −lean at the top of the seam → +lean at its bottom
     // the zig-zag jitter is scaled down where the lean is large, so lean + jitter + wander stays inside the
     // half-column budget (and the gate's ±44px year tolerance on the region's x-extent); on a short seam the
@@ -283,9 +301,17 @@ function edgePts(a, b) {
     // along the edge, i.e. of time within the region's own span — this is what makes a wide region's north and
     // south coast wander independently across its duration (its two coasts use different edges → different noise).
     const CAPE = 24, LOBE = 95;
-    const ACout = seaSide ? Math.min(CAPE, L * .22) * (vertical ? .3 : 1) : 0;
-    const ACin = seaSide ? Math.min(lat * 1.3, 14) * (vertical ? .3 : 1) : 0;
-    const lobes = Math.max(1, Math.round(L / LOBE)), lph = h2(p[0], p[1], 33) * 6.28;
+    // v7: a SHORT coast edge (one half-row step, < ~50px) gets almost no bulge — its lobe plus the neighbouring
+    // edge's lobe otherwise fold the corner between them into a hairpin (seen at the 2025.9 N1 step)
+    const shortK = L < 50 ? .25 : 1;
+    // v7: the PRESENT-DAY coast (the last column line) is the "exponential explosion" edge — the frontier is
+    // ragged and dense, so it gets the full cape/bay bulge at twice the lobe frequency instead of the 30% the
+    // other time-coasts keep (the 1943 shore must still read as a datum against the ruler)
+    const frontier = vertical && p[0] === NC;
+    const vK = frontier ? 1 : (vertical ? .3 : 1);
+    const ACout = seaSide ? Math.min(CAPE, L * .22) * vK * shortK : 0;
+    const ACin = seaSide ? Math.min(lat * 1.3, 14) * vK * shortK : 0;
+    const lobes = Math.max(1, Math.round(L / (frontier ? LOBE * .5 : LOBE))), lph = h2(p[0], p[1], 33) * 6.28;
     const sgn = h2(p[0], p[1], 31) < .5 ? -1 : 1, ph = h2(q[0], q[1], 32) * 6.28; const pts = [];
     for (let k = 0; k <= n; k++) {
       const t = k / n; const env = Math.sin(Math.PI * t);
@@ -574,6 +600,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const tix = (X(PRESENT) + W - 190) / 2;
   txt(tix, RULER_Y - 46, 'TERRA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
   txt(tix, RULER_Y - 32, 'INCOGNITA', 'ocean-label', null, {'font-size': 9.5, 'letter-spacing': 3});
+  // v7 marginal note under the eastern ruler: the east is an exponential explosion; this altitude cannot resolve it
+  txt(X(2019.2), RULER_Y + 56, 'eastward the land grows denser than this scale can resolve — detail here awaits the country & city layers (forthcoming)', 'ruler-cap', null, {'font-style': 'italic'});
 
   // title cartouche (generated frame as an image; the words are vector text) in the northern sea
   const CH = 172, CW = CH * 803 / 565, ccx = X(2004.5), ccy = 4 + CH / 2;
