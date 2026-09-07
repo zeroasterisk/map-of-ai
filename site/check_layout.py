@@ -262,7 +262,10 @@ def main():
     lowTex = {k: v for k, v in texStd.items() if v < TEX_STD}
     # 7. assets
     badAssets = [(u, s) for u, s in responses if s >= 400]
-    offsite = [u for u, _ in responses if not u.startswith(url) and "fonts.g" not in u]
+    # same-origin test: compare against the page URL without its query string, so a cache-buster (?cb=...) on
+    # --url does not make the site's own registry.json / textures look like third-party requests
+    base = url.split("?", 1)[0].rsplit("/", 1)[0] + "/"
+    offsite = [u for u, _ in responses if not u.startswith(base) and "fonts.g" not in u]
     for k in ("continents", "lands", "coastLoops", "viewBox", "images", "spineRise", "plateExtent"):
         print(f"{k}: {res[k]}")
     print("border audit (per adjacent pair: rmsDev px from best-fit line, tilt° from vertical, straightVertical?):")
