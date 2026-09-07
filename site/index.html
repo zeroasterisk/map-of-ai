@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v5 (curved spine, wandering shared borders, feathered texture blends, label halos) -->
+<!-- map-of-ai site build: P2-T1-RENDER v6 (v5 + organic in-region coastlines: sub-column bays/capes inside each registry envelope, multi-lobe sea-side coast bulge) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
   .continent .border { fill: none; stroke: #3d2e1a; stroke-width: 1; stroke-linejoin: round; stroke-opacity: .85; pointer-events: none; }
   .continent:hover .border { stroke-width: 1.8; stroke-opacity: 1; }
   .coast { fill: none; stroke: #2e2212; stroke-width: 1.7; stroke-linejoin: round; pointer-events: none; }
-  .waterline { fill: none; stroke: #4a3a24; stroke-linejoin: round; pointer-events: none; }
+  .waterline { fill: none; stroke: #4a3a24; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
   .shadow { fill: #2e2212; fill-opacity: .30; filter: url(#landshadow); pointer-events: none; }
   .cname { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 1.2px; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 3.2px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
   .csub { font-family: Lora, Georgia, serif; font-style: italic; fill: #3f321f; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 2.6px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
@@ -124,8 +124,12 @@ const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f 
 // the sea), so neighbouring continents share their border by construction — no gaps, no overlaps, no clipping.
 // Each continent's outline is traced from its cells; each grid edge is turned into the SAME wobbly hand-drawn
 // polyline for both of its neighbours (deterministic noise keyed by the edge), so shared borders coincide exactly.
-// Rows: N1 | N2a N2b | Ca Cb | S1 | S2  (bands split in half where the registry's band spans need it).
-// Columns: the registry start/end years. Cell codes: . sea  y shore  h heartland  w steppes  p plateau  c revival
+// Rows (v6): N1a N1b | N2a N2b | Ca Cb | S1 | S2a S2b  (bands split in half where a region's drawn shape needs it).
+// Columns: the registry start/end years (MAJOR) plus, in the wide 2011–present columns, MINOR sub-columns (2014,
+// 2019.6, 2024.3) that carry no registry meaning: they only let a region's occupancy of its outer half-bands change
+// part-way through its own span, so a wide region is no longer a constant-height slab from its start year to its
+// end year (v6). A region's registered band span is the MAXIMUM extent; the drawn shape wanders inside it.
+// Cell codes: . sea  y shore  h heartland  w steppes  p plateau  c revival
 // s isthmus  d basin  t transformer  g generative.  Every cell an owner occupies lies inside that continent's
 // REGISTRY.md band span (checked by check_layout.py against registry.json). Realisation of the 1974–2011 cluster:
 //   1974–82  the Winter Gulf: south of the steppes (N1–N2) the sea comes in — the heartland ends on the 1974
@@ -134,22 +138,35 @@ const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f 
 //   1988–93  the isthmus begins as a neck (Ca) between plateau and revival (Pearl 1988), broadening after 1993
 //   1998–06  a southern bay (S2) between the revival's end and the basin's 2006 foothills
 //   2011–17  the isthmus ends; the northern sea reaches down to the top of C over the basin
+// v6 east (the two wide jungle regions no longer read as two bars side by side):
+//   2011–17  basin: the north shore steps back from Ca to Cb at 2014 (a bay opens in the north as the isthmus ends)
+//   2017–19.6 transformer opens narrow — N2b..S2a (home C, spreading) — a strait north of it and a bay south of it
+//   2019.6–22 transformer at full N2–S2 (AlphaFold north, CLIP/robotics south): it BULGES late, tapers early
+//   2022–24.3 generative opens at full northern height (N1a, policy/alignment) but S2b is still sea
+//   2024.3–now generative recedes from N1a (a northern bay) and fills S2b (VLA/robotics) — opposite of the plateau
+// So the north coast steps 5→3→2→0→1 and the south coast 8→7→8→7→8 across the eastern third: bays and capes
+// interlock instead of two full-height columns meeting at a plumb seam.
 const E = PRESENT - 0.06;
-const COLS = [1943, 1956, 1974, 1980, 1982, 1988, 1993, 1998, 2006, 2011, 2017, 2022, E];
-const ROWY = [BY('N1',0), BY('N2',0), BY('N2',.5), BY('C',0), BY('C',.5), BY('S1',0), BY('S2',0), BY('S2',1)];
+const COLS = [1943, 1956, 1974, 1980, 1982, 1988, 1993, 1998, 2006, 2011, 2014, 2017, 2019.6, 2022, 2024.3, E];
+const MINOR = new Set([10, 12, 14]);   // indices into COLS of the sub-columns (2014, 2019.6, 2024.3)
+const ROWY = [BY('N1',0), BY('N1',.5), BY('N2',0), BY('N2',.5), BY('C',0), BY('C',.5), BY('S1',0), BY('S2',0), BY('S2',.5), BY('S2',1)];
 const GRID = [
-  'yyyyyyy', // 1943–56 shore, all bands
-  '.hhhhh.', // 1956–74 heartland N2–S1
-  'www....', // 1974–80 first winter: steppes N1–N2, the Winter Gulf south of them
-  'wpp....', // 1980–82 plateau opens under the steppes
-  'wppcccc', // 1982–88 revival opens C–S2
-  'wppsccc', // 1988–93 isthmus neck (Ca) between plateau and revival
-  '.sssscc', // 1993–98
-  '.sssss.', // 1998–2006
-  '.sssddd', // 2006–11 basin foothills
-  '...dddd', // 2011–17
-  '.tttttt', // 2017–22 transformer N2–S2
-  'ggggggg', // 2022–present generative, all bands
+  //N1aN1bN2aN2bCa Cb S1 S2aS2b
+  'yyyyyyyyy', // 1943–56 shore, all bands
+  '..hhhhh..', // 1956–74 heartland N2–S1
+  'wwww.....', // 1974–80 first winter: steppes N1–N2, the Winter Gulf south of them
+  'wwpp.....', // 1980–82 plateau opens under the steppes
+  'wwppccccc', // 1982–88 revival opens C–S2
+  'wwppscccc', // 1988–93 isthmus neck (Ca) between plateau and revival
+  '..ssssccc', // 1993–98
+  '..sssss..', // 1998–2006
+  '..sssdddd', // 2006–11 basin foothills
+  '....ddddd', // 2011–14 basin C–S2
+  '.....dddd', // 2014–17 basin: north shore recedes to Cb (minor column)
+  '...ttttt.', // 2017–19.6 transformer opens narrow: N2b–S2a (home C)
+  '..ttttttt', // 2019.6–22 transformer at full N2–S2 (minor column)
+  'gggggggg.', // 2022–24.3 generative: full north (N1a), S2b still sea
+  '.gggggggg', // 2024.3–present generative: N1a recedes, S2b filled (minor column)
 ];
 const CODE = {y:'cybernetic-shore', h:'symbolic-heartland', w:'winter-steppes', p:'expert-systems-plateau', c:'connectionist-revival', s:'statistical-isthmus', d:'deep-learning-basin', t:'transformer-plateau', g:'generative-coast'};
 const NC = COLS.length - 1, NR = ROWY.length - 1;
@@ -160,7 +177,7 @@ const ISLES = [ {y: 1666, cy: BY('N1', .55), r: 12, s: 1}, {y: 1847, cy: BY('N2'
 const MIN_FONT = 12;
 const LABEL = {
   'cybernetic-shore':       {inside: false, px: PAD_L + ARCH_W / 2 - 10, at: [null, BY('S2', .38)], anchorYr: 1944.0, anchorBand: ['S2', .38], side: 'left', maxW: 118},
-  'symbolic-heartland':     {inside: true,  at: [1965.0, BY('C', .3)]},
+  'symbolic-heartland':     {inside: true,  at: [1964.2, BY('C', .3)]},
   'winter-steppes':         {inside: true,  at: [1983.5, BY('N1', .5)]},
   // the plateau (N2, 1980–93) is too small for its name; the label sits in the Winter Gulf below it (open water
   // between the heartland and the revival) with a leader up into the plateau
@@ -168,7 +185,7 @@ const LABEL = {
   'connectionist-revival':  {inside: true,  at: [1990.5, BY('S2', .4)]},
   'statistical-isthmus':    {inside: true,  at: [2002.3, BY('N2', .55)]},
   'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)]},
-  'transformer-plateau':    {inside: true,  at: [2019.3, BY('C', .6)]},
+  'transformer-plateau':    {inside: true,  at: [2019.9, BY('C', .85)], maxW: 150},
   'generative-coast':       {inside: true,  at: [2024.4, BY('C', .5)]},
 };
 
@@ -186,12 +203,19 @@ function warp([x, y]) { const s0 = 1 / 210, s = 1 / 90, s2 = 1 / 18; const wx = 
 const VX = {};
 // local cell sizes bound every displacement so neighbouring borders can never cross: vertex jitter ≤ 15% and
 // border wander ≤ 25% of the narrower adjacent column/row (worst case 2×(15+25)% = 80% < 100%).
-const colW = i => (i < 0 || i >= NC) ? 1e9 : X(COLS[i + 1]) - X(COLS[i]);
+// v6: the budgets of a MAJOR (registry-year) border are measured against the neighbouring MAJOR columns, as in v5,
+// so the 2017 / 2022 seams keep their v5 wander + lean. MINOR sub-column lines get a small fixed budget of their
+// own (LAT_MINOR, no lean): a major border may therefore approach a minor line by at most lean(30) + jitter + wander
+// (≈55px worst case) and the minor line moves ≤ 1.6·LAT_MINOR toward it, well inside the ≥ 75px sub-column width.
+const LAT_MINOR = 10;
+const majorL = i => { let k = i; while (k > 0 && MINOR.has(k)) k--; return k; };          // nearest major column line ≤ i
+const majorR = i => { let k = i; while (k < NC && MINOR.has(k)) k++; return k; };         // nearest major column line ≥ i
+const colW = i => (i < 0 || i >= NC) ? 1e9 : X(COLS[majorR(i + 1)]) - X(COLS[majorL(i)]);  // width between major lines
 const rowH = j => (j < 0 || j >= NR) ? 1e9 : ROWY[j + 1] - ROWY[j];
 // (cap 160 → up to 40px of wander on the wide 2006–present columns; the old 120 cap left those tall borders at
 // ±30px over ~300px of length, which still read as plumb lines. 240 was tried and pushed the 2022 border into the
 // Transformer Plateau label.)
-const latX = i => .25 * Math.min(colW(i - 1), colW(i), 160);   // max lateral wander of the year border at column line i
+const latX = i => MINOR.has(i) ? LAT_MINOR : .25 * Math.min(colW(i - 1), colW(i), 160);   // max lateral wander of the year border at column line i
 const latY = j => .25 * Math.min(rowH(j - 1), rowH(j), 120);
 // the x-jitter alternates sign down each column (odd/even j) so consecutive vertices of a year line are always
 // offset in opposite directions → every year border segment is tilted, never plumb
@@ -203,14 +227,28 @@ const latY = j => .25 * Math.min(rowH(j - 1), rowH(j), 120);
 // The two widest columns (2017, 2022: 230–250px wide, 300px tall) get a larger cap (34px ≈ 0.7yr) — at 20px they
 // still read as plumb full-height seams.
 const leanCap = i => Math.min(colW(i - 1), colW(i)) >= 200 ? 30 : 20;
-const leanX = i => (i <= 0 || i >= NC) ? 0 : Math.max(0, Math.min(leanCap(i), .5 * Math.min(colW(i - 1), colW(i)) - 1.6 * latX(i)));
+const leanX = i => (i <= 0 || i >= NC || MINOR.has(i)) ? 0 : Math.max(0, Math.min(leanCap(i), .5 * Math.min(colW(i - 1), colW(i)) - 1.6 * latX(i)));
+// v6: the lean runs −1 → +1 over the rows that are actually LAND at that column line (not over the whole plate),
+// so a short border like the 1974 escarpment (5 rows) still gets its full tilt; and the alternation is keyed to
+// the rank among MAJOR lines so consecutive registry borders still lean in opposite directions.
+const MAJORS = COLS.map((_, i) => i).filter(i => !MINOR.has(i));
+const leanSign = i => MAJORS.indexOf(i) % 2 ? 1 : -1;
+// The ramp runs over the rows where BOTH sides of the line are land (the actual internal seam); on the rows above /
+// below that (where the year line is a coast, not a seam) the lean is held at half strength — a coast gets its
+// character from the cape/bay bulge, and the full lean there only pushed region corners toward the year tolerance.
+const seamRows = i => { let a = 1e9, b = -1e9; for (let j = 0; j < NR; j++) if (ownerAt(i - 1, j) && ownerAt(i, j)) { a = Math.min(a, j); b = Math.max(b, j + 1); } return a > b ? [0, NR] : [a, b]; };
 function V(i, j) {
   const k = i + ',' + j;
   if (!VX[k]) {
-    const lean = leanX(i) * (i % 2 ? 1 : -1) * (2 * j / (NR) - 1);   // −lean at the top row → +lean at the bottom
+    const [ja, jb] = seamRows(i); const u = 2 * (j - ja) / (jb - ja) - 1;
+    const short = (jb - ja) <= 2;                      // a 1–2-row seam (e.g. 1974 heartland|steppes): lean carries the tilt alone
+    const coastRow = u < -1 || u > 1;                  // the year line is a coast here (land on one side only), not a seam
+    const lean = (short ? leanCap(i) * .9 : leanX(i)) * leanSign(i) * (u < -1 ? -.75 : u > 1 ? .75 : u);   // −lean at the top of the seam → +lean at its bottom
     // the zig-zag jitter is scaled down where the lean is large, so lean + jitter + wander stays inside the
-    // half-column budget (and the gate's ±44px year tolerance on the region's x-extent)
-    const jit = (j % 2 ? 1 : -1) * (0.35 + 0.65 * h2(i, j, 11)) * 0.6 * latX(i) * (1 - 0.6 * leanX(i) / leanCap(i));
+    // half-column budget (and the gate's ±44px year tolerance on the region's x-extent); on a short seam the
+    // per-row alternation would cancel the lean, and on a coast row it can fold the shoreline back on itself into
+    // a needle spike (the wide waterline strokes then leave an ink blob at the tip) — so it is dropped in both cases
+    const jit = (short || coastRow) ? 0 : (j % 2 ? 1 : -1) * (0.35 + 0.65 * h2(i, j, 11)) * 0.6 * latX(i) * (1 - 0.6 * leanX(i) / leanCap(i));
     VX[k] = [X(COLS[i]) + lean + jit, ROWY[j] + (h2(i, j, 12) - .5) * 1.2 * latY(j)];
   }
   return VX[k];
@@ -233,20 +271,32 @@ function edgePts(a, b) {
     const seaSide = (cPos === null) === (cNeg === null) ? 0 : (cPos === null ? 1 : -1);   // 0 = interior border
     // year borders: the wander budget shrinks by the column's lean, so lean + jitter + wander never exceeds the
     // half-column budget (keeps every region's x-extent within the gate's ±44px year tolerance)
-    const lat = Math.min(vertical ? latX(p[0]) * (1 - 0.7 * leanX(p[0]) / leanCap(p[0])) : latY(p[1]), L * .3);
+    const lat = Math.min(vertical ? latX(p[0]) * (1 - 0.55 * leanX(p[0]) / leanCap(p[0])) : latY(p[1]), L * .3);
     const A0 = lat * .6, A1 = lat * .22, A3 = lat * .12;                    // diagonal sweep, meander, low-freq noise
     const A2 = Math.min(2.8, L * .035);                                     // fine hand wobble
     // seaward cape/bay bulge on the coast: full on north/south coasts, 40% on the west/east (time) coasts so the
     // 1943 / present shorelines stay readable against the ruler
-    const AC = seaSide ? Math.min(lat * .9, 26) * (vertical ? .4 : 1) : 0;
+    // v6: the SEAWARD amplitude is no longer tied to the local row budget (there is nothing to cross on the sea
+    // side): up to CAPE px on long north/south coasts, and the bulge is multi-lobed (one lobe per ~LOBE px), so a
+    // 250px coast gets 2–3 capes and bays instead of one shallow hump. The INLAND amplitude stays bounded by the
+    // local budget (a bay must never reach the next drawn border). The lobe signal is a function of position
+    // along the edge, i.e. of time within the region's own span — this is what makes a wide region's north and
+    // south coast wander independently across its duration (its two coasts use different edges → different noise).
+    const CAPE = 24, LOBE = 95;
+    const ACout = seaSide ? Math.min(CAPE, L * .22) * (vertical ? .3 : 1) : 0;
+    const ACin = seaSide ? Math.min(lat * 1.3, 14) * (vertical ? .3 : 1) : 0;
+    const lobes = Math.max(1, Math.round(L / LOBE)), lph = h2(p[0], p[1], 33) * 6.28;
     const sgn = h2(p[0], p[1], 31) < .5 ? -1 : 1, ph = h2(q[0], q[1], 32) * 6.28; const pts = [];
     for (let k = 0; k <= n; k++) {
       const t = k / n; const env = Math.sin(Math.PI * t);
+      // coast lobe in [-1, 1]: a lobes-cycle sine + low-frequency noise, faded to 0 at the vertices (env^1.1: a
+      // steeper onset, e.g. env^0.6, hooks the last few px of the edge back toward the jittered vertex → hairpin)
+      const lob = seaSide ? Math.pow(env, 1.1) * Math.max(-1, Math.min(1, Math.sin(2 * Math.PI * lobes * t * .5 + lph) * .75 + (noise1(t * 1.7 + key % 83, 24) - .5) * 1.1)) : 0;
       const off = env * (sgn * A0 * Math.sin(Math.PI * t + .25 * Math.sin(ph)) * (0.7 + 0.3 * Math.sin(ph + t * 2))
                        + Math.sin(2 * Math.PI * t + ph) * A1 * (0.6 + 0.4 * noise1(t * 3 + key % 97, 23))
                        + (noise1(t * 2.5 + key % 97, 21) - .5) * 2 * A3
                        + (noise1(t * 11 + key % 89, 22) - .5) * 2 * A2)
-                  + seaSide * AC * Math.pow(env, 1.5) * (0.35 + 0.65 * noise1(t * 1.7 + key % 83, 24));
+                  + seaSide * (lob > 0 ? ACout * lob : ACin * lob);
       pts.push(warp([P[0] + (Q[0] - P[0]) * t + nx * off, P[1] + (Q[1] - P[1]) * t + ny * off]));
     }
     EC[key] = pts;
@@ -428,7 +478,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
   function placeInside(c, land) {
     const [lyr, ly0] = LABEL[c.id].at; const lx = X(lyr), ly = SY(lx, ly0); const bb = land.getBBox();
     for (const [sN, sS, withSub] of TRIES) {
-      const ts = labelBlock(c, lx, ly, sN, sS, bb.width - 24, withSub);
+      const ts = labelBlock(c, lx, ly, sN, sS, Math.min(bb.width - 24, LABEL[c.id].maxW || 1e9), withSub);
       if (fitsInside(land, union(ts), 6)) return ts;
       ts.forEach(t => t.remove());
     }

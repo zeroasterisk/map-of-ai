@@ -37,7 +37,7 @@ MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
-BUILD_MARKER = "P2-T1-RENDER v5"
+BUILD_MARKER = "P2-T1-RENDER v6"
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -179,7 +179,21 @@ JS = r"""
   const cm = coastPaths[0]; const cb = bb(cm); const mids = [];
   for (let x = Math.floor(cb.x) + 10; x < cb.r - 10; x += 20) { let t = null, bt = null; for (let y = Math.floor(cb.y); y <= cb.b; y += 2) if (inFill(cm, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) mids.push((t + bt) / 2); }
   const spineRise = mids.length ? +(Math.max(...mids) - Math.min(...mids)).toFixed(0) : 0;
-  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, borders, spineRise, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+  // 9. v6 coastline sanity: no vertex of the mainland coast may turn back on itself (a needle spike / hairpin —
+  //    the wide waterline strokes render an ink blob at such a tip). Report every turn > HAIRPIN_DEG.
+  const cpts = cm.getAttribute('d').slice(1, -1).split('L').map(s => s.split(',').map(Number));
+  const hairpins = [];
+  for (let i = 0; i < cpts.length; i++) { const a = cpts[(i - 1 + cpts.length) % cpts.length], p = cpts[i], c = cpts[(i + 1) % cpts.length]; const v1 = [p[0] - a[0], p[1] - a[1]], v2 = [c[0] - p[0], c[1] - p[1]]; const t = Math.abs(Math.atan2(v1[0] * v2[1] - v1[1] * v2[0], v1[0] * v2[0] + v1[1] * v2[1]) * 180 / Math.PI); if (t > cfg.HAIRPIN_DEG) hairpins.push({at: p.map(v => +v.toFixed(0)), turnDeg: +t.toFixed(0)}); }
+  // 10. v6 in-region shape variation: per mainland region, sample the fill's top and bottom (plate coords) per x
+  //     column across the region's own span and report the peak-to-peak wander of its north and south coast,
+  //     plus its height range. A constant-height slab gives ≈ 0; a landmass with capes and bays gives tens of px.
+  const shape = {};
+  for (const c of mainland) {
+    const p = c.lands[0]; const a = bb(p); const tops = [], bots = [], hs = [];
+    for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(t - spineY(x)); bots.push(bt - spineY(x)); hs.push(bt - t); } }
+    if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
+  }
+  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, plateExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -197,6 +211,11 @@ YEAR_SLACK = 44
 MIN_WANDER = 4.0
 MIN_TILT = 6.0
 MIN_SPINE_RISE = 40   # px: the mainland centreline must rise/fall at least this much across the page
+HAIRPIN_DEG = 150     # v6: max turning angle at any mainland coast vertex (a spike folds back ≥ 150°)
+# v6: the wide regions must not be constant-height slabs across their own span: north or south coast must wander
+# at least MIN_COAST_P2P px peak-to-peak (measured in plate coords over the region's own x-range, corners excluded)
+MIN_COAST_P2P = 40
+WIDE = ["deep-learning-basin", "transformer-plateau", "generative-coast"]
 
 
 def serve(root: Path, port: int):
@@ -245,7 +264,7 @@ def main():
             end_expr = "PRESENT - 0.06" if c["end"] == "present" else str(c["end"])
             x0, x1 = pg.evaluate(f"() => [X({c['start']}), X({end_expr})]")
             spans[c["id"]] = {"bands": bands, "x0": x0, "x1": x1}
-        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT))
+        res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG))
         pg.screenshot(path=a.shot, full_page=True)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
         png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
@@ -268,6 +287,9 @@ def main():
     offsite = [u for u, _ in responses if not u.startswith(base) and "fonts.g" not in u]
     for k in ("continents", "lands", "coastLoops", "viewBox", "images", "spineRise", "plateExtent"):
         print(f"{k}: {res[k]}")
+    print("in-region shape (v6; plate px over each region's own span): north/south coast peak-to-peak, height range:")
+    for cid, s in res["shape"].items():
+        print("  ", cid, json.dumps(s))
     print("border audit (per adjacent pair: rmsDev px from best-fit line, tilt° from vertical, straightVertical?):")
     for bd in res["borders"]:
         print("  ", json.dumps(bd))
@@ -276,6 +298,8 @@ def main():
     fails["lowTexture"] = lowTex
     fails["straightBorders"] = [bd["pair"] for bd in res["borders"] if bd.get("n", 0) < 10 or bd.get("straightVertical")]
     fails["flatSpine"] = [] if res["spineRise"] >= MIN_SPINE_RISE else [res["spineRise"]]
+    fails["hairpins"] = res["hairpins"]
+    fails["slabRegions"] = [cid for cid in WIDE if max(res["shape"][cid]["northP2P"], res["shape"][cid]["southP2P"]) < MIN_COAST_P2P]
     fails["badAssets"] = badAssets
     fails["offsiteRequests"] = offsite
     for k, v in fails.items():
