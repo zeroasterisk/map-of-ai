@@ -4,87 +4,89 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
+<!-- map-of-ai site build: P2-T1-RENDER v2 (atlas restyle) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sea: #0d1b2a; --sea2: #10233a; --ink: #e8e2d0; --ink-dim: #a9a394; --rule: #2b3d55;
-    --highland: #b98b4e; --grassland: #8fae5a; --forest: #3f8f5c; --jungle: #1f6f6b;
-    --wetland: #4f86b3; --harbour: #7c8fa6; --mixed: #a06fa8;
+    --paper: #e6d9bd; --ink: #3a2e1e; --ink-dim: #6e5f47; --rule: #b9a683; --sea: #cfc0a0;
   }
-  html, body { margin: 0; background: var(--sea); color: var(--ink); font: 15px/1.45 Georgia, "Iowan Old Style", "Palatino Linotype", serif; }
-  header { padding: 22px 28px 8px; }
-  h1 { margin: 0; font-size: 26px; letter-spacing: .3px; font-weight: normal; }
-  h1 small { color: var(--ink-dim); font-size: 15px; margin-left: 8px; }
-  .banner { margin: 10px 28px 0; padding: 10px 14px; border: 1px dashed #6a5a3a; background: #1b2436; color: #f0d9a3; font-size: 14px; border-radius: 4px; }
-  .banner b { color: #ffe7b3; }
-  .wrap { position: relative; margin: 14px 28px 0; overflow-x: auto; }
-  svg { display: block; background: radial-gradient(ellipse at 20% 30%, var(--sea2) 0%, var(--sea) 70%); border: 1px solid var(--rule); border-radius: 4px; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.5 Lora, Georgia, "Iowan Old Style", serif; }
+  body { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .07 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>"); }
+  header { padding: 26px 32px 4px; text-align: center; }
+  h1 { margin: 0; font-family: Cinzel, Georgia, serif; font-weight: 600; font-size: 30px; letter-spacing: 2px; color: #3a2e1e; }
+  h1 small { display: block; font-family: Lora, Georgia, serif; font-style: italic; font-weight: 400; font-size: 14px; letter-spacing: .5px; color: var(--ink-dim); margin-top: 2px; }
+  .banner { max-width: 880px; margin: 10px auto 0; padding: 8px 14px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink-dim); font-size: 13.5px; font-style: italic; text-align: center; }
+  .banner b { color: var(--ink); font-style: normal; }
+  .wrap { position: relative; margin: 18px auto 0; max-width: 1720px; padding: 0 24px; overflow-x: auto; }
+  svg#map { display: block; width: 100%; height: auto; min-width: 900px; border: 1px solid #8f7b57; outline: 4px solid var(--paper); box-shadow: 0 0 0 5px #b9a683, 0 10px 30px rgba(60,40,10,.25); background: var(--sea); }
   .continent { cursor: pointer; }
-  .continent rect, .continent path { stroke: rgba(0,0,0,.45); stroke-width: 1.2; mix-blend-mode: normal; filter: drop-shadow(0 2px 2px rgba(0,0,0,.45)); }
-  .continent:hover rect, .continent:hover path { stroke: #fff; stroke-width: 1.6; }
-  .cname { font-size: 15px; fill: #fff; font-weight: bold; paint-order: stroke; stroke: rgba(0,0,0,.55); stroke-width: 3px; pointer-events: none; }
-  .csub { font-size: 11px; fill: #f4efe2; paint-order: stroke; stroke: rgba(0,0,0,.5); stroke-width: 2.5px; pointer-events: none; }
-  .band-label { font-size: 10px; fill: #7d8aa0; letter-spacing: 1px; font-family: "Helvetica Neue", Arial, sans-serif; }
-  .band-line { stroke: #24364d; stroke-dasharray: 2 6; }
-  .grat { stroke: #2c4262; }
-  .grat-label { font-size: 11px; fill: #9fb0c8; font-family: "Helvetica Neue", Arial, sans-serif; text-anchor: middle; }
-  .grat-era { font-size: 10px; fill: #5f7290; font-family: "Helvetica Neue", Arial, sans-serif; text-anchor: middle; }
-  .ocean-label { font-size: 13px; fill: #3b5476; font-style: italic; letter-spacing: 3px; }
-  .card { position: absolute; max-width: 420px; max-height: 360px; overflow: hidden; background: #f4ecd8; color: #1e1a14; border: 1px solid #b7a37a; border-radius: 4px; padding: 10px 12px; font-size: 13px; box-shadow: 0 6px 20px rgba(0,0,0,.5); pointer-events: none; display: none; z-index: 5; }
-  .card h3 { margin: 0 0 2px; font-size: 16px; }
-  .card .sub { color: #5b5240; margin-bottom: 6px; }
+  .continent .land { stroke: #4a3a24; stroke-width: 1.1; stroke-linejoin: round; filter: url(#landshadow); }
+  .continent:hover .land { stroke: #2a1f10; stroke-width: 1.8; }
+  .continent .land-inner { fill: none; stroke: #f6ecd6; stroke-opacity: .5; stroke-width: 1; pointer-events: none; }
+  .cname { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2f2416; letter-spacing: 1.2px; paint-order: stroke; stroke: rgba(246,236,214,.7); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  .csub { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3d29; paint-order: stroke; stroke: rgba(246,236,214,.65); stroke-width: 2.4px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  .ruler, .ruler-tick { stroke: #5b4a30; stroke-width: 1; }
+  .ruler-num { font-family: Lora, Georgia, serif; font-size: 12px; fill: #4b3d29; text-anchor: middle; }
+  .ruler-cap { font-family: Lora, Georgia, serif; font-style: italic; font-size: 11px; fill: #6e5f47; text-anchor: middle; letter-spacing: .4px; }
+  .band-code { font-family: Cinzel, Georgia, serif; font-size: 12px; fill: #6e5f47; letter-spacing: 1px; text-anchor: end; }
+  .band-label { font-family: Lora, Georgia, serif; font-style: italic; font-size: 10.5px; fill: #7a6a4f; text-anchor: end; }
+  .ocean-label { font-family: Cinzel, Georgia, serif; font-size: 12px; fill: #8b7a59; letter-spacing: 3px; text-anchor: middle; opacity: .85; }
+  .compass { fill: none; stroke: #7a6a4f; stroke-width: .8; }
+  .card { position: absolute; max-width: 420px; max-height: 360px; overflow: hidden; background: #f6ecd6; color: #2f2416; border: 1px solid #8f7b57; box-shadow: 0 8px 24px rgba(60,40,10,.35); padding: 10px 14px; font-size: 13px; pointer-events: none; display: none; z-index: 5; }
+  .card h3 { margin: 0 0 2px; font-family: Cinzel, Georgia, serif; font-weight: 600; font-size: 15px; letter-spacing: .8px; }
+  .card .sub { color: #6e5f47; font-style: italic; margin-bottom: 6px; }
   .card dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 2px 8px; }
-  .card dt { color: #7a6f57; }
+  .card dt { color: #8b7a59; }
   .card dd { margin: 0; }
-  .legend { display: flex; flex-wrap: wrap; gap: 12px 22px; margin: 12px 28px; font-size: 13px; color: var(--ink-dim); }
-  .legend span::before { content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; border: 1px solid rgba(0,0,0,.5); background: var(--c); }
-  .list { margin: 8px 28px 40px; }
-  table { border-collapse: collapse; font-size: 13px; width: 100%; }
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 16px auto 4px; max-width: 1200px; font-size: 13px; font-style: italic; color: var(--ink-dim); }
+  .legend span::before { content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; border: 1px solid #4a3a24; background: var(--c); }
+  details.list { margin: 10px auto 30px; max-width: 1680px; padding: 0 24px; }
+  details.list summary { cursor: pointer; font-style: italic; color: var(--ink-dim); font-size: 13.5px; }
+  table { border-collapse: collapse; font-size: 13px; width: 100%; margin-top: 10px; }
   th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { color: var(--ink-dim); font-weight: normal; }
-  td code { color: #c9d6ea; }
-  .sw { display: inline-block; width: 11px; height: 11px; margin-right: 6px; vertical-align: -1px; border: 1px solid rgba(0,0,0,.5); }
-  footer { margin: 0 28px 30px; color: var(--ink-dim); font-size: 12px; }
-  a { color: #9fc2ff; }
+  th { color: var(--ink-dim); font-weight: normal; font-style: italic; }
+  td code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #5a4a30; }
+  .sw { display: inline-block; width: 11px; height: 11px; margin-right: 6px; vertical-align: -1px; border: 1px solid #4a3a24; }
+  footer { margin: 0 auto 30px; max-width: 1200px; padding: 0 20px; color: var(--ink-dim); font-size: 12px; font-style: italic; text-align: center; }
+  a { color: #6b4f2a; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Map of AI — Continent Registry <small>(review prototype)</small></h1>
+  <h1>Map of AI<small>Continent registry · review prototype</small></h1>
 </header>
 <div class="banner">
-  <b>Review prototype — continent registry only.</b> Countries and cities not yet authored.
-  Feedback: does the west-to-east ordering and left-right sense of scale feel right? Do the biome colors read clearly?
-  Source of truth: <code>data/continents/REGISTRY.md</code> (rendered from <code>registry.json</code>, built from it).
+  <b>Review prototype — continents only;</b> countries and cities not yet authored.
+  Does the west-to-east ordering and sense of scale feel right? Do the terrains read clearly?
 </div>
 <div class="wrap">
   <svg id="map" xmlns="http://www.w3.org/2000/svg"></svg>
   <div class="card" id="card"></div>
 </div>
 <div class="legend" id="legend"></div>
-<div class="list"><table id="tbl"></table></div>
+<details class="list"><summary>View the registry as a table</summary><table id="tbl"></table></details>
 <footer id="foot"></footer>
 
 <script>
+// Biome palette: aged hand-tinted map inks (one warm family; desaturated).
 const BIOME = {
-  highland: {c: '#b98b4e', label: 'highland — hand-authored logic & knowledge (symbolic)'},
-  grassland:{c: '#8fae5a', label: 'grassland — probabilistic / statistical models'},
-  forest:   {c: '#3f8f5c', label: 'forest — learned neural representations'},
-  jungle:   {c: '#1f6f6b', label: 'jungle — scaled self-supervised / foundation models'},
-  wetland:  {c: '#4f86b3', label: 'wetland — reinforcement learning & control'},
-  harbour:  {c: '#7c8fa6', label: 'harbour — benchmarks, datasets, tooling, venues'},
-  mixed:    {c: '#a06fa8', label: 'mixed — genuinely hybrid'}
+  highland: {c: '#b48a5c', label: 'highland — hand-authored logic & knowledge (symbolic)'},
+  grassland:{c: '#c8a85a', label: 'grassland — probabilistic / statistical models'},
+  forest:   {c: '#7d8f60', label: 'forest — learned neural representations'},
+  jungle:   {c: '#5f8378', label: 'jungle — scaled self-supervised / foundation models'},
+  wetland:  {c: '#7f8f96', label: 'wetland — reinforcement learning & control'},
+  harbour:  {c: '#a59a84', label: 'harbour — benchmarks, datasets, tooling, venues'},
+  mixed:    {c: '#7c6f8c', label: 'mixed — genuinely hybrid'}
 };
 const BANDS = ['N1','N2','C','S1','S2'];
-// Render-only layout hints (not registry data): fraction of the continent's own band span to occupy, top→bottom.
-// expert-systems-plateau is drawn nested in the lower part of N2 — research/03: "the expert-systems boom lies between
-// [the two winters] as a warm valley". connectionist-revival keeps clear of the isthmus label row.
-const INSET = { 'expert-systems-plateau': [0.42, 1.0], 'connectionist-revival': [0.12, 1.0] };
-const BAND_NAME = {N1:'N1 · philosophy & foundations', N2:'N2 · logic, knowledge, reasoning', C:'C · language & communication', S1:'S1 · planning, search, games', S2:'S2 · perception, control, embodiment'};
+const BAND_NAME = {N1:'philosophy & foundations', N2:'logic, knowledge, reasoning', C:'language & communication', S1:'planning, search, games', S2:'perception, control, embodiment'};
 
 // ---- X scale: AXES.md §1 piecewise (1943–74 1×, 1974–2006 1.5×, 2006–17 3×, 2017–present 6×); pre-1943 log-compressed archipelago.
 const NOW = new Date(); const PRESENT = NOW.getFullYear() + (NOW.getMonth()) / 12;
 const SEG = [[1943,1974,1],[1974,2006,1.5],[2006,2017,3],[2017,PRESENT,6]];
-const W = 1760, H = 660, PAD_L = 40, PAD_R = 250, ARCH_W = 170, TOP = 70, MAP_TOP = 130, MAP_BOT = 560;
+const W = 1800, H = 580, PAD_L = 24, PAD_R = 180, ARCH_W = 150, MAP_TOP = 48, MAP_BOT = 470, RULER_Y = 500;
 const mainW = W - PAD_L - PAD_R - ARCH_W;
 const units = SEG.reduce((s,[a,b,k]) => s + (b-a)*k, 0);
 const pxPerUnit = mainW / units;
@@ -97,98 +99,155 @@ function xMain(y) {
   }
   return x;
 }
-// archipelago: log-compressed distance west of 1943
-function xArch(y) { const d = Math.max(1, 1943 - y); const t = Math.log(d + 1) / Math.log(1943 - 1600 + 1); return PAD_L + ARCH_W - 12 - t * (ARCH_W - 24); }
+function xArch(y) { const d = Math.max(1, 1943 - y); const t = Math.log(d + 1) / Math.log(1943 - 1600 + 1); return PAD_L + ARCH_W - 14 - t * (ARCH_W - 34); }
 function X(y) { return y >= 1943 ? xMain(y) : xArch(y); }
 const bandH = (MAP_BOT - MAP_TOP) / BANDS.length;
 function bandTop(b) { return MAP_TOP + BANDS.indexOf(b) * bandH; }
+const BY = (b, f) => bandTop(b) + f * bandH;   // y at fraction f (0 top → 1 bottom) of band b
+
+// ---- Placement (render-only; not registry data).
+// Each continent owns a CELL — a polygon in (year, y) that no other cell touches (≥ ~8px of sea between any two cells).
+// Its coastline is a smooth Bézier through a handful of control points that stay inside the cell, so separate
+// landmasses can never overlap (hard requirement, P2-T1-RENDER v2 review). The 1974–2011 cluster is resolved as:
+//   winter-steppes      — N1 + upper N2 (northern steppe)
+//   expert-systems-plat — lower N2 (+ a sliver of C): the "warm valley" nested directly under the steppe (REGISTRY D2)
+//   connectionist-revival — S1–S2, with a cape reaching into C before 1988
+//   statistical-isthmus — begins 1988 as a thin neck in band C between plateau and revival (hence "isthmus"),
+//                         widens to N2–S1 after the steppe/plateau (1993) and revival (1998) end
+//   deep-learning-basin — S1–S2 until the isthmus ends (2011), then the full C–S2 span
+const E = PRESENT - 0.06;
+const CELL = {
+  'cybernetic-shore':       [[1943.3, BY('N1', .10)], [1955.7, BY('N1', .10)], [1955.7, BY('S2', .92)], [1943.3, BY('S2', .92)]],
+  'symbolic-heartland':     [[1956.5, BY('N2', .05)], [1973.6, BY('N2', .05)], [1973.6, BY('S1', .95)], [1956.5, BY('S1', .95)]],
+  'winter-steppes':         [[1974.5, BY('N1', .08)], [1992.6, BY('N1', .08)], [1992.6, BY('N2', .42)], [1974.5, BY('N2', .42)]],
+  'expert-systems-plateau': [[1980.4, BY('N2', .52)], [1992.6, BY('N2', .52)], [1992.6, BY('C', .40)], [1980.4, BY('C', .40)]],
+  'connectionist-revival':  [[1982.3, BY('C', .60)], [1987.6, BY('C', .60)], [1988.0, BY('S1', .02)], [1997.6, BY('S1', .02)], [1997.6, BY('S2', .92)], [1982.3, BY('S2', .92)]],
+  'statistical-isthmus':    [[1988.6, BY('C', .52)], [1993.4, BY('C', .52)], [1993.4, BY('N2', .08)], [2010.8, BY('N2', .08)], [2010.8, BY('C', .92)], [2005.6, BY('C', .92)], [2005.6, BY('S1', .90)], [1998.6, BY('S1', .90)], [1998.6, BY('C', .92)], [1988.6, BY('C', .92)]],
+  'deep-learning-basin':    [[2006.3, BY('S1', .05)], [2011.3, BY('S1', .05)], [2011.6, BY('C', .05)], [2016.7, BY('C', .05)], [2016.7, BY('S2', .92)], [2006.3, BY('S2', .92)]],
+  'transformer-plateau':    [[2017.2, BY('N2', .05)], [2021.8, BY('N2', .05)], [2021.8, BY('S2', .92)], [2017.2, BY('S2', .92)]],
+  'generative-coast':       [[2022.2, BY('N1', .10)], [E, BY('N1', .10)], [E, BY('S2', .92)], [2022.2, BY('S2', .92)]],
+};
+// Coastline control points (year, y), clockwise from the north-west; a few deliberate bays/capes, no noise.
+const COAST = {
+  'cybernetic-shore': [[1944.2, BY('N1', .22)], [1949, BY('N1', .14)], [1955.2, BY('N1', .32)], [1954.3, BY('N2', .6)], [1955.3, BY('C', .3)], [1955.2, BY('S1', .5)], [1953.6, BY('S1', .95)], [1955.2, BY('S2', .5)], [1952, BY('S2', .88)], [1946, BY('S2', .84)], [1943.7, BY('S2', .4)], [1945.6, BY('S1', .5)], [1943.7, BY('N2', .8)], [1944.8, BY('N2', .1)]],
+  'symbolic-heartland': [[1957.1, BY('N2', .16)], [1963, BY('N2', .08)], [1970, BY('N2', .11)], [1973.1, BY('N2', .32)], [1973.2, BY('C', .5)], [1973.1, BY('S1', .3)], [1972, BY('S1', .9)], [1965, BY('S1', .85)], [1961, BY('S1', .92)], [1957.1, BY('S1', .6)], [1958.3, BY('C', .72)], [1957.0, BY('C', .1)]],
+  'winter-steppes': [[1975.1, BY('N1', .2)], [1980, BY('N1', .13)], [1986, BY('N1', .11)], [1992.3, BY('N1', .24)], [1992.3, BY('N2', .1)], [1990, BY('N2', .38)], [1985, BY('N2', .3)], [1981.5, BY('N2', .38)], [1976, BY('N2', .35)], [1975.0, BY('N1', .8)]],
+  'expert-systems-plateau': [[1981.0, BY('N2', .62)], [1986, BY('N2', .56)], [1992.1, BY('N2', .62)], [1992.1, BY('C', .1)], [1990, BY('C', .34)], [1984, BY('C', .3)], [1981.0, BY('C', .2)]],
+  'connectionist-revival': [[1982.9, BY('C', .74)], [1986.6, BY('C', .72)], [1988.6, BY('S1', .14)], [1993, BY('S1', .08)], [1997.1, BY('S1', .2)], [1997.0, BY('S1', .7)], [1996.0, BY('S2', .6)], [1997.0, BY('S2', .86)], [1990, BY('S2', .88)], [1984, BY('S2', .8)], [1982.9, BY('S2', .3)], [1983.7, BY('S1', .6)], [1982.9, BY('S1', .1)]],
+  'statistical-isthmus': [[1989.1, BY('C', .62)], [1993.0, BY('C', .6)], [1994.2, BY('N2', .35)], [1996, BY('N2', .18)], [2002, BY('N2', .12)], [2008, BY('N2', .18)], [2010.3, BY('N2', .5)], [2010.3, BY('C', .5)], [2009.4, BY('C', .84)], [2006.2, BY('C', .84)], [2005.1, BY('S1', .5)], [2004, BY('S1', .82)], [2000, BY('S1', .8)], [1999.2, BY('S1', .3)], [1998.1, BY('C', .84)], [1994.2, BY('C', .84)], [1993.2, BY('C', .86)], [1989.1, BY('C', .84)]],
+  'deep-learning-basin': [[2006.9, BY('S1', .2)], [2010.6, BY('S1', .12)], [2012.0, BY('C', .18)], [2014, BY('C', .1)], [2016.3, BY('C', .2)], [2016.3, BY('S1', .5)], [2015.2, BY('S2', .3)], [2016.2, BY('S2', .7)], [2014, BY('S2', .88)], [2009, BY('S2', .85)], [2006.8, BY('S2', .5)], [2007.6, BY('S1', .8)], [2006.8, BY('S1', .5)]],
+  'transformer-plateau': [[2017.9, BY('N2', .2)], [2019.5, BY('N2', .1)], [2021.2, BY('N2', .3)], [2021.5, BY('C', .4)], [2021.1, BY('S1', .6)], [2021.4, BY('S2', .3)], [2020.4, BY('S2', .88)], [2018.3, BY('S2', .82)], [2017.5, BY('S2', .3)], [2017.9, BY('S1', .3)], [2017.5, BY('C', .3)], [2017.6, BY('N2', .75)]],
+  'generative-coast': [[2022.6, BY('N1', .25)], [2024, BY('N1', .13)], [E - 0.35, BY('N1', .3)], [E - 0.45, BY('N2', .7)], [E - 0.3, BY('C', .8)], [E - 0.7, BY('S1', .7)], [E - 0.35, BY('S2', .3)], [E - 0.9, BY('S2', .88)], [2023, BY('S2', .8)], [2022.6, BY('S2', .3)], [2022.7, BY('S1', .55)], [2022.6, BY('C', .2)], [2022.6, BY('N1', .9)]],
+};
+// Antecedent isles: a small chain of 4 islands offshore, upper-left of the 1943 coast (N1–N2). No connector line.
+const ISLES = [ {y: 1666, cy: BY('N1', .55), r: 12, s: 1}, {y: 1847, cy: BY('N2', .3), r: 15, s: 2}, {y: 1900, cy: BY('N1', .8), r: 14, s: 3}, {y: 1936, cy: BY('N2', .6), r: 20, s: 4} ];
+// Label centres (year, y) — inside each landmass's widest part.
+const LABEL = {
+  'cybernetic-shore': [1949.4, BY('C', .0)], 'symbolic-heartland': [1965, BY('C', .25)], 'winter-steppes': [1983.5, BY('N1', .62)],
+  'expert-systems-plateau': [1986.5, BY('N2', .9)], 'connectionist-revival': [1990.5, BY('S1', .85)], 'statistical-isthmus': [2002, BY('C', .18)],
+  'deep-learning-basin': [2012, BY('S1', .9)], 'transformer-plateau': [2019.5, BY('C', .15)], 'generative-coast': [2024.4, BY('N2', .85)],
+};
 
 const svg = document.getElementById('map');
-let gShapes, gLabels;
-svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('width', W); svg.setAttribute('height', H);
+svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
 const NS = 'http://www.w3.org/2000/svg';
 function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent||svg).appendChild(e); return e; }
 function txt(x, y, s, cls, parent, extra) { const t = el('text', Object.assign({x, y, class: cls}, extra||{}), parent); t.textContent = s; return t; }
+const P = ([yr, y]) => [X(yr), y];
+
+// Smooth closed coastline through control points (Catmull-Rom → cubic Bézier).
+function smoothPath(pts, tension = 0.5) {
+  const n = pts.length; let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < n; i++) {
+    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+    const c1 = [p1[0] + (p2[0] - p0[0]) * tension / 3, p1[1] + (p2[1] - p0[1]) * tension / 3];
+    const c2 = [p2[0] - (p3[0] - p1[0]) * tension / 3, p2[1] - (p3[1] - p1[1]) * tension / 3];
+    d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d + ' Z';
+}
+function islandPts(cx, cy, r, seed) {
+  const n = 7; const pts = [];
+  for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2 + seed; const rr = r * (0.8 + 0.35 * Math.sin(a * 2 + seed * 1.7)); pts.push([cx + rr * Math.cos(a) * 1.25, cy + rr * Math.sin(a)]); }
+  return pts;
+}
+function wrap(s, maxChars) { const out = []; let line = ''; s.split(' ').forEach(w => { if ((line + ' ' + w).trim().length > maxChars && line) { out.push(line); line = w; } else line = (line ? line + ' ' : '') + w; }); out.push(line); return out; }
 
 fetch('registry.json').then(r => r.json()).then(data => {
   const C = data.continents;
-  // band latitudes
+  const defs = el('defs', {});
+  const f = el('filter', {id: 'landshadow', x: '-10%', y: '-10%', width: '125%', height: '130%'}, defs);
+  el('feDropShadow', {dx: 3, dy: 4, stdDeviation: 3.5, 'flood-color': '#3a2a12', 'flood-opacity': .38}, f);
+  const g2 = el('filter', {id: 'grain'}, defs);
+  el('feTurbulence', {type: 'fractalNoise', baseFrequency: '.035 .012', numOctaves: 3, seed: 7, result: 't'}, g2);
+  el('feColorMatrix', {in: 't', type: 'matrix', values: '0 0 0 0 .33  0 0 0 0 .26  0 0 0 0 .14  0 0 0 .10 0'}, g2);
+  const pat = el('pattern', {id: 'contours', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(-8)'}, defs);
+  el('line', {x1: 0, y1: 3, x2: 6, y2: 3, stroke: '#8f7b57', 'stroke-width': .5, 'stroke-opacity': .28}, pat);
+
+  // ocean: base tone + fine ruled lines + grain
+  el('rect', {x: 0, y: 0, width: W, height: H, fill: '#cfc0a0'});
+  el('rect', {x: 0, y: 0, width: W, height: H, fill: 'url(#contours)'});
+  el('rect', {x: 0, y: 0, width: W, height: H, filter: 'url(#grain)', fill: '#000', 'fill-opacity': 0});
   BANDS.forEach(b => {
-    el('line', {x1: PAD_L, x2: W - PAD_R, y1: bandTop(b), y2: bandTop(b), class: 'band-line'});
-    txt(W - PAD_R + 8, bandTop(b) + bandH / 2 + 4, BAND_NAME[b], 'band-label', null, {'font-size': 10});
+    el('line', {x1: PAD_L, x2: W - PAD_R + 30, y1: BY(b, .5), y2: BY(b, .5), stroke: '#8f7b57', 'stroke-opacity': .22, 'stroke-dasharray': '1 5'});
+    txt(W - 12, BY(b, .5) - 1, b, 'band-code'); txt(W - 12, BY(b, .5) + 11, BAND_NAME[b], 'band-label');
   });
-  el('line', {x1: PAD_L, x2: W - PAD_R, y1: MAP_BOT, y2: MAP_BOT, class: 'band-line'});
-  // coastline of the mainland
-  el('line', {x1: X(1943), x2: X(1943), y1: MAP_TOP - 12, y2: MAP_BOT + 6, stroke: '#6b7f9c', 'stroke-width': 1.5, 'stroke-dasharray': '6 4'});
-  txt(X(1943) + 4, MAP_TOP - 16, 'mainland west coast — 1943 (McCulloch–Pitts)', 'grat-era', null, {'text-anchor': 'start'});
-  txt(PAD_L + 10, MAP_BOT - 10, 'WESTERN SEA', 'ocean-label');
-  txt(W - PAD_R - 6, MAP_TOP - 16, `east coast = ${NOW.toLocaleString('en', {month:'short', year:'numeric'})} · here be dragons →`, 'grat-era', null, {'text-anchor': 'end'});
+  txt(PAD_L + ARCH_W / 2 - 4, MAP_BOT - 26, 'WESTERN', 'ocean-label'); txt(PAD_L + ARCH_W / 2 - 4, MAP_BOT - 10, 'SEA', 'ocean-label');
+  txt(W - PAD_R / 2, MAP_TOP + 14, 'TERRA INCOGNITA', 'ocean-label', null, {'font-size': 10});
+  // compass rose (bottom-right margin)
+  const cx = W - PAD_R / 2, cy = RULER_Y + 18;
+  el('circle', {cx, cy, r: 24, class: 'compass'}); el('circle', {cx, cy, r: 3, class: 'compass'});
+  el('path', {d: `M${cx},${cy-34} L${cx+5},${cy-5} L${cx},${cy} L${cx-5},${cy-5} Z`, fill: '#5b4a30'});
+  el('path', {d: `M${cx},${cy+34} L${cx+5},${cy+5} L${cx},${cy} L${cx-5},${cy+5} Z M${cx-34},${cy} L${cx-5},${cy-5} L${cx},${cy} L${cx-5},${cy+5} Z M${cx+34},${cy} L${cx+5},${cy-5} L${cx},${cy} L${cx+5},${cy+5} Z`, fill: 'none', stroke: '#5b4a30', 'stroke-width': .9});
+  txt(cx, cy - 39, 'N', 'ruler-num', null, {'font-size': 10}); txt(cx + 46, cy + 4, 'E', 'ruler-num', null, {'font-size': 10});
 
-  // graticule
-  const years = [1900, 1936, 1943, 1950, 1956, 1960, 1970, 1974, 1980, 1990, 1993, 2000, 2006, 2010, 2012, 2015, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
-  years.forEach(y => { if (y > PRESENT) return; const x = X(y); el('line', {x1: x, x2: x, y1: MAP_BOT, y2: MAP_BOT + 8, class: 'grat'}); el('line', {x1: x, x2: x, y1: MAP_TOP, y2: MAP_BOT, class: 'grat', 'stroke-opacity': .35}); txt(x, MAP_BOT + 22, y, 'grat-label'); });
-  SEG.forEach(([a,b,k]) => txt((X(a)+X(Math.min(b,PRESENT)))/2, MAP_BOT + 40, `${a}–${b===PRESENT?'present':b}: ${k}× width / year (AXES.md §1)`, 'grat-era'));
-  txt((PAD_L + X(1943))/2, MAP_BOT + 40, 'pre-1943: log scale', 'grat-era');
+  // time ruler: thin ruled line, major ticks only (density-adapted), serif numerals
+  el('line', {x1: X(1943), x2: X(PRESENT), y1: RULER_Y, y2: RULER_Y, class: 'ruler'});
+  el('line', {x1: PAD_L + 10, x2: X(1942), y1: RULER_Y, y2: RULER_Y, class: 'ruler', 'stroke-dasharray': '2 4'});
+  const yearOf = y => Math.floor(y);
+  const major = [1666, 1800, 1900, 1943, 1956, 1974, 1990, 2006, 2017, 2022];
+  for (let y = 1950; y < 2006; y += 10) if (!major.includes(y)) major.push(y);
+  [2012, 2020, 2024, 2026].forEach(y => { if (y <= PRESENT) major.push(y); });
+  const minor = []; for (let y = 1944; y <= yearOf(PRESENT); y++) if (!major.includes(y) && ((y < 2006 && y % 5 === 0) || (y >= 2006 && y % 2 === 0))) minor.push(y);
+  minor.forEach(y => el('line', {x1: X(y), x2: X(y), y1: RULER_Y, y2: RULER_Y + 4, class: 'ruler-tick', 'stroke-opacity': .5}));
+  major.sort((a, b) => a - b).forEach(y => { const x = X(y); el('line', {x1: x, x2: x, y1: RULER_Y - 5, y2: RULER_Y + 7, class: 'ruler-tick'}); txt(x, RULER_Y + 22, y, 'ruler-num', null, y < 1943 ? {'font-size': 11} : {}); });
+  txt((X(1943) + X(PRESENT)) / 2, RULER_Y + 42, 'westward is earlier · the scale stretches toward the present (1× · 1½× · 3× · 6× per year) · the east coast is the last completed month', 'ruler-cap');
+  txt(PAD_L + ARCH_W / 2, RULER_Y + 42, 'pre-1943: offshore, logarithmic', 'ruler-cap');
 
-  gShapes = el('g', {id: 'shapes'}); gLabels = el('g', {id: 'labels', 'pointer-events': 'none'});
+  const gShapes = el('g', {id: 'shapes'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none'});
   const card = document.getElementById('card');
   const order = C.slice().sort((a,b) => a.start - b.start);
-  // horizontal lane offset for overlapping continents in the same bands (1974–1998 cluster): stagger by insertion order
-  order.forEach((c, i) => {
-    const endY = c.end === 'present' ? PRESENT : c.end;
-    const bandsIdx = c.bands.map(b => BANDS.indexOf(b));
-    let y0 = MAP_TOP + Math.min(...bandsIdx) * bandH + 6;
-    let y1 = MAP_TOP + (Math.max(...bandsIdx) + 1) * bandH - 6;
-    if (INSET[c.id]) { const [f0, f1] = INSET[c.id]; const hh = y1 - y0; y1 = y0 + hh * f1; y0 = y0 + hh * f0; }
+  order.forEach((c) => {
     const g = el('g', {class: 'continent', 'data-id': c.id}, gShapes);
     const fill = BIOME[c.biome].c;
     if (c.offshore) {
-      // archipelago: a chain of islands from start to 1942, sitting in the upper bands, visually offshore
-      const isles = [c.start, 1843, 1854, 1879, 1900, 1931, 1936, 1940];
-      isles.forEach((yy, k) => {
-        const cx = X(yy), cy = y0 + 20 + ((k % 3) * 22), r = 7 + (k === isles.length - 1 ? 4 : 0) + (k * 0.6);
-        el('path', {d: blob(cx, cy, r, k), fill, 'fill-opacity': .95}, g);
-      });
-      // causeway from Turing 1936 isle toward the shore (research/01 split table)
-      el('line', {x1: X(1936) + 8, x2: X(1943) - 2, y1: y0 + 20, y2: y0 + 26, stroke: fill, 'stroke-dasharray': '3 3', 'stroke-width': 1.5}, g);
-      txt(PAD_L + 6, y0 + 92, c.name, 'cname', gLabels, {'data-for': c.id});
-      txt(PAD_L + 6, y0 + 108, 'logic & computability prehistory', 'csub', gLabels, {'data-for': c.id});
-      txt(PAD_L + 6, y0 + 122, `${c.start}–${c.end} · offshore`, 'csub', gLabels, {'data-for': c.id});
-      el('rect', {x: PAD_L, y: y0, width: X(1943) - PAD_L - 4, height: y1 - y0, fill: 'transparent', stroke: 'none'}, g); // hit area
+      ISLES.forEach(is => el('path', {d: smoothPath(islandPts(X(is.y), is.cy, is.r, is.s), .9), fill, class: 'land'}, g));
+      const lx = PAD_L + ARCH_W / 2 - 4; let ly = BY('C', .32);
+      wrap(c.name, 14).forEach(l => { txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id}); ly += 15; });
+      ly += 1;
+      wrap('logic & computability prehistory', 22).forEach(l => { txt(lx, ly, l, 'csub', gLabels, {'font-size': 10.5, 'data-for': c.id}); ly += 12.5; });
+      txt(lx, ly + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': 10.5, 'data-for': c.id});
     } else {
-      const x0 = X(c.start), x1 = X(endY);
-      const ry = 10;
-      // slight vertical stagger for the three overlapping 1974–1998 continents so all labels remain visible
-      el('path', {d: coast(x0, y0, x1, y1, i), fill, 'fill-opacity': INSET[c.id] ? .95 : .8, 'stroke': '#f3e9cf', 'stroke-opacity': .55, 'stroke-width': 1.4}, g);
-      // label anchor: the part of this continent's box not covered by any later-drawn (eastern) overlapping continent
-      const others = order.filter(o => o !== c && !o.offshore && o.start < endY && (o.end === 'present' ? PRESENT : o.end) > c.start);
-      const ov = others.filter(o => o.bands.some(b => c.bands.includes(b)));
-      const later = ov.filter(o => o.start > c.start);
-      const freeRight = later.length ? Math.min(x1, ...later.map(o => X(o.start))) : x1;
-      // pick the band of this continent that the fewest overlapping continents occupy near our west edge (label goes there)
-      const nearWest = ov.filter(o => o.start <= c.start + 6);
-      const conflict = b => nearWest.filter(o => o.bands.includes(b)).length;
-      const anchorBand = c.bands.slice().sort((a, b) => conflict(a) - conflict(b))[0];
-      // x anchor: west edge, or just east of any earlier continent that still covers the anchor band there
-      const earlierInBand = ov.filter(o => o.start <= c.start && o.bands.includes(anchorBand));
-      const shiftTo = earlierInBand.length ? Math.max(...earlierInBand.map(o => o.end === 'present' ? PRESENT : o.end)) : null;
-      const lx = (shiftTo && X(shiftTo) + 10 < x1 - 120) ? X(shiftTo) + 10 : x0 + 10;
-      const ly = (INSET[c.id] ? y0 : bandTop(anchorBand)) + 24;
-      const wfree = Math.max(60, freeRight - lx + 10);
-      const sizeN = wfree < 130 ? 12 : 15, sizeS = wfree < 130 ? 9 : 11;
-      const label = txt(lx, ly, c.name, 'cname', gLabels, {'font-size': sizeN, 'data-for': c.id});
-      const sub = txt(lx, ly + 15, c.subtitle.replace(/, \d{4}.*$/, ''), 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id});
-      txt(lx, ly + 28, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id});
-      if (wfree < 100) sub.remove();
-      // wrap long subtitles to the free width (rough: ~6.2px per char at 11px)
-      if (sub.isConnected && c.subtitle.length * sizeS * 0.56 > wfree - 12) {
-        const words = c.subtitle.replace(/, \d{4}.*$/, '').split(' '); let line = '', lines = [];
-        words.forEach(w => { if ((line + ' ' + w).length * sizeS * 0.56 > wfree - 12 && line) { lines.push(line); line = w; } else line = line ? line + ' ' + w : w; });
-        lines.push(line); sub.textContent = lines[0];
-        lines.slice(1, 3).forEach((l, k) => txt(lx, ly + 15 + (k + 1) * 12, l, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id}));
-        // move the year line below the wrapped lines
-        gLabels.querySelectorAll('text').forEach(t => { if (t.textContent === `${c.start}–${c.end}` && parseFloat(t.getAttribute('x')) === lx && Math.abs(parseFloat(t.getAttribute('y')) - (ly + 28)) < 1) t.setAttribute('y', ly + 15 + Math.min(lines.length, 3) * 12 + 1); });
-      }
+      const cell = CELL[c.id].map(P), ctrl = COAST[c.id].map(P);
+      const clip = el('clipPath', {id: 'clip-' + c.id}, defs);
+      el('polygon', {points: cell.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ')}, clip);
+      const d = smoothPath(ctrl, 0.5);
+      el('path', {d, fill, class: 'land', 'clip-path': `url(#clip-${c.id})`}, g);
+      el('path', {d, class: 'land-inner', 'clip-path': `url(#clip-${c.id})`}, g);
+      // label block, centred on LABEL, sized by land width; a post-pass shrinks any line wider than the land at its row
+      const [lyr, ly] = LABEL[c.id]; const lx = X(lyr);
+      const xs = cell.map(p => p[0]), ys = cell.map(p => p[1]);
+      const wland = Math.max(...xs) - Math.min(...xs), hland = Math.max(...ys) - Math.min(...ys);
+      const small = hland < 90; // nested / minor landmass: name + years only (subtitle lives in the hover card)
+      const sizeN = small ? 12 : wland > 260 ? 17 : wland > 150 ? 14 : 12, sizeS = wland > 260 ? 12 : wland > 150 ? 10.5 : 10;
+      const nameLines = wrap(c.name, Math.max(6, Math.floor((wland - 14) / (sizeN * 0.66 + 1.2))));
+      const subLines = small ? [] : wrap(c.subtitle.replace(/, \d{4}.*$/, ''), Math.max(12, Math.floor((wland - 22) / (sizeS * 0.5))));
+      const totalH = nameLines.length * (sizeN + 3) + subLines.length * (sizeS + 2) + sizeS + 3;
+      let yy = ly - totalH / 2 + sizeN * 0.8;
+      nameLines.forEach(l => { txt(lx, yy, l, 'cname', gLabels, {'font-size': sizeN, 'data-for': c.id}); yy += sizeN + 3; });
+      yy += 1;
+      subLines.forEach(l => { txt(lx, yy, l, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id}); yy += sizeS + 2; });
+      txt(lx, yy + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id});
     }
     const show = (ev) => {
       card.style.display = 'block';
@@ -203,55 +262,47 @@ fetch('registry.json').then(r => r.json()).then(data => {
         <dt>east border</dt><dd>${c.border_east}</dd></dl>`;
       move(ev);
     };
-    const move = (ev) => { const r = svg.getBoundingClientRect(); const wrap = svg.parentElement.getBoundingClientRect(); let lx = ev.clientX - wrap.left + 16 + svg.parentElement.scrollLeft, ly = ev.clientY - wrap.top + 16; if (lx + 430 > wrap.width + svg.parentElement.scrollLeft) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
+    const move = (ev) => { const wrapR = svg.parentElement.getBoundingClientRect(); let lx = ev.clientX - wrapR.left + 16 + svg.parentElement.scrollLeft, ly = ev.clientY - wrapR.top + 16; if (lx + 430 > wrapR.width + svg.parentElement.scrollLeft) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
     g.addEventListener('mouseenter', show); g.addEventListener('mousemove', move);
     g.addEventListener('mouseleave', () => card.style.display = 'none');
     g.addEventListener('click', show);
   });
 
-  // residual collision pass: each continent's label lines are grouped by data-for; shift a group down until it clears earlier groups
-  const groups = {};
-  gLabels.querySelectorAll('text').forEach(t => { const k = t.getAttribute('data-for'); if (!k) return; (groups[k] = groups[k] || []).push(t); });
-  const bbox = ts => { const bs = ts.map(t => t.getBBox()); return {x: Math.min(...bs.map(b => b.x)), y: Math.min(...bs.map(b => b.y)), r: Math.max(...bs.map(b => b.x + b.width)), b: Math.max(...bs.map(b => b.y + b.height))}; };
-  const placed = [];
-  Object.values(groups).forEach(ts => {
-    for (let tries = 0; tries < 12; tries++) {
-      const me = bbox(ts);
-      const hit = placed.find(o => me.x < o.r + 4 && o.x < me.r + 4 && me.y < o.b + 2 && o.y < me.b + 2);
-      if (!hit) break;
-      const dy = (hit.b + 4) - me.y;
-      ts.forEach(t => t.setAttribute('y', parseFloat(t.getAttribute('y')) + dy));
-    }
-    placed.push(bbox(ts));
-  });
+  // fit pass: if any label line is wider than its landmass at that row (measured against the actual coastline fill),
+  // shrink the WHOLE label group uniformly so name/subtitle keep consistent sizing
+  const fit = () => {
+    const pt = svg.createSVGPoint();
+    gShapes.querySelectorAll('.continent').forEach(g => {
+      const lands = g.querySelectorAll('path.land'); if (lands.length !== 1) return; const land = lands[0];
+      const ts = [...gLabels.querySelectorAll(`text[data-for="${g.dataset.id}"]`)];
+      for (let k = 0; k < 10; k++) {
+        let scale = 1;
+        ts.forEach(t => {
+          const b = t.getBBox(); const x = parseFloat(t.getAttribute('x'));
+          const reach = (dir, y) => { let i = 0; while (i < 500) { pt.x = x + dir * i; pt.y = y; if (!land.isPointInFill(pt)) break; i++; } return i; };
+          const free = Math.min(...[b.y + 1, b.y + b.height / 2, b.y + b.height - 1].flatMap(y => [reach(-1, y), reach(1, y)])) * 2 - 8;
+          if (b.width > free) scale = Math.min(scale, Math.max(0.85, free / b.width));
+        });
+        if (scale >= 1) break;
+        ts.forEach(t => { const fs = parseFloat(t.getAttribute('font-size')); t.setAttribute('font-size', Math.max(8, fs * scale).toFixed(1)); });
+        if (ts.every(t => parseFloat(t.getAttribute('font-size')) <= 8)) break;
+      }
+    });
+  };
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fit(); document.dispatchEvent(new Event('map:ready')); });
+  else document.dispatchEvent(new Event('map:ready'));
 
   // legend
   const lg = document.getElementById('legend');
   Object.entries(BIOME).forEach(([k, v]) => { const s = document.createElement('span'); s.style.setProperty('--c', v.c); s.textContent = v.label; lg.appendChild(s); });
 
-  // table
+  // table (collapsed by default)
   const tbl = document.getElementById('tbl');
   tbl.innerHTML = '<tr><th>#</th><th>id</th><th>name</th><th>subtitle</th><th>span</th><th>band span</th><th>biome</th><th>research</th><th>offshore</th><th>split-of</th></tr>' +
     order.map(c => `<tr><td>${c.n}</td><td><code>${c.id}</code></td><td>${c.name}</td><td>${c.subtitle}</td><td>${c.start}–${c.end}</td><td>${c.band_span_text}</td><td><span class="sw" style="background:${BIOME[c.biome].c}"></span>${c.biome}</td><td>${c.research_file}</td><td>${c.offshore ? 'true' : ''}</td><td>${c.split_of}</td></tr>`).join('');
-  document.getElementById('foot').textContent = `${C.length} continents · generated from ${data.generated_from} · X scale per AXES.md §1 (piecewise; visible graticule shows the distortion) · Y bands are neighbourhood hints (AXES.md §3), not coordinates · biome = methodology (terrain), not position.`;
+  document.getElementById('foot').textContent = `${C.length} continents · generated from ${data.generated_from} · X scale per AXES.md §1 · Y bands are neighbourhood hints (AXES.md §3), not coordinates · terrain = methodology, not position. Source of truth: data/continents/REGISTRY.md.`;
 });
-
-// organic-looking rounded polygon for a continent box; deterministic wobble seeded by index
-function coast(x0, y0, x1, y1, seed) {
-  const n = 10; const pts = [];
-  const rnd = (k) => { const s = Math.sin((seed + 1) * 9301 + k * 49297) * 233280; return s - Math.floor(s); };
-  const w = x1 - x0, h = y1 - y0; const amp = Math.min(6, h * 0.06, w * 0.06);
-  for (let i = 0; i <= n; i++) pts.push([x0 + w * i / n, y0 + (rnd(i) - .5) * 2 * amp]);
-  for (let i = 1; i <= 3; i++) pts.push([x1 + (rnd(20 + i) - .5) * 2 * amp, y0 + h * i / 4]);
-  for (let i = n; i >= 0; i--) pts.push([x0 + w * i / n, y1 + (rnd(40 + i) - .5) * 2 * amp]);
-  for (let i = 3; i >= 1; i--) pts.push([x0 + (rnd(60 + i) - .5) * 2 * amp, y0 + h * i / 4]);
-  return 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(',')).join(' L') + ' Z';
-}
-function blob(cx, cy, r, seed) {
-  const n = 9; const pts = [];
-  for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; const rr = r * (0.75 + 0.5 * Math.abs(Math.sin(a * 3 + seed))); pts.push([cx + rr * Math.cos(a), cy + rr * Math.sin(a)]); }
-  return 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(',')).join(' L') + ' Z';
-}
 </script>
 </body>
 </html>
