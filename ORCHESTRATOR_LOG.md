@@ -69,19 +69,23 @@ shipped).
    if/when work fans out to genuinely parallel independent tracks (e.g.
    countries/cities layer built concurrently with geometry polish).
 
-## v9 job anomaly (2026-09-08, pre-compaction)
+## v9 job anomaly (2026-09-08, pre-compaction) — ROOT CAUSE FOUND
 
-`proc_eedaa61d915b` ran ~25 minutes, exited 0, but produced **zero commits
-and zero log output** (`/tmp/fable_run12.log` only has the START/PULL_DONE/
-HERMES_DONE bash markers — hermes itself wrote nothing to stdout/stderr
-despite running that long). No stash, no orphaned branch, no local diff —
-genuinely no work product exists anywhere. This differs from the earlier
-"instant silent exit" infra blip (that one exited in ~5s); this one ran the
-full duration then vanished its own output. Treat as unresolved — retry the
-same `/tmp/fable_prompt12.txt` brief fresh (rewrite the wrapper script with
-a new log path to rule out log-file collision) before assuming the diagonal-
-frontier work happened at all. HEAD is still `25c295e` (v8) as of this
-checkpoint — v9 has NOT shipped.
+Two consecutive job attempts (`proc_eedaa61d915b`, `proc_6c2011773086`) each
+ran 20-25 min, exited 0, produced zero commits. Root cause found by reading
+the session transcript directly (`session_search` on session id
+`20260908_041306_77f71c`): Fable called `vision_analyze` on its own
+screenshot and then tried to **transcribe the full analysis verbatim** in
+its response, hit the output-length truncation limit, got a "continue where
+you left off" system nudge, tried again, got truncated again — burning the
+entire turn/time budget on narrating a screenshot description instead of
+writing code. It never got past reading the geometry file before the
+session ended (`agent_close`). Not a git/infra/hermes-CLI problem — a
+prompting problem. **Fix for future prompts to Fable:** explicitly instruct
+it to summarize `vision_analyze` output in 2-3 sentences (facts needed for
+the decision only), never transcribe/quote it at length, and to prioritize
+writing code over narrating analysis. HEAD is still `25c295e` (v8) as of
+this checkpoint — v9 (diagonal isochrone frontiers) has NOT shipped yet.
 
 ## Next steps after v9 lands
 
