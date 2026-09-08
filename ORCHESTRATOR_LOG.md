@@ -7,7 +7,7 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** `25c295e` (v8 — global funnel envelope)
+- **HEAD at write time:** `e2bf8c3` (v9 — isochrone frontiers, SHIPPED 2026-09-08; the two stalled attempts below were superseded)
 - **In-flight job:** `proc_eedaa61d915b` (background hermes/Fable process,
   prompt saved at `/tmp/fable_prompt12.txt`, log at `/tmp/fable_run12.log`)
   is currently running the **v9 diagonal-frontier** pass — NOT yet committed

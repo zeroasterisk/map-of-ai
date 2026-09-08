@@ -1,4 +1,4 @@
-# STATUS — as of 2026-09-06 (session 3: P0 + P1 + P2-T1 executed; render prototype live)
+# STATUS — as of 2026-09-08 (session 3 + render passes v5–v9; v9 isochrone frontiers live)
 
 ## One-line status
 
@@ -46,7 +46,7 @@ Open <https://zeroasterisk.github.io/map-of-ai/> (GitHub Pages, deployed from
 | P0 tooling | P0-T1…T4 | **done** | commits `9d25447` `1db3e92` `bf7c56d` `76d9de6`; `scripts/fixtures/run.sh` passes (25 V-rules, one FAIL per invalid fixture) |
 | P1 research coverage | P1-T1…T9, T10, T11 | **done** | commits `7bc7c72` (T11), `89793c3` `c096929` `937d2bf` `28bb209` `40ae90b` `32d271b` `4296598` `58b035d` `8bbfbbe`; all nine files `Status: reviewed`; `scripts/check_research.py research/0*.md` → R-01…R-07 PASS for every file; review reports in `data/reviews/2026-09-06-research-0N.md` |
 | P2-T1 registry | P2-T1 | **done, proposed** | commit `95e9323`; `scripts/check_registry.py` → 13/13 PASS |
-| P2-T1-RENDER | render + Pages | **done, live** | commit `1247b0b`; workflow run 34068015982 green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors |
+| P2-T1-RENDER | render + Pages | **done, live (v9)** | commits `1247b0b` … `e2bf8c3`; workflow run 34068015982 green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors |
 | P2-T2…T13 | continents | **not started — gated on Alan's review** | — |
 | P3 countries | P3-T1…T12 | not started (instance mapping recorded in `REGISTRY.md` §6) | — |
 | P4 city pilot | P4-T1…T8 | not started | — |
@@ -126,6 +126,22 @@ verification" section is empty; the east edge is Sept 2026 with
   Isthmus) overlaps by design (ALTITUDES.md §2 "continents overlap in X on
   purpose"); translucency is used so all four read. Real Phase-4 polygons will
   replace this.
+- Render pass v9 (2026-09-08, "isochrone frontiers"): Alan on v8 — "still too 90
+  degree rectangular … the basic allocations are still too rigidly along x and
+  y grids". Root cause: every boundary was `x = start_year` (one x for the whole
+  boundary; wobble/lean on a plumb line is still a plumb line). v9 adds `FRONT`
+  in `site/index.html`: per column line, per half-band row, a YEAR OFFSET, so
+  every boundary is `x = f(band, year)` — a frontier that arrives in some bands
+  years before others (one-line story per line in the comment block). The same
+  table ramps the outer envelope's fixed-year steps. Frontiers cannot cross: the
+  page asserts ≥ 18 px between consecutive lines on every used row, bounds skew
+  per region (≤ 3 yr and ≤ 30 % of span), and clamps jitter + wander to the
+  actual local gap. `check_layout.py` now holds each region's drawn x-extent to
+  the published `FRONTIER` (± YEAR_SLACK) and has a `frontiersNotDiagonal` gate
+  (≥ 6 regions with ≥ 30 px arrival spread across band rows). Measured: 8 of 9
+  mainland regions diagonal (the one-row plateau cannot be); formerly plumb
+  seams now tilt 16–24°. All gates PASS. Next lever if still too rigid: let the
+  Deep Learning Basin reach N2 (needs an ALTITUDES/REGISTRY decision).
 - Render pass v8 (2026-09-07, "the funnel"): the mainland now has a GLOBAL
   outer envelope (`ENV` in `site/index.html`, documented in the comment block
   above it) — 2 half-band rows of land at the 1943 tip, 9 rows by 2022, with
