@@ -69,6 +69,20 @@ shipped).
    if/when work fans out to genuinely parallel independent tracks (e.g.
    countries/cities layer built concurrently with geometry polish).
 
+## v9 job anomaly (2026-09-08, pre-compaction)
+
+`proc_eedaa61d915b` ran ~25 minutes, exited 0, but produced **zero commits
+and zero log output** (`/tmp/fable_run12.log` only has the START/PULL_DONE/
+HERMES_DONE bash markers — hermes itself wrote nothing to stdout/stderr
+despite running that long). No stash, no orphaned branch, no local diff —
+genuinely no work product exists anywhere. This differs from the earlier
+"instant silent exit" infra blip (that one exited in ~5s); this one ran the
+full duration then vanished its own output. Treat as unresolved — retry the
+same `/tmp/fable_prompt12.txt` brief fresh (rewrite the wrapper script with
+a new log path to rule out log-file collision) before assuming the diagonal-
+frontier work happened at all. HEAD is still `25c295e` (v8) as of this
+checkpoint — v9 has NOT shipped.
+
 ## Next steps after v9 lands
 
 1. Verify v9 independently (see pattern above).
