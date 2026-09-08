@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v8 (v7 + THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
+<!-- map-of-ai site build: P2-T1-RENDER v9 (v8 + ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -250,6 +250,91 @@ const ownerAt = (i, j) => (i < 0 || j < 0 || i >= NC || j >= NR) ? null : (GRID[
 if (GRID.length !== NC || ENV.length !== NC) throw new Error('GRID/ENV/COLS length mismatch');
 GRID.forEach((row, i) => { for (let j = 0; j < NR; j++) if (row[j] !== '.' && (j < ENV[i][0] || j > ENV[i][1])) throw new Error(`land outside the envelope at column ${COLS[i]} row ${j}`); });
 
+// ---- v9: ISOCHRONE FRONTIERS (per Alan on v8: "still too 90 degree rectangular … the basic allocations are still
+// too rigidly along x and y grids"). Through v8 every region boundary was x = start_year: ONE x for the whole
+// boundary whatever the band, and wobble/lean on top of a plumb line is still a plumb line. v9 makes each boundary
+// x = f(band, year): FRONT[i][r] is the YEAR OFFSET of column line i at vertex row r (rows 0..9 = the edges of the
+// nine half-band rows: 0 top of N1a, 2 N1|N2, 4 N2|C, 6 C|S1, 7 S1|S2, 9 bottom of S2b). A paradigm therefore
+// arrives in some bands years before others and the frontier between two regions sweeps DIAGONALLY across the
+// bands — the same table also turns the outer envelope's fixed-year steps into ramps (a new outer row is reached
+// later than the row inside it; a row is given up earlier than the row inside it). One-line story per line:
+//   1949  the shore widens gradually out of the C tip (north and south corners arrive later than the core)
+//   1956  Dartmouth: symbolic AI takes logic/reasoning (N2) first, reaches language and planning in the early 60s
+//   1965  the heartland's N2a lobe grows in over a few years, not at a step
+//   1974  the winter hits funded planning/language work first (Lighthill/DARPA); logic (N2) holds on to ~1976
+//   1980  expert systems rise out of the mid-70s (DENDRAL/MYCIN) before XCON — the plateau's west coast leans back
+//   1982  the connectionist revival opens in perception (Hopfield/Neocognitron → backprop) before planning/language
+//   1988  statistics enters through speech & language (HMMs, IBM Candide): the isthmus takes C before the revival
+//         gives up Cb; the steppes give up N1 from the outside in
+//   1993  the plateau collapses first (Lisp-machine crash 1987–), the steppes' winter thaws last
+//   1998  kernels take planning/S1 early; the revival lingers in perception (CNNs) into ~2000 — a south-east cape
+//   2006  deep learning arrives from the SOUTH (perception, 2006–12) and reaches language (Cb) last; the isthmus
+//         gives up N2a from the outside in
+//   2011  statistical NLP's last stand is in language (Ca) to ~2012; its logic row emptied ~2010
+//   2017  transformers hit language in 2017, reasoning by ~2018, planning ~2018.5, perception (ViT) ~2019.6;
+//         the basin lingers in perception (CNNs) — the headline diagonal
+//   2019.6 the transformer's northern cape (T5/GPT-3, AlphaFold) grows in over ~1 yr
+//   2021.3 diffusion hits perception (S2) in 2021, agents/planning (S1) later in 2022
+//   2022.8 ChatGPT flips language first, reasoning follows (GPT-4 2023), foundations/N1 later in 2023
+//   2024.3 / 2025.2 / 2025.9  the N1a crest and the ragged frontier step in and out over months, not at a line
+// Budgets: every offset is converted through X() (so a year is 8 px in the 40s and 50 px after 2017); the vertex
+// table BASEX below is asserted MONOTONIC along every used row with ≥ FRONT_GAP px between consecutive lines, and
+// the jitter / border wander of a line are bounded by the ACTUAL local gap at that row (not just the column width),
+// so frontiers can never cross. Registry fidelity: the skew of a frontier at a region's start/end line is bounded
+// (|offset| ≤ FRONT_MAX_YR and ≤ FRONT_MAX_FRAC × the region's span); check_layout.py reads the published FRONTIER
+// summary and checks the rendered x-extent against the declared frontier (± YEAR_SLACK), per region and per band.
+const FRONT_GAP = 18, FRONT_MAX_YR = 3.0, FRONT_MAX_FRAC = 0.3;
+const F0 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const FR = o => { const a = F0.slice(); for (const k in o) a[+k] = o[k]; return a; };
+const FRONT = [
+  F0,                                                               //  0 1943 the tip (ruler datum)
+  FR({3: 1.6, 4: -0.8, 6: -0.8, 7: 1.6}),                           //  1 1949
+  FR({3: -2.8, 4: -1.8, 5: 0.2, 6: 1.8, 7: 2.9}),                   //  2 1956
+  FR({2: 2.6, 3: -1.8}),                                            //  3 1965
+  FR({1: 1.5, 2: -0.5, 3: 1.4, 4: 2.8, 5: -1.0, 6: -2.4, 7: -2.9}), //  4 1974
+  FR({3: -1.5, 4: 0.3}),                                            //  5 1980
+  FR({4: 2.5, 5: 1.5, 6: 0.5, 7: -0.8, 8: -1.5}),                   //  6 1982
+  FR({1: -2.0, 2: 1.5, 4: -1.5, 5: 1.5}),                           //  7 1988
+  FR({2: 1.5, 3: -0.5, 4: -2.0, 5: -1.0, 6: 0.5}),                  //  8 1993
+  FR({6: -2.2, 7: 0.3, 8: 1.2}),                                    //  9 1998
+  FR({2: -2.5, 3: 1.0, 4: 0.8, 5: 1.2, 6: 0, 7: -1.0, 8: -1.5, 9: -1.5}), // 10 2006
+  FR({3: -1.5, 4: 1.2, 5: 0.5}),                                    // 11 2011
+  FR({4: -0.5}),                                                    // 12 2014 (minor)
+  FR({3: 1.4, 4: 0.5, 5: -1.2, 6: -0.6, 7: 0.9, 8: 1.7, 9: 1.5}),   // 13 2017
+  FR({2: 0.5, 3: -0.3}),                                            // 14 2019.6 (minor)
+  FR({6: 0.9, 7: 0.4, 8: -0.6, 9: -0.6}),                           // 15 2021.3 (minor)
+  FR({1: 0.75, 2: 0.7, 3: 0.4, 4: -0.85, 5: -0.85}),                // 16 2022.8
+  FR({0: 0.2, 1: -0.2}),                                            // 17 2024.3 (minor)
+  FR({0: -0.2, 1: 0.2}),                                            // 18 2025.2 (minor)
+  FR({1: -0.1, 2: 0.15, 8: 0.15, 9: -0.2}),                         // 19 2025.9 (minor)
+  F0,                                                               // 20 present coast
+];
+if (FRONT.length !== NC + 1) throw new Error('FRONT/COLS length mismatch');
+const BASEX = FRONT.map((f, i) => f.map(o => X(COLS[i] + o)));
+// a vertex is "used" when any of its four cells is land (only used vertices are ever drawn)
+const usedV = (i, j) => !!(ownerAt(i - 1, j - 1) || ownerAt(i - 1, j) || ownerAt(i, j - 1) || ownerAt(i, j));
+for (let i = 0; i < NC; i++) for (let j = 0; j <= NR; j++) if (usedV(i, j) && usedV(i + 1, j) && BASEX[i + 1][j] - BASEX[i][j] < FRONT_GAP) throw new Error(`frontier gap too small at line ${COLS[i]}→${COLS[i + 1]} row ${j}: ${(BASEX[i + 1][j] - BASEX[i][j]).toFixed(0)}px`);
+// local room of a vertex: distance (px) to the nearest used vertex of the previous / next line on the same row
+const roomL = (i, j) => { for (let k = i - 1; k >= 0; k--) if (usedV(k, j)) return BASEX[i][j] - BASEX[k][j]; return 1e9; };
+const roomR = (i, j) => { for (let k = i + 1; k <= NC; k++) if (usedV(k, j)) return BASEX[k][j] - BASEX[i][j]; return 1e9; };
+const room = (i, j) => Math.min(roomL(i, j), roomR(i, j));
+const hasFront = i => FRONT[i].some(o => o !== 0);
+// published summary for check_layout.py: per region, the declared frontier at its first / last column line over the
+// rows it actually occupies there (years), so the gate can hold the rendered x-extent to the DECLARED frontier.
+const FRONTIER = {};
+{
+  const cols = {}; GRID.forEach((row, i) => { for (let j = 0; j < NR; j++) if (row[j] !== '.') (cols[CODE[row[j]]] = cols[CODE[row[j]]] || []).push([i, j]); });
+  for (const id in cols) {
+    const i0 = Math.min(...cols[id].map(c => c[0])), i1 = Math.max(...cols[id].map(c => c[0])) + 1;
+    const offs = (i, rows) => { const s = new Set(); rows.forEach(j => { s.add(FRONT[i][j]); s.add(FRONT[i][j + 1]); }); return [...s]; };
+    const o0 = offs(i0, cols[id].filter(c => c[0] === i0).map(c => c[1])), o1 = offs(i1, cols[id].filter(c => c[0] === i1 - 1).map(c => c[1]));
+    FRONTIER[id] = {startLine: COLS[i0], endLine: COLS[i1], startMin: COLS[i0] + Math.min(...o0), startMax: COLS[i0] + Math.max(...o0), endMin: COLS[i1] + Math.min(...o1), endMax: COLS[i1] + Math.max(...o1), skew: Math.max(...o0.concat(o1).map(Math.abs))};
+    const span = COLS[i1] - COLS[i0];
+    if (FRONTIER[id].skew > Math.min(FRONT_MAX_YR, FRONT_MAX_FRAC * span) + 1e-9) throw new Error(`frontier skew ${FRONTIER[id].skew} yr exceeds the bound for ${id} (span ${span})`);
+  }
+}
+window.FRONTIER = FRONTIER; window.FRONT = FRONT;
+
 // Antecedent isles: a small chain of 4 islands offshore, upper-left of the 1943 coast (N1–N2). v8: the chain arcs
 // down toward the mainland's narrow C-band tip, so the archipelago reads as the trail leading into the funnel's spout.
 const ISLES = [ {y: 1666, cy: BY('N1', .55), r: 12, s: 1}, {y: 1847, cy: BY('N2', .25), r: 15, s: 2}, {y: 1900, cy: BY('N1', .85), r: 14, s: 3}, {y: 1934, cy: BY('N2', .55), r: 20, s: 4} ];
@@ -270,7 +355,7 @@ const LABEL = {
   // the plateau (N2b, 1980–93) is too small for its name; the label sits in the Winter Gulf below it (open water
   // between the heartland and the revival) with a leader up into the plateau
   'expert-systems-plateau': {inside: false, at: [1978.4, BY('C', .95)], anchorYr: 1981.0, anchorBand: ['N2', .8], side: 'center', maxW: 66, nosub: true},
-  'connectionist-revival':  {inside: true,  at: [1989.6, BY('S1', .4)], alt: [[1988.2, BY('S1', .35)], [1990.8, BY('S1', .35)], [1987.4, BY('C', .85)], [1991.5, BY('S1', .55)]], maxW: 170},
+  'connectionist-revival':  {inside: true,  at: [1988.4, BY('S1', .55)], alt: [[1987.6, BY('S1', .5)], [1989.2, BY('S1', .7)], [1987.0, BY('S1', .35)], [1988.8, BY('S2', .15)], [1986.4, BY('S1', .6)]], maxW: 170},
   'statistical-isthmus':    {inside: true,  at: [2001.8, BY('N2', .8)]},
   'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)]},
   'transformer-plateau':    {inside: true,  at: [2019.9, BY('C', .30)], maxW: 250},
@@ -332,13 +417,19 @@ function V(i, j) {
     const short = (jb - ja) <= 2;                      // a 1–2-row seam (e.g. 1974 heartland|steppes): lean carries the tilt alone
     // v7: the present-day coast (i = NC) has no seam rows at all (nothing east of it), so every row is a coast row
     const coastRow = u < -1 || u > 1 || i === NC;      // the year line is a coast here (land on one side only), not a seam
-    const lean = (short ? leanCap(i) * .9 : leanX(i)) * leanSign(i) * (u < -1 ? -.75 : u > 1 ? .75 : u);   // −lean at the top of the seam → +lean at its bottom
+    // v9: a line that carries its own isochrone frontier (FRONT) already has its tilt built in — the v5 lean is
+    // reduced to a third there (the lean's job, tilting a plumb seam, is done structurally now)
+    const leanK = hasFront(i) ? .35 : 1;
+    const lean = (short ? leanCap(i) * .9 : leanX(i)) * leanK * leanSign(i) * (u < -1 ? -.75 : u > 1 ? .75 : u);   // −lean at the top of the seam → +lean at its bottom
     // the zig-zag jitter is scaled down where the lean is large, so lean + jitter + wander stays inside the
     // half-column budget (and the gate's ±44px year tolerance on the region's x-extent); on a short seam the
     // per-row alternation would cancel the lean, and on a coast row it can fold the shoreline back on itself into
     // a needle spike (the wide waterline strokes then leave an ink blob at the tip) — so it is dropped in both cases
     const jit = (short || coastRow) ? 0 : (j % 2 ? 1 : -1) * (0.35 + 0.65 * h2(i, j, 11)) * 0.6 * latX(i) * (1 - 0.6 * leanX(i) / leanCap(i));
-    VX[k] = [X(COLS[i]) + lean + jit, ROWY[j] + (h2(i, j, 12) - .5) * 1.2 * latY(j)];
+    // v9: the base x is the ISOCHRONE (BASEX), not X(COLS[i]); the total displacement is clamped to 30% of the
+    // actual room to the neighbouring lines on this row so skewed frontiers can never cross
+    const cap = .2 * room(i, j); const dx = Math.max(-cap, Math.min(cap, lean + jit));
+    VX[k] = [BASEX[i][j] + dx, ROWY[j] + (h2(i, j, 12) - .5) * 1.2 * latY(j)];
   }
   return VX[k];
 }
@@ -360,7 +451,10 @@ function edgePts(a, b) {
     const seaSide = (cPos === null) === (cNeg === null) ? 0 : (cPos === null ? 1 : -1);   // 0 = interior border
     // year borders: the wander budget shrinks by the column's lean, so lean + jitter + wander never exceeds the
     // half-column budget (keeps every region's x-extent within the gate's ±44px year tolerance)
-    const lat = Math.min(vertical ? latX(p[0]) * (1 - 0.55 * leanX(p[0]) / leanCap(p[0])) : latY(p[1]), L * .3);
+    // v9: on a year border the wander is additionally bounded by the actual room of its two end vertices on their
+    // rows (20%: vertex 20% + wander 20% per side → two facing lines can close at most 80% of the gap)
+    const roomE = vertical ? .2 * Math.min(room(p[0], p[1]), room(q[0], q[1])) : 1e9;
+    const lat = Math.min(vertical ? latX(p[0]) * (1 - 0.55 * leanX(p[0]) / leanCap(p[0])) : latY(p[1]), L * .3, roomE);
     const A0 = lat * .6, A1 = lat * .22, A3 = lat * .12;                    // diagonal sweep, meander, low-freq noise
     const A2 = Math.min(2.8, L * .035);                                     // fine hand wobble
     // seaward cape/bay bulge on the coast: full on north/south coasts, 40% on the west/east (time) coasts so the

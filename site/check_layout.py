@@ -37,7 +37,7 @@ MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
-BUILD_MARKER = "P2-T1-RENDER v8"
+BUILD_MARKER = "P2-T1-RENDER v9"
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -106,9 +106,13 @@ JS = r"""
     // bound is enforced on the band axis; on the year axis the drawn extent must still sit within YEAR_SLACK of the
     // registry years, plus the declared LICENSE overshoot (px) for the two eastern regions' shared L-seam.
     const lic = cfg.LICENSE[c.id] || {};
+    // v9: the renderer publishes its ISOCHRONE FRONTIER per region (declared start/end years per band, window.FRONTIER);
+    // the drawn x-extent is held to the DECLARED frontier ± YEAR_SLACK (+ the v7 license), not to a single year.
+    const fr = (typeof FRONTIER !== 'undefined' && FRONTIER[c.id]) || null;
+    const fx0 = fr ? [X(fr.startMin) - s.x0, X(fr.startMax) - s.x0] : [0, 0], fx1 = fr ? [X(fr.endMin) - s.x1, X(fr.endMax) - s.x1] : [0, 0];
     const dx0 = a.x - s.x0, dx1 = a.r - s.x1;
-    const okStart = dx0 >= -(YEAR_SLACK + (lic.start || 0)) && dx0 <= YEAR_SLACK + (lic.startLate || 0);
-    const okEnd = dx1 <= YEAR_SLACK + (lic.end || 0) && dx1 >= -(YEAR_SLACK + (lic.endEarly || 0));
+    const okStart = dx0 >= fx0[0] - (YEAR_SLACK + (lic.start || 0)) && dx0 <= fx0[1] + YEAR_SLACK + (lic.startLate || 0);
+    const okEnd = dx1 <= fx1[1] + YEAR_SLACK + (lic.end || 0) && dx1 >= fx1[0] - (YEAR_SLACK + (lic.endEarly || 0));
     if (pyMin < yTop || pyMax > yBot || !okStart || !okEnd) bandViol.push({id: c.id, plateY: [+pyMin.toFixed(0), +pyMax.toFixed(0)], allowedY: [+yTop.toFixed(0), +yBot.toFixed(0)], dxStart: +dx0.toFixed(1), dxEnd: +dx1.toFixed(1)});
   }
   // 1f. v8 ENVELOPE CONFORMANCE + FUNNEL PROFILE. The renderer publishes its global outer envelope (ENV: per time
@@ -130,6 +134,25 @@ JS = r"""
   const thick = profile.map(p => p.thick), funnel = {tip: thick[0] || 0, max: Math.max(...thick, 0), westMean: 0, eastMean: 0};
   if (thick.length) { const q = Math.floor(thick.length / 4); funnel.westMean = Math.round(thick.slice(0, q).reduce((a, b) => a + b, 0) / q); funnel.eastMean = Math.round(thick.slice(-q).reduce((a, b) => a + b, 0) / q); }
   const funnelOK = typeof ENV !== 'undefined' && funnel.tip <= cfg.FUNNEL_TIP_MAX && funnel.max >= cfg.FUNNEL_RATIO * funnel.tip && funnel.eastMean >= 2 * funnel.westMean;
+  // 1g. v9 ISOCHRONE FRONTIERS. For every mainland region, sample its rendered fill along the centre of each
+  //     half-band row (plate coords, spine removed) and record the westmost / eastmost land x per row, converted
+  //     back to years. A boundary is DIAGONAL when the arrival year differs across the rows it spans by at least
+  //     MIN_FRONT_SPREAD_PX (measured at the region's west edge = its arrival frontier). The gate needs at least
+  //     MIN_DIAG_FRONTS regions with a diagonal arrival frontier, and no per-row arrival may be outside the
+  //     declared FRONTIER window ± YEAR_SLACK (the per-band form of the registry-year check above).
+  const fronts = {};
+  if (typeof ROWY !== 'undefined') {
+    for (const c of mainland) {
+      const a = bb(c.lands[0]); const rows = [];
+      for (let j = 0; j < ROWY.length - 1; j++) {
+        const py = (ROWY[j] + ROWY[j + 1]) / 2; let w = null, e = null;
+        for (let x = Math.floor(a.x); x <= a.r; x += 1) if (inFill(c.lands[0], x, py + spineY(x))) { if (w === null) w = x; e = x; }
+        if (w !== null) rows.push({row: j, west: w, east: e});
+      }
+      const ws = rows.map(r => r.west), es = rows.map(r => r.east);
+      fronts[c.id] = {rows, westSpreadPx: rows.length ? +(Math.max(...ws) - Math.min(...ws)).toFixed(0) : 0, eastSpreadPx: rows.length ? +(Math.max(...es) - Math.min(...es)).toFixed(0) : 0};
+    }
+  }
   // 1e. v5 border audit: no internal border may be a straight vertical (or straight horizontal) line. For each
   //     adjacent pair, collect the shared-border pixels (A's fill ∩ B's 2px stroke), fit the best straight line
   //     through them and measure (i) the RMS lateral deviation from that line and (ii) the line's angle from
@@ -219,7 +242,7 @@ JS = r"""
     for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(t - spineY(x)); bots.push(bt - spineY(x)); hs.push(bt - t); } }
     if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
   }
-  return {continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, envViol, profile, funnel, funnelOK, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+  return {fronts, continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, envViol, profile, funnel, funnelOK, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -252,6 +275,11 @@ HAIRPIN_DEG = 150     # v6: max turning angle at any mainland coast vertex (a sp
 # at least MIN_COAST_P2P px peak-to-peak (measured in plate coords over the region's own x-range, corners excluded)
 MIN_COAST_P2P = 40
 WIDE = ["deep-learning-basin", "transformer-plateau", "generative-coast"]
+# v9 isochrone frontiers: a region's ARRIVAL frontier (its west edge) is diagonal when the westmost land x differs
+# across its half-band rows by >= MIN_FRONT_SPREAD_PX; at least MIN_DIAG_FRONTS of the mainland regions must have
+# one (v8 measured 0 — every boundary was x = start_year + wobble).
+MIN_FRONT_SPREAD_PX = 30
+MIN_DIAG_FRONTS = 6
 
 
 def serve(root: Path, port: int):
@@ -332,6 +360,9 @@ def main():
     print(f"v8 funnel profile (mainland thickness in plate px per time column; envelope rows -> land rows): {json.dumps(res['funnel'])}")
     for pr in res["profile"]:
         print("  ", json.dumps(pr))
+    print(f"v9 frontier spread px per region (west edge / east edge, across half-band rows; diagonal >= {MIN_FRONT_SPREAD_PX}):")
+    for cid, f in res["fronts"].items():
+        print(f"   {cid}: west {f['westSpreadPx']} east {f['eastSpreadPx']}  rows " + " ".join(f"{r['row']}:[{r['west']},{r['east']}]" for r in f["rows"]))
     print("border audit (per adjacent pair: rmsDev px from best-fit line, tilt° from vertical, straightVertical?):")
     for bd in res["borders"]:
         print("  ", json.dumps(bd))
@@ -345,6 +376,8 @@ def main():
     fails["notFunnel"] = [] if res["funnelOK"] else [res["funnel"]]
     fails["slabRegions"] = [cid for cid in WIDE if max(res["shape"][cid]["northP2P"], res["shape"][cid]["southP2P"]) < MIN_COAST_P2P]
     fails["badAssets"] = badAssets
+    diag = [cid for cid, f in res["fronts"].items() if f["westSpreadPx"] >= MIN_FRONT_SPREAD_PX]
+    fails["frontiersNotDiagonal"] = [] if len(diag) >= MIN_DIAG_FRONTS else [{"diagonal": diag, "need": MIN_DIAG_FRONTS}]
     fails["offsiteRequests"] = offsite
     for k, v in fails.items():
         print(f"{k} ({len(v)}): {json.dumps(v, ensure_ascii=False)}")
