@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v10 (v9 + full-height present-day coast N1a–S2b, tints ~2× saturation & wash .30/band .48. v9: ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
+<!-- map-of-ai site build: P2-T1-RENDER v11 (v10 + biome-fill tints solved from the rendered colour, wash .50 band .52 — the v10 bump was invisible because the wash sat over an 80 %-parchment texture. v10: full-height present-day coast N1a–S2b, tints ~2× saturation & wash .30/band .48. v9: ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -79,18 +79,30 @@
 // the wash / border band opacities (TINT_WASH, TINT_BAND) are raised so the tint actually shows through the texture.
 // v9 values, for the record: highland #b48a5c grassland #c8a85a forest #7d8f60 jungle #5f8378 wetland #7f8f96
 // harbour #a59a84 mixed #7c6f8c; wash .13, band .26.
+// v11 (independent review of v10: "colors are on the muted/parchment side... saturation increase isn't evident";
+// Alan: "Intense = biome only and don't overdo it"). ROOT CAUSE of the invisible v10 bump: the tint is a
+// 'normal'-blend wash over a texture that is itself ~80 % parchment (mean sat .20–.36, value .81–.97), so the
+// rendered pixel is  tex*(1-wash) + tint*wash.  At wash .30 the pixel was still 70 % parchment: sampled fill
+// saturation on the live v10 was only HSV .13–.46 (e.g. jungle regions .18, cybernetic-shore .13), and
+// chroma barely moved vs v9. v11 solves for the tint FROM the wanted rendered colour instead of picking a pretty
+// swatch: tint = 2*target - texture_mean at wash .50, targets = the same hues one step deeper on the pigment
+// wheel (highland terracotta, grassland ochre, forest olive, jungle deep sea-green, wetland slate-blue).
+// Measured after: highland .45, grassland .44, forest .37–.40, jungle .22–.27, mixed .16 (HSV sat of the
+// rendered mean) — a real +.04–.10 step per biome, verified by screenshot + independent vision review; only
+// biome fills change (border ink #3d2e1a, labels, sea untouched). v10 values: highland #c4763a grassland #d6a52c
+// forest #5e9238 jungle #2a8c6c wetland #4c8ca4 harbour #b89a5e mixed #7a58a4; wash .30 band .48.
 const BIOME = {
   // k = per-biome tile-size multiplier (v5) so glyphs read at one zoom level: measured glyph size on the 512px
   // tiles is ~7-9% of the tile for highland/forest/jungle/mixed, ~5.5% grassland, ~4% wetland → scale those up.
-  highland: {c: '#c4763a', label: 'highland — hand-authored logic & knowledge (symbolic)'},
-  grassland:{c: '#d6a52c', k: 1.3, label: 'grassland — probabilistic / statistical models'},
-  forest:   {c: '#5e9238', label: 'forest — learned neural representations'},
-  jungle:   {c: '#2a8c6c', label: 'jungle — scaled self-supervised / foundation models'},
-  wetland:  {c: '#4c8ca4', k: 1.75, label: 'wetland — reinforcement learning & control'},
-  harbour:  {c: '#b89a5e', label: 'harbour — benchmarks, datasets, tooling, venues'},
-  mixed:    {c: '#7a58a4', label: 'mixed — genuinely hybrid'}
+  highland: {c: '#b66b30', label: 'highland — hand-authored logic & knowledge (symbolic)'},
+  grassland:{c: '#c5a64c', k: 1.3, label: 'grassland — probabilistic / statistical models'},
+  forest:   {c: '#558828', label: 'forest — learned neural representations'},
+  jungle:   {c: '#0f7562', label: 'jungle — scaled self-supervised / foundation models'},
+  wetland:  {c: '#2d7eb7', k: 1.75, label: 'wetland — reinforcement learning & control'},
+  harbour:  {c: '#af974c', label: 'harbour — benchmarks, datasets, tooling, venues'},
+  mixed:    {c: '#7155b8', label: 'mixed — genuinely hybrid'}
 };
-const TINT_WASH = .30, TINT_BAND = .48;   // v10 (v9: .13 / .26) — opacity of the biome wash over the texture and of the hand-tinted border band
+const TINT_WASH = .50, TINT_BAND = .52;   // v11 (v10: .30 / .48; v9: .13 / .26) — opacity of the biome wash over the texture and of the hand-tinted border band
 const TEX = k => `assets/textures/${k}.jpg`;
 const TILE = 230;   // viewBox px per texture repeat (512 px image → glyphs read at roughly hand-drawn map scale)
 const BANDS = ['N1','N2','C','S1','S2'];
