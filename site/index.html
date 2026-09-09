@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
-<!-- map-of-ai site build: P2-T1-RENDER v9 (v8 + ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
+<!-- map-of-ai site build: P2-T1-RENDER v10 (v9 + full-height present-day coast N1a–S2b, tints ~2× saturation & wash .30/band .48. v9: ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -72,17 +72,25 @@
 <script>
 // Biome → generated terrain texture (site/assets/textures/*.jpg, made once by gen_textures.py + prep_textures.py)
 // and a hand-tint colour used for the border wash and the legend swatch.
+// v10 (per Alan on v9: "if there's some kind of a color coding, it should be on theme but a bit more intense"):
+// the tints were parchment-muted (saturation 10–50 %); they are now the same hues at roughly 1.5–3× the
+// saturation (highland 37→55 %, grassland 50→70 %, forest 20→42 %, jungle 16→50 %, wetland 10→35 %, harbour 16→35 %,
+// mixed 12→30 %), still earth/mineral pigments an atlas hand-colourist would use — not flat-design primaries — and
+// the wash / border band opacities (TINT_WASH, TINT_BAND) are raised so the tint actually shows through the texture.
+// v9 values, for the record: highland #b48a5c grassland #c8a85a forest #7d8f60 jungle #5f8378 wetland #7f8f96
+// harbour #a59a84 mixed #7c6f8c; wash .13, band .26.
 const BIOME = {
   // k = per-biome tile-size multiplier (v5) so glyphs read at one zoom level: measured glyph size on the 512px
   // tiles is ~7-9% of the tile for highland/forest/jungle/mixed, ~5.5% grassland, ~4% wetland → scale those up.
-  highland: {c: '#b48a5c', label: 'highland — hand-authored logic & knowledge (symbolic)'},
-  grassland:{c: '#c8a85a', k: 1.3, label: 'grassland — probabilistic / statistical models'},
-  forest:   {c: '#7d8f60', label: 'forest — learned neural representations'},
-  jungle:   {c: '#5f8378', label: 'jungle — scaled self-supervised / foundation models'},
-  wetland:  {c: '#7f8f96', k: 1.75, label: 'wetland — reinforcement learning & control'},
-  harbour:  {c: '#a59a84', label: 'harbour — benchmarks, datasets, tooling, venues'},
-  mixed:    {c: '#7c6f8c', label: 'mixed — genuinely hybrid'}
+  highland: {c: '#c4763a', label: 'highland — hand-authored logic & knowledge (symbolic)'},
+  grassland:{c: '#d6a52c', k: 1.3, label: 'grassland — probabilistic / statistical models'},
+  forest:   {c: '#5e9238', label: 'forest — learned neural representations'},
+  jungle:   {c: '#2a8c6c', label: 'jungle — scaled self-supervised / foundation models'},
+  wetland:  {c: '#4c8ca4', k: 1.75, label: 'wetland — reinforcement learning & control'},
+  harbour:  {c: '#b89a5e', label: 'harbour — benchmarks, datasets, tooling, venues'},
+  mixed:    {c: '#7a58a4', label: 'mixed — genuinely hybrid'}
 };
+const TINT_WASH = .30, TINT_BAND = .48;   // v10 (v9: .13 / .26) — opacity of the biome wash over the texture and of the hand-tinted border band
 const TEX = k => `assets/textures/${k}.jpg`;
 const TILE = 230;   // viewBox px per texture repeat (512 px image → glyphs read at roughly hand-drawn map scale)
 const BANDS = ['N1','N2','C','S1','S2'];
@@ -160,7 +168,7 @@ const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f 
 //   2017–19  [2,8]  7 rows  ── the transformer's language-first tongue, then its northern cape into N2a
 //   2019–22  [1,8]  8 rows
 //   2022–now [0,8]  9 rows  ── the generative coast is the only region registered N1–S2, and the only place the
-//                              continent is the full 9 rows tall (its 2024.3–25.2 peak) — AI touches everything
+//                              continent is the full 9 rows tall (from 2024.3 to the present-day coast) — AI touches everything
 //
 // So the ENVELOPE (the shape a future pass should tune) is graded 2 → 4 → 5 → 6 → 7 → 8 → 9 rows west→east
 // (82 → 369 plate px, a 4.5× widening); its north edge drifts 4→3→2→1→2→3→2→1→0 (the mid-continent sits a little
@@ -190,9 +198,10 @@ const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f 
 //   2006–17  basin foothills Cb–S2b under the isthmus (N2b–Ca), then Ca–S2b: the south bank steps out to S2b
 //   2017–19.6 transformer N2b–S2a (language-first; S2b stays sea); 2019.6–21.3 northern cape to N2a
 //   2021.3–22.8 transformer N2a–Cb over generative S1–S2b (the staircase seam)
-//   2022.8–24.3 generative N1b–S2b; 2024.3–25.2 N1a–S2b (the only full-height column: the funnel's mouth)
-//   2025.2–25.9 N1a recedes; 2025.9–now the ragged frontier N2a–S2a
-// North coast (rows) 4 3 3 2 1 1 1 2 2 2 3 4 4 3 2 2 1 0 1 2 · south coast 5 6 6 6 3 3 7 7 7 6 8 8 8 7 7 8 8 8 8 7.
+//   2022.8–24.3 generative N1b–S2b; 2024.3–now N1a–S2b: the funnel's mouth, full height to the present-day coast
+//   (v10, per Alan on v9: "the easternmost edge should be full top to bottom" — the v7–v9 receding N1a / ragged
+//   N2a–S2a frontier is gone; the present-day coast is ragged through its cape/bay bulge, not through lost rows)
+// North coast (rows) 4 3 3 2 1 1 1 2 2 2 3 4 4 3 2 2 1 0 0 0 · south coast 5 6 6 6 3 3 7 7 7 6 8 8 8 7 7 8 8 8 8 8.
 const E = PRESENT - 0.06;
 const COLS = [1943, 1949, 1956, 1965, 1974, 1980, 1982, 1988, 1993, 1998, 2006, 2011, 2014, 2017, 2019.6, 2021.3, 2022.8, 2024.3, 2025.2, 2025.9, E];
 const MINOR = new Set([1, 3, 12, 14, 15, 17, 18, 19]);   // indices into COLS of the sub-columns (1949, 1965, 2014, 2019.6, 2021.3, 2024.3, 2025.2, 2025.9)
@@ -239,9 +248,9 @@ const GRID = [
   '..tttttt.', // 2019.6–21.3 transformer: northern cape into N2a (minor column)
   '..ttttggg', // 2021.3–22.8 transformer N2a–Cb (language belt to ChatGPT) over generative S1–S2b — the staircase
   '.gggggggg', // 2022.8–24.3 generative N1b–S2b
-  'ggggggggg', // 2024.3–25.2 generative N1a–S2b: the funnel's mouth, the only full-height column (minor column)
-  '.gggggggg', // 2025.2–25.9 generative N1b–S2b: N1a recedes (minor column)
-  '..gggggg.', // 2025.9–present: ragged frontier — N2a–S2a reach the last completed month (minor column)
+  'ggggggggg', // 2024.3–25.2 generative N1a–S2b: the funnel's mouth (minor column)
+  'ggggggggg', // 2025.2–25.9 generative N1a–S2b (minor column) — v10: full height held to the coast
+  'ggggggggg', // 2025.9–present generative N1a–S2b: the present-day coast spans N1 top to S2 bottom (minor column)
 ];
 const CODE = {y:'cybernetic-shore', h:'symbolic-heartland', w:'winter-steppes', p:'expert-systems-plateau', c:'connectionist-revival', s:'statistical-isthmus', d:'deep-learning-basin', t:'transformer-plateau', g:'generative-coast'};
 const NC = COLS.length - 1, NR = ROWY.length - 1;
@@ -276,7 +285,7 @@ GRID.forEach((row, i) => { for (let j = 0; j < NR; j++) if (row[j] !== '.' && (j
 //   2019.6 the transformer's northern cape (T5/GPT-3, AlphaFold) grows in over ~1 yr
 //   2021.3 diffusion hits perception (S2) in 2021, agents/planning (S1) later in 2022
 //   2022.8 ChatGPT flips language first, reasoning follows (GPT-4 2023), foundations/N1 later in 2023
-//   2024.3 / 2025.2 / 2025.9  the N1a crest and the ragged frontier step in and out over months, not at a line
+//   2024.3 / 2025.2 / 2025.9  the N1a crest arrives over months, not at a line; from 2024.3 the coast holds all 9 rows
 // Budgets: every offset is converted through X() (so a year is 8 px in the 40s and 50 px after 2017); the vertex
 // table BASEX below is asserted MONOTONIC along every used row with ≥ FRONT_GAP px between consecutive lines, and
 // the jitter / border wander of a line are bounded by the ACTUAL local gap at that row (not just the column width),
@@ -661,7 +670,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     el('path', {d, class: 'waterline', 'stroke-width': 7, 'stroke-opacity': .35}, gRocks);
     el('path', {d, fill: 'none', stroke: 'url(#tex-sea)', 'stroke-width': 5.6}, gRocks);
     el('path', {d, fill: 'url(#tex-highland)', class: 'rock'}, gRocks);
-    el('path', {d, fill: '#b48a5c', 'fill-opacity': .18}, gRocks);
+    el('path', {d, fill: BIOME.highland.c, 'fill-opacity': TINT_WASH, class: 'tint'}, gRocks);
     el('path', {d, class: 'coast', 'stroke-width': 1.2}, gRocks);
   });
   const gShapes = el('g', {id: 'shapes'}); const gCoast = el('g', {id: 'coast'}); const gLeaders = el('g', {id: 'leaders'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none', filter: 'url(#halo)'});
@@ -712,7 +721,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     const tint = BIOME[c.biome].c, fill = `url(#tex-${c.biome})`;
     let lands = [];
     if (c.offshore) {
-      isleD.forEach(d => { lands.push(el('path', {d, fill, class: 'land'}, g)); el('path', {d, fill: tint, 'fill-opacity': .14, class: 'tint'}, g); });
+      isleD.forEach(d => { lands.push(el('path', {d, fill, class: 'land'}, g)); el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'tint'}, g); });
       const lx = PAD_L + ARCH_W / 2 - 22; let ly = SY(lx, BY('C', .55));
       const ts = [];
       wrap(c.name, 10).forEach(l => { ts.push(txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id})); ly += 15; });
@@ -740,8 +749,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
       // transparent when the pattern is also the fill under a filter — verified pixel-by-pixel)
       el('path', {d: dilatePath(loops, FEATHER / 2), fill, filter: 'url(#feather)', 'clip-path': 'url(#clip-coast)', class: 'texbleed'}, g);
       const land = el('path', {d, fill, 'fill-opacity': 0, class: 'land'}, g); lands = [land];
-      el('path', {d, fill: tint, 'fill-opacity': .13, class: 'tint'}, g);                                        // biome wash
-      el('path', {d, fill: 'none', stroke: tint, 'stroke-width': 16, 'stroke-opacity': .26, 'clip-path': `url(#clip-${c.id})`, class: 'tint'}, g); // hand-tinted border band
+      el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'tint'}, g);                                  // biome wash
+      el('path', {d, fill: 'none', stroke: tint, 'stroke-width': 16, 'stroke-opacity': TINT_BAND, 'clip-path': `url(#clip-${c.id})`, class: 'tint'}, g); // hand-tinted border band
       el('path', {d, class: 'border'}, g);
       const L = LABEL[c.id];
       if (L.inside) placeInside(c, land);

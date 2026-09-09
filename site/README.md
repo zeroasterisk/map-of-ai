@@ -1,4 +1,4 @@
-# site/ — review prototype (P2-T1-RENDER v7)
+# site/ — review prototype (P2-T1-RENDER v10)
 
 Single static page rendering `data/continents/REGISTRY.md` as an antique-atlas plate
 (X = time, piecewise-scaled per AXES.md §1; Y = the five AXES.md §3 bands as faint
