@@ -7,12 +7,13 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** `e2bf8c3` (v9 — isochrone frontiers, SHIPPED 2026-09-08; the two stalled attempts below were superseded)
-- **In-flight job:** `proc_eedaa61d915b` (background hermes/Fable process,
-  prompt saved at `/tmp/fable_prompt12.txt`, log at `/tmp/fable_run12.log`)
-  is currently running the **v9 diagonal-frontier** pass — NOT yet committed
-  as of this write. Check `git log` for a new commit past `25c295e` /
-  `fable_run12.log` for its completion report before starting new work.
+- **HEAD at write time:** `c2fb8c0` (v10 — full-height present-day coast + intensified tints, SHIPPED 2026-09-09)
+- **In-flight job:** none.
+- **Host note (2026-09-09):** the v10 session ran on a fresh host — no
+  `/home/node/map-of-ai` clone, no `/tmp/pw*` Playwright setup, no `gh` in
+  `~/.local/bin` (system `/usr/bin/gh` exists). Clone + the
+  `headless-chromium-sandbox` skill recipe rebuilt everything in ~3 min;
+  don't assume `/tmp` state survives between sessions.
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 
@@ -22,7 +23,8 @@
 | v6 (in-region coastline wander) | 5.5/10 | Internal wobble added, still columnar |
 | v7 (artistic-license asymmetry) | 6-7.2/10 | Transformer/Generative border wanders, heights differ |
 | v8 (global funnel envelope) | 6.5/10 | Overall width now varies 4.7x (88px→415px) west-to-east — real structural fix. Alan's verdict after seeing v8: **"still too 90 degree rectangular... basic allocations still too rigidly along x and y grids"** |
-| v9 (in progress) | TBD | Diagonal isochrone frontiers: each region's arrival/departure year can differ BY BAND (not one x for the whole boundary). Also softening the outer envelope's step transitions into ramps. |
+| v9 (shipped `e2bf8c3`) | 8.5/10 (independent) | Diagonal isochrone frontiers: each region's arrival/departure year differs BY BAND. Alan: "looking pretty good" + two asks → v10. |
+| v10 (shipped `c2fb8c0`) | see run report | Alan's two v9 asks: (1) present-day coast now spans N1a–S2b in every column from 2024.3 (the v7 receding-N1a / ragged N2a–S2a GRID rows were the cause, not the registry or ENV); (2) BIOME tints ~2× saturation, wash .13→.30, border band .26→.48. |
 
 ## Key structural insight (v8 → v9 turning point)
 
