@@ -1,4 +1,4 @@
-# STATUS — as of 2026-09-09 (session 3 + render passes v5–v10; v10 full-height east coast + intensified tints live)
+# STATUS — as of 2026-09-09 (session 3 + render passes v5–v11; v11 visibly-tinted biome fills live)
 
 ## One-line status
 
@@ -46,7 +46,7 @@ Open <https://zeroasterisk.github.io/map-of-ai/> (GitHub Pages, deployed from
 | P0 tooling | P0-T1…T4 | **done** | commits `9d25447` `1db3e92` `bf7c56d` `76d9de6`; `scripts/fixtures/run.sh` passes (25 V-rules, one FAIL per invalid fixture) |
 | P1 research coverage | P1-T1…T9, T10, T11 | **done** | commits `7bc7c72` (T11), `89793c3` `c096929` `937d2bf` `28bb209` `40ae90b` `32d271b` `4296598` `58b035d` `8bbfbbe`; all nine files `Status: reviewed`; `scripts/check_research.py research/0*.md` → R-01…R-07 PASS for every file; review reports in `data/reviews/2026-09-06-research-0N.md` |
 | P2-T1 registry | P2-T1 | **done, proposed** | commit `95e9323`; `scripts/check_registry.py` → 13/13 PASS |
-| P2-T1-RENDER | render + Pages | **done, live (v10)** | commits `1247b0b` … `c2fb8c0`; Pages workflow green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors; `site/check_layout.py` PASS |
+| P2-T1-RENDER | render + Pages | **done, live (v11)** | commits `1247b0b` … `47cf0d2`; Pages workflow green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors; `site/check_layout.py` PASS |
 | P2-T2…T13 | continents | **not started — gated on Alan's review** | — |
 | P3 countries | P3-T1…T12 | not started (instance mapping recorded in `REGISTRY.md` §6) | — |
 | P4 city pilot | P4-T1…T8 | not started | — |
@@ -137,7 +137,26 @@ verification" section is empty; the east edge is Sept 2026 with
   #b48a5c→#c4763a, grassland #c8a85a→#d6a52c, forest #7d8f60→#5e9238, jungle
   #5f8378→#2a8c6c, wetland #7f8f96→#4c8ca4, harbour #a59a84→#b89a5e, mixed
   #7c6f8c→#7a58a4) and the wash/border-band opacities .13/.26 → `TINT_WASH`
-  .30 / `TINT_BAND` .48. All gates PASS.
+  .30 / `TINT_BAND` .48. All gates PASS. **Independent review found the tint
+  bump NOT visible** ("colors are on the muted/parchment side") — see v11.
+- Render pass v11 (2026-09-09, "biome-only intensity"; Alan: "Intense = biome
+  only and don't overdo it"). Root cause of the invisible v10 bump: the tint is
+  a normal-blend wash over a texture that is itself ~80 % parchment (texture
+  means: sat .20–.36, value .81–.97), so rendered = tex·(1−wash) + tint·wash;
+  at wash .30 a fill was still 70 % parchment. Sampled live v10 fill saturation
+  (HSV of the mean of 300 in-fill pixels per region) was only .13–.46 and
+  chroma barely moved vs v9 — the swatches got vivid, the map did not. v11
+  solves the tint FROM the wanted rendered colour (`tint = 2·target − texture
+  mean` at `TINT_WASH` .50; `TINT_BAND` .52): highland #b66b30, grassland
+  #c5a64c (pulled back from a first candidate #cd9e28 that the reviewer called
+  "the one that tips toward garish"), forest #558828, jungle #0f7562, wetland
+  #2d7eb7, harbour #af974c, mixed #7155b8. Measured live v10 → v11 saturation:
+  symbolic-heartland .38→.45, expert-systems .40→.48, isthmus .46→.45 (chroma
+  106→99, deliberately held), connectionist .30→.37, basin .31→.39, transformer
+  .18→.24, generative-coast .18→.26, cybernetic .13→.15. Only biome fills
+  changed — border ink, labels, sea, halo untouched. Independent vision review
+  of the live v11: "clearly more saturated … still holds the antique-atlas
+  register". All gates PASS (`check_layout.py` RESULT: PASS, marker v11).
 - Render pass v9 (2026-09-08, "isochrone frontiers"): Alan on v8 — "still too 90
   degree rectangular … the basic allocations are still too rigidly along x and
   y grids". Root cause: every boundary was `x = start_year` (one x for the whole
