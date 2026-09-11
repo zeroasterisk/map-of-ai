@@ -1,6 +1,6 @@
 # Continent registry (A1) — `data/continents/REGISTRY.md`
 
-> **Unit:** PLAN.md P2-T1. **Status:** proposed — awaiting Alan's review via the rendered prototype (P2-T1-RENDER) before any continent YAML (P2-T2…) is authored.
+> **Unit:** PLAN.md P2-T1. **Status:** **accepted by Alan 2026-09-11** (via the rendered prototype v11, P2-T1-RENDER). Ids, spans, band spans and biomes below are frozen ("registry-frozen" gate, PLAN.md §5); P2-T2… and P3-T<n> may proceed per continent.
 > **Authoritative for:** continent `id`s, `name`, `subtitle`, `time_range`, `band` span, `biome`, `research_ref`, `offshore`, `split-of`. Every later unit references these ids; **ids never change** after this file is accepted (SPEC.md §2.1: "stable forever; never reuse").
 > **Not yet decided here:** `neighbours` (P2-T12), polygons, exact X pixel placement, country membership (P3).
 > **Inputs used:** ALTITUDES.md §2 table; every `research/0[1-8]` frontmatter ("Date range", "Map placement", "Altitude") and "Map notes" A1 label lines; `research/01` archipelago/shore split table (P1-T11); SPEC.md §2.1, §2.3, §2.6, §5.2; AXES.md §1 (1943 west coast, offshore archipelago), §3 (bands, biome palette, rule 2).

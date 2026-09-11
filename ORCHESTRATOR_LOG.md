@@ -100,3 +100,49 @@ this checkpoint — v9 (diagonal isochrone frontiers) has NOT shipped yet.
    possibly allowing the Deep Learning Basin to reach N2 (currently
    registry-capped at C-S2), which needs an ALTITUDES/REGISTRY decision from
    Alan, not just a render tweak.
+
+## Session 4 (2026-09-11) — registry accepted; P3 spec gaps closed; pilot data layer
+
+Alan accepted the continent registry (v11) as final for now and said
+"continue". Work done in one pass, spec/plan first, data second:
+
+**Phase A (spec/plan).**
+- `SPEC.md` §9 P3-RENDER: visual grammar G1–G10 + binary criteria
+  A-V1…A-V10 for countries inside continents. Decisions: A1/A2 zoom states
+  (country labels only at A2; selected continent's name hidden, others dim to
+  40 %); countries reuse the parent's texture unless `biome` differs;
+  interior borders 1/3 continent stroke with the same lean/wobble discipline;
+  `wall` = double stroke, `bridge` = dashed causeway; `draft` = frontier haze;
+  data via `site/build_entities_json.py` → `entities.json`; continent
+  geometry must not change (unit stops and files a conflict instead).
+- `PLAN.md`: "registry-frozen" gate — P3-T<n> depends only on the accepted
+  registry + that continent's own P2-T<n>; new P3-RENDER unit; wave table
+  row 2b (P2-T8 → P3-T8 → P3-RENDER → Alan review); fixed stale P3-T6→P3-T8
+  basin reference. `REGISTRY.md` header marked accepted/frozen.
+
+**Phase B (data).**
+- `data/continents/deep-learning-basin.yaml` (P2-T8): band `[C, S1, S2]`
+  per the registry row (not the older SPEC §2.10 example's N2 reach);
+  neighbours deferred as `pending-neighbour:` for P2-T12.
+- `data/countries/` ×9 (P3-T8), one per `## Schools of thought` bullet, none
+  merged/dropped: pretraining-foothills, gpu-convnet-school,
+  neural-nlp-sequence-school, deep-rl-delta (S1, wetland),
+  deep-generative-shoreline, speech-recognition-converts, tooling-guild
+  (S1–S2, harbour), industrial-lab-founders (C–S1), chinese-state-response
+  (C, grassland). Summaries 113–137 words; sibling `neighbours` filled;
+  cross-continent borders as `pending-neighbour:` notes.
+- `data/coverage/deep-learning-basin.md`: header (A-M1) + Table 1 (A-M2,
+  9 rows = 9 bullets, awk check in file).
+- Verification: `scripts/validate.py --summary` → files=10 rules=25 fails=0
+  with V-20 live link checking; A-K2 script (refs ⊆ bullet [n]s) true for
+  all 9; V-32 (cities) intentionally off.
+
+**Pitfalls hit.** (1) `read_file` output is line-numbered — never splice it
+back into a file (one bad write of SPEC.md, caught by `git diff --stat`,
+fixed). (2) check_links.sh truncates URLs at `)` — percent-encode Wikipedia
+titles with parentheses. (3) `python3` has no PyYAML; use
+`uv run --with pyyaml`.
+
+**Next.** Alan reviews SPEC §9 → build P3-RENDER against the pilot (do not
+bulk-author the other nine continents' countries before the A2 view has been
+seen once; the continent phase showed the render review changes the data).

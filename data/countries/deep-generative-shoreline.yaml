@@ -1,0 +1,40 @@
+id: deep-generative-shoreline
+level: country
+name: The Generative Shoreline
+subtitle: "Deep generative models: VAEs, GANs and autoregressive nets, 2013–2017"
+summary: >
+  A narrow coast where the basin first learned to make things rather than
+  recognise them. Kingma and Welling's variational autoencoder (December 2013)
+  and Goodfellow and colleagues' generative adversarial networks (Montréal, June
+  2014) arrived within six months of each other; Radford, Metz and Chintala's
+  DCGAN (2015) made GANs practical for images. DeepMind's PixelRNN and PixelCNN
+  (2016) and WaveNet (September 2016) established the autoregressive likelihood
+  family as the third route, generating raw audio sample by sample. Gatys, Ecker
+  and Bethge's neural style transfer (Tübingen, 2015) and Google's DeepDream
+  were the school's public face: the first viral neural-art moment, and the
+  opening of the generative-media district that diffusion models would build out
+  on the next continent.
+time_range: {start: 2013, end: 2017}
+band: S2
+biome: forest
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [27, 28, 103, 50, 72, 73, 101]}
+sources:
+  - {url: https://arxiv.org/abs/1312.6114, title: "Kingma & Welling, Auto-Encoding Variational Bayes, 2013", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1406.2661, title: "Goodfellow et al., Generative Adversarial Networks, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1511.06434, title: "Radford, Metz & Chintala, DCGAN, 2015", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1609.03499, title: "van den Oord et al., WaveNet, 2016", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1508.06576, title: "Gatys, Ecker & Bethge, A Neural Algorithm of Artistic Style, 2015", kind: primary, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Generative_adversarial_network, title: "Wikipedia: Generative adversarial network", kind: wikipedia, accessed: 2026-09-11}
+threads: [vision, language]
+neighbours:
+  - {id: pretraining-foothills, relation: borders, note: "the energy-model school reborn as likelihood-based generative modelling"}
+  - {id: gpu-convnet-school, relation: borders, note: "DCGAN and style transfer are built on VGG/convnet features"}
+  - {id: speech-recognition-converts, relation: borders, note: "WaveNet is audio generation next to audio recognition"}
+status: sourced
+notes: >
+  P3-T8 school bullet 5 of 9 ("Deep generative modelling shoreline"). pending-
+  neighbour: diffusion-models (east, file 08 generative-media district);
+  pending-neighbour: generative-coast (east continent). Band S2 with the
+  parent's note that the shoreline "reaches toward the middle of the map": drawn
+  as the southern coast, not an exclave.

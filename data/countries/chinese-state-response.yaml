@@ -1,0 +1,44 @@
+id: chinese-state-response
+level: country
+name: The Eastern Coast Forts
+subtitle: "Chinese labs and the first national AI strategies, 2014–2017"
+summary: >
+  The basin's eastern coast, where the deep-learning boom first became national
+  policy. Baidu Research under Ng (2014) produced Deep Speech; SenseTime (Hong
+  Kong/CUHK, October 2014; ILSVRC 2016 detection winner) and Megvii's Face++
+  (Beijing, launched 2012) built computer-vision companies on ImageNet-era
+  convnets. Then, as the era closed, governments answered: the Obama White House
+  published Preparing for the Future of Artificial Intelligence (October 2016),
+  the first US national AI policy report; Canada launched the Pan-Canadian AI
+  Strategy through CIFAR and founded the Vector Institute in Toronto with Hinton
+  as chief scientific advisor (2017); and China's State Council issued the New
+  Generation Artificial Intelligence Development Plan (July 2017), targeting
+  world leadership by 2030. Their consequences — funding and chip-export
+  politics — play out on the next continents.
+time_range: {start: 2014, end: 2017}
+band: C
+biome: grassland
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [93, 94, 110, 111, 117, 107, 109, 112]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/Baidu, title: "Wikipedia: Baidu (Baidu Research)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/SenseTime, title: "Wikipedia: SenseTime", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Megvii, title: "Wikipedia: Megvii (Face++)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://obamawhitehouse.archives.gov/blog/2016/10/12/administrations-report-future-artificial-intelligence, title: "The White House, Preparing for the Future of Artificial Intelligence, 12 Oct 2016", kind: official, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Vector_Institute_%28Canada%29, title: "Wikipedia: Vector Institute (Canada)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Artificial_intelligence_industry_in_China, title: "Wikipedia: Artificial intelligence industry in China (2017 New Generation AI Development Plan)", kind: wikipedia, accessed: 2026-09-11}
+threads: [compute]
+neighbours:
+  - {id: industrial-lab-founders, relation: borders, note: "Baidu Research is shared ground; the strategies react to the corporate land-grab"}
+  - {id: speech-recognition-converts, relation: borders, note: "Deep Speech (2014) is the coast's first city"}
+  - {id: gpu-convnet-school, relation: borders, note: "SenseTime and Megvii commercialise ImageNet-era vision"}
+status: sourced
+notes: >
+  P3-T8 school bullet 9 of 9 ("The Chinese and state response"). pending-
+  neighbour: policy-coast (east, files 07-08); pending-neighbour: conscience-
+  road (file 09c). Biome grassland: policy and institutional structure with
+  explicit rules rather than learned representation (the closest AXES.md palette
+  entry: explicit structure); a reviewer may prefer forest for the two vision
+  start-ups — flagged for A-K7. Band C by neighbourhood: state and institutional
+  response is neither perception nor control; band_override_note not needed
+  since C is the literal middle.

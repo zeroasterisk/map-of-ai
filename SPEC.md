@@ -482,3 +482,52 @@ This spec changes by commit to `main` with subject `SPEC: …`. Rule IDs are
 never renumbered; retired rules are struck through with a reason. `PLAN.md`
 units reference rule IDs, so a rule change may require re-checking the units
 that cite it — list them in the commit body.
+
+
+## 9. Review-render spec — countries inside continents (P3-RENDER)
+
+> Added 2026-09-11 (`SPEC:` commit). Governs the **review prototype** in
+> `site/` only (the P2-T1-RENDER lineage), not the eventual Phase-4 map
+> engine. §6 item 2 still holds: no coordinates are stored in `data/`; every
+> position below is *derived* at render time from `time_range`, `band`,
+> `parent_id`, `neighbours` and the parent's drawn polygon.
+
+### 9.1 Visual grammar (normative)
+
+| # | Rule |
+|---|---|
+| G1 | **Containment.** A country is drawn as one irregular polygon strictly inside its parent continent's drawn polygon (the v9+ isochrone-frontier shape), never crossing the parent's outer coast or a sibling continent's border. |
+| G2 | **Tiling.** The set of countries of one continent tiles the parent polygon: no interior gaps larger than the border stroke, no overlaps. Area is a hint, not data: a country's X extent comes from its `time_range` (piecewise scale, `AXES.md` §1) and its Y extent from its `band` (single band or contiguous span); the remaining slack is absorbed by the curator's tiling, not by stretching `time_range`. |
+| G3 | **Band containment.** A country's `band` (or span) is a subset of the parent continent's registry span. A country that genuinely lies outside it is recorded as `band_override_note` + a `notes: exclave:` token and is drawn as an exclave *touching* the parent, not a free-floating island. |
+| G4 | **Terrain.** A country reuses the parent's biome texture when its `biome` equals the parent's; a differing `biome` (e.g. `wetland` RL delta, `harbour` tooling guild inside a `forest` continent) is drawn with that biome's texture and tint, same wash constants as the continent layer (`TINT_WASH`/`TINT_BAND`), so the mixed-terrain continent reads as one landmass with provinces. |
+| G5 | **Borders.** Country–country borders are a thin hand-drawn stroke (1/3 the continent border width, same ink), following the same `x = f(band, year)` wobble discipline as continent frontiers (no plumb lines). `relation: wall` neighbours get a double stroke; `bridge` a dashed causeway across the border; `river`/`road` are drawn as the thread's linear feature, not as a border. |
+| G6 | **Labels by zoom.** Two zoom states exist in the prototype: **A1** (continent view, default) and **A2** (country view, entered by clicking a continent). At A1 no country labels render; countries appear only as faint interior border strokes and biome provinces. At A2 the clicked continent's name label is hidden and every country renders name (Cinzel, ≤ 60 % of the continent-name size) + subtitle + year range, and the other continents' labels dim to 40 % opacity. |
+| G7 | **Label density.** At A2 no two country label bounding boxes overlap (same `LABEL_GAP` gate as continents) and every label lies inside its own polygon or, if the polygon is too small, is attached by a leader line to it. Minimum font size is the existing `MIN_FONT`. |
+| G8 | **Hover/click.** Hovering a country at A2 shows the existing card with name, subtitle, `time_range`, `band`, `biome`, the first 60 words of `summary`, and its `neighbours` list; clicking a country is a no-op until the city phase (P4) exists. |
+| G9 | **Status treatment.** `status: draft` countries render with the frontier haze (reduced fill opacity + dashed border); `sourced`/`verified`/`placed` render solid. No other status is visually distinguished in the prototype. |
+| G10 | **Source of truth.** The prototype reads `data/continents/*.yaml` + `data/countries/*.yaml` via a build step (`site/build_entities_json.py`, sibling of `build_registry_json.py`) into a single `entities.json`; `REGISTRY.md` remains authoritative for continent *ids/spans* until P2-T13 marks the YAMLs verified, at which point the YAMLs take over (recorded in `STATUS.md`). |
+
+### 9.2 Acceptance criteria (binary; checked by `site/check_layout.py` unless stated)
+
+| ID | PASS when |
+|---|---|
+| A-V1 | For every continent that has ≥ 1 country YAML on `main`, the A2 view draws exactly as many `g.country` elements as `data/countries/*.yaml` files with that `parent_id`; zero JS errors. |
+| A-V2 | Every rendered country path is inside its parent's path: point-in-fill sampling of ≥ 300 interior points per country yields 100 % inside the parent polygon and 0 % inside any other continent (G1). |
+| A-V3 | Union of a continent's country paths covers ≥ 97 % of the parent's fill area and pairwise country overlap is 0 px² after stroke subtraction (G2). |
+| A-V4 | Every country's `band` ⊆ its parent's registry span, **or** the file carries `band_override_note` and `notes` contains `exclave:` (G3). Mechanical: `scripts/check_country_bands.py`, exit 0. |
+| A-V5 | Rendered country fill colour matches its `biome`: sampled mean HSV of each country fill lies within the same tolerance band `scripts/sample_fill_colours.py` already applies to continents (G4). |
+| A-V6 | At A1, `g.country text` count is 0; at A2 for the selected continent, every country has ≥ 3 `text` nodes (name, subtitle, years) and the selected continent's `.cname` is hidden (G6). |
+| A-V7 | At A2, no two country label bounding boxes intersect after `LABEL_GAP` growth; every label bbox is inside its own path or has a leader whose far end is (G7). |
+| A-V8 | Every country border stroke has a measured lean spread ≥ 6 px between its northernmost and southernmost band rows (the continent `frontiersNotDiagonal` gate scaled to country size) — no plumb-line borders (G5). |
+| A-V9 | The Pages deploy is green and the live page contains the marker text `P3-RENDER v1`; `entities.json` on the live site lists every country file on `main` at that commit (G10). |
+| A-V10 | Independent vision review (reviewer ≠ author) of a screenshot of the A2 view answers "yes" to: "Do the countries read as provinces of one landmass rather than a second layer of rectangles?" — recorded in `data/reviews/YYYY-MM-DD-p3-render.md`. |
+
+### 9.3 Out of scope for P3-RENDER
+
+City markers, rivers/roads as geometry (only the `river`/`road` neighbour
+stroke of G5), fly-to animation, per-country textures, and any change to
+continent geometry. If a country cannot be tiled without moving a continent
+frontier, the unit stops and files the conflict in `STATUS.md` rather than
+editing `FRONT`/`ENV`.
+
+

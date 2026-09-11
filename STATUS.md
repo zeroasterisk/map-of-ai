@@ -1,15 +1,36 @@
-# STATUS — as of 2026-09-09 (session 3 + render passes v5–v11; v11 visibly-tinted biome fills live)
+# STATUS — as of 2026-09-11 (session 4: registry accepted; P3 spec gaps closed; pilot continent + countries data layer landed)
 
 ## One-line status
 
-**Gate: awaiting Alan's review of the continent registry via the rendered
-prototype at <https://zeroasterisk.github.io/map-of-ai/> before P2-T2
-(individual continent authoring) proceeds.** P0 (tooling) and P1 (research
-coverage + triangulation) are complete and pushed; `data/continents/REGISTRY.md`
-(10 continents) is proposed. Monthly frontier intake (P5) is **deferred by
-Alan, not scheduled.**
+**Registry accepted by Alan 2026-09-11 (v11) — "registry-frozen".** P0, P1,
+P2-T1, P2-T1-RENDER done. Session 4 closed the two P3 spec/plan gaps
+(`SPEC.md` §9 P3-RENDER; `PLAN.md` §5 dependency note + P3-RENDER unit) and
+landed the pilot data layer: `data/continents/deep-learning-basin.yaml`
+(P2-T8) + 9 country YAMLs (P3-T8) + `data/coverage/deep-learning-basin.md`
+Table 1; `scripts/validate.py --summary` → files=10 fails=0 (V-20 links live).
+**Next gate: Alan reviews `SPEC.md` §9, then P3-RENDER is built** so the pilot
+decomposition can be reviewed visually. Monthly frontier intake (P5) remains
+**deferred by Alan, not scheduled.**
 
 ## What Alan is being asked to review
+
+**Session 4 (2026-09-11) items — review first:**
+
+1. `SPEC.md` §9 (P3-RENDER): the visual grammar G1–G10 and acceptance
+   criteria A-V1…A-V10 for drawing countries inside a continent. Key calls:
+   two zoom states (A1 = today's map, A2 = click a continent → its countries
+   with labels, other continents dimmed); countries reuse the parent texture
+   unless their `biome` differs (wetland RL delta, harbour tooling guild);
+   thin wobbly interior borders, no new continent geometry.
+2. `PLAN.md` §5 dependency note: a continent's countries proceed on
+   *registry-frozen* + its own continent YAML, not on all ten continents'
+   P2-T2…T13.
+3. The pilot decomposition itself (`data/countries/*.yaml`, 9 files) — the
+   A-K7 judgement calls are listed at the bottom of
+   `data/coverage/deep-learning-basin.md`. Read them as YAML for now; visual
+   review comes after P3-RENDER.
+
+**Earlier (registry, v11 — accepted 2026-09-11):**
 
 Open <https://zeroasterisk.github.io/map-of-ai/> (GitHub Pages, deployed from
 `site/` by `.github/workflows/pages.yml`; source of truth is
@@ -47,8 +68,8 @@ Open <https://zeroasterisk.github.io/map-of-ai/> (GitHub Pages, deployed from
 | P1 research coverage | P1-T1…T9, T10, T11 | **done** | commits `7bc7c72` (T11), `89793c3` `c096929` `937d2bf` `28bb209` `40ae90b` `32d271b` `4296598` `58b035d` `8bbfbbe`; all nine files `Status: reviewed`; `scripts/check_research.py research/0*.md` → R-01…R-07 PASS for every file; review reports in `data/reviews/2026-09-06-research-0N.md` |
 | P2-T1 registry | P2-T1 | **done, proposed** | commit `95e9323`; `scripts/check_registry.py` → 13/13 PASS |
 | P2-T1-RENDER | render + Pages | **done, live (v11)** | commits `1247b0b` … `47cf0d2`; Pages workflow green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors; `site/check_layout.py` PASS |
-| P2-T2…T13 | continents | **not started — gated on Alan's review** | — |
-| P3 countries | P3-T1…T12 | not started (instance mapping recorded in `REGISTRY.md` §6) | — |
+| P2-T2…T13 | continents | **P2-T8 done** (`data/continents/deep-learning-basin.yaml`, status sourced); T2–T7, T9–T13 not started, unblocked (registry-frozen) | validate.py 0 FAIL incl. V-20 |
+| P3 countries | P3-T1…T12 | **P3-T8 done** (9 countries, coverage Table 1 = 9/9 bullets); A-K2 refs⊆bullet checked for all 9; P3-RENDER spec written (`SPEC.md` §9), not built; T1–T7, T9–T12 not started | `scripts/validate.py --summary` → country total=9 sourced=9, fails=0 |
 | P4 city pilot | P4-T1…T8 | not started | — |
 | P5 frontier intake | P5-T0, P5-R1…R6 | **deferred by Alan, not scheduled** (`PLAN.md` §7 header) | — |
 | P6 quality | P6-T1…T5 | not started | — |

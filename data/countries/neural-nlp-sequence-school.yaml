@@ -1,0 +1,42 @@
+id: neural-nlp-sequence-school
+level: country
+name: The Attention Headwaters
+subtitle: "Neural NLP and LSTM sequence-to-sequence models, 2011–2016"
+summary: >
+  Where the Attention River rises. Collobert and Weston's "NLP (almost) from
+  scratch" (2011) argued that one neural architecture could replace hand-built
+  pipelines; Mikolov's word2vec (Google, 2013) and Pennington, Socher and
+  Manning's GloVe (Stanford, 2014) made word embeddings the field's common
+  currency. Cho's GRU encoder–decoder and Sutskever, Vinyals and Le's seq2seq
+  (2014) showed LSTMs translating whole sentences; Bahdanau, Cho and Bengio
+  added attention over the source (September 2014); Show and Tell (2014)
+  captioned images with the same recipe. Weston's Memory Networks and Graves's
+  Neural Turing Machines (2014) and Differentiable Neural Computer (2016)
+  reached toward explicit memory and reasoning. Google's GNMT (2016) put the
+  LSTM-plus-attention stack into production translation — the high-water mark of
+  recurrence, one year before "Attention Is All You Need" replaced it.
+time_range: {start: 2011, end: 2016}
+band: C
+biome: forest
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [87, 22, 88, 104, 30, 31, 32, 98, 118, 82, 51, 70]}
+sources:
+  - {url: https://jmlr.org/papers/v12/collobert11a.html, title: "Collobert et al., Natural Language Processing (Almost) from Scratch, JMLR 2011", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1301.3781, title: "Mikolov et al., Efficient Estimation of Word Representations in Vector Space (word2vec), 2013", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1409.0473, title: "Bahdanau, Cho & Bengio, Neural Machine Translation by Jointly Learning to Align and Translate, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1409.3215, title: "Sutskever, Vinyals & Le, Sequence to Sequence Learning with Neural Networks, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1410.5401, title: "Graves, Wayne & Danihelka, Neural Turing Machines, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Google_Neural_Machine_Translation, title: "Wikipedia: Google Neural Machine Translation", kind: wikipedia, accessed: 2026-09-11}
+threads: [language]
+neighbours:
+  - {id: gpu-convnet-school, relation: borders, note: "image captioning (Show and Tell, 2014) bridges the two schools"}
+  - {id: speech-recognition-converts, relation: borders, note: "shared LSTM/CTC recurrent machinery (Graves)"}
+  - {id: tooling-guild, relation: road, note: "Theano at MILA and Torch at NYU/FAIR were this school's workbenches"}
+status: sourced
+notes: >
+  P3-T8 school bullet 3 of 9 ("Neural NLP / sequence school"). pending-
+  neighbour: statistical-nlp (west, n-gram/SMT systems, file 05); pending-
+  neighbour: transformer-plateau (east, file 07, bridge: the Attention River
+  leaves the map at Vaswani 2017). Band C: language work sits mid-map per the
+  parent's placement line ("home S2 -> C -> S1"); Neural Turing Machines/DNC
+  reach toward N2 and are a causeway, not territory.

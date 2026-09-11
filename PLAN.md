@@ -47,8 +47,10 @@ G0
  │    P2-T12 X-axis tiling + west/east neighbour pass (S) ◄─ all P2-T2..T11
  │    P2-T13 continent review → verified (M, reviewer) ◄─ P2-T12   │
  │                                                                 │
- ├─► P3 countries  (needs P2-T1; per-continent units need that continent's P2-Tn merged)
+ ├─► P3 countries  (needs P2-T1 accepted = "registry-frozen"; per-continent units need only that continent's own P2-Tn merged, see §5 note)
  │    P3-T1..T10 coverage matrix table 1 + author countries, per continent (M each, parallel)
+ │    P3-RENDER  country layer in the review prototype (M) ◄─ SPEC §9 + P3-T8 pilot
+ │        ▲ REVIEW GATE: Alan reviews the pilot's A2 view before bulk P3-T1..T10 dispatch
  │    P3-T11 cross-continent pending-neighbour resolution (S) ◄─ all P3-T1..T10
  │    P3-T12 country review → verified (L: split per continent, reviewer) ◄─ P3-T11
  │                                                                 │
@@ -82,9 +84,10 @@ P4-T1 → P4-T2..T6 → P4-T7 → P4-T8. Everything else hangs off it in paralle
 | 0 | P0-T1, P0-T2, P1-T11 | G0 |
 | 1 | P0-T3, P0-T4, P1-T1…P1-T9, P1-T10, P2-T1 | wave 0 (P1-Tn only needs P0-T1; P2-T1 needs P0-T2 + P1-T11) |
 | 1b | P2-T1-RENDER | P2-T1 — then **stop**: Alan reviews the rendered registry (review gate) |
-| 2 | P2-T2…P2-T11 (10 units) | P2-T1 + Alan's review of P2-T1-RENDER. (P5-T0 removed from this wave — see §7, DEFERRED) |
-| 3 | P3-T1…P3-T10 (each as soon as *its* continent from wave 2 merges), P2-T12 | per-continent |
-| 4 | P2-T13, P3-T11, P4-T1 (as soon as P3-T6 basin merges), P6-T1 | wave 3 |
+| 2 | P2-T2…P2-T11 (10 units) | P2-T1 + Alan's review of P2-T1-RENDER — **accepted 2026-09-11 (v11)**. (P5-T0 removed from this wave — see §7, DEFERRED) |
+| 2b | P2-T8 (basin) → P3-T8 (basin countries) → P3-RENDER | registry-frozen; then **stop**: Alan reviews the pilot A2 view |
+| 3 | P3-T1…P3-T10 (each as soon as *its* continent from wave 2 merges), P2-T12 | per-continent + P3-RENDER review |
+| 4 | P2-T13, P3-T11, P4-T1 (as soon as P3-T8 basin merges), P6-T1 | wave 3 |
 | 5 | P4-T2…P4-T6, P3-T12 (split by continent) | wave 4 (P5-R1 removed — §7 DEFERRED) |
 | 6 | P4-T7, P6-T2 (per continent), P6-T3 | wave 5 |
 | 7 | P4-T8, P6-T4, P6-T5 | wave 6 |
@@ -207,6 +210,26 @@ Instances map 1:1 to continents in `REGISTRY.md` (P3-T1 = first row, etc.; recor
 - **Outputs:** `data/coverage/<continent-id>.md` Table 1 (one row per school bullet → `country | merged-into:<id> | dropped` + entity id + reason); `data/countries/<id>.yaml` for every `country` decision (5–9 files), each at `status: sourced`, `neighbours` filled for siblings that exist and `pending-neighbour: <name>` notes for schools in other continents.
 - **Check:** PASS if Table 1 row count equals the bullet count in the research file (A-M2, checkable with the awk one-liner in `data/coverage/README.md` — created by the first instance to merge); 5 ≤ countries ≤ 9; `validate.py --file` exits 0 for each (A-K1); every country's `research_ref.sources` ⊆ the bullet's cited `[n]`s (A-K2); every sibling named in a `borders:` clause is in `neighbours` (A-K4); word counts in range (V-11); subtitles pass V-12; band recorded as the neighbourhood that "feels right" with `band_override_note` where it departs from a literal reading (A-K7).
 - **Deps:** P2-T1 and the continent's own P2-T<n> merged. Not blocked by P2-T13. **Size:** M each. **Parallel:** all ten.
+
+> **Dependency note (decided 2026-09-11, "registry-frozen" gate).** A
+> continent's P3-T<n> needs only (a) `REGISTRY.md` accepted by Alan (ids,
+> spans, bands frozen — done, v11) and (b) that continent's own `P2-T<n>`
+> YAML merged. It does **not** wait for the other nine continents' P2-T2…T13.
+> Rationale: every field a country YAML depends on (`parent_id`, the parent's
+> `time_range` for V-07, the parent's band span for A-V4) comes from its own
+> parent alone, and the only cross-continent coupling — `neighbours` pointing
+> at schools in other continents — is already deferred by design to
+> `pending-neighbour:` notes resolved in P3-T11 (A-K4). Waiting for P2-T12/13
+> would buy nothing the validator can check now and would put ten authoring
+> units on the critical path of the pilot. The cost is accepted: if P2-T13
+> later changes a parent's span, its countries re-run V-07 (mechanical).
+
+### P3-RENDER — Country layer in the review prototype (added 2026-09-11)
+- **Objective:** Extend `site/` so a continent that has country YAMLs can be opened to an A2 view showing its countries as provinces, per `SPEC.md` §9 (G1–G10), so Alan can review a country decomposition the same way he reviewed the registry.
+- **Inputs:** `SPEC.md` §9; `site/index.html` (FRONT/ENV/GRID geometry, label + gate code), `site/check_layout.py`, `scripts/sample_fill_colours.py`; `data/continents/*.yaml`, `data/countries/*.yaml` on `main`.
+- **Outputs:** `site/build_entities_json.py` → `site/entities.json`; A2 view + country layer in `site/index.html` (marker text `P3-RENDER v1`); `scripts/check_country_bands.py` (A-V4); `site/check_layout.py` extended with A-V1…A-V8 gates; `data/reviews/YYYY-MM-DD-p3-render.md` (A-V10, reviewer ≠ author); `site/README.md` section.
+- **Check:** PASS if A-V1…A-V10 all PASS with the command output pasted in the commit body; continent gates from P2-T1-RENDER still PASS unchanged (no continent geometry edited — `git diff` of `FRONT`/`ENV`/`GRID` is empty).
+- **Deps:** `SPEC.md` §9 reviewed by Alan; ≥ 1 continent with its P3-T<n> merged (the pilot, P3-T8). **Size:** M. **Gate:** after this unit, Alan reviews the A2 view of the pilot before the remaining P3-T<n> are dispatched in bulk (same pattern as P2-T1-RENDER).
 
 ### P3-T11 — Cross-continent pending-neighbour resolution
 - **Objective:** Replace every `pending-neighbour:` note with a real `neighbours` entry now that all countries exist.
