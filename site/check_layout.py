@@ -38,6 +38,10 @@ RULER_GAP = 6
 EDGE = 2
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
 BUILD_MARKER = "P2-T1-RENDER v11"
+COUNTRY_MARKER = "P3-RENDER v2"
+N_COUNTRIES = 7          # spatial countries in entities.json (tooling-guild + pretraining-foothills are spatial: false)
+CONTAIN_N = 300          # interior samples per country for the containment gate (A-V2)
+OVERLAP_N = 500          # interior samples per country for the pairwise zero-overlap gate (A-V3)
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
          "statistical-isthmus", "deep-learning-basin", "transformer-plateau", "generative-coast"]
 # pairs that must share a border on the rendered map (chronological neighbours + the D2/D4 cluster)
@@ -198,7 +202,7 @@ JS = r"""
     for (const L of conts) if (L.id !== c.id && L.lands.some(l => boxAny(grow(b, LABEL_GAP), 2, (x, y) => inFill(l, x, y)))) foreign.push({label: c.id, text: t.textContent, land: L.id});
   }
   // no two text elements anywhere on the plate may overlap (labels, margins, ocean names, titles, ruler)
-  const allT = [...svg.querySelectorAll('text')].filter(t => t.textContent.trim());
+  const allT = [...svg.querySelectorAll('text')].filter(t => t.textContent.trim() && t.getClientRects().length > 0);   // rendered text only (A2 country labels sit under a display:none group at A1)
   const textClash = [];
   // stacked lines of one block touch by a couple of px (ascender/descender slack) — a real clash overlaps by
   // >= 40% of the shorter line's height AND >= 4px horizontally
@@ -243,6 +247,58 @@ JS = r"""
     if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
   }
   return {fronts, continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, envViol, profile, funnel, funnelOK, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
+}
+"""
+# P3-RENDER v2 country gates (SPEC §9.2 A-V2 / A-V3 / A-V6 / A-V7 + the zoom-consistency check). Evaluated in-page.
+JS_COUNTRY = r"""
+(cfg) => {
+  const {N_IN, N_OV, LABEL_GAP, SEED} = cfg;
+  const svg = document.getElementById('map'); const pt = svg.createSVGPoint();
+  const inFill = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInFill(pt); };
+  const bb = e => { const b = e.getBBox(); return {x: b.x, y: b.y, r: b.x + b.width, b: b.y + b.height}; };
+  const grow = (b, m) => ({x: b.x - m, y: b.y - m, r: b.r + m, b: b.b + m});
+  const inter = (a, b) => a.x < b.r && b.x < a.r && a.y < b.b && b.y < a.b;
+  let s = SEED >>> 0; const rnd = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };   // seeded LCG: repeatable samples
+  const ks = [...document.querySelectorAll('#countries .country')].map(g => ({id: g.dataset.id, parent: g.dataset.parent, land: g.querySelector('path.cland')}));
+  const parents = {}; for (const k of ks) parents[k.parent] = parents[k.parent] || document.querySelector(`#shapes .continent[data-id="${k.parent}"] path.land`);
+  const others = pid => [...document.querySelectorAll('#shapes .continent path.land')].filter(p => p.closest('.continent').dataset.id !== pid);
+  // random interior points of a country: rejection-sample its bbox until N points fall in its own fill
+  const interior = (k, N) => { const b = bb(k.land); const out = []; for (let g = 0; g < N * 400 && out.length < N; g++) { const x = b.x + rnd() * (b.r - b.x), y = b.y + rnd() * (b.b - b.y); if (inFill(k.land, x, y)) out.push([x, y]); } return out; };
+  // 11. containment (A-V2): >= N_IN interior points per country, 100 % inside the parent's rendered polygon, 0 % in any other continent
+  const containment = {}; const contFail = [];
+  for (const k of ks) { const pts = interior(k, N_IN); const oth = others(k.parent); let inP = 0, inO = 0; for (const [x, y] of pts) { if (inFill(parents[k.parent], x, y)) inP++; if (oth.some(p => inFill(p, x, y))) inO++; }
+    containment[k.id] = {sampled: pts.length, inParent: inP, inOther: inO}; if (pts.length < N_IN || inP !== pts.length || inO) contFail.push({id: k.id, ...containment[k.id]}); }
+  // 12. zero overlap (A-V3): N_OV interior points per country; none may lie inside a sibling's fill (points within
+  // 1 px of the sibling's outline are on the shared polyline — edge-inclusive hit test, not area — and are excluded)
+  const overlapFail = []; let ovPairs = 0, ovPts = 0;
+  for (const A of ks) { const pts = interior(A, N_OV); for (const B of ks) { if (A.id >= B.id) continue; if (!inter(bb(A.land), bb(B.land))) continue; ovPairs++;
+    const sw = B.land.style.strokeWidth; B.land.style.strokeWidth = '2px'; B.land.style.stroke = '#000'; let n = 0;
+    for (const [x, y] of pts) { ovPts++; pt.x = x; pt.y = y; if (B.land.isPointInFill(pt) && !B.land.isPointInStroke(pt)) n++; }
+    B.land.style.strokeWidth = sw; B.land.style.stroke = ''; if (n) overlapFail.push({a: A.id, b: B.id, samples: n}); } }
+  // 13. consistency: the parent's coastline/border path d must not change between A1 and A2
+  const map = document.getElementById('map'); const coastD = () => [...document.querySelectorAll('#coast path')].map(p => p.getAttribute('d')).join('|');
+  const borderD = pid => document.querySelector(`#shapes .continent[data-id="${pid}"] path.border`).getAttribute('d');
+  const pids = Object.keys(parents); const before = {coast: coastD(), borders: pids.map(borderD)};
+  const a1Labels = document.querySelectorAll('#klabels text').length, a1Vis = [...document.querySelectorAll('#klabels text')].filter(t => getComputedStyle(t).display !== 'none' && getComputedStyle(t.parentNode).display !== 'none').length;
+  // enter A2 by a real click on the first parent's land (the same handler the user hits)
+  const parentG = document.querySelector(`#shapes .continent[data-id="${pids[0]}"]`); parentG.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+  const zoomed = map.classList.contains('zoomed');
+  const after = {coast: coastD(), borders: pids.map(borderD)};
+  const consistent = zoomed && before.coast === after.coast && before.borders.every((d, i) => d === after.borders[i]);
+  // A-V6 / A-V7 at A2: >= 2 text nodes per country (name + years; subtitle when it fits), selected continent's name hidden,
+  // no two country label boxes intersect after LABEL_GAP growth, and each label is inside its own polygon or has a leader
+  const kt = [...document.querySelectorAll('#klabels text')]; const byK = {}; kt.forEach(t => (byK[t.dataset.for] = byK[t.dataset.for] || []).push(t));
+  const fewTexts = ks.filter(k => (byK[k.id] || []).length < 2).map(k => k.id);
+  const selHidden = [...document.querySelectorAll(`#labels text[data-for="${pids[0]}"]`)].every(t => getComputedStyle(t).display === 'none');
+  const kOverlaps = []; const kids = Object.keys(byK);
+  for (let i = 0; i < kids.length; i++) for (let j = i + 1; j < kids.length; j++) for (const ta of byK[kids[i]]) for (const tb of byK[kids[j]]) if (inter(grow(bb(ta), LABEL_GAP), bb(tb))) kOverlaps.push([kids[i], kids[j], ta.textContent, tb.textContent]);
+  const kOutside = [];
+  for (const k of ks) { const ts = byK[k.id] || []; if (!ts.length) continue; const hasLeader = !!document.querySelector(`#kleaders path[data-for="${k.id}"]`);
+    if (hasLeader) { const c = document.querySelector(`#kleaders circle[data-for="${k.id}"]`); if (!inFill(k.land, +c.getAttribute('cx'), +c.getAttribute('cy'))) kOutside.push({id: k.id, leaderEndOutside: true}); }
+    else for (const t of ts) { const b = bb(t); let bad = false; for (let x = b.x; x <= b.r && !bad; x += 2) if (!inFill(k.land, x, b.y) || !inFill(k.land, x, b.b)) bad = true; if (bad) kOutside.push({id: k.id, text: t.textContent}); } }
+  const zoomBorders = [...document.querySelectorAll('#countries .kzoom')].filter(e => getComputedStyle(e).display !== 'none').length;
+  document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'})); const unzoomed = !map.classList.contains('zoomed');
+  return {countries: ks.length, containment, contFail, overlapPairs: ovPairs, overlapPoints: ovPts, overlapFail, zoomed, unzoomed, consistent, a1Labels, a1Vis, fewTexts, selHidden, kOverlaps, kOutside, zoomBorders};
 }
 """
 # geometry the page exposes for the registry-fidelity check (evaluated in-page: same X() / band maths as the render)
@@ -333,6 +389,14 @@ def main():
         res = pg.evaluate(JS, dict(ADJ=ADJ, LABEL_GAP=LABEL_GAP, INSIDE_MARGIN=INSIDE_MARGIN, MIN_FONT=MIN_FONT, RULER_GAP=RULER_GAP, EDGE=EDGE, ADJACENT=ADJACENT, BANDS_Y=geom["BANDS_Y"], SPANS=spans, BAND_SLACK=BAND_SLACK, YEAR_SLACK=YEAR_SLACK, LICENSE=license_px, MIN_WANDER=MIN_WANDER, MIN_TILT=MIN_TILT, HAIRPIN_DEG=HAIRPIN_DEG, FUNNEL_TIP_MAX=FUNNEL_TIP_MAX, FUNNEL_RATIO=FUNNEL_RATIO))
         pg.screenshot(path=a.shot, full_page=True)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-map.png"))
+        # P3-RENDER v2 country gates: run AFTER the continent screenshot (they toggle A2 and back)
+        ent = json.loads((Path(__file__).resolve().parent / "entities.json").read_text())
+        spatial_ids = sorted(c["id"] for c in ent["countries"] if c.get("spatial", True))
+        kres = pg.evaluate(JS_COUNTRY, dict(N_IN=CONTAIN_N, N_OV=OVERLAP_N, LABEL_GAP=LABEL_GAP, SEED=20260912))
+        pg.evaluate("document.querySelector('#shapes .continent[data-id=\"deep-learning-basin\"]').dispatchEvent(new MouseEvent('click', {bubbles: true}))")
+        pg.wait_for_timeout(200)
+        pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-A2.png"))
+        pg.keyboard.press("Escape")
         png = pg.screenshot(full_page=False, clip={"x": 0, "y": 0, "width": a.width, "height": 900})
         html = pg.content()
         b.close()
@@ -379,6 +443,22 @@ def main():
     diag = [cid for cid, f in res["fronts"].items() if f["westSpreadPx"] >= MIN_FRONT_SPREAD_PX]
     fails["frontiersNotDiagonal"] = [] if len(diag) >= MIN_DIAG_FRONTS else [{"diagonal": diag, "need": MIN_DIAG_FRONTS}]
     fails["offsiteRequests"] = offsite
+    # P3-RENDER v2 country gates (all sampled in-page; see JS_COUNTRY)
+    rendered_ids = sorted(kres["containment"].keys())
+    print(f"country layer: {kres['countries']} rendered {rendered_ids}; entities.json spatial: {spatial_ids}")
+    print(f"containment ({CONTAIN_N} interior samples per country, must be 100 % inside parent, 0 % in other continents): {json.dumps(kres['containment'])}")
+    print(f"zero-overlap: {kres['overlapPairs']} bbox-intersecting pairs, {kres['overlapPoints']} point tests ({OVERLAP_N} interior samples per country)")
+    print(f"A1 country labels present/visible: {kres['a1Labels']}/{kres['a1Vis']}; A2 zoomed={kres['zoomed']} selNameHidden={kres['selHidden']} zoomBorders={kres['zoomBorders']} unzoomedByEsc={kres['unzoomed']}; parent coast/border d identical A1 vs A2: {kres['consistent']}")
+    fails["countryCount"] = [] if rendered_ids == spatial_ids and len(rendered_ids) == N_COUNTRIES else [rendered_ids]
+    fails["countryContainment"] = kres["contFail"]
+    fails["countryOverlap"] = kres["overlapFail"]
+    fails["zoomInconsistent"] = [] if kres["consistent"] and kres["zoomed"] and kres["unzoomed"] else [{"zoomed": kres["zoomed"], "unzoomed": kres["unzoomed"], "consistent": kres["consistent"]}]
+    fails["a1CountryLabelsVisible"] = [] if kres["a1Vis"] == 0 else [kres["a1Vis"]]
+    fails["a2FewTexts"] = kres["fewTexts"]
+    fails["a2SelNameShown"] = [] if kres["selHidden"] else ["deep-learning-basin"]
+    fails["countryLabelOverlaps"] = kres["kOverlaps"]
+    fails["countryLabelOutside"] = kres["kOutside"]
+    fails["countryMarker"] = [] if COUNTRY_MARKER in html else [COUNTRY_MARKER]
     for k, v in fails.items():
         print(f"{k} ({len(v)}): {json.dumps(v, ensure_ascii=False)}")
     ok = res["continents"] == 10 and res["lands"] == 13 and res["coastLoops"] == 5 and all(not v for v in fails.values()) and BUILD_MARKER in html

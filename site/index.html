@@ -949,9 +949,16 @@ fetch('registry.json').then(r => r.json()).then(data => {
           sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
           ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
         for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) { const ts = mk(sN, sS, sub); if (fitsInside(land, union(ts), 1)) return; ts.forEach(t => t.remove()); }
-        const ts = mk(9, 8, false); ts.forEach(t => t.setAttribute('data-leader', '1'));   // too small: leave the label at the centroid, add a leader dot on the polygon
+        // too small for an inside label: keep name + years near the polygon, on the first offset whose box does not hit
+        // an already-placed country label (grown by 6 px) — then a leader to the nearest interior point
         let ax = cx, ay = cy; for (let i = 0; i < 40 && !inFill(land, ax, ay); i++) ay += 1;
-        const u = union(ts); el('path', {d: `M${f1(u.x)},${f1(u.b + 2)} L${f1(ax)},${f1(ay)}`, class: 'leader', 'data-for': k.id}, gKLeaders); el('circle', {cx: ax, cy: ay, r: 1.8, class: 'leader-dot', 'data-for': k.id}, gKLeaders);
+        const placed = [...gKLabels.querySelectorAll('text')].filter(t => t.dataset.for !== k.id).map(t => t.getBBox()).map(b => ({x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}));
+        const hits = u => placed.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
+        const offs = [[0, 0], [0, -26], [0, 26], [-40, -20], [40, -20], [-40, 20], [40, 20], [0, -44], [0, 44], [-70, 0], [70, 0], [-60, -36], [60, -36], [-60, 36], [60, 36]];
+        let ts = null; for (const [dx, dy] of offs) { const cand = mk(9, 8, false); cand.forEach(t => { t.setAttribute('x', +t.getAttribute('x') + dx); t.setAttribute('y', +t.getAttribute('y') + dy); t.setAttribute('data-leader', '1'); }); const u = union(cand); if (!hits(u)) { ts = cand; break; } cand.forEach(t => t.remove()); }
+        if (!ts) { ts = mk(9, 8, false); ts.forEach(t => t.setAttribute('data-leader', '1')); }
+        const u = union(ts); const lx = Math.max(u.x, Math.min(u.r, ax)), ly = ay < u.y ? u.y - 2 : u.b + 2;
+        el('path', {d: `M${f1(lx)},${f1(ly)} L${f1(ax)},${f1(ay)}`, class: 'leader', 'data-for': k.id}, gKLeaders); el('circle', {cx: ax, cy: ay, r: 1.8, class: 'leader-dot', 'data-for': k.id}, gKLeaders);
       };
     }
     // A1 ↔ A2 (G6): click a continent → zoomed; Esc / click on the sea → back
