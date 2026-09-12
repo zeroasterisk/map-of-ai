@@ -1,0 +1,7 @@
+lod0: basin region: 5 text items, 39 chars, 0 event marks; kinds {"cname": 2, "cname haskids": 3}
+lod1: basin region: 8 text items, 152 chars, 0 event marks; kinds {"cname": 1, "csub": 1, "cname haskids": 1, "csub haskids": 1, "khint": 4}
+lod2: basin region: 33 text items, 429 chars, 0 event marks; kinds {"cname": 1, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7}
+lod3: basin region: 67 text items, 662 chars, 17 event marks; kinds {"cname": 1, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7, "kev-name": 17, "kev-year": 17}
+lod4: basin region: 144 text items, 1880 chars, 32 event marks; kinds {"cname": 1, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7, "kev-name": 32, "kev-year": 32, "kev-line": 47}
+curated out (did not fit, hover-card only): {"hints": [], "ev3": ["vgg-googlenet-2014", "seq2seq-2014", "openai-2015", "white-house-2016", "china-plan-2017", "alphago-zero-2017"], "ev4": ["gan-2014", "attention-2014", "vgg-googlenet-2014", "seq2seq-2014", "gnmt-2016", "white-house-2016", "china-plan-2017", "alphago-zero-2017", "ilsvrc-2010", "coco-2014", "baidu-ng-2014", "show-and-tell-2014", "unet-yolo-2015", "style-transfer-2015", "pixelrnn-2016", "sensetime-ilsvrc-2016", "vector-2017", "ke-jie-2017"]}
+LOD LABEL GATE: PASS

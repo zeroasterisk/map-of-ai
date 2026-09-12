@@ -1,0 +1,88 @@
+{
+ "0": {
+  "texts": 53,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 27,
+   "cname haskids": 3
+  },
+  "region": {
+   "items": 5,
+   "chars": 39,
+   "marks": 0,
+   "kinds": {
+    "cname": 2,
+    "cname haskids": 3
+   }
+  }
+ },
+ "1": {
+  "texts": 63,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "cname haskids": 1,
+   "csub haskids": 1
+  },
+  "region": {
+   "items": 4,
+   "chars": 64,
+   "marks": 0,
+   "kinds": {
+    "cname": 1,
+    "csub": 1,
+    "cname haskids": 1,
+    "csub haskids": 1
+   }
+  }
+ },
+ "2": {
+  "texts": 74,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "kname": 13
+  },
+  "region": {
+   "items": 15,
+   "chars": 184,
+   "marks": 0,
+   "kinds": {
+    "cname": 1,
+    "csub": 1,
+    "kname": 13
+   }
+  }
+ },
+ "3": {
+  "texts": 81,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "kname": 13,
+   "ksub": 7
+  },
+  "region": {
+   "items": 22,
+   "chars": 247,
+   "marks": 0,
+   "kinds": {
+    "cname": 1,
+    "csub": 1,
+    "kname": 13,
+    "ksub": 7
+   }
+  }
+ }
+}

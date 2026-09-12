@@ -1,0 +1,41 @@
+{
+ "region": [
+  804,
+  320,
+  386,
+  288
+ ],
+ "ink_mass": {
+  "0": 20.051,
+  "1": 49.879,
+  "2": 194.411,
+  "3": 437.623,
+  "4": 904.105
+ },
+ "transitions": {
+  "z0->z1": {
+   "ink_mass_gain": 29.829,
+   "ink_mass_ratio": 2.488,
+   "delta_luma": 20.09,
+   "floor": 2.02
+  },
+  "z1->z2": {
+   "ink_mass_gain": 144.531,
+   "ink_mass_ratio": 3.898,
+   "delta_luma": 12.04,
+   "floor": 1.69
+  },
+  "z2->z3": {
+   "ink_mass_gain": 243.212,
+   "ink_mass_ratio": 2.251,
+   "delta_luma": 3.5,
+   "floor": 1.13
+  },
+  "z3->z4": {
+   "ink_mass_gain": 466.482,
+   "ink_mass_ratio": 2.066,
+   "delta_luma": 4.45,
+   "floor": 0.79
+  }
+ }
+}

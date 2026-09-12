@@ -1,0 +1,15 @@
+region A (Deep Learning Basin, plate (804, 320, 386, 288) )
+  z0: ink mass  20.05 (own res, scale-normalised)   ink fraction at z0 size 0.0201   tiles    24   level px [1800, 700]
+  z1: ink mass  49.88 (own res, scale-normalised)   ink fraction at z0 size 0.0206   tiles    90   level px [3600, 1400]
+  z2: ink mass 194.41 (own res, scale-normalised)   ink fraction at z0 size 0.0330   tiles   319   level px [7200, 2800]
+  z3: ink mass 437.62 (own res, scale-normalised)   ink fraction at z0 size 0.0333   tiles  1254   level px [14400, 5600]
+  z4: ink mass 904.10 (own res, scale-normalised)   ink fraction at z0 size 0.0323   tiles   560   level px [7168, 5120]  (pilot bbox only)
+  transitions:
+    z0 -> z1: ink mass 20.05 -> 49.88  gain +29.83 (x2.49)   |Δ luma| at z0 res 20.09 (resample floor 2.02)
+    z1 -> z2: ink mass 49.88 -> 194.41  gain +144.53 (x3.90)   |Δ luma| at z1 res 12.04 (resample floor 1.69)
+    z2 -> z3: ink mass 194.41 -> 437.62  gain +243.21 (x2.25)   |Δ luma| at z2 res 3.50 (resample floor 1.13)
+    z3 -> z4: ink mass 437.62 -> 904.10  gain +466.48 (x2.07)   |Δ luma| at z3 res 4.45 (resample floor 0.79)
+region B (Generative Coast land patch (1400, 300, 60, 40)): luma stddev z0 2.86  z1 18.89  (z0 flat fill, z1 textured)
+bytes per plate unit²: z0 1.11, z1 4.32, z2 11.92, z3 31.07, z4 112.45
+evidence strip (z0..z4 tiles, same region, same px size): /home/node/map-of-ai/docs/screens/lod-tiles-same-region.png
+LOD GATE: PASS

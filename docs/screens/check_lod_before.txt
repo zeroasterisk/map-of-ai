@@ -1,15 +1,13 @@
-region A (Deep Learning Basin interior, plate (860, 380, 300, 180) ) after downsampling every level to z0 size (300, 180)
-  z0: ink fraction 0.0103   tiles at this level    24   level px [1800, 700]
-  z1: ink fraction 0.0123   tiles at this level    90   level px [3600, 1400]
-  z2: ink fraction 0.0317   tiles at this level   319   level px [7200, 2800]
-  z3: ink fraction 0.0320   tiles at this level  1254   level px [14400, 5600]
-  adjacent levels at the lower level's resolution:
-/home/node/map-of-ai/site/check_lod.py:50: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
-  la, lb = list(a.convert("L").getdata()), list(b.convert("L").getdata())
-    z0 vs z1: mean |Δ luma| 22.99 (resample floor 1.83), ink added by z1: +0.0021
-    z1 vs z2: mean |Δ luma| 14.40 (resample floor 1.48), ink added by z2: +0.0190
-    z2 vs z3: mean |Δ luma| 5.80 (resample floor 0.93), ink added by z3: +0.0016
+region A (Deep Learning Basin, plate (804, 320, 386, 288) )
+  z0: ink mass  20.05 (own res, scale-normalised)   ink fraction at z0 size 0.0201   tiles    24   level px [1800, 700]
+  z1: ink mass  47.11 (own res, scale-normalised)   ink fraction at z0 size 0.0206   tiles    90   level px [3600, 1400]
+  z2: ink mass 161.93 (own res, scale-normalised)   ink fraction at z0 size 0.0338   tiles   319   level px [7200, 2800]
+  z3: ink mass 354.70 (own res, scale-normalised)   ink fraction at z0 size 0.0336   tiles  1254   level px [14400, 5600]
+  transitions:
+    z0 -> z1: ink mass 20.05 -> 47.11  gain +27.06 (x2.35)   |Δ luma| at z0 res 19.77 (resample floor 1.88)
+    z1 -> z2: ink mass 47.11 -> 161.93  gain +114.82 (x3.44)   |Δ luma| at z1 res 9.01 (resample floor 1.38)
+    z2 -> z3: ink mass 161.93 -> 354.70  gain +192.78 (x2.19)   |Δ luma| at z2 res 5.15 (resample floor 0.87)
 region B (Generative Coast land patch (1400, 300, 60, 40)): luma stddev z0 2.86  z1 18.89  (z0 flat fill, z1 textured)
 bytes per plate unit²: z0 1.11, z1 4.31, z2 11.85, z3 30.88
-evidence strip (z0..z3 tiles, same region, same px size): /home/node/map-of-ai/docs/screens/lod-tiles-same-region.png
+evidence strip (z0..z3 tiles, same region, same px size): /tmp/oldsite/docs/screens/lod-tiles-same-region.png
 LOD GATE: PASS
