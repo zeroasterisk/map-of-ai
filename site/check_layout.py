@@ -361,7 +361,7 @@ def main():
     httpd = None
     if not url:
         httpd = serve(Path(__file__).resolve().parent, a.port)
-        url = f"http://127.0.0.1:{a.port}/"
+        url = f"http://127.0.0.1:{a.port}/atlas.html"
     from PIL import Image  # noqa: WPS433 (only needed for the texture-variance sample)
     import io, statistics  # noqa: E401
     with sync_playwright() as p:
