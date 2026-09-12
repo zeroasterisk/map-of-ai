@@ -1,0 +1,69 @@
+{
+ "0": {
+  "texts": 53,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 27,
+   "cname haskids": 3
+  }
+ },
+ "1": {
+  "texts": 67,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "cname haskids": 1,
+   "csub haskids": 1,
+   "khint": 4
+  }
+ },
+ "2": {
+  "texts": 92,
+  "events": 0,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "kname": 13,
+   "ktag": 11,
+   "kyrs": 7
+  }
+ },
+ "3": {
+  "texts": 126,
+  "events": 17,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "kname": 13,
+   "ktag": 11,
+   "kyrs": 7,
+   "kev-name": 17,
+   "kev-year": 17
+  }
+ },
+ "4": {
+  "texts": 203,
+  "events": 32,
+  "count": {
+   "ruler-num": 20,
+   "ruler-cap": 3,
+   "cname": 22,
+   "csub": 16,
+   "kname": 13,
+   "ktag": 11,
+   "kyrs": 7,
+   "kev-name": 32,
+   "kev-year": 32,
+   "kev-line": 47
+  }
+ }
+}

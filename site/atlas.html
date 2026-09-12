@@ -32,8 +32,16 @@
   .country.draft .ctint { fill-opacity: .25; }
   .country.draft .cborder { stroke-dasharray: 1.5 2; }
   .kname { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: .6px; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 2.2px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
-  .ksub { font-family: Lora, Georgia, serif; font-style: italic; fill: #3f321f; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.8px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
-  #klabels, #kleaders { display: none; }
+  .ksub, .kyrs, .ktag { font-family: Lora, Georgia, serif; font-style: italic; fill: #3f321f; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.8px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  .ktag { font-style: normal; fill: #5a2a12; }
+  /* LOD pilot (Deep Learning Basin): z1 landmark hints, z3/z4 named events (dot at X(year) inside the country lane) */
+  .khint { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3a22; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.6px; stroke-linejoin: round; text-anchor: middle; }
+  .kev-name { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 1.4px; stroke-linejoin: round; text-anchor: middle; }
+  .kev-year { font-family: Lora, Georgia, serif; font-style: italic; fill: #6a2a14; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.2px; stroke-linejoin: round; text-anchor: middle; }
+  .kev-line { font-family: Lora, Georgia, serif; fill: #3f321f; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.1px; stroke-linejoin: round; text-anchor: middle; }
+  .kev-dot { fill: #7a2414; stroke: #f0e4c8; stroke-width: .6; }
+  .kev-leader { fill: none; stroke: #7a2414; stroke-width: .5; }
+  #klabels, #kleaders, #khints, #kevents3, #kevents4 { display: none; }
   #map.zoomed #klabels, #map.zoomed #kleaders { display: block; }
   #map.zoomed .country { cursor: default; }
   #map.zoomed .country:hover .cborder { stroke-opacity: 1; stroke-width: .7; }
@@ -93,21 +101,25 @@
              leaders; no country layer.
        lod1  + textures, + continent subtitle / year lines, + faint country borders (A1 style) — no country labels.
        lod2  + country borders drawn solid (the A2 province line), + country NAME labels (no subtitle / years).
-       lod3  full detail: country name + subtitle + years, leaders, biome tints — everything atlas.html can draw. */
+       lod3  + country subtitle, + HEADLINE EVENTS (lod-3 events: labelled dots at X(year) in the lane), leaders, tints.
+       lod4  + ALL events (lod-4 detail events) + a one-line sourced fact under each headline event. Pilot: only the
+             Deep Learning Basin has hint/tag/event data (data/events/), other continents render as at lod3. */
   html.tilesrc.lod0 .texbleed, html.tilesrc.lod0 .continent .land { display: none; }
   html.tilesrc.lod0 .continent path.tint { fill-opacity: .55; }
   html.tilesrc.lod0 #labels .csub { display: none; }
   html.tilesrc.lod0 #countries, html.tilesrc.lod0 #klabels, html.tilesrc.lod0 #kleaders { display: none; }
   html.tilesrc.lod1 .country .ctex, html.tilesrc.lod1 .country .ctint { display: none; }
   html.tilesrc.lod1 #klabels, html.tilesrc.lod1 #kleaders { display: none; }
-  html.tilesrc.lod2 .country .kzoom, html.tilesrc.lod3 .country .kzoom { display: inline !important; }
-  html.tilesrc.lod2 #klabels, html.tilesrc.lod2 #kleaders, html.tilesrc.lod3 #klabels, html.tilesrc.lod3 #kleaders { display: block; }
-  html.tilesrc.lod2 #klabels .ksub { display: none; }
+  html.tilesrc.lod1 #khints { display: block; }
+  html.tilesrc.lod2 .country .kzoom, html.tilesrc.lod3 .country .kzoom, html.tilesrc.lod4 .country .kzoom { display: inline !important; }
+  html.tilesrc.lod2 #klabels, html.tilesrc.lod2 #kleaders, html.tilesrc.lod3 #klabels, html.tilesrc.lod3 #kleaders, html.tilesrc.lod4 #klabels, html.tilesrc.lod4 #kleaders { display: block; }
+  html.tilesrc.lod2 #klabels .ksub { display: none; }   /* lod2: name + tag + years; the subtitle line joins at lod3 */
+  html.tilesrc.lod3 #kevents3, html.tilesrc.lod4 #kevents4 { display: block; }
   /* lod2/3: as in A2, a continent whose countries are labelled hides its own (huge) name + leader — it would sit on
      top of its country labels (haskids is set by drawCountries on the parent's label/leader elements) */
-  html.tilesrc.lod2 .haskids, html.tilesrc.lod3 .haskids { display: none; }
+  html.tilesrc.lod2 .haskids, html.tilesrc.lod3 .haskids, html.tilesrc.lod4 .haskids { display: none; }
 </style>
-<script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(3, +m[1]) : 3)); }</script>
+<script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(4, +m[1]) : 4)); }</script>
 </head>
 <body>
 <div class="wrap">
@@ -972,11 +984,14 @@ fetch('registry.json').then(r => r.json()).then(data => {
         const bbx = land.getBBox(); let sx = 0, sy = 0, sn = 0; for (let x = bbx.x; x <= bbx.x + bbx.width; x += 3) for (let y = bbx.y; y <= bbx.y + bbx.height; y += 3) if (inFill(land, x, y)) { sx += x; sy += y; sn++; }
         const cx = sn ? sx / sn : bbx.x + bbx.width / 2, cy = sn ? sy / sn : bbx.y + bbx.height / 2;   // fill centroid (a lane's label sits in the lane, not the bbox centre)
         [...gKLabels.querySelectorAll(`[data-for="${k.id}"]`), ...gKLeaders.querySelectorAll(`[data-for="${k.id}"]`)].forEach(t => t.remove());
-        const mk = (sN, sS, sub) => { const ts = []; let yy = cy; const nl = wrap(k.name, Math.max(8, Math.floor((bbx.width - 10) / (sN * .72 + 1)))), sl = sub ? wrap(k.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [];
-          const H = nl.length * (sN + 1) + sl.length * (sS + 1) + sS; yy = cy - H / 2 + sN * .82;
+        // LOD pilot: a country with a `tag` (data/events) gets a one-line "what happened here" tag under its name — it
+        // is visible from lod2 on (with the years), one level before the subtitle; countries without data are unchanged.
+        const mk = (sN, sS, sub) => { const ts = []; let yy = cy; const nl = wrap(k.name, Math.max(8, Math.floor((bbx.width - 10) / (sN * .72 + 1)))), sl = sub ? wrap(k.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [], tl = k.tag ? wrap(k.tag, Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [];
+          const H = nl.length * (sN + 1) + (sl.length + tl.length) * (sS + 1) + sS; yy = cy - H / 2 + sN * .82;
           nl.forEach(l => { ts.push(txt(cx, yy, l, 'kname', gKLabels, {'font-size': sN, 'data-for': k.id})); yy += sN + 1; });
+          tl.forEach(l => { ts.push(txt(cx, yy, l, 'ktag', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
           sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
-          ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
+          ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'kyrs', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
         for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) { const ts = mk(sN, sS, sub); if (fitsInside(land, union(ts), 1)) return; ts.forEach(t => t.remove()); }
         // too small for an inside label: keep name + years near the polygon, on the first offset whose box does not hit
         // an already-placed country label (grown by 6 px) — then a leader to the nearest interior point
@@ -1003,8 +1018,63 @@ fetch('registry.json').then(r => r.json()).then(data => {
     document.getElementById('sea').addEventListener('click', unzoom);
     document.addEventListener('keydown', ev => { if (ev.key === 'Escape') unzoom(); });
     svg.insertBefore(gCountries, gCoast); svg.insertBefore(gKLeaders, gLabels.nextSibling); svg.insertBefore(gKLabels, gKLeaders.nextSibling);
+    // ---- LOD pilot layers (Deep Learning Basin only has data): #khints (lod1), #kevents3 (lod3), #kevents4 (lod4).
+    // Positions are derived, never stored: x = X(event.year) on the time axis, y inside the country's own lane at that
+    // x. Text is placed with the same idiom as the country labels — try offsets, reject any box that hits an already
+    // placed box (country labels + earlier events, grown by a gap), fall back to a leader; if NOTHING fits the event
+    // is curated out of the raster (it stays on the hover card) rather than overlap (SPEC G7 "curate, don't overlap").
+    const gHints = el('g', {id: 'khints', 'pointer-events': 'none'}), gEv3 = el('g', {id: 'kevents3', 'pointer-events': 'none'}), gEv4 = el('g', {id: 'kevents4', 'pointer-events': 'none'});
+    svg.insertBefore(gHints, gKLabels.nextSibling); svg.insertBefore(gEv3, gHints.nextSibling); svg.insertBefore(gEv4, gEv3.nextSibling);
+    const grow = (b, m) => ({x: b.x - m, y: b.y - m, r: b.x + b.width + m, b: b.y + b.height + m});
+    const hitAny = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
+    const visibleBoxes = (gs, m) => gs.flatMap(g => [...g.querySelectorAll('text')]).filter(t => t.getClientRects().length).map(t => grow(t.getBBox(), m));
+    const laneAt = (land, bbx, x) => { let y0 = null, y1 = null; for (let y = bbx.y; y <= bbx.y + bbx.height; y += 1) if (inFill(land, x, y)) { if (y0 === null) y0 = y; y1 = y; } return y0 === null ? null : [y0, y1]; };
+    window.LOD_CURATED = {hints: [], ev3: [], ev4: []};
+    const placeLod = () => {
+      [gHints, gEv3, gEv4].forEach(g => { g.innerHTML = ''; g.style.display = 'block'; });   // measurable while laying out
+      const ks = ENT.countries.filter(k => k.spatial && (k.hint || (k.events && k.events.length)));
+      // lod1 hints: one italic landmark line per country that has one, at the lane centroid (the country label is
+      // hidden at lod1, the parent's big continent label is NOT — so hints avoid it and each other)
+      for (const k of ks) { if (!k.hint) continue; const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();
+        let sx = 0, sy = 0, sn = 0; for (let x = bbx.x; x <= bbx.x + bbx.width; x += 3) for (let y = bbx.y; y <= bbx.y + bbx.height; y += 3) if (inFill(land, x, y)) { sx += x; sy += y; sn++; }
+        const cx = sn ? sx / sn : bbx.x + bbx.width / 2, cy = sn ? sy / sn : bbx.y + bbx.height / 2; let ok = false;
+        for (const [dx, dy] of [[0, 0], [0, -14], [0, 14], [-40, 0], [40, 0], [-40, -14], [40, -14], [-40, 14], [40, 14], [-80, 0], [80, 0]]) {
+          const t = txt(cx + dx, cy + dy + 2.5, k.hint, 'khint', gHints, {'font-size': 7, 'data-for': k.id}); const u = grow(t.getBBox(), 0);
+          if (fitsInside(land, u, 2) && !hitAny(u, visibleBoxes([gLabels, gHints].map(x => x), 4).filter(b => !(b.x === u.x - 4 && b.y === u.y - 4)))) { ok = true; break; } t.remove(); }
+        if (!ok) window.LOD_CURATED.hints.push(k.id); }
+      // events: lod3 = headline events (lod === 3) at z3 sizes; lod4 = every event at z4 sizes, headline events with
+      // their one_line. Each group is an independent layout against the (shared) country labels.
+      const layers = [[gEv3, e => e.lod <= 3, {n: 4.0, y: 3.0, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 2.3, y: 1.8, l: 1.65, gap: .6, r: .9}, 'ev4']];
+      for (const [gE, pick, S, key] of layers) {
+        const placed = visibleBoxes([gKLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
+        for (const {k, e} of all) { const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();
+          const x = Math.min(Math.max(X(e.year), bbx.x + 2), bbx.x + bbx.width - 2); const lane = laneAt(land, bbx, x); if (!lane) { window.LOD_CURATED[key].push(e.id); continue; }
+          // the dot sits in the lane, off the country label's rows when the label spans this x
+          const lab = placed.filter(b => b.x <= x && x <= b.r && b.y < lane[1] && b.b > lane[0]); let dy = (lane[0] + lane[1]) / 2;
+          if (lab.length) { const top = Math.min(...lab.map(b => b.y)), bot = Math.max(...lab.map(b => b.b)); dy = (top - lane[0] > lane[1] - bot) ? (lane[0] + top) / 2 : (bot + lane[1]) / 2; }
+          if (!inFill(land, x, dy)) { let f = null; for (let s = 1; s < 30 && f === null; s++) { if (inFill(land, x, dy - s)) f = dy - s; else if (inFill(land, x, dy + s)) f = dy + s; } if (f === null) { window.LOD_CURATED[key].push(e.id); continue; } dy = f; }
+          const dot = el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
+          const lines = [[e.name, 'kev-name', S.n], [String(Math.floor(e.year)), 'kev-year', S.y]].concat(S.l && e.lod <= 3 ? wrap(e.one_line, 26).map(l => [l, 'kev-line', S.l]) : []);
+          const H = lines.reduce((a, l) => a + l[2] + .6, 0);
+          const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx, yy, s, cls, gE, {'font-size': fs, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
+          const offs = [[0, S.r + 1], [0, -(H + S.r + 1)], [S.r + 2.5, -H / 2], [-(S.r + 2.5), -H / 2], [0, S.r + 6], [0, -(H + S.r + 6)]];
+          for (const d of [8, 14, 22, 30, 40, 52, 66]) for (const sg of [1, -1]) offs.push([sg * d, -H / 2], [sg * d, S.r + 2], [sg * d, -(H + S.r + 2)], [sg * d, S.r + 8], [sg * d, -(H + S.r + 8)]);
+          let ts = null, off = null;
+          const pland = gShapes.querySelector(`.continent[data-id="${k.parent_id}"] path.land`);
+          const okBox = (u, strict) => strict ? fitsInside(land, u, 1) : (inFill(land, (u.x + u.r) / 2, (u.y + u.b) / 2) && fitsInside(pland, u, 1));
+          for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
+            if (!hitAny(u, placed) && okBox(u, strict)) { ts = cand; off = [dx, oy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
+          if (!ts) { dot.remove(); window.LOD_CURATED[key].push(e.id); continue; }
+          const u = union(ts); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
+          if (Math.abs(off[0]) >= 8 || Math.abs(off[1]) > H + S.r + 4) { const ex = off[0] > 0 ? u.x : off[0] < 0 ? u.r : x, ey = off[0] ? (u.y + u.b) / 2 : (off[1] > 0 ? u.y : u.b); el('path', {d: `M${f1(x)},${f1(dy)} L${f1(ex)},${f1(ey)}`, class: 'kev-leader', 'data-for': k.id}, gE); }
+        }
+      }
+      [gHints, gEv3, gEv4].forEach(g => g.style.display = '');
+    };
+    const H_PLATE = () => H;
+    window.placeLod = placeLod;
     // country labels need font metrics: lay them out once (hidden at A1; they are only shown under #map.zoomed)
-    const layoutK = () => gCountries.querySelectorAll('.country').forEach(c => c._label && c._label());
+    const layoutK = () => { const was = gKLabels.style.display; gKLabels.style.display = 'block'; gCountries.querySelectorAll('.country').forEach(c => c._label && c._label()); placeLod(); gKLabels.style.display = was; };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutK); else layoutK();
   };
   drawCountries();
