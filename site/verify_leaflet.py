@@ -15,7 +15,8 @@ url = a.url
 if not url:
     httpd = ThreadingHTTPServer(("127.0.0.1", a.port), partial(SimpleHTTPRequestHandler, directory=str(SITE))); httpd.daemon_threads = True
     threading.Thread(target=httpd.serve_forever, daemon=True).start(); url = f"http://127.0.0.1:{a.port}/"
-STATE = "() => { const m = window.MAP; const c = m.getCenter(); return {zoom: m.getZoom(), center: [c.lng, -c.lat], tiles: document.querySelectorAll('img.leaflet-tile-loaded').length, labels: [...document.querySelectorAll('.lbl .cname')].map(e => e.textContent + '@' + e.style.fontSize)}; }"
+# labels are baked into the tiles per level of detail (LEAFLET v2); report which pyramid levels the loaded tiles come from
+STATE = "() => { const m = window.MAP; const c = m.getCenter(); const lv = {}; document.querySelectorAll('img.leaflet-tile-loaded').forEach(i => { const k = (i.src.match(/tiles\\/(\\d)\\//) || [])[1]; lv[k] = (lv[k] || 0) + 1; }); return {zoom: m.getZoom(), center: [c.lng, -c.lat], tiles: document.querySelectorAll('img.leaflet-tile-loaded').length, levels: lv}; }"
 with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1500, "height": 800})
     errors, tiles = [], []
@@ -33,8 +34,8 @@ with sync_playwright() as p:
     s2 = pg.evaluate(STATE); pg.screenshot(path=str(out / "3_after_drag.png")); print("after drag", json.dumps(s2))
     pg.evaluate("() => window.MAP.setZoom(window.MAP.getMaxZoom())"); pg.wait_for_timeout(1500); pg.wait_for_load_state("networkidle")
     s3 = pg.evaluate(STATE); pg.screenshot(path=str(out / "4_max_zoom.png")); print("max zoom", json.dumps(s3))
-    # a labelled region at an intermediate zoom (label overlay + tiles together)
-    pg.evaluate("() => { const b = [...document.querySelectorAll('.lbl')].find(e => e.dataset.id === 'deep-learning-basin'); window.MAP.setView(window.MAP.layerPointToLatLng(L.point(b.parentElement._leaflet_pos || L.DomUtil.getPosition(b.parentElement))), 2); }")
+    # the Deep Learning Basin (plate ~1000,450) at zoom 2: level-2 tiles carry country borders + names
+    pg.evaluate("() => window.MAP.setView(L.latLng(-450, 1000), 2)")
     pg.wait_for_timeout(1500); pg.wait_for_load_state("networkidle"); pg.screenshot(path=str(out / "5_zoom2_basin.png")); print("zoom2 basin", json.dumps(pg.evaluate(STATE)))
     b.close()
 bad = [t for t in tiles if t[1] != 200]
