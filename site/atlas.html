@@ -103,6 +103,9 @@
   html.tilesrc.lod2 .country .kzoom, html.tilesrc.lod3 .country .kzoom { display: inline !important; }
   html.tilesrc.lod2 #klabels, html.tilesrc.lod2 #kleaders, html.tilesrc.lod3 #klabels, html.tilesrc.lod3 #kleaders { display: block; }
   html.tilesrc.lod2 #klabels .ksub { display: none; }
+  /* lod2/3: as in A2, a continent whose countries are labelled hides its own (huge) name + leader — it would sit on
+     top of its country labels (haskids is set by drawCountries on the parent's label/leader elements) */
+  html.tilesrc.lod2 .haskids, html.tilesrc.lod3 .haskids { display: none; }
 </style>
 <script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(3, +m[1]) : 3)); }</script>
 </head>
@@ -1005,6 +1008,10 @@ fetch('registry.json').then(r => r.json()).then(data => {
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutK); else layoutK();
   };
   drawCountries();
+  // lod2/3 tile renders: a continent with spatial countries hides its own label + leader (see html.tilesrc.lod2 .haskids)
+  const HASKIDS = new Set(ENT.countries.filter(k => k.spatial).map(k => k.parent_id));
+  const markHasKids = () => HASKIDS.forEach(id => [...gLabels.querySelectorAll(`text[data-for="${id}"]`), ...gLeaders.querySelectorAll(`[data-for="${id}"]`)].forEach(t => t.classList.add('haskids')));
+  markHasKids();
   drawBandLegend();
   // eastern ocean label, in open water east of the present-day coast (drawn after the land so nothing covers it)
   // (v5: the legend box now owns the strip east of the coast, so the label moves into the open water south-east
@@ -1033,6 +1040,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       [...gLabels.querySelectorAll(`text[data-for="${c.id}"]`)].forEach(t => t.remove());
       placeInside(c, land);
     });
+    markHasKids();
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { relayout(); document.dispatchEvent(new Event('map:ready')); });
   else document.dispatchEvent(new Event('map:ready'));

@@ -10,24 +10,23 @@
   14400,
   5600
  ],
+ "lod": {
+  "0": "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
+  "1": "+ terrain textures, + continent subtitle/years, + faint country borders (no country labels)",
+  "2": "+ solid country borders, + country name labels (no country subtitle/years)",
+  "3": "full detail: country name + subtitle + years, country leaders, per-country biome tints"
+ },
  "counts": {
-  "3": {
-   "tiles": 1254,
-   "cols": 57,
-   "rows": 22,
+  "0": {
+   "tiles": 24,
+   "cols": 8,
+   "rows": 3,
    "px": [
-    14400,
-    5600
-   ]
-  },
-  "2": {
-   "tiles": 319,
-   "cols": 29,
-   "rows": 11,
-   "px": [
-    7200,
-    2800
-   ]
+    1800,
+    700
+   ],
+   "bytes": 1401397,
+   "lod": 0
   },
   "1": {
    "tiles": 90,
@@ -36,17 +35,32 @@
    "px": [
     3600,
     1400
-   ]
+   ],
+   "bytes": 5429368,
+   "lod": 1
   },
-  "0": {
-   "tiles": 24,
-   "cols": 8,
-   "rows": 3,
+  "2": {
+   "tiles": 319,
+   "cols": 29,
+   "rows": 11,
    "px": [
-    1800,
-    700
-   ]
+    7200,
+    2800
+   ],
+   "bytes": 14926540,
+   "lod": 2
+  },
+  "3": {
+   "tiles": 1254,
+   "cols": 57,
+   "rows": 22,
+   "px": [
+    14400,
+    5600
+   ],
+   "bytes": 38911669,
+   "lod": 3
   }
  },
- "bytes": 62023288
+ "bytes": 60668974
 }
