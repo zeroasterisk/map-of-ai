@@ -75,6 +75,10 @@ Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').
   if (Q.has('place')) { const a = AN.anchors[Q.get('place')]; if (a) view = {x: a.x, y: a.y, z: a.level === 'country' ? 2.5 : .5}; else console.warn(`?place=${Q.get('place')} not found in anchors.json; showing default view`); }
   if (num('x') !== null || num('y') !== null || num('z') !== null) { const c = map.getCenter(); view = Object.assign({x: c.lng, y: -c.lat, z: map.getZoom()}, view || {}); for (const k of ['x', 'y', 'z']) if (num(k) !== null) view[k] = num(k); }
   if (view) map.setView(P(view.x, view.y), view.z, {animate: false});
+  // every settled pan/zoom rewrites the URL to the precise form (replaceState: shareable at all times, no history spam)
+  const viewURL = () => { const c = map.getCenter(); const f = v => String(Math.round(v * 10) / 10); return `?z=${f(map.getZoom())}&x=${f(c.lng)}&y=${f(-c.lat)}`; };
+  let urlT = null; const syncURL = () => { clearTimeout(urlT); urlT = setTimeout(() => history.replaceState(null, '', viewURL() + location.hash), 150); };
+  map.on('moveend zoomend', syncURL); map.whenReady(syncURL);
 
   // ---- vector overlay: land hit targets + leaders + dots, in plate units (an SVG that spans the plate exactly)
   const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('class', 'ov');

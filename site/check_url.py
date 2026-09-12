@@ -45,14 +45,14 @@ with sync_playwright() as p:
     pg = load("?z=2&x=1000&y=400", "b_precise.png"); s = pg.evaluate(STATE)
     check("(b) ?z=2&x=1000&y=400 exact view", s["z"] == 2 and abs(s["x"] - 1000) < .01 and abs(s["y"] - 400) < .01, f"got z={s['z']} x={s['x']:.3f} y={s['y']:.3f}")
     # (c) URL follows pan/zoom
-    if "URLWRITE" in sys.argv[0] or True:
-        s0 = pg.evaluate(STATE)
+    if True:
+        s0 = pg.evaluate(STATE); h0 = pg.evaluate("history.length")
         pg.evaluate("MAP.panBy([300, 120], {animate: false})"); pg.wait_for_timeout(500); s1 = pg.evaluate(STATE)
         pg.evaluate("MAP.setZoom(3, {animate: false})"); pg.wait_for_timeout(500); s2 = pg.evaluate(STATE)
         exp = lambda s: f"?z={s['z']:g}&x={round(s['x'], 1):g}&y={round(s['y'], 1):g}"
         check("(c) URL after pan", s1["search"] == exp(s1) and s1["search"] != s0["search"], f"before {s0['search']} after pan {s1['search']} (view {exp(s1)})")
         check("(c) URL after zoom", s2["search"] == exp(s2) and s2["z"] == 3, f"after zoom {s2['search']} (view {exp(s2)})")
-        check("(c) replaceState, no history growth", pg.evaluate("history.length") == 1, f"history.length={pg.evaluate('history.length')}")
+        check("(c) replaceState, no history growth", pg.evaluate("history.length") == h0, f"history.length {h0} -> {pg.evaluate('history.length')}")
         pg.screenshot(path=str(out / "c_after_pan_zoom.png"))
         # (d) copy link
         btn = pg.locator(".copylink")
