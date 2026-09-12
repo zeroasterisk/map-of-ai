@@ -1,6 +1,42 @@
-# STATUS — as of 2026-09-12 (session 5: P3-RENDER v2 — Deep Learning Basin country layer live)
+# STATUS — as of 2026-09-12 (session 6: Leaflet tile re-platform, milestone 1 — continents live as a real slippy map)
 
 ## One-line status
+
+**LEAFLET v1 shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
+is now a real Leaflet 1.9.4 map (`L.CRS.Simple`, Google-Maps-style
+scroll-wheel / pinch / drag / +− zoom) over a raster XYZ tile pyramid of the
+**unchanged v11 continent art**. Nothing was redrawn: the old renderer is
+`site/atlas.html` (was `index.html`, art byte-identical; gained a
+`?tilesrc=1` bare-plate mode and `window.exportLabels()`), and
+`site/build_tiles.py` screenshots it at device-scale 8 (14400×5600 px) and
+slices `site/tiles/{z}/{x}/{y}.png`, z0–z3, 256 px, **1687 tiles, 62 MB**,
+committed as static files (z3 1254 · z2 319 · z1 90 · z0 24). Coordinate
+system: 1 plate unit (atlas viewBox px, 1800×700) = 2^z screen px, so every
+overlay position is the same `X(year)` / `bandTop(band)` number atlas.html
+draws — continent name labels (divIcon markers, sizes from atlas.html's own
+placement, ×2^min(zoom,1)), leaders, leader dots and land hit-paths (hover
+cards) come from `site/labels.json` exported by that placement code.
+Verification (`site/verify_leaflet.py`, run against the LIVE URL): wheel
+zoom −0.5 → 3.0, drag moved centre (1131,349) → (1176,334), 192 tile
+requests all 200, 0 JS errors — screens `docs/screens/leaflet-v1-initial.png`,
+`leaflet-v1-after-wheel-drag.png`, `leaflet-v1-z2-basin.png`.
+**Not in this view yet (milestone 2, next session): the P3-RENDER country
+layer** (7 Basin countries, A2 labels, containment gates) — still fully
+working at `atlas.html`, which `check_layout.py` now targets. Honest image
+quality: at fit zoom (−0.5) and z2–z3 native the raster is crisp (ink strokes
+clean, no visible seams after the integer-tile-size fix); z3 = 8 px per plate
+unit, i.e. 8× the old SVG's 1:1, and `maxZoom` is capped at 3 so tiles are
+never upscaled (a z3.5 test showed visible blur + 1 px hairline gaps — both
+fixed by the cap and by `width:256px !important` + `will-change`). Fractional
+zooms (zoomSnap .25) between native levels are browser-downsampled, slightly
+softer than integer levels but no seams. Tile decisions: 256 px (Leaflet
+default; 512 would quarter request count but the whole pyramid is ~60 MB
+either way), z3 max because z4 would be ~4× the tiles (~250 MB in the repo,
+untested 16× = 28800 px screenshot) while z3 already out-resolves the source
+textures (512 px JPGs at 230 plate px → 1.8 px per texture px at z3). Previous status
+follows.
+
+## One-line status (session 5, superseded)
 
 **P3-RENDER v2 shipped 2026-09-12** — the Deep Learning Basin pilot now renders
 7 spatial countries (partition pre-solved by Alan, implemented as given):

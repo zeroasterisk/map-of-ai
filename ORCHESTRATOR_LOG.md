@@ -187,3 +187,71 @@ carry inside labels. The uncovered 2006–2011 western lobe reads as
 "unlabelled forest" — by design (foothills demoted), but a reviewer may want
 a faint "precursors" annotation there. Province dashes are visible but subtle
 against the tree texture.
+
+## Session 6 — 2026-09-12 — Leaflet tile re-platform, milestone 1 (continents)
+
+**Ask.** Alan: "replace this with a tiling system" — real Google-Maps-style
+pinch/scroll/drag zoom, not the A1/A2 class toggle. Milestone 1 = continents
+only; milestone 2 (next session) = port the P3-RENDER country layer.
+
+**Architecture (shipped).**
+- `site/atlas.html` = the old `index.html` (git mv; v11 art + P3-RENDER v2
+  country layer untouched). Added: `?tilesrc=1` → CSS class `html.tilesrc`
+  that strips page chrome, continent labels/leaders and the country layer and
+  pins the SVG at 1800×700 CSS px (1 px per viewBox unit); and
+  `window.exportLabels()` → placed label lines (x, y, size, class, text,
+  bbox), leaders, dots and land `d` strings in plate units.
+- `site/build_tiles.py` (Playwright + Pillow): screenshot atlas.html?tilesrc=1
+  at device_scale_factor 8 (clip 1800×700 → 14400×5600 px; a locator
+  screenshot timed out, page.screenshot with clip works), LANCZOS downsample
+  per level, slice 256 px XYZ tiles z0–z3 → `site/tiles/` (+ `meta.json`),
+  write `site/labels.json`. ~4.5 min. 1687 tiles / 62 MB committed.
+- `site/index.html` (new, Leaflet 1.9.4 from unpkg, no build): `L.CRS.Simple`,
+  latlng = [-y, x] plate units, `L.tileLayer('tiles/{z}/{x}/{y}.png')`
+  minZoom −1 / maxZoom 3 (= maxNativeZoom; upscaling disabled on purpose),
+  zoomSnap .25, fitBounds on load, maxBounds pad .25. Overlays: an
+  `L.svgOverlay` with the land paths (hover cards), leaders, dots; one
+  `L.marker` + divIcon per continent label block at its bbox centre, font
+  sizes = atlas sizes × 2^min(zoom,1). A `z-country` class toggles on the map
+  container at zoom ≥ 1.5 — the hook for milestone 2's country fade-in.
+- `site/verify_leaflet.py`: initial → 6 wheel ticks → 20-step drag →
+  maxZoom → z2 on the Basin; asserts zoom rose, centre moved, all tile
+  responses 200, no JS errors; writes 5 screenshots.
+- `site/check_layout.py` default URL → `/atlas.html` (its gates are about the
+  SVG renderer and still pass there).
+
+**Problems hit / fixed.** (1) Tiles did not render at all at first: with
+`minZoom: -1` on the map but not on the tile layer, Leaflet's `_isValidZoom`
+rejected the fitted zoom −0.5 → added minZoom/maxZoom to the layer options.
+(2) At zoom 3.5 (tiles upscaled 1.4×) vision review found blur and 1 px
+hairline gaps; also at native z2 a measured column-brightness spike of ~100/255
+every 256 px. Root cause: Leaflet sets tile `width/height` via style and
+Chromium's transformed tile container left sub-pixel gaps; `img { width:256px
+!important; height:256px !important; outline:1px solid transparent }` +
+`will-change: transform` on the container took the spike to ≤ 7 at integer
+zooms and ≤ 6 at fractional zooms (measured, not eyeballed); a 256.5 px
+overlap made it worse. maxZoom capped at 3 so nothing is upscaled.
+
+**Verification (live).** Pages run 34703636937 green; live `Last-Modified:
+Sat, 12 Sep 2026 15:54:52 GMT`; page contains `LEAFLET v1`; verify_leaflet.py
+against the live URL: PASS (zoom −0.5 → 3.0, centre moved, 192/192 tiles 200,
+0 JS errors). Vision review of the live-equivalent screenshots: labels on
+their landmasses, offset labels (Isles / Shore / Plateau) keep their leaders,
+strokes crisp at z2/z3, no seams.
+
+**Honest quality note vs. the v11 SVG.** The SVG was resolution-independent;
+the pyramid is crisp up to z3 (8× the old 1:1 view), which is already past
+the resolution of the 512 px texture JPGs, so there is nothing to gain from
+z4 except repo weight. Between integer levels the browser downsamples
+(slightly softer than a native level; no seams). The label overlay is HTML
+text so it is always crisp; it does not (yet) re-fit when zoomed, it just
+scales up to 2× and then holds.
+
+**Next session (milestone 2).** Port the country layer: export country `d`
+strings (fineTrace) + A2 label placement from atlas.html into
+`labels.json`/`countries.json`, draw them as an `L.svgOverlay` (or a second
+tile set for the biome provinces, since G4 country textures are raster),
+show/hide with the `z-country` threshold (continuous zoom = A1→A2), keep the
+containment/overlap gates running against atlas.html (geometry is identical by
+construction since the overlay reuses the same `d`). Then decide whether
+atlas.html stays as the authoring/gate renderer or is folded away.
