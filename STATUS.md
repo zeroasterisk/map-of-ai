@@ -219,6 +219,7 @@ verification" section is empty; the east edge is Sept 2026 with
 | Work breakdown, DAG, gates | `PLAN.md` (§4 has P2-T1-RENDER; §7 marks P5 DEFERRED) |
 | The continent registry | `data/continents/REGISTRY.md` |
 | The rendered prototype | `site/` → <https://zeroasterisk.github.io/map-of-ai/> |
+| Deep links to a view (`?place=deep-rl-delta`, `?z=2&x=1000&y=400`, copy-link button) | `docs/URL_SCHEME.md`; gate `site/check_url.py` |
 | Review reports | `data/reviews/` |
 | Tooling | `scripts/README.md` |
 
