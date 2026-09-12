@@ -86,9 +86,25 @@
   html.tilesrc .wrap { margin: 0; padding: 0; max-width: none; overflow: visible; }
   html.tilesrc svg#map { width: 1800px; height: 700px; min-width: 0; border: 0; outline: 0; box-shadow: none; }
   html.tilesrc .banner, html.tilesrc .legend, html.tilesrc details.list, html.tilesrc footer, html.tilesrc .zoomhint, html.tilesrc .card { display: none; }
-  html.tilesrc #labels, html.tilesrc #leaders, html.tilesrc #countries, html.tilesrc #klabels, html.tilesrc #kleaders { display: none; }
+  /* LEVEL OF DETAIL (?tilesrc=1&lod=N, N = the Leaflet zoom the screenshot is sliced for). Each zoom level of the
+     pyramid is its OWN render with its own layer set (Google-Maps style: zooming in reveals new information, it does
+     not just enlarge the same picture). Nothing is re-drawn: these rules only toggle already-placed elements.
+       lod0  world view: flat tinted continents (no terrain texture), coast, ONE label per continent (name only),
+             leaders; no country layer.
+       lod1  + textures, + continent subtitle / year lines, + faint country borders (A1 style) — no country labels.
+       lod2  + country borders drawn solid (the A2 province line), + country NAME labels (no subtitle / years).
+       lod3  full detail: country name + subtitle + years, leaders, biome tints — everything atlas.html can draw. */
+  html.tilesrc.lod0 .texbleed, html.tilesrc.lod0 .continent .land { display: none; }
+  html.tilesrc.lod0 .continent path.tint { fill-opacity: .55; }
+  html.tilesrc.lod0 #labels .csub { display: none; }
+  html.tilesrc.lod0 #countries, html.tilesrc.lod0 #klabels, html.tilesrc.lod0 #kleaders { display: none; }
+  html.tilesrc.lod1 .country .ctex, html.tilesrc.lod1 .country .ctint { display: none; }
+  html.tilesrc.lod1 #klabels, html.tilesrc.lod1 #kleaders { display: none; }
+  html.tilesrc.lod2 .country .kzoom, html.tilesrc.lod3 .country .kzoom { display: inline !important; }
+  html.tilesrc.lod2 #klabels, html.tilesrc.lod2 #kleaders, html.tilesrc.lod3 #klabels, html.tilesrc.lod3 #kleaders { display: block; }
+  html.tilesrc.lod2 #klabels .ksub { display: none; }
 </style>
-<script>if (/[?&]tilesrc=1/.test(location.search)) document.documentElement.classList.add('tilesrc');</script>
+<script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(3, +m[1]) : 3)); }</script>
 </head>
 <body>
 <div class="wrap">
