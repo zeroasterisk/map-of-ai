@@ -279,3 +279,49 @@ atlas.html stays as the authoring/gate renderer or is folded away.
 - **Process note:** kept to the brief — small patches, 5 commits, each verified before the next; no new continents'
   country data, no city layer, no style redesign. Remaining softness: fractional zooms between native levels are still
   browser-resampled from the nearest level (that is normal slippy-map behaviour, not the reported bug).
+
+## Session 8 — 2026-09-12 — LOD PILOT: every zoom step adds information (Deep Learning Basin only)
+
+**Trigger (Alan, two messages):** "the details are not detail-y enough … more and more and more detail at every
+step, not just a different texture"; then the correction: don't add a deeper tier, "each of those steps needs to
+have a significant increase in the amount of information presented for the same region … four levels, five,
+maybe six." Scope confirmed: pilot on the Deep Learning Basin only.
+
+**Diagnosis of v2 (session 7) with a real measurement** (`check_lod_labels.py --site <HEAD~2 archive>`): text items
+/ chars visible inside the Basin per level were 5/39 → 4/64 → 15/184 → 22/247 — z0→z1 lost an item, z2→z3 added
+seven subtitle lines. The session-7 gate (ink fraction after downsampling everything to z0 size) could not see
+this: small type averages away, so it read +0.0016 for z2→z3 and still passed.
+
+**Design (5 levels).** z0 unchanged · z1 + 4 landmark hints per sub-region · z2 + one-line "what happened here"
+tag + years per country (subtitle moves to z3) · z3 + 17 headline events as labelled dots at X(year) inside the
+country's lane · z4 (basin bbox only) + all 32 placeable events + a sourced one-line fact under each headline
+event. Five not four because 40+ events at z3 sizes collide; not six because the sourcing (research/06) does not
+support another tier without padding.
+
+**Data.** `data/events/deep-learning-basin.yaml`: hints, tags, 50 events (id, name, year, lod, one_line ≤15
+words, sources[url]) for the 7 spatial countries; `build_entities_json.py` merges them into entities.json.
+Mechanical check: all 50 events' URLs appear verbatim in research/06 or a country YAML `sources:` — 0 unsourced.
+
+**Render (`atlas.html`).** New layers `#khints` / `#kevents3` / `#kevents4`, CSS-toggled per `?lod=`; positions
+derived (x = X(year), y = lane centre off the country label's rows); placement = the country-label idiom (offset
+search → reject boxes hitting placed boxes → leader when displaced → curate out if nothing fits, strict pass
+"inside own country" then "centre inside own country + inside the continent"). Bugs on the way: `union()` returns
+{x,y,r,b} not a bbox (NaN boxes → everything curated); event dots landing outside a concave lane (fixed: walk to
+the nearest interior y, gate checks isPointInFill); Chromium hints sub-3 px glyph advances even at DPR 16 → bunched
+letters in z4 tiles — fixed with `text-rendering: geometricPrecision` in tilesrc mode (the scale-group trick did NOT
+fix it), verified on a 16× crop.
+
+**Tiles (`build_tiles.py`).** z4 = 16 px/unit, rendered ONLY for the pilot bbox (768,304)–(1216,624) in tile-row
+strips (28800×11200 for the whole plate would be ~5000 more tiles and a memory problem); `meta.full_zmax` /
+`meta.pilot_bbox`; `index.html` mounts z4 as a second bounded tile layer, base layer upsamples z3 elsewhere.
+
+**Gates.** `check_lod_labels.py` (new): per level, 0 text-on-text overlaps, event dots inside own country, event
+text on the plate, and basin items+chars strictly growing per step — PASS (5/39 → 8/152 → 33/429 → 67/662 →
+144/1880; 17 and 32 event marks). `check_lod.py` reworked to ink MASS at native resolution (dark px ÷ 2^z ÷ area),
+min gain per step — PASS (20 → 49 → 195 → 439 → 919; before 20 → 47 → 162 → 355). `check_layout.py`,
+`check_url.py` PASS. Curated out (hover-card only): 6 at z3, 18 at z4 — mostly the 2014 cluster and the narrow
+Eastern Coast Forts lane; listed in `docs/screens/check_lod_labels_after.txt`.
+
+**Not done / next (separate task, not started):** rollout to the other ~9 continents needs their own sourced event
+files; hover cards for events in index.html (data is in entities.json); the 2014 cluster could use a wider lane
+or a z5 if Alan wants those 18 on the raster.

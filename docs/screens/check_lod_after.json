@@ -6,36 +6,36 @@
   288
  ],
  "ink_mass": {
-  "0": 20.051,
-  "1": 49.879,
-  "2": 194.411,
-  "3": 437.623,
-  "4": 904.105
+  "0": 20.006,
+  "1": 48.962,
+  "2": 195.438,
+  "3": 438.668,
+  "4": 919.409
  },
  "transitions": {
   "z0->z1": {
-   "ink_mass_gain": 29.829,
-   "ink_mass_ratio": 2.488,
-   "delta_luma": 20.09,
-   "floor": 2.02
+   "ink_mass_gain": 28.956,
+   "ink_mass_ratio": 2.447,
+   "delta_luma": 19.98,
+   "floor": 1.94
   },
   "z1->z2": {
-   "ink_mass_gain": 144.531,
-   "ink_mass_ratio": 3.898,
-   "delta_luma": 12.04,
+   "ink_mass_gain": 146.477,
+   "ink_mass_ratio": 3.992,
+   "delta_luma": 11.85,
    "floor": 1.69
   },
   "z2->z3": {
-   "ink_mass_gain": 243.212,
-   "ink_mass_ratio": 2.251,
-   "delta_luma": 3.5,
+   "ink_mass_gain": 243.23,
+   "ink_mass_ratio": 2.245,
+   "delta_luma": 2.45,
    "floor": 1.13
   },
   "z3->z4": {
-   "ink_mass_gain": 466.482,
-   "ink_mass_ratio": 2.066,
-   "delta_luma": 4.45,
-   "floor": 0.79
+   "ink_mass_gain": 480.741,
+   "ink_mass_ratio": 2.096,
+   "delta_luma": 2.54,
+   "floor": 0.78
   }
  }
 }

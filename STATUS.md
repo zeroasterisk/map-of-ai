@@ -1,6 +1,92 @@
-# STATUS — as of 2026-09-12 (session 7: real level-of-detail tile pyramid — zooming now reveals new content)
+# STATUS — as of 2026-09-12 (session 8: LOD PILOT — every zoom step adds real information, Deep Learning Basin only)
 
 ## One-line status
+
+**LEAFLET v3 (LOD pilot) shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
+**Alan's feedback on v2:** "the details are not detail-y enough … I really want
+the zoom-in to provide more and more and more detail at every step, not just
+a different texture" and, correcting the plan to bolt a deeper tier on: "the
+levels you have right now maybe don't need to exist without additional
+detail … each of those steps needs to have a significant increase in the
+amount of information presented for the same region." Diagnosis of v2 by its
+own numbers: z0→z1 was texture + one year line, z2→z3 was a subtitle line.
+
+**What changed — 5 levels (z0–z4), each step carries new FACTS, not a new
+texture.** Content redistributed and expanded across the existing steps; z4
+added because 40+ sourced events at z3 would have collided (curate, don't
+overlap). PILOT SCOPE: only the Deep Learning Basin has hint/tag/event data;
+every other continent renders exactly as before (its z3 art also serves
+zoom 4 — no new tiles elsewhere). Wider rollout is a separate task, not
+started.
+
+| level | px/unit | tiles | NEW at this step (Basin) | basin text items / chars / event marks |
+|---|---|---|---|---|
+| z0 | 1 | 24 | continents, names | 5 / 39 / 0 |
+| z1 | 2 | 90 | textures, continent years, faint borders, **+4 landmark hints** ("ImageNet · AlexNet 2012", "DQN → AlphaGo", "word2vec → attention", "Google Brain · DeepMind · OpenAI") | 8 / 152 / 0 |
+| z2 | 4 | 319 | solid borders, country names, **+ per-country one-line tag + years** (7 tags, e.g. "ImageNet → AlexNet → ResNet", "SenseTime; first national AI plans") | 33 / 429 / 0 |
+| z3 | 8 | 1254 | country subtitles, **+17 headline events as dots at their year** (ImageNet 2009, Google Brain 2011, AlexNet 2012, DQN 2013, word2vec 2013, VAE 2013, GAN 2014, ResNet 2015, AlphaGo v. Lee Sedol 2016, WaveNet 2016, Switchboard parity 2016 …) | 67 / 662 / 17 |
+| z4 | 16 (bbox only, 560 tiles) | 560 | **+15 more events (32 on the map) and a sourced one-line fact under each headline event** (e.g. AlexNet "15.3 % top-5 error vs 26.2 %"; Four-groups paper "error rates fall ~30 %") | 144 / 1880 / 32 |
+
+Before (v2, same region, same measurement): 5/39 → 4/64 → 15/184 → 22/247;
+z0→z1 LOST items; z2→z3 added only 7 subtitle lines. After: every step at
+least doubles the text items (5→8→33→67→144) and chars grow 39→152→429→
+662→1880. `site/check_lod_labels.py` (new gate) asserts this growth per
+step and ZERO text-on-text overlaps, every event dot inside its own country,
+at every level: PASS (`docs/screens/check_lod_labels_after.txt`; before
+numbers in `docs/screens/lod_labels_before.json` — v2 also had one kname
+overlap at lod2 the old gate never saw).
+
+`site/check_lod.py` reworked: the old "ink fraction after downsampling all
+levels to z0 size" metric erased small type (z2→z3 read +0.0016) and could
+not see the difference; it now measures ink MASS at each level's own
+resolution, scale-normalised (dark px ÷ 2^z ÷ area ×1000), with a minimum
+gain per step. Basin, plate (804,320,386×288):
+
+| step | before (v2) | after (v3) |
+|---|---|---|
+| z0→z1 | 20.1 → 47.1 (+27.1) | 20.0 → 49.0 (+29.0) |
+| z1→z2 | 47.1 → 161.9 (+114.8) | 49.0 → 195.4 (+146.5) |
+| z2→z3 | 161.9 → 354.7 (+192.8) | 195.4 → 438.7 (+243.2) |
+| z3→z4 | — | 438.7 → 919.4 (+480.7) |
+
+(ink mass also counts textures/borders, so v2's steps were not zero — the
+text-item / char counts above are the information measure; both improved
+on every step.) Gate PASS, see `docs/screens/check_lod_before.txt` /
+`check_lod_after.txt`.
+
+**Sourcing — zero invented facts.** Every hint, tag and event lives in
+`data/events/deep-learning-basin.yaml` with `sources:` and traces to
+`research/06-deep-learning-revolution-2006-2017.md` (its numbered refs) or a
+country YAML `sources:` entry — checked mechanically: all 50 events' URLs
+appear verbatim in one of those files (0 unsourced). Examples: AlexNet 2012
+→ proceedings.neurips.cc …c399862d… (Krizhevsky, Sutskever & Hinton) +
+en.wikipedia.org/wiki/AlexNet; ResNet 2015 → arxiv.org/abs/1512.03385;
+"Four groups" 2012 → ieeexplore.ieee.org/document/6296526 (Hinton et al.,
+IEEE SPM); AlphaGo v. Lee Sedol → en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol.
+Detail is
+uneven on purpose: Eastern Coast Forts (SenseTime / national plans, 2015–17)
+is a narrow lane with only 4 sourced events, 2 of which fit; Speech has 7.
+Events that did not fit are curated off the raster (listed by the gate) and
+remain in entities.json for hover cards — not overlapped.
+
+**Rendering notes:** events are positioned by derivation (x = X(year), y in
+the country's lane), placed with the country-label idiom (offset search →
+collision against placed boxes → leader line → curate out). Chromium hints
+sub-3 px glyph advances even at DPR 16, which bunched letters in the z4
+tiles; `text-rendering: geometricPrecision` in tilesrc mode fixed it (verified
+on a 16× crop). z4 is rendered in tile-row strips of the Basin bbox
+(768,304)–(1216,624) to bound memory; `index.html` mounts it as a second,
+bounded tile layer (`meta.full_zmax`, `meta.pilot_bbox`) so no 404 storm off
+the basin. `check_layout.py`, `check_url.py` still PASS.
+
+**Evidence:** `docs/screens/lod2-0.png .. lod2-4.png` (atlas render of the
+Basin, 780,300→1220,620, per lod, 4× — compare v2's `lod-0..3.png`),
+`docs/screens/lod2-index-z0..z4.png` (the Leaflet viewer on the shipped
+tiles at each integer zoom), `docs/screens/lod-tiles-same-region.png`
+(z0..z4 reassembled from tiles).
+Previous status follows.
+
+## One-line status (session 7, superseded)
 
 **LEAFLET v2 (LOD) shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
 **Alan's bug: "I zoomed in and the tiles didn't change."** Root cause: v1

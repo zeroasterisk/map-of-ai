@@ -93,6 +93,9 @@
   html.tilesrc body { background: #dccfae; margin: 0; }
   html.tilesrc .wrap { margin: 0; padding: 0; max-width: none; overflow: visible; }
   html.tilesrc svg#map { width: 1800px; height: 700px; min-width: 0; border: 0; outline: 0; box-shadow: none; }
+  /* tile renders at DPR 8/16 hint sub-3px glyph advances to whole device px (bunched/gapped letters in the z4 tiles):
+     geometricPrecision turns hinting off so tiny type is set with true metrics */
+  html.tilesrc svg#map text { text-rendering: geometricPrecision; }
   html.tilesrc .banner, html.tilesrc .legend, html.tilesrc details.list, html.tilesrc footer, html.tilesrc .zoomhint, html.tilesrc .card { display: none; }
   /* LEVEL OF DETAIL (?tilesrc=1&lod=N, N = the Leaflet zoom the screenshot is sliced for). Each zoom level of the
      pyramid is its OWN render with its own layer set (Google-Maps style: zooming in reveals new information, it does
@@ -1056,16 +1059,21 @@ fetch('registry.json').then(r => r.json()).then(data => {
           const dot = el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
           const lines = [[e.name, 'kev-name', S.n], [String(Math.floor(e.year)), 'kev-year', S.y]].concat(S.l && e.lod <= 3 ? wrap(e.one_line, 26).map(l => [l, 'kev-line', S.l]) : []);
           const H = lines.reduce((a, l) => a + l[2] + .6, 0);
-          const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx, yy, s, cls, gE, {'font-size': fs, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
+          // Sub-3px text gets integer-hinted glyph advances in Chromium even at DPR 16 (broken kerning in the z4
+          // tiles). So each event's text is laid out at a comfortable size inside its own <g transform="scale(k)"> —
+          // layout happens at fs/k >= 8 px, the raster is identical in geometry. Boxes are measured in user space.
+          const KS = Math.max(1, Math.ceil(8 / (S.l || S.y))); const gk = KS > 1 ? el('g', {transform: `scale(${1 / KS})`, 'data-ev': e.id}, gE) : gE;
+          const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx * KS, yy * KS, s, cls, gk, {'font-size': fs * KS, 'stroke-width': (cls === 'kev-name' ? 1.4 : cls === 'kev-year' ? 1.2 : 1.1) * KS, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
+          const ubox = ts => { const u = union(ts); return KS > 1 ? {x: u.x / KS, y: u.y / KS, r: u.r / KS, b: u.b / KS} : u; };
           const offs = [[0, S.r + 1], [0, -(H + S.r + 1)], [S.r + 2.5, -H / 2], [-(S.r + 2.5), -H / 2], [0, S.r + 6], [0, -(H + S.r + 6)]];
           for (const d of [8, 14, 22, 30, 40, 52, 66]) for (const sg of [1, -1]) offs.push([sg * d, -H / 2], [sg * d, S.r + 2], [sg * d, -(H + S.r + 2)], [sg * d, S.r + 8], [sg * d, -(H + S.r + 8)]);
           let ts = null, off = null;
           const pland = gShapes.querySelector(`.continent[data-id="${k.parent_id}"] path.land`);
           const okBox = (u, strict) => strict ? fitsInside(land, u, 1) : (inFill(land, (u.x + u.r) / 2, (u.y + u.b) / 2) && fitsInside(pland, u, 1));
-          for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
+          for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = ubox(cand);
             if (!hitAny(u, placed) && okBox(u, strict)) { ts = cand; off = [dx, oy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
-          if (!ts) { dot.remove(); window.LOD_CURATED[key].push(e.id); continue; }
-          const u = union(ts); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
+          if (!ts) { dot.remove(); if (gk !== gE) gk.remove(); window.LOD_CURATED[key].push(e.id); continue; }
+          const u = ubox(ts); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
           if (Math.abs(off[0]) >= 8 || Math.abs(off[1]) > H + S.r + 4) { const ex = off[0] > 0 ? u.x : off[0] < 0 ? u.r : x, ey = off[0] ? (u.y + u.b) / 2 : (off[1] > 0 ? u.y : u.b); el('path', {d: `M${f1(x)},${f1(dy)} L${f1(ex)},${f1(ey)}`, class: 'kev-leader', 'data-for': k.id}, gE); }
         }
       }

@@ -11,7 +11,7 @@ from build_tiles import serve, SITE, PLATE
 JS = """() => {
   const vis = t => t.getClientRects().length > 0;
   const ts = [...document.querySelectorAll('svg#map text')].filter(vis).filter(t => t.textContent.trim()).filter(t => !/^(band-code|band-label|ocean-label|title|title-sub)$/.test(t.getAttribute('class') || ''));   // legend/ocean stacks are deliberate, pre-existing
-  const bb = t => { const b = t.getBBox(); return {x: b.x, y: b.y, r: b.x + b.width, b: b.y + b.height, s: t.textContent, c: t.getAttribute('class'), f: t.dataset.for, e: t.dataset.ev}; };
+  const bb = t => { const b = t.getBoundingClientRect(); return {x: b.left + scrollX, y: b.top + scrollY, r: b.right + scrollX, b: b.bottom + scrollY, s: t.textContent, c: t.getAttribute('class'), f: t.dataset.for, e: t.dataset.ev}; };   // client rects: correct inside scaled groups
   const B = ts.map(bb); const ov = [];
   for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) { const a = B[i], b = B[j];
     if (a.e && a.e === b.e) continue; if (a.f && a.f === b.f && !a.e && !b.e) continue;   // lines of one label block

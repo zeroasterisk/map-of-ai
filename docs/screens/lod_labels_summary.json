@@ -19,7 +19,7 @@
   }
  },
  "1": {
-  "texts": 67,
+  "texts": 65,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -28,18 +28,18 @@
    "csub": 16,
    "cname haskids": 1,
    "csub haskids": 1,
-   "khint": 4
+   "khint": 2
   },
   "region": {
-   "items": 8,
-   "chars": 152,
+   "items": 7,
+   "chars": 122,
    "marks": 0,
    "kinds": {
-    "cname": 1,
+    "cname": 2,
     "csub": 1,
     "cname haskids": 1,
     "csub haskids": 1,
-    "khint": 4
+    "khint": 2
    }
   }
  },
@@ -56,11 +56,11 @@
    "kyrs": 7
   },
   "region": {
-   "items": 33,
-   "chars": 429,
+   "items": 34,
+   "chars": 444,
    "marks": 0,
    "kinds": {
-    "cname": 1,
+    "cname": 2,
     "csub": 1,
     "kname": 13,
     "ktag": 11,
@@ -69,8 +69,8 @@
   }
  },
  "3": {
-  "texts": 126,
-  "events": 17,
+  "texts": 124,
+  "events": 16,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
@@ -79,27 +79,27 @@
    "kname": 13,
    "ktag": 11,
    "kyrs": 7,
-   "kev-name": 17,
-   "kev-year": 17
+   "kev-name": 16,
+   "kev-year": 16
   },
   "region": {
-   "items": 67,
-   "chars": 662,
-   "marks": 17,
+   "items": 66,
+   "chars": 648,
+   "marks": 16,
    "kinds": {
-    "cname": 1,
+    "cname": 2,
     "csub": 1,
     "kname": 13,
     "ktag": 11,
     "kyrs": 7,
-    "kev-name": 17,
-    "kev-year": 17
+    "kev-name": 16,
+    "kev-year": 16
    }
   }
  },
  "4": {
-  "texts": 203,
-  "events": 32,
+  "texts": 198,
+  "events": 33,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
@@ -108,23 +108,23 @@
    "kname": 13,
    "ktag": 11,
    "kyrs": 7,
-   "kev-name": 32,
-   "kev-year": 32,
-   "kev-line": 47
+   "kev-name": 33,
+   "kev-year": 33,
+   "kev-line": 40
   },
   "region": {
-   "items": 144,
-   "chars": 1880,
-   "marks": 32,
+   "items": 140,
+   "chars": 1750,
+   "marks": 33,
    "kinds": {
-    "cname": 1,
+    "cname": 2,
     "csub": 1,
     "kname": 13,
     "ktag": 11,
     "kyrs": 7,
-    "kev-name": 32,
-    "kev-year": 32,
-    "kev-line": 47
+    "kev-name": 33,
+    "kev-year": 33,
+    "kev-line": 40
    }
   }
  }
