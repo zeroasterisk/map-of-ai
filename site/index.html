@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype)</title>
+<!-- map-of-ai site build: P3-RENDER v2 (P2-T1-RENDER v11 continent geometry UNCHANGED; 7 spatial countries on sub-band rows Ca/Cb/S1a/S1b/S2a/S2b/S2c, tooling-guild + pretraining-foothills demoted to hover facts; adds the country layer for the Deep Learning Basin pilot: countries are a sub-partition of the parent's own grid cells — every country outer edge is an exact slice of the parent's polyline, so the country set tiles the parent and can never leave it; A1 = faint interior borders + biome provinces, A2 = click a continent → zoom, country labels) -->
 <!-- map-of-ai site build: P2-T1-RENDER v11 (v10 + biome-fill tints solved from the rendered colour, wash .50 band .52 — the v10 bump was invisible because the wash sat over an 80 %-parchment texture. v10: full-height present-day coast N1a–S2b, tints ~2× saturation & wash .30/band .48. v9: ISOCHRONE FRONTIERS: every boundary is x = f(band, year), a diagonal sweep, not a year line + wobble; envelope steps softened into ramps. v8: THE FUNNEL: a global outer envelope — the continent is 2 half-bands wide at 1943 and 9 at its 2024 mouth; asymmetric ragged outer coast; offshore rocks) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +20,29 @@
   .continent .tint { pointer-events: none; }
   .continent .border { fill: none; stroke: #3d2e1a; stroke-width: 1; stroke-linejoin: round; stroke-opacity: .85; pointer-events: none; }
   .continent:hover .border { stroke-width: 1.8; stroke-opacity: 1; }
+  /* P3-RENDER: country layer. A1 (default): faint interior borders only. A2 (#map.zoomed): the selected continent's
+     countries get labels, its own name is hidden, every other continent dims to 40 %. */
+  .country .cland { fill-opacity: 0; }
+  .country .ctint { pointer-events: none; }
+  .country .cborder { fill: none; stroke: #3d2e1a; stroke-width: .34; stroke-opacity: .55; stroke-linejoin: round; pointer-events: none; }
+  .country .cborder.wall { stroke-width: .9; }
+  .country .cborder.bridge { stroke-dasharray: 2.2 2.2; }
+  .country .cborder.river, .country .cborder.road { stroke: #2d5f8a; stroke-opacity: .65; }
+  .country .cborder.road { stroke: #6b4a22; stroke-dasharray: 3 1.2; }
+  .country.draft .ctint { fill-opacity: .25; }
+  .country.draft .cborder { stroke-dasharray: 1.5 2; }
+  .kname { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: .6px; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 2.2px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  .ksub { font-family: Lora, Georgia, serif; font-style: italic; fill: #3f321f; paint-order: stroke; stroke: rgba(240,228,200,.8); stroke-width: 1.8px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+  #klabels, #kleaders { display: none; }
+  #map.zoomed #klabels, #map.zoomed #kleaders { display: block; }
+  #map.zoomed .country { cursor: default; }
+  #map.zoomed .country:hover .cborder { stroke-opacity: 1; stroke-width: .7; }
+  #map.zoomed .continent:not(.selected) { opacity: .4; }
+  #map.zoomed #labels text:not(.sel) { opacity: .4; }
+  #map.zoomed #labels text.selname { display: none; }
+  #map.zoomed #leaders [data-for]:not(.sel) { opacity: .4; }
+  .zoomhint { position: absolute; left: 36px; top: 10px; font-size: 12px; font-style: italic; color: var(--ink-dim); background: rgba(246,236,214,.85); border: 1px solid #b9a683; padding: 3px 9px; display: none; }
+  #map.zoomed ~ .zoomhint { display: block; }
   .coast { fill: none; stroke: #2e2212; stroke-width: 1.7; stroke-linejoin: round; pointer-events: none; }
   .waterline { fill: none; stroke: #4a3a24; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
   .shadow { fill: #2e2212; fill-opacity: .30; filter: url(#landshadow); pointer-events: none; }
@@ -59,16 +83,18 @@
 <body>
 <div class="wrap">
   <svg id="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>
+  <div class="zoomhint" id="zoomhint">country view — click the sea (or press Esc) to return to the continent view</div>
   <div class="card" id="card"></div>
 </div>
 <div class="banner">
-  <b>Review prototype — continents only;</b> countries and cities not yet authored.
-  Does the west-to-east ordering and sense of scale feel right? Do the terrains read clearly?
+  <b>Review prototype — continents, plus one pilot continent's countries;</b> click the Deep Learning Basin to zoom into its countries (click the sea to return).
+  Does the west-to-east ordering and sense of scale feel right? Do the terrains read clearly? Do the countries read as provinces of one landmass?
 </div>
 <div class="legend" id="legend"></div>
 <details class="list"><summary>View the registry as a table</summary><table id="tbl"></table></details>
 <footer id="foot"></footer>
 
+<script src="entities.js"></script>
 <script>
 // Biome → generated terrain texture (site/assets/textures/*.jpg, made once by gen_textures.py + prep_textures.py)
 // and a hand-tint colour used for the border wash and the legend swatch.
@@ -594,6 +620,84 @@ function islandPts(cx, cy, r, seed) {
 }
 function wrap(s, maxChars) { const out = []; let line = ''; s.split(' ').forEach(w => { if ((line + ' ' + w).trim().length > maxChars && line) { out.push(line); line = w; } else line = (line ? line + ' ' : '') + w; }); out.push(line); return out; }
 
+// ---- P3-RENDER v2: COUNTRY LAYER (SPEC §9). Continent geometry above is UNCHANGED (§9.3). Countries are traced on a
+// FINER grid (SUB rows × SUBCOLS) with the same trace()/edgePts()/polyPath() machinery, restricted to cells whose
+// parent cell is owned by the country's parent continent — so every country polygon is a sub-region of the parent's
+// own cells (G1/G2 containment by construction). Rows: Ca Cb | S1a S1b | S2a S2b S2c are equal splits of the
+// continent's ROWY rows (C halves, S1 halves, S2 thirds); columns = COLS plus the country start/end years that COLS
+// lacks (2009, 2013, 2015, 2016). Country-country seams reuse the continent edge tables (edgePts) keyed by fine
+// vertex ids, so shared borders coincide exactly and no country pair can overlap.
+const FINE = [ // fine rows, north→south: [name, parent row j, f0, f1]. S2 thirds straddle the S2a|S2b continent rows,
+  // so the S2b sub-band is two fine rows (7[2/3,1] + 8[0,1/3]); every fine row lies inside ONE continent row.
+  ['Ca', 4, 0, 1], ['Cb', 5, 0, 1], ['S1a', 6, 0, .5], ['S1b', 6, .5, 1], ['S2a', 7, 0, 2 / 3], ['S2b', 7, 2 / 3, 1], ['S2b', 8, 0, 1 / 3], ['S2c', 8, 1 / 3, 1]];
+const SUBCOLS = [...new Set(COLS.concat([2009, 2013, 2015, 2016]))].sort((a, b) => a - b);
+const parentCol = i => { let k = 0; while (k + 1 < COLS.length && COLS[k + 1] <= SUBCOLS[i] + 1e-9) k++; return k; };   // fine col → continent col
+const FNC = SUBCOLS.length - 1, FNR = FINE.length;
+// point at arc-length fraction t of a polyline; slice of a polyline between fractions t0 < t1 (endpoints interpolated)
+function polyAt(pts, t) { const cum = [0]; for (let k = 1; k < pts.length; k++) cum.push(cum[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1])); const s = t * cum[cum.length - 1]; let k = 1; while (k < cum.length - 1 && cum[k] < s) k++; const u = (s - cum[k - 1]) / ((cum[k] - cum[k - 1]) || 1); return [pts[k - 1][0] + (pts[k][0] - pts[k - 1][0]) * u, pts[k - 1][1] + (pts[k][1] - pts[k - 1][1]) * u]; }
+function polySlice(pts, t0, t1) { const cum = [0]; for (let k = 1; k < pts.length; k++) cum.push(cum[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1])); const T = cum[cum.length - 1]; const out = [polyAt(pts, t0)]; for (let k = 0; k < pts.length; k++) if (cum[k] > t0 * T + 1e-6 && cum[k] < t1 * T - 1e-6) out.push(pts[k]); out.push(polyAt(pts, t1)); return out; }
+// the continent-row line (j) of fine row r's TOP edge, or null when that edge is a country-only split
+const rowLine = r => r === FNR ? 9 : (FINE[r][2] === 0 ? FINE[r][1] : null);
+const colT = i => { const c0 = parentCol(i); return [c0, (SUBCOLS[i] - COLS[c0]) / (COLS[c0 + 1] - COLS[c0])]; };
+// fine vertex (i, r) in WARPED (rendered) space: on a continent grid line it is sampled from the continent's own
+// drawn polyline (edgePts), so a country edge along a continent border is an exact slice of that border; a vertex
+// interior to a continent cell is interpolated between the cell's top and bottom polylines.
+const FVX = {};
+function FV(i, r) {
+  const k = i + ',' + r;
+  if (!FVX[k]) {
+    const yr = SUBCOLS[i], ci = COLS.indexOf(yr), row = FINE[Math.min(r, FNR - 1)], j = r === FNR ? 9 : row[1], f = r === FNR ? 0 : row[2];
+    if (ci >= 0) FVX[k] = f === 0 ? warp(V(ci, j)) : polyAt(edgePts([ci, j], [ci, j + 1]), f);
+    else {
+      const [c0, t] = colT(i); const top = polyAt(edgePts([c0, j], [c0 + 1, j]), t);
+      if (f === 0) FVX[k] = top; else { const bot = polyAt(edgePts([c0, j + 1], [c0 + 1, j + 1]), t); FVX[k] = [top[0] + (bot[0] - top[0]) * f, top[1] + (bot[1] - top[1]) * f]; }
+    }
+  }
+  return FVX[k];
+}
+const FEC = {};
+function fineEdge(a, b) {
+  const ka = a[1] * 1000 + a[0], kb = b[1] * 1000 + b[0]; const rev = ka > kb; const [p, q] = rev ? [b, a] : [a, b];
+  const key = p[0] * 1000003 + p[1] * 1009 + q[0] * 37 + q[1];
+  if (!FEC[key]) {
+    const vertical = p[0] === q[0]; const ci = COLS.indexOf(SUBCOLS[p[0]]);
+    if (vertical && ci >= 0) { const row = FINE[p[1]]; FEC[key] = polySlice(edgePts([ci, row[1]], [ci, row[1] + 1]), row[2], row[3]); }          // slice of a continent year line
+    else if (!vertical && rowLine(p[1]) !== null) { const j = rowLine(p[1]); const [c0, t0] = colT(p[0]); const t1 = q[0] < SUBCOLS.length && parentCol(q[0]) === c0 ? colT(q[0])[1] : 1; FEC[key] = polySlice(edgePts([c0, j], [c0 + 1, j]), t0, t1); }   // slice of a continent row line
+    else {
+      // a country-only seam inside a continent cell: small hand wobble (≤ 6 px, far below the ≥ 20 px fine cell size)
+      const P = FV(p[0], p[1]), Q = FV(q[0], q[1]); const L = Math.hypot(Q[0] - P[0], Q[1] - P[1]);
+      const n = Math.max(4, Math.round(L / 4)); const nx = -(Q[1] - P[1]) / L, ny = (Q[0] - P[0]) / L;
+      const lat = Math.min(6, L * .18); const ph = h2(p[0] + 500, p[1] + 500, 41) * 6.28, sgn = h2(p[0], p[1], 42) < .5 ? -1 : 1;
+      const pts = [];
+      for (let k = 0; k <= n; k++) { const t = k / n, env = Math.sin(Math.PI * t); const off = env * (sgn * lat * .6 * Math.sin(Math.PI * t + .3 * Math.sin(ph)) + (noise1(t * 3 + key % 97, 43) - .5) * lat * .5 + (noise1(t * 11 + key % 89, 44) - .5) * Math.min(2, L * .03)); pts.push([P[0] + (Q[0] - P[0]) * t + nx * off, P[1] + (Q[1] - P[1]) * t + ny * off]); }
+      FEC[key] = pts;
+    }
+  }
+  return rev ? FEC[key].slice().reverse() : FEC[key];
+}
+// trace on the fine grid (same loop-walk as trace(), fine edges)
+function fineTrace(pred) {
+  const out = new Map(); const add = (a, b) => { const k = a.join(','); (out.get(k) || out.set(k, []).get(k)).push(b); };
+  for (let i = 0; i < FNC; i++) for (let r = 0; r < FNR; r++) if (pred(i, r)) {
+    if (!pred(i, r - 1)) add([i, r], [i + 1, r]);
+    if (!pred(i + 1, r)) add([i + 1, r], [i + 1, r + 1]);
+    if (!pred(i, r + 1)) add([i + 1, r + 1], [i, r + 1]);
+    if (!pred(i - 1, r)) add([i, r + 1], [i, r]);
+  }
+  const loops = [];
+  while (out.size) {
+    const startK = out.keys().next().value; const start = startK.split(',').map(Number); let cur = start; const loop = [];
+    for (let guard = 0; guard < 10000; guard++) { const k = cur.join(','); const nexts = out.get(k); if (!nexts || !nexts.length) break; const nxt = nexts.shift(); if (!nexts.length) out.delete(k); loop.push([cur, nxt]); cur = nxt; if (cur[0] === start[0] && cur[1] === start[1]) break; }
+    loops.push(loop);
+  }
+  return loops.map(loop => { const pts = []; loop.forEach(([a, b]) => { const e = fineEdge(a, b); for (let k = 0; k < e.length - 1; k++) pts.push(e[k]); }); return pts; });
+}
+// a fine cell (i, r) belongs to country k iff its year slot is inside k's time_range, its fine row is one of k's
+// sub_bands, AND the parent continent owns the underlying continent cell (containment by construction)
+const fineCell = (k, i, r) => i >= 0 && r >= 0 && i < FNC && r < FNR && SUBCOLS[i] >= k.start - 1e-9 && SUBCOLS[i + 1] <= k.end + 1e-9 && k.sub_band.includes(FINE[r][0]) && ownerAt(parentCol(i), FINE[r][1]) === k.parent_id;
+window.COUNTRY_GEOM = {SUBCOLS, FINE};
+let drawCountries = () => {};
+
 fetch('registry.json').then(r => r.json()).then(data => {
   const C = data.continents;
   const defs = el('defs', {});
@@ -800,7 +904,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
         <dt>research file</dt><dd>research/${c.research_file}</dd>
         <dt>split</dt><dd>${c.split_of}</dd>
         <dt>west border</dt><dd>${c.border_west}</dd>
-        <dt>east border</dt><dd>${c.border_east}</dd></dl>`;
+        <dt>east border</dt><dd>${c.border_east}</dd></dl>` +
+        (g._facts ? `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${g._facts.map(f => `<div><b>also happening</b> — ${f.note} <code>${f.id}</code></div>`).join('')}</div>` : '');
       move(ev);
     };
     const move = (ev) => { const wrapR = svg.parentElement.getBoundingClientRect(); let lx = ev.clientX - wrapR.left + 16 + svg.parentElement.scrollLeft, ly = ev.clientY - wrapR.top + 16; if (lx + 430 > wrapR.width + svg.parentElement.scrollLeft) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
@@ -810,6 +915,63 @@ fetch('registry.json').then(r => r.json()).then(data => {
   });
   // ink coastline on top of every fill (mainland + isles)
   landPaths.forEach(d => el('path', {d, class: 'coast'}, gCoast));
+  // ---- P3-RENDER v2: country layer for every continent that has spatial countries in entities.json
+  const ENT = window.ENTITIES || {continents: [], countries: []};
+  const gCountries = el('g', {id: 'countries'}); const gKLeaders = el('g', {id: 'kleaders'}); const gKLabels = el('g', {id: 'klabels', 'pointer-events': 'none'});
+  const cardHTML = (k, facts, extra) => `<h3>${k.name}</h3><div class="sub">${k.subtitle}</div><dl><dt>id</dt><dd><code>${k.id}</code></dd><dt>span</dt><dd>${k.start}–${k.end}</dd>${extra || ''}<dt>summary</dt><dd>${k.summary60}</dd></dl>` +
+    (facts && facts.length ? `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${facts.map(f => `<div><b>${f.id}</b> — ${f.note}</div>`).join('')}</div>` : '');
+  const kCard = (k, facts, extra) => { const show = ev => { card.style.display = 'block'; card.innerHTML = cardHTML(k, facts, extra); moveCard(ev); }; return show; };
+  const moveCard = (ev) => { const wrapR = svg.parentElement.getBoundingClientRect(); let lx = ev.clientX - wrapR.left + 16 + svg.parentElement.scrollLeft, ly = ev.clientY - wrapR.top + 16; if (lx + 430 > wrapR.width + svg.parentElement.scrollLeft) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
+  drawCountries = () => {
+    // continent-level related_facts (tooling-guild on the Deep Learning Basin) are appended to the continent's own card
+    for (const ce of ENT.continents) if (ce.related_facts && ce.related_facts.length) { const g = gShapes.querySelector(`.continent[data-id="${ce.id}"]`); if (g) g._facts = ce.related_facts; }
+    for (const k of ENT.countries.filter(k => k.spatial)) {
+      const loops = fineTrace((i, r) => fineCell(k, i, r)); if (!loops.length) { console.warn('country has no cells', k.id); continue; }
+      const d = loops.map(polyPath).join(' ');
+      const g = el('g', {class: 'country' + (k.status === 'draft' ? ' draft' : ''), 'data-id': k.id, 'data-parent': k.parent_id}, gCountries);
+      const tint = BIOME[k.biome].c; const parent = ENT.continents.find(c => c.id === k.parent_id) || {};
+      if (k.biome !== parent.biome) { el('path', {d, fill: `url(#tex-${k.biome})`, class: 'ctex'}, g); el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'ctint'}, g); }   // G4: differing biome → own texture + wash
+      else el('path', {d, fill: tint, 'fill-opacity': 0, class: 'ctint'}, g);
+      const land = el('path', {d, fill: tint, class: 'cland'}, g);
+      el('path', {d, class: 'cborder'}, g);
+      el('path', {d, class: 'kzoom', style: 'fill:none;stroke:#3d2e1a;stroke-width:1.1;stroke-opacity:.9;stroke-dasharray:3 1.6;stroke-linejoin:round;pointer-events:none', display: 'none'}, g);   // A2 only: a readable province line (toggled with #map.zoomed)
+      g.addEventListener('mouseenter', kCard(k, k.related_facts, `<dt>sub-band</dt><dd>${k.sub_band.join(' + ')} (band ${k.band.join('–')})</dd><dt>biome</dt><dd><span class="sw" style="background:${tint}"></span>${k.biome}</dd><dt>neighbours</dt><dd>${k.neighbours.map(n => `${n.id} <i>(${n.relation})</i>`).join(', ')}</dd>`));
+      g.addEventListener('mousemove', moveCard); g.addEventListener('mouseleave', () => card.style.display = 'none');
+      // A2 label: name (≤ 60 % of the continent-name size) + subtitle (years stripped) + years, inside the polygon
+      // when its bbox fits, else at the polygon's centroid with a leader (G6/G7). Placed once fonts are ready.
+      g._label = () => {
+        const bbx = land.getBBox(); let sx = 0, sy = 0, sn = 0; for (let x = bbx.x; x <= bbx.x + bbx.width; x += 3) for (let y = bbx.y; y <= bbx.y + bbx.height; y += 3) if (inFill(land, x, y)) { sx += x; sy += y; sn++; }
+        const cx = sn ? sx / sn : bbx.x + bbx.width / 2, cy = sn ? sy / sn : bbx.y + bbx.height / 2;   // fill centroid (a lane's label sits in the lane, not the bbox centre)
+        [...gKLabels.querySelectorAll(`[data-for="${k.id}"]`), ...gKLeaders.querySelectorAll(`[data-for="${k.id}"]`)].forEach(t => t.remove());
+        const mk = (sN, sS, sub) => { const ts = []; let yy = cy; const nl = wrap(k.name, Math.max(8, Math.floor((bbx.width - 10) / (sN * .72 + 1)))), sl = sub ? wrap(k.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [];
+          const H = nl.length * (sN + 1) + sl.length * (sS + 1) + sS; yy = cy - H / 2 + sN * .82;
+          nl.forEach(l => { ts.push(txt(cx, yy, l, 'kname', gKLabels, {'font-size': sN, 'data-for': k.id})); yy += sN + 1; });
+          sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
+          ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
+        for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) { const ts = mk(sN, sS, sub); if (fitsInside(land, union(ts), 1)) return; ts.forEach(t => t.remove()); }
+        const ts = mk(9, 8, false); ts.forEach(t => t.setAttribute('data-leader', '1'));   // too small: leave the label at the centroid, add a leader dot on the polygon
+        let ax = cx, ay = cy; for (let i = 0; i < 40 && !inFill(land, ax, ay); i++) ay += 1;
+        const u = union(ts); el('path', {d: `M${f1(u.x)},${f1(u.b + 2)} L${f1(ax)},${f1(ay)}`, class: 'leader', 'data-for': k.id}, gKLeaders); el('circle', {cx: ax, cy: ay, r: 1.8, class: 'leader-dot', 'data-for': k.id}, gKLeaders);
+      };
+    }
+    // A1 ↔ A2 (G6): click a continent → zoomed; Esc / click on the sea → back
+    const kz = on => gCountries.querySelectorAll('.kzoom').forEach(e => e.setAttribute('display', on ? 'inline' : 'none'));
+    const unzoom = () => { kz(false); svg.classList.remove('zoomed'); svg.querySelectorAll('.selected, .sel, .selname').forEach(e => e.classList.remove('selected', 'sel', 'selname')); };
+    gShapes.querySelectorAll('.continent').forEach(g => g.addEventListener('click', () => {
+      const id = g.dataset.id; if (!gCountries.querySelector(`.country[data-parent="${id}"]`)) return;
+      unzoom(); svg.classList.add('zoomed'); g.classList.add('selected'); kz(true);
+      gLabels.querySelectorAll(`text[data-for="${id}"]`).forEach(t => t.classList.add('sel', 'selname')); gLeaders.querySelectorAll(`[data-for="${id}"]`).forEach(t => t.classList.add('sel'));
+      gCountries.querySelectorAll('.country').forEach(c => c._label && c._label());
+      card.style.display = 'none';
+    }));
+    document.getElementById('sea').addEventListener('click', unzoom);
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') unzoom(); });
+    svg.insertBefore(gCountries, gCoast); svg.insertBefore(gKLeaders, gLabels.nextSibling); svg.insertBefore(gKLabels, gKLeaders.nextSibling);
+    // country labels need font metrics: lay them out once (hidden at A1; they are only shown under #map.zoomed)
+    const layoutK = () => gCountries.querySelectorAll('.country').forEach(c => c._label && c._label());
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutK); else layoutK();
+  };
+  drawCountries();
   drawBandLegend();
   // eastern ocean label, in open water east of the present-day coast (drawn after the land so nothing covers it)
   // (v5: the legend box now owns the strip east of the coast, so the label moves into the open water south-east

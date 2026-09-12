@@ -66,6 +66,8 @@ def main(data_dir: str, dst: str) -> int:
                 raise SystemExit(f"{c['id']}: sub_band {sb} not inside band {c['band']}")
     out["generated_from"] = f"{len(conts)} continent + {len(ctry)} country YAML files under {data_dir}/"
     Path(dst).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    # entities.js: the same payload as a JS global — the page is static (file:// or Pages) and loads it via <script src>
+    Path(dst).with_suffix(".js").write_text("window.ENTITIES = " + json.dumps(out, ensure_ascii=False) + ";\n", encoding="utf-8")
     ns = sum(1 for c in out["countries"] if c["spatial"])
     print(f"wrote {dst}: {len(out['continents'])} continents, {len(out['countries'])} countries ({ns} spatial)")
     return 0
