@@ -53,6 +53,28 @@ def main(data_dir: str, dst: str) -> int:
     conts = sorted((root / "continents").glob("*.yaml"))
     ctry = sorted((root / "countries").glob("*.yaml"))
     out = {"continents": [load(p) for p in conts], "countries": [load(p) for p in ctry]}
+    # LOD events (data/events/<continent>.yaml): per-country z1 hint / z2 tag / z3–z4 named events, rendered into the
+    # map by atlas.html. Every event must carry >= 1 source (SOURCING.md); years must lie inside the country's span.
+    events_n = 0
+    for ep in sorted((root / "events").glob("*.yaml")) if (root / "events").exists() else []:
+        ev = yaml.safe_load(ep.read_text(encoding="utf-8")) or {}
+        for cid, spec in (ev.get("countries") or {}).items():
+            c = next((c for c in out["countries"] if c["id"] == cid), None)
+            if not c:
+                raise SystemExit(f"{ep}: unknown country {cid}")
+            c["hint"] = spec.get("hint")
+            c["tag"] = spec.get("tag")
+            c["events"] = []
+            for e in spec.get("events") or []:
+                if not e.get("sources"):
+                    raise SystemExit(f"{ep}: event {e.get('id')} has no sources")
+                if not (c["start"] - 0.5 <= float(e["year"]) <= c["end"] + 1):
+                    raise SystemExit(f"{ep}: event {e['id']} year {e['year']} outside {cid} span {c['start']}–{c['end']}")
+                if len(str(e.get("one_line", "")).split()) > 16:
+                    raise SystemExit(f"{ep}: event {e['id']} one_line > 15 words")
+                c["events"].append({"id": e["id"], "name": e["name"], "year": float(e["year"]), "lod": int(e.get("lod", 4)),
+                                    "one_line": e.get("one_line", ""), "sources": [{"url": s["url"], "title": s.get("title", "")} for s in e["sources"]]})
+                events_n += 1
     for c in out["countries"]:
         for b in c["band"]:
             if b not in BAND_ORDER:
@@ -69,7 +91,7 @@ def main(data_dir: str, dst: str) -> int:
     # entities.js: the same payload as a JS global — the page is static (file:// or Pages) and loads it via <script src>
     Path(dst).with_suffix(".js").write_text("window.ENTITIES = " + json.dumps(out, ensure_ascii=False) + ";\n", encoding="utf-8")
     ns = sum(1 for c in out["countries"] if c["spatial"])
-    print(f"wrote {dst}: {len(out['continents'])} continents, {len(out['countries'])} countries ({ns} spatial)")
+    print(f"wrote {dst}: {len(out['continents'])} continents, {len(out['countries'])} countries ({ns} spatial), {events_n} LOD events")
     return 0
 
 

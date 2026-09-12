@@ -1,0 +1,82 @@
+# Deep Learning Basin — named events rendered INTO the map at zoom levels 3 and 4 (PILOT, this continent only).
+# Every row traces to research/06-deep-learning-revolution-2006-2017.md ([n] = its source number) — nothing here is
+# new research. `lod: 3` = headline event (labelled dot at z3 and z4, with its one_line at z4); `lod: 4` = detail
+# event (z4 only). `hint` = the z1 landmark hint (basin only; 4 largest countries); `tag` = the z2 one-line tag.
+# Positions are NOT stored: x = X(year) on the time axis, y = inside the country's own polygon (atlas.html), with
+# the same collision-avoidance / leader fallback the country labels use.
+countries:
+  gpu-convnet-school:
+    hint: "ImageNet · AlexNet 2012"
+    tag: "ImageNet → AlexNet → ResNet"
+    events:
+      - {id: imagenet-2009, name: ImageNet, year: 2009.5, lod: 3, one_line: "Deng et al., CVPR 2009: ~14 M images labelled via Mechanical Turk", sources: [{url: https://image-net.org/static_files/papers/imagenet_cvpr09.pdf, title: "Deng et al., ImageNet, CVPR 2009 [7]"}, {url: https://en.wikipedia.org/wiki/ImageNet, title: "Wikipedia: ImageNet [8]"}]}
+      - {id: gpu-dbn-2009, name: GPU deep nets, year: 2009.9, lod: 4, one_line: "Raina, Madhavan & Ng: GPUs train a 100 M-parameter DBN up to 70× faster", sources: [{url: https://ai.stanford.edu/~ang/papers/icml09-LargeScaleUnsupervisedDeepLearningGPU.pdf, title: "Raina, Madhavan & Ng, ICML 2009 [6]"}]}
+      - {id: ilsvrc-2010, name: ILSVRC begins, year: 2010.5, lod: 4, one_line: "first ImageNet challenge: 1,000 classes; 2010–11 winners are SVM pipelines", sources: [{url: https://en.wikipedia.org/wiki/ImageNet_Large_Scale_Visual_Recognition_Challenge, title: "Wikipedia: ILSVRC [9]"}]}
+      - {id: dannet-2011, name: IDSIA DanNet, year: 2011.5, lod: 4, one_line: "Cireşan et al.: first superhuman result in a visual contest (IJCNN traffic signs)", sources: [{url: https://people.idsia.ch/~juergen/ijcnn2011.pdf, title: "Cireşan et al., IJCNN 2011 [12]"}, {url: https://arxiv.org/abs/1202.2745, title: "Cireşan, Meier & Schmidhuber, CVPR 2012 [13]"}]}
+      - {id: alexnet-2012, name: AlexNet, year: 2012.75, lod: 3, one_line: "Krizhevsky, Sutskever & Hinton win ILSVRC 2012: 15.3 % top-5 error vs 26.2 %", sources: [{url: https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html, title: "Krizhevsky, Sutskever & Hinton, NIPS 2012 [17]"}, {url: https://en.wikipedia.org/wiki/AlexNet, title: "Wikipedia: AlexNet [18]"}]}
+      - {id: rcnn-2013, name: R-CNN, year: 2013.85, lod: 4, one_line: "Girshick, Donahue, Darrell & Malik (Berkeley): CNN features for object detection", sources: [{url: https://arxiv.org/abs/1311.2524, title: "Girshick et al., R-CNN, arXiv 1311.2524 [89]"}]}
+      - {id: coco-2014, name: MS COCO, year: 2014.35, lod: 4, one_line: "Lin et al.: the detection / segmentation benchmark after ImageNet", sources: [{url: https://arxiv.org/abs/1405.0312, title: "Lin et al., Microsoft COCO, arXiv 1405.0312 [90]"}]}
+      - {id: vgg-googlenet-2014, name: VGG · GoogLeNet, year: 2014.7, lod: 3, one_line: "16–22-layer nets (Oxford, Google); GoogLeNet wins ILSVRC 2014", sources: [{url: https://arxiv.org/abs/1409.1556, title: "Simonyan & Zisserman, VGG [33]"}, {url: https://arxiv.org/abs/1409.4842, title: "Szegedy et al., Going Deeper with Convolutions [34]"}]}
+      - {id: unet-yolo-2015, name: U-Net · YOLO, year: 2015.4, lod: 4, one_line: "Ronneberger et al. (Freiburg) segmentation; Redmon et al. real-time detection", sources: [{url: https://arxiv.org/abs/1505.04597, title: "Ronneberger, Fischer & Brox, U-Net [40]"}, {url: https://arxiv.org/abs/1506.02640, title: "Redmon et al., YOLO [41]"}]}
+      - {id: resnet-2015, name: ResNet, year: 2015.9, lod: 3, one_line: "He, Zhang, Ren & Sun (MSRA): 152 layers, 3.57 % top-5, wins ILSVRC 2015", sources: [{url: https://arxiv.org/abs/1512.03385, title: "He et al., Deep Residual Learning, arXiv 1512.03385 [42]"}]}
+  neural-nlp-sequence-school:
+    hint: "word2vec → attention"
+    tag: "word2vec, seq2seq, attention"
+    events:
+      - {id: nlp-from-scratch-2011, name: NLP from scratch, year: 2011.5, lod: 4, one_line: "Collobert & Weston: one convnet for tagging, chunking, NER and SRL", sources: [{url: https://jmlr.org/papers/v12/collobert11a.html, title: "Collobert et al., JMLR 2011 [87]"}]}
+      - {id: word2vec-2013, name: word2vec, year: 2013.05, lod: 3, one_line: "Mikolov, Chen, Corrado & Dean: cheap word embeddings (arXiv 1301.3781)", sources: [{url: https://arxiv.org/abs/1301.3781, title: "Mikolov et al., word2vec [22]"}]}
+      - {id: gru-2014, name: GRU enc–dec, year: 2014.42, lod: 4, one_line: "Cho et al.: RNN encoder–decoder with the gated recurrent unit", sources: [{url: https://arxiv.org/abs/1406.1078, title: "Cho et al., arXiv 1406.1078 [104]"}]}
+      - {id: seq2seq-2014, name: seq2seq, year: 2014.7, lod: 3, one_line: "Sutskever, Vinyals & Le: LSTM encoder–decoder translates whole sentences", sources: [{url: https://arxiv.org/abs/1409.3215, title: "Sutskever, Vinyals & Le, arXiv 1409.3215 [31]"}]}
+      - {id: attention-2014, name: attention, year: 2014.67, lod: 3, one_line: "Bahdanau, Cho & Bengio: attention over the source — the Attention River rises", sources: [{url: https://arxiv.org/abs/1409.0473, title: "Bahdanau, Cho & Bengio, arXiv 1409.0473 [30]"}]}
+      - {id: glove-2014, name: GloVe, year: 2014.8, lod: 4, one_line: "Pennington, Socher & Manning (Stanford): the rival embedding", sources: [{url: https://aclanthology.org/D14-1162/, title: "Pennington, Socher & Manning, GloVe, EMNLP 2014 [88]"}]}
+      - {id: ntm-2014, name: Neural Turing Machines, year: 2014.8, lod: 4, one_line: "Graves, Wayne & Danihelka: differentiable external memory", sources: [{url: https://arxiv.org/abs/1410.5401, title: "Graves et al., arXiv 1410.5401 [82]"}]}
+      - {id: show-and-tell-2014, name: Show and Tell, year: 2014.88, lod: 4, one_line: "Vinyals et al.: CNN encoder + LSTM decoder captions images", sources: [{url: https://arxiv.org/abs/1411.4555, title: "Vinyals et al., Show and Tell [98]"}]}
+      - {id: gnmt-2016, name: GNMT, year: 2016.74, lod: 3, one_line: "Google's LSTM + attention translation in production (Nov 2016)", sources: [{url: https://arxiv.org/abs/1609.08144, title: "Wu et al., GNMT, arXiv 1609.08144 [51]"}]}
+  deep-rl-delta:
+    hint: "DQN → AlphaGo"
+    tag: "DQN → AlphaGo"
+    events:
+      - {id: dqn-2013, name: DQN, year: 2013.97, lod: 3, one_line: "Mnih et al. (DeepMind): one network plays 49 Atari games from pixels", sources: [{url: https://arxiv.org/abs/1312.5602, title: "Mnih et al., Playing Atari with Deep RL [25]"}, {url: https://www.nature.com/articles/nature14236, title: "Mnih et al., Nature 2015 [26]"}]}
+      - {id: fan-hui-2015, name: Fan Hui 5–0, year: 2015.8, lod: 4, one_line: "AlphaGo beats the European champion (Oct 2015; Nature, Jan 2016)", sources: [{url: https://www.nature.com/articles/nature16961, title: "Silver et al., Nature 529 [46]"}]}
+      - {id: a3c-2016, name: A3C, year: 2016.1, lod: 4, one_line: "Mnih et al.: asynchronous policy-gradient deep RL on CPUs", sources: [{url: https://arxiv.org/abs/1602.01783, title: "Mnih et al., A3C, arXiv 1602.01783 [99]"}]}
+      - {id: lee-sedol-2016, name: AlphaGo v. Lee Sedol, year: 2016.2, lod: 3, one_line: "4–1 in Seoul, March 2016: the era's Deep Blue moment", sources: [{url: https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol, title: "Wikipedia: AlphaGo versus Lee Sedol [48]"}]}
+      - {id: gym-2016, name: OpenAI Gym, year: 2016.45, lod: 4, one_line: "Brockman et al.: the shared benchmark arena for deep RL", sources: [{url: https://arxiv.org/abs/1606.01540, title: "Brockman et al., OpenAI Gym [100]"}]}
+      - {id: ke-jie-2017, name: Ke Jie 3–0, year: 2017.4, lod: 4, one_line: "AlphaGo Master beats the world No. 1 at Wuzhen (May 2017)", sources: [{url: https://en.wikipedia.org/wiki/AlphaGo, title: "Wikipedia: AlphaGo [47]"}]}
+      - {id: alphago-zero-2017, name: AlphaGo Zero, year: 2017.8, lod: 3, one_line: "self-play only; beats AlphaGo Lee 100–0 after three days (Oct 2017)", sources: [{url: https://www.nature.com/articles/nature24270, title: "Silver et al., Nature 550 [54]"}]}
+  deep-generative-shoreline:
+    tag: "VAEs, GANs, WaveNet"
+    events:
+      - {id: vae-2013, name: VAE, year: 2013.97, lod: 3, one_line: "Kingma & Welling: auto-encoding variational Bayes (Dec 2013)", sources: [{url: https://arxiv.org/abs/1312.6114, title: "Kingma & Welling, arXiv 1312.6114 [27]"}]}
+      - {id: gan-2014, name: GAN, year: 2014.45, lod: 3, one_line: "Goodfellow et al. (Montréal): generative adversarial networks (Jun 2014)", sources: [{url: https://arxiv.org/abs/1406.2661, title: "Goodfellow et al., arXiv 1406.2661 [28]"}]}
+      - {id: deepdream-2015, name: DeepDream, year: 2015.46, lod: 4, one_line: "Mordvintsev, Olah & Tyka: the first viral neural-art moment", sources: [{url: https://research.google/blog/inceptionism-going-deeper-into-neural-networks/, title: "Inceptionism, Google Research blog [102]"}]}
+      - {id: style-transfer-2015, name: style transfer, year: 2015.65, lod: 4, one_line: "Gatys, Ecker & Bethge (Tübingen): A Neural Algorithm of Artistic Style", sources: [{url: https://arxiv.org/abs/1508.06576, title: "Gatys et al., arXiv 1508.06576 [101]"}]}
+      - {id: dcgan-2015, name: DCGAN, year: 2015.88, lod: 4, one_line: "Radford, Metz & Chintala make GANs practical for images", sources: [{url: https://arxiv.org/abs/1511.06434, title: "Radford, Metz & Chintala, DCGAN [73]"}]}
+      - {id: pixelrnn-2016, name: PixelRNN, year: 2016.07, lod: 4, one_line: "van den Oord et al.: autoregressive image likelihoods", sources: [{url: https://arxiv.org/abs/1601.06759, title: "van den Oord et al., Pixel RNNs [103]"}]}
+      - {id: wavenet-2016, name: WaveNet, year: 2016.7, lod: 3, one_line: "DeepMind generates raw audio sample by sample (Sep 2016)", sources: [{url: https://arxiv.org/abs/1609.03499, title: "van den Oord et al., WaveNet [50]"}]}
+  speech-recognition-converts:
+    tag: "DNN & LSTM speech recognition"
+    events:
+      - {id: dnn-acoustic-2009, name: DNN acoustic models, year: 2009.6, lod: 4, one_line: "Hinton's Toronto group + Li Deng (Microsoft) replace GMMs with deep nets", sources: [{url: https://en.wikipedia.org/wiki/Deep_learning, title: "Wikipedia: Deep learning [1]"}, {url: https://ieeexplore.ieee.org/document/6296526, title: "Hinton et al., IEEE SPM 2012 [11]"}]}
+      - {id: four-groups-2012, name: Four groups paper, year: 2012.85, lod: 3, one_line: "Toronto, Microsoft, Google, IBM declare DNNs the standard; error rates fall ~30 %", sources: [{url: https://ieeexplore.ieee.org/document/6296526, title: "Hinton et al., IEEE SPM Nov 2012 [11]"}]}
+      - {id: deep-lstm-speech-2013, name: deep LSTM speech, year: 2013.25, lod: 4, one_line: "Graves, Mohamed & Hinton: bidirectional LSTMs, no phonetic alignment", sources: [{url: https://arxiv.org/abs/1303.5778, title: "Graves, Mohamed & Hinton, arXiv 1303.5778 [105]"}]}
+      - {id: deep-speech-2014, name: Deep Speech, year: 2014.95, lod: 3, one_line: "Baidu (Hannun et al.): end-to-end RNN recogniser on noisy speech at scale", sources: [{url: https://arxiv.org/abs/1412.5567, title: "Hannun et al., Deep Speech [93]"}]}
+      - {id: switchboard-2016, name: Switchboard parity, year: 2016.8, lod: 3, one_line: "Microsoft (Xiong et al.): 5.9 % word error rate, matching transcribers", sources: [{url: https://arxiv.org/abs/1610.05256, title: "Xiong et al., arXiv 1610.05256 [95]"}]}
+  industrial-lab-founders:
+    hint: "Google Brain · DeepMind · OpenAI"
+    tag: "Google Brain, FAIR, DeepMind, OpenAI"
+    events:
+      - {id: google-brain-2011, name: Google Brain, year: 2011.5, lod: 3, one_line: "Dean, Corrado & Ng start the project at Google X", sources: [{url: https://en.wikipedia.org/wiki/Google_Brain, title: "Wikipedia: Google Brain [14]"}]}
+      - {id: cat-2012, name: the “cat” network, year: 2012.45, lod: 4, one_line: "Le et al.: 10 M YouTube frames on 16,000 cores, unsupervised", sources: [{url: https://arxiv.org/abs/1112.6209, title: "Le et al., arXiv 1112.6209 [15]"}]}
+      - {id: distbelief-2012, name: DistBelief, year: 2012.9, lod: 4, one_line: "Dean et al.: distributed training system, TensorFlow's predecessor", sources: [{url: https://proceedings.neurips.cc/paper/2012/hash/6aca97005c68f1206823815f66102863-Abstract.html, title: "Dean et al., NIPS 2012 [16]"}]}
+      - {id: dnnresearch-2013, name: DNNresearch → Google, year: 2013.2, lod: 4, one_line: "Google buys Hinton's start-up (with Krizhevsky and Sutskever), Mar 2013", sources: [{url: https://en.wikipedia.org/wiki/Geoffrey_Hinton, title: "Wikipedia: Geoffrey Hinton [20]"}]}
+      - {id: fair-2013, name: FAIR founded, year: 2013.93, lod: 3, one_line: "LeCun becomes founding director of Facebook AI Research (9 Dec 2013)", sources: [{url: https://en.wikipedia.org/wiki/Yann_LeCun, title: "Wikipedia: Yann LeCun [59]"}]}
+      - {id: deepmind-2014, name: DeepMind → Google, year: 2014.07, lod: 3, one_line: "acquisition confirmed 26 Jan 2014 (reported $400–650 M)", sources: [{url: https://en.wikipedia.org/wiki/DeepMind, title: "Wikipedia: DeepMind [21]"}]}
+      - {id: baidu-ng-2014, name: Ng → Baidu, year: 2014.37, lod: 4, one_line: "Baidu appoints Andrew Ng chief scientist (16 May 2014)", sources: [{url: https://en.wikipedia.org/wiki/Baidu, title: "Wikipedia: Baidu [94]"}]}
+      - {id: openai-2015, name: OpenAI founded, year: 2015.92, lod: 3, one_line: "non-profit founded Dec 2015 by Musk, Altman, Sutskever, Brockman and others", sources: [{url: https://en.wikipedia.org/wiki/OpenAI, title: "Wikipedia: OpenAI [45]"}]}
+  chinese-state-response:
+    tag: "SenseTime; first national AI plans"
+    events:
+      - {id: sensetime-ilsvrc-2016, name: SenseTime, year: 2016.3, lod: 4, one_line: "Hong Kong / CUHK start-up wins ILSVRC 2016 detection", sources: [{url: https://en.wikipedia.org/wiki/SenseTime, title: "Wikipedia: SenseTime [110]"}]}
+      - {id: white-house-2016, name: White House report, year: 2016.78, lod: 3, one_line: "Preparing for the Future of AI (12 Oct 2016): first US national AI policy report", sources: [{url: https://obamawhitehouse.archives.gov/blog/2016/10/12/administrations-report-future-artificial-intelligence, title: "The White House, Oct 2016 [117]"}]}
+      - {id: vector-2017, name: Vector Institute, year: 2017.25, lod: 4, one_line: "Pan-Canadian AI Strategy (CIFAR); Vector founded in Toronto, Hinton chief scientific advisor", sources: [{url: https://en.wikipedia.org/wiki/Vector_Institute_%28Canada%29, title: "Wikipedia: Vector Institute [109]"}, {url: https://en.wikipedia.org/wiki/Canadian_Institute_for_Advanced_Research, title: "Wikipedia: CIFAR [107]"}]}
+      - {id: china-plan-2017, name: China AI plan, year: 2017.55, lod: 3, one_line: "State Council New Generation AI Development Plan (20 Jul 2017): world lead by 2030", sources: [{url: https://en.wikipedia.org/wiki/Artificial_intelligence_industry_in_China, title: "Wikipedia: AI industry in China [112]"}]}
