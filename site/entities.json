@@ -18,6 +18,14 @@
    "summary60": "Between 2006 and 2017 multi-layer neural networks went from an unfashionable niche to the default method for perception, language and control, and the phrase \"deep learning\" replaced \"neural networks\" as the banner of the connectionist pole. The era opens quietly with Hinton, Osindero and Teh's greedy layer-wise pre-training of deep belief nets (2006); it acquires its engine when Raina, Madhavan …",
    "neighbours": [],
    "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [
+    {
+     "id": "tooling-guild",
+     "note": "also happening, 2007–2017: tooling & frameworks — CUDA, Theano, Torch, Caffe, cuDNN, Keras, TensorFlow, PyTorch, TPU"
+    }
+   ],
    "file": "data/continents/deep-learning-basin.yaml"
   }
  ],
@@ -26,9 +34,9 @@
    "id": "chinese-state-response",
    "level": "country",
    "name": "The Eastern Coast Forts",
-   "subtitle": "Chinese labs and the first national AI strategies, 2014–2017",
+   "subtitle": "Chinese labs and the first national AI strategies, 2015–2017",
    "parent_id": "deep-learning-basin",
-   "start": 2014,
+   "start": 2015,
    "end": 2017,
    "band": [
     "C"
@@ -51,6 +59,11 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/chinese-state-response.yaml"
   },
   {
@@ -82,6 +95,11 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "S2c"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/deep-generative-shoreline.yaml"
   },
   {
@@ -113,6 +131,11 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/deep-rl-delta.yaml"
   },
   {
@@ -148,6 +171,16 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "S2a"
+   ],
+   "spatial": true,
+   "related_facts": [
+    {
+     "id": "pretraining-foothills",
+     "note": "preceded by: unsupervised pre-training / DBN work, 2006–2011 — Hinton, Bengio et al. (eclipsed after 2012)"
+    }
+   ],
    "file": "data/countries/gpu-convnet-school.yaml"
   },
   {
@@ -180,6 +213,12 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "Cb",
+    "S1a"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/industrial-lab-founders.yaml"
   },
   {
@@ -211,6 +250,11 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/neural-nlp-sequence-school.yaml"
   },
   {
@@ -238,6 +282,9 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": null,
+   "spatial": false,
+   "related_facts": [],
    "file": "data/countries/pretraining-foothills.yaml"
   },
   {
@@ -269,6 +316,11 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": [
+    "S2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
    "file": "data/countries/speech-recognition-converts.yaml"
   },
   {
@@ -305,6 +357,9 @@
     }
    ],
    "band_override_note": null,
+   "sub_band": null,
+   "spatial": false,
+   "related_facts": [],
    "file": "data/countries/tooling-guild.yaml"
   }
  ],

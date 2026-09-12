@@ -19,6 +19,7 @@ time_range: {start: 2007, end: 2017}
 band: [S1, S2]
 biome: harbour
 parent_id: deep-learning-basin
+spatial: false
 research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [5, 16, 24, 39, 113, 44, 92, 115, 116, 49, 52, 53, 86, 106]}
 sources:
   - {url: https://en.wikipedia.org/wiki/CUDA, title: "Wikipedia: CUDA", kind: wikipedia, accessed: 2026-09-11}

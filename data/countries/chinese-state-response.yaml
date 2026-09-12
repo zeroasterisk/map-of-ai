@@ -1,7 +1,7 @@
 id: chinese-state-response
 level: country
 name: The Eastern Coast Forts
-subtitle: "Chinese labs and the first national AI strategies, 2014–2017"
+subtitle: "Chinese labs and the first national AI strategies, 2015–2017"
 summary: >
   The basin's eastern coast, where the deep-learning boom first became national
   policy. Baidu Research under Ng (2014) produced Deep Speech; SenseTime (Hong
@@ -15,8 +15,9 @@ summary: >
   Generation Artificial Intelligence Development Plan (July 2017), targeting
   world leadership by 2030. Their consequences — funding and chip-export
   politics — play out on the next continents.
-time_range: {start: 2014, end: 2017}
+time_range: {start: 2015, end: 2017}
 band: C
+sub_band: Cb
 biome: grassland
 parent_id: deep-learning-basin
 research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [93, 94, 110, 111, 117, 107, 109, 112]}
@@ -42,3 +43,6 @@ notes: >
   start-ups — flagged for A-K7. Band C by neighbourhood: state and institutional
   response is neither perception nor control; band_override_note not needed
   since C is the literal middle.
+  P3-RENDER v2 partition (2026-09-12): time_range.start nudged 2014 -> 2015 (1 yr)
+  so the Cb lane hands off cleanly from industrial-lab-founders (ends 2015); Baidu
+  Research / SenseTime 2014 remain in the summary.

@@ -16,6 +16,7 @@ summary: >
   frontier-lab archipelago on the next two continents.
 time_range: {start: 2011, end: 2015}
 band: [C, S1]
+sub_band: [Cb, S1a]
 biome: forest
 parent_id: deep-learning-basin
 research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [14, 20, 21, 45, 59, 62, 94]}

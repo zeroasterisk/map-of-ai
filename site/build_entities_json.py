@@ -14,6 +14,7 @@ from pathlib import Path
 import yaml
 
 BAND_ORDER = ["N1", "N2", "C", "S1", "S2"]
+SUB_BANDS = {"Ca", "Cb", "S1a", "S1b", "S2a", "S2b", "S2c"}   # country-layer rows inside the C / S1 / S2 band rows
 
 
 def bands(v):
@@ -38,6 +39,11 @@ def load(p: Path):
         "summary60": " ".join(words[:60]) + (" …" if len(words) > 60 else ""),
         "neighbours": [{"id": n.get("id"), "relation": n.get("relation")} for n in (d.get("neighbours") or []) if isinstance(n, dict)],
         "band_override_note": d.get("band_override_note"),
+        # P3-RENDER v2: sub_band is ALWAYS a list (["S2a"] or ["Cb","S1a"]) — the renderer unions fine rows, so a
+        # 1-row and a 2-row country share one code path. spatial defaults true; false = demoted (no polygon).
+        "sub_band": bands(d["sub_band"]) if d.get("sub_band") else None,
+        "spatial": d.get("spatial", True) is not False,
+        "related_facts": [{"id": f.get("id"), "note": f.get("note")} for f in (d.get("related_facts") or []) if isinstance(f, dict)],
         "file": str(p.as_posix()),
     }
 
@@ -53,9 +59,15 @@ def main(data_dir: str, dst: str) -> int:
                 raise SystemExit(f"{c['id']}: bad band {b}")
         if not c["parent_id"]:
             raise SystemExit(f"{c['id']}: missing parent_id")
+        if c["spatial"] and not c["sub_band"]:
+            raise SystemExit(f"{c['id']}: spatial country needs sub_band")
+        for sb in c["sub_band"] or []:
+            if sb not in SUB_BANDS or sb[:-1] not in c["band"]:
+                raise SystemExit(f"{c['id']}: sub_band {sb} not inside band {c['band']}")
     out["generated_from"] = f"{len(conts)} continent + {len(ctry)} country YAML files under {data_dir}/"
     Path(dst).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"wrote {dst}: {len(out['continents'])} continents, {len(out['countries'])} countries")
+    ns = sum(1 for c in out["countries"] if c["spatial"])
+    print(f"wrote {dst}: {len(out['continents'])} continents, {len(out['countries'])} countries ({ns} spatial)")
     return 0
 
 

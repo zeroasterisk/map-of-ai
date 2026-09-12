@@ -18,6 +18,7 @@ summary: >
   cautionary by-products.
 time_range: {start: 2009, end: 2015}
 band: S2
+sub_band: S2a
 biome: forest
 parent_id: deep-learning-basin
 research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [6, 12, 13, 17, 33, 34, 42, 9, 89, 90, 91, 114, 96]}
@@ -35,6 +36,8 @@ neighbours:
   - {id: neural-nlp-sequence-school, relation: borders, note: "shared backbones: Show and Tell joins CNN encoders to LSTM decoders (2014)"}
   - {id: deep-generative-shoreline, relation: borders, note: "DeepDream and style transfer (2015) are the escarpment sliding into the shoreline"}
 status: sourced
+related_facts:
+  - {id: pretraining-foothills, note: "preceded by: unsupervised pre-training / DBN work, 2006–2011 — Hinton, Bengio et al. (eclipsed after 2012)"}
 notes: >
   P3-T8 school bullet 2 of 9 ("GPU supervised ConvNet school"). pending-
   neighbour: convnets-bell-labs (west, LeNet/Neocognitron lineage, file 04);

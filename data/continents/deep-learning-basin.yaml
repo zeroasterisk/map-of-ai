@@ -37,6 +37,8 @@ sources:
   - {url: https://www.nobelprize.org/prizes/physics/2024/press-release/, title: "Nobel Prize in Physics 2024 press release (Hopfield, Hinton)", kind: official, accessed: 2026-09-11}
 threads: [vision, language, rl, compute]
 status: sourced
+related_facts:
+  - {id: tooling-guild, note: "also happening, 2007–2017: tooling & frameworks — CUDA, Theano, Torch, Caffe, cuDNN, Keras, TensorFlow, PyTorch, TPU"}
 notes: >
   P2-T8 (REGISTRY.md row 8). Band per A-C5: research/06 "Map placement" says
   "Y = connectionist pole (the whole continent sits on the connectionist /

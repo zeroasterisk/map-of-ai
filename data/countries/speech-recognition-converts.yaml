@@ -17,6 +17,7 @@ summary: >
   in 2009 was complete.
 time_range: {start: 2009, end: 2016}
 band: S2
+sub_band: S2b
 biome: forest
 parent_id: deep-learning-basin
 research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [1, 10, 11, 105, 93, 95]}
