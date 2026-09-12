@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — Continent Registry (review prototype, Leaflet)</title>
-<!-- map-of-ai site build: LEAFLET v1 (milestone 1 of the tile re-platform). The v11 continent art is unchanged: it is
-     rendered by atlas.html?tilesrc=1 and baked by build_tiles.py into a raster XYZ pyramid under tiles/ (L.CRS.Simple,
-     1 plate unit = 1 px at z0). Continent labels, leaders and hover targets are a vector overlay positioned in the same
-     plate coordinates (labels.json, exported by atlas.html's placement code). Country layer (P3-RENDER): not yet ported
-     — milestone 2; the old click-to-zoom renderer is still reachable at atlas.html. -->
+<!-- map-of-ai site build: LEAFLET v2 — LEVEL OF DETAIL. The v11 continent art is unchanged: build_tiles.py screenshots
+     atlas.html?tilesrc=1&lod=z ONCE PER ZOOM LEVEL and slices each into its own tiles (tiles/{z}/, L.CRS.Simple,
+     1 plate unit = 1 px at z0), so zooming swaps in new content, Google-Maps style: z0 flat continents + names only,
+     z1 textures + years + faint country borders, z2 solid borders + country names, z3 full country labels. Labels,
+     leaders and the country layer are therefore IN the raster now; the vector overlay (labels.json) only carries the
+     invisible continent hit targets for the hover card. Raw tiles: static-map.html?level=2&x=10&y=5. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -48,7 +49,7 @@
 </style>
 </head>
 <body>
-<div class="banner"><b>Review prototype — continents (Leaflet tile pyramid).</b> Scroll / pinch to zoom, drag to pan. Countries (Deep Learning Basin pilot) are not yet ported to this view — see <a href="atlas.html">atlas.html</a> for the previous click-to-zoom renderer.</div>
+<div class="banner"><b>Review prototype — continents + Deep Learning Basin countries (Leaflet tile pyramid, 4 levels of detail).</b> Scroll / pinch to zoom, drag to pan; zooming in reveals years, then country borders and names, then country details. Audit raw tiles at <a href="static-map.html?level=2&px=1000&py=450&r=1">static-map.html</a>; the previous click-to-zoom renderer is <a href="atlas.html">atlas.html</a>.</div>
 <div id="map"></div>
 <div class="card" id="card"></div>
 <footer id="foot">Map of AI · continent registry · <span id="stats"></span> · source of truth: data/continents/REGISTRY.md · art: atlas.html (P2-T1-RENDER v11), baked to tiles by site/build_tiles.py</footer>
@@ -75,31 +76,17 @@ Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').
     p.addEventListener('mouseenter', ev => { card.style.display = 'block'; card.innerHTML = `<h3>${b.name || l.id}</h3><div class="sub">${b.subtitle || ''}</div><dl><dt>id</dt><dd><code>${l.id}</code></dd><dt>span</dt><dd>${b.span || ''}</dd><dt>band span</dt><dd>${b.band_span_text || ''}</dd><dt>biome</dt><dd>${b.biome || ''}</dd></dl>`; moveCard(ev); });
     p.addEventListener('mousemove', moveCard); p.addEventListener('mouseleave', () => card.style.display = 'none');
   });
-  LB.leaders.forEach(l => el('path', {d: l.d, class: l.cls}));
-  LB.dots.forEach(d => el('circle', {cx: d.cx, cy: d.cy, r: d.r, class: 'leader-dot'}));
   L.svgOverlay(svg, bounds, {interactive: true}).addTo(map);
 
-  // ---- continent labels: one divIcon marker per label block, anchored at the block's plate-space bbox centre, with
-  // the block's own line sizes (atlas.html placement) × zk. zk = 2^zoom up to zoom 1, then held (≤ 2×): at the
-  // fitted zoom the labels sit exactly where atlas.html put them, and at high zoom they stay readable, Google-Maps style.
-  const markers = [];
-  LB.blocks.forEach(b => {
-    const [x, y, w, h] = b.bbox; const cx = x + w / 2, cy = y + h / 2;
-    const html = b.lines.map(l => `<div class="${l.cls}" data-size="${l.size}">${l.text}</div>`).join('');
-    const m = L.marker(P(cx, cy), {icon: L.divIcon({className: 'lblicon', html: `<div class="lbl" data-id="${b.id}">${html}</div>`, iconSize: [0, 0], iconAnchor: [0, 0]}), interactive: false, keyboard: false}).addTo(map);
-    markers.push(m);
-  });
+  // ---- labels + leaders are baked into the tiles per level of detail (see build_tiles.py); no DOM label overlay.
   const hud = L.DomUtil.create('div', 'hud', document.getElementById('map'));
   const applyZoom = () => {
-    const z = map.getZoom(); const zk = Math.pow(2, Math.min(z, 1));
-    document.querySelectorAll('.lbl [data-size]').forEach(e => { e.style.fontSize = (+e.dataset.size * zk).toFixed(2) + 'px'; });
-    hud.textContent = `zoom ${z.toFixed(2)} of ${ZMAX} · ${Math.pow(2, z).toFixed(2)} px per plate unit`;
-    // milestone 2 hook: the country layer fades in above this threshold (SPEC §9 G6, A1→A2 as continuous zoom)
-    document.getElementById('map').classList.toggle('z-country', z >= 1.5);
+    const z = map.getZoom(); const lz = Math.max(0, Math.min(ZMAX, Math.round(z)));   // the native level Leaflet is showing
+    hud.textContent = `zoom ${z.toFixed(2)} of ${ZMAX} · tiles from level ${lz} (detail ${lz} of ${ZMAX}) · ${Math.pow(2, z).toFixed(2)} px per plate unit`;
   };
   map.on('zoomend zoom', applyZoom); map.whenReady(applyZoom); applyZoom();
   window.MAP = map;
-  document.getElementById('stats').textContent = `tiles z0–z${ZMAX}, ${Object.values(meta.counts).reduce((s, c) => s + c.tiles, 0)} tiles, ${(meta.bytes / 1048576).toFixed(0)} MB, source ${meta.source_px.join('×')} px`;
+  document.getElementById('stats').textContent = `tiles z0–z${ZMAX} (${Object.values(meta.counts).map(c => c.tiles).join(' / ')} per level, one render per level), ${(meta.bytes / 1048576).toFixed(0)} MB, z${ZMAX} source ${meta.source_px.join('×')} px`;
   document.dispatchEvent(new Event('map:ready'));
 });
 </script>

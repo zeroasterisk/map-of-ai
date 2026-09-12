@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map of AI — tile audit</title>
+<!-- TILE AUDIT PAGE. Shows raw tiles from tiles/{z}/{x}/{y}.png at 1:1 pixel scale with NO pan/zoom chrome, so one
+     tile (or a small neighbourhood) can be inspected exactly as Leaflet receives it.
+     Usage (query params — GitHub Pages serves static files only, there is no server-side routing and no _redirects
+     mechanism, so a path scheme like /static-map/2/10,5 would 404; a single page with ?params is the honest option):
+       static-map.html?level=2&x=10&y=5          one tile
+       static-map.html?level=2&x=10&y=5&r=1      the 3x3 neighbourhood around it (r = ring radius)
+       static-map.html?level=0                   the whole level (every tile in the grid)
+       static-map.html?level=3&px=1000&py=450    the tile that contains plate point (1000, 450) — plate units are the
+                                                 atlas.html viewBox (1800x700); handy for comparing the SAME place across
+                                                 levels: change only `level`. -->
+<style>
+  body { margin: 0; padding: 12px 16px; background: #d8ccb0; color: #2f2416; font: 13px/1.4 ui-monospace, Menlo, Consolas, monospace; }
+  h1 { font-size: 15px; margin: 0 0 6px; }
+  form { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-bottom: 8px; }
+  input { width: 5em; font: inherit; }
+  .lod { font-style: italic; color: #5a4a30; margin-bottom: 8px; }
+  .grid { display: grid; gap: 2px; background: #a33; width: max-content; }
+  .grid img { display: block; width: 256px; height: 256px; image-rendering: pixelated; background: #dccfae; }
+  .grid img.missing { outline: 2px dashed #a33; opacity: .3; }
+  .cell { position: relative; } .cell span { position: absolute; left: 2px; top: 1px; font-size: 10px; color: #fff; background: rgba(0,0,0,.55); padding: 0 3px; pointer-events: none; }
+  .cell.focus img { outline: 3px solid #c33; outline-offset: -3px; }
+  .nav a { margin-right: 12px; color: #6b4f2a; }
+  code { background: #ecdfc2; padding: 0 3px; }
+</style>
+</head>
+<body>
+<h1>Map of AI — raw tile audit (1 tile = 256 × 256 px, shown 1:1, no map UI)</h1>
+<form id="f"><label>level <input name="level" type="number" min="0" max="3"></label> <label>x <input name="x" type="number" min="0"></label> <label>y <input name="y" type="number" min="0"></label> <label>ring r <input name="r" type="number" min="0" max="3"></label> <label>plate px <input name="px" type="number"></label> <label>py <input name="py" type="number"></label> <button>show</button></form>
+<div class="lod" id="lod"></div>
+<div class="nav" id="nav"></div>
+<div class="grid" id="grid"></div>
+<p id="meta"></p>
+<script>
+const q = new URLSearchParams(location.search), num = (k, d) => q.has(k) && q.get(k) !== '' ? +q.get(k) : d;
+for (const i of document.querySelectorAll('#f input')) if (q.has(i.name)) i.value = q.get(i.name);
+fetch('tiles/meta.json').then(r => r.json()).then(meta => {
+  const T = meta.tile, z = Math.min(meta.zmax, Math.max(meta.zmin, num('level', 0))), c = meta.counts[z];
+  let x = num('x', null), y = num('y', null); const r = num('r', 0);
+  if (q.has('px') || q.has('py')) { x = Math.floor(num('px', 0) * 2 ** z / T); y = Math.floor(num('py', 0) * 2 ** z / T); }
+  const whole = x === null || y === null;
+  const xs = whole ? [...Array(c.cols).keys()] : range(x - r, x + r), ys = whole ? [...Array(c.rows).keys()] : range(y - r, y + r);
+  document.getElementById('lod').textContent = `level ${z} = lod ${c.lod ?? z}: ${(meta.lod || {})[z] || ''} · ${c.cols}×${c.rows} = ${c.tiles} tiles, ${c.px[0]}×${c.px[1]} px (${2 ** z} px per plate unit)`;
+  const g = document.getElementById('grid'); g.style.gridTemplateColumns = `repeat(${xs.length}, ${T}px)`;
+  for (const ty of ys) for (const tx of xs) {
+    const d = document.createElement('div'); d.className = 'cell' + (tx === x && ty === y ? ' focus' : '');
+    const im = new Image(T, T); const ok = tx >= 0 && ty >= 0 && tx < c.cols && ty < c.rows;
+    if (ok) { im.src = `tiles/${z}/${tx}/${ty}.png`; im.onerror = () => im.classList.add('missing'); } else im.classList.add('missing');
+    const s = document.createElement('span'); s.textContent = `${z}/${tx}/${ty}`; d.append(im, s); g.append(d);
+  }
+  // same place at every other level: the plate point at the centre of the focused tile
+  if (!whole) {
+    const cx = ((x + .5) * T / 2 ** z).toFixed(0), cy = ((y + .5) * T / 2 ** z).toFixed(0);
+    document.getElementById('nav').innerHTML = `same place (plate ${cx},${cy}) at: ` + [...Array(meta.zmax + 1).keys()].map(l => l === z ? `<b>z${l}</b>` : `<a href="?level=${l}&px=${cx}&py=${cy}&r=${r}">z${l}</a>`).join('') + ` · <a href="?level=${z}">whole level ${z}</a> · <a href="index.html">back to the map</a>`;
+    document.getElementById('meta').innerHTML = `tile <code>tiles/${z}/${x}/${y}.png</code> covers plate units x ${(x * T / 2 ** z).toFixed(1)}–${((x + 1) * T / 2 ** z).toFixed(1)}, y ${(y * T / 2 ** z).toFixed(1)}–${((y + 1) * T / 2 ** z).toFixed(1)}`;
+  } else document.getElementById('nav').innerHTML = `<a href="index.html">back to the map</a>`;
+  function range(a, b) { const o = []; for (let i = a; i <= b; i++) o.push(i); return o; }
+});
+</script>
+</body>
+</html>
