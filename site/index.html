@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map of AI — Continent Registry (review prototype, Leaflet)</title>
+<!-- map-of-ai site build: LEAFLET v1 (milestone 1 of the tile re-platform). The v11 continent art is unchanged: it is
+     rendered by atlas.html?tilesrc=1 and baked by build_tiles.py into a raster XYZ pyramid under tiles/ (L.CRS.Simple,
+     1 plate unit = 1 px at z0). Continent labels, leaders and hover targets are a vector overlay positioned in the same
+     plate coordinates (labels.json, exported by atlas.html's placement code). Country layer (P3-RENDER): not yet ported
+     — milestone 2; the old click-to-zoom renderer is still reachable at atlas.html. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<style>
+  :root { --paper: #e6d9bd; --ink: #3a2e1e; --ink-dim: #6e5f47; --rule: #b9a683; }
+  html, body { margin: 0; height: 100%; color: var(--ink); font: 15px/1.5 Lora, Georgia, "Iowan Old Style", serif; }
+  body { background: var(--paper) url("assets/textures/parchment.jpg") repeat; background-size: 768px 768px; display: flex; flex-direction: column; }
+  #map { flex: 1 1 auto; min-height: 420px; background: #dccfae; border-top: 1px solid #6b573a; border-bottom: 1px solid #6b573a; }
+  .leaflet-container { font: inherit; }
+  /* fractional zooms (zoomSnap .25) transform 256 px tiles by non-integer factors and can leave 1 px hairline gaps
+     (Leaflet #3575); a 0.5 px overlap per tile closes them, and the sea colour behind the tile pane hides any residue */
+  .leaflet-tile-container img { width: 256px !important; height: 256px !important; outline: 1px solid transparent; }
+  .leaflet-tile-container { will-change: transform; }
+  /* label overlay: plate-space font sizes × a zoom factor (set on the container as --zk by the zoomend hook) */
+  .lbl { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; text-align: center; pointer-events: none; line-height: 1.05; }
+  .lbl .cname { font-family: Cinzel, Georgia, serif; font-weight: 600; color: #2a1f11; letter-spacing: .07em; paint-order: stroke; -webkit-text-stroke: 0; text-shadow: 0 0 2px #f0e4c8, 0 0 4px #efe3c8, 0 0 6px rgba(239,227,200,.9), 0 0 10px rgba(239,227,200,.8); }
+  .lbl .csub { font-family: Lora, Georgia, serif; font-style: italic; color: #3f321f; text-shadow: 0 0 2px #f0e4c8, 0 0 4px #efe3c8, 0 0 8px rgba(239,227,200,.85); }
+  .leaflet-marker-icon.lblicon { background: none; border: 0; }
+  /* vector overlay (svgOverlay in plate units) */
+  .ov .land { fill: #000; fill-opacity: 0; stroke: #3d2e1a; stroke-width: 0; cursor: pointer; pointer-events: visibleFill; }
+  .ov .land:hover { stroke-width: 1.6; stroke-opacity: 1; }
+  .ov .leader { fill: none; stroke: #3d2e1a; stroke-width: 1.2; pointer-events: none; }
+  .ov .chain { fill: none; stroke: #3d2e1a; stroke-width: .9; stroke-dasharray: 1.5 4; stroke-opacity: .55; pointer-events: none; }
+  .ov .leader-dot { fill: #3d2e1a; pointer-events: none; }
+  .card { position: absolute; max-width: 420px; background: #f6ecd6; color: #2f2416; border: 1px solid #8f7b57; box-shadow: 0 8px 24px rgba(60,40,10,.35); padding: 10px 14px; font-size: 13px; pointer-events: none; display: none; z-index: 1000; }
+  .card h3 { margin: 0 0 2px; font-family: Cinzel, Georgia, serif; font-weight: 600; font-size: 15px; letter-spacing: .8px; }
+  .card .sub { color: #6e5f47; font-style: italic; margin-bottom: 6px; }
+  .card dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 2px 8px; }
+  .card dt { color: #8b7a59; } .card dd { margin: 0; }
+  .hud { position: absolute; right: 12px; top: 10px; z-index: 900; font-size: 11.5px; font-style: italic; color: var(--ink-dim); background: rgba(246,236,214,.85); border: 1px solid #b9a683; padding: 2px 8px; pointer-events: none; }
+  .banner { padding: 6px 14px; border-bottom: 1px solid var(--rule); color: var(--ink-dim); font-size: 13px; font-style: italic; text-align: center; }
+  .banner b { color: var(--ink); font-style: normal; }
+  footer { padding: 6px 20px 10px; color: var(--ink-dim); font-size: 12px; font-style: italic; text-align: center; }
+  a { color: #6b4f2a; }
+</style>
+</head>
+<body>
+<div class="banner"><b>Review prototype — continents (Leaflet tile pyramid).</b> Scroll / pinch to zoom, drag to pan. Countries (Deep Learning Basin pilot) are not yet ported to this view — see <a href="atlas.html">atlas.html</a> for the previous click-to-zoom renderer.</div>
+<div id="map"></div>
+<div class="card" id="card"></div>
+<footer id="foot">Map of AI · continent registry · <span id="stats"></span> · source of truth: data/continents/REGISTRY.md · art: atlas.html (P2-T1-RENDER v11), baked to tiles by site/build_tiles.py</footer>
+<script>
+// ---- Coordinate system. L.CRS.Simple: latlng = [-y, x] with (x, y) in PLATE units (the atlas.html viewBox, 1800×700);
+// at zoom z the plate is 1800·2^z × 700·2^z px, which is exactly how build_tiles.py cut the pyramid (256 px tiles).
+// Every overlay position below is computed in plate units and converted with P() — the same numbers atlas.html draws.
+const P = (x, y) => L.latLng(-y, x);
+const NS = 'http://www.w3.org/2000/svg';
+Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').then(r => r.json())]).then(([meta, LB]) => {
+  const [W, H] = meta.plate; const ZMAX = meta.zmax;
+  const bounds = L.latLngBounds(P(0, 0), P(W, H));
+  const map = L.map('map', {crs: L.CRS.Simple, minZoom: -1, maxZoom: ZMAX, zoomSnap: .25, zoomDelta: .5, wheelPxPerZoomLevel: 90, maxBounds: bounds.pad(.25), maxBoundsViscosity: .8, attributionControl: false});
+  L.tileLayer('tiles/{z}/{x}/{y}.png', {tileSize: meta.tile, minZoom: -1, maxZoom: ZMAX, minNativeZoom: 0, maxNativeZoom: ZMAX, bounds, noWrap: true, keepBuffer: 4}).addTo(map);
+  map.fitBounds(bounds);
+
+  // ---- vector overlay: land hit targets + leaders + dots, in plate units (an SVG that spans the plate exactly)
+  const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('class', 'ov');
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; };
+  const card = document.getElementById('card'), blockOf = {}; LB.blocks.forEach(b => blockOf[b.id] = b);
+  const moveCard = ev => { let lx = ev.clientX + 16, ly = ev.clientY + 16; if (lx + 430 > innerWidth) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
+  LB.lands.forEach(l => {
+    const b = blockOf[l.id] || {}; const p = el('path', {d: l.d, class: 'land', 'data-id': l.id});
+    p.addEventListener('mouseenter', ev => { card.style.display = 'block'; card.innerHTML = `<h3>${b.name || l.id}</h3><div class="sub">${b.subtitle || ''}</div><dl><dt>id</dt><dd><code>${l.id}</code></dd><dt>span</dt><dd>${b.span || ''}</dd><dt>band span</dt><dd>${b.band_span_text || ''}</dd><dt>biome</dt><dd>${b.biome || ''}</dd></dl>`; moveCard(ev); });
+    p.addEventListener('mousemove', moveCard); p.addEventListener('mouseleave', () => card.style.display = 'none');
+  });
+  LB.leaders.forEach(l => el('path', {d: l.d, class: l.cls}));
+  LB.dots.forEach(d => el('circle', {cx: d.cx, cy: d.cy, r: d.r, class: 'leader-dot'}));
+  L.svgOverlay(svg, bounds, {interactive: true}).addTo(map);
+
+  // ---- continent labels: one divIcon marker per label block, anchored at the block's plate-space bbox centre, with
+  // the block's own line sizes (atlas.html placement) × zk. zk = 2^zoom up to zoom 1, then held (≤ 2×): at the
+  // fitted zoom the labels sit exactly where atlas.html put them, and at high zoom they stay readable, Google-Maps style.
+  const markers = [];
+  LB.blocks.forEach(b => {
+    const [x, y, w, h] = b.bbox; const cx = x + w / 2, cy = y + h / 2;
+    const html = b.lines.map(l => `<div class="${l.cls}" data-size="${l.size}">${l.text}</div>`).join('');
+    const m = L.marker(P(cx, cy), {icon: L.divIcon({className: 'lblicon', html: `<div class="lbl" data-id="${b.id}">${html}</div>`, iconSize: [0, 0], iconAnchor: [0, 0]}), interactive: false, keyboard: false}).addTo(map);
+    markers.push(m);
+  });
+  const hud = L.DomUtil.create('div', 'hud', document.getElementById('map'));
+  const applyZoom = () => {
+    const z = map.getZoom(); const zk = Math.pow(2, Math.min(z, 1));
+    document.querySelectorAll('.lbl [data-size]').forEach(e => { e.style.fontSize = (+e.dataset.size * zk).toFixed(2) + 'px'; });
+    hud.textContent = `zoom ${z.toFixed(2)} of ${ZMAX} · ${Math.pow(2, z).toFixed(2)} px per plate unit`;
+    // milestone 2 hook: the country layer fades in above this threshold (SPEC §9 G6, A1→A2 as continuous zoom)
+    document.getElementById('map').classList.toggle('z-country', z >= 1.5);
+  };
+  map.on('zoomend zoom', applyZoom); map.whenReady(applyZoom); applyZoom();
+  window.MAP = map;
+  document.getElementById('stats').textContent = `tiles z0–z${ZMAX}, ${Object.values(meta.counts).reduce((s, c) => s + c.tiles, 0)} tiles, ${(meta.bytes / 1048576).toFixed(0)} MB, source ${meta.source_px.join('×')} px`;
+  document.dispatchEvent(new Event('map:ready'));
+});
+</script>
+</body>
+</html>
