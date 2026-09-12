@@ -255,3 +255,27 @@ show/hide with the `z-country` threshold (continuous zoom = A1→A2), keep the
 containment/overlap gates running against atlas.html (geometry is identical by
 construction since the overlay reuses the same `d`). Then decide whether
 atlas.html stays as the authoring/gate renderer or is folded away.
+
+## Session 7 — 2026-09-12 — real level-of-detail (Alan: "I zoomed in and the tiles didn't change")
+
+- **Diagnosis confirmed from code, not guessed:** `build_tiles.py` v1 = one 8× screenshot, z0–z2 LANCZOS-downsampled
+  from it. Same content at every level ⇒ zoom only rescaled. (Above z3 Leaflet upscales, which reads as "no change" too.)
+- **Fix shape:** per-level renders. `atlas.html` got `?tilesrc=1&lod=0..3` as CSS toggles only (`html.tilesrc.lodN`
+  rules on `.texbleed/.land/.tint`, `#labels .csub`, `#countries`, `.kzoom`, `#klabels/.ksub`, `#kleaders`) — zero new
+  drawing code. `build_tiles.py` now screenshots lod=z at scale 2^z and slices only level z. Verified the four lod
+  screenshots by vision BEFORE touching the tile builder (commit e76915c), then rebuilt (115d688).
+- **One design bug found and fixed on the way:** at lod2/3 the continent's own huge name ("...BASIN") collided with the
+  country label "The AlphaGo Delta". Now a continent with spatial countries hides its own label + leader at lod2/3
+  (`.haskids`, same rule A2 already used). First attempt marked the class inside `drawCountries` but `relayout()` re-creates
+  inside labels after fonts load and dropped it; the mark is now a helper called after both — verified via computed
+  `display:none` on the two Basin label lines at lod2, `block` at lod1.
+- **Gates:** `check_lod.py` (new; ink growth per level, adjacent-level Δ vs resample floor, flat-vs-textured, bytes per
+  plate area — all measured on the SHIPPED tiles, not the source screenshots) PASS; `check_layout.py` PASS;
+  `verify_leaflet.py` updated (labels no longer DOM) and PASS, now proving the level directory Leaflet loads from
+  changes with zoom ({0:24} → {3:50} → {2:28}).
+- **index.html:** DOM label overlay removed (labels are in the raster per level), hover hit-paths kept, HUD shows the
+  level whose tiles are on screen, banner links the audit page. `static-map.html` audit page added (query params; GH
+  Pages has no routing). Live confirmed 22:22:43 GMT.
+- **Process note:** kept to the brief — small patches, 5 commits, each verified before the next; no new continents'
+  country data, no city layer, no style redesign. Remaining softness: fractional zooms between native levels are still
+  browser-resampled from the nearest level (that is normal slippy-map behaviour, not the reported bug).

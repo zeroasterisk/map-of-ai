@@ -1,6 +1,62 @@
-# STATUS — as of 2026-09-12 (session 6: Leaflet tile re-platform, milestone 1 — continents live as a real slippy map)
+# STATUS — as of 2026-09-12 (session 7: real level-of-detail tile pyramid — zooming now reveals new content)
 
 ## One-line status
+
+**LEAFLET v2 (LOD) shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
+**Alan's bug: "I zoomed in and the tiles didn't change."** Root cause: v1
+took ONE 8× screenshot of `atlas.html?tilesrc=1` and made z0–z2 by LANCZOS
+downsampling it, so every level was the same picture at a different
+resolution — zooming sharpened strokes but never revealed anything. Fix:
+**each zoom level is now its own render.** `atlas.html?tilesrc=1&lod=N`
+(N=0..3) is a set of CSS-only toggles on already-placed elements (no drawing
+math duplicated), and `build_tiles.py` screenshots lod=z at device-scale 2^z
+and slices it ONLY into level z (no resampling between levels). What is
+visible per level:
+
+| level | px/plate unit | tiles | shows |
+|---|---|---|---|
+| z0 | 1 (1800×700) | 24 | flat tinted continents (no terrain texture), coast, ONE label per continent (name only), leaders; no country layer |
+| z1 | 2 (3600×1400) | 90 | + terrain textures, + continent subtitle/year lines, + faint country borders (A1 style), no country labels |
+| z2 | 4 (7200×2800) | 319 | + solid country borders (A2 province line), + country NAME labels; a continent whose countries are labelled hides its own huge name (else "BASIN" sat on "The AlphaGo Delta") |
+| z3 | 8 (14400×5600) | 1254 | full detail: country name + subtitle + years, country leaders/dots, per-country biome tints |
+
+Only the Deep Learning Basin has country data (unchanged scope); other
+continents just gain textures and year lines from z1 on. Labels/leaders/
+countries are therefore IN the raster now; `index.html` dropped the DOM
+label overlay (the invisible continent hit-paths for hover cards remain),
+and its HUD says which level's tiles are on screen. 1687 tiles, 58 MB.
+
+**Evidence that content changes, not just resolution:**
+- `docs/screens/lod-0.png .. lod-3.png` — the same plate region (Basin,
+  780,300 → 1220,620) screenshotted at each lod, same scale, side by side.
+- `docs/screens/lod-tiles-same-region.png` — the same region REASSEMBLED
+  FROM THE SHIPPED TILES of z0..z3, downsampled to one size.
+- `site/check_lod.py` (new gate, PASS): after downsampling every level to
+  z0 size, dark-ink fraction in the Basin interior is z0 .0103 < z1 .0123 <
+  z2 .0371 < z3 .0375 (the z1→z2 jump is the country borders + names);
+  adjacent levels differ by mean |Δluma| 23.0 / 10.0 / 6.1 vs a pure-resample
+  noise floor of 1.8 / 1.7 / 1.0; a texture-only land patch has luma stddev
+  2.9 at z0 vs 18.9 at z1 (flat vs textured); bytes per plate unit² z0 1.1 →
+  z3 30.9.
+- `site/verify_leaflet.py` (PASS): at fit zoom Leaflet holds 24 tiles all
+  from `tiles/0/`; after wheel-zoom to 3.0 it holds 50 tiles all from
+  `tiles/3/`; at zoom 2 on the Basin 28 tiles all from `tiles/2/`; 167
+  requests, 0 non-200, 0 JS errors. Live: `Last-Modified: Sat, 12 Sep 2026
+  22:22:43 GMT` on `/`, `/static-map.html`, `/tiles/meta.json`, sample z0
+  and z3 tiles; live `meta.json` carries the per-level `lod` descriptions.
+
+**Audit URL (no pan/zoom UI, raw 256 px tiles at 1:1):**
+`https://zeroasterisk.github.io/map-of-ai/static-map.html?level=2&x=15&y=7`
+— one tile; add `&r=1` for the 3×3 ring around it; `?level=0` alone shows a
+whole level; **`?level=3&px=1000&py=450`** shows the tile containing plate
+point (1000,450) — change only `level` to compare the same place across
+levels (the page links z0/z1/z2/z3 for the focused tile's centre, and prints
+the tile's plate-unit extent). Query params rather than a path like
+`/static-map/2/15,7` because GitHub Pages serves static files only — no
+server routing, no `_redirects`. `check_layout.py` (atlas.html) still PASS.
+Previous status follows.
+
+## One-line status (session 6, superseded)
 
 **LEAFLET v1 shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
 is now a real Leaflet 1.9.4 map (`L.CRS.Simple`, Google-Maps-style
