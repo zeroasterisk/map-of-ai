@@ -146,3 +146,44 @@ titles with parentheses. (3) `python3` has no PyYAML; use
 **Next.** Alan reviews SPEC §9 → build P3-RENDER against the pilot (do not
 bulk-author the other nine continents' countries before the A2 view has been
 seen once; the continent phase showed the render review changes the data).
+
+## Session 5 — 2026-09-12 — P3-RENDER v2 (country layer, pre-solved partition)
+
+**Input.** Alan handed a fully solved partition; instruction was implement +
+verify, no redesign. Three commits on main: data/schema (`f7e598f`), render
+(`1dfda27`), gates (`c89e7f3`).
+
+**Data.** 7 spatial countries get `sub_band` (always a list — `["S2a"]`,
+`["Cb","S1a"]` — one render path for 1- and 2-row spans); `tooling-guild`,
+`pretraining-foothills` get `spatial: false` (data/sources untouched);
+`related_facts` on gpu-convnet-school (foothills) and on the continent YAML
+(tooling-guild); chinese-state-response 2014→2015 with a note. `validate.py`
+learned the three keys (V-01 strict keys) — files=10 fails=0.
+`build_entities_json.py` emits `entities.json` + `entities.js` (JS global; the
+page is static, loaded via `<script src>` — no fetch/CORS/file:// issue).
+
+**Render.** Countries are traced on a FINE grid (rows Ca Cb S1a S1b S2a S2b S2c
+as fractions of ROWY rows; cols = COLS ∪ {2009,2013,2015,2016}) with the same
+loop-walk as `trace()`; a fine cell belongs to a country iff its year slot,
+sub-band, AND `ownerAt(parentCol, parentRow) === parent_id` — containment by
+construction. Country edges lying on continent grid lines are `polySlice`s of
+the continent's own `edgePts` polylines, so outer edges coincide with the coast
+exactly; country-only seams get a ≤6 px wobble. ROWY/BANDS/GRID/ENV/COLS
+untouched; continent `d` strings unchanged. A2: click continent → `#map.zoomed`,
+`#klabels`/`#kleaders`, dashed province lines; Esc or sea click → A1. Hover
+cards: country (name/sub/span/sub-band/biome/neighbours/summary + facts),
+continent card gains the tooling-guild fact.
+
+**Gates (real output).** `countryContainment (0)`, `countryOverlap (0)` —
+8 bbox-intersecting pairs × 500 seeded interior samples; `zoomInconsistent (0)`;
+`countryLabelOverlaps (0)`; all prior gates still 0; `RESULT: PASS`.
+Mutation check: forcing deep-rl-delta onto S2a → `countryOverlap (1)
+[deep-rl-delta × gpu-convnet-school, 108 samples]`, so the gate bites.
+
+**Honest A2 assessment.** Partition is correct and provably tiled, but lanes
+are thin (~40–60 px tall at the plate scale): 5/7 labels fall back to
+name+years with a leader; only industrial-lab-founders and deep-rl-delta
+carry inside labels. The uncovered 2006–2011 western lobe reads as
+"unlabelled forest" — by design (foothills demoted), but a reviewer may want
+a faint "precursors" annotation there. Province dashes are visible but subtle
+against the tree texture.

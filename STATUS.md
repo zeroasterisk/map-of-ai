@@ -1,6 +1,30 @@
-# STATUS — as of 2026-09-11 (session 4: registry accepted; P3 spec gaps closed; pilot continent + countries data layer landed)
+# STATUS — as of 2026-09-12 (session 5: P3-RENDER v2 — Deep Learning Basin country layer live)
 
 ## One-line status
+
+**P3-RENDER v2 shipped 2026-09-12** — the Deep Learning Basin pilot now renders
+7 spatial countries (partition pre-solved by Alan, implemented as given):
+`gpu-convnet-school` S2a 2009–2015 · `speech-recognition-converts` S2b
+2009–2016 · `deep-generative-shoreline` S2c 2013–2017 ·
+`neural-nlp-sequence-school` Ca 2011–2016 · `industrial-lab-founders`
+Cb+S1a 2011–2015 · `deep-rl-delta` S1b 2013–2017 · `chinese-state-response`
+Cb 2015–2017. Two countries demoted to hover facts (`spatial: false`, data
+kept): `tooling-guild` → continent-card "also happening" fact;
+`pretraining-foothills` → "preceded by" fact on gpu-convnet-school. One
+nudge: chinese-state-response start 2014→2015 (clean Cb handoff from
+industrial-lab-founders; noted in its YAML). Sub-bands are a country-layer-only
+split of the existing ROWY rows (C→Ca/Cb, S1→S1a/S1b, S2→S2a/S2b/S2c);
+continent geometry is byte-identical A1↔A2 (gate). `check_layout.py` →
+RESULT: PASS incl. new gates: containment 300/300 in parent for all 7,
+zero-overlap 0 hits over 8 pairs × 500 samples, coast/border `d` identical
+zoomed vs not, A2 labels non-colliding. Live: https://zeroasterisk.github.io/map-of-ai/
+(click the Basin → A2; Esc/sea → A1). Screens: `docs/screens/p3-v2-A1.png`,
+`p3-v2-A2.png`, `p3-v2-A2-crop.png`. Honest A2 note: 5 of 7 lanes are too
+thin for an inside label and fall back to name+years with a leader; the
+2006–2011 western lobe of the Basin is intentionally uncovered (foothills
+demoted). Previous status follows.
+
+## One-line status (session 4, superseded)
 
 **Registry accepted by Alan 2026-09-11 (v11) — "registry-frozen".** P0, P1,
 P2-T1, P2-T1-RENDER done. Session 4 closed the two P3 spec/plan gaps
