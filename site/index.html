@@ -59,12 +59,22 @@
 // Every overlay position below is computed in plate units and converted with P() — the same numbers atlas.html draws.
 const P = (x, y) => L.latLng(-y, x);
 const NS = 'http://www.w3.org/2000/svg';
-Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').then(r => r.json())]).then(([meta, LB]) => {
+// ---- Deep links (docs/URL_SCHEME.md). Precise, canonical: ?z=<zoom>&x=<plate_x>&y=<plate_y>. Convenience:
+// ?place=<continent_or_country_id> (anchors.json = label centroids, baked by build_anchors.py from atlas.html), with
+// default zoom 0.5 for a continent, 2.5 for a country (the level where country names are in the raster).
+// Precedence: place sets center+zoom, then any explicit z / x / y overrides that field. Unknown place → warn, default view.
+const Q = new URLSearchParams(location.search);
+const num = k => { const v = parseFloat(Q.get(k)); return Q.has(k) && Number.isFinite(v) ? v : null; };
+Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').then(r => r.json()), fetch('anchors.json').then(r => r.json()).catch(() => ({anchors: {}}))]).then(([meta, LB, AN]) => {
   const [W, H] = meta.plate; const ZMAX = meta.zmax;
   const bounds = L.latLngBounds(P(0, 0), P(W, H));
   const map = L.map('map', {crs: L.CRS.Simple, minZoom: -1, maxZoom: ZMAX, zoomSnap: .25, zoomDelta: .5, wheelPxPerZoomLevel: 90, maxBounds: bounds.pad(.25), maxBoundsViscosity: .8, attributionControl: false});
   L.tileLayer('tiles/{z}/{x}/{y}.png', {tileSize: meta.tile, minZoom: -1, maxZoom: ZMAX, minNativeZoom: 0, maxNativeZoom: ZMAX, bounds, noWrap: true, keepBuffer: 4}).addTo(map);
   map.fitBounds(bounds);
+  let view = null;
+  if (Q.has('place')) { const a = AN.anchors[Q.get('place')]; if (a) view = {x: a.x, y: a.y, z: a.level === 'country' ? 2.5 : .5}; else console.warn(`?place=${Q.get('place')} not found in anchors.json; showing default view`); }
+  if (num('x') !== null || num('y') !== null || num('z') !== null) { const c = map.getCenter(); view = Object.assign({x: c.lng, y: -c.lat, z: map.getZoom()}, view || {}); for (const k of ['x', 'y', 'z']) if (num(k) !== null) view[k] = num(k); }
+  if (view) map.setView(P(view.x, view.y), view.z, {animate: false});
 
   // ---- vector overlay: land hit targets + leaders + dots, in plate units (an SVG that spans the plate exactly)
   const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('class', 'ov');
