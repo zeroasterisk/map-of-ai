@@ -62,3 +62,10 @@ industrial-lab-founders neural-nlp-sequence-school speech-recognition-converts`.
 * `static-map.html?level=2&px=1000&py=450&r=1` — raw tile audit for the same plate point (no map UI, separate tool).
 * Gate: `site/check_url.py` (Playwright) — asserts load-by-place, load-by-coords, URL follows pan/zoom,
   clipboard == `location.href`.
+
+## 5. Live evidence (check_url.py run against the deployed site)
+
+`docs/screens/url-live/` — `a_place_continent.png` (`?place=deep-learning-basin` → z 0.5, 989.3/483.5),
+`a_place_country.png` (`?place=deep-rl-delta` → z 2.5, 1084.2/472.2, "The AlphaGo Delta" centered),
+`b_precise.png` (`?z=2&x=1000&y=400`), `c_after_pan_zoom.png` (URL rewritten to `?z=3&x=1075&y=430`),
+`d_copied.png` (clipboard == `location.href`).
