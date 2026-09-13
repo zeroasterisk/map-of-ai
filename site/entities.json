@@ -27,9 +27,127 @@
     }
    ],
    "file": "data/continents/deep-learning-basin.yaml"
+  },
+  {
+   "id": "generative-coast",
+   "level": "continent",
+   "name": "The Generative Coast",
+   "subtitle": "Chat assistants, open-weight models, reasoning models and agents, 2022–present",
+   "parent_id": null,
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "N1",
+    "N2",
+    "C",
+    "S1",
+    "S2"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "ChatGPT's release on 30 November 2022 turned GPT-3.5 plus RLHF into a mass consumer product that reached 100 million monthly users within two months, and the years since have been a compressed arms race across three fronts. On the model front the frontier labs shipped multimodal generalists — GPT-4 (14 March 2023), Claude (March 2023), Gemini (6 December 2023), GPT-4o …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/generative-coast.yaml"
   }
  ],
  "countries": [
+  {
+   "id": "agents-tooling-coast",
+   "level": "country",
+   "name": "The Agents Causeway",
+   "subtitle": "Tool use, protocols and coding agents from LangChain and ReAct to MCP and Claude Code, 2022–present",
+   "parent_id": "generative-coast",
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "S1"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "The causeway runs from chat models out to systems that plan, call tools and act. Agent scaffolding appeared in open source months before the labs shipped it: LangChain (October 2022), ReAct, Toolformer (9 February 2023, language models teaching themselves API calls) and AutoGPT (30 March 2023). OpenAI added function calling to its API (13 June 2023) and, at DevDay (6 …",
+   "neighbours": [
+    {
+     "id": "reasoning-test-time-compute",
+     "relation": "borders"
+    },
+    {
+     "id": "closed-frontier-labs",
+     "relation": "road"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "road"
+    },
+    {
+     "id": "diffusion-media-district",
+     "relation": "borders"
+    },
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "borders"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/agents-tooling-coast.yaml"
+  },
+  {
+   "id": "alignment-interpretability-plateau",
+   "level": "country",
+   "name": "The Alignment Plateau",
+   "subtitle": "Constitutional AI, DPO, scaling policies, interpretability and evals, 2022–present",
+   "parent_id": "generative-coast",
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "N1"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "The RLHF canal from InstructGPT widens here into a plateau of lab-side safety method. Anthropic's \"Constitutional AI: Harmlessness from AI Feedback\" (15 December 2022) replaced human preference labels with model-written critiques against a written constitution; Rafailov and colleagues' Direct Preference Optimization (29 May 2023) removed RLHF's reward-model-plus-PPO loop and was widely adopted by open models. Anthropic's Responsible Scaling Policy (19 …",
+   "neighbours": [
+    {
+     "id": "policy-governance-coast",
+     "relation": "borders"
+    },
+    {
+     "id": "closed-frontier-labs",
+     "relation": "river"
+    },
+    {
+     "id": "reasoning-test-time-compute",
+     "relation": "river"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "river"
+    },
+    {
+     "id": "agents-tooling-coast",
+     "relation": "borders"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "N1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/alignment-interpretability-plateau.yaml"
+  },
   {
    "id": "chinese-state-response",
    "level": "country",
@@ -125,6 +243,106 @@
      ]
     }
    ]
+  },
+  {
+   "id": "closed-frontier-labs",
+   "level": "country",
+   "name": "The Closed Frontier",
+   "subtitle": "OpenAI, Anthropic and Google DeepMind's proprietary frontier models, 2022–present",
+   "parent_id": "generative-coast",
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "C"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "The port city of the coast is ChatGPT, released by OpenAI on 30 November 2022 (GPT-3.5 plus RLHF) and at 100 million monthly users within two months. Microsoft's multiyear, multibillion-dollar investment (23 January 2023) and the new Bing (7 February 2023) locked big-tech capital behind the race; Google, on \"code red\", announced Bard (6 February 2023). GPT-4 arrived on 14 …",
+   "neighbours": [
+    {
+     "id": "open-weights-movement",
+     "relation": "wall"
+    },
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "river"
+    },
+    {
+     "id": "reasoning-test-time-compute",
+     "relation": "borders"
+    },
+    {
+     "id": "agents-tooling-coast",
+     "relation": "road"
+    },
+    {
+     "id": "diffusion-media-district",
+     "relation": "borders"
+    },
+    {
+     "id": "policy-governance-coast",
+     "relation": "borders"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/closed-frontier-labs.yaml"
+  },
+  {
+   "id": "compute-hardware-hinterland",
+   "level": "country",
+   "name": "The Compute Hinterland",
+   "subtitle": "Nvidia Hopper to Blackwell, TPUs, Groq, export controls and the Stargate build-out, 2022–present",
+   "parent_id": "generative-coast",
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "S2"
+   ],
+   "biome": "harbour",
+   "status": "sourced",
+   "summary60": "Behind the coast lies the hinterland that feeds it. Nvidia's Hopper H100 was announced in March 2022 and Blackwell (B200/GB200) at GTC on 18 March 2024; compute supply became the strategic bottleneck and Nvidia passed a $1 trillion market capitalisation in 2023 and $4 trillion in 2025. Groq's LPU (GroqCloud, 19 February 2024) is the era's inference challenger. The hinterland …",
+   "neighbours": [
+    {
+     "id": "diffusion-media-district",
+     "relation": "borders"
+    },
+    {
+     "id": "closed-frontier-labs",
+     "relation": "road"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "road"
+    },
+    {
+     "id": "reasoning-test-time-compute",
+     "relation": "road"
+    },
+    {
+     "id": "policy-governance-coast",
+     "relation": "road"
+    },
+    {
+     "id": "agents-tooling-coast",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S2c"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/compute-hardware-hinterland.yaml"
   },
   {
    "id": "deep-generative-shoreline",
@@ -391,6 +609,51 @@
      ]
     }
    ]
+  },
+  {
+   "id": "diffusion-media-district",
+   "level": "country",
+   "name": "The Diffusion Shoreline",
+   "subtitle": "Text-to-image, video, audio and world models from DALL-E 2 to Genie 3, 2022–present",
+   "parent_id": "generative-coast",
+   "start": 2022,
+   "end": "present",
+   "band": [
+    "S2"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "The southern shoreline of the coast is where generative media became ordinary. OpenAI announced DALL-E 2 on 6 April 2022, Midjourney opened its public beta on 12 July 2022, and Stability AI publicly released Stable Diffusion — weights and code, built on CompVis latent diffusion — on 22 August 2022, forking the generative-media map into open and closed halves. SDXL …",
+   "neighbours": [
+    {
+     "id": "closed-frontier-labs",
+     "relation": "borders"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "borders"
+    },
+    {
+     "id": "policy-governance-coast",
+     "relation": "road"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "borders"
+    },
+    {
+     "id": "agents-tooling-coast",
+     "relation": "borders"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S2a",
+    "S2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/diffusion-media-district.yaml"
   },
   {
    "id": "gpu-convnet-school",
@@ -895,6 +1158,94 @@
    ]
   },
   {
+   "id": "open-weights-movement",
+   "level": "country",
+   "name": "The Open-Weights Commons",
+   "subtitle": "Llama, Mistral, DeepSeek, Qwen and the local-inference commons, 2023–present",
+   "parent_id": "generative-coast",
+   "start": 2023,
+   "end": "present",
+   "band": [
+    "C"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "The open north of the coast begins with Meta's LLaMA (24 February 2023, a research licence) and the 4chan torrent that leaked its weights on 3 March 2023: llama.cpp (10 March), Alpaca (13 March) and Vicuna (30 March) followed within weeks. Llama 2 (18 July 2023, commercial licence, with Microsoft) made open weights a deliberate corporate strategy; Mistral 7B (27 …",
+   "neighbours": [
+    {
+     "id": "closed-frontier-labs",
+     "relation": "wall"
+    },
+    {
+     "id": "reasoning-test-time-compute",
+     "relation": "borders"
+    },
+    {
+     "id": "diffusion-media-district",
+     "relation": "borders"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    },
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "river"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/open-weights-movement.yaml"
+  },
+  {
+   "id": "policy-governance-coast",
+   "level": "country",
+   "name": "The Policy Coast",
+   "subtitle": "Bletchley, the EU AI Act, executive orders, safety institutes and the copyright docket, 2023–present",
+   "parent_id": "generative-coast",
+   "start": 2023,
+   "end": "present",
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The northern ridge of the coast is governed ground. The Future of Life Institute's pause letter (22 March 2023) and the CAIS Statement on AI Risk (30 May 2023) carried existential-risk framing into mainstream politics; US Executive Order 14110 on Safe, Secure, and Trustworthy AI (30 October 2023) introduced compute-threshold reporting, and the Bletchley Declaration was signed at the UK …",
+   "neighbours": [
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "borders"
+    },
+    {
+     "id": "closed-frontier-labs",
+     "relation": "borders"
+    },
+    {
+     "id": "diffusion-media-district",
+     "relation": "road"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "borders"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "N1a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/policy-governance-coast.yaml"
+  },
+  {
    "id": "pretraining-foothills",
    "level": "country",
    "name": "The Pre-training Foothills",
@@ -923,6 +1274,50 @@
    "spatial": false,
    "related_facts": [],
    "file": "data/countries/pretraining-foothills.yaml"
+  },
+  {
+   "id": "reasoning-test-time-compute",
+   "level": "country",
+   "name": "Reasoning Ridge",
+   "subtitle": "o1, o3, DeepSeek-R1 and thinking models trained with RL on verifiable rewards, 2024–present",
+   "parent_id": "generative-coast",
+   "start": 2024,
+   "end": "present",
+   "band": [
+    "N2"
+   ],
+   "biome": "wetland",
+   "status": "sourced",
+   "summary60": "The ridge where the RL river re-joins the LLM mainstream. DeepSeekMath introduced GRPO (February 2024) and OpenAI's o1-preview (12 September 2024) was the first \"reasoning model\", trained with reinforcement learning to think before answering, making test-time compute a new scaling axis; the full o1 followed on 5 December 2024 and o3 was announced on 20 December 2024. On 20 January …",
+   "neighbours": [
+    {
+     "id": "closed-frontier-labs",
+     "relation": "borders"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "borders"
+    },
+    {
+     "id": "agents-tooling-coast",
+     "relation": "borders"
+    },
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "river"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/reasoning-test-time-compute.yaml"
   },
   {
    "id": "speech-recognition-converts",
@@ -1073,5 +1468,5 @@
    "file": "data/countries/tooling-guild.yaml"
   }
  ],
- "generated_from": "1 continent + 9 country YAML files under data/"
+ "generated_from": "2 continent + 17 country YAML files under data/"
 }

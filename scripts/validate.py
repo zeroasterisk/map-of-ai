@@ -84,7 +84,7 @@ SCHEMA: dict[str, tuple[str, dict[str, str]]] = {
     "verified_by": ("dict", {"continent": "V", "country": "V", "city": "V"}),
     "notes": ("str", {"continent": "O", "country": "O", "city": "O"}),
     # P3-RENDER v2 country-layer fields (SPEC §9; render-only hints, no coordinates):
-    # sub_band: finer row(s) inside the parent's band rows (Ca Cb S1a S1b S2a S2b S2c), str or list
+    # sub_band: finer row(s) inside the parent's band rows (N1a N1b N2a N2b Ca Cb S1a S1b S2a S2b S2c), str or list
     # spatial: false -> no polygon; surfaced as a related_facts hover note on another entity
     # related_facts: [{id, note}] extra hover/click content referencing a demoted entity
     "sub_band": ("list_or_str", {"continent": "-", "country": "O", "city": "-"}),

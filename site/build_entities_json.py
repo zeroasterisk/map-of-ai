@@ -14,7 +14,7 @@ from pathlib import Path
 import yaml
 
 BAND_ORDER = ["N1", "N2", "C", "S1", "S2"]
-SUB_BANDS = {"Ca", "Cb", "S1a", "S1b", "S2a", "S2b", "S2c"}   # country-layer rows inside the C / S1 / S2 band rows
+SUB_BANDS = {"N1a", "N1b", "N2a", "N2b", "Ca", "Cb", "S1a", "S1b", "S2a", "S2b", "S2c"}   # country-layer rows inside the band rows (N1/N2 added for generative-coast, P3-T10)
 
 
 def bands(v):
