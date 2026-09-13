@@ -1468,5 +1468,239 @@
    "file": "data/countries/tooling-guild.yaml"
   }
  ],
- "generated_from": "2 continent + 17 country YAML files under data/"
+ "threads": [
+  {
+   "id": "silicon-river-hardware",
+   "name": "The Silicon Range",
+   "short_name": "Silicon Range",
+   "kind": "mountain-range",
+   "thread": "d",
+   "research_file": "09-cross-cutting-threads.md",
+   "status": "sourced",
+   "subtitle": "hardware & compute — Lisp machines → GPUs → TPUs → H100 → Blackwell",
+   "placement": {
+    "band": [
+     "S1",
+     "S2"
+    ],
+    "bank": 0.5,
+    "time_range": [
+     1999,
+     "present"
+    ]
+   },
+   "milestones": [
+    {
+     "year": 1999.0,
+     "name": "GeForce 256",
+     "label": "GeForce 256",
+     "one_line": "Nvidia GeForce 256, marketed as \"the world's first GPU\"",
+     "peak": 0.35,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d3",
+       "title": "Wikipedia: GeForce 256",
+       "url": "https://en.wikipedia.org/wiki/GeForce_256"
+      }
+     ]
+    },
+    {
+     "year": 2007.0,
+     "name": "CUDA",
+     "label": "CUDA",
+     "one_line": "Nvidia releases CUDA (created 2004), enabling general-purpose GPU computing",
+     "peak": 0.45,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d4",
+       "title": "Wikipedia: CUDA",
+       "url": "https://en.wikipedia.org/wiki/CUDA"
+      },
+      {
+       "ref": "d4",
+       "title": "Nvidia, About CUDA",
+       "url": "https://developer.nvidia.com/about-cuda"
+      }
+     ]
+    },
+    {
+     "year": 2012.75,
+     "name": "AlexNet on GPUs",
+     "label": "AlexNet GPUs",
+     "one_line": "AlexNet trained on two GTX 580 GPUs wins ILSVRC 2012, launching the deep-learning boom",
+     "peak": 0.6,
+     "lod": 1,
+     "sources": [
+      {
+       "ref": "d5",
+       "title": "Wikipedia: AlexNet",
+       "url": "https://en.wikipedia.org/wiki/AlexNet"
+      }
+     ]
+    },
+    {
+     "year": 2016.4,
+     "name": "TPU",
+     "label": "TPU · DGX-1",
+     "one_line": "Google announces the Tensor Processing Unit at I/O (May 2016); Nvidia announces DGX-1 (Apr 2016)",
+     "peak": 0.7,
+     "lod": 1,
+     "sources": [
+      {
+       "ref": "d6",
+       "title": "Wikipedia: Tensor Processing Unit",
+       "url": "https://en.wikipedia.org/wiki/Tensor_Processing_Unit"
+      },
+      {
+       "ref": "d6",
+       "title": "Google Cloud blog, Google supercharges machine learning tasks with TPU custom chip (May 2016)",
+       "url": "https://cloud.google.com/blog/products/ai-machine-learning/google-supercharges-machine-learning-tasks-with-custom-chip"
+      },
+      {
+       "ref": "d6",
+       "title": "Wikipedia: Nvidia DGX",
+       "url": "https://en.wikipedia.org/wiki/Nvidia_DGX"
+      }
+     ]
+    },
+    {
+     "year": 2017.4,
+     "name": "Volta V100",
+     "label": "Volta V100",
+     "one_line": "Nvidia Volta V100 (May 2017) — first Tensor Cores",
+     "peak": 0.7,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d11",
+       "title": "Wikipedia: Volta (microarchitecture)",
+       "url": "https://en.wikipedia.org/wiki/Volta_%28microarchitecture%29"
+      }
+     ]
+    },
+    {
+     "year": 2019.6,
+     "name": "Cerebras WSE-1",
+     "label": "Cerebras WSE",
+     "one_line": "Cerebras WSE-1 wafer-scale engine (Aug 2019, 1.2 trillion transistors) — specialised AI silicon returns",
+     "peak": 0.75,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d11",
+       "title": "Wikipedia: Cerebras",
+       "url": "https://en.wikipedia.org/wiki/Cerebras"
+      }
+     ]
+    },
+    {
+     "year": 2020.1,
+     "name": "Scaling laws",
+     "label": "Scaling laws",
+     "one_line": "Kaplan et al. scaling laws; compute becomes the planning variable for frontier labs (~5×/year since 2020)",
+     "peak": 0.8,
+     "lod": 1,
+     "sources": [
+      {
+       "ref": "d7",
+       "title": "Kaplan et al., Scaling Laws for Neural Language Models (arXiv 2001.08361)",
+       "url": "https://arxiv.org/abs/2001.08361"
+      },
+      {
+       "ref": "d12",
+       "title": "Epoch AI, Key trends and figures in machine learning",
+       "url": "https://epoch.ai/trends"
+      }
+     ]
+    },
+    {
+     "year": 2022.2,
+     "name": "Hopper H100",
+     "label": "Hopper H100",
+     "one_line": "Nvidia Hopper architecture / H100 announced at GTC 2022, with a \"transformer engine\"",
+     "peak": 0.9,
+     "lod": 1,
+     "sources": [
+      {
+       "ref": "d8",
+       "title": "Wikipedia: Hopper (microarchitecture)",
+       "url": "https://en.wikipedia.org/wiki/Hopper_%28microarchitecture%29"
+      },
+      {
+       "ref": "d8",
+       "title": "Nvidia Newsroom, Hopper announcement (GTC 2022)",
+       "url": "https://nvidianews.nvidia.com/news/nvidia-announces-hopper-architecture-the-next-generation-of-accelerated-computing"
+      },
+      {
+       "ref": "d8",
+       "title": "Nvidia H100 product page",
+       "url": "https://www.nvidia.com/en-us/data-center/h100/"
+      }
+     ]
+    },
+    {
+     "year": 2022.77,
+     "name": "Export controls",
+     "label": "Export controls",
+     "one_line": "US CHIPS and Science Act signed (9 Aug 2022); US export controls on advanced chips to China take effect (7 Oct 2022)",
+     "peak": 0.6,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d10",
+       "title": "Wikipedia: CHIPS and Science Act",
+       "url": "https://en.wikipedia.org/wiki/CHIPS_and_Science_Act"
+      },
+      {
+       "ref": "d10",
+       "title": "Wikipedia: United States New Export Controls on Advanced Computing and Semiconductors to China",
+       "url": "https://en.wikipedia.org/wiki/United_States_New_Export_Controls_on_Advanced_Computing_and_Semiconductors_to_China"
+      }
+     ]
+    },
+    {
+     "year": 2024.21,
+     "name": "Blackwell",
+     "label": "Blackwell",
+     "one_line": "Nvidia Blackwell announced at GTC 2024 (18 Mar); Nvidia passes $1T (2023), $4T and $5T (2025) market capitalisation",
+     "peak": 1.0,
+     "lod": 1,
+     "sources": [
+      {
+       "ref": "d9",
+       "title": "Wikipedia: Blackwell (microarchitecture)",
+       "url": "https://en.wikipedia.org/wiki/Blackwell_%28microarchitecture%29"
+      },
+      {
+       "ref": "d9",
+       "title": "Nvidia Newsroom, Blackwell (18 Mar 2024)",
+       "url": "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"
+      },
+      {
+       "ref": "d9",
+       "title": "Wikipedia: Nvidia (market capitalisation)",
+       "url": "https://en.wikipedia.org/wiki/Nvidia"
+      }
+     ]
+    }
+   ],
+   "not_yet_drawn": [
+    {
+     "year": 1973,
+     "name": "MIT Lisp machine project → Symbolics/LMI/TI; 1987 collapse",
+     "ref": "d1",
+     "url": "https://en.wikipedia.org/wiki/Lisp_machine"
+    },
+    {
+     "year": 1985,
+     "name": "Thinking Machines Connection Machine CM-1",
+     "ref": "d2",
+     "url": "https://en.wikipedia.org/wiki/Connection_Machine"
+    }
+   ]
+  }
+ ],
+ "generated_from": "2 continent + 17 country YAML files under data/ + 1 thread(s)"
 }

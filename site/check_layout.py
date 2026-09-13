@@ -36,6 +36,8 @@ INSIDE_MARGIN = 5
 MIN_FONT = 12
 RULER_GAP = 6
 EDGE = 2
+N_THREADS = 1          # THREADS v1: data/threads/*.yaml drawn as linear features (the Silicon Range)
+MIN_THREAD_LABELS = 4  # milestone labels that must survive curation on the A1 plate
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
 BUILD_MARKER = "P2-T1-RENDER v11"
 COUNTRY_MARKER = "P3-RENDER v2"
@@ -393,6 +395,23 @@ def main():
         ent = json.loads((Path(__file__).resolve().parent / "entities.json").read_text())
         spatial_ids = sorted(c["id"] for c in ent["countries"] if c.get("spatial", True))
         kres = pg.evaluate(JS_COUNTRY, dict(N_IN=CONTAIN_N, N_OV=OVERLAP_N, LABEL_GAP=LABEL_GAP, SEED=20260912))
+        # THREADS v1 gate (A1, unzoomed): every thread milestone label must (a) not intersect any continent label
+        # or any other thread label (grown by LABEL_GAP) and (b) sit inside the mainland coast; and the range must
+        # actually be on the page with >= MIN_THREAD_LABELS visible milestone labels.
+        tres = pg.evaluate(r"""(G) => {
+          const svg = document.getElementById('map'); const coast = document.querySelector('#coast path');
+          const bb = t => { const b = t.getBBox(); return {x: b.x, y: b.y, r: b.x + b.width, b: b.y + b.height, text: t.textContent}; };
+          const inter = (u, v) => u.x < v.r + G && v.x < u.r + G && u.y < v.b + G && v.y < u.b + G;
+          const cont = [...document.querySelectorAll('#labels text')].filter(t => t.getClientRects().length).map(bb);
+          const thr = [...document.querySelectorAll('#thread-labels text.thr-name, #thread-labels text.thr-year, #thread-labels text.thr-title')].map(t => Object.assign(bb(t), {ms: t.getAttribute('data-ms') || t.textContent}));
+          const names = [...document.querySelectorAll('#thread-labels text.thr-name')].map(t => t.getAttribute('data-ms'));
+          const over = []; for (const u of thr) { for (const v of cont) if (inter(u, v)) over.push([u.text, v.text]); }
+          for (let i = 0; i < thr.length; i++) for (let j = i + 1; j < thr.length; j++) { const u = thr[i], v = thr[j]; if (u.ms === v.ms) continue; /* a milestone's own name+year stack */ if (inter(u, v)) over.push([u.text, v.text]); }
+          const pt = svg.createSVGPoint(); const inside = u => { for (const [x, y] of [[u.x, u.y], [u.r, u.y], [u.x, u.b], [u.r, u.b], [(u.x + u.r) / 2, (u.y + u.b) / 2]]) { pt.x = x; pt.y = y; if (!coast.isPointInFill(pt)) return false; } return true; };
+          const outside = thr.filter(u => !inside(u)).map(u => u.text);
+          const peaks = document.querySelectorAll('#threads .thr-peak').length;
+          return {threads: document.querySelectorAll('#threads .thread').length, peaks, labels: names, overlaps: over, outside, curated: window.THREAD_CURATED || {}};
+        }""", LABEL_GAP)
         pg.evaluate("document.querySelector('#shapes .continent[data-id=\"deep-learning-basin\"]').dispatchEvent(new MouseEvent('click', {bubbles: true}))")
         pg.wait_for_timeout(200)
         pg.query_selector("#map").screenshot(path=a.shot.replace(".png", "-A2.png"))
@@ -459,6 +478,11 @@ def main():
     fails["countryLabelOverlaps"] = kres["kOverlaps"]
     fails["countryLabelOutside"] = kres["kOutside"]
     fails["countryMarker"] = [] if COUNTRY_MARKER in html else [COUNTRY_MARKER]
+    print(f"threads (v1): {tres['threads']} drawn, {tres['peaks']} milestone peaks, labelled: {tres['labels']}, curated out: {json.dumps(tres['curated'])}")
+    fails["threadCount"] = [] if tres["threads"] == N_THREADS else [tres["threads"]]
+    fails["threadLabelsVisible"] = [] if len(tres["labels"]) >= MIN_THREAD_LABELS else [tres["labels"]]
+    fails["threadLabelOverlaps"] = tres["overlaps"]
+    fails["threadLabelOutside"] = tres["outside"]
     for k, v in fails.items():
         print(f"{k} ({len(v)}): {json.dumps(v, ensure_ascii=False)}")
     ok = res["continents"] == 10 and res["lands"] == 13 and res["coastLoops"] == 5 and all(not v for v in fails.values()) and BUILD_MARKER in html

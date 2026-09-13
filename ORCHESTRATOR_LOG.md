@@ -401,3 +401,52 @@ vertically (single Cb lane) — a Phase 2 label-fit note, not a gate failure. `s
 baseline too (pre-existing).
 
 Commits: 7b0c1fa coverage · 0f5a39a continent + 8 countries · 0654d92 wiring + screenshot · (this) STATUS/LOG.
+
+## Session 11 — 2026-09-13 — Y-funnel geometry + the Silicon Range (branch `axis-recalibration-y-height-hardware-range`)
+
+Task (Alan, pilot on deep-learning-basin + generative-coast; geometry only, no data/fact edits): (1) make the Y
+(height) dimension grow non-linearly toward the present the way the X axis already does (AXES.md §1 SEG), without
+redrawing pre-2025 content; (2) draw hardware/compute (AXES.md §3 linear thread, research/09 thread (d)) as a
+MOUNTAIN RANGE, not a country, from research/09's sourced [d1]–[d12] milestones only.
+
+Part 1 — Y-FUNNEL v12 (commit b80154d). YSEG = [[2017,1],[2022,1.1],[2024,1.3],[2025.2,1.6],[PRESENT,2.0]],
+piecewise-linear `yScale(yr)`. Rationale: 2017 anchor = start of SEG's 6×/yr segment and the last era that must stay
+pixel-identical; 1.1 for the Plateau ("a bit more breathing room"); 2× at the east edge (low end of the 2–2.5× ask,
+because the ±46 px spine shear also needs canvas) with the steep part after 2024 (1.3 → 2.0), mirroring SEG's 3× → 6×.
+First attempt made `bandH`/`bandTop` functions of year and moved MAP_TOP; abandoned after the gate showed the spine
+envelope + ocean labels drifting (`outside` 2, `envelopeViol` 1, `smallFonts` 4) — because warp()'s noise is sampled in
+plate coordinates, moving the 1× frame changes every pre-2017 wobble. Final design keeps the 1× authoring frame at the
+v11 150–560 and applies the funnel as ONE transform `FY(x,py) = Y_OFF + MAP_MID + (py − MAP_MID)·yScale(yearAt(x))`
+inside `SY()`; `plateY()` is its inverse and check_layout.py's band gates use it. Plate 1800×700 → 1800×1050.
+Measured (probe): Basin land bbox height 288 → 288; Generative Coast 474 → 819. Gate after Part 1: everything PASS
+except pre-existing `clipped` (160 → 162, A1 event labels). Shots: docs/shots/y-funnel-{before,after}-A2.png,
+y-funnel-after-A1.png. Vision check of after-A2: 8 coast provinces intact, labels legible, no overlaps.
+
+Part 2 — THE SILICON RANGE (this commit). Pre-check: `river|road|thread` in atlas.html/data → nothing rendered; this
+is the first thread primitive. New `data/threads/silicon-river-hardware.yaml` (kind: mountain-range, placement band
+[S1,S2] bank 0.5 = the connectionist/scaling bank per research/09 (d), time_range 1999–present) with 10 milestones,
+each `sources[]` url copied verbatim from research/09's [d1]–[d12]: GeForce 256 1999 [d3]; CUDA 2007 [d4]; AlexNet on
+GPUs 2012 [d5]; TPU + DGX-1 2016 [d6]; Volta V100 2017 [d11]; Cerebras WSE-1 2019 [d11]; Scaling laws 2020 [d7][d12];
+Hopper H100 2022 [d8]; Export controls/CHIPS 2022 [d10]; Blackwell 2024 [d9]. Lisp machines [d1] + Connection Machine
+[d2] recorded as `not_yet_drawn` (symbolic bank, west of the pilots). `build_entities_json.py` passes
+`data/threads/*.yaml` through as `threads` and refuses a milestone with no sources. Render: `drawThreads()` — ridge
+spine at the S1/S2 seam through SY() (so it follows funnel + spine), continuous relief silhouette (minor chain +
+smoothstep summits ∝ `peak` × local band height), south-face wash + shadow + hachures, heavier ink summit outlines
+with dots, hover card listing every milestone with its [dN] refs. Labels reuse the country/event idiom (offset search,
+`union`, `fitsInside(coast)`, placed-box hit test; lod 2 curated out when nothing fits, lod 1 gets a leader). Two
+iterations after vision review: (1) first pass looked like "peaks stuck on a grey road" and GeForce sat detached →
+added the continuous minor-peak chain and made the face opaque; (2) "The Deep Learning Basin" label sat on the
+AlexNet peak → the range's skyline is now registered as `window.THREAD_OBSTACLES` before `relayout()` and
+`placeInside` rejects anchors touching it (constraint by construction), `deep-learning-basin` got `alt` anchors north
+of the ridge, and milestone labels may also go south of the foot line. New gates in check_layout.py: threadCount,
+threadLabelsVisible (≥ 4), threadLabelOverlaps (vs continent labels + each other), threadLabelOutside (coast).
+Final gate: threads 1 drawn, 10 peaks, 10 labelled, 0 curated, 0/0 overlaps/outside; all other gates as after Part 1;
+RESULT FAIL only on the pre-existing `clipped` 162. Shot: docs/shots/silicon-range-A1.png (vision: continuous ridge
+CUDA → coast with foothills to GeForce; no label collisions; all 10 milestone labels + SILICON RANGE readable).
+
+⚠ Jalapeno chip: requested; `grep -ri jalape research/ data/ site/ AXES.md` = 0 hits → NOT added, no citation
+invented. Needs a sourcing pass into research/09 (d) first.
+
+Out of scope (flagged): tile pyramid rebuild (`build_tiles.py` PLATE still (1800, 700); threads not in labels.json)
+— do after this geometry is confirmed. Tooling note: the two band-gate helpers in check_layout.py now go through
+`SY()`/`plateY()` instead of `± spineY(x)`; any future plate transform must be added in those two functions only.

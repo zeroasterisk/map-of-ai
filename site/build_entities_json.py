@@ -86,7 +86,19 @@ def main(data_dir: str, dst: str) -> int:
         for sb in c["sub_band"] or []:
             if sb not in SUB_BANDS or sb[:-1] not in c["band"]:
                 raise SystemExit(f"{c['id']}: sub_band {sb} not inside band {c['band']}")
-    out["generated_from"] = f"{len(conts)} continent + {len(ctry)} country YAML files under {data_dir}/"
+    # cross-cutting threads (data/threads/*.yaml, AXES.md §3): linear features (rivers/roads/mountain ranges), NOT
+    # regions. Passed through as-is (id, kind, placement, milestones with their research/09 citations); the renderer
+    # draws each as a path with year-anchored points, never through the country-polygon machinery.
+    threads = []
+    for tp in sorted((root / "threads").glob("*.yaml")) if (root / "threads").exists() else []:
+        t = yaml.safe_load(tp.read_text(encoding="utf-8"))
+        for m in t.get("milestones") or []:
+            m["year"] = float(m["year"])
+            if not m.get("sources"):
+                raise SystemExit(f"{t['id']}: milestone {m['name']} has no sources (every thread milestone must cite research/09)")
+        threads.append(t)
+    out["threads"] = threads
+    out["generated_from"] = f"{len(conts)} continent + {len(ctry)} country YAML files under {data_dir}/" + (f" + {len(threads)} thread(s)" if threads else "")
     Path(dst).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     # entities.js: the same payload as a JS global — the page is static (file:// or Pages) and loads it via <script src>
     Path(dst).with_suffix(".js").write_text("window.ENTITIES = " + json.dumps(out, ensure_ascii=False) + ";\n", encoding="utf-8")

@@ -71,6 +71,20 @@
   .title { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 2.5px; text-anchor: middle; }
   .title-sub { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3d29; text-anchor: middle; }
   .graticule { fill: none; stroke: #5b4a30; stroke-width: .7; stroke-opacity: .22; stroke-dasharray: 1 4; }
+  /* THREADS v1 (AXES.md §3 linear features). The Silicon Range: an ink mountain ridge in the coast's linework
+     vocabulary — a sinuous spine, hachured peaks at the milestones (a pen-drawn "caterpillar" range), a soft
+     shadow on the south face, elevation — not water. Labels reuse the event type (Cinzel name + italic year). */
+  .thr-shadow { fill: #2e2212; fill-opacity: .16; filter: url(#landshadow); pointer-events: none; }
+  .thr-face { fill: #b9a47e; fill-opacity: .55; stroke: none; pointer-events: none; }
+  .thr-peak { fill: #e6d7b4; fill-opacity: .85; stroke: #2e2212; stroke-width: 1.15; stroke-linejoin: round; pointer-events: none; }
+  .thr-hachure { fill: none; stroke: #2e2212; stroke-width: .55; stroke-opacity: .62; stroke-linecap: round; pointer-events: none; }
+  .thr-spine { fill: none; stroke: #2e2212; stroke-width: 1.05; stroke-opacity: .75; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
+  .thr-dot { fill: #2a1f11; stroke: #efe3c8; stroke-width: .7; pointer-events: none; }
+  .thr-name { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; paint-order: stroke; stroke: rgba(240,228,200,.88); stroke-width: 2.2px; stroke-linejoin: round; text-anchor: middle; pointer-events: none; }
+  .thr-year { font-family: Lora, Georgia, serif; font-style: italic; fill: #5a2e14; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 1.8px; stroke-linejoin: round; text-anchor: middle; pointer-events: none; }
+  .thr-title { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 2.4px; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 2.6px; stroke-linejoin: round; pointer-events: none; }
+  .thr-leader { fill: none; stroke: #3d2e1a; stroke-width: .7; stroke-opacity: .8; pointer-events: none; }
+  #threads .thr-hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; cursor: help; }
   .banner { max-width: 880px; margin: 18px auto 0; padding: 8px 14px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink-dim); font-size: 13.5px; font-style: italic; text-align: center; }
   .banner b { color: var(--ink); font-style: normal; }
   .card { position: absolute; max-width: 420px; max-height: 360px; overflow: hidden; background: #f6ecd6; color: #2f2416; border: 1px solid #8f7b57; box-shadow: 0 8px 24px rgba(60,40,10,.35); padding: 10px 14px; font-size: 13px; pointer-events: none; display: none; z-index: 5; }
@@ -492,7 +506,9 @@ const LABEL = {
   'expert-systems-plateau': {inside: false, at: [1978.4, BY('C', .95)], anchorYr: 1981.0, anchorBand: ['N2', .8], side: 'center', maxW: 66, nosub: true},
   'connectionist-revival':  {inside: true,  at: [1988.4, BY('S1', .55)], alt: [[1987.6, BY('S1', .5)], [1989.2, BY('S1', .7)], [1987.0, BY('S1', .35)], [1988.8, BY('S2', .15)], [1986.4, BY('S1', .6)]], maxW: 170},
   'statistical-isthmus':    {inside: true,  at: [2001.8, BY('N2', .8)]},
-  'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)]},
+  // v12 THREADS: the Silicon Range runs along the S1/S2 seam through the Basin, so its label offers alternates north
+  // of the ridge (band C / upper S1) — placeInside rejects any anchor whose block touches the range's skyline
+  'deep-learning-basin':    {inside: true,  at: [2011.6, BY('S1', .6)], alt: [[2011.6, BY('S1', .12)], [2011.6, BY('C', .62)], [2012.4, BY('C', .5)], [2010.8, BY('C', .55)]]},
   'transformer-plateau':    {inside: true,  at: [2019.9, BY('C', .30)], maxW: 250},
   'generative-coast':       {inside: true,  at: [2024.85, BY('C', .55)], maxW: 128},
 };
@@ -917,7 +933,10 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const lx = X(lyr), ly = SY(lx, ly0);
       for (const [sN, sS, withSub] of TRIES) {
         const ts = labelBlock(c, lx, ly, sN, sS, Math.min(bb.width - 24, LABEL[c.id].maxW || 1e9), withSub);
-        if (fitsInside(land, union(ts), 6)) return ts;
+        // THREADS v1: a continent label must also clear any thread relief (the Silicon Range skyline boxes) — the
+        // range is drawn before relayout(), so this is enforced by construction, not patched after the fact
+        const u = union(ts); const obst = window.THREAD_OBSTACLES || [];
+        if (fitsInside(land, u, 6) && !obst.some(b => u.x < b.r + 3 && b.x < u.r + 3 && u.y < b.b + 3 && b.y < u.b + 3)) return ts;
         ts.forEach(t => t.remove());
       }
     }
@@ -1140,6 +1159,88 @@ fetch('registry.json').then(r => r.json()).then(data => {
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutK); else layoutK();
   };
   drawCountries();
+  // ---- THREADS v1: cross-cutting linear features (AXES.md §3), first implementation. A thread is a PATH with
+  // year-anchored points — it is drawn by its own primitive, never through fineCell/fineTrace (those are for bounded
+  // areas). data/threads/*.yaml → ENT.threads. kind: mountain-range = an ink ridge: a sinuous spine along the band
+  // fraction `placement.bank` of its band span, a hachured peak at every milestone (height ∝ milestone.peak), a
+  // shadow on the south face; milestone labels (name + year) use the country/event collision idiom — try offsets,
+  // reject any box that hits a placed label (continent labels + earlier thread labels, grown by a gap) or leaves
+  // the mainland; lod 2 milestones are curated out if nothing fits, lod 1 ones fall back to a leader.
+  const gThreads = el('g', {id: 'threads'}); svg.insertBefore(gThreads, gCoast);                       // under the coast ink, over the countries
+  const gThrLabels = el('g', {id: 'thread-labels', 'pointer-events': 'none'}); svg.insertBefore(gThrLabels, gLabels.nextSibling);
+  window.THREAD_CURATED = {};
+  const drawThreads = (phase) => {   // phase 'geometry': relief only (registers THREAD_OBSTACLES); undefined: everything
+    gThreads.innerHTML = ''; gThrLabels.innerHTML = ''; window.THREAD_OBSTACLES = [];
+    const coastMain = gCoast.querySelector('path');
+    const placedBoxes = [...gLabels.querySelectorAll('text')].filter(t => t.getClientRects().length).map(t => { const b = t.getBBox(); return {x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}; });
+    const hit = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
+    for (const T of ENT.threads || []) {
+      if (T.kind !== 'mountain-range') { console.warn('thread kind not implemented', T.kind, T.id); continue; }
+      const [b0, b1] = T.placement.band; const bank = T.placement.bank === undefined ? .5 : T.placement.bank;
+      const py = bandTop(b0) + bank * (bandTop(b1) + bandH - bandTop(b0));      // 1× plate y of the ridge line
+      const y0 = T.placement.time_range[0], y1 = T.placement.time_range[1] === 'present' ? PRESENT - .06 : T.placement.time_range[1];
+      const x0 = X(y0), x1 = X(y1);
+      const ms = T.milestones.slice().sort((a, b) => a.year - b.year);
+      // spine: the ridge line through the funnel + spine transform, with a gentle ± wander so it is not a rule
+      const ridgeY = x => SY(x, py + 5 * Math.sin((x - x0) / 47) + 3 * Math.sin((x - x0) / 19 + 1.3));
+      // peak height in screen px at each milestone: 0.3–0.7 of the local band height (the funnel makes eastern peaks taller)
+      const peakH = (m, x) => bandH * yScale(yearAt(x)) * (.28 + .42 * (m.peak || .5));
+      const peakW = (m, x) => Math.max(18, peakH(m, x) * 1.7);
+      // the range is ONE continuous ridge: a filler row of minor peaks (period ~22 px, height 0.32 of the band)
+      // runs the whole span so the milestones' summits rise out of a chain instead of standing alone on a band
+      const minorH = x => bandH * yScale(yearAt(x)) * .16 * (0.75 + .25 * Math.sin(x * .37));
+      const relief = x => { let h = minorH(x) * Math.max(0, Math.sin((x - x0) / 7)); for (const m of ms) { const mx = X(m.year), hw = peakW(m, mx) / 2; if (Math.abs(x - mx) < hw) { const t = 1 - Math.abs(x - mx) / hw; h = Math.max(h, peakH(m, mx) * (t * t * (3 - 2 * t))); } } return h; };
+      let spine = ''; for (let x = x0; x <= x1; x += 4) spine += (spine ? 'L' : 'M') + f1(x) + ',' + f1(ridgeY(x));
+      const g = el('g', {class: 'thread', 'data-id': T.id}, gThreads);
+      const sil = [];   // skyline of the whole range (minor chain + milestone summits) → shadow, south face, and the ink skyline
+      for (let x = x0; x <= x1; x += 2) sil.push([x, ridgeY(x) - relief(x)]);
+      const silD = 'M' + sil.map(p => f1(p[0]) + ',' + f1(p[1])).join('L');
+      const faceD = silD + 'L' + f1(x1) + ',' + f1(ridgeY(x1)) + ' ' + spine.slice(1).split('L').reverse().map(s => 'L' + s).join('') + 'Z';
+      el('path', {d: faceD, class: 'thr-shadow', transform: 'translate(1.2,2)'}, g);
+      el('path', {d: faceD, class: 'thr-face'}, g);
+      el('path', {d: silD, class: 'thr-spine'}, g);   // the ink skyline
+      // south-face hachures along the whole chain (short strokes falling from the skyline toward the foot line)
+      for (let x = x0 + 3; x <= x1 - 3; x += 5) { const h = relief(x); if (h < 3) continue; const sx = x + 1.5, sy = ridgeY(x) - h * .8; el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(sx + h * .22)},${f1(ridgeY(x) - h * .12)}`, class: 'thr-hachure'}, g); }
+      // per-milestone summit: a heavier ink peak outline + the summit dot
+      ms.forEach(m => {
+        const mx = X(m.year), h = peakH(m, mx), w = peakW(m, mx), by = ridgeY(mx), top = by - h;
+        const L = mx - w / 2, R = mx + w / 2;
+        const d = `M${f1(L)},${f1(ridgeY(L) - relief(L))} Q${f1(mx - w * .18)},${f1(by - h * .55)} ${f1(mx - w * .05)},${f1(top + 1.5)} Q${f1(mx)},${f1(top - 1)} ${f1(mx + w * .06)},${f1(top + 1.2)} Q${f1(mx + w * .22)},${f1(by - h * .5)} ${f1(R)},${f1(ridgeY(R) - relief(R))}`;
+        el('path', {d, class: 'thr-peak'}, g);
+        el('circle', {cx: f1(mx), cy: f1(top), r: 1.7, class: 'thr-dot'}, g);
+        m._x = mx; m._top = top; m._by = by; m._h = h;
+      });
+      // the range's own skyline is an obstacle for labels (continent labels via placeInside, and the thread's own):
+      // no label may sit on a slope (the silhouette sampled into 10 px boxes)
+      const skyline = []; for (let x = x0; x < x1; x += 10) { const h = Math.max(relief(x), relief(x + 5), relief(x + 10)); if (h > 2) skyline.push({x, y: ridgeY(x + 5) - h, r: x + 10, b: ridgeY(x + 5) + 3}); }
+      window.THREAD_OBSTACLES = (window.THREAD_OBSTACLES || []).concat(skyline);
+      if (phase === 'geometry') continue;
+      // hit strip + hover card (same card as continents/countries)
+      const hitP = el('path', {d: spine, class: 'thr-hit'}, g);
+      const show = ev => { card.style.display = 'block'; card.innerHTML = `<h3>${T.name}</h3><div class="sub">${T.subtitle}</div><dl><dt>id</dt><dd><code>${T.id}</code></dd><dt>kind</dt><dd>${T.kind} (linear feature, AXES.md §3)</dd><dt>bank</dt><dd>${T.placement.band.join('–')} seam</dd><dt>research file</dt><dd>research/${T.research_file} thread (${T.thread})</dd></dl>` +
+        `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${ms.map(m => `<div><b>${Math.floor(m.year)}</b> — ${m.one_line} <code>${m.sources.map(s => s.ref).filter((v, i, a) => a.indexOf(v) === i).join(' ')}</code></div>`).join('')}</div>`; moveCard(ev); };
+      hitP.addEventListener('mouseenter', show); hitP.addEventListener('mousemove', moveCard); hitP.addEventListener('mouseleave', () => card.style.display = 'none');
+      // labels: name over the summit, year under the name; the same offset-search idiom as country/event labels
+      const placed = placedBoxes.concat(skyline); window.THREAD_CURATED[T.id] = [];
+      const mkL = (m, tx, ty, fs) => [txt(tx, ty, m.label || m.name, 'thr-name', gThrLabels, {'font-size': fs, 'data-for': T.id, 'data-ms': m.name}), txt(tx, ty + fs * .95, String(Math.floor(m.year)), 'thr-year', gThrLabels, {'font-size': fs * .86, 'data-for': T.id, 'data-ms': m.name})];
+      const inLand = u => coastMain && fitsInside(coastMain, u, 1);
+      // offsets are relative to the summit; the second group sits SOUTH of the range (below the foot line, m._h + …)
+      const offsFor = m => [[0, -6], [0, -14], [14, -8], [-14, -8], [0, -24], [22, -14], [-22, -14], [30, -8], [-30, -8], [0, -36], [40, -20], [-40, -20], [0, m._h + 16], [18, m._h + 14], [-18, m._h + 14], [0, m._h + 28], [34, m._h + 10], [-34, m._h + 10], [46, 6], [-46, 6], [0, -48], [0, m._h + 40]];
+      ms.slice().sort((a, b) => (a.lod || 2) - (b.lod || 2) || b.year - a.year).forEach(m => {
+        let ts = null, off = null;
+        for (const fs of [9.5, 8.6, 8]) { for (const [dx, dy] of offsFor(m)) { const cand = mkL(m, m._x + dx, m._top + dy - fs * .15, fs); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
+          if (!hit(u, placed) && inLand(u)) { ts = cand; off = [dx, dy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
+        if (!ts) { if ((m.lod || 2) > 1) { window.THREAD_CURATED[T.id].push(m.name); return; }
+          ts = mkL(m, m._x, m._top - 30, 8.6); off = [0, -30]; }   // lod 1: keep it, with a leader
+        const u = union(ts); placed.push({x: u.x - 4, y: u.y - 4, r: u.r + 4, b: u.b + 4});
+        if (Math.abs(off[0]) >= 22 || off[1] <= -24 || off[1] >= 26) { const south = off[1] > 0; const ex = off[0] > 0 ? u.x - 1 : off[0] < 0 ? u.r + 1 : m._x, ey = off[0] ? (u.y + u.b) / 2 : (south ? u.y - 1 : u.b + 1); const tx = m._x, ty = south ? m._by + 1 : m._top - 2; el('path', {d: `M${f1(ex)},${f1(ey)} L${f1(tx)},${f1(ty)}`, class: 'thr-leader', 'data-for': T.id}, gThrLabels); }
+      });
+      // the range's own name, set along the ridge west of the first milestone that has room (spaced caps, like a real range name)
+      const nm = (T.short_name || T.name).toUpperCase();
+      outer: for (const yr of [2014.6, 2010.2, 2018.6, 2009.0]) { const midX = X(yr); for (const dy of [14, 22, -14, 30, -24]) { const t = txt(midX, ridgeY(midX) + dy, nm, 'thr-title', gThrLabels, {'font-size': 8.2, 'data-for': T.id, 'text-anchor': 'middle'}); const u = union([t]); if (!hit(u, placed) && inLand(u)) { placed.push(u); break outer; } t.remove(); } }
+    }
+  };
+  window.drawThreads = drawThreads;
   // lod2/3 tile renders: a continent with spatial countries hides its own label + leader (see html.tilesrc.lod2 .haskids)
   const HASKIDS = new Set(ENT.countries.filter(k => k.spatial).map(k => k.parent_id));
   const markHasKids = () => HASKIDS.forEach(id => [...gLabels.querySelectorAll(`text[data-for="${id}"]`), ...gLeaders.querySelectorAll(`[data-for="${id}"]`)].forEach(t => t.classList.add('haskids')));
@@ -1174,8 +1275,10 @@ fetch('registry.json').then(r => r.json()).then(data => {
     });
     markHasKids();
   };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { relayout(); document.dispatchEvent(new Event('map:ready')); });
-  else document.dispatchEvent(new Event('map:ready'));
+  // order: thread relief first (registers its skyline as label obstacles) → continent labels relaid around it → thread labels
+  const layoutAll = () => { drawThreads('geometry'); relayout(); drawThreads(); };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layoutAll(); document.dispatchEvent(new Event('map:ready')); });
+  else { layoutAll(); document.dispatchEvent(new Event('map:ready')); }
   // Leaflet re-platform (index.html): the placed continent labels + leaders are exported as plate-space geometry
   // (viewBox px) by build_tiles.py → labels.json, so the vector overlay reuses THIS placement (fonts, fits, alts).
   window.exportLabels = () => {

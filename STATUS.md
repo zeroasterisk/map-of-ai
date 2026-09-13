@@ -1,6 +1,66 @@
-# STATUS — as of 2026-09-13 (session 10: Generative Coast decomposed into 8 countries — density stress-test, data layer only)
+# STATUS — as of 2026-09-13 (session 11: Y-funnel geometry + the Silicon Range — the first cross-cutting linear thread)
 
 ## One-line status
+
+**Session 11 — branch `axis-recalibration-y-height-hardware-range` (pilot: deep-learning-basin + generative-coast),
+two geometry changes shipped 2026-09-13; NO country/event data or facts edited.**
+
+**Part 1 — Y-FUNNEL v12 (`site/atlas.html`).** The per-band HEIGHT now grows with the year the way the X axis's
+width-per-year does (AXES.md §1 `SEG`). `YSEG = [[2017,1],[2022,1.1],[2024,1.3],[2025.2,1.6],[PRESENT,2.0]]`,
+`yScale(yr)` piecewise-linear between anchors, 1× for everything ≤ 2017 → 2× at the present-day coast (band 82 → 90 →
+107 → 131 → 164 px). Why those ratios: (i) ≤ 2017 must be pixel-identical to v11 (Alan: pre-2025 content is not
+redrawn), so the first anchor is 2017 = start of the 6×/yr X segment; (ii) the Transformer Plateau (2017–22) may grow
+only "a bit" → 1.1; (iii) the acceleration has to be legible at A1 but not blow the canvas out, so the east edge is 2×
+(Alan's 2–2.5× target, taken at the low end because the canvas also carries the ±46 px spine), with most of the growth
+after 2024 (1.3 → 2.0 over the last two years = the same "recent gets dramatically more room" shape as SEG's 3× → 6×).
+Mechanics: authoring stays in the 1× plate (ROWY/BY/LABEL/ENV unchanged, 150–560); `FY(x, py)` stretches plate y about
+band C's centre by `yScale(yearAt(x))` and is applied inside `SY()` with the spine shear, so land, coast, country rows,
+labels, graticule and the band legend all fan out by construction. Plate 1800×700 → 1800×1050 (`H`, `RULER_Y` 618 →
+975, tilesrc CSS). `check_layout.py` judges bands in the 1× frame via `plateY()` (the renderer's exact inverse).
+Measured: Deep Learning Basin land bbox height 288 → 288 (unchanged, only shifted down by Y_OFF=165); Generative Coast
+474 → 819 px. Before/after: `docs/shots/y-funnel-before-A2.png` / `y-funnel-after-A2.png` (A2 country view of both
+pilots — the 8 coast provinces are visibly taller, all 8 labels legible, no overlaps, polygons intact) and
+`y-funnel-after-A1.png` (whole plate: the continent reads as a trumpet widening east; nothing off-canvas).
+
+**Part 2 — THE SILICON RANGE (`data/threads/silicon-river-hardware.yaml` + `drawThreads()` in atlas.html).** First
+implementation of an AXES.md §3 cross-cutting LINEAR thread on the actual map (search of atlas.html/data for
+river|road|thread before this session: nothing rendered — threads existed only as research/09 prose). It is a
+mountain range, not a country: `kind: mountain-range`, its own primitive (spine + relief silhouette + hachures + summit
+peaks + hover card), never through fineCell/fineTrace. Runs along the S1/S2 seam (research/09 (d): "connectionist/
+scaling bank after 1999") from 1999 to the present coast, so it crosses the Basin, the Plateau and the Coast. Peak
+height ∝ milestone `peak` × the local (funnelled) band height, so eastern peaks are taller. Milestones — ALL from
+research/09 thread (d)'s Milestones table, every url a [d1]–[d12] citation copied verbatim: GeForce 256 1999 [d3] ·
+CUDA 2007 [d4] · AlexNet on GPUs 2012 [d5] · TPU + DGX-1 2016 [d6] · Volta V100 2017 [d11] · Cerebras WSE-1 2019 [d11]
+· Scaling laws 2020 [d7][d12] · Hopper H100 2022 [d8] · Export controls / CHIPS Act 2022 [d10] · Blackwell 2024 [d9].
+Lisp machines 1973 [d1] and Connection Machine 1985 [d2] are recorded under `not_yet_drawn` (symbolic bank, west of
+both pilots; out of this pilot's span). Labels (name + year) use the country/event offset-search idiom (`union` +
+`fitsInside` + placed-box hit test, lod 2 curated out if nothing fits, lod 1 gets a leader) AND the range's skyline is
+registered as `window.THREAD_OBSTACLES` before `relayout()`, so continent labels are placed around it by construction
+(`deep-learning-basin` gained `alt` anchors north of the ridge for this). Result on the A1 plate: all 10 milestone
+labels placed, 0 curated, 0 thread-label overlaps, 0 outside the coast, "SILICON RANGE" title set under the ridge in
+the Basin. Screenshot: `docs/shots/silicon-range-A1.png`.
+
+**⚠ "Jalapeno chip" — requested, NOT added.** `grep -ri jalape research/ data/ site/ AXES.md` → zero hits. There is
+no sourcing for a "Jalapeno/Jalapeño" custom chip anywhere in the corpus (research/08 or research/09), so no milestone
+was invented for it. If Alan wants a specific named custom-silicon product on the range it needs its own sourcing
+pass into research/09 thread (d) first (a [d13]+ citation), then one `milestones:` entry in the thread yaml.
+
+**Gates (real `check_layout.py --shot` output, after Part 2):** continents 10 · lands 13 · coastLoops 5 · overlaps 0 ·
+notAdjacent 0 · outsideCoast 0 · bandViol 0 · labelOverlaps 0 · textClash 0 · outside 0 · foreign 0 · smallFonts 0 ·
+rulerClashes 0 · envelopeViol 0 · notFunnel 0 · countryCount 15/15 · countryContainment 0 (300/300 inside parent for
+all 15) · countryOverlap 0 · zoomInconsistent 0 · countryLabelOverlaps 0 · countryLabelOutside 0 · NEW threadCount 1 ·
+threadLabelsVisible 10 (≥ 4) · threadLabelOverlaps 0 · threadLabelOutside 0. Overall RESULT is FAIL only on the
+pre-existing `clipped` (A1 event-label boxes vs viewBox; 160 at session start, 162 now — same class, the z3/z4 event
+layer is out of scope here). Every other gate is at or above the session-10 standard.
+
+**Out of scope, flagged as the natural next step:** the LOD tile pyramid (`build_tiles.py` PLATE = (1800, 700),
+`site/tiles/`, index.html Leaflet bounds) is still built from the OLD 700-px geometry and does not know about threads.
+Rebuilding it now would bake in geometry that may still move; do it once this base geometry is confirmed good.
+Fuller range version (not needed for the pilot): extend west to the Lisp/Connection Machine symbolic-bank segment,
+per-lod label sizes for z2–z4 like events, and a `thread-labels` export into `labels.json` for the Leaflet overlay.
+
+---
+### Session 10 (kept for reference)
 
 **Session 10 — P2-T10 + P3-T10 (Generative Coast, 2022–present) data layer shipped 2026-09-13.** Alan: "the map
 looks sparse to me … We can try the most current timeframe and see what dense looks like." Coverage matrix
