@@ -1,6 +1,51 @@
-# STATUS — as of 2026-09-12 (session 8: LOD PILOT — every zoom step adds real information, Deep Learning Basin only)
+# STATUS — as of 2026-09-13 (session 9: LOD pilot fixes — text no longer grows on zoom-in; event leaders read as leaders)
 
 ## One-line status
+
+**LEAFLET v3.1 (LOD pilot fixes) shipped 2026-09-13** — https://zeroasterisk.github.io/map-of-ai/
+**Alan on v3:** "text is crazy big, when you zoom in it should have resized" and "I don't understand the red lines".
+
+**Fix 1 — text sized in SCREEN px, not plate units.** build_tiles.py screenshots
+lod level z at device scale 2**z, and every label font-size was a plate-unit
+constant, so on-screen text GREW with zoom (kev-name 4.0 plate × 8 = 32 px at
+z3 → 2.3 × 16 = 36.8 px at z4; country kname 10.2 plate × 16 = 163 px at z4).
+atlas.html now derives the plate font-size from a per-role screen-px target:
+`plate_fs = target_px / 2**lod` (`TILESRC`/`LOD`/`ZSCALE`/`PX()` at the top of
+the script; only in `?tilesrc=1` mode — the plain interactive atlas.html is
+byte-for-byte the same layout). Targets: kname 34 px, ktag/ksub/kyrs 28 px
+(lod2–4, the auto-fit tier ladder scales by the same factor, line gap 4 px);
+khint 16 px (lod1 — 28 px fits in no lane, 16 px is the largest size that
+places both hints); kev-name 30 → 26 px, kev-year 22 → 19 px (lod3 → lod4),
+kev-line 19 px. Measured (site/measure_lod_text.py, getBoundingClientRect ×
+2**lod, median bbox height in screen px):
+
+| role | before lod2 / lod3 / lod4 | after lod2 / lod3 / lod4 |
+|---|---|---|
+| kname (country) | 48 / 96 / 192 | 40 / 40 / 48 |
+| ktag / kyrs | 40 / 80 / 160 | 36 / 36–40 / 48 |
+| kev-name (same event, e.g. AlexNet) | – / 42.7 / 48.0 (+12 %) | – / 40.0 / 34.3 (−14 %) |
+| kev-year | – / 29.3 / 35.2 | – / 26.7 / 22.9 |
+| kev-line | – / – / 32 | – / – / 22.9 |
+
+(kname at lod4 is 48 vs 40 at lod3 because the widest tier now fits inside
+every lane at z4 — +20 %, the "a bit bigger at deeper lod" allowance; before it
+was ×2 per level.)
+
+**Fix 2 — event leaders.** `.kev-leader` was the dot's rust red (#7a2414) and
+read as a road. Now the country leader's language: solid #3d2e1a hairline
+(.45, opacity .7). Deliberately NOT dashed — the province line (.kzoom) and
+road border (.cborder.road) at lod2–4 are already dashed brown, and a dashed
+trial rendered indistinguishable from them (docs/screens review). Evidence:
+docs/screens/lod4-leaders-after.png (Attention Headwaters, z4, 4 leaders).
+`.kev-dot` stays red.
+
+Gates after both fixes: check_lod.py PASS, check_lod_labels.py PASS (0
+overlaps, 0 dots outside, 0 off-plate; curated: ev3 white-house-2016, ev4
+ntm-2014 / show-and-tell-2014 / sensetime-ilsvrc-2016). Basin text items /
+chars / marks per level are now 5/39/0 → 7/122/0 → 32/446/0 → 72/928/20 →
+201/2950/47 (smaller text = more of the 47 events fit at z4; was 32).
+
+## One-line status (session 8, superseded)
 
 **LEAFLET v3 (LOD pilot) shipped 2026-09-12** — https://zeroasterisk.github.io/map-of-ai/
 **Alan's feedback on v2:** "the details are not detail-y enough … I really want

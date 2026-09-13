@@ -1,12 +1,10 @@
-  z4: ink mass 569.06 (own res, scale-normalised)   ink fraction at z0 size 0.0275   tiles   560   level px [7168, 5120]  (pilot bbox only)
   transitions:
-/home/node/map-of-ai/site/check_lod.py:59: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
   la, lb = list(a.convert("L").getdata()), list(b.convert("L").getdata())
     z0 -> z1: ink mass 20.01 -> 49.69  gain +29.68 (x2.48)   |Δ luma| at z0 res 20.01 (resample floor 1.95)
     z1 -> z2: ink mass 49.69 -> 171.57  gain +121.88 (x3.45)   |Δ luma| at z1 res 10.57 (resample floor 1.55)
-    z2 -> z3: ink mass 171.57 -> 322.40  gain +150.83 (x1.88)   |Δ luma| at z2 res 8.66 (resample floor 0.97)
-    z3 -> z4: ink mass 322.40 -> 569.06  gain +246.65 (x1.77)   |Δ luma| at z3 res 4.67 (resample floor 0.60)
+    z2 -> z3: ink mass 171.57 -> 321.16  gain +149.59 (x1.87)   |Δ luma| at z2 res 8.65 (resample floor 0.97)
+    z3 -> z4: ink mass 321.16 -> 565.91  gain +244.75 (x1.76)   |Δ luma| at z3 res 4.63 (resample floor 0.60)
 region B (Generative Coast land patch (1400, 300, 60, 40)): luma stddev z0 2.86  z1 19.12  (z0 flat fill, z1 textured)
-bytes per plate unit²: z0 1.11, z1 4.32, z2 11.92, z3 31.09, z4 112.37
+bytes per plate unit²: z0 1.11, z1 4.32, z2 11.92, z3 31.09, z4 112.44
 evidence strip (z0..z4 tiles, same region, same px size): /home/node/map-of-ai/docs/screens/lod-tiles-same-region.png
 LOD GATE: PASS

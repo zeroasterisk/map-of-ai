@@ -325,3 +325,29 @@ Eastern Coast Forts lane; listed in `docs/screens/check_lod_labels_after.txt`.
 **Not done / next (separate task, not started):** rollout to the other ~9 continents needs their own sourced event
 files; hover cards for events in index.html (data is in entities.json); the 2014 cluster could use a wider lane
 or a z5 if Alan wants those 18 on the raster.
+
+## Session 9 — 2026-09-13 — LOD pilot fixes (Alan: "text is crazy big … should have resized"; "I don't understand the red lines")
+
+Two mechanical fixes to site/atlas.html, done directly (no dispatch — both were pre-diagnosed).
+
+**Fix 1 — text growing with zoom.** Root cause: build_tiles.py renders lod z at device scale 2**z and every
+font-size was a plate-unit constant, so screen px = plate × 2**z grew per level (kname 48 → 96 → 192 px at
+lod2/3/4; kev-name 42.7 → 48 px lod3 → lod4). Fix: `TILESRC`, `LOD`, `ZSCALE = 2**LOD`, `PX(px, plate)` at the top
+of the script; `plate_fs = target_px / ZSCALE` in tilesrc mode, legacy plate constants otherwise (interactive
+page untouched). Targets: kname 34, ktag/ksub/kyrs 28 (lod2–4; the fit-tier ladder scaled by CK = (34/ZSCALE)/10.2,
+line gap 4 px); khint 16 (lod1 — swept 28/24/22/20/18/16/14: 28–22 placed 0 hints, 20/18 placed 1, 16 places both,
+so 16); kev-name 30/26, kev-year 22/19 (lod3/lod4), kev-line 19. Pitfall hit: `const TILE` already exists (texture
+repeat) — renamed to TILESRC after "Identifier already declared" broke the page (check_lod_labels timed out).
+Measured after (site/measure_lod_text.py, new): kname 40/40/48, ktag 36/36/48, kev-name 40.0 → 34.3 (AlexNet, same
+text at lod3/lod4: −14 %, was +12 % and ×2 per level for country text), kev-year 26.7 → 22.9, kev-line 22.9.
+Side effect: smaller z4 text fits 47 of the 50 events (was 32); z3 places 20 headline events (was 17).
+
+**Fix 2 — red leaders.** `.kev-leader` #7a2414 (dot red) → country-leader brown #3d2e1a, .45 hairline, opacity .7,
+solid. The task's suggested dashed variant (1.2 1) was tried first and rejected on the z4 crop: at lod4 the .kzoom
+province line and .cborder.road are already dashed brown, and the reviewer could not tell the GLOVE leader from the
+route lines ("same dashed stroke … near-identical width"). Solid hairline reviewed as "clearly a different class of
+line … thin, unbroken, lighter". Evidence: docs/screens/lod4-leaders-after.png.
+
+Gates: check_lod.py PASS (ink mass z0→z4 20.0 → 49.7 → 171.6 → 322.4 → 569.1, all steps gain); check_lod_labels.py
+PASS (0 overlaps, 0 dots outside, 0 off-plate at every level; lod1 hints 2/2 placed). Tiles rebuilt twice (fix 1,
+fix 2), ~8.5 min each. Screens: docs/screens/lod2-{0..4}.png, lod-tiles-same-region.png.

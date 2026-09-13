@@ -9,8 +9,8 @@
   "0": 20.006,
   "1": 49.691,
   "2": 171.571,
-  "3": 322.402,
-  "4": 569.055
+  "3": 321.161,
+  "4": 565.911
  },
  "transitions": {
   "z0->z1": {
@@ -26,15 +26,15 @@
    "floor": 1.55
   },
   "z2->z3": {
-   "ink_mass_gain": 150.83,
-   "ink_mass_ratio": 1.879,
-   "delta_luma": 8.66,
+   "ink_mass_gain": 149.59,
+   "ink_mass_ratio": 1.872,
+   "delta_luma": 8.65,
    "floor": 0.97
   },
   "z3->z4": {
-   "ink_mass_gain": 246.654,
-   "ink_mass_ratio": 1.765,
-   "delta_luma": 4.67,
+   "ink_mass_gain": 244.75,
+   "ink_mass_ratio": 1.762,
+   "delta_luma": 4.63,
    "floor": 0.6
   }
  }
