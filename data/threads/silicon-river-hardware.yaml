@@ -2,9 +2,9 @@
 # mountain range (a ridge with peaks at the milestones) along the connectionist/scaling bank (S1/S2 seam), per
 # research/09 thread (d) "Y-position: connectionist/scaling bank after 1999; symbolic bank before".
 # Every milestone below is copied from research/09-cross-cutting-threads.md thread (d)'s Milestones table; every url
-# is one of that file's [d1]-[d12] citations. Nothing here is sourced outside research/09. In particular a
-# "Jalapeno"/"Jalapeño" custom chip was requested but has ZERO references in research/08, research/09 or anywhere in
-# the corpus, so it is NOT listed; it needs its own sourcing pass before it can be added.
+# is one of that file's [d1]-[d13] citations. Nothing here is sourced outside research/09. (Jalapeño had zero
+# references in the corpus when this file was first written; commit 6612451 added it to research/09 thread (d) as
+# [d13] with a citation, and only then was it listed below.)
 id: silicon-river-hardware
 name: The Silicon Range
 short_name: Silicon Range
@@ -115,6 +115,15 @@ milestones:
       - {ref: d9, title: "Wikipedia: Blackwell (microarchitecture)", url: "https://en.wikipedia.org/wiki/Blackwell_%28microarchitecture%29"}
       - {ref: d9, title: "Nvidia Newsroom, Blackwell (18 Mar 2024)", url: "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"}
       - {ref: d9, title: "Wikipedia: Nvidia (market capitalisation)", url: "https://en.wikipedia.org/wiki/Nvidia"}
+  - year: 2026.65
+    name: Jalapeño
+    label: Jalapeño
+    one_line: OpenAI publishes first performance results for Jalapeño, its first custom inference chip (25 Aug 2026); frontier labs join hyperscalers in building their own inference silicon
+    peak: 0.85
+    lod: 1
+    sources:
+      - {ref: d13, title: "OpenAI, Jalapeño's first results show industry-leading speed and efficiency in AI inference (25 Aug 2026)", url: "https://openai.com/index/jalapeno-first-results/"}
+      - {ref: d13, title: "Wayback Machine snapshot 2026-09-11 (live site behind Cloudflare bot-challenge at access time)", url: "https://web.archive.org/web/20260911215502/https://openai.com/index/jalapeno-first-results/"}
 # pre-1999 milestones of thread (d) — Lisp machines 1973-87 [d1], Connection Machine 1985 [d2] — sit on the SYMBOLIC
 # bank (research/09: "symbolic bank before [1999]") and west of both pilot continents; they are out of this pilot's
 # drawn span and are not rendered yet (they will need their own northern-bank segment when the range is extended).

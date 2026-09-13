@@ -444,8 +444,13 @@ Final gate: threads 1 drawn, 10 peaks, 10 labelled, 0 curated, 0/0 overlaps/outs
 RESULT FAIL only on the pre-existing `clipped` 162. Shot: docs/shots/silicon-range-A1.png (vision: continuous ridge
 CUDA → coast with foothills to GeForce; no label collisions; all 10 milestone labels + SILICON RANGE readable).
 
-⚠ Jalapeno chip: requested; `grep -ri jalape research/ data/ site/ AXES.md` = 0 hits → NOT added, no citation
-invented. Needs a sourcing pass into research/09 (d) first.
+Jalapeño chip: requested; at build time `grep -ri jalape research/ data/ site/ AXES.md` = 0 hits → NOT added, no
+citation invented. Commit 6612451 (Alan via Hermes, between the two session commits) then added it to research/09 (d)
+as [d13] (OpenAI announcement 25 Aug 2026, Wayback snapshot); only then was it added as the 11th milestone
+(year 2026.65, lod 1). Because X(2026.65) is the east coast, `MX()` clamps a summit west by half a peak width so the
+peak stays on land (vision check before the clamp: "slightly spills over the shore line"; after: bbox back to 879 px
+wide, on land). Final gate: 11 peaks, 11 labelled, 0 curated, 0 overlaps/outside; RESULT FAIL only on `clipped` 162.
+Source-quality caveat recorded in STATUS: [d13] is a vendor announcement, weaker than [d1]–[d12].
 
 Out of scope (flagged): tile pyramid rebuild (`build_tiles.py` PLATE still (1800, 700); threads not in labels.json)
 — do after this geometry is confirmed. Tooling note: the two band-gate helpers in check_layout.py now go through

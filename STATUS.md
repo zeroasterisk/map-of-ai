@@ -36,20 +36,25 @@ Lisp machines 1973 [d1] and Connection Machine 1985 [d2] are recorded under `not
 both pilots; out of this pilot's span). Labels (name + year) use the country/event offset-search idiom (`union` +
 `fitsInside` + placed-box hit test, lod 2 curated out if nothing fits, lod 1 gets a leader) AND the range's skyline is
 registered as `window.THREAD_OBSTACLES` before `relayout()`, so continent labels are placed around it by construction
-(`deep-learning-basin` gained `alt` anchors north of the ridge for this). Result on the A1 plate: all 10 milestone
+(`deep-learning-basin` gained `alt` anchors north of the ridge for this). Result on the A1 plate: all 11 milestone
 labels placed, 0 curated, 0 thread-label overlaps, 0 outside the coast, "SILICON RANGE" title set under the ridge in
 the Basin. Screenshot: `docs/shots/silicon-range-A1.png`.
 
-**⚠ "Jalapeno chip" — requested, NOT added.** `grep -ri jalape research/ data/ site/ AXES.md` → zero hits. There is
-no sourcing for a "Jalapeno/Jalapeño" custom chip anywhere in the corpus (research/08 or research/09), so no milestone
-was invented for it. If Alan wants a specific named custom-silicon product on the range it needs its own sourcing
-pass into research/09 thread (d) first (a [d13]+ citation), then one `milestones:` entry in the thread yaml.
+**Jalapeño chip — flagged, then sourced, then added (in that order).** When Part 2 was built, `grep -ri jalape
+research/ data/ site/ AXES.md` returned zero hits, so it was NOT drawn and no citation was invented. Commit 6612451
+(Alan, via Hermes, same session) then added it to research/09 thread (d)'s Milestones table as [d13] (OpenAI,
+"Jalapeño's first results…", 25 Aug 2026, via a Wayback snapshot because the live page sits behind a Cloudflare
+challenge). Only after that citation existed was an 11th milestone (`year: 2026.65`, lod 1, ref d13) added to the
+thread yaml. Note the source is the vendor's own announcement archived 2 weeks ago — weaker than the Wikipedia/arXiv
+sources behind [d1]–[d12]; worth a second independent source when one exists. Render note: a present-month milestone
+sits ON the east coast, so `drawThreads()` clamps a summit west by half a peak width to keep the whole peak on land
+(`MX()`); the year label is unchanged.
 
 **Gates (real `check_layout.py --shot` output, after Part 2):** continents 10 · lands 13 · coastLoops 5 · overlaps 0 ·
 notAdjacent 0 · outsideCoast 0 · bandViol 0 · labelOverlaps 0 · textClash 0 · outside 0 · foreign 0 · smallFonts 0 ·
 rulerClashes 0 · envelopeViol 0 · notFunnel 0 · countryCount 15/15 · countryContainment 0 (300/300 inside parent for
 all 15) · countryOverlap 0 · zoomInconsistent 0 · countryLabelOverlaps 0 · countryLabelOutside 0 · NEW threadCount 1 ·
-threadLabelsVisible 10 (≥ 4) · threadLabelOverlaps 0 · threadLabelOutside 0. Overall RESULT is FAIL only on the
+threadLabelsVisible 11 (≥ 4) · threadLabelOverlaps 0 · threadLabelOutside 0. Overall RESULT is FAIL only on the
 pre-existing `clipped` (A1 event-label boxes vs viewBox; 160 at session start, 162 now — same class, the z3/z4 event
 layer is out of scope here). Every other gate is at or above the session-10 standard.
 
