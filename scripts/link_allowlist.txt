@@ -14,3 +14,13 @@ https://doi.org/10.1086/286788
 # dspace.mit.edu returns 405 to every non-browser request (bot block); MIT AI Memo 306 (Minsky frames) and Winograd thesis AI-TR-235, both pre-existing citations in research/02
 https://dspace.mit.edu/handle/1721.1/6089
 https://dspace.mit.edu/handle/1721.1/7095
+# openai.com returns 403 to curl; each verified 2026-09-13 via the OpenAI news RSS feed (200) and a web.archive.org snapshot cited alongside in research/08 [121]-[123]
+https://openai.com/index/gpt-6-astra/
+https://openai.com/index/hugging-face-incident-and-the-road-ahead/
+https://openai.com/index/navier-stokes-solution/
+https://openai.com/index/pacing-model-development-cyber-capabilities/
+# paywalled press (403/401 to bots); verified 2026-09-13 via archived copy (FT), syndication (Reuters -> CNBC, cited alongside), reader-proxy headline+lede (The Information, Politico); research/08 [122] [124] [125]
+https://www.ft.com/content/1453e9c2-4922-482f-8720-0bafd7e07df7
+https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/
+https://www.politico.com/news/2026/08/21/openai-calls-for-stronger-ai-laws-in-california-01046512
+https://www.theinformation.com/articles/nvidia-agrees-buy-open-source-model-repository-hugging-face-12-9-billion
