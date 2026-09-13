@@ -1,0 +1,54 @@
+id: reasoning-test-time-compute
+level: country
+name: Reasoning Ridge
+subtitle: "o1, o3, DeepSeek-R1 and thinking models trained with RL on verifiable rewards, 2024–present"
+summary: >
+  The ridge where the RL river re-joins the LLM mainstream. DeepSeekMath
+  introduced GRPO (February 2024) and OpenAI's o1-preview (12 September 2024)
+  was the first "reasoning model", trained with reinforcement learning to think
+  before answering, making test-time compute a new scaling axis; the full o1
+  followed on 5 December 2024 and o3 was announced on 20 December 2024. On
+  20 January 2025 DeepSeek-R1 — open weights, MIT-licensed — matched o1 on
+  reasoning, topped the US App Store on 27 January and triggered a large
+  one-day Nvidia stock drop: the "DeepSeek moment". Google's Gemini 2.5
+  "thinking" model (25 March 2025) and OpenAI's o3 and o4-mini (16 April 2025,
+  with native tool use inside the chain of thought) followed, and GPT-5
+  (7 August 2025) merged reasoning and non-reasoning routing into one model.
+  AlphaProof and AlphaGeometry 2 reached IMO silver-medal standard (25 July
+  2024) and Gemini Deep Think and an OpenAI experimental model reached gold at
+  IMO 2025 (July 2025). The 2024 ACM Turing Award to Andrew Barto and Richard
+  Sutton for reinforcement learning was announced on 5 March 2025.
+time_range: {start: 2024, end: present}
+band: N2
+sub_band: N2b
+biome: wetland
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [11, 13, 14, 56, 57, 59, 62, 93, 100, 108]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/OpenAI_o1, title: "Wikipedia: OpenAI o1", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2501.12948, title: "DeepSeek-AI, DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning, arXiv 2501.12948, 2025", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/OpenAI_o3, title: "Wikipedia: OpenAI o3", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2402.03300, title: "Shao et al., DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models (GRPO), arXiv 2402.03300, 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/, title: "Google, Gemini 2.5: Our most intelligent AI model, 25 Mar 2025", kind: primary, accessed: 2026-09-06}
+  - {url: https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/, title: "Google DeepMind, AI achieves silver-medal standard solving IMO problems, 25 Jul 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Richard_S._Sutton, title: "Wikipedia: Richard S. Sutton (2024 ACM Turing Award)", kind: wikipedia, accessed: 2026-09-06}
+threads: [rl, games, language]
+neighbours:
+  - {id: closed-frontier-labs, relation: borders, note: "o1/o3 and Gemini 2.5 thinking are closed-lab models; GPT-5 folds the ridge back into the flagship"}
+  - {id: open-weights-movement, relation: borders, note: "DeepSeek-R1 is the open reasoning model; GRPO is DeepSeek's RL recipe"}
+  - {id: agents-tooling-coast, relation: borders, note: "o3's tool use inside the chain of thought is where reasoning becomes agency"}
+  - {id: alignment-interpretability-plateau, relation: river, note: "RL on verifiable rewards is the successor to RLHF's reward models"}
+  - {id: compute-hardware-hinterland, relation: road, note: "inference-time scaling turns test-time compute into a hardware demand; R1's cheapness moved Nvidia's price"}
+status: sourced
+notes: >
+  P3-T10 school bullet 4 of 8 ("Reasoning & test-time-compute school").
+  pending-neighbour: deep-rl-delta (west, file 06: "pending-neighbour:
+  reasoning-models (east, file 08)"); pending-neighbour: the RL river (file
+  09a) and game-playing highlands (AlphaZero/MuZero search-plus-learning).
+  Band N2: AXES.md §3 lists "reasoning models" and "o1/R1-style reasoning" as
+  N2 content ("the reasoning band is re-colonised by RL-trained language
+  models"); sub-band N2b = the southern half of N2, next to the language lanes.
+  Biome wetland: the AXES.md palette's RL/control terrain inside a jungle
+  continent (same convention as deep-rl-delta inside the forest basin).
+  time_range starts 2024 (GRPO Feb 2024, o1-preview 12 Sep 2024), within the
+  parent's span. Answers research/08 open question 3 (own A2 by 2026): yes.

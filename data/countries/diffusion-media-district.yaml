@@ -1,0 +1,52 @@
+id: diffusion-media-district
+level: country
+name: The Diffusion Shoreline
+subtitle: "Text-to-image, video, audio and world models from DALL-E 2 to Genie 3, 2022–present"
+summary: >
+  The southern shoreline of the coast is where generative media became ordinary.
+  OpenAI announced DALL-E 2 on 6 April 2022, Midjourney opened its public beta on
+  12 July 2022, and Stability AI publicly released Stable Diffusion — weights and
+  code, built on CompVis latent diffusion — on 22 August 2022, forking the
+  generative-media map into open and closed halves. SDXL 1.0 (26 July 2023) and
+  Stable Diffusion 3 (announced 22 February 2024) reached production quality
+  while Stability's CEO Emad Mostaque resigned (23 March 2024). Video followed:
+  OpenAI previewed Sora on 15 February 2024 (public release December 2024),
+  Google's Veo 3 added native audio (20 May 2025) and Genie 3 (5 August 2025)
+  ran a real-time interactive world model; OpenAI's Sora 2 app (30 September
+  2025) was shut down in April 2026. AlphaFold 3 (8 May 2024) carried
+  diffusion-based generative modelling into structural biology. Along the
+  shore run the copyright suits — Getty v. Stability (2023), the New York Times
+  v. Microsoft and OpenAI (27 December 2023), RIAA v. Suno and Udio (June 2024).
+time_range: {start: 2022, end: present}
+band: S2
+sub_band: [S2a, S2b]
+biome: jungle
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [6, 7, 8, 24, 25, 87, 92, 99, 108, 112]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/DALL-E, title: "Wikipedia: DALL-E", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Midjourney, title: "Wikipedia: Midjourney", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://stability.ai/news/stable-diffusion-public-release, title: "Stability AI, Stable Diffusion Public Release, 22 Aug 2022", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2112.10752, title: "Rombach et al., High-Resolution Image Synthesis with Latent Diffusion Models, arXiv 2112.10752", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Sora_%28text-to-video_model%29, title: "Wikipedia: Sora (text-to-video model)", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/, title: "Google DeepMind, Genie 3: A new frontier for world models, 5 Aug 2025", kind: primary, accessed: 2026-09-06}
+  - {url: https://www.nature.com/articles/s41586-024-07487-w, title: "Abramson et al., Accurate structure prediction of biomolecular interactions with AlphaFold 3, Nature 2024", kind: primary, accessed: 2026-09-06}
+threads: [vision, open-closed]
+neighbours:
+  - {id: closed-frontier-labs, relation: borders, note: "DALL-E 2, Sora and Veo 3 are frontier-lab media products"}
+  - {id: open-weights-movement, relation: borders, note: "Stable Diffusion is the open-weights half of the shoreline"}
+  - {id: policy-governance-coast, relation: road, note: "Getty v. Stability, NYT v. OpenAI and RIAA v. Suno/Udio: the copyright docket runs from this shore to the courthouse"}
+  - {id: compute-hardware-hinterland, relation: borders, note: "video and world models are the coast's most compute-hungry inference workloads"}
+  - {id: agents-tooling-coast, relation: borders, note: "Genie 3 world models and VLA robotics share the embodied shore with the agents causeway"}
+status: sourced
+notes: >
+  P3-T10 school bullet 3 of 8 ("Diffusion / generative-media district").
+  pending-neighbour: deep-generative-shoreline (west, file 06: VAE/GAN lineage
+  that "seeds the Generative Coast"); pending-neighbour: clip-bridge (file 07,
+  conditioning inherited via CLIP); pending-neighbour: computer-vision lineage
+  (file 09g) and deepfake ethics (file 09c). Band S2: perception per AXES.md §3
+  ("diffusion" is listed in S2's examples); sub-band S2a + S2b = the upper two
+  thirds of S2, leaving S2c for the compute hinterland underneath. Biome jungle
+  = parent's. time_range = parent's whole span: DALL-E 2 (6 Apr 2022) is the
+  earliest dated row of research/08 and is why the atlas draws the coast
+  arriving "from the SOUTH first" (site/atlas.html v7 notes).

@@ -1,0 +1,56 @@
+id: alignment-interpretability-plateau
+level: country
+name: The Alignment Plateau
+subtitle: "Constitutional AI, DPO, scaling policies, interpretability and evals, 2022–present"
+summary: >
+  The RLHF canal from InstructGPT widens here into a plateau of lab-side safety
+  method. Anthropic's "Constitutional AI: Harmlessness from AI Feedback"
+  (15 December 2022) replaced human preference labels with model-written
+  critiques against a written constitution; Rafailov and colleagues' Direct
+  Preference Optimization (29 May 2023) removed RLHF's reward-model-plus-PPO
+  loop and was widely adopted by open models. Anthropic's Responsible Scaling
+  Policy (19 September 2023) tied AI Safety Levels to capability thresholds and
+  became the template for the "if-then" frameworks later echoed by OpenAI and
+  DeepMind. The plateau's public face was the risk debate of 2023: the Future of
+  Life Institute's "Pause Giant AI Experiments" letter (22 March), Geoffrey
+  Hinton leaving Google (May) and the Center for AI Safety's Statement on AI
+  Risk (30 May); its private crisis was the OpenAI board's firing and
+  reinstatement of Sam Altman (17–22 November 2023). Ilya Sutskever's Safe
+  Superintelligence Inc. (19 June 2024) is the era's safety-motivated spin-out,
+  and prompt injection — named when Bing Chat's "Sydney" prompt was extracted
+  in February 2023 — its first security class.
+time_range: {start: 2022, end: present}
+band: N1
+sub_band: N1b
+biome: mixed
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [26, 27, 33, 34, 37, 43, 68, 75, 88, 98]}
+sources:
+  - {url: https://arxiv.org/abs/2212.08073, title: "Bai et al., Constitutional AI: Harmlessness from AI Feedback, arXiv 2212.08073, 2022", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2305.18290, title: "Rafailov et al., Direct Preference Optimization, arXiv 2305.18290, 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://www.anthropic.com/news/anthropics-responsible-scaling-policy, title: "Anthropic's Responsible Scaling Policy, 19 Sep 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://futureoflife.org/open-letter/pause-giant-ai-experiments/, title: "Future of Life Institute, Pause Giant AI Experiments: An Open Letter, Mar 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://www.safe.ai/work/statement-on-ai-risk, title: "Center for AI Safety, Statement on AI Risk, 30 May 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Mechanistic_interpretability, title: "Wikipedia: Mechanistic interpretability", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI, title: "Wikipedia: Removal of Sam Altman from OpenAI", kind: wikipedia, accessed: 2026-09-06}
+threads: [safety, rl]
+neighbours:
+  - {id: policy-governance-coast, relation: borders, note: "the FLI letter and CAIS statement fed Bletchley; the RSP is the lab-side mirror of EO 14110's compute thresholds"}
+  - {id: closed-frontier-labs, relation: river, note: "the RLHF canal: Constitutional AI and the RSP are Anthropic's, the Altman crisis OpenAI's"}
+  - {id: reasoning-test-time-compute, relation: river, note: "RL on verifiable rewards succeeds RLHF's learned reward models"}
+  - {id: open-weights-movement, relation: river, note: "DPO is the open models' alignment recipe"}
+  - {id: agents-tooling-coast, relation: borders, note: "prompt injection and agent red-teaming are the plateau's edge toward the causeway"}
+status: sourced
+notes: >
+  P3-T10 school bullet 6 of 8 ("Alignment & interpretability plateau").
+  pending-neighbour: rlhf / instructgpt (west, file 07: "the RLHF canal enters
+  from file 07 at InstructGPT and widens into the alignment plateau");
+  pending-neighbour: ai-safety river (file 09c); pending-neighbour: uk-aisi
+  safety institutes. Band N1: safety/ethics and alignment per AXES.md §3 (N1
+  examples list "alignment"); sub-band N1b = the southern half of N1, under the
+  policy coast in N1a and above the reasoning ridge. Biome mixed: written
+  constitutions and policies applied through RL are genuinely hybrid per the
+  AXES.md palette; differing from the jungle parent (G4 own texture). time_range
+  = parent's whole span (Constitutional AI, 15 Dec 2022). Mechanistic
+  interpretability appears in the school bullet with source [75] only (no
+  dated timeline row), so the summary names it without a date.
