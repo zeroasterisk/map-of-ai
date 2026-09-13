@@ -87,6 +87,7 @@ Eight themes recur in every era of AI history and therefore cannot be drawn as r
 | 2022 (Mar) | Nvidia Hopper architecture / H100 announced at GTC 2022, with a "transformer engine" | [d8] |
 | 2022 (Aug–Oct) | US CHIPS and Science Act signed (9 Aug 2022); US export controls on advanced computing chips to China take effect (7 Oct 2022) — compute becomes statecraft | [d10] |
 | 2024 (18 Mar) | Nvidia Blackwell announced at GTC 2024; Nvidia passes $1T (2023), $4T and $5T (2025) market capitalisation | [d9] |
+| 2026 (25 Aug) | OpenAI publishes first performance results for Jalapeño, its first custom inference chip: pareto-frontier throughput/latency on GPT-OSS 120B, DeepSeek R1 670B and Kimi K2.5 1T, beating prior-best time-between-tokens and tokens/kW; frontier labs join hyperscalers in building their own inference silicon rather than buying it exclusively from Nvidia | [d13] |
 
 **Eras crossed.** Symbolic era (Lisp machines) → AI winter (their collapse) → deep learning (GPUs/CUDA) → Transformer plateau (TPU, scaling laws) → Generative Coast (H100/Blackwell, export controls). Y-position: connectionist/scaling bank after 1999; symbolic bank before.
 
@@ -302,6 +303,7 @@ Artifacts that sit at junctions of two or more threads (see the Timeline above);
 [d10] Wikipedia: CHIPS and Science Act (signed 9 Aug 2022) — https://en.wikipedia.org/wiki/CHIPS_and_Science_Act; Wikipedia: United States New Export Controls on Advanced Computing and Semiconductors to China (effective 7 Oct 2022) — https://en.wikipedia.org/wiki/United_States_New_Export_Controls_on_Advanced_Computing_and_Semiconductors_to_China (accessed 2026-09-06)
 [d11] Wikipedia: Volta (microarchitecture) (May 2017; first Tensor Cores; V100) — https://en.wikipedia.org/wiki/Volta_%28microarchitecture%29; Wikipedia: Cerebras (WSE-1, Aug 2019) — https://en.wikipedia.org/wiki/Cerebras (accessed 2026-09-06)
 [d12] Epoch AI, "Key trends and figures in machine learning" (training compute ~5×/year since 2020) — https://epoch.ai/trends (accessed 2026-09-06)
+[d13] OpenAI, "Jalapeño's first results show industry-leading speed and efficiency in AI inference" (25 Aug 2026) — https://openai.com/index/jalapeno-first-results/ (accessed via Wayback Machine snapshot 2026-09-11, https://web.archive.org/web/20260911215502/https://openai.com/index/jalapeno-first-results/, live site blocked by Cloudflare bot-challenge at access time)
 
 **Thread (e) — Open vs closed**
 [e1] Wikipedia: Weka (software) — https://en.wikipedia.org/wiki/Weka_%28software%29; Wikipedia: Torch (machine learning) — https://en.wikipedia.org/wiki/Torch_%28machine_learning%29; Wikipedia: Theano (software) — https://en.wikipedia.org/wiki/Theano_%28software%29; Wikipedia: Caffe (software) — https://en.wikipedia.org/wiki/Caffe_%28software%29 (accessed 2026-09-06)
