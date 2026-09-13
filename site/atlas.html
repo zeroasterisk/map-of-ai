@@ -140,6 +140,14 @@
 
 <script src="entities.js"></script>
 <script>
+// LOD pilot text sizing. build_tiles.py screenshots lod level z at device_scale_factor 2**z, so a font-size of F plate
+// units renders F * 2**z SCREEN pixels in the tiles. Country / event text is therefore sized from a per-role TARGET in
+// screen px (roughly constant across zoom, as map labels are) and converted: plate font-size = target_px / ZSCALE.
+// Off the tile pipeline (the plain interactive atlas.html) TILESRC is false and the original plate-unit sizes are used.
+const TILESRC = document.documentElement.classList.contains('tilesrc');
+const LOD = TILESRC ? +((/lod(\d)/.exec(document.documentElement.className) || [0, 3])[1]) : 3;
+const ZSCALE = 2 ** LOD;
+const PX = (px, plate) => TILESRC ? px / ZSCALE : plate;   // screen-px target in tile mode, else the legacy plate size
 // Biome → generated terrain texture (site/assets/textures/*.jpg, made once by gen_textures.py + prep_textures.py)
 // and a hand-tint colour used for the border wash and the legend swatch.
 // v10 (per Alan on v9: "if there's some kind of a color coding, it should be on theme but a bit more intense"):
@@ -989,11 +997,14 @@ fetch('registry.json').then(r => r.json()).then(data => {
         [...gKLabels.querySelectorAll(`[data-for="${k.id}"]`), ...gKLeaders.querySelectorAll(`[data-for="${k.id}"]`)].forEach(t => t.remove());
         // LOD pilot: a country with a `tag` (data/events) gets a one-line "what happened here" tag under its name — it
         // is visible from lod2 on (with the years), one level before the subtitle; countries without data are unchanged.
-        const mk = (sN, sS, sub) => { const ts = []; let yy = cy; const nl = wrap(k.name, Math.max(8, Math.floor((bbx.width - 10) / (sN * .72 + 1)))), sl = sub ? wrap(k.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [], tl = k.tag ? wrap(k.tag, Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [];
-          const H = nl.length * (sN + 1) + (sl.length + tl.length) * (sS + 1) + sS; yy = cy - H / 2 + sN * .82;
-          nl.forEach(l => { ts.push(txt(cx, yy, l, 'kname', gKLabels, {'font-size': sN, 'data-for': k.id})); yy += sN + 1; });
-          tl.forEach(l => { ts.push(txt(cx, yy, l, 'ktag', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
-          sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + 1; });
+        // Tile mode: kname targets 34 screen px, tag/sub/years 28 px, at every lod (the whole tier ladder is scaled by
+        // CK, so the "shrink until it fits" order is unchanged); the inter-line gap LG is a constant 4 screen px.
+        const CK = TILESRC ? (34 / ZSCALE) / 10.2 : 1, LG = TILESRC ? 4 / ZSCALE : 1;
+        const mk = (sN, sS, sub) => { sN *= CK; sS *= CK; const ts = []; let yy = cy; const nl = wrap(k.name, Math.max(8, Math.floor((bbx.width - 10) / (sN * .72 + 1)))), sl = sub ? wrap(k.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [], tl = k.tag ? wrap(k.tag, Math.max(14, Math.floor((bbx.width - 10) / (sS * .5)))) : [];
+          const H = nl.length * (sN + LG) + (sl.length + tl.length) * (sS + LG) + sS; yy = cy - H / 2 + sN * .82;
+          nl.forEach(l => { ts.push(txt(cx, yy, l, 'kname', gKLabels, {'font-size': sN, 'data-for': k.id})); yy += sN + LG; });
+          tl.forEach(l => { ts.push(txt(cx, yy, l, 'ktag', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + LG; });
+          sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + LG; });
           ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'kyrs', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
         for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) { const ts = mk(sN, sS, sub); if (fitsInside(land, union(ts), 1)) return; ts.forEach(t => t.remove()); }
         // too small for an inside label: keep name + years near the polygon, on the first offset whose box does not hit
@@ -1042,12 +1053,14 @@ fetch('registry.json').then(r => r.json()).then(data => {
         let sx = 0, sy = 0, sn = 0; for (let x = bbx.x; x <= bbx.x + bbx.width; x += 3) for (let y = bbx.y; y <= bbx.y + bbx.height; y += 3) if (inFill(land, x, y)) { sx += x; sy += y; sn++; }
         const cx = sn ? sx / sn : bbx.x + bbx.width / 2, cy = sn ? sy / sn : bbx.y + bbx.height / 2; let ok = false;
         for (const [dx, dy] of [[0, 0], [0, -14], [0, 14], [-40, 0], [40, 0], [-40, -14], [40, -14], [-40, 14], [40, 14], [-80, 0], [80, 0]]) {
-          const t = txt(cx + dx, cy + dy + 2.5, k.hint, 'khint', gHints, {'font-size': 7, 'data-for': k.id}); const u = grow(t.getBBox(), 0);
+          const t = txt(cx + dx, cy + dy + 2.5, k.hint, 'khint', gHints, {'font-size': PX(16, 7), 'data-for': k.id}); const u = grow(t.getBBox(), 0);   // lod1 (ZSCALE 2): 16 screen px = 8 plate; lanes are too narrow at lod1 for more (28 px fits none)
           if (fitsInside(land, u, 2) && !hitAny(u, visibleBoxes([gLabels, gHints].map(x => x), 4).filter(b => !(b.x === u.x - 4 && b.y === u.y - 4)))) { ok = true; break; } t.remove(); }
         if (!ok) window.LOD_CURATED.hints.push(k.id); }
       // events: lod3 = headline events (lod === 3) at z3 sizes; lod4 = every event at z4 sizes, headline events with
-      // their one_line. Each group is an independent layout against the (shared) country labels.
-      const layers = [[gEv3, e => e.lod <= 3, {n: 4.0, y: 3.0, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 2.3, y: 1.8, l: 1.65, gap: .6, r: .9}, 'ev4']];
+      // their one_line. Each group is an independent layout against the (shared) country labels. Sizes are screen-px
+      // targets divided by that level's device scale (z3 = 8x, z4 = 16x): name 30 → 26 px, year 22 → 19 px, line 19 px
+      // (lod4 packs far more items, so its text is ~13 % smaller — not the 1.5–2x growth the old plate constants gave).
+      const layers = [[gEv3, e => e.lod <= 3, {n: 30 / 8, y: 22 / 8, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 26 / 16, y: 19 / 16, l: 19 / 16, gap: .6, r: .9}, 'ev4']];
       for (const [gE, pick, S, key] of layers) {
         const placed = visibleBoxes([gKLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
         for (const {k, e} of all) { const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();

@@ -1,7 +1,7 @@
 lod0: basin region: 5 text items, 39 chars, 0 event marks; kinds {"cname": 2, "cname haskids": 3}
 lod1: basin region: 7 text items, 122 chars, 0 event marks; kinds {"cname": 2, "csub": 1, "cname haskids": 1, "csub haskids": 1, "khint": 2}
-lod2: basin region: 34 text items, 444 chars, 0 event marks; kinds {"cname": 2, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7}
-lod3: basin region: 66 text items, 648 chars, 16 event marks; kinds {"cname": 2, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7, "kev-name": 16, "kev-year": 16}
-lod4: basin region: 140 text items, 1750 chars, 33 event marks; kinds {"cname": 2, "csub": 1, "kname": 13, "ktag": 11, "kyrs": 7, "kev-name": 33, "kev-year": 33, "kev-line": 40}
-curated out (did not fit, hover-card only): {"hints": ["industrial-lab-founders"], "ev3": ["four-groups-2012", "vgg-googlenet-2014", "seq2seq-2014", "openai-2015", "lee-sedol-2016", "white-house-2016", "china-plan-2017"], "ev4": ["four-groups-2012", "gan-2014", "attention-2014", "seq2seq-2014", "resnet-2015", "openai-2015", "lee-sedol-2016", "gnmt-2016", "white-house-2016", "china-plan-2017", "dnnresearch-2013", "show-and-tell-2014", "style-transfer-2015", "dcgan-2015", "pixelrnn-2016", "sensetime-ilsvrc-2016", "vector-2017"]}
+lod2: basin region: 32 text items, 446 chars, 0 event marks; kinds {"cname": 2, "csub": 1, "kname": 12, "ktag": 10, "kyrs": 7}
+lod3: basin region: 72 text items, 928 chars, 20 event marks; kinds {"cname": 2, "csub": 1, "kname": 10, "ktag": 8, "kyrs": 7, "ksub": 4, "kev-name": 20, "kev-year": 20}
+lod4: basin region: 201 text items, 2950 chars, 47 event marks; kinds {"cname": 2, "csub": 1, "kname": 8, "ktag": 7, "ksub": 7, "kyrs": 7, "kev-name": 47, "kev-year": 47, "kev-line": 75}
+curated out (did not fit, hover-card only): {"hints": [], "ev3": ["white-house-2016"], "ev4": ["ntm-2014", "show-and-tell-2014", "sensetime-ilsvrc-2016"]}
 LOD LABEL GATE: PASS
