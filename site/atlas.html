@@ -96,7 +96,7 @@
      waterlines, rocks and the v11 continent fills/borders/coast. Screenshotted at device-scale 8 → 14400×5600. */
   html.tilesrc body { background: #dccfae; margin: 0; }
   html.tilesrc .wrap { margin: 0; padding: 0; max-width: none; overflow: visible; }
-  html.tilesrc svg#map { width: 1800px; height: 700px; min-width: 0; border: 0; outline: 0; box-shadow: none; }
+  html.tilesrc svg#map { width: 1800px; height: 1050px; min-width: 0; border: 0; outline: 0; box-shadow: none; }   /* v12 Y-funnel: plate is 1800×1050 (tile pyramid rebuild pending) */
   /* tile renders at DPR 8/16 hint sub-3px glyph advances to whole device px (bunched/gapped letters in the z4 tiles):
      geometricPrecision turns hinting off so tiny type is set with true metrics */
   html.tilesrc svg#map text { text-rendering: geometricPrecision; }
@@ -193,7 +193,18 @@ const BAND_NAME = {N1:'philosophy & foundations', N2:'logic, knowledge, reasonin
 // ---- X scale: AXES.md §1 piecewise (1943–74 1×, 1974–2006 1.5×, 2006–17 3×, 2017–present 6×); pre-1943 log-compressed archipelago.
 const NOW = new Date(); const PRESENT = NOW.getFullYear() + (NOW.getMonth()) / 12;
 const SEG = [[1943,1974,1],[1974,2006,1.5],[2006,2017,3],[2017,PRESENT,6]];
-const W = 1800, H = 700, PAD_L = 24, PAD_R = 200, ARCH_W = 150, MAP_TOP = 150, MAP_BOT = 560, RULER_Y = 618;
+// ---- Y scale (Y-FUNNEL v12): the vertical extent of the plate is NOT constant either. The five bands keep their order
+// and their relative position everywhere, but the per-band HEIGHT grows with the year the same way the X axis's
+// width-per-year does (SEG): YSEG is a table of [year, scale] anchors, yScale(yr) is piecewise-LINEAR between them,
+// 1× (the legacy 82 px band) for everything up to 2017 and 2× at the present-day coast. All authoring (ROWY, BY,
+// LABEL anchors, ENV, the fine country rows) stays in the 1× PLATE frame; the scale is applied as one more
+// continuous transform in warp(), after the noise and before the spine shear — FY(x, y) stretches plate y about the
+// centre of band C (MAP_MID) by yScale(yearAt(x)). So pre-2017 land is exactly the v11 geometry (moved down as a
+// block inside the taller canvas), the Transformer Plateau grows ≤ 10 %, and the Generative Coast's mouth opens
+// 1.3× (2024) → 1.6× (2025.2) → 2× (now): the recent east, where the country/event density is, gets the vertical
+// room; older eras are not redrawn. check_layout.py judges bands in the same 1× frame via plateY() (the inverse).
+//   yScale:  ≤2017 1.00 | 2022 1.10 | 2024 1.30 | 2025.2 1.60 | present 2.00   (band 82 → 90 → 107 → 131 → 164 px)
+const W = 1800, H = 1050, PAD_L = 24, PAD_R = 200, ARCH_W = 150, RULER_Y = 975;
 const mainW = W - PAD_L - PAD_R - ARCH_W;
 const units = SEG.reduce((s,[a,b,k]) => s + (b-a)*k, 0);
 const pxPerUnit = mainW / units;
@@ -208,9 +219,26 @@ function xMain(y) {
 }
 function xArch(y) { const d = Math.max(1, 1943 - y); const t = Math.log(d + 1) / Math.log(1943 - 1600 + 1); return PAD_L + ARCH_W - 14 - t * (ARCH_W - 34); }
 function X(y) { return y >= 1943 ? xMain(y) : xArch(y); }
-const bandH = (MAP_BOT - MAP_TOP) / BANDS.length;
+// inverse of xMain: the year at plate x (clamped to [1943, PRESENT]); the Y scale is a function of x through this
+function yearAt(x) {
+  let x0 = PAD_L + ARCH_W;
+  if (x <= x0) return 1943;
+  for (const [a,b,k] of SEG) { const w = (b - a) * k * pxPerUnit; if (x <= x0 + w) return a + (x - x0) / (k * pxPerUnit); x0 += w; }
+  return PRESENT;
+}
+const YSEG = [[2017, 1], [2022, 1.1], [2024, 1.3], [2025.2, 1.6], [PRESENT, 2.0]];
+function yScale(yr) {
+  if (yr <= YSEG[0][0]) return YSEG[0][1];
+  for (let i = 1; i < YSEG.length; i++) { const [a, sa] = YSEG[i - 1], [b, sb] = YSEG[i]; if (yr <= b) return sa + (sb - sa) * (yr - a) / (b - a); }
+  return YSEG[YSEG.length - 1][1];
+}
+// the 1× authoring frame is the v11 plate UNCHANGED (150–560): warp()'s noise is sampled in these coordinates, so
+// keeping them keeps every pre-2017 wobble bit-identical; Y_OFF just re-centres the 1× frame in the taller canvas
+const MAP_TOP = 150, MAP_BOT = 560, bandH = (MAP_BOT - MAP_TOP) / BANDS.length, MAP_MID = (MAP_TOP + MAP_BOT) / 2, Y_OFF = 165;
 function bandTop(b) { return MAP_TOP + BANDS.indexOf(b) * bandH; }
-const BY = (b, f) => bandTop(b) + f * bandH;   // y at fraction f (0 top → 1 bottom) of band b
+const BY = (b, f) => bandTop(b) + f * bandH;   // 1× plate y at fraction f (0 top → 1 bottom) of band b
+const FY = (x, py) => Y_OFF + MAP_MID + (py - MAP_MID) * yScale(yearAt(x));   // 1× plate y → Y-funnel canvas y at plate x
+const FYinv = (x, fy) => MAP_MID + (fy - Y_OFF - MAP_MID) / yScale(yearAt(x));
 
 // ---- v5 spine. The whole plate is sheared vertically along a gentle S-curve so the landmass reads as a winding
 // continent instead of a horizontal strip. x is STILL exactly time (the ruler is untouched); band rows follow the
@@ -218,7 +246,11 @@ const BY = (b, f) => bandTop(b) + f * bandH;   // y at fraction f (0 top → 1 b
 // what check_layout.py subtracts before comparing a fill's y-extent with its registry band span.
 const SPINE_AMP = 46;
 function spineY(x) { const t = (x - PAD_L) / (W - PAD_L - PAD_R); return SPINE_AMP * (Math.sin(t * Math.PI * 1.55 - 0.35) * 0.85 + Math.sin(t * Math.PI * 3.3 + 1.1) * 0.18); }
-const SY = (x, y) => y + spineY(x);       // plate → spine-bent screen y
+// v12: plate → screen is now Y-funnel THEN spine: SY(x, y) = FY(x, y) + spineY(x). Everything that goes through SY /
+// warp (land, coast, country rows, label anchors, graticule latitudes, band legend) fans out toward the east
+// coast by construction; plateY(x, sy) is the exact inverse, used by check_layout.py to judge bands in the 1× frame.
+const SY = (x, y) => FY(x, y) + spineY(x);       // 1× plate → screen y (funnel + spine)
+const plateY = (x, sy) => FYinv(x, sy - spineY(x));
 const BYS = (yr, b, f) => SY(X(yr), BY(b, f));   // screen y of band fraction f at year yr
 
 // ---- Placement (render-only; not registry data). v4: ONE contiguous mainland.

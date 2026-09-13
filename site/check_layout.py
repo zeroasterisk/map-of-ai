@@ -94,7 +94,7 @@ JS = r"""
   for (const c of mainland) { const a = bb(c.lands[0]); let bad = 0, tot = 0; for (let x = a.x; x <= a.r; x += 4) for (let y = a.y; y <= a.b; y += 4) if (inFill(c.lands[0], x, y)) { tot++; if (!inFill(coastMain, x, y)) bad++; } if (bad) outsideCoast.push({id: c.id, bad, tot}); }
   // 1d. registry fidelity: each mainland fill stays inside its REGISTRY band span (± BAND_SLACK px of hand-drawn
   //     wobble) and its X extent matches its start/end years (± YEAR_SLACK px). v5: the plate is bent along the
-  //     spine, so band membership is judged in PLATE coordinates: y_plate = y_screen - spineY(x), sampled over the
+  //     spine and (v12) stretched by the Y-funnel, so band membership is judged in 1x PLATE coordinates: y_plate = plateY(x, y_screen) (the renderer's exact inverse), sampled over the
   //     fill (a bbox would mix the spine's rise into the band extent).
   const {BANDS_Y, SPANS, BAND_SLACK, YEAR_SLACK} = cfg;
   const bandViol = [];
@@ -103,7 +103,7 @@ JS = r"""
     const s = SPANS[c.id]; if (!s) continue; const a = bb(c.lands[0]);
     const yTop = BANDS_Y[s.bands[0]][0] - BAND_SLACK, yBot = BANDS_Y[s.bands[1]][1] + BAND_SLACK;
     let pyMin = 1e9, pyMax = -1e9;
-    for (let x = Math.floor(a.x); x <= a.r; x += 2) for (let y = Math.floor(a.y); y <= a.b; y += 2) if (inFill(c.lands[0], x, y)) { const py = y - spineY(x); if (py < pyMin) pyMin = py; if (py > pyMax) pyMax = py; }
+    for (let x = Math.floor(a.x); x <= a.r; x += 2) for (let y = Math.floor(a.y); y <= a.b; y += 2) if (inFill(c.lands[0], x, y)) { const py = plateY(x, y); if (py < pyMin) pyMin = py; if (py > pyMax) pyMax = py; }
     plateExtent[c.id] = [+pyMin.toFixed(0), +pyMax.toFixed(0)];
     yearExtent[c.id] = [+(a.x - s.x0).toFixed(0), +(a.r - s.x1).toFixed(0)];   // px offset of the drawn x-extent from the registry years (−: earlier, +: later)
     // v7: a region may legitimately NOT fill its envelope (recede-to-sea is artistic license), so only the OUTER
@@ -130,7 +130,7 @@ JS = r"""
     for (let i = 0; i < ENV.length; i++) {
       const x = X((COLS[i] + COLS[i + 1]) / 2), yN = ROWY[ENV[i][0]] - BAND_SLACK, yS = ROWY[ENV[i][1] + 1] + BAND_SLACK;
       let top = null, bot = null, beyond = 0;
-      for (let y = ROWY[0] - 40; y <= ROWY[ROWY.length - 1] + 40; y += 1) { const sy = y + spineY(x); if (inFill(coastMain, x, sy)) { if (top === null) top = y; bot = y; if (y < yN || y > yS) beyond++; } }
+      for (let y = ROWY[0] - 40; y <= ROWY[ROWY.length - 1] + 40; y += 1) { const sy = SY(x, y); if (inFill(coastMain, x, sy)) { if (top === null) top = y; bot = y; if (y < yN || y > yS) beyond++; } }
       profile.push({yr: +COLS[i].toFixed(1), env: [+ROWY[ENV[i][0]].toFixed(0), +ROWY[ENV[i][1] + 1].toFixed(0)], land: top === null ? null : [top, bot], thick: top === null ? 0 : bot - top});
       if (beyond) envViol.push({yr: COLS[i], beyond, land: [top, bot], env: [yN, yS]});
     }
@@ -150,7 +150,7 @@ JS = r"""
       const a = bb(c.lands[0]); const rows = [];
       for (let j = 0; j < ROWY.length - 1; j++) {
         const py = (ROWY[j] + ROWY[j + 1]) / 2; let w = null, e = null;
-        for (let x = Math.floor(a.x); x <= a.r; x += 1) if (inFill(c.lands[0], x, py + spineY(x))) { if (w === null) w = x; e = x; }
+        for (let x = Math.floor(a.x); x <= a.r; x += 1) if (inFill(c.lands[0], x, SY(x, py))) { if (w === null) w = x; e = x; }
         if (w !== null) rows.push({row: j, west: w, east: e});
       }
       const ws = rows.map(r => r.west), es = rows.map(r => r.east);
@@ -243,7 +243,7 @@ JS = r"""
   const shape = {};
   for (const c of mainland) {
     const p = c.lands[0]; const a = bb(p); const tops = [], bots = [], hs = [];
-    for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(t - spineY(x)); bots.push(bt - spineY(x)); hs.push(bt - t); } }
+    for (let x = Math.floor(a.x) + 14; x <= a.r - 14; x += 4) { let t = null, bt = null; for (let y = Math.floor(a.y); y <= a.b; y += 1) if (inFill(p, x, y)) { if (t === null) t = y; bt = y; } if (t !== null) { tops.push(plateY(x, t)); bots.push(plateY(x, bt)); hs.push(plateY(x, bt) - plateY(x, t)); } }
     if (tops.length) shape[c.id] = {northP2P: +(Math.max(...tops) - Math.min(...tops)).toFixed(0), southP2P: +(Math.max(...bots) - Math.min(...bots)).toFixed(0), height: [+Math.min(...hs).toFixed(0), +Math.max(...hs).toFixed(0)], width: +(a.r - a.x).toFixed(0)};
   }
   return {fronts, continents: conts.length, lands: allLands.length, coastLoops: coastPaths.length, overlaps, notAdjacent, outsideCoast, bandViol, envViol, profile, funnel, funnelOK, plateExtent, yearExtent, borders, spineRise, hairpins, shape, flatFills, fillSamples, labelOverlaps, textClash, outside, foreign, clipped, leaderProblems, smallFonts, rulerClashes, images, viewBox: [vb.width, vb.height]};
