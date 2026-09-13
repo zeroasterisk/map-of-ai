@@ -1,6 +1,32 @@
-# STATUS — as of 2026-09-13 (session 9: LOD pilot fixes — text no longer grows on zoom-in; event leaders read as leaders)
+# STATUS — as of 2026-09-13 (session 10: Generative Coast decomposed into 8 countries — density stress-test, data layer only)
 
 ## One-line status
+
+**Session 10 — P2-T10 + P3-T10 (Generative Coast, 2022–present) data layer shipped 2026-09-13.** Alan: "the map
+looks sparse to me … We can try the most current timeframe and see what dense looks like." Coverage matrix
+`data/coverage/generative-coast.md` maps research/08's 8 `## Schools of thought` bullets 1:1 to 8 countries (8 < SPEC
+§4.3 cap of 9; 0 merged, 0 dropped): `closed-frontier-labs` The Closed Frontier (Ca) · `open-weights-movement` The
+Open-Weights Commons (Cb, 2023–) · `diffusion-media-district` The Diffusion Shoreline (S2a+S2b) ·
+`reasoning-test-time-compute` Reasoning Ridge (N2b, 2024–, wetland) · `agents-tooling-coast` The Agents Causeway
+(S1a+S1b, mixed) · `alignment-interpretability-plateau` The Alignment Plateau (N1b, mixed) · `policy-governance-coast`
+The Policy Coast (N1a, 2023–, highland) · `compute-hardware-hinterland` The Compute Hinterland (S2c, harbour).
+`data/continents/generative-coast.yaml` (P2-T10) written in the same session because validate.py V-30 needs the
+parent. Sourcing: all 59 country `sources[].url` + 8 continent urls are byte-identical substrings of research/08's
+`## Sources`; every `research_ref.sources` int exists there (V-22); every dated fact in the 9 summaries was
+spot-checked by grep against research/08's timeline (Midjourney 12 Jul 2022, GroqCloud 19 Feb 2024, Nvidia $4T, 28
+countries at Bletchley, Qwen3.8, Muse Spark, Sora 2, Cowork, $5.6M, Mostaque, Sydney, SSI, AlphaProof, Kimi K2, Gemma 4,
+Turing Award, 100 million — all present). `scripts/validate.py` → files=19 rules=25 fails=0 **including V-20 live
+links**. Render wiring: `site/atlas.html` country grid gained N1a/N1b/N2a/N2b fine rows (the coast is the only
+full-height continent), 2023/2024 sub-columns and `end: 'present'` → E; `build_entities_json.py` / `validate.py`
+SUB_BANDS now list N1a–N2b; `entities.json` = 17 countries, 15 spatial. `check_layout.py` (N_COUNTRIES 7 → 15): all
+country gates PASS — countryCount 15/15, containment 300/300 inside parent for all 15, zero-overlap 0 pairs, 0 label
+overlaps, 0 labels outside, A2 zoom consistent. Its overall RESULT is FAIL only on `clipped` (A1 event labels near
+the viewBox edge), which is pre-existing: 179 before this change, 160 after (verified by `git stash`). Evidence:
+`docs/screens/generative-coast-a2.png` (A2 country view: 8 stacked provinces N→S, each with name + years; new
+`site/probe_continent_countries.py <continent-id>` prints per-country bbox + visible labels). NOT done (Phase 2,
+separate task): z0–z5 tiles, `data/events/generative-coast.yaml`, hints, headline events; deep-learning-basin data
+and tiles untouched. Known: `site/probe_countries.py` times out on `#shapes .continent` visibility at baseline too
+(pre-existing, not investigated).
 
 **LEAFLET v3.1 (LOD pilot fixes) shipped 2026-09-13** — https://zeroasterisk.github.io/map-of-ai/
 **Alan on v3:** "text is crazy big, when you zoom in it should have resized" and "I don't understand the red lines".
@@ -315,8 +341,8 @@ Open <https://zeroasterisk.github.io/map-of-ai/> (GitHub Pages, deployed from
 | P1 research coverage | P1-T1…T9, T10, T11 | **done** | commits `7bc7c72` (T11), `89793c3` `c096929` `937d2bf` `28bb209` `40ae90b` `32d271b` `4296598` `58b035d` `8bbfbbe`; all nine files `Status: reviewed`; `scripts/check_research.py research/0*.md` → R-01…R-07 PASS for every file; review reports in `data/reviews/2026-09-06-research-0N.md` |
 | P2-T1 registry | P2-T1 | **done, proposed** | commit `95e9323`; `scripts/check_registry.py` → 13/13 PASS |
 | P2-T1-RENDER | render + Pages | **done, live (v11)** | commits `1247b0b` … `47cf0d2`; Pages workflow green; live URL HTTP 200 with title text; headless Chromium draws 10 continents, 0 JS errors; `site/check_layout.py` PASS |
-| P2-T2…T13 | continents | **P2-T8 done** (`data/continents/deep-learning-basin.yaml`, status sourced); T2–T7, T9–T13 not started, unblocked (registry-frozen) | validate.py 0 FAIL incl. V-20 |
-| P3 countries | P3-T1…T12 | **P3-T8 done** (9 countries, coverage Table 1 = 9/9 bullets); A-K2 refs⊆bullet checked for all 9; P3-RENDER spec written (`SPEC.md` §9), not built; T1–T7, T9–T12 not started | `scripts/validate.py --summary` → country total=9 sourced=9, fails=0 |
+| P2-T2…T13 | continents | **P2-T8, P2-T10 done** (`data/continents/deep-learning-basin.yaml`, `generative-coast.yaml`, status sourced); T2–T7, T9, T11–T13 not started, unblocked (registry-frozen) | validate.py 0 FAIL incl. V-20 |
+| P3 countries | P3-T1…T12 | **P3-T8 done** (9 countries, coverage Table 1 = 9/9 bullets); **P3-T10 done** (8 countries, Table 1 = 8/8 bullets, all spatial, rendered at A2); A-K2 refs⊆bullet checked; T1–T7, T9, T11–T12 not started | `scripts/validate.py` → files=19 fails=0; `check_layout.py` country gates 15/15 |
 | P4 city pilot | P4-T1…T8 | not started | — |
 | P5 frontier intake | P5-T0, P5-R1…R6 | **deferred by Alan, not scheduled** (`PLAN.md` §7 header) | — |
 | P6 quality | P6-T1…T5 | not started | — |

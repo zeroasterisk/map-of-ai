@@ -351,3 +351,53 @@ line … thin, unbroken, lighter". Evidence: docs/screens/lod4-leaders-after.png
 Gates: check_lod.py PASS (ink mass z0→z4 20.0 → 49.7 → 171.6 → 322.4 → 569.1, all steps gain); check_lod_labels.py
 PASS (0 overlaps, 0 dots outside, 0 off-plate at every level; lod1 hints 2/2 placed). Tiles rebuilt twice (fix 1,
 fix 2), ~8.5 min each. Screens: docs/screens/lod2-{0..4}.png, lod-tiles-same-region.png.
+
+## Session 10 — 2026-09-13 — Generative Coast → 8 countries (density stress-test, PHASE 1: data layer only)
+
+Alan: "the map looks sparse to me … We can try the most current timeframe and see what dense looks like." Task
+scoped to data + wiring; tiles/events/hints are Phase 2.
+
+**Coverage decision** (`data/coverage/generative-coast.md`, P3-T10): research/08's `## Schools of thought` has exactly
+8 bullets (awk count 8 = Table 1 rows, A-M2); each becomes a country, none merged/dropped, 8 < SPEC §4.3 cap 9. Ids +
+names: `closed-frontier-labs` The Closed Frontier · `open-weights-movement` The Open-Weights Commons ·
+`diffusion-media-district` The Diffusion Shoreline · `reasoning-test-time-compute` Reasoning Ridge ·
+`agents-tooling-coast` The Agents Causeway · `alignment-interpretability-plateau` The Alignment Plateau ·
+`policy-governance-coast` The Policy Coast · `compute-hardware-hinterland` The Compute Hinterland. Research/08's own
+"Map notes" suggested A2 labels by institution; Table 1 follows the school bullets per A-K2 (institutions → P4 cities).
+
+**Placement** (one lane each, N→S, so the full-height coast is a 9-row stack): N1a policy · N1b alignment · N2b
+reasoning (2024–) · Ca closed labs · Cb open weights (2023–) · S1a+S1b agents · S2a+S2b diffusion · S2c compute.
+Biomes: jungle (parent) for the three model districts; wetland reasoning (RL), mixed agents + alignment, highland
+policy (hand-authored rules), harbour compute. Two deliberate A-K7 calls recorded in the coverage notes: compute drawn
+as territory although AXES.md says "hardware → roads" (tooling-guild was demoted in the basin) so all 8 land on the
+raster for the density test; policy highland vs grassland.
+
+**P2-T10 written in-session** (`data/continents/generative-coast.yaml`): validate.py V-30 rejects a country whose
+parent file doesn't exist, so the continent yaml was authored from research/08's summary + Sources (not in the task
+brief, unavoidable).
+
+**Sourcing proof:** script check — all 59 country urls + 8 continent urls are exact substrings of research/08; all
+research_ref ints ∈ its [1]–[120]; summary word counts 163–209 (country range 80–220). Grep spot-checks of 20 dated
+facts all hit (two first "misses" — Midjourney "12 Jul", "$4T" — were my grep patterns, the facts are in rows 15/48).
+`scripts/validate.py` (with V-20 live links) → files=19 rules=25 fails=0.
+
+**Step 3 mechanics (the hidden part):** there is NO cell-assignment file. `site/atlas.html` derives country polygons
+from `time_range` × `sub_band` × parent ownership (`fineCell`) over a fine grid `FINE` (rows) × `SUBCOLS` (years).
+Three gaps, all fixed in atlas.html: (1) `FINE` only had C/S1/S2 rows → added N1a/N1b/N2a/N2b (each = one continent
+row, f 0–1); (2) `SUBCOLS` lacked 2023/2024 → added; (3) `fineCell` compared `SUBCOLS[i+1] <= k.end` with the string
+'present' → `kEnd(k)` maps 'present' → E (present-day coast). `build_entities_json.py` + `validate.py` SUB_BANDS enum
+extended with N1a–N2b. Build → `entities.json` 17 countries (15 spatial). No basin data/tiles touched; basin's 7
+polygons unchanged (check_layout containment/overlap still pass for them).
+
+**Verification:** `check_layout.py` N_COUNTRIES 7→15; country gates all PASS (count 15, containment 300/300 ×15,
+zero-overlap 0 pairs, label overlaps 0, outside 0, A2 zoom consistent, A1 country labels hidden). Overall RESULT FAIL
+is the pre-existing `clipped` gate (A1 event labels at viewBox edge): 179 at baseline via `git stash`, 160 now.
+Screenshot `docs/screens/generative-coast-a2.png` (new `site/probe_continent_countries.py generative-coast`, serves
+site/ over localhost — file:// fails on the registry.json fetch): A2 view of the coast shows 8 stacked provinces with
+distinct fills (tan hachured policy strip on top, purple alignment, blue-hachured reasoning wedge on the east coast,
+dark forest closed frontier, thin teal open-weights band, broad purple agents block, olive stippled diffusion
+shoreline, tan compute foot) each with name + years label inside its polygon; Open-Weights Commons label is tight
+vertically (single Cb lane) — a Phase 2 label-fit note, not a gate failure. `site/probe_countries.py` times out at
+baseline too (pre-existing).
+
+Commits: 7b0c1fa coverage · 0f5a39a continent + 8 countries · 0654d92 wiring + screenshot · (this) STATUS/LOG.
