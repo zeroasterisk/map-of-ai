@@ -139,6 +139,10 @@
   /* lod2/3: as in A2, a continent whose countries are labelled hides its own (huge) name + leader — it would sit on
      top of its country labels (haskids is set by drawCountries on the parent's label/leader elements) */
   html.tilesrc.lod2 .haskids, html.tilesrc.lod3 .haskids, html.tilesrc.lod4 .haskids { display: none; }
+  /* thread labels: macro A1 feature labels (SILICON RANGE, milestone summits) belong on the continent-scale
+     overview (lod0). Zooming in reveals country hints (lod1), country names (lod2), and paper milestones (lod3/4),
+     so static macro thread labels are hidden to let country/paper labels occupy the space cleanly */
+  html.tilesrc.lod1 #thread-labels, html.tilesrc.lod2 #thread-labels, html.tilesrc.lod3 #thread-labels, html.tilesrc.lod4 #thread-labels { display: none; }
 </style>
 <script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(4, +m[1]) : 4)); }</script>
 </head>

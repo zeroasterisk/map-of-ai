@@ -20,11 +20,11 @@ JS = """() => {
   const inFill = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInFill(pt); };
   const dots = [...document.querySelectorAll('.kev-dot')].filter(vis); const bad = [];
   for (const d of dots) { const land = document.querySelector(`.country[data-id="${d.dataset.for}"] path.cland`); if (!inFill(land, +d.getAttribute('cx'), +d.getAttribute('cy'))) bad.push(d.dataset.ev); }
-  const W = 1800, H = 700; const out = B.filter(b => b.e && (b.x < 0 || b.r > W || b.y < 0 || b.b > H)).map(b => b.s);
+  const W = 1800, H = 1050; const out = B.filter(b => b.e && (b.x < 0 || b.r > W || b.y < 0 || b.b > H)).map(b => b.s);
   const count = {}; for (const b of B) count[b.c] = (count[b.c] || 0) + 1;
   const evs = new Set(B.filter(b => b.e).map(b => b.e)).size;
-  // information inside the pilot region (Deep Learning Basin land bbox): distinct text items, characters, event marks
-  const R = [804, 320, 1190, 608]; const inR = b => b.r > R[0] && b.x < R[2] && b.b > R[1] && b.y < R[3];
+  // information inside the pilot region (Deep Learning Basin land bbox, Y shifted by Y_OFF=165 in 1050-h plate)
+  const R = [804, 485, 1190, 773]; const inR = b => b.r > R[0] && b.x < R[2] && b.b > R[1] && b.y < R[3] && !/^thr-/.test(b.c);
   const rb = B.filter(inR); const items = rb.length, chars = rb.reduce((a, b) => a + b.s.length, 0), marks = dots.filter(d => { const x = +d.getAttribute('cx'), y = +d.getAttribute('cy'); return x > R[0] && x < R[2] && y > R[1] && y < R[3]; }).length;
   const kinds = {}; for (const b of rb) kinds[b.c] = (kinds[b.c] || 0) + 1;
   return {overlaps: ov, dots_outside: bad, off_plate: out, count, events: evs, texts: B.length, curated: window.LOD_CURATED || null, region: {items, chars, marks, kinds}};

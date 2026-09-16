@@ -7,13 +7,9 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** `47cf0d2` (v11 — biome fills visibly tinted, SHIPPED 2026-09-09)
-- **In-flight job:** none.
-- **Host note (2026-09-09):** the v10 session ran on a fresh host — no
-  `/home/node/map-of-ai` clone, no `/tmp/pw*` Playwright setup, no `gh` in
-  `~/.local/bin` (system `/usr/bin/gh` exists). Clone + the
-  `headless-chromium-sandbox` skill recipe rebuilt everything in ~3 min;
-  don't assume `/tmp` state survives between sessions.
+- **HEAD at write time:** session 12 (Y-funnel 1800×1050 + Silicon Range + rebuilt z0–z4 tile pyramid, merged to main)
+- **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
+- **Gates:** `check_lod_labels.py` PASS (0 text overlaps across lod 0–4, monotonic density growth); `check_layout.py` PASS across all structural & thread gates (clipped only on pre-existing 162 A1 event boxes).
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 

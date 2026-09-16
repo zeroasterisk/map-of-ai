@@ -1,3 +1,19 @@
+# STATUS — as of 2026-09-16 (session 12: Tile pyramid rebuild for 1800×1050 + Silicon Range + Leaflet verification + cron watchdog)
+
+## One-line status
+
+**Session 12 — merged to `main`, full tile pyramid (z0–z4, 3069 tiles, 94.4 MB) regenerated for 1800×1050 plate height and Silicon Range; Leaflet map verified; 3-hour cron watchdog registered.**
+
+- **Merged & Flattened to main:** `axis-recalibration-y-height-hardware-range` merged into `main` after resolving citation ordering in `research/09` (Jalapeño as `[d13]`, Redwood as `[d14]`).
+- **LOD Label Gate PASS:** Configured `#thread-labels` in `site/atlas.html` to render at A1 macro scale (lod0) and hide at lod1–4, letting regional country names, hints, and paper events occupy the space without collision. Updated `check_lod_labels.py` for the Y-funnel offset. Result: 0 text overlaps across all zoom levels, monotonic information density growth verified.
+- **Tile Pyramid Rebuilt:** `build_tiles.py` executed across all levels z0–z4 for the new 1800×1050 canvas. Total 3069 tiles generated (z0: 40, z1: 135, z2: 493, z3: 1881, z4: 560), meta.json updated (`plate: [1800, 1050]`).
+- **Anchors Updated:** `build_anchors.py` executed, producing 25 centroid anchors in `anchors.json` matching the new Y coordinates.
+- **Leaflet Viewer Verified:** Captured Playwright screenshots (`leaflet-rebuild-A1.png`, `leaflet-deep-learning-basin.png`, `leaflet-generative-coast.png`), confirmed seamless rendering, full Generative Coast vertical extent, and intact Silicon Range relief without missing tiles or tearing.
+- **Watchdog & Cron:** Created `/home/node/agent/scripts/map_of_ai_watchdog.py` (checks running jobs and thread turn timestamp <30m) and scheduled `map-of-ai-rework-trigger` cronjob (`every 3h`) to trigger re-work when idle >30m.
+
+---
+### Session 11 (kept for reference)
+
 # STATUS — as of 2026-09-13 (session 11: Y-funnel geometry + the Silicon Range — the first cross-cutting linear thread)
 
 ## One-line status

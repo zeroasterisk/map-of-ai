@@ -37,7 +37,7 @@ from PIL import Image
 
 Image.MAX_IMAGE_PIXELS = None
 SITE = Path(__file__).resolve().parent
-PLATE = (1800, 700)   # must match W, H in atlas.html
+PLATE = (1800, 1050)   # must match W, H in atlas.html
 SEA = (0xDC, 0xCF, 0xAE)  # atlas.html sea base colour: padding outside the plate
 
 

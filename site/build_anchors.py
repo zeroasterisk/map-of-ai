@@ -26,7 +26,7 @@ class Quiet(SimpleHTTPRequestHandler):
 httpd = ThreadingHTTPServer(("127.0.0.1", 8797), partial(Quiet, directory=str(SITE))); httpd.daemon_threads = True
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 with sync_playwright() as p:
-    b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1800, "height": 900})
+    b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1800, "height": 1050})
     errs = []; pg.on("pageerror", lambda e: errs.append(str(e)))
     pg.goto("http://127.0.0.1:8797/atlas.html", wait_until="networkidle"); pg.wait_for_selector("#shapes .continent"); pg.wait_for_timeout(800)
     assert not errs, errs
@@ -35,6 +35,6 @@ httpd.shutdown()
 ent = json.loads((SITE / "entities.json").read_text())
 ids = {e["id"] for k in ("continents", "countries") for e in ent[k]}
 missing = sorted(ids - set(anchors)); extra = sorted(set(anchors) - ids)
-(SITE / "anchors.json").write_text(json.dumps({"plate": [1800, 700], "anchors": anchors}, separators=(",", ":"), sort_keys=True) + "\n")
+(SITE / "anchors.json").write_text(json.dumps({"plate": [1800, 1050], "anchors": anchors}, separators=(",", ":"), sort_keys=True) + "\n")
 print(f"anchors.json: {len(anchors)} anchors; in entities.json but not drawn (no ?place= target): {missing}; drawn but not in entities.json: {extra}")
 for k, v in sorted(anchors.items()): print(f"  {k:28s} {v['level']:9s} x={v['x']:7.1f} y={v['y']:6.1f} bbox={v['bbox']}")
