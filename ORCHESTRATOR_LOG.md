@@ -493,3 +493,46 @@ with one-line facts, EO 14110, Getty, Pause letter), `-frontier-z4`, `-agents-z4
 or larger per-event fonts at lod 4 — unchanged from session 12. (2) A vision pass flagged one z4 marker sitting on the
 GPT-4o fact line in the Closed Frontier; the gate's box test passes (dot vs text box), so it is a gap ≤ 1 unit, not an
 overlap — worth a `S.gap` bump for lod 4 later. (3) `clipped` still non-zero by design (A1 event boxes east of plate).
+
+## Session 15 (2026-09-16) — staged-candidate promotion (research/08 + /09), lod-4 `S.gap` .6 → 1.0, z4 tiles rebuilt
+
+**Why.** Two items had been sitting in STATUS since sessions 13–14: the innermost-loop staging file
+(`data/staging/innermost-loop-candidates.md`) kept accumulating sourced 2026 events that the curated corpus did not
+carry, and the lod-4 event placer's `S.gap` was flagged as too tight after a vision pass saw a z4 dot on a fact line.
+
+**Part 1 — promotions.** Seven landmark items → 12 staging rows ticked. research/08 timeline +3 rows: *13–16 Aug 2026*
+open-weights week (DeepSeek Harness v0.1 MIT + V4-Pro API; Alibaba Qwen3.8-27B + 2.4T Max under Apache 2.0; Qwen passes
+3 B downloads, ahead of Meta and Google — [126] [127]); *3–8 Sep* AI-for-biology (Google + HHMI Janelia complete the
+male fruit-fly connectome, ~166 k neurons; DeepMind AlphaGenome Atlas scores all ~9 B human point mutations — [128]
+[129]); *6–11 Sep* governance realignment (Christiano to the OpenAI Foundation board; Pachocki's "An Alien Mind";
+Altman tells staff OpenAI is open to slowing — [130]); Key people +Pachocki and Christiano. research/09: Conscience Road
++Anthropic multi-agent swarm red-team study, 13 Aug ([c15]); Silicon River +Cerebras CS-4 + $20 B OpenAI pact, 12–19
+Aug ([d15]); both descriptions extended. Rows sit in date order (CS-4 placed before Jalapeño, 25 Aug).
+
+**Sourcing.** Every URL fetched before citing. Live-fetchable: deepmind.google, research.google, anthropic.com, the
+Simon Willison post, the two X posts (via the syndication endpoint; snowflake ids decode to 14 Aug / 9 Sep). Bot-blocked
+and verified another way, then allowlisted with the method noted: openai.com ×2 (RSS feed 200 + Wayback), venturebeat
+(Wayback 20260830), globenewswire (Wayback 20260827; live host drops non-browser TLS), bloomberg ×2 (reader proxy for
+headline + date), reuters (ET Telecom syndication in Google News for headline + date). `check_research.py` R-05 crashed
+with `int('d13')` on any thread-prefixed source id — it had never actually run to completion on research/09 since
+session 12 added `[d13]`; fixed (ids kept as strings). That surfaced `[d13]` as R-03 + R-05 red (openai.com 403, no
+`(accessed YYYY-MM-DD)`); normalised its wording and allowlisted it. Both files R-01…R-07 PASS.
+
+**Part 2 — `S.gap`.** The session 14 note named GPT-4o, but a probe (dot → nearest *foreign* event text or country
+label, user space, at `?tilesrc=1&lod=4`, 1800×1050) shows GPT-4o's own dot and the nearest other dot both ≥ 4.9 units
+from its text — not reproducible at this viewport. The same probe found the real offenders at gap .6: 3 dots under 1
+unit (`inflection-ssi-2024` −0.25 into the *Claude 3.5 Sonnet* name; `pixelrnn-2016` 0.4 from WaveNet's line;
+`eo14110-2023` 0.79 from *Bletchley Declaration*), 12 under 2. Tried .8 and 1.0: both give 0 under 1; 1.0 leaves 8
+under 2 (min 1.29) and is what shipped. Cost at either value: `vector-2017` joins the sampled-region curated list
+(lod4 47 marks, was 48; lod3 unchanged at 21). `gap` .6 → 1.0 for `ev4` only; `ev3` stays 1.2.
+
+**Part 3 — tiles.** `S.gap` only changes the z4 layer, which is baked into `site/tiles/4/` — the session 14 lesson —
+so `build_tiles.py` (default args) was rerun: z0 40 / z1 135 / z2 493 / z3 1881 / z4 1594 = 4143, same counts.
+
+**Part 4 — gates.** `validate.py` files=19 rules=25 fails=0 (run under `/tmp/pwvenv/bin/python`; system python3 has no
+PyYAML). `check_layout.py`: all structural / country / containment / zero-overlap / thread gates 0; `clipped` 625,
+same class and count as session 14. `check_lod_labels.py` LOD LABEL GATE: PASS; `docs/screens/lod_labels_summary.json`
+refreshed.
+
+**Known / next.** (1) z4 softness unchanged (SVG overlay still the fix). (2) 212 staging rows remain unticked; chip /
+compute (~45) and OpenAI / Anthropic lab events (~39 each) are the densest clusters. (3) `clipped` non-zero by design.
