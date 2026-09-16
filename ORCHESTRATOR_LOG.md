@@ -7,9 +7,10 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** session 12 (Y-funnel 1800×1050 + Silicon Range + rebuilt z0–z4 tile pyramid, merged to main)
+- **HEAD at write time:** session 13 (Generative Coast LOD events layer, 105 events; Silicon Range Redwood milestone; `build_entities_json.py` handles `end: present`) on main at 6eb4404
 - **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
-- **Gates:** `check_lod_labels.py` PASS (0 text overlaps across lod 0–4, monotonic density growth); `check_layout.py` PASS across all structural & thread gates (clipped only on pre-existing 162 A1 event boxes).
+- **Gates:** `validate.py` files=19 rules=25 fails=0; `check_lod_labels.py` PASS (0 text overlaps across lod 0–4, monotonic density growth; 155 LOD events in entities.json); `check_layout.py` all structural, country & thread gates 0 (clipped 602 — all event name/year/one_line boxes at x > plate, same class as the previous 162; scaled with the new events).
+- **Session 13 note:** tiles z0–z4 were NOT rebuilt after adding the events — the Leaflet viewer still serves session-12 tiles until `build_tiles.py` is rerun. Next session should rebuild z3/z4 at minimum and check policy-governance-coast (6/10 events curated out at z3).
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 

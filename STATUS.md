@@ -1,3 +1,18 @@
+# STATUS — as of 2026-09-16 (session 13: Generative Coast LOD events layer + Silicon Range Redwood milestone)
+
+## One-line status
+
+**Session 13 — pushed to `main` (6eb4404): Generative Coast gets its z3/z4 event layer — 105 sourced events across 8 countries (48 lod3 headline / 57 lod4 detail), plus z1 hints and z2 tags; Redwood added to the Silicon Range. Alan's "map looks sparse" test-case for the densest timeframe is now on the plate.**
+
+- **`data/events/generative-coast.yaml`:** same schema as `deep-learning-basin.yaml`. Per country: closed-frontier-labs 23 (10/13), open-weights-movement 19 (7/12), agents-tooling-coast 18 (8/10), diffusion-media-district 11 (4/7), reasoning-test-time-compute 10 (5/5), policy-governance-coast 10 (5/5), alignment-interpretability-plateau 7 (4/3), compute-hardware-hinterland 7 (5/2). Every URL verified verbatim against research/08 (script check: 0 misses); all `one_line` ≤ 15 words. Brief-suggested items research/08 does not carry (Let's Verify, Quiet-STaR, ControlNet, Flux, Sleeper Agents, Golden Gate Claude, TPU v5p, SB 1047) were deliberately omitted rather than invented.
+- **`build_entities_json.py`:** the event-year span check now resolves `end: present` (all 8 Generative Coast countries) the same way atlas.html's `PRESENT` does; previously it crashed with `str + int`. Output: 17 countries, **155 LOD events** total (50 basin + 105 coast).
+- **Silicon Range:** `Redwood` (2026.66, Architect Labs, research/09 [d14]) appended after Jalapeño in `data/threads/silicon-river-hardware.yaml`; thread milestone tail is now Blackwell → Jalapeño → Redwood.
+- **Gates:** `scripts/validate.py` → files=19 rules=25 fails=0. `check_lod_labels.py` → **LOD LABEL GATE: PASS** (lod3 20 event marks / lod4 48 marks + 75 one-line rows in the sampled region; 14 events curated out to hover-card only, mostly the dense 2023–24 policy column). `check_layout.py` → every structural, country, containment, zero-overlap and thread gate 0; only `clipped` is non-zero (602, up from 162) and a script check confirms all 602 are event name/year/one_line texts at plate x > 2746 — the same pre-existing A1 event-box class, scaled with the new events.
+- **Open follow-up:** policy-governance-coast is the tightest country (6 of its 10 events curated out at z3); a taller sub_band or splitting its lod3 set would let Bletchley / NYT / EU AI Act render inline.
+
+---
+### Session 12 (kept for reference)
+
 # STATUS — as of 2026-09-16 (session 12: Tile pyramid rebuild for 1800×1050 + Silicon Range + Leaflet verification + cron watchdog)
 
 ## One-line status

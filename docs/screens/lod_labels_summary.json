@@ -1,14 +1,14 @@
 {
  "0": {
-  "texts": 76,
+  "texts": 78,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 24,
    "cname haskids": 6,
-   "thr-name": 11,
-   "thr-year": 11,
+   "thr-name": 12,
+   "thr-year": 12,
    "thr-title": 1
   },
   "region": {
@@ -22,7 +22,7 @@
   }
  },
  "1": {
-  "texts": 65,
+  "texts": 67,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -31,7 +31,7 @@
    "csub": 11,
    "cname haskids": 4,
    "csub haskids": 6,
-   "khint": 2
+   "khint": 4
   },
   "region": {
    "items": 6,
@@ -47,7 +47,7 @@
   }
  },
  "2": {
-  "texts": 98,
+  "texts": 108,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -55,8 +55,8 @@
    "cname": 19,
    "csub": 11,
    "kname": 20,
-   "kyrs": 15,
-   "ktag": 10
+   "ktag": 20,
+   "kyrs": 15
   },
   "region": {
    "items": 31,
@@ -72,19 +72,19 @@
   }
  },
  "3": {
-  "texts": 141,
-  "events": 20,
+  "texts": 233,
+  "events": 62,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 19,
    "csub": 11,
    "kname": 18,
+   "ktag": 16,
    "ksub": 7,
    "kyrs": 15,
-   "ktag": 8,
-   "kev-name": 20,
-   "kev-year": 20
+   "kev-name": 62,
+   "kev-year": 62
   },
   "region": {
    "items": 70,
@@ -103,20 +103,20 @@
   }
  },
  "4": {
-  "texts": 274,
-  "events": 48,
+  "texts": 651,
+  "events": 147,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 19,
    "csub": 11,
    "kname": 16,
+   "ktag": 15,
    "ksub": 12,
    "kyrs": 15,
-   "ktag": 7,
-   "kev-name": 48,
-   "kev-year": 48,
-   "kev-line": 75
+   "kev-name": 147,
+   "kev-year": 147,
+   "kev-line": 246
   },
   "region": {
    "items": 202,
