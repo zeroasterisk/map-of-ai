@@ -588,3 +588,65 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** The nine items are corpus-only; none is a map event yet. When the Generative Coast's event budget is next
 opened, the Sep 2026 column wants at least the FLT proof and the two-tier release (both already have research/08 ids).
 Remaining staging density: chip/compute (Nvidia, Groq-for-China, xAI) and OpenAI/Anthropic product cadence.
+
+## Session 17 (2026-09-16) — frontier-lab product cadence + hardware-architecture promotions (research/08 [136]–[141], research/09 [d20]–[d23])
+
+**Why.** Session 16's STATUS named the next two clusters in `data/staging/innermost-loop-candidates.md`: frontier-lab
+product cadence / benchmarks / agent platforms (Daybreak + GPT-5.6-Cyber, GPT-5.6 Sol on ZeroBench and Crouzeix, Opus 5
++ Claude Code on ARC-AGI-3 and ProgramBench, Gemini 3.7 Flash + Spark, Grok 4.6, Cowork browser) and chip architecture
+(Vera Rubin NVL72 first silicon, the Groq-for-China report, SpaceXAI's Vera CPU, Apple M6 / M5 Ultra). This session
+promotes exactly those twelve staging rows (49, 54, 69, 70, 71, 73, 75, 108, 155, 172, 186, 190), nothing else.
+
+**Part 1 — promotions.** research/08 +6 timeline rows, all in the Aug 2026 column and slotted in date order between the
+OpenAI swarm row (May–Sep) and the existing 13–16 Aug open-weights / 14–27 Aug consolidation rows: [136] GPT-5.6 Sol
+research-grade results — Crouzeix proof + ZeroBench 30% (27 Jul–15 Aug), [137] Daybreak Blue/Red + GPT-5.6-Cyber (10
+Aug), [138] Opus 5 + Claude Code on ARC-AGI-3 and ProgramBench (11–13 Aug), [139] Grok 4.6 (12 Aug), [140] Gemini 3.7
+Flash + Spark (13 Aug), [141] Cowork built-in browser (26 Aug). Two staging rows pair into one corpus row twice: the
+two GPT-5.6 Sol research results share [136], and the ARC-AGI-3 + ProgramBench records share [138] — same model, same
+week, same "harness is the variable" significance. Cross-references: [137] → [131] (Anthropic's two-tier release three
+weeks later) and [122] (the RL-training pause); [138] → [121] (GPT-6 Astra saturating ARC-AGI-3); [139] → [124] (the
+Cursor acquisition two days later); [141] → [15] (the Oct 2024 computer-use origin) and [122]. research/09 Thread (d) +4
+rows: [d20] Vera Rubin NVL72 on CoreWeave (21 Jul, placed first in the 2026 block), [d21] The Information China chip
+report + denial (20–21 Aug, *contested*), [d22] SpaceXAI adopts Vera CPU / Starmind (24 Aug), [d23] Apple M6 + M5 Ultra
+(25 Aug, after the same-day Jalapeño row); description tail now "[d1]–[d23]" and names tokens-per-megawatt, the
+agent-oriented CPU, the export-control detour and desktop open-weight inference. No Key-people additions.
+
+**What the sources actually said vs the staging rows / brief.** Dates: staging's ~12 Aug (Daybreak), ~12–13 Aug
+(ZeroBench, Crouzeix), ~13 Aug (Grok 4.6), ~27 Aug (Cowork), ~16 Aug (CoreWeave), ~21 Aug (Information), ~25 Aug
+(SpaceXAI), ~27 Aug (Apple) became 10 Aug (OpenAI RSS pubDate), 7 Aug + 27 Jul–15 Aug, 12 Aug, 26 Aug, **21 Jul** (the
+CoreWeave post's own byline — the digest carried it 26 days late; the citation records both), 20 Aug (datePublished
+16:58Z), 24 Aug, 25 Aug. Content: (1) the brief said GPT-5.6 Sol "proves a counterexample to the Crouzeix conjecture" —
+the SIAM News essay (Townsend & Greenbaum, checked with Michel Crouzeix) says the conjecture was *proved*, by Dr. Shanmu
+Jin's preprint whose key theorem came from a ~16-hour autonomous run; the row says proof and cites the independent
+Lorist–Schwenninger arXiv proof too. (2) Grok 4.6 "matching GPT-5.6 Sol Max across standard benchmarks" is xAI's own
+table: AA Intelligence Index 61 vs 61, but Fable 5 Max 62 leads, and Grok wins CursorBench while losing DeepSWE — the
+row says "matching … on the AA Index" and names the price. (3) The Information's headline is "Nvidia Plots China Comeback
+With New AI Chip"; neither headline nor lede says Groq or LPU — that framing is the digest's and the pickups'
+(Tom's Hardware, Yahoo Tech), and Nvidia denied it the same day via Reuters ("no China-specific LPU product in our
+roadmap"). Row marked *contested*; citation attributes each claim. (4) Apple's newsroom page does not say "open-weight";
+it says "running compute-intensive frontier AI models on device" and LLMs "with hundreds of billions" of parameters —
+quoted, with the open-weight connection stated as Thread (e)'s interpretation. (5) The jerber/arc-code README is
+explicit that this is an independent run, not ARC Prize-verified — confidence medium, said in the row.
+
+**Sourcing.** Each URL fetched before citing. Live 200: alextownsend.net (PDF; pdfTeX CreationDate 2026-08-15; text
+extracted with pypdf via `uv run --with pypdf`), github.com ×2, arcprize.org, arxiv.org, x.ai, blog.google, claude.com,
+coreweave.com, nvidianews.nvidia.com, apple.com; the two X posts via the fxtwitter status API. Blocked → verified
+another way → allowlisted with the method in the comment: openai.com (RSS title + pubDate Mon 10 Aug 2026; Wayback
+20260914205743 200, body quoted), theinformation.com (200 to the checker today but the domain is intermittently 403 —
+page metadata + Wayback 20260906103803; denial pickups via Google News RSS). preprints.org (Jin's manuscript) is 403 to
+every UA tried and has no Wayback snapshot — cited as text in [136], with the author's public GitHub repo (200) linked in
+its place. `check_research.py`: research/08 R-01…R-07 PASS (82 rows, 141 sources, 244 links 0 failed / 16 allowlisted);
+research/09 R-01…R-07 PASS (16 rows, 109 sources, 234 links 0 failed / 9 allowlisted). Clean on first run.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_layout.py` all structural / country / containment /
+zero-overlap / thread gates 0; `clipped` 625 — confirmed identical by running the gate against a `git stash` baseline in
+the same session (overall RESULT: FAIL is that pre-existing gate alone, as in sessions 14–16). `check_lod_labels.py` LOD
+LABEL GATE: PASS (lod4 47 marks, 75 one-line rows, curated set unchanged). Nothing under `site/` or `data/regions/`
+changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** The twelve items are corpus-only; none is a map event yet. Candidates for the Generative Coast's Aug 2026
+column when its budget is next opened: the Crouzeix proof and the ARC-AGI-3 harness result (both have research/08 ids);
+Vera Rubin NVL72 for `compute-hardware-hinterland`. Staging: 190 unticked rows, no single cluster now above ~10 rows.
