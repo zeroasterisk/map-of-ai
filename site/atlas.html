@@ -1125,7 +1125,9 @@ fetch('registry.json').then(r => r.json()).then(data => {
       // their one_line. Each group is an independent layout against the (shared) country labels. Sizes are screen-px
       // targets divided by that level's device scale (z3 = 8x, z4 = 16x): name 30 → 26 px, year 22 → 19 px, line 19 px
       // (lod4 packs far more items, so its text is ~13 % smaller — not the 1.5–2x growth the old plate constants gave).
-      const layers = [[gEv3, e => e.lod <= 3, {n: 30 / 8, y: 22 / 8, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 26 / 16, y: 19 / 16, l: 19 / 16, gap: .6, r: .9}, 'ev4']];
+      // lod4 gap .6 → 1.0 (session 15): at .6 a z4 dot could sit within ~1 plate unit of a neighbouring one_line
+      // (GPT-4o, Closed Frontier) — the gate's box test passed but it read as touching at DPR 16.
+      const layers = [[gEv3, e => e.lod <= 3, {n: 30 / 8, y: 22 / 8, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 26 / 16, y: 19 / 16, l: 19 / 16, gap: 1.0, r: .9}, 'ev4']];
       for (const [gE, pick, S, key] of layers) {
         const placed = visibleBoxes([gKLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
         for (const {k, e} of all) { const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();

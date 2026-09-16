@@ -103,8 +103,8 @@
   }
  },
  "4": {
-  "texts": 662,
-  "events": 152,
+  "texts": 660,
+  "events": 151,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
@@ -114,14 +114,14 @@
    "ktag": 15,
    "ksub": 12,
    "kyrs": 15,
-   "kev-name": 152,
-   "kev-year": 152,
+   "kev-name": 151,
+   "kev-year": 151,
    "kev-line": 247
   },
   "region": {
-   "items": 202,
-   "chars": 2948,
-   "marks": 48,
+   "items": 200,
+   "chars": 2928,
+   "marks": 47,
    "kinds": {
     "cname": 1,
     "csub": 1,
@@ -129,8 +129,8 @@
     "ktag": 7,
     "ksub": 7,
     "kyrs": 7,
-    "kev-name": 48,
-    "kev-year": 48,
+    "kev-name": 47,
+    "kev-year": 47,
     "kev-line": 75
    }
   }
