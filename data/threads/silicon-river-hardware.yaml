@@ -124,6 +124,14 @@ milestones:
     sources:
       - {ref: d13, title: "OpenAI, Jalapeño's first results show industry-leading speed and efficiency in AI inference (25 Aug 2026)", url: "https://openai.com/index/jalapeno-first-results/"}
       - {ref: d13, title: "Wayback Machine snapshot 2026-09-11 (live site behind Cloudflare bot-challenge at access time)", url: "https://web.archive.org/web/20260911215502/https://openai.com/index/jalapeno-first-results/"}
+  - year: 2026.66
+    name: Redwood
+    label: Redwood
+    one_line: "Architect Labs Redwood: first production-worthy AI-designed accelerator, designed and verified by AI in two weeks"
+    peak: 0.85
+    lod: 1
+    sources:
+      - {ref: d14, title: "Architect Labs, Introducing Redwood: A frontier AI accelerator designed, verified, and deployed from scratch in two weeks by AI (27 Aug 2026)", url: "https://architectlabs.com/blog/redwood"}
 # pre-1999 milestones of thread (d) — Lisp machines 1973-87 [d1], Connection Machine 1985 [d2] — sit on the SYMBOLIC
 # bank (research/09: "symbolic bank before [1999]") and west of both pilot continents; they are out of this pilot's
 # drawn span and are not rendered yet (they will need their own northern-bank segment when the range is extended).

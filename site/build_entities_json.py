@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import yaml
+import datetime
 
 BAND_ORDER = ["N1", "N2", "C", "S1", "S2"]
 SUB_BANDS = {"N1a", "N1b", "N2a", "N2b", "Ca", "Cb", "S1a", "S1b", "S2a", "S2b", "S2c"}   # country-layer rows inside the band rows (N1/N2 added for generative-coast, P3-T10)
@@ -68,7 +69,9 @@ def main(data_dir: str, dst: str) -> int:
             for e in spec.get("events") or []:
                 if not e.get("sources"):
                     raise SystemExit(f"{ep}: event {e.get('id')} has no sources")
-                if not (c["start"] - 0.5 <= float(e["year"]) <= c["end"] + 1):
+                # end: 'present' (open-ended countries) resolves like atlas.html's PRESENT = year + month/12.
+                c_end = c["end"] if isinstance(c["end"], (int, float)) else (datetime.date.today().year + (datetime.date.today().month - 1) / 12)
+                if not (c["start"] - 0.5 <= float(e["year"]) <= c_end + 1):
                     raise SystemExit(f"{ep}: event {e['id']} year {e['year']} outside {cid} span {c['start']}–{c['end']}")
                 if len(str(e.get("one_line", "")).split()) > 16:
                     raise SystemExit(f"{ep}: event {e['id']} one_line > 15 words")
