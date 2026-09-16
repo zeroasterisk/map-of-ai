@@ -37,3 +37,11 @@ https://www.globenewswire.com/news-release/2026/08/19/3347356/0/en/cerebras-unve
 https://www.bloomberg.com/news/articles/2026-08-15/alibaba-ai-models-hit-3-billion-downloads-passing-meta-google
 https://www.bloomberg.com/news/articles/2026-09-11/openai-is-open-to-slowing-cutting-edge-ai-ceo-sam-altman-tells-staff
 https://www.reuters.com/business/cerebras-raises-annual-targets-strong-ai-chip-demand-2026-08-12/
+# session 16 promotions (research/08 [134] [135]; research/09 [d17] [d19]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; title + pubDate (Sun, 06 Sep 2026) confirmed via the OpenAI news RSS feed (200) + web.archive.org snapshot 20260915050818 (200) cited alongside
+https://openai.com/index/research-acceleration-view-inside-openai/
+# ft.com 403 to bots (paywall); headline, standfirst and 8 Sep 2026 date verified via web.archive.org snapshot 20260909043414 (cited alongside) and reader proxy; syndicated pickups (IT Pro, The Next Web, euractiv) listed in Google News RSS
+https://www.ft.com/content/560e1c8b-f163-4fd6-b604-e905550ac870
+# bloomberg.com 403 to bots (paywall); headline + Published Time + lede verified via reader proxy (r.jina.ai): SB Energy 2026-09-01T10:15Z (8.8 GW contracted/under construction; links the sec.gov S-1, which is 200), Microsoft 2026-09-10T21:00Z (38 GW by 2032, ~12 GW today); Reuters pickup of the Microsoft story confirmed via Google News RSS
+https://www.bloomberg.com/news/articles/2026-09-01/softbank-backed-sb-energy-files-for-ipo-to-tap-ai-power-thirst
+https://www.bloomberg.com/news/features/2026-09-10/microsoft-ai-focused-data-center-plan-to-add-26-gigawatts-of-compute
