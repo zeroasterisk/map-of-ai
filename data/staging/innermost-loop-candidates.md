@@ -46,12 +46,12 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 
 ## Digest 2026-08-12 — Welcome to August 12, 2026 — https://theinnermostloop.substack.com/p/welcome-to-august-12-2026
 
-- [ ] ~2026-08-12 | benchmark | GPT-5.6 Sol first model to reach 30% human baseline on 'impossible' ZeroBench visual benchmark (Opus 5 26%, Fable 5 24%) | source: https://x.com/jrobertsai/status/2085746447383761285 | digest: 2026-08-12
+- [x] ~2026-08-12 | benchmark | GPT-5.6 Sol first model to reach 30% human baseline on 'impossible' ZeroBench visual benchmark (Opus 5 26%, Fable 5 24%) | source: https://x.com/jrobertsai/status/2085746447383761285 | digest: 2026-08-12
 - [ ] ~2026-08-12 | research | Researchers extract hidden reasoning traces from Claude, GPT and Gemini; signs Chinese models trained on rivals' outputs | source: https://www.wired.com/story/a-new-trick-reveals-ai-models-inner-thoughts/ | digest: 2026-08-12
 - [ ] ~2026-08-12 | model-release | Nvidia ships Nemotron 3.5 Lightning (30B MoE for agents) and Switchyard router; invests to build world's best open models | source: https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/ | digest: 2026-08-12
 - [ ] ~2026-08-12 | lab-event | Zuckerberg publishes 'The Future is for Everyone' manifesto: safety via balance of power among billions of personal superintelligences | source: https://www.meta.com/thefutureisforeveryone/ | digest: 2026-08-12
 - [ ] ~2026-08-12 | research | Unreleased research Claude raises lower bound for Riemann zeta zeros on critical line from 41.6% to 67.2% with Lean-verified proof | source: https://www.anthropic.com/research/riemann-zeta | digest: 2026-08-12
-- [ ] ~2026-08-12 | model-release | OpenAI tiers Daybreak trusted-access program and unveils GPT-5.6-Cyber (95% of advanced cyber tasks; found chained V8 zero-days) | source: https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/ | digest: 2026-08-12
+- [x] ~2026-08-12 | model-release | OpenAI tiers Daybreak trusted-access program and unveils GPT-5.6-Cyber (95% of advanced cyber tasks; found chained V8 zero-days) | source: https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/ | digest: 2026-08-12
 - [ ] 2026-08-11 | lab-event | Anthropic pledges imperceptible watermarks and signed C2PA metadata in future Claude outputs under EU AI Act | source: https://www.theregister.com/ai-and-ml/2026/08/11/anthropic-pledges-to-embed-watermarks-to-help-discern-ai-slop-in-sop-to-eu/5285792 | digest: 2026-08-12
 - [ ] ~2026-08-12 | policy | European Commission releases free 'AI generated' icons for labeling AI content | source: https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content | digest: 2026-08-12
 - [ ] ~2026-08-12 | policy | Sen. Bernie Sanders sends AI pause letter to Altman, Amodei and Zuckerberg citing AI-created viruses and escaped models | source: https://www.sanders.senate.gov/wp-content/uploads/AI-Pause-Letter-FINAL.pdf | digest: 2026-08-12
@@ -66,13 +66,13 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 
 ## Digest 2026-08-13 — Welcome to August 13, 2026 — https://theinnermostloop.substack.com/p/welcome-to-august-13-2026
 
-- [ ] ~2026-08-13 | benchmark | Claude Opus 5 with stock Claude Code scores 96.2% on public ARC-AGI-3 games (vs 30.2% model-only) for ~$540 | source: https://github.com/jerber/arc-code | digest: 2026-08-13
-- [ ] ~2026-08-13 | benchmark | Claude Opus 5 fully rebuilds 9 whole programs (sqlite, ffmpeg) on ProgramBench, >4x previous best | source: https://x.com/jyangballin/status/2087905538952839217 | digest: 2026-08-13
-- [ ] ~2026-08-13 | model-release | Google ships Gemini 3.7 Flash three weeks after 3.6 at half the price, powering its 24/7 Spark agent | source: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/ | digest: 2026-08-13
+- [x] ~2026-08-13 | benchmark | Claude Opus 5 with stock Claude Code scores 96.2% on public ARC-AGI-3 games (vs 30.2% model-only) for ~$540 | source: https://github.com/jerber/arc-code | digest: 2026-08-13
+- [x] ~2026-08-13 | benchmark | Claude Opus 5 fully rebuilds 9 whole programs (sqlite, ffmpeg) on ProgramBench, >4x previous best | source: https://x.com/jyangballin/status/2087905538952839217 | digest: 2026-08-13
+- [x] ~2026-08-13 | model-release | Google ships Gemini 3.7 Flash three weeks after 3.6 at half the price, powering its 24/7 Spark agent | source: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/ | digest: 2026-08-13
 - [ ] ~2026-08-13 | model-release | OpenAI previews Ultrafast, Cerebras-powered tier running GPT-5.6 Sol 14x faster | source: https://openai.com/index/previewing-ultrafast/ | digest: 2026-08-13
-- [ ] ~2026-08-13 | model-release | xAI releases Grok 4.6, rejoining frontier on par with GPT-5.6 Sol Max at a fraction of the cost | source: https://x.ai/news/grok-4-6 | digest: 2026-08-13
+- [x] ~2026-08-13 | model-release | xAI releases Grok 4.6, rejoining frontier on par with GPT-5.6 Sol Max at a fraction of the cost | source: https://x.ai/news/grok-4-6 | digest: 2026-08-13
 - [ ] 2026-08-12 | lab-event | Reuters on Google's AI reshuffle: Sergey Brin steering resources toward recursive self-improvement | source: https://www.reuters.com/world/inside-google-executive-moves-that-led-its-big-ai-reshuffle-2026-08-12/ | digest: 2026-08-13
-- [ ] ~2026-08-13 | research | Neurosurgery resident cracks two-decade-old Crouzeix conjecture with 16-hour autonomous GPT-5.6 Sol run, verified by Crouzeix | source: https://alextownsend.net/essays/SIAMNews_CrouzeixConjecture.pdf | digest: 2026-08-13
+- [x] ~2026-08-13 | research | Neurosurgery resident cracks two-decade-old Crouzeix conjecture with 16-hour autonomous GPT-5.6 Sol run, verified by Crouzeix | source: https://alextownsend.net/essays/SIAMNews_CrouzeixConjecture.pdf | digest: 2026-08-13
 - [x] ~2026-08-13 | research | Anthropic red team multi-agent study: Claude swarms show price collusion, conformity cascades, self-replicating malware turf wars | source: https://www.anthropic.com/research/multiagent-systems | digest: 2026-08-13
 - [ ] 2026-08-13 | chip-hardware | SK Hynix commits $720B to world's largest memory buildout for AI, including 50-story fabs | source: https://www.cnbc.com/2026/08/13/inside-sk-hynixs-720-billion-bet-to-build-enough-memory-for-ai.html | digest: 2026-08-13
 - [x] 2026-08-12 | compute-infra | Cerebras raises annual outlook on $20B OpenAI compute pact | source: https://www.reuters.com/business/cerebras-raises-annual-targets-strong-ai-chip-demand-2026-08-12/ | digest: 2026-08-13
@@ -105,7 +105,7 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 
 ## Digest 2026-08-16 — Welcome to August 16, 2026 — https://theinnermostloop.substack.com/p/welcome-to-august-16-2026
 
-- [ ] ~2026-08-16 | chip-hardware | First silicon numbers: Nvidia Vera Rubin NVL72 on CoreWeave yields up to 10x more tokens per MW than Blackwell | source: https://coreweave.com/blog/nvidia-vera-rubin-nvl72-on-coreweave-10x-more-tokens-per-megawatt-than-blackwell | digest: 2026-08-16
+- [x] ~2026-08-16 | chip-hardware | First silicon numbers: Nvidia Vera Rubin NVL72 on CoreWeave yields up to 10x more tokens per MW than Blackwell | source: https://coreweave.com/blog/nvidia-vera-rubin-nvl72-on-coreweave-10x-more-tokens-per-megawatt-than-blackwell | digest: 2026-08-16
 - [ ] ~2026-08-16 | compute-infra | Nvidia weighs $3B investment in SB Energy's Ohio data center campus serving OpenAI | source: https://www.theinformation.com/articles/nvidia-talks-invest-3-billion-sb-energy-part-openai-data-center-deal | digest: 2026-08-16
 - [x] 2026-08-15 | lab-event | Alibaba Qwen models pass 3B downloads in six months, overtaking Google (418M) and Meta (227M) | source: https://www.bloomberg.com/news/articles/2026-08-15/alibaba-ai-models-hit-3-billion-downloads-passing-meta-google | digest: 2026-08-16
 - [ ] ~2026-08-16 | research | Hugging Face 'State of Open Models Summer 2026': Chinese labs lead releases, Qwen has 151k derivatives, agents top user class | source: https://huggingface.co/blog/state-of-open-models-summer-2026 | digest: 2026-08-16
@@ -152,7 +152,7 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 - [ ] ~2026-08-21 | model-release | Generalist releases GEN-1.5 robot model that learns tasks from 3-12 second "physical prompts" with zero gradient updates | source: https://generalistai.com/blog/gen-1.5 | digest: 2026-08-21
 - [ ] 2026-08-20 | policy | Nevada approves up to 7,000 robotaxis in Las Vegas for Tesla, Waymo and Uber partners | source: https://techcrunch.com/2026/08/20/tesla-uber-and-waymo-all-get-the-ok-to-operate-thousands-of-robotaxis-in-nevada/ | digest: 2026-08-21
 - [ ] 2026-08-20 | chip-hardware | Waymo builds custom 1,000-TOPS robotaxi ASIC on TSMC 5nm, reducing Nvidia dependence | source: https://www.bloomberg.com/news/articles/2026-08-20/google-s-waymo-has-built-a-custom-chip-for-its-robotaxis | digest: 2026-08-21
-- [ ] ~2026-08-21 | chip-hardware | Nvidia reportedly plans Groq-licensed LPU inference chip variant for China by year-end (company denies) | source: https://www.theinformation.com/articles/nvidia-plots-china-comeback-new-ai-chip | digest: 2026-08-21
+- [x] ~2026-08-21 | chip-hardware | Nvidia reportedly plans Groq-licensed LPU inference chip variant for China by year-end (company denies) | source: https://www.theinformation.com/articles/nvidia-plots-china-comeback-new-ai-chip | digest: 2026-08-21
 - [ ] 2026-08-19 | policy | Japan approves "comply or explain" code urging AI firms to disclose models and training data | source: https://www.japantimes.co.jp/news/2026/08/19/japan/ai-training-data-disclosure/ | digest: 2026-08-21
 
 ## Digest 2026-08-23 — Welcome to August 23, 2026 — https://theinnermostloop.substack.com/p/welcome-to-august-23-2026
@@ -169,7 +169,7 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 ## Digest 2026-08-25 — Welcome to August 25, 2026 — https://theinnermostloop.substack.com/p/welcome-to-august-25-2026
 
 - [ ] 2026-08-24 | model-release | Alibaba launches Wan3.0 video model (spreadsheets to 30-second videos) a day after $10.2B share sale | source: https://www.reuters.com/business/retail-consumer/alibaba-launches-wan30-ai-video-model-after-10-billion-share-sale-2026-08-24/ | digest: 2026-08-25
-- [ ] ~2026-08-25 | compute-infra | SpaceXAI adopts Nvidia's agent-tuned Vera CPU for its gigawatt Grok buildout and orbital Starmind | source: https://nvidianews.nvidia.com/news/spacexai-adopts-nvidia-vera-cpu-to-accelerate-agentic-ai-at-massive-scale | digest: 2026-08-25
+- [x] ~2026-08-25 | compute-infra | SpaceXAI adopts Nvidia's agent-tuned Vera CPU for its gigawatt Grok buildout and orbital Starmind | source: https://nvidianews.nvidia.com/news/spacexai-adopts-nvidia-vera-cpu-to-accelerate-agentic-ai-at-massive-scale | digest: 2026-08-25
 - [ ] 2026-08-24 | safety-incident | AI-piloted Russian drone running on Jetson Orin kills three civilians in Zaporizhzhia, likely first such autonomous killing | source: https://www.nytimes.com/2026/08/24/world/europe/ukraine-war-nvidia-ai-autonomous-drones.html | digest: 2026-08-25
 - [ ] ~2026-08-25 | research | Dry-electrode EEG decodes silently read words from 240,000 trials, scaling log-linearly with no saturation | source: https://arxiv.org/abs/2608.20186 | digest: 2026-08-25
 
@@ -183,11 +183,11 @@ Append rule for the monthly cron: add new `## Digest` sections at the END (chron
 - [ ] 2026-08-26 | lab-event | Moonshot offers Microsoft/Amazon/Google 30% of Kimi K3 revenue to host it, amid US distillation accusations | source: https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/ | digest: 2026-08-27
 - [ ] ~2026-08-27 | model-release | Anthropic's Fable 5.1 spotted quietly routing to some users | source: https://x.com/legit_api/status/2092633561119482037 | digest: 2026-08-27
 - [x] ~2026-08-27 | safety-incident | OpenAI publishes report on July Hugging Face incident: reduced-safeguard model chained exploits, formed swarm, compromised servers | source: https://openai.com/index/hugging-face-incident-and-the-road-ahead/ | digest: 2026-08-27
-- [ ] ~2026-08-27 | product-agent | Claude Cowork gains a built-in browser operating websites in a side panel | source: https://claude.com/blog/cowork-built-in-browser/ | digest: 2026-08-27
+- [x] ~2026-08-27 | product-agent | Claude Cowork gains a built-in browser operating websites in a side panel | source: https://claude.com/blog/cowork-built-in-browser/ | digest: 2026-08-27
 - [ ] ~2026-08-27 | product-agent | Salesforce puts its entire CRM inside Claude with 37 sales skills, consumption billing | source: https://venturebeat.com/orchestration/salesforce-just-put-its-entire-crm-inside-claude-and-says-youll-never-need-its-app-again | digest: 2026-08-27
 - [ ] ~2026-08-27 | product-agent | Perplexity launches Portable Computer, a full local agent stack on a DGX Spark with no per-token charge | source: https://www.perplexity.ai/hub/products/portable-computer | digest: 2026-08-27
 - [ ] 2026-08-25 | lab-event | Amazon shuts down Mechanical Turk, the original human-in-the-loop AI labor marketplace | source: https://www.cnbc.com/2026/08/25/amazon-service-that-jeff-bezos-called-artificial-ai-is-shutting-down.html | digest: 2026-08-27
-- [ ] ~2026-08-27 | chip-hardware | Apple introduces M6 (first 2nm chip) and M5 Ultra; new Mac Studio with 512GB memory targets local frontier open models | source: https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/ | digest: 2026-08-27
+- [x] ~2026-08-27 | chip-hardware | Apple introduces M6 (first 2nm chip) and M5 Ultra; new Mac Studio with 512GB memory targets local frontier open models | source: https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/ | digest: 2026-08-27
 - [ ] ~2026-08-27 | chip-hardware | OpenAI publishes first results for Jalapeno inference chip: 1.9x perf/watt and 3.6x lower latency vs Nvidia's best, taped out in 9 months | source: https://openai.com/index/jalapeno-first-results/ | digest: 2026-08-27
 - [ ] 2026-08-26 | compute-infra | Anthropic to pay Nscale $45B for 460 MW of Vera Rubin compute at a campus Microsoft abandoned | source: https://www.bloomberg.com/news/articles/2026-08-26/anthropic-to-pay-nscale-45-billion-for-ai-computing-power | digest: 2026-08-27
 - [ ] ~2026-08-27 | lab-event | SoftBank in talks to buy majority stake in humanoid maker 1X at $6B valuation | source: https://www.theinformation.com/articles/softbank-talks-buy-majority-stake-humanoid-maker-1x-6-billion-valuation | digest: 2026-08-27

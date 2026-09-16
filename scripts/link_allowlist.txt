@@ -45,3 +45,8 @@ https://www.ft.com/content/560e1c8b-f163-4fd6-b604-e905550ac870
 # bloomberg.com 403 to bots (paywall); headline + Published Time + lede verified via reader proxy (r.jina.ai): SB Energy 2026-09-01T10:15Z (8.8 GW contracted/under construction; links the sec.gov S-1, which is 200), Microsoft 2026-09-10T21:00Z (38 GW by 2032, ~12 GW today); Reuters pickup of the Microsoft story confirmed via Google News RSS
 https://www.bloomberg.com/news/articles/2026-09-01/softbank-backed-sb-energy-files-for-ipo-to-tap-ai-power-thirst
 https://www.bloomberg.com/news/features/2026-09-10/microsoft-ai-focused-data-center-plan-to-add-26-gigawatts-of-compute
+# session 17 promotions (research/08 [137]; research/09 [d21]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; title + pubDate (Mon, 10 Aug 2026) confirmed via the OpenAI news RSS feed (200) + web.archive.org snapshot 20260914205743 (200, body text quoted in [137]) cited alongside
+https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/
+# theinformation.com (paywall) returned 200 to the checker on 2026-09-16 but is intermittently 403 (see the Hugging Face entry above); headline, datePublished 2026-08-20T16:58Z and lede verified from page metadata + web.archive.org snapshot 20260906103803 cited alongside; Reuters/Yahoo denial pickups via Google News RSS
+https://www.theinformation.com/articles/nvidia-plots-china-comeback-new-ai-chip
