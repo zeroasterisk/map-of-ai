@@ -90,7 +90,7 @@ def check(path: Path, do_links: bool) -> list[tuple[str, bool, str]]:
         if not m:
             continue
         if not re.search(r"https?://", line) or not re.search(r"\(accessed \d{4}-\d{2}-\d{2}\)", line):
-            bad05.append(int(m.group(1)))
+            bad05.append(m.group(1))
     out.append(("R-05", not bad05, f"entries lacking URL or (accessed date): {bad05}" if bad05 else "every source has URL + accessed date"))
 
     # R-06 schools ≥3 bullets each with borders:

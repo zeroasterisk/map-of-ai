@@ -24,3 +24,16 @@ https://www.ft.com/content/1453e9c2-4922-482f-8720-0bafd7e07df7
 https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/
 https://www.politico.com/news/2026/08/21/openai-calls-for-stronger-ai-laws-in-california-01046512
 https://www.theinformation.com/articles/nvidia-agrees-buy-open-source-model-repository-hugging-face-12-9-billion
+# session 15 promotions (research/08 [126] [127] [130]; research/09 [d15]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; both confirmed via the OpenAI news RSS feed (200, dates 6 and 9 Sep 2026) + web.archive.org snapshots cited alongside; jalapeno (research/09 [d13], session 12) had the same archive-snapshot verification but was never allowlisted
+https://openai.com/index/an-alien-mind/
+https://openai.com/index/paul-christiano-joins-openai-foundation-board/
+https://openai.com/index/jalapeno-first-results/
+# venturebeat.com returns 429 to curl; verified via web.archive.org snapshot 20260830013256 (title + datePublished 2026-08-13) cited alongside
+https://venturebeat.com/technology/deepseek-harness-launches-as-open-source-rival-to-claude-code-alongside-v4-pro-on-api-with-higher-prices
+# globenewswire.com drops non-browser TLS connections (curl exit != 0); verified via web.archive.org snapshot 20260827075841 (title + datePublished 2026-08-19) cited alongside
+https://www.globenewswire.com/news-release/2026/08/19/3347356/0/en/cerebras-unveils-cs-4-up-to-30-times-faster-than-gpu-based-solutions.html
+# paywalled press (403/401 to bots); Bloomberg headline + publication date verified via reader proxy (r.jina.ai); Reuters headline + date via ET Telecom syndication in Google News RSS
+https://www.bloomberg.com/news/articles/2026-08-15/alibaba-ai-models-hit-3-billion-downloads-passing-meta-google
+https://www.bloomberg.com/news/articles/2026-09-11/openai-is-open-to-slowing-cutting-edge-ai-ceo-sam-altman-tells-staff
+https://www.reuters.com/business/cerebras-raises-annual-targets-strong-ai-chip-demand-2026-08-12/
