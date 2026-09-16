@@ -74,12 +74,13 @@ Promise.all([fetch('tiles/meta.json').then(r => r.json()), fetch('labels.json').
   const [W, H] = meta.plate; const ZMAX = meta.zmax;
   const bounds = L.latLngBounds(P(0, 0), P(W, H));
   const map = L.map('map', {crs: L.CRS.Simple, minZoom: -1, maxZoom: ZMAX, zoomSnap: .25, zoomDelta: .5, wheelPxPerZoomLevel: 90, maxBounds: bounds.pad(.25), maxBoundsViscosity: .8, attributionControl: false});
-  // Base pyramid: every level up to meta.full_zmax covers the whole plate. Levels above it exist only inside
-  // meta.pilot_bbox (the LOD pilot continent); a second, bounded tile layer serves them and the base layer upsamples
-  // its top level everywhere else — so the rest of the world simply looks like z3 art at zoom 4, no 404 storm.
-  const FULL = meta.full_zmax ?? ZMAX, PB = meta.pilot_bbox;
+  // Base pyramid: every level up to meta.full_zmax covers the whole plate. Levels above it exist only inside the
+  // meta.pilot_bboxes regions (the LOD pilot continents; older meta.json carries a single meta.pilot_bbox); one bounded
+  // tile layer per region serves them and the base layer upsamples its top level everywhere else — so the rest of
+  // the world simply looks like z3 art at zoom 4, no 404 storm.
+  const FULL = meta.full_zmax ?? ZMAX, PBS = meta.pilot_bboxes || (meta.pilot_bbox ? [meta.pilot_bbox] : []);
   L.tileLayer('tiles/{z}/{x}/{y}.png', {tileSize: meta.tile, minZoom: -1, maxZoom: ZMAX, minNativeZoom: 0, maxNativeZoom: FULL, bounds, noWrap: true, keepBuffer: 4}).addTo(map);
-  if (PB && ZMAX > FULL) L.tileLayer('tiles/{z}/{x}/{y}.png', {tileSize: meta.tile, minZoom: FULL + .01, maxZoom: ZMAX, minNativeZoom: FULL + 1, maxNativeZoom: ZMAX, bounds: L.latLngBounds(P(PB[0], PB[1]), P(PB[2], PB[3])), noWrap: true, keepBuffer: 2}).addTo(map);
+  if (ZMAX > FULL) for (const PB of PBS) L.tileLayer('tiles/{z}/{x}/{y}.png', {tileSize: meta.tile, minZoom: FULL + .01, maxZoom: ZMAX, minNativeZoom: FULL + 1, maxNativeZoom: ZMAX, bounds: L.latLngBounds(P(PB[0], PB[1]), P(PB[2], PB[3])), noWrap: true, keepBuffer: 2}).addTo(map);
   map.fitBounds(bounds);
   let view = null;
   if (Q.has('place')) { const a = AN.anchors[Q.get('place')]; if (a) view = {x: a.x, y: a.y, z: a.level === 'country' ? 2.5 : .5}; else console.warn(`?place=${Q.get('place')} not found in anchors.json; showing default view`); }

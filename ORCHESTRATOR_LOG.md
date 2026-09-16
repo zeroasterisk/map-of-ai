@@ -7,10 +7,10 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** session 13 (Generative Coast LOD events layer, 105 events; Silicon Range Redwood milestone; `build_entities_json.py` handles `end: present`) on main at 6eb4404
+- **HEAD at write time:** session 14 (tile pyramid rebuilt z0–z4 with two z4 pilot regions — Deep Learning Basin + Generative Coast; Policy Coast z3 tuning; multi-bbox `pilot_bboxes` in build_tiles.py/index.html) on main
 - **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
-- **Gates:** `validate.py` files=19 rules=25 fails=0; `check_lod_labels.py` PASS (0 text overlaps across lod 0–4, monotonic density growth; 155 LOD events in entities.json); `check_layout.py` all structural, country & thread gates 0 (clipped 602 — all event name/year/one_line boxes at x > plate, same class as the previous 162; scaled with the new events).
-- **Session 13 note:** tiles z0–z4 were NOT rebuilt after adding the events — the Leaflet viewer still serves session-12 tiles until `build_tiles.py` is rerun. Next session should rebuild z3/z4 at minimum and check policy-governance-coast (6/10 events curated out at z3).
+- **Gates:** `validate.py` files=19 rules=25 fails=0; `check_lod_labels.py` PASS (lod3 21 marks / lod4 48 marks + 75 one-line rows in the sampled region; 5 events curated out, down from 14); `check_layout.py` all structural, country & thread gates 0 (clipped 625 — all event text boxes at plate x > 2746, the same pre-existing class; +23 from the newly-placed Policy Coast events).
+- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 1594 (basin 560 + coast 1034) = 4143 tiles, 119 MB. `meta.json` carries `pilot_bboxes` (list) plus `pilot_bbox` (first region, back-compat); `counts["4"].regions` has per-region tile/col/row counts.
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 
@@ -452,3 +452,44 @@ Source-quality caveat recorded in STATUS: [d13] is a vendor announcement, weaker
 Out of scope (flagged): tile pyramid rebuild (`build_tiles.py` PLATE still (1800, 700); threads not in labels.json)
 — do after this geometry is confirmed. Tooling note: the two band-gate helpers in check_layout.py now go through
 `SY()`/`plateY()` instead of `± spineY(x)`; any future plate transform must be added in those two functions only.
+
+## Session 14 (2026-09-16) — tile pyramid rebuilt for the Generative Coast; second z4 pilot region; Policy Coast z3 tuning
+
+**Why.** Session 13 added 105 Generative Coast events + Redwood but never reran `build_tiles.py`, so the Leaflet viewer
+kept serving session-12 tiles; and `PILOT_BBOX` covered only the Deep Learning Basin, so even a rebuild would have left
+the coast's new z4 event layer (one-line facts) invisible at zoom 4.
+
+**Part 1 — Policy Coast (`data/events/generative-coast.yaml`).** Root cause of the z3 curation was geometric, not
+density: the country's `time_range` opens in 2023 but its land polygon (a diagonal wedge on the N1a coast) only widens
+around 2024, so every 2023-dated event clamped to the bbox edge landed on a lane too thin for its dot. Two fixes:
+(a) data — `pause-letter-2023`, `eo14110-2023`, `nyt-openai-2023` demoted lod 3 → 4 (Bletchley 2023.84 and EU AI Act
+2024.2 stay the lod 3 headlines); (b) render — `atlas.html` event placement now builds a short candidate list per
+event: its own year first, then columns sliding inward by ≤ 40 plate units (~0.8 yr, nearest first) whose lane is at
+least one label block tall and not already taken; the first candidate where the label also fits wins. Events that fit
+at their own year never move. `ubox()` hoisted to a shared helper (takes KS). Result: z3 Policy Coast shows Bletchley +
+EU AI Act inline; z4 shows all 10 (was 4). Sampled-region curated list fell 14 → 5 (`white-house-2016`,
+`export-controls-2022` at z3; `ntm-2014`, `show-and-tell-2014`, `hinton-leaves-2023` at z4).
+
+**Part 2 — multi-bbox z4 (`build_tiles.py`, `index.html`).** `PILOT_BBOXES = {deep-learning-basin: (768,304,1216,624),
+generative-coast: (1280,128,1632,880)}` (both multiples of 16 = one z4 tile); `PILOT_BBOX` kept as the first entry for
+back-compat. `--pilot-bbox` is now repeatable (`action=append`); default = every entry. For z > full_zmax each bbox is
+captured in strips and sliced into the same `tiles/4/` tree (disjoint x ranges, no collisions). `meta.json`: `pilot_bbox`
+(first) + `pilot_bboxes` (list); `counts["4"]` = totals + `regions[]`. `index.html` mounts one bounded `L.tileLayer`
+per entry of `meta.pilot_bboxes || [meta.pilot_bbox]`. The coast bbox's east edge 1632 sits 21 units past the coast's land bbox (x ≤ 1611) for leader lines, well inside the 1800-wide plate.
+
+**Part 3 — rebuild.** `build_tiles.py` (default args): z0 40, z1 135, z2 493, z3 1881, z4 1594 (basin 560 = 28×20,
+coast 1034 = 22×47) → 4143 tiles / 119 MB (was 3069 / 94 MB). `labels.json` regenerated; `build_anchors.py` → 25
+anchors, unchanged coordinates (geometry did not move).
+
+**Part 4 — gates.** `validate.py` files=19 rules=25 fails=0. `check_layout.py` all structural/country/containment/
+overlap/thread gates 0; `clipped` 625 (was 602), script-checked: min x 2746, all > plate width — the pre-existing A1
+event-box class, +23 from the Policy Coast events that now place. `check_lod_labels.py` LOD LABEL GATE: PASS. Leaflet
+(Playwright, `?place=generative-coast`): all requested tiles loaded, 0 HTTP ≥ 400, both z4 layers serve
+(`layers: [0–3], [4,4], [4,4]`). Shots in docs/screens/: `leaflet-s14-generative-coast-z2.5.png` (Closed Frontier /
+Open-Weights Commons names + tags + z3 event dots), `leaflet-s14-generative-coast-policy-z4.png` (Bletchley + EU AI Act
+with one-line facts, EO 14110, Getty, Pause letter), `-frontier-z4`, `-agents-z4`, `-deep-learning-basin-z4`.
+
+**Known / next.** (1) z4 text is soft — tiles are rastered at DPR 16 from ~3 px glyphs; crispness needs an SVG overlay
+or larger per-event fonts at lod 4 — unchanged from session 12. (2) A vision pass flagged one z4 marker sitting on the
+GPT-4o fact line in the Closed Frontier; the gate's box test passes (dot vs text box), so it is a gap ≤ 1 unit, not an
+overlap — worth a `S.gap` bump for lod 4 later. (3) `clipped` still non-zero by design (A1 event boxes east of plate).

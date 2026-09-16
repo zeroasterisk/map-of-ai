@@ -1107,6 +1107,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     const hitAny = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
     const visibleBoxes = (gs, m) => gs.flatMap(g => [...g.querySelectorAll('text')]).filter(t => t.getClientRects().length).map(t => grow(t.getBBox(), m));
     const laneAt = (land, bbx, x) => { let y0 = null, y1 = null; for (let y = bbx.y; y <= bbx.y + bbx.height; y += 1) if (inFill(land, x, y)) { if (y0 === null) y0 = y; y1 = y; } return y0 === null ? null : [y0, y1]; };
+    const ubox = (ts, KS) => { const u = union(ts); return KS > 1 ? {x: u.x / KS, y: u.y / KS, r: u.r / KS, b: u.b / KS} : u; };   // text box in user space (undo the scale(1/KS) group)
     window.LOD_CURATED = {hints: [], ev3: [], ev4: []};
     const placeLod = () => {
       [gHints, gEv3, gEv4].forEach(g => { g.innerHTML = ''; g.style.display = 'block'; });   // measurable while laying out
@@ -1128,29 +1129,43 @@ fetch('registry.json').then(r => r.json()).then(data => {
       for (const [gE, pick, S, key] of layers) {
         const placed = visibleBoxes([gKLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
         for (const {k, e} of all) { const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();
-          const x = Math.min(Math.max(X(e.year), bbx.x + 2), bbx.x + bbx.width - 2); const lane = laneAt(land, bbx, x); if (!lane) { window.LOD_CURATED[key].push(e.id); continue; }
-          // the dot sits in the lane, off the country label's rows when the label spans this x
-          const lab = placed.filter(b => b.x <= x && x <= b.r && b.y < lane[1] && b.b > lane[0]); let dy = (lane[0] + lane[1]) / 2;
-          if (lab.length) { const top = Math.min(...lab.map(b => b.y)), bot = Math.max(...lab.map(b => b.b)); dy = (top - lane[0] > lane[1] - bot) ? (lane[0] + top) / 2 : (bot + lane[1]) / 2; }
-          if (!inFill(land, x, dy)) { let f = null; for (let s = 1; s < 30 && f === null; s++) { if (inFill(land, x, dy - s)) f = dy - s; else if (inFill(land, x, dy + s)) f = dy + s; } if (f === null) { window.LOD_CURATED[key].push(e.id); continue; } dy = f; }
-          const dot = el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
+          const x0 = Math.min(Math.max(X(e.year), bbx.x + 2), bbx.x + bbx.width - 2); const lane0 = laneAt(land, bbx, x0);
           const lines = [[e.name, 'kev-name', S.n], [String(Math.floor(e.year)), 'kev-year', S.y]].concat(S.l && e.lod <= 3 ? wrap(e.one_line, 26).map(l => [l, 'kev-line', S.l]) : []);
           const H = lines.reduce((a, l) => a + l[2] + .6, 0);
+          // An event dated before its polygon starts (a country whose time_range opens earlier than its land does, e.g.
+          // the Policy Coast's 2023 events on a lane that only begins at 2024) is clamped to the bbox edge — on a
+          // diagonal coast that edge is a wedge tip too thin for the dot, let alone its label. Such an event may slide
+          // inward, toward the interior, by at most SLIDE plate units (≈ 0.8 year): each column whose lane is at least
+          // one label block tall and whose midpoint is not already taken by an earlier dot is tried in turn, nearest
+          // first, and the first one where the label also fits wins. Events in a usable lane at their own year do not move.
+          const need = H + 2 * S.r + 2, SLIDE = 40, mid = ln => (ln[0] + ln[1]) / 2, taken = (tx, ln) => placed.some(b => b.x <= tx && tx <= b.r && b.y <= mid(ln) && mid(ln) <= b.b);
+          const cands = [];
+          if (lane0 && lane0[1] - lane0[0] >= need) cands.push([x0, lane0]);
+          else { const dir = X(e.year) < bbx.x + bbx.width / 2 ? 1 : -1; if (lane0) cands.push([x0, lane0]);
+            for (let t = 2; t <= SLIDE; t += 2) { const tx = x0 + dir * t; if (tx < bbx.x + 2 || tx > bbx.x + bbx.width - 2) break; const ln = laneAt(land, bbx, tx); if (ln && ln[1] - ln[0] >= need && !taken(tx, ln)) cands.push([tx, ln]); } }
+          if (!cands.length) { window.LOD_CURATED[key].push(e.id); continue; }
           // Sub-3px text gets integer-hinted glyph advances in Chromium even at DPR 16 (broken kerning in the z4
           // tiles). So each event's text is laid out at a comfortable size inside its own <g transform="scale(k)"> —
           // layout happens at fs/k >= 8 px, the raster is identical in geometry. Boxes are measured in user space.
-          const KS = Math.max(1, Math.ceil(8 / (S.l || S.y))); const gk = KS > 1 ? el('g', {transform: `scale(${1 / KS})`, 'data-ev': e.id}, gE) : gE;
-          const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx * KS, yy * KS, s, cls, gk, {'font-size': fs * KS, 'stroke-width': (cls === 'kev-name' ? 1.4 : cls === 'kev-year' ? 1.2 : 1.1) * KS, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
-          const ubox = ts => { const u = union(ts); return KS > 1 ? {x: u.x / KS, y: u.y / KS, r: u.r / KS, b: u.b / KS} : u; };
+          const KS = Math.max(1, Math.ceil(8 / (S.l || S.y)));
           const offs = [[0, S.r + 1], [0, -(H + S.r + 1)], [S.r + 2.5, -H / 2], [-(S.r + 2.5), -H / 2], [0, S.r + 6], [0, -(H + S.r + 6)]];
           for (const d of [8, 14, 22, 30, 40, 52, 66]) for (const sg of [1, -1]) offs.push([sg * d, -H / 2], [sg * d, S.r + 2], [sg * d, -(H + S.r + 2)], [sg * d, S.r + 8], [sg * d, -(H + S.r + 8)]);
-          let ts = null, off = null;
           const pland = gShapes.querySelector(`.continent[data-id="${k.parent_id}"] path.land`);
           const okBox = (u, strict) => strict ? fitsInside(land, u, 1) : (inFill(land, (u.x + u.r) / 2, (u.y + u.b) / 2) && fitsInside(pland, u, 1));
-          for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = ubox(cand);
-            if (!hitAny(u, placed) && okBox(u, strict)) { ts = cand; off = [dx, oy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
-          if (!ts) { dot.remove(); if (gk !== gE) gk.remove(); window.LOD_CURATED[key].push(e.id); continue; }
-          const u = ubox(ts); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
+          let ts = null, off = null, x = x0, dy = 0, gk = gE, dot = null;
+          for (const [cx, lane] of cands) { x = cx;
+            // the dot sits in the lane, off the country label's rows when the label spans this x
+            const lab = placed.filter(b => b.x <= x && x <= b.r && b.y < lane[1] && b.b > lane[0]); dy = (lane[0] + lane[1]) / 2;
+            if (lab.length) { const top = Math.min(...lab.map(b => b.y)), bot = Math.max(...lab.map(b => b.b)); dy = (top - lane[0] > lane[1] - bot) ? (lane[0] + top) / 2 : (bot + lane[1]) / 2; }
+            if (!inFill(land, x, dy)) { let f = null; for (let s = 1; s < 30 && f === null; s++) { if (inFill(land, x, dy - s)) f = dy - s; else if (inFill(land, x, dy + s)) f = dy + s; } if (f === null) continue; dy = f; }
+            dot = el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
+            gk = KS > 1 ? el('g', {transform: `scale(${1 / KS})`, 'data-ev': e.id}, gE) : gE;
+            const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx * KS, yy * KS, s, cls, gk, {'font-size': fs * KS, 'stroke-width': (cls === 'kev-name' ? 1.4 : cls === 'kev-year' ? 1.2 : 1.1) * KS, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
+            for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = ubox(cand, KS);
+              if (!hitAny(u, placed) && okBox(u, strict)) { ts = cand; off = [dx, oy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
+            if (ts) break; dot.remove(); if (gk !== gE) gk.remove(); }
+          if (!ts) { window.LOD_CURATED[key].push(e.id); window.LOD_DEBUG && (window.LOD_DEBUG[e.id] = {cands, H, KS, bb: [bbx.x, bbx.y, bbx.width, bbx.height]}); continue; }
+          const u = ubox(ts, KS); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
           if (Math.abs(off[0]) >= 8 || Math.abs(off[1]) > H + S.r + 4) { const ex = off[0] > 0 ? u.x : off[0] < 0 ? u.r : x, ey = off[0] ? (u.y + u.b) / 2 : (off[1] > 0 ? u.y : u.b); el('path', {d: `M${f1(x)},${f1(dy)} L${f1(ex)},${f1(ey)}`, class: 'kev-leader', 'data-for': k.id}, gE); }
         }
       }

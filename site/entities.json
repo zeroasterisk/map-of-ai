@@ -2597,7 +2597,7 @@
      "id": "pause-letter-2023",
      "name": "Pause letter",
      "year": 2023.22,
-     "lod": 3,
+     "lod": 4,
      "one_line": "FLI's \"Pause Giant AI Experiments\" (22 Mar 2023); CAIS extinction-risk statement 30 May",
      "sources": [
       {
@@ -2614,7 +2614,7 @@
      "id": "eo14110-2023",
      "name": "EO 14110",
      "year": 2023.83,
-     "lod": 3,
+     "lod": 4,
      "one_line": "US Executive Order 14110 (30 Oct 2023): compute-threshold reporting; rescinded Jan 2025",
      "sources": [
       {
@@ -2648,7 +2648,7 @@
      "id": "nyt-openai-2023",
      "name": "NYT v. OpenAI",
      "year": 2023.99,
-     "lod": 3,
+     "lod": 4,
      "one_line": "The New York Times sues Microsoft and OpenAI for copyright infringement (27 Dec 2023)",
      "sources": [
       {

@@ -14,7 +14,7 @@ style), not an enlarged copy of the same picture. Leaflet's L.CRS.Simple reads p
 
 Outputs (all under site/):
     tiles/{z}/{x}/{y}.png     the pyramid (RGB PNG, plate-coloured padding outside the plate)
-    tiles/meta.json           {plate, tile, zmin, zmax, lod, counts, bytes}
+    tiles/meta.json           {plate, tile, zmin, zmax, full_zmax, pilot_bbox, pilot_bboxes, lod, counts, bytes}
     labels.json               continent label blocks, leaders, leader dots and land outlines in plate units
                               (window.exportLabels() in atlas.html) for the Leaflet hover/hit-target overlay
 
@@ -51,16 +51,22 @@ def serve(root: Path, port: int):
 
 LOD_DESC = {
     0: "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
-    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilot: Deep Learning Basin)",
+    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Generative Coast)",
     2: "+ solid country borders, + country name + one-line tag + years",
-    3: "+ country subtitle, + headline events (labelled dots at their year; pilot: Deep Learning Basin)",
-    4: "+ all sourced events + a one-line fact under each headline event (pilot: Deep Learning Basin; elsewhere as z3)",
+    3: "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Generative Coast)",
+    4: "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Generative Coast; elsewhere as z3)",
 }
 LOD_MAX = max(LOD_DESC)
-# LOD pilot: levels above --full-zmax are rendered for this plate-space bbox only (the Deep Learning Basin, x 804–1190,
-# y 320–608, plus margin), tile-aligned at z4 (16 plate units per tile). index.html mounts them as a second, bounded
-# tile layer; every other continent keeps its z3 art at zoom 4. Widening to the full plate = ~5000 more tiles.
-PILOT_BBOX = (768, 304, 1216, 624)
+# LOD pilot: levels above --full-zmax are rendered for these plate-space bboxes only, tile-aligned at z4 (16 plate
+# units per tile). index.html mounts each as its own bounded tile layer; every other continent keeps its z3 art at
+# zoom 4. Widening to the full plate = ~5000 more tiles.
+#   Deep Learning Basin   x 804–1190, y 485–773 (land bbox) plus margin
+#   Generative Coast      x 1408–1600, y 67–886 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
+PILOT_BBOXES = {
+    "deep-learning-basin": (768, 304, 1216, 624),
+    "generative-coast": (1280, 128, 1632, 880),
+}
+PILOT_BBOX = PILOT_BBOXES["deep-learning-basin"]   # back-compat name (single-bbox callers / --pilot-bbox default)
 
 
 def screenshot(browser, url: str, scale: int, want_labels: bool = False, clip: tuple | None = None) -> tuple[Image.Image, dict | None]:
@@ -114,9 +120,10 @@ def main():
     ap.add_argument("--port", type=int, default=8793)
     ap.add_argument("--keep-full", default=None, help="also save each level's full screenshot as <dir>/lod-{z}.png")
     ap.add_argument("--strip-px", type=int, default=6000, help="capture levels taller than this in horizontal strips (memory bound)")
-    ap.add_argument("--full-zmax", type=int, default=3, help="levels above this are rendered for --pilot-bbox only (the LOD pilot continent)")
-    ap.add_argument("--pilot-bbox", type=int, nargs=4, default=PILOT_BBOX, metavar=("X0", "Y0", "X1", "Y1"), help="plate units, tile-aligned at zmax")
+    ap.add_argument("--full-zmax", type=int, default=3, help="levels above this are rendered for the pilot bboxes only (the LOD pilot continents)")
+    ap.add_argument("--pilot-bbox", type=int, nargs=4, action="append", default=None, metavar=("X0", "Y0", "X1", "Y1"), help="plate units, tile-aligned at zmax; repeatable. Default: every bbox in PILOT_BBOXES")
     a = ap.parse_args()
+    pilot_bboxes = [tuple(b) for b in a.pilot_bbox] if a.pilot_bbox else list(PILOT_BBOXES.values())
     out = SITE / "tiles"
     if out.exists():
         shutil.rmtree(out)
@@ -128,16 +135,22 @@ def main():
             b = p.chromium.launch()
             for z in range(a.zmax + 1):
                 s = 2 ** z; url = f"http://127.0.0.1:{a.port}/atlas.html?tilesrc=1&lod={min(z, LOD_MAX)}"
-                if z > a.full_zmax:   # pilot level: only the pilot continent's bbox, in strips of whole tile rows
-                    bx0, by0, bx1, by1 = a.pilot_bbox; tp = a.tile // s   # plate units per tile at this level
-                    assert all(v % tp == 0 for v in a.pilot_bbox), f"pilot bbox must be tile-aligned at z{z} ({tp} plate units)"
-                    step = tp * max(1, (a.strip_px // s) // tp); acc = None
-                    for y0 in range(by0, by1, step):
-                        h = min(step, by1 - y0)
-                        img, _ = screenshot(b, url, s, clip=(bx0, y0, bx1 - bx0, h))
-                        acc = slice_level(img, out, a.tile, z, oy=y0 * s, acc=acc, ox=bx0 * s)
-                        del img
-                    acc["bbox"] = list(a.pilot_bbox); acc["cols"] = (bx1 - bx0) // tp; counts[z] = acc
+                if z > a.full_zmax:   # pilot level: each pilot bbox in turn, in strips of whole tile rows
+                    tp = a.tile // s   # plate units per tile at this level
+                    step = tp * max(1, (a.strip_px // s) // tp); acc = {"tiles": 0, "cols": 0, "rows": 0, "px": [0, 0], "bytes": 0, "lod": z, "regions": []}
+                    for bbox in pilot_bboxes:
+                        bx0, by0, bx1, by1 = bbox
+                        assert all(v % tp == 0 for v in bbox), f"pilot bbox {bbox} must be tile-aligned at z{z} ({tp} plate units)"
+                        n0 = acc["tiles"]
+                        for y0 in range(by0, by1, step):
+                            h = min(step, by1 - y0)
+                            img, _ = screenshot(b, url, s, clip=(bx0, y0, bx1 - bx0, h))
+                            acc = slice_level(img, out, a.tile, z, oy=y0 * s, acc=acc, ox=bx0 * s)
+                            del img
+                        acc["regions"].append({"bbox": list(bbox), "tiles": acc["tiles"] - n0, "cols": (bx1 - bx0) // tp, "rows": (by1 - by0) // tp, "px": [(bx1 - bx0) * s, (by1 - by0) * s]})
+                    # per-level totals across regions: cols/px are sums over the regions (they are disjoint captures)
+                    acc["bbox"] = list(pilot_bboxes[0]); acc["bboxes"] = [list(bb) for bb in pilot_bboxes]
+                    acc["cols"] = sum(r["cols"] for r in acc["regions"]); acc["px"] = [sum(r["px"][0] for r in acc["regions"]), max(r["px"][1] for r in acc["regions"])]; counts[z] = acc
                 elif PLATE[1] * s <= a.strip_px:
                     img, lb = screenshot(b, url, s, want_labels=(z == 0))
                     labels = lb or labels
@@ -159,7 +172,10 @@ def main():
     finally:
         httpd.shutdown()
     (SITE / "labels.json").write_text(json.dumps(labels, separators=(",", ":")) + "\n")
-    meta = {"plate": list(PLATE), "tile": a.tile, "zmin": 0, "zmax": a.zmax, "full_zmax": min(a.zmax, a.full_zmax), "pilot_bbox": list(a.pilot_bbox) if a.zmax > a.full_zmax else None, "source_px": counts[a.zmax]["px"],
+    pilot = a.zmax > a.full_zmax
+    meta = {"plate": list(PLATE), "tile": a.tile, "zmin": 0, "zmax": a.zmax, "full_zmax": min(a.zmax, a.full_zmax),
+            "pilot_bbox": list(pilot_bboxes[0]) if pilot else None,   # back-compat: the first pilot region
+            "pilot_bboxes": [list(bb) for bb in pilot_bboxes] if pilot else None, "source_px": counts[a.zmax]["px"],
             "lod": {str(z): LOD_DESC[min(z, LOD_MAX)] for z in counts}, "counts": counts, "bytes": sum(c["bytes"] for c in counts.values())}
     (out / "meta.json").write_text(json.dumps(meta, indent=1) + "\n")
     print(json.dumps(meta, indent=1))

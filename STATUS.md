@@ -1,3 +1,18 @@
+# STATUS — as of 2026-09-16 (session 14: tile pyramid rebuilt z0–z4 with two z4 pilot regions + Policy Coast z3 tuning)
+
+## One-line status
+
+**Session 14 — pushed to `main`: the Leaflet map finally serves Session 13's Generative Coast event layer. Tile pyramid rebuilt z0–z4 (4143 tiles, 119 MB); z4 now covers two pilot regions (Deep Learning Basin + Generative Coast) via `pilot_bboxes`; Policy Coast's Bletchley Declaration and EU AI Act render inline at z3.**
+
+- **Tiles (`site/tiles/`, `build_tiles.py`):** z0 40 / z1 135 / z2 493 / z3 1881 / z4 1594 = **4143** (was 3069). z4 = Deep Learning Basin `(768,304,1216,624)` 560 tiles + Generative Coast `(1280,128,1632,880)` 1034 tiles, both 16-unit aligned. `PILOT_BBOXES` dict replaces the single `PILOT_BBOX` (kept as alias); `--pilot-bbox` is repeatable; `meta.json` writes `pilot_bboxes` + back-compat `pilot_bbox` and per-region counts under `counts["4"].regions`. `index.html` mounts one bounded z4 `L.tileLayer` per region (`meta.pilot_bboxes || [meta.pilot_bbox]`). `labels.json` regenerated; `anchors.json` re-derived (25 anchors, coordinates unchanged).
+- **Policy Coast z3 (`data/events/generative-coast.yaml`, `atlas.html`):** `pause-letter-2023`, `eo14110-2023`, `nyt-openai-2023` → lod 4; Bletchley (2023.84) + EU AI Act (2024.2) remain the lod 3 headlines. Root cause was geometric — the country's land wedge is too thin at its 2023 edge for any dot — so the event placer now tries a short inward slide (≤ 40 plate units, nearest usable lane first) before giving up; events that fit at their own year never move. z3 Policy Coast: Bletchley + EU AI Act inline (were curated out). z4: all 10 policy events place (were 4). Sampled-region curation 14 → 5.
+- **Gates:** `validate.py` files=19 rules=25 fails=0. `check_lod_labels.py` **LOD LABEL GATE: PASS** (lod3 21 marks; lod4 48 marks + 75 one-line rows). `check_layout.py` all structural, country, containment, zero-overlap and thread gates 0; `clipped` 625 (was 602), all at plate x > 2746 — the pre-existing A1 event-box class, +23 from the newly placed Policy Coast events.
+- **Leaflet verified** (Playwright): `?place=generative-coast` opens at the coast; z2.5 shows country names + tag lines + z3 events; z4 loads the coast's own tiles (0 HTTP ≥ 400, all tiles complete). Shots: `docs/screens/leaflet-s14-generative-coast-z2.5.png`, `leaflet-s14-generative-coast-policy-z4.png` (Bletchley + EU AI Act with fact lines), `-frontier-z4.png`, `-agents-z4.png`, `leaflet-s14-deep-learning-basin-z4.png`.
+- **Open follow-ups:** z4 text is soft (raster of ~3 px glyphs at DPR 16 — unchanged since session 12; needs an SVG label overlay to be crisp); one z4 dot sits within ~1 unit of the GPT-4o fact line in the Closed Frontier (gate passes; consider a larger lod-4 `S.gap`).
+
+---
+### Session 13 (kept for reference)
+
 # STATUS — as of 2026-09-16 (session 13: Generative Coast LOD events layer + Silicon Range Redwood milestone)
 
 ## One-line status
