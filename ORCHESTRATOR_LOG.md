@@ -536,3 +536,55 @@ refreshed.
 
 **Known / next.** (1) z4 softness unchanged (SVG overlay still the fix). (2) 212 staging rows remain unticked; chip /
 compute (~45) and OpenAI / Anthropic lab events (~39 each) are the densest clusters. (3) `clipped` non-zero by design.
+
+## Session 16 (2026-09-16) — frontier-lab reasoning + gigawatt-compute promotions (research/08 [131]–[135], research/09 [d16]–[d19])
+
+**Why.** Session 15's STATUS named the two densest unpromoted clusters in `data/staging/innermost-loop-candidates.md`:
+frontier reasoning / lab milestones (Lean FLT proof, Fable/Mythos 5.1 and the UK withholding, FrontierMath Erdős, the
+OpenAI automated-researcher post) and gigawatt-scale compute (Terafab FEL, Broadcom/Anthropic 5 GW, SB Energy 8.8 GW,
+Microsoft 38 GW). This session promotes exactly those nine, nothing else.
+
+**Part 1 — promotions.** research/08 +5 timeline rows, all in the Sep 2026 column and slotted in date order around the
+existing GPT-6 Astra (3 Sep), Navier–Stokes (8–11 Sep) and governance (6–11 Sep) rows: [131] Fable 5.1 / Mythos 5.1 (1
+Sep), [132] FrontierMath Erdős (1 Sep), [133] FLT formalised (4 Sep), [134] "Research acceleration" (6 Sep), [135] FT on
+Mythos 5.1 and the UK AISI (8 Sep). [135]'s significance cell cross-references [131] (the withheld tier is the
+higher-safeguard half of the two-tier release). research/09 Thread (d) +4 rows: [d16] Terafab (6–16 Aug; placed before
+Cerebras 12–19 Aug to keep the table chronological), [d17] SB Energy (1 Sep), [d18] Broadcom/Anthropic (2 Sep), [d19]
+Microsoft (10 Sep); description tail now reads "[d1]–[d19]" and names the chips → gigawatts shift. No Key-people
+additions — none of the nine introduces a person the file lacks.
+
+**What the sources actually said vs the staging rows.** Dates: staging's ~3 Sep / ~3 Sep / ~6 Sep / ~7 Sep / ~12 Sep
+became 1 / 1 / 4 / 6 / 8 Sep from the primary pages, the anthropic.com newsroom and research indexes, the OpenAI RSS
+`pubDate` and the FT Wayback snapshot. Content: the FT piece (standfirst: "Decision to exclude Aisi for the first time
+has prompted fears inside British government of wider protectionist shift among tech groups") is about pre-release
+access for the UK AI Security Institute, not a market withdrawal — row and citation say so. Epoch's post gives 2/68
+under the fixed protocol and 5/68 across looser additional attempts, and names the two protocol solves (problem 74
+disproved, problem 126 proved); the row carries both numbers rather than the staging's bare "2 of 68". Broadcom's exact
+wording (via CNBC) is "5 gigawatts of TPU 8i chips in 2027, with line of sight to deliver another 10 gigawatts" — the
+"10 GW" is line-of-sight, not contracted, and the row keeps that distinction. The Terafab X thread is thin on its own
+(Musk's whole post is "FEL FTW"), so [d16] pairs the two X posts with Bits&Chips (10 Aug) and TrendForce (12 Aug) for
+the FEL-vs-LPP explanation; the $100 B / in-house-memory framing is attributed to the Innermost Loop digest, not to a
+source that states it.
+
+**Sourcing.** Each URL fetched before citing. Live 200: anthropic.com ×2, epoch.ai, cnbc.com, sbenergy.com,
+bits-chips.com, trendforce.com; the two X posts via the fxtwitter status API (dates + text; @teslayoda's post is an
+image post, no quoted tweet). Blocked → verified another way → allowlisted with the method in the comment: openai.com
+(RSS feed lists the post with pubDate Sun 06 Sep 2026; Wayback 20260915050818 200), ft.com (Wayback 20260909043414
+headline + standfirst; Google News RSS shows the FT item dated 8 Sep plus IT Pro / The Next Web / euractiv pickups),
+bloomberg.com ×2 (reader proxy returns headline, `Published Time` and lede for both; the SB Energy lede links the live
+sec.gov S-1, which is 200). `check_links.sh` before allowlisting failed on exactly those four and nothing else.
+`check_research.py`: research/08 R-01…R-07 PASS (232 links, 0 failed, 15 allowlisted); research/09 first run FAIL R-05
+on `[d16]` — I had put prose after the date inside the `(accessed …)` parenthesis, which the regex rightly rejects —
+moved the note before the URL; rerun R-01…R-07 PASS (229 links, 0 failed, 9 allowlisted).
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_layout.py` all structural / country / containment /
+zero-overlap / thread gates 0; `clipped` 625 (same class + count as sessions 14–15; overall RESULT: FAIL is that gate
+alone, as before). `check_lod_labels.py` LOD LABEL GATE: PASS (lod4 47 marks, 75 one-line rows, curated set unchanged).
+Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** The nine items are corpus-only; none is a map event yet. When the Generative Coast's event budget is next
+opened, the Sep 2026 column wants at least the FLT proof and the two-tier release (both already have research/08 ids).
+Remaining staging density: chip/compute (Nvidia, Groq-for-China, xAI) and OpenAI/Anthropic product cadence.
