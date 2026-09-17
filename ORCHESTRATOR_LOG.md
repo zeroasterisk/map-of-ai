@@ -957,3 +957,62 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** All nineteen are corpus-only. The 5–17 Aug memory-crunch row ([184]–[187]) is the strongest Silicon River
 event candidate and the Pentagon ruling ([199]) the strongest Conscience Road one. Staging: 116 unticked rows, no
 cluster above ~5. No open link follow-ups.
+
+## Session 23 (2026-09-17) — GPT-6 Astra emergence / frontier benchmarks / scientific controversies + open-weights geopolitics / distillation / open model releases (research/08 [203]–[227], research/09 [b20], [c26]–[c28], [d42], [e18]–[e22])
+
+**Why.** The session-23 brief named two clusters in `data/staging/innermost-loop-candidates.md`: GPT-6 Astra's
+emergence and its measurement (Altman's AGI-this-year TIME interview, The Information on the recurrent-depth
+technique and legibility, Fortune on post-hoc metric revisions and "benchmaxxing", Artificial Analysis, Epoch's
+FrontierMath Tier 4 v2, Robocurve's YAM arms, Portal in 24 hours for $571, ValsAI's saturated reverse-engineering
+benchmark, Vending-Bench, Buckmaster's statement, the 771-signature Caltech Mathathon letter) and open-weights
+geopolitics (Muse Glimmer, Nemotron 3.5 Lightning + Switchyard, WIRED's hidden-trace extraction, Gemma's billionth
+download, WSJ's $6B Nemotron 4, Ox Alpha → GLM-5.3-Flash, Qwen3.8-Flash, Moonshot's 30% K3 revenue offer, the
+GLM-5.3 weights licence, NYT's Inspur/Aivres $5.6B, ByteDance's world model, the NSA/CISA/FBI distillation advisory,
+DeepSeek V4.1-Flash). 25 staging rows.
+
+**What.** research/08 timeline +13 rows in date order among the existing Aug–Sep 2026 rows, sources [203]–[227]
+(25 new entries; adjacent items merged into multi-citation rows). research/09: Thread (b) +1 row [b20]; Thread (c)
++3 rows [c26]–[c28] (one cross-cites [e19]); Thread (d) +1 row [d42] (cross-cites [e18]); Thread (e) +3 rows
+[e18]–[e22]; all four descriptions extended. Staging: 25 rows `[x]` (147 ticked / 91 open). Allowlist: 7 URLs with
+method notes. research/08 cites no thread ids (session-22 R-04 lesson held); cross-thread prose uses "(file 09c)" etc.
+
+**Dates corrected against sources.** Altman/TIME 26 Aug, digest ~28–29 (staging ~29; written 26–28 Aug);
+recurrent-depth TechCrunch 2 Sep (~3); Robocurve figures 4 Sep (~6); FrontierMath run started 5 Sep (~6);
+Vending-Bench posted 7 Sep (~12); DeepSeek V4.1-Flash 10 Sep (~12); WIRED + Nemotron 11 Aug (~12); Gemma 20 Aug
+(~21); Ox Alpha on OpenRouter 20 Aug, Wccftech 21 Aug (~23); GLM-5.3 weights 28 Aug (~29); Buckmaster 8 Sep (~10).
+Claims: Robocurve is 19 of 20 vs 8 of 20 (Fable 5 1 of 20), 2.5 vs 6.8 min, $0.94 vs $2.12 per run; Vending-Bench
+$15,515 vs $5,422 over six runs each, first OpenAI #1 there; Qwen3.8-Flash 125B, HK$80B ($10.2B) follow-on;
+Moonshot "up to a 30pc share"; the advisory names six labs and is NSA/CISA/FBI per CyberScoop; NYT "at least $5.6
+billion" Apr 2024–Feb 2026 and ">$3 billion" Blackwell servers via ImportGenius; V4.1-Flash 552B MoE, 8B active
+input / 16B output; GLM-5.3-Flash MIT, $0.15/$0.50, OpenRouter created 2026-08-26T15:59Z, 1.31M context — the
+digest's "OpenRouter's biggest launch" could not be verified and was dropped; Muse Glimmer 30B Apache 2.0 with "a
+novel distillation recipe"; Nemotron 3.5 Lightning 30B MoE, Switchyard an open-source router library.
+
+**Sourcing hygiene.** Live 200: research.meta.ai, blogs.nvidia.com, wired.com, blog.google, wccftech.com, z.ai
+(JS-rendered SPA — the article text lives in `/blog/assets/glm-5.3-flash-*.js`, read from the bundle), openrouter.ai
+models API, deccanchronicle.com, siliconrepublic.com, sources.news, thenewstack.io, theinformation.com (200 this
+session, metadata only), techcrunch.com ×2, fortune.com, artificialanalysis.ai, epoch.ai (leaderboard is a JS
+island; scores from `/data/benchmarks.csv`), openai.robocurve.org, tomshardware.com, x.com (fxtwitter mirror for
+text), cims.nyu.edu (PDF, pypdf in `/tmp/pdfvenv`), proofsandprompts.com, andonlabs.com, deepseek.com,
+freepressjournal.in, thenextweb.com, nbcnews.com, cyberscoop.com, web.archive.org (WSJ head). Allowlisted: wsj.com
+(401; Wayback 20260910004217 metadata: headline + datePublished 23 Aug), bloomberg.com ×2 (403; Deccan Chronicle
+Bloomberg-bylined syndication for Qwen; The Next Web + Yahoo Finance SG for ByteDance), reuters.com ×2 (401;
+Google News RSS + Silicon Republic / NBC + CyberScoop), time.com (406; Wayback 20260916225300 exists; the
+Sources.news digest is the cited primary), nytimes.com (403, no snapshot; Google News RSS + Free Press Journal
+figures). Pitfalls this session: Epoch and Z.ai pages are client-rendered — fetch the data CSV / asset bundle rather
+than concluding the claim is absent; the `bloomberg.com` (no www) canonical in staging is what the checker sees, so
+allowlist exactly that form.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_research.py` 08 / 09 / 04 all PASS: 08 139 rows / 227
+sources / 399 links, 0 failed, 56 allowlisted; 09 16 / 159 / 359, 0 failed, 40 allowlisted (2 transient failures on
+the first pass, 0 on rerun and on `check_links.sh` alone — nothing allowlisted for them); 04 34 / 92 / 102, 0 failed.
+`check_lod_labels.py` PASS (lod4 47 marks, 75 one-line rows, curated-out unchanged). `check_layout.py` structural /
+country / containment / zero-overlap / thread gates 0; `clipped` 625 pre-existing, RESULT: FAIL is that gate alone.
+Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All twenty-five are corpus-only. The 4–7 Sep Astra benchmark row ([216]–[220]) is the strongest Reasoning
+Road event candidate and the 8–9 Sep distillation advisory ([225]) the strongest Commons Road one. Staging: 91
+unticked rows, no cluster above ~5. No open link follow-ups.
