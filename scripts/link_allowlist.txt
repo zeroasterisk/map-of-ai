@@ -96,3 +96,23 @@ https://www.bloomberg.com/news/articles/2026-08-20/google-s-waymo-has-built-a-cu
 https://www.wsj.com/tech/ai/nvidia-wants-to-run-the-worlds-robots-china-is-an-eager-customer-bdf46169
 # genbio.ai serves a Cloudflare bot-challenge page (403) to the link checker; full text via reader proxy (Published Time 2026-08-18T09:00:38-04:00); STAT report (200) cited alongside in research/08 [172]
 https://genbio.ai/aido-cell-simulator/
+# session 22 — reuters.com 401 to bots; headline + date (6 Aug 2026) via Google News RSS; full text via Straits Times/Reuters syndication (200) and Canary Media, cited alongside in research/08 [183] and research/09 [d39]
+https://www.reuters.com/world/asia-pacific/trump-signs-executive-order-protect-us-polysilicon-industry-2026-08-06/
+# nytimes.com 403 to bots; headline, byline (Huang, Swanson), article:published_time 2026-08-10T09:02Z and standfirst read from page metadata via a Google News redirect; Gizmodo pickup (200) cited alongside in research/08 [186] and research/09 [d38]
+https://www.nytimes.com/2026/08/10/technology/memory-chip-shortage-ai.html
+# wsj.com 401 to bots; Wayback snapshot 20260820160753 (200) verifies headline, byline and lede; The News International / TechRepublic pickups (200) cited alongside in research/08 [187] and research/09 [d38]
+https://www.wsj.com/tech/apple-china-memory-chip-plan-57773a83
+# wsj.com 401 to bots; Wayback snapshot 20260815170048 (200) verifies headline + standfirst; TechCrunch pickup (200) cited alongside in research/08 [188] and research/09 [d40]
+https://www.wsj.com/tech/ai/situational-awareness-bets-400-million-on-stealth-chip-startup-after-crash-02c7374e
+# genesisopenmodels.anl.gov 403 to the link checker (bot challenge); Wayback snapshot 20260826134643 (200) cited alongside in research/08 [189]
+https://genesisopenmodels.anl.gov/
+# axios.com 403 to bots; headline + date (14 Aug 2026) via Google News RSS; primary Risk Report PDF (200) cited alongside in research/08 [196] and research/09 [c23]
+https://www.axios.com/2026/08/14/anthropic-model-2-ai-risk
+# openai.com 403 to the link checker; Wayback snapshot 20260911185518 (200) verifies text; TechCrunch pickup (200) cited alongside in research/08 [198] and research/09 [c24]
+https://openai.com/collective-cyberdefense/
+# reuters.com 401 to bots; headline + date (28 Aug 2026) via Google News RSS; ruling via WIRED, Guardian, Al Jazeera (all 200) cited alongside in research/08 [199] and research/09 [c25]
+https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/
+# investors.micron.com 403 to the link checker; full press-release text (dateline 20 Aug 2026) via reader proxy; research/08 [200] and research/09 [d41]
+https://investors.micron.com/news/press-release/2026/Micron-Unveils-Micron-Research-Labs-a-U-S--Based-Long-Horizon-Innovation-Hub-to-Shape-the-Future-of-Memory-and-AI/default.aspx
+# bloomberg.com 403 to bots; headline + date (22 Aug 2026) via Google News RSS; Reuters pickup via Yahoo Finance (200) cited alongside in research/08 [201] and research/09 [d41]
+https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15
