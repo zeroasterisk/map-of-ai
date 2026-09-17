@@ -130,3 +130,33 @@ https://www.nytimes.com/2026/09/06/technology/ai-chips-china-blacklist.html
 https://www.bloomberg.com/news/articles/2026-09-07/bytedance-founder-joins-ai-elite-in-race-to-perfect-world-models
 # reuters.com 401 to bots (paywall); headline + date (8 Sep 2026) via Google News RSS; advisory content via NBC News and CyberScoop (both 200) cited alongside in research/08 [225] and research/09 [e21]
 https://www.reuters.com/technology/us-accuses-chinese-ai-firms-industrial-scale-theft-ai-technology-2026-09-08/
+
+# --- Session 24 ---
+# bloomberg.com 403 to bots (paywall); headline + date (27 Aug 2026) via Google News RSS (plus companion Bloomberg TV segment listing); 2030 targets via Netz-Trends (200) cited alongside in research/08 [231] and research/09 [d46]
+https://www.bloomberg.com/news/articles/2026-08-27/germany-running-short-of-ai-compute-capacity-minister-says
+# bloomberg.com 403 to bots (paywall); full text via Wayback snapshot 20260907072831 (200); Carolina Principles detail via MeriTalk (200); research/08 [239], research/09 [c31]
+https://www.bloomberg.com/news/articles/2026-09-02/us-strikes-light-touch-ai-regulation-accord-with-g20-members
+# bloomberg.com 403 to bots (paywall); headline + date (3 Sep 2026) via Google News RSS; Emil Michael X post and Lutnick quote via BigGo Finance (200); research/08 [241], research/09 [c33]
+https://www.bloomberg.com/news/articles/2026-09-03/pentagon-says-its-anthropic-ban-is-on-despite-lutnick-remarks
+# bloomberg.com 403 to bots (paywall); headline + date (8 Sep 2026) via Google News RSS; roadmap detail via TrendForce (200, on the ASML/TSMC press releases); research/08 [244], research/09 [d53]
+https://www.bloomberg.com/news/articles/2026-09-08/asml-tsmc-samsung-intel-back-12-inch-masks-for-ai-chips
+# bloomberg.com 403 to bots (paywall); headline + date (9 Sep 2026) via Google News RSS; figures via CNBC (200); research/08 [247], research/09 [d56]
+https://www.bloomberg.com/news/articles/2026-09-09/google-plans-13-billion-ai-infrastructure-investment-in-finland
+# wsj.com blocked to bots (paywall); full text via Wayback snapshot 20260910190533 (200), dated 31 Aug 2026; research/08 [234], research/09 [d49]
+https://www.wsj.com/tech/ai/the-5-5-billion-perk-softbanks-data-center-venture-offered-to-land-openai-a5c7fb5e
+# wsj.com blocked to bots (paywall); full text via Wayback snapshot 20260907002038 (200), dated 31 Aug 2026; research/08 [235], research/09 [d50]
+https://www.wsj.com/tech/ai/anthropic-signs-35-billion-cloud-deal-backed-by-nvidia-f12622f1
+# wsj.com blocked to bots (paywall); headline/date/lede via Wayback snapshot 20260914 (200), 9 Sep 2026; details via Daily Signal/DCNF and WBUR (both 200); research/08 [249], research/09 [d58]
+https://www.wsj.com/politics/policy/states-that-gave-data-centers-billions-in-tax-breaks-are-now-ripping-up-the-deals-4879c4f9
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; full text via TradingView Reuters syndication (200); research/08 [238], research/09 [c30]
+https://www.reuters.com/legal/litigation/openai-is-building-automated-shutdown-capabilities-ai-tools-letter-lawmakers-2026-09-02/
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; filing detail via Lowenstein Sandler client alert (200); research/08 [240], research/09 [c32]
+https://www.reuters.com/legal/litigation/us-government-backs-openai-new-york-times-copyright-case-2026-09-02/
+# reuters.com 401 to bots (paywall); full text via Wayback snapshot 20260910021209 (200), 9 Sep 2026; research/08 [248], research/09 [d57]
+https://www.reuters.com/world/asia-pacific/openai-says-working-with-samsung-next-generation-chips-deepening-cooperation-2026-09-09/
+# reuters.com 401 to bots (paywall); headline + date (11 Sep 2026) via Google News RSS; full text via Spokesman-Review syndication (200); research/08 [253], research/09 [c37]
+https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/
+# nytimes.com 403 to bots (paywall); headline + date (1 Sep 2026) via Google News RSS; policy detail via NYC Mayor's Office and K-12 Dive (both 200); research/08 [237], research/09 [c29]
+https://www.nytimes.com/2026/09/01/nyregion/ai-ban-schools-nyc.html
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260916153304 (200); date 9 Sep 2026 via Google News RSS; research/08 [252], research/09 [c36]
+https://openai.com/index/ai-policy-window/
