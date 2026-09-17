@@ -184,3 +184,24 @@ https://www.reuters.com/business/retail-consumer/alibaba-launches-wan30-ai-video
 https://www.reuters.com/investigations/mark-zuckerberg-had-bold-plan-replace-meta-staff-with-ai-heres-how-it-imploded-2026-08-26/
 # reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; launch details via Business Insider (200); research/08 [273], research/09 [b23]
 https://www.reuters.com/business/autos-transportation/tesla-set-hold-cybercab-event-austin-texas-2026-09-02/
+# --- Session 26 (2026-09-17) ---
+# bloomberg.com 403 to bots (paywall); headline + date (13 Aug 2026) via Google News RSS with Reuters/Quartz pickups; deal collapse via Yahoo Finance Bloomberg syndication and Jerusalem Post (both 200, 8 Sep 2026); research/08 [289], research/09 [d60]
+https://www.bloomberg.com/news/articles/2026-08-13/anthropic-said-in-talks-to-buy-ai-startup-decart-for-6-billion
+# bloomberg.com 403 to bots (paywall); headline + date (14 Aug 2026) via Google News RSS; full text via Fortune Bloomberg syndication (200, 15 Aug 2026) and 13F figures via The Next Web (200); research/08 [290], research/09 [d61]
+https://www.bloomberg.com/news/articles/2026-08-14/nvidia-has-21-billion-spacex-stake-30-billion-in-intel-shares
+# bloomberg.com 403 to bots (paywall); headline + date (18 Aug 2026) via Google News RSS with Reuters/Quartz pickups; $10B facility and super-voting structure via BigGo Finance (200); research/08 [297], research/09 [d62]
+https://www.bloomberg.com/news/articles/2026-08-18/anthropic-pre-ipo-credit-facility-set-to-climb-past-10-billion
+# bloomberg.com 403 to bots (paywall); full text via The Japan Times Bloomberg syndication (200, 21 Aug 2026: "match or beat the size of SpaceX's record-setting IPO", $75B/$86.2B); research/08 [298], research/09 [d62]
+https://www.bloomberg.com/news/articles/2026-08-20/anthropic-expects-to-match-spacex-s-record-ipo-size-or-top-it
+# bloomberg.com 403 to bots (paywall); headline + date (20 Aug 2026) via Google News RSS with Reuters/PYMNTS pickups; policy confirmed by Anthropic's 1 Sep 2026 Enterprise Frontier Safeguards post and CNBC (both 200); research/08 [299], research/09 [c48]
+https://www.bloomberg.com/news/articles/2026-08-20/anthropic-plans-to-change-data-retention-policy-for-advanced-ai
+# bloomberg.com 403 to bots (paywall); headline + date (20 Aug 2026) via Google News RSS; trillions-of-tokens and Foundry details via The Next Web (200, 21 Aug 2026) citing Bloomberg; research/08 [301]
+https://www.bloomberg.com/news/articles/2026-08-20/meta-has-quietly-become-one-of-microsoft-s-largest-ai-customers
+# nytimes.com 403 to bots (paywall); headline "S.E.C. Investigating Near-Implosion of A.I. Hedge Fund" + date (24 Aug 2026) via Google News RSS; subpoena details via TechCrunch and CNBC (both 200) citing the Times; no Wayback snapshot; research/08 [307], research/09 [d63]
+https://www.nytimes.com/2026/08/24/business/sec-situational-awareness-investigation.html
+# nytimes.com 403 to bots (paywall); headlines + date (24 Aug 2026) via Google News RSS; drone, victim and Jetson Orin details via Meduza's summary of the Times report (200); no Wayback snapshot; research/08 [306], research/09 [b25]
+https://www.nytimes.com/2026/08/24/world/europe/ukraine-war-nvidia-ai-autonomous-drones.html
+# reuters.com 401 to bots (paywall); headline + date (25 Aug 2026) via Google News RSS; primary reporting is CNBC (200) which Reuters credits; research/08 [308]
+https://www.reuters.com/legal/litigation/us-plans-appoint-two-new-fda-deputy-commissioners-tech-drugs-cnbc-reports-2026-08-25/
+# reuters.com 401 to bots (paywall); headline + date (11 Sep 2026) via Google News RSS; $10B anchor / $100B raise / ~$2T figures via PYMNTS and Calcalist (both 200); research/08 [318], research/09 [d65]
+https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/
