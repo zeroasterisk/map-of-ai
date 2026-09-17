@@ -160,3 +160,27 @@ https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requirin
 https://www.nytimes.com/2026/09/01/nyregion/ai-ban-schools-nyc.html
 # openai.com 403 to the link checker; full text via Wayback snapshot 20260916153304 (200); date 9 Sep 2026 via Google News RSS; research/08 [252], research/09 [c36]
 https://openai.com/index/ai-policy-window/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260815181741 (200), dated 13 Aug 2026; research/08 [257]
+https://openai.com/index/previewing-ultrafast/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260824171941 (200), dated 18 Aug 2026; research/08 [260], research/09 [c39]
+https://openai.com/index/chatgpt-for-teens/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915120957 (200), dated 19 Aug 2026; research/08 [261], research/09 [c39]
+https://openai.com/index/offering-zero-data-retention-for-frontier-models/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260913234942 (200), dated 28 Aug 2026; research/08 [267]
+https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260910062021 (200), dated 1 Sep 2026; research/08 [270]
+https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915174538 (200), dated 8 Sep 2026; research/08 [275]
+https://openai.com/index/introducing-chatgpt-images-2-5/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915202858 (200), dated 10 Sep 2026; date also via Google News RSS; research/08 [276]
+https://openai.com/index/introducing-gpt-live-1-in-the-api/
+# venturebeat.com 403/429 to bots; full text via Wayback snapshot 20260827022716 (200), dated 26 Aug 2026; research/08 [264]
+https://venturebeat.com/orchestration/salesforce-just-put-its-entire-crm-inside-claude-and-says-youll-never-need-its-app-again
+# perplexity.ai 403 to bots (Cloudflare); product page text via Wayback snapshot 20260915132159 (200); launch date 25 Aug 2026 via Google News RSS (VentureBeat, The New Stack, both 200); research/09 [e24]
+https://www.perplexity.ai/hub/products/portable-computer
+# reuters.com 401 to bots (paywall); headline + date (24 Aug 2026) via Google News RSS; details via The Next Web (200); research/08 [262], research/09 [e23]
+https://www.reuters.com/business/retail-consumer/alibaba-launches-wan30-ai-video-model-after-10-billion-share-sale-2026-08-24/
+# reuters.com 401 to bots (paywall); headline + date (26 Aug 2026) via Google News RSS; details via Ars Technica and Computerworld (both 200) quoting the investigation and Meta's confirmation; research/08 [265], research/09 [c41]
+https://www.reuters.com/investigations/mark-zuckerberg-had-bold-plan-replace-meta-staff-with-ai-heres-how-it-imploded-2026-08-26/
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; launch details via Business Insider (200); research/08 [273], research/09 [b23]
+https://www.reuters.com/business/autos-transportation/tesla-set-hold-cybercab-event-austin-texas-2026-09-02/
