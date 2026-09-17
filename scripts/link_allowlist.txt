@@ -116,3 +116,17 @@ https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-bla
 https://investors.micron.com/news/press-release/2026/Micron-Unveils-Micron-Research-Labs-a-U-S--Based-Long-Horizon-Innovation-Hub-to-Shape-the-Future-of-Memory-and-AI/default.aspx
 # bloomberg.com 403 to bots; headline + date (22 Aug 2026) via Google News RSS; Reuters pickup via Yahoo Finance (200) cited alongside in research/08 [201] and research/09 [d41]
 https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15
+# wsj.com 401 to bots (paywall); Wayback snapshot 20260910004217 exists and its page metadata gives headline "Nvidia Is Spending $6 Billion to Build a Powerful U.S. Alternative to Chinese AI" + datePublished 2026-08-23; Google News RSS carries it under 23 Aug; research/08 [208] and research/09 [e18]
+https://www.wsj.com/tech/ai/nvidia-is-spending-6-billion-to-build-a-powerful-u-s-alternative-to-chinese-ai-c51c38cc
+# bloomberg.com 403 to bots (paywall, no-www canonical as staged); full Bloomberg-bylined text via Deccan Chronicle syndication (200, 27 Aug 2026) cited alongside in research/08 [210] and research/09 [e20]
+https://bloomberg.com/news/articles/2026-08-26/alibaba-releases-smaller-cost-effective-qwen-ai-model
+# reuters.com 401 to bots (paywall); headline + date (26 Aug 2026) via Google News RSS; text via Silicon Republic pickup (200) cited alongside in research/08 [211] and research/09 [e20]
+https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/
+# time.com 406 to bots; Wayback snapshot 20260916225300 exists; interview (Alex Heath, 26 Aug 2026) is the embedded source of the Sources.news digest (200) cited first in research/08 [212]; Forbes/Gizmodo pickups carry the AGI-this-year quote
+https://time.com/article/2026/08/26/openai-sam-altman-interview/
+# nytimes.com 403 to bots (paywall), no archive snapshot; headline + 6 Sep 2026 date via Google News RSS; figures ($5.6B, >$3B Blackwell servers, Aivres rename, Southeast Asia routing, ImportGenius) via Free Press Journal pickup (200, 7 Sep) cited alongside in research/08 [223] and research/09 [d42]
+https://www.nytimes.com/2026/09/06/technology/ai-chips-china-blacklist.html
+# bloomberg.com 403 to bots (paywall); headline + date (7 Sep 2026) via Google News RSS and Yahoo Finance Singapore pickup; details via The Next Web (200) cited alongside in research/08 [224] and research/09 [e22]
+https://www.bloomberg.com/news/articles/2026-09-07/bytedance-founder-joins-ai-elite-in-race-to-perfect-world-models
+# reuters.com 401 to bots (paywall); headline + date (8 Sep 2026) via Google News RSS; advisory content via NBC News and CyberScoop (both 200) cited alongside in research/08 [225] and research/09 [e21]
+https://www.reuters.com/technology/us-accuses-chinese-ai-firms-industrial-scale-theft-ai-technology-2026-09-08/
