@@ -1082,3 +1082,67 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 event candidate and the 8–9 Sep infrastructure row ([244]–[248]) the strongest Silicon River one. Staging: 65
 unticked rows, no cluster above ~5. No open link follow-ups.
 
+
+## Session 25 (2026-09-17) — products / autonomous agents / developer platforms + frontier model releases / multimodal / autonomous research / coding promotions (research/08 [254]–[280], research/09 [a13]–[a16], [b21]–[b23], [c38]–[c42], [e23]–[e26])
+
+**Brief.** Promote two clusters (26 candidates = 27 staging rows, early Aug – mid Sep 2026) from
+`data/staging/innermost-loop-candidates.md` into research/08 and research/09; verify and allowlist links; run all
+gates; STATUS + ORCHESTRATOR_LOG; two commits; push to `main`.
+
+**Track 1 — products, autonomous agents, developer platforms (13 rows).** New Orleans AI 911 triage — deployed late
+July, first reported 9 Aug (NYPost) [255][c38]; ChatGPT for Teens (18 Aug, Wayback) [260][c39]; Private Safety
+Processing / Zero Data Retention (19 Aug, Wayback) [261][c39]; Mechanical Turk closes effective 30 Sep (CNBC 25 Aug)
+[263][c40]; Reuters "Project OT" — 60% of some team headcounts, second layoff round cancelled, incidents +40% (26 Aug;
+Ars Technica + Computerworld for text) [265][c41]; Salesforce in Claude, 37 skills, consumption billing (VentureBeat
+26 Aug, Wayback — staging ~27) [264]; Perplexity Portable Computer, PPLX 27B + Qwen 3.8 27B local, no per-token charge
+(product page via Wayback; 25 Aug via Google News RSS — staging ~27) [279][e24]; persistent Codex agent "put to sleep"
+(WIRED 27 Aug — staging ~29) [266]; Cursor wind-down 12 Nov (OpenAI 28 Aug, Wayback — staging ~29; the "Anthropic
+pledges more compute" staging claim is not in the source and was dropped) [267]; OpenClaw 2.0, 933 contributors /
+16,000 PRs (30 Aug — staging ~31) [268][e25]; Cybercab public rides in Austin, 45 registered, "under $30,000"
+(Business Insider 3 Sep; Reuters preview 2 Sep) [273][b23]; ChatGPT health records, >1,300 hospitals via Epic et al.
+(1 Sep, Wayback — staging ~3) [270]; Meta Muse, code name Hatch, US rollout, $20/$100 tiers, isolated environment
+(Meta newsroom + CNBC 8 Sep — staging ~12; ai.meta.com is a JS shell) [280].
+
+**Track 2 — frontier model releases, multimodal, autonomous research, coding (13 rows).** Poetiq Metasystem, six unseen
+benchmarks, no weight changes (4 Aug — staging ~8) [254][a13]; Ultrafast, GPT-5.6 Sol 14× on Cerebras, $75/$300 (13 Aug,
+Wayback) [257]; SL2T — trained on 50+ sign languages, ships ASL→English on Pixel 11, landmarks-only upload (12 Aug)
+[256][b21]; Faraday 27B, 310 Replica tasks, better in every category (14 Aug — staging ~16) [258][a14]; Prime Intellect
+153 runs / 18 models, Fable 5 81.7% of the gap, no new method (14 Aug) [259][a15]; Wan3.0 closed weights after the
+~$10.2B placement (Reuters 24 Aug; The Next Web) [262][e23]; Fable 5.1 routing sighting (@legit_api, snowflake
+2026-08-26 15:21Z — staging ~27) [278][c42]; Gemini 3.8 Flash + Flash Cyber 2.6× patches, agentic video −88% tokens
+(2 Sep) [271]; Muse Spark 1.3, AAII 62 max / 61 xhigh, $0.55 per task, weights undecided (developer page JS shell; The
+Decoder 3 Sep, SiliconANGLE 2 Sep) [272][e26]; World Labs Atlas omni world model (1 Sep — staging ~3) [269][b22];
+WeatherNext 3, hourly ≤5 km directly from satellites (3 Sep) [274]; SWE-2 from Kimi K3, within a point of Fable 5.1
+at 64% lower cost (10 Sep — staging ~12) [277][a16]; GPT-Live-1 full-duplex at ~5¢/min (10 Sep) + ChatGPT Images 2.5
+sketch editing (8 Sep) [276][275].
+
+**Corpus edits.** research/08: 21 new timeline rows in chronological order among the Aug–Sep 2026 rows, references
+[254]–[280] appended; no thread-ID cites (cross-file references as "(file 09a)" prose). research/09: thread (a) +3 rows
+[a13]–[a16], description extended to [a16]; thread (b) +3 rows [b21]–[b23], description to [b23]; thread (c) +3 rows
+[c38]–[c42], description to [c42]; thread (e) +2 rows [e23]–[e26] (one cross-cites [a16]), description to [e26].
+Staging: 27 rows ticked (200 `[x]`, 38 open). Allowlist: 12 URLs with per-URL verification notes.
+
+**Sourcing.** Every URL fetched (browser-UA curl; `/tmp/s25_snip.py` keyword-sentence extractor; Google News RSS
+decoder `/tmp/s21_gdecode.py`; Wayback availability API). Live 200: poetiq.ai, nypost.com, deepmind.google,
+inherentlabs.ai, primeintellect.ai, cnbc.com ×2, about.fb.com, arstechnica.com, computerworld.com, openclaw.ai,
+blog.google ×2, worldlabs.ai, cognition.com, x.com, wired.com, thenextweb.com, the-decoder.com, siliconangle.com,
+businessinsider.com, thenewstack.io. Blocked and allowlisted: openai.com ×7 (403 to the checker; all seven have Wayback
+snapshots with full text), venturebeat.com (403/429; Wayback), perplexity.ai (403; Wayback + RSS for the date),
+reuters.com ×3 (401; RSS headline + date, syndication for details). Pitfalls: ai.meta.com and developer.meta.com
+return 200 with an empty JS shell — cite alongside a text source; the Poetiq, SL2T, Faraday, Prime Intellect, Atlas,
+Gemini and SWE-2 pages all carried earlier dates than the staging digest (2–4 days), corrected; the Cursor post does
+not mention Anthropic; a first pass of the 08 insert script silently dropped two rows (Perplexity, Muse) — caught by a
+per-candidate grep before the docs were written, so always diff the candidate list against the inserted rows.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_research.py` 08 / 09 / 04 all PASS: 08 170 rows / 280
+sources / 478 links, 0 failed, 82 allowlisted; 09 16 / 201 / 424 links, 0 failed, 60 allowlisted; 04 34 / 92 / 102, 0 failed.
+`check_lod_labels.py` PASS (lod4 47 marks, 75 one-line rows, curated-out unchanged). `check_layout.py` structural /
+country / containment / zero-overlap / thread gates 0; `clipped` 625 pre-existing, RESULT: FAIL is that gate alone.
+Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All twenty-seven are corpus-only. The 14 Aug autonomous-research pair ([258][259]) is the strongest Reasoning
+Road event candidate and the 25–26 Aug labour pair ([263][265]) the strongest Conscience Road one. Staging: 38
+unticked rows, no cluster above ~4. No open link follow-ups.
