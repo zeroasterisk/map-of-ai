@@ -67,3 +67,26 @@ https://www.ft.com/content/9b8383b1-a28d-4940-8c4e-2f0cd21556ef
 https://www.reuters.com/business/retail-consumer/apple-trains-its-own-ai-model-china-market-with-alibabas-support-sources-say-2026-08-14/
 # reuters.com 401 to bots; headline + date via Google News RSS (Reuters "EXCLUSIVE" entry, 16 Aug listing) resolved through the news.google.com article decoder to this URL; full text via Taipei Times syndication (200, 17 Aug 2026, byline "Reuters, WASHINGTON") cited alongside
 https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/
+# session 20 promotions (research/08 [156]–[166]; research/09 [d30]–[d34]); each verified 2026-09-17 as noted
+# wsj.com 401 to bots (paywall); Wayback snapshot exists (20260913190605) and its <title> matches; figures via Seeking Alpha pickup (11 Aug 2026, "The $965B AI startup is targeting to go public in September or early October") cited in the entry
+https://www.wsj.com/tech/ai/anthropic-tries-to-shore-up-investor-confidence-ahead-of-blockbuster-ipo-0ff736ad
+# wsj.com 401 to bots (paywall); Wayback snapshot exists (20260910071314), <title> "Exclusive | OpenAI's Second-Quarter Sales Show Tepid Growth Compared With Anthropic" verified; figures via Yahoo Finance pickup (200, 19 Aug 2026) cited alongside
+https://www.wsj.com/tech/ai/openais-second-quarter-sales-show-tepid-growth-compared-with-anthropic-5cb42998
+# ft.com 403 to bots (paywall), no archive snapshot; headline "Anthropic investors bet on $2tn valuation in record IPO" (13 Aug 2026) via Google News RSS (Financial Times source entry); standfirst via Financial Post syndication (200) cited alongside
+https://www.ft.com/content/840ac156-af1c-4a82-b260-ae791072fcfa
+# reuters.com 401 + DataDome CAPTCHA to bots, no archive snapshot; headline + 12 Aug 2026 date via Google News RSS (Reuters source entry); full text via CTech/Calcalist syndication (200, 15 Aug 2026, "Reuters" byline) cited alongside
+https://www.reuters.com/world/inside-google-executive-moves-that-led-its-big-ai-reshuffle-2026-08-12/
+# bloomberg.com 403 to bots (paywall), no archive snapshots; headline + date for each verified via reader proxy (r.jina.ai); figures via CNBC (14/15/17 Aug, "Bloomberg was first to report"), Data Center Dynamics (10/11 Aug) and Proactive Investors (21 Aug) pickups cited alongside
+https://www.bloomberg.com/news/articles/2026-08-10/anthropic-macquarie-and-gic-form-venture-for-ai-data-centers
+https://www.bloomberg.com/news/articles/2026-08-11/anthropic-strikes-9-billion-deal-with-cloud-computing-firm-riot
+https://www.bloomberg.com/news/articles/2026-08-13/openai-s-revenue-run-rate-tops-40-billion-ahead-of-ipo
+https://www.bloomberg.com/news/articles/2026-08-14/anthropic-revenue-ahead-of-ipo-surges-over-14-fold-in-second-quarter
+https://www.bloomberg.com/news/articles/2026-08-17/anthropic-revenue-run-rate-surpasses-65-billion-ahead-of-ipo
+https://www.bloomberg.com/news/articles/2026-08-20/broadcom-seeks-more-than-60-billion-in-latest-ai-debt-deal
+# axios.com 403 to the link checker UA; full text (Ina Fried, 14 Aug 2026) via reader proxy; Wayback snapshot 20260911124150 (200) cited alongside
+https://www.axios.com/2026/08/14/openai-executive-greg-brockman-ipo
+# datacenterdynamics.com 403 to the link checker UA (Cloudflare); full text via reader proxy, both articles
+https://www.datacenterdynamics.com/en/news/gic-and-macquarie-form-theseus-infrastructure-to-serve-anthropics-data-center-needs/
+https://www.datacenterdynamics.com/en/news/riot-platforms-agrees-191mw-20-year-lease-agreement-with-anthropic-worth-91bn-report/
+# venturebeat.com 429 (rate limit) to the link checker UA; full text via reader proxy (Published Time 2026-08-11)
+https://venturebeat.com/infrastructure/mistral-ai-wants-to-build-1-gigawatt-of-european-compute-by-2030-and-lock-in-customers-now
