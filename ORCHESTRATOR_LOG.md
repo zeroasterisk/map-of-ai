@@ -1016,3 +1016,69 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** All twenty-five are corpus-only. The 4–7 Sep Astra benchmark row ([216]–[220]) is the strongest Reasoning
 Road event candidate and the 8–9 Sep distillation advisory ([225]) the strongest Commons Road one. Staging: 91
 unticked rows, no cluster above ~5. No open link follow-ups.
+
+## Session 24 (2026-09-17) — compute-infrastructure / sovereign-energy / supply-chain + safety / threat-intelligence / policy / legislative promotions (research/08 [228]–[253], research/09 [c29]–[c37], [d43]–[d59])
+
+**Brief.** Promote two clusters (26 staging rows, late Aug – mid Sep 2026) from `data/staging/innermost-loop-candidates.md`
+into research/08 and research/09; verify and allowlist links; run all gates; STATUS + ORCHESTRATOR_LOG; two commits;
+push to `main`.
+
+**Track 1 — compute infrastructure, sovereign energy, supply chain (15 rows).** EO 14421 bulk-power emergency (staging
+said "14420"; the signed order is 14421, 26 Aug) [228][d43]; semiconductor tariffs on servers/laptops (CNBC/Politico,
+27 Aug) [229][d44]; China remote-access rule (The Information 28 Aug; Thailand/Singapore detail via Tom's Hardware)
+[230][d45]; Germany compute shortage / 2030 quadrupling (Bloomberg 27 Aug; Wildberger; targets via Netz-Trends)
+[231][d46]; SpaceX turbine-blade factory (The Information 29 Aug; Musk "casting the blades & vanes" via Tom's Hardware)
+[232][d47]; OpenAI Mac minis/Studios for agent RL, Mac revenue ~+29% to ~$10.4B (The Information 30 Aug; 24/7 Wall St.)
+[233][d48]; SB Energy $5.5B warrants (WSJ 31 Aug, Wayback) [234][d49]; Anthropic–Lambda $35B on an Nvidia-leased Texas
+site (WSJ 31 Aug, Wayback — staging had ~3 Sep) [235][d50]; Dell $60.9B AI orders / $95B backlog / $74B guide (CNBC +
+Yahoo Finance 1 Sep) [236][d51]; Anthropic ~$517B / 14.8 GW in 11 months, >$65B annualised (The Information 6 Sep;
+TradingKey) [243][d52]; ASML–TSMC–Samsung–Intel 12-inch masks, pilot 2031 / production 2033 (Bloomberg 8 Sep;
+TrendForce) [244][d53]; Duane Arnold $1.9B DOE loan, 615 MW, 2029 (TechCrunch 8 Sep) [245][d54]; Qualcomm–AWS warrants
+25M shares vs $60B purchases (CNBC 8 Sep) [246][d55]; Google ≥€13B Finland (Bloomberg 9 Sep; CNBC) [247][d56];
+OpenAI–Samsung next-gen chips (Reuters 9 Sep, Wayback) [248][d57]; >10 states tear up data-centre tax breaks, Ohio
+>$1.5B, Massachusetts 25 MW local-approval EO (WSJ 9 Sep Wayback + Daily Signal + WBUR — staging had ~12 Sep)
+[249][d58]; Oracle Q1 FY2027 capex $28.5B vs $8.5B, RPO $664B, debt $125B, FCF −$5.4B (CNBC 10 Sep) [251][d59].
+
+**Track 2 — safety, threat intelligence, policy, legislation (11 rows).** NYC K-8 generative-AI moratorium, ~600,000
+students (NYT 1 Sep; NYC Mayor's Office 2 Sep; K-12 Dive) [237][c29]; OpenAI "automated shutdown capabilities" letter
+to Casar and Matsui (Reuters 2 Sep; TradingView Reuters syndication) [238][c30]; G20 unanimously adopts the
+"Carolina Principles for Emerging Technologies" (Bloomberg 2 Sep Wayback; MeriTalk) [239][c31]; DOJ §517 Statement of
+Interest — training "highly transformative" fair use, first federal intervention in the AI-training cases (Reuters
+2 Sep; Lowenstein Sandler) [240][c32]; Emil Michael: Anthropic "still a designated Supply Chain Risk" a day after
+Lutnick's "gotten religion" (Bloomberg 3 Sep; BigGo Finance) [241][c33]; Sanders–Casar Ban Artificial Superintelligence
+Act — permanent ban, pause, cabinet-level agency, "corporate death penalty", 20 years (press release 3 Sep) [242][c34];
+Anthropic "Countering misuse of AI: September 2026" — seven harm areas, five biological case studies, all on
+Haiku/Sonnet/Opus (10 Sep) [250][c35]; OpenAI "The AI policy window is open" — **four** California bills SB 813,
+AB 1405, SB 1119, AB 1864 (staging said three; 9 Sep, Wayback) [252][c36]; Senate Thune/Cruz/Klobuchar "duty of care"
+draft (Reuters 11 Sep; Spokesman-Review syndication) [253][c37].
+
+**Corpus edits.** research/08: 10 new timeline rows in chronological order among the Aug–Sep 2026 rows (26–28 Aug,
+27–29 Aug, 30–31 Aug, 1–2 Sep, 2–3 Sep, 6 Sep, 8–9 Sep, 9–10 Sep, 10 Sep, 9–11 Sep), references [228]–[253] appended; no thread-ID
+cites (cross-file references written as prose). research/09: thread (c) +2 rows (1–3 Sep; 9–11 Sep) [c29]–[c37],
+description extended to [c37]; thread (d) +3 rows (26–29 Aug; 30 Aug – 6 Sep; 8–10 Sep) [d43]–[d59], description
+extended to [d59]. Staging: 26 rows ticked (173 `[x]`, 65 open). Allowlist: 14 URLs with per-URL verification notes.
+
+**Sourcing.** Every URL fetched (`/tmp/s23_get.py`; Google News RSS decoder `/tmp/s21_gdecode.py`; Wayback
+availability API). Live 200: whitehouse.gov, cnbc.com ×5, techcrunch.com, sanders.senate.gov, anthropic.com,
+theinformation.com ×4 (metadata only), and the pickups named above. Blocked and allowlisted: bloomberg.com ×5 (403),
+wsj.com ×3, reuters.com ×4 (401), nytimes.com (403), openai.com (403 to the checker). Wayback snapshots existed for
+both WSJ deal stories, the WSJ states story, the Bloomberg G20 story, the Reuters Samsung story and the OpenAI post;
+the rest were verified headline + date via Google News RSS and figures via named syndication/pickups. Pitfalls:
+R-05 requires the literal `(accessed YYYY-MM-DD)` — a "via web.archive.org" suffix inside the parentheses fails;
+the Galveston Daily News Reuters copy first used for [238]/[c30] rate-limits the checker (429) — swapped for the
+TradingView Reuters syndication (stable 200); pre-existing web.archive.org URLs in 08/09 time out (000) on some passes
+and pass on rerun, nothing allowlisted for them.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_research.py` 08 / 09 / 04 all PASS: 08 149 rows / 253
+sources / 443 links, 0 failed, 70 allowlisted; 09 16 / 185 / 401, 0 failed, 54 allowlisted; 04 34 / 92 / 102, 0 failed.
+`check_lod_labels.py` PASS (lod4 47 marks, 75 one-line rows, curated-out unchanged). `check_layout.py` structural /
+country / containment / zero-overlap / thread gates 0; `clipped` 625 pre-existing, RESULT: FAIL is that gate alone.
+Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All twenty-six are corpus-only. The 1–3 Sep governance rows ([237]–[242]) are the strongest Conscience Road
+event candidate and the 8–9 Sep infrastructure row ([244]–[248]) the strongest Silicon River one. Staging: 65
+unticked rows, no cluster above ~5. No open link follow-ups.
+
