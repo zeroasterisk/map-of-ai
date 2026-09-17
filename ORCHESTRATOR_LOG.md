@@ -728,3 +728,57 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 Generative Coast `alignment-interpretability-plateau` event when budgets reopen; the $105B Ohio campus and the $500B
 financing platforms for `compute-hardware-hinterland`. Staging: 178 unticked rows, no cluster above ~8.
 
+
+## Session 19 (2026-09-17) — agent-platform / inter-agent + Chinese-frontier / Pax Silica promotions (research/08 [146]–[155], research/09 [c19]–[c20], [e13]–[e17])
+
+**Why.** Session 18's STATUS left two dense clusters in `data/staging/innermost-loop-candidates.md`: agent platforms,
+inter-agent communication and harnesses (Claude Code inter-session messaging and auto-mode default, Cloudflare
+Kitesurf, OpenAI Computer History, Slack Code, Nvidia AVO) and Chinese frontier open weights + Pax Silica geopolitics
+(ByteDance's 10T model, GLM-5.3 and its AA Index score, Apple's China model with Alibaba, the State Department's
+"pick sides" letter, Hugging Face's summer open-models report). The brief named the twelve staging rows and their
+sources.
+
+**What.** Every source was fetched before writing. research/08 gained ten timeline rows in date order among the
+existing Aug 2026 rows and sources [146]–[155]; research/09 gained two Conscience Road rows ([c19] auto-mode default +
+Computer History's prompt-injection note; [c20] GLM-5.3's open-weights cyber claim against the gated Mythos tier) and
+five Commons Road rows ([e13] ByteDance, [e17] the agent layer as commons, [e14] GLM-5.3 + AA Index, [e15] the Hugging
+Face report, [e16] Apple-in-China + Pax Silica), with both thread descriptions extended and the (e) table re-sorted so
+the new rows precede the existing 14–27 Aug consolidation row. The GLM-5.3 release and the 18 Aug AA Index post share
+one research/08 row cited [149][152]; the two Reuters exclusives share [150].
+
+**Corrections against sources.** Eight of the twelve staging dates were off by 1–4 days (fixed from page metadata,
+fxtwitter timestamps and Google News RSS pubDates). Claims: auto mode is default for *new sessions on Pro/Max/Team
+from 14 Aug* (announced 7 Aug); the ByteDance item is two reports (FT for "up to 10 trillion total parameters", The
+Information for the no-distillation pledge); GLM-5.3's Mythos 5 / Sol comparisons are Z.ai's own numbers; the AA
+Index has GLM-5.3 and Kimi K3 tied at 60 *one point behind* Grok 4.6 and GPT-5.6 Sol Max, not matching them; the Pax
+Silica letter is a draft addressed to the 35 June "AI Opportunity Statement" signatories and names WAICO; Apple's is
+the first *foreign proprietary model approved by Beijing* (no on-device/cloud-hybrid claim in the source); Hugging Face
+measures monthly parameter ceilings and Qwen derivatives, not "downloads dominance"; AVO's 100% is on the public
+ARC-AGI-3 set without ARC Prize verification.
+
+**Sourcing hygiene.** Live 200: simonwillison.net, claude.com, blog.cloudflare.com, learn.chatgpt.com, 9to5mac.com,
+salesforce.com, developer.nvidia.com, z.ai (client-rendered; text read from the JS bundle), huggingface.co,
+techtimes.com, finance.yahoo.com and taipeitimes.com (Reuters syndications), x.com ×2 (200 to curl; text + timestamps
+via the fxtwitter API mirror). Allowlisted with method: ft.com (403; reader proxy for headline + Published Time;
+Reuters pickup in Google News RSS), reuters.com ×2 (401 + DataDome; Google News RSS IDs decoded via batchexecute; full
+text via the syndications cited alongside). web.archive.org refused all connections this session (archive.org 200), so
+no Wayback snapshots. `check_research.py`: 08 and 09 R-01…R-07 PASS (08: 96 rows, 155 sources, 271 links 0 failed /
+21 allowlisted; 09: 16 rows, 125 sources, 271 links 0 failed / 17 allowlisted). Transient failures: one /09 link on the
+first run, then the session-18 Wayback URL in /08 (connection refused) — both 0 on re-run; not allowlisted since the
+outage is archive.org's. My own first-pass failures (a `[d10]` cross-file cite in a /08 row; `(accessed …; note)`
+ordering that R-05 rejects) were fixed before commit.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0 (`/tmp/pwvenv/bin/python`). `/tmp/localroot` had been wiped, so
+headless-shell failed on `libnspr4.so`; the libs survive under `/tmp/localdeps/usr/lib/x86_64-linux-gnu` (and
+`/tmp/debroot/...`) — set `LD_LIBRARY_PATH` there before `check_layout.py` / `check_lod_labels.py`. `check_layout.py`
+all structural / country / containment / zero-overlap / thread gates 0; `clipped` 625 (pre-existing A1 class at plate
+x > 2746; identical on a stashed-clean `main` run; RESULT: FAIL is that gate alone). `check_lod_labels.py` LOD LABEL
+GATE: PASS (lod4 47 marks, 75 one-line rows, curated-out set unchanged). Nothing under `site/` or `data/regions/`
+changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All twelve are corpus-only. The GLM-5.3 open-cyber row and the Pax Silica letter are the strongest
+candidates for Generative Coast events (`alignment-interpretability-plateau` / policy) when budgets reopen; Kitesurf +
+Slack Code + AVO for an agent-harness event. Staging: 166 unticked rows, no cluster above ~6.
