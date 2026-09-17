@@ -891,3 +891,69 @@ STATUS + ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** All sixteen are corpus-only. The 20 Aug robotaxi-day row ([174][175]) is the strongest Embodiment Road
 event candidate; the Riemann bound ([167]) and the protein-design/AIDO Cell pair ([171][172]) the strongest science
 ones. Staging: 135 unticked rows, no cluster above ~5. No open link follow-ups.
+
+## Session 22 (2026-09-17) — AI-memory-crunch / chip-supply-chain / chip-geopolitics + AI-safety / policy / governance promotions (research/08 [183]–[202], research/09 [c21]–[c25], [d37]–[d41])
+
+**Why.** The session-22 brief named two clusters in `data/staging/innermost-loop-candidates.md`: the AI memory
+crunch, hardware supply chain and chip geopolitics (2027 DRAM/HBM capacity reportedly sold out, DDR5 kits +485%
+year on year, the NYT's memory-chip lobbying story, WSJ on Apple testing CXMT/YMTC parts and Lutnick's objection,
+Situational Awareness' $400M into lithography startup Source Foundry, Trump's polysilicon Section 232 proclamation,
+Nvidia's >15% AI-server price rises, Micron's $10B Research Labs, OpenAI's Jalapeño first results) and AI safety,
+policy and governance escalation (DOE's Genesis Open Models Initiative, Sanders' pause letter, Claude's EU-mandated
+text watermark plus the Commission's icons and Gruber's critique, WIRED on the White House framework extending to
+open weights, Anthropic's August Risk Report, the Redwood–Anthropic Conceptual Reasoning Index, OpenAI's Collective
+Cyberdefense call, Judge Lin vacating the Pentagon's Anthropic blacklisting). 19 staging rows.
+
+**What.** research/08 timeline +10 rows in date order among the existing Aug 2026 rows, sources [183]–[202]
+(19 new entries plus [202] for Jalapeño — see below). research/09 Thread (c) +4 rows [c21]–[c25] and Thread (d)
++3 rows [d37]–[d41], both descriptions extended. Staging: 19 rows `[x]` (122 ticked / 116 open). Allowlist: 10
+URLs with method notes.
+
+**Jalapeño / cross-thread ids.** The brief said to reuse research/09's `[d13]` in research/08. `check_research.py`
+R-04 collects `[a-h]?\d+` citations from the body and requires each to be defined in the file's own `## Sources`, so
+`[d13]` in research/08 fails as "cited but undefined" — as did `[c8]` and `[d16]` in my first draft. Fix: research/08
+gets its own `[202]` (same OpenAI URL + Wayback copy, cross-noting [d13]) and cross-thread prose references use
+the neighbouring rows' "(file 09c)" / "(file 09d)" form. Worth remembering: research/08 never cites thread ids.
+
+**Dates corrected against sources.** IGN sellout 5 Aug (staging ~8); Tom's Hardware 17 Aug (~19); WSJ Apple
+14/15 Aug (~14, written 10–14 with the CXMT-testing report); Source Foundry WSJ 7 Aug / TechCrunch 9 Aug (~8);
+Register 11 Aug 00:27Z with the help doc "published on Monday" 10 Aug; EC icons page "Last update 10 August" (~12);
+Sanders letter dated 10 Aug (~12); Anthropic watermark explainer 14 Aug and Gruber Sunday 16 Aug (~17); WIRED
+12 Aug (~13); CRI 12 Aug (~14); Micron dateline 20 Aug (~23); Jalapeño 25 Aug (~27); Collective Cyberdefense
+TechCrunch 27 Aug (~29; "over a hundred" then, 150+ now); Pentagon ruling issued Thursday night 27 Aug, reported
+28 Aug. Claims: the digest's "memory chip prices roughly quadruple" is not in the NYT primary's headline/standfirst
+(a lobbying story) and was dropped; Jalapeño's figures are ranges (1.5–1.9× per watt, 1.7–3.6× latency, 2.1–4.1×
+interactive), tape-out in nine months; Risk Report: "Model 2" is "somewhat more capable than Mythos 5", no release
+plans, misalignment risk "Low (an increase from our previous assessment of 'very low')", saturation is of the
+task-based AI-R&D evaluations, coverage date 15 Jul; WIRED's framework is voluntary and unpublished; polysilicon
+floors are $21/kg, $100/kg ingots/wafers, 22¢/W cells, 38¢/W modules, 15% tariff, effective 4 Dec; the vacated
+order is Hegseth's 27 Feb "supply-chain risk" designation (Lin, N.D. Cal., 59 pages).
+
+**Sourcing hygiene.** Live 200: ign.com, tomshardware.com, theregister.com, digital-strategy.ec.europa.eu,
+daringfireball.net, wired.com ×2, alignment.anthropic.com, anthropic.com, sanders.senate.gov (PDF, pdftotext via
+`/tmp/pdfvenv`), www-cdn.anthropic.com (Risk Report PDF), techcrunch.com ×2, gizmodo.com, thenews.com.pk,
+techrepublic.com, straitstimes.com, canarymedia.com, finance.yahoo.com, theguardian.com, aljazeera.com. Allowlisted:
+reuters.com ×2 (401; Google News RSS headline+date; Straits Times full text for polysilicon; Guardian / Al Jazeera /
+WIRED for the ruling), nytimes.com (403 to curl, but a Google News redirect returned the page with full metadata —
+headline, byline Huang/Swanson, published_time 2026-08-10T09:02Z, standfirst; body not read), wsj.com ×2 (401;
+Wayback 20260820160753 and 20260815170048 return the article head with headline, byline and lede),
+genesisopenmodels.anl.gov (403 challenge; Wayback 20260826134643 full page), axios.com (403; RSS date only),
+openai.com/collective-cyberdefense (403; Wayback 20260911185518 full text + TechCrunch), investors.micron.com (403;
+reader proxy full release), bloomberg.com (403, no snapshot; Reuters pickup via Yahoo Finance + CNA). Pitfall found:
+guessing pickup URLs from RSS titles produced six wrong slugs (Gizmodo, The News International, TechRepublic, WIRED,
+Anthropic, Canary Media) — the fetched page's `rel=canonical` is the URL to cite, always. `/tmp/s21_gdecode.py`
+(Google News batchexecute decoder) again did the paywalled-headline work.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_research.py` 08 / 09 / 04 all PASS: 08 126 rows / 202
+sources / 360 links, 0 failed, 48 allowlisted; 09 16 / 149 / 331, 0 failed, 34 allowlisted (one transient `000` on
+the first pass, 0 on rerun — nothing allowlisted for it); 04 34 / 92 / 102, 0 failed. `check_lod_labels.py` PASS
+(lod4 47 marks, 75 one-line rows, curated-out unchanged). `check_layout.py` structural / country / containment /
+zero-overlap / thread gates 0; `clipped` 625 pre-existing, RESULT: FAIL is that gate alone. Nothing under `site/`
+or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All nineteen are corpus-only. The 5–17 Aug memory-crunch row ([184]–[187]) is the strongest Silicon River
+event candidate and the Pentagon ruling ([199]) the strongest Conscience Road one. Staging: 116 unticked rows, no
+cluster above ~5. No open link follow-ups.
