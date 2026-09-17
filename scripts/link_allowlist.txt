@@ -60,3 +60,10 @@ https://www.nytimes.com/2026/08/08/climate/amazon-data-center-texas-pollution.ht
 # bloomberg.com 403 to bots (paywall); headline + date verified via reader proxy (r.jina.ai); deal terms confirmed by CNBC's own reporting (200, "Bloomberg was first to report") cited alongside; note the staging feed's 17 Aug URL omits the www. host (Bloomberg redirects)
 https://bloomberg.com/news/articles/2026-08-17/nvidia-to-invest-up-to-105-billion-for-openai-data-center-in-ohio
 https://www.bloomberg.com/news/articles/2026-08-26/anthropic-to-pay-nscale-45-billion-for-ai-computing-power
+# session 19 promotions (research/08 [150] [155]; research/09 [e13] [e16]); each verified 2026-09-17 as noted
+# ft.com 403 to bots (paywall), no archive snapshot (Wayback CDX offline at check time); headline + Published Time 2026-08-07T04:36Z verified via reader proxy (r.jina.ai); Reuters pickup ("ByteDance targets mega AI model that could match Mythos scale, FT reports", 7 Aug) in Google News RSS; content via Tech Times pickup (200) cited alongside
+https://www.ft.com/content/9b8383b1-a28d-4940-8c4e-2f0cd21556ef
+# reuters.com 401 + DataDome CAPTCHA to bots, no archive snapshot; headline + 14 Aug 2026 date via Google News RSS (Reuters source entry) and DuckDuckGo; full text via Yahoo Finance syndication (200, datePublished 2026-08-14T04:21Z) cited alongside
+https://www.reuters.com/business/retail-consumer/apple-trains-its-own-ai-model-china-market-with-alibabas-support-sources-say-2026-08-14/
+# reuters.com 401 to bots; headline + date via Google News RSS (Reuters "EXCLUSIVE" entry, 16 Aug listing) resolved through the news.google.com article decoder to this URL; full text via Taipei Times syndication (200, 17 Aug 2026, byline "Reuters, WASHINGTON") cited alongside
+https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/
