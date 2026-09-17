@@ -782,3 +782,54 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** All twelve are corpus-only. The GLM-5.3 open-cyber row and the Pax Silica letter are the strongest
 candidates for Generative Coast events (`alignment-interpretability-plateau` / policy) when budgets reopen; Kitesurf +
 Slack Code + AVO for an agent-harness event. Staging: 166 unticked rows, no cluster above ~6.
+
+## Session 20 (2026-09-17) — frontier-lab finance / IPO run-up + data-center power / moratorium / sovereign-energy promotions (research/08 [156]–[166], research/09 [d30]–[d34])
+
+**Why.** The session-20 brief named two clusters in `data/staging/innermost-loop-candidates.md`: frontier-lab
+financial escalation, IPO run-up and corporate restructuring (Anthropic's $965B → ~$2T valuation, Q2 $11.5B /
+positive adjusted operating income / $65B run rate vs OpenAI's $40B run rate, $6.7B Q2 and $12.3B loss; Reuters' inside
+account of Brin's reshuffle; Axios on OpenAI's pre-IPO exec exits) and data-centre power battles, municipal
+moratoriums and sovereign energy deals (Nvidia's $3B Lancium stake, >500 local bans, Theseus Infrastructure, the $9.1B
+Riot lease, Mistral's European Compute Units, Shapiro's Pennsylvania order, Broadcom's $60–100B chip debt). Twelve
+candidates across fifteen staging checkboxes.
+
+**What.** Every source was fetched before writing. research/08 gained five combined timeline rows in date order among
+the existing Aug 2026 rows and sources [156]–[166]; research/09 gained three Silicon River rows ([d30]–[d32] the
+7–11 Aug power-ownership week: Lancium, the 500-ban count, Theseus, Riot; [d33] Mistral's ECUs and the 1 GW-by-2030
+target; [d34] Shapiro's order + Broadcom's debt raise) with the thread description extended to [d1]–[d34]. The
+WSJ/FT valuation pair, the Bloomberg Q2 / run-rate figures and the WSJ scoreboard share one /08 row cited [161][162];
+Reuters + Axios share [163][164]; the two The Information reports and Theseus share [156][157][158].
+
+**Corrections against sources.** Five of the staging dates were off by 1–2 days (Lancium 7 Aug, WSJ confidence piece
+11 Aug, Mistral 11 Aug, Shapiro 18 Aug; WSJ scoreboard 19 Aug confirmed). Claims: Nvidia's $3B is "up to" (initial $2B
+for ~20%); the moratorium count is >500 jurisdictions and NY/TX are a permit freeze and an audit, not bans; Theseus is
+owned by Macquarie + GIC with Anthropic as anchor tenant, not a three-way JV, and the electricity pledge dates from
+Feb 2026; Riot's own statement names only "a leading frontier AI lab"; Mistral's post does not state a gigawatt — the
+1 GW / 2030 target is Mensch's VentureBeat interview; FT's $2T is a "bet", WSJ's $965B the May Series H mark;
+Anthropic's profit is "adjusted" and WSJ flags the methodology; Reuters' Brin piece is an inside account of the 8 Aug
+reshuffle already at [125]; Broadcom is "in talks" for a $60–70B senior-secured tranche, up to $100B total.
+
+**Sourcing hygiene.** Live 200: mistral.ai, nbcnews.com, anthropic.com, businesstimes.com.sg, thenextweb.com,
+techtimes.com, cnbc.com ×3, finance.yahoo.com, financialpost.com, seekingalpha.com, calcalistech.com,
+proactiveinvestors.com. Wayback is back: snapshots for both WSJ pieces and the Axios piece, `<title>` verified, cited
+alongside. Allowlisted with method: wsj.com ×2, ft.com, reuters.com, bloomberg.com ×6 (reader proxy for headline +
+date; figures from the pickups cited alongside), axios.com, datacenterdynamics.com ×2, venturebeat.com (429).
+theinformation.com ×2 are 200 to the checker so not allowlisted. `check_research.py`: 08 and 09 R-01…R-07 PASS (08:
+101 rows, 166 sources, 303 links 0 failed / 35 allowlisted; 09: 16 rows, 130 sources, 285 links 0 failed / 23
+allowlisted). One /09 link is flaky (failed on two of four runs, 0 on both immediate `check_links.sh` re-runs). The
+full-corpus run surfaces research/04 R-03 failed=2 — europepmc.org ×2 now 403 to curl; that file is untouched since
+6 Sep and outside this brief, left as a follow-up rather than allowlisted blind.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0 (`/tmp/validate_venv/bin/python`). `check_layout.py` all
+structural / country / containment / zero-overlap / thread gates 0; `clipped` 625 (pre-existing; RESULT: FAIL is that
+gate alone). `check_lod_labels.py` LOD LABEL GATE: PASS (lod4 47 marks, 75 one-line rows, curated-out set unchanged).
+`LD_LIBRARY_PATH=/tmp/localdeps/usr/lib/x86_64-linux-gnu:/tmp/debroot/usr/lib/x86_64-linux-gnu` still required for
+headless-shell. Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All fifteen are corpus-only. The lab-finance divergence row ([161][162]) is the strongest Generative Coast
+event candidate; the 7–11 Aug power-ownership week ([156]–[159]) the strongest Silicon River one. Staging: 151
+unticked rows, no cluster above ~6. Fix research/04's europepmc.org links (allowlist with method or swap to
+PubMed/DOI).
