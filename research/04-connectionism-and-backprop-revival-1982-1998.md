@@ -74,7 +74,7 @@ After the first AI winter for neural nets (Minsky & Papert's *Perceptrons*, 1969
 ## Key papers / artifacts
 - Linnainmaa, S. *Taylor expansion of the accumulated rounding error*. BIT Numerical Mathematics 16, 1976 (journal form of the 1970 thesis). https://doi.org/10.1007/BF01931367 [9]
 - Fukushima, K. *Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position*. Biological Cybernetics 36, 1980. https://doi.org/10.1007/BF00344251 [6]
-- Hopfield, J. J. *Neural networks and physical systems with emergent collective computational abilities*. PNAS 79(8), 1982. https://europepmc.org/article/MED/6953413 [3]
+- Hopfield, J. J. *Neural networks and physical systems with emergent collective computational abilities*. PNAS 79(8), 1982. https://pubmed.ncbi.nlm.nih.gov/6953413/ [3]
 - Kohonen, T. *Self-organized formation of topologically correct feature maps*. Biological Cybernetics 43, 1982. https://doi.org/10.1007/BF00337288 [37]
 - Barto, A. G., Sutton, R. S. & Anderson, C. W. *Neuronlike adaptive elements that can solve difficult learning control problems*. IEEE Trans. Systems, Man, and Cybernetics SMC-13, 1983. https://doi.org/10.1109/TSMC.1983.6313077 [60]
 - Ackley, D. H., Hinton, G. E. & Sejnowski, T. J. *A Learning Algorithm for Boltzmann Machines*. Cognitive Science 9, 1985. https://www.cs.toronto.edu/~hinton/absps/cogscibm.pdf [13]
@@ -125,8 +125,8 @@ After the first AI winter for neural nets (Minsky & Papert's *Perceptrons*, 1969
 ## Sources
 [1] Connectionism — Wikipedia — https://en.wikipedia.org/wiki/Connectionism (accessed 2026-09-06)
 [2] Hopfield network — Wikipedia — https://en.wikipedia.org/wiki/Hopfield_network (accessed 2026-09-06)
-[3] Hopfield, J. J. (1982). Neural networks and physical systems with emergent collective computational abilities. PNAS 79(8):2554–2558 — https://europepmc.org/article/MED/6953413 (accessed 2026-09-06)
-[4] Hopfield, J. J. (1984). Neurons with graded response have collective computational properties like those of two-state neurons. PNAS 81(10):3088–3092 — https://europepmc.org/article/MED/6587342 (accessed 2026-09-06)
+[3] Hopfield, J. J. (1982). Neural networks and physical systems with emergent collective computational abilities. PNAS 79(8):2554–2558 — https://pubmed.ncbi.nlm.nih.gov/6953413/ (doi 10.1073/pnas.79.8.2554) (accessed 2026-09-17)
+[4] Hopfield, J. J. (1984). Neurons with graded response have collective computational properties like those of two-state neurons. PNAS 81(10):3088–3092 — https://pubmed.ncbi.nlm.nih.gov/6587342/ (doi 10.1073/pnas.81.10.3088) (accessed 2026-09-17)
 [5] Neocognitron — Wikipedia — https://en.wikipedia.org/wiki/Neocognitron (accessed 2026-09-06)
 [6] Fukushima (1980), Biological Cybernetics 36(4):193–202 — https://doi.org/10.1007/BF00344251 (accessed 2026-09-06)
 [7] Backpropagation — Wikipedia (history section: Linnainmaa 1970, Werbos 1982, Rumelhart 1985/1986) — https://en.wikipedia.org/wiki/Backpropagation (accessed 2026-09-06)

@@ -90,3 +90,9 @@ https://www.datacenterdynamics.com/en/news/gic-and-macquarie-form-theseus-infras
 https://www.datacenterdynamics.com/en/news/riot-platforms-agrees-191mw-20-year-lease-agreement-with-anthropic-worth-91bn-report/
 # venturebeat.com 429 (rate limit) to the link checker UA; full text via reader proxy (Published Time 2026-08-11)
 https://venturebeat.com/infrastructure/mistral-ai-wants-to-build-1-gigawatt-of-european-compute-by-2030-and-lock-in-customers-now
+# session 21 — bloomberg.com 403 to bots, no archive snapshot; headline + date (20 Aug 2026, Ed Ludlow) and full text via Yahoo Finance syndication (200), cited alongside in research/08 [175] and research/09 [d35]
+https://www.bloomberg.com/news/articles/2026-08-20/google-s-waymo-has-built-a-custom-chip-for-its-robotaxis
+# wsj.com 401 to bots; headline + date (29 Aug 2026) via Google News RSS; full text (Raffaele Huang byline) via Mint/WSJ syndication (200), cited alongside in research/08 [180] and research/09 [d36]
+https://www.wsj.com/tech/ai/nvidia-wants-to-run-the-worlds-robots-china-is-an-eager-customer-bdf46169
+# genbio.ai serves a Cloudflare bot-challenge page (403) to the link checker; full text via reader proxy (Published Time 2026-08-18T09:00:38-04:00); STAT report (200) cited alongside in research/08 [172]
+https://genbio.ai/aido-cell-simulator/
