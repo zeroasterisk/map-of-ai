@@ -1146,3 +1146,90 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 **Next.** All twenty-seven are corpus-only. The 14 Aug autonomous-research pair ([258][259]) is the strongest Reasoning
 Road event candidate and the 25–26 Aug labour pair ([263][265]) the strongest Conscience Road one. Staging: 38
 unticked rows, no cluster above ~4. No open link follow-ups.
+
+## Session 26 (2026-09-17) — final staging clear-out: compute infrastructure / mega-financing / hardware / enterprise clouds + policy / safety incidents / copyright / governance / research discoveries (research/08 [281]–[318], research/09 [b24]–[b26], [c43]–[c52], [d60]–[d65], [e27]–[e30])
+
+**Brief.** Promote the last 38 open rows (7 Aug – 11 Sep 2026) from `data/staging/innermost-loop-candidates.md`
+into research/08 and research/09, consolidating adjacent items where sensible; verify and allowlist links; run all
+gates; STATUS + ORCHESTRATOR_LOG; two commits; push to `main`. Staging ends at 238/238 `[x]`.
+
+**Track 1 — compute infrastructure, mega-financing, hardware, enterprise clouds (19 rows).** SK Hynix 54.3T won /
+~$38B for Yongin (HBM/DRAM) + Cheongju (NAND) fabs — staging row had no URL; Engadget via Google News RSS (7 Aug)
+[281][d60]; CoreWeave Q2 +112% / $2.58B / $104B backlog / Anthropic + Meta + Jane Street, net loss $626M (CNBC 11 Aug)
+[286][d60]; Nebius Q2 +454% to $582.3M — figures only in the linked PDF, extracted with pypdf (13 Aug) [287][d60];
+Decart talks ~$6B (Bloomberg 13 Aug, RSS + Reuters/Quartz pickups) folded with the 8 Sep walk-away (Yahoo Finance
+syndication, Jerusalem Post) [289][d60]; Nvidia 13F — $21B SpaceX (122.8M Class A), $30B Intel on $5B, same week as
+the halved $250B OpenAI commitment (Bloomberg 14 Aug via Fortune syndication + The Next Web) [290][d61]; SB Energy $3B
+talks, cross-cited to [d28] (The Information 15 Aug — staging ~16; headline/byline only) [292][d61]; Crunchbase $250B+
+/ 59 Nvidia rounds (17 Aug) [293][d61]; Anthropic $10B+ pre-IPO facility + super-voting shares, Amodei ~2% (Bloomberg
+18 Aug via BigGo) [297][d62]; IPO to match or top SpaceX's $75B / $86.2B, filing by month-end (Bloomberg 20 Aug via
+Japan Times 21 Aug; the staged $65B run-rate / $11.5B Q2 figures are not in the syndicated text and were not asserted;
+prose cross-reference to [161]) [298][d62]; Stripe–OpenRouter, 400+ models / 80+ providers, >$7B per Bloomberg via
+TechCrunch 16 Aug (announcement 19 Aug — staging ~21) [300][293][d62]; Meta trillions of Azure Foundry tokens a week
+(Bloomberg 20 Aug via The Next Web 21 Aug) [301][d62]; GPT-5.6 Sol −20% for 3 months (OpenAI post 21 Aug 19:34Z —
+staging ~23) [302][d62]; Nvidia Q2 FY2027 $96.2B +106%, DC $89.0B, Q3 guide $108B ex-China — the staged "~70% FY2028"
+guide is not in the release, dropped (26 Aug) [312][d63]; SEC subpoenas Goldman / JPM / Citi / BofA over Situational
+Awareness, ~$45B → ~$10B in July (NYT 24 Aug via TechCrunch + CNBC 25 Aug) [307][d63]; a16z $1.1B Machine Age Fund
+(28 Aug — staging ~29) [313][d63]; Physical Superintelligence $58M seed (Breakthrough Energy), Fermi Explorer route to
+Alpha Centauri by end-2029 (Wissner-Gross 1 Sep + MIT Technology Review) [315][b26]; Nvidia equity book $99B, >10× in
+a year, beside $105B Ohio credit — cross-cited to [d28] (CNBC 4 Sep) [316][d64]; Berkshire $10B of Alphabet's $80B
+raise at 6.5% discount (Abel on CNBC 5 Sep) [317][d64]; Nvidia up to $10B anchor in Anthropic's ~$2T / up to $100B
+Nasdaq IPO (Reuters 11 Sep via PYMNTS + Calcalist) [318][d65].
+
+**Track 2 — policy, safety incidents, copyright, governance, research (19 rows).** Fable 5 biology-classifier
+constitution rewritten, fallbacks −85% (Anthropic, dated 7 Aug on page — staging ~8) [283][c43]; Cloudflare: machines
+passed humans in May 2026, 1,000× in five years (The Register 7 Aug) [282][e27]; Zuckerberg "The Future is for
+Everyone" — ~6,000 words, "balance of power" among billions of personal superintelligences (Guardian 10 Aug — staging
+~12; meta.com is 400 to bots and a JS shell even in Wayback 20260810102317) [284][e28]; Pichai: Gemini 1B+ monthly,
+14th billion-user product (11 Aug 17:00Z — staging ~12) [288]; HEIR open-source FHE compiler (Google 14 Aug) [291];
+gendered-bias paper — hedges / tag questions / collective reference → shorter, less formal answers, early layers
+(arXiv 2608.13328, 13 Aug — staging ~16) [296][c45]; 404 Media tracker → Amazon VGT3 Las Vegas scan-and-destroy (17
+Aug) [294][c46]; Google $10M Spirit data — 100M emails, 500M Teams records, 7.5B de-identified passenger transactions,
+97.5M profiles excluded (Bloomberg Law 17 Aug) [295][c47][e29]; Mind Viruses — context-wiped chains, harmful payloads
+spread less, "viral persona", one-line warning ≈ immunity (arXiv 2608.10218, 10 Aug — staging ~19) [285][c44];
+customer-held 30-day logs (Bloomberg 20 Aug) folded with the 1 Sep Enterprise Frontier Safeguards post + CNBC
+[299][c48]; Japan "comply or explain" principle code (Japan Times/Jiji 19 Aug) [303][e30]; "It's Greg Brockman's OpenAI
+now" — product + scaling arm, second-in-command (Verge 20 Aug — staging ~23) [304]; Zaporizhzhia — Molniya drone, no
+radio link, Jetson Orin, 6 July strike, three dead (NYT 24 Aug via Meduza; two-headline package) [306][b25] (also in the [c49]–[c52] row);
+EEG silent-reading decoding — ~240k words, 49 h, 19 dry channels, log-linear, no saturation (arXiv 2608.20186, 20 Aug
+— staging ~25) [305][b24]; FDA deputy commissioner for technology / health-AI (CNBC 25 Aug; Reuters credits CNBC)
+[308]; China companion rules from 15 July, Doubao drops companions, "emotional dependence" (Guardian 25–26 Aug)
+[309][c49]; NZ Online Safety (Minimum Age…) Bill, under-16 social media + AI companions (JURIST 25 Aug — staging ~27)
+[310][c50]; ARIA "substantially human made" — Madonna cover peaked **No. 2** overall, not No. 1 as staged (BBC 25 Aug
+— staging ~29) [311][c51]; Sony Music Publishing + Warner Chappell v. Anthropic, Amodei, Mann — filed 28 Aug NDCal,
+5M + 2M torrented books (MBW 29 Aug — staging ~31) [314][c52].
+
+**Corpus edits.** research/08: 18 new timeline rows (38 candidates consolidated into same-day / same-week
+multi-source rows) in chronological order among the Aug–Sep 2026 rows; references [281]–[318] appended; no thread-ID
+cites (cross-file references as "(file 09b/09c/09d/09e)" prose; [161], [185], [203] cross-referenced by number where
+the existing 08 rows are the referent). research/09: thread (b) +3 rows [b24]–[b26], description extended to [b26];
+thread (c) +4 rows [c43]–[c52], description to [c52]; thread (d) +4 rows [d60]–[d65] (cross-cites [d28], [d37]),
+description to [d65]; thread (e) +2 rows [e27]–[e30], description to [e30]. Staging: 38 rows ticked — **238/238
+`[x]`, file cleared.** Allowlist: 10 URLs with per-URL verification notes.
+
+**Sourcing.** Every URL fetched (browser-UA fetcher `/tmp/s26/fetch.py` writing html+text per URL hash;
+`/tmp/s26/ex.py` date-meta + keyword-window extractor; Google News RSS decoder `/tmp/s21_gdecode.py` in
+`/tmp/s26/gnews*.py`; Wayback CDX + availability API; pypdf in a throwaway uv venv for the Nebius PDF). 27 of the 38
+staged URLs returned 200 directly; the 11 blocked (6 Bloomberg, 2 NYT, 2 Reuters, meta.com) were verified via
+syndication / pickups / RSS, and the one staged item with no URL (SK Hynix) was sourced via RSS → Engadget. Live 200
+primaries and pickups are listed in STATUS. Blocked and allowlisted: bloomberg.com ×6, nytimes.com ×2 (no Wayback
+snapshots exist), reuters.com ×2. Pitfalls: the checker passes `meta.com` (400) and `theinformation.com` — allowlist
+only what `check_links.sh` actually reports, or the allowlist accumulates dead weight; meta.com's Wayback capture is
+also a JS shell, so cite a text source alongside; Nebius' newsroom HTML has no numbers — follow the PDF link; two
+staged numeric claims (Nvidia FY2028 guide, Anthropic run-rate) were not in the reachable source text and were dropped
+rather than carried on the digest's word; three staged dates were off by 2–4 days (Brockman, Sol cut, EEG) and one by
+~9 days (Mind Viruses) — always take the page/arXiv date.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_research.py` 08 / 09 / 04 all PASS: 08 188 rows / 318
+sources / 534 links, 0 failed, 92 allowlisted; 09 16 / 224 / 473 links, 0 failed, 68 allowlisted; 04 34 / 92 / 102, 0
+failed. `check_lod_labels.py` PASS (lod4 47 marks, 75 one-line rows, curated-out unchanged). `check_layout.py`
+structural / country / containment / zero-overlap / thread gates 0; `clipped` 625 pre-existing, RESULT: FAIL is that
+gate alone. Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/08, research/09, allowlist, staging ticks) followed by this STATUS +
+ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** Staging is empty; the next digest pass starts a fresh candidate file. All 38 are corpus-only. Strongest map
+event candidates from this session: the 24 Aug autonomous-drone strike ([306]/[b25]) for the Conscience Road and the
+Nvidia equity-circularity pair — $99B book (4 Sep) + Anthropic IPO anchor (11 Sep) ([316][318]/[d64][d65]) — for the
+Silicon River. No open link follow-ups.
