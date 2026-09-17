@@ -833,3 +833,61 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 event candidate; the 7–11 Aug power-ownership week ([156]–[159]) the strongest Silicon River one. Staging: 151
 unticked rows, no cluster above ~6. Fix research/04's europepmc.org links (allowlist with method or swap to
 PubMed/DOI).
+
+## Session 21 (2026-09-17) — physical-AI / robotics / autonomous-fleet + AI-for-science / math / bio-discovery promotions (research/08 [167]–[182], research/09 [b13]–[b19], [d35]–[d36]); research/04 europepmc → PubMed
+
+**Why.** The session-21 brief named two clusters in `data/staging/innermost-loop-candidates.md`: physical AI,
+robotics, embodiment and autonomous fleets (Dyna-2's human-to-robot scaling law, Waymo's 18-county CPUC approval,
+$47.4B of H1 physical-AI funding, Generalist's GEN-1.5, Nevada's 7,000 robotaxi permits, Waymo's 1,000-TOPS ASIC,
+SoftBank's $6B bid for 1X, Anthropic's Model Hardware Standard, Nvidia's $10B physical-AI business and China's 90%
+humanoid share) and AI for science, mathematics and bio-discovery (research Claude's 41.6% → 67.2% Riemann bound
+with Lean certificate, Claude's 14/15 protein-design campaign, GenBio's AIDO Cell, Google's Co-Scientist paper,
+BirdCODE, UCSF's profound-autism protein atlas, Insilico's rentosertib aging-clock result). Sixteen staging
+checkboxes. Plus the open research/04 europepmc follow-up from session 20.
+
+**What.** Every source was fetched before writing. research/08 gained fourteen timeline rows in date order among
+the existing Aug–Sep 2026 rows and sources [167]–[182]; Nevada + Waymo compute share one "robotaxi day" row
+[174][175]. research/09 Thread (b) Embodiment Road gained six milestone rows and sources [b13]–[b19] with the
+description extended to [b1]–[b19]; Thread (d) Silicon River gained [d35] (Waymo ASIC) and [d36] (Nvidia physical
+AI / China) with the description extended to [d1]–[d36]; the (b) rows cross-link to (c) for MHS and to (d) for the
+chip and export-control items. research/04 [3] and [4] now link PubMed (200) with the PNAS DOIs noted; the three
+europepmc URLs (two for [3], one in the timeline) are gone.
+
+**Corrections against sources.** Nine of the sixteen staging dates were off by 1–3 days (Riemann 10 Aug; Crunchbase,
+protein design and AIDO Cell all 18 Aug; GEN-1.5 19 Aug; SoftBank–1X 26 Aug; MHS and Co-Scientist 27 Aug; WSJ 29
+Aug). Claims: the Riemann result is a lower bound on the proportion of zeros on the critical line, not a proof; the
+"95% expressed" figure is not on Anthropic's page and was dropped (the page gives 14/15, 26.7%/22.6% batch vs 35.1%
+single-target, 354 binders from 1,320 designs, and a dual-use warning); Waymo's own post says >1,000 TOPS and 20× in
+eight years and lists TSMC among seven partners — the "5 nm to reduce Nvidia dependence" framing is Bloomberg's
+(Ed Ludlow; Yahoo Finance full text); Nevada is three permits totalling 7,000 (Tesla 5,000 / Waymo 1,000 / Uber
+1,000 via Motional + Zoox) and Tesla's engineer called 5,000 "a ceiling"; the Co-Scientist MXene claim is hedged in
+the abstract ("further experiments are needed to confirm the atomic structure"); the Nvidia $10B is against $303B
+trailing revenue and the 90% humanoid share is H1 2026 shipments; UCSF's ~1,800 interactions are in Science, with
+AlphaFold for contact geometry and frogs + organoids for function; Insilico's result is n = 42, six proteomic clocks,
+company release on a Nature Biotechnology paper — flagged medium confidence.
+
+**Sourcing hygiene.** Live 200: dyna.co, electrek.co, news.crunchbase.com, generalistai.com, techcrunch.com,
+waymo.com, anthropic.com ×3, arxiv.org, earthspecies.org, npr.org, insilico.com, statnews.com,
+interestingengineering.com, finance.yahoo.com, livemint.com, zawya.com, theinformation.com (200 to the checker
+though client-rendered — headline + date confirmed via Google News RSS). Allowlisted with method: bloomberg.com
+(Waymo chip; no Wayback snapshot exists, syndication cited alongside), wsj.com (Nvidia robots; 401, Google News RSS +
+Mint syndication), genbio.ai (Cloudflare challenge 403; reader proxy + STAT). Google News RSS article links were
+resolved to publisher URLs with the batchexecute decoder (`/tmp/s21_gdecode.py`) — useful for paywalled headlines.
+`check_research.py`: 08, 09 and 04 all R-01…R-07 PASS on a clean pass (08: 116 rows / 182 sources / 325 links 0
+failed 38 allowlisted; 09: 16 / 139 / 299, 0 failed 25 allowlisted; 04: 34 / 92 / 102, 0 failed). Wayback is flaky
+again: one /08 run showed 11 `000` timeouts all on web.archive.org, the next 0; one /09 run showed 1, the next two
+0. Nothing allowlisted for it. R-05 pitfall: the accessed date must be the literal `(accessed YYYY-MM-DD)` group —
+`(doi …; accessed …)` fails the regex, so the DOI note is a separate parenthetical.
+
+**Gates.** `validate.py` files=19 rules=25 fails=0. `check_layout.py` all structural / country / containment /
+zero-overlap / thread gates 0; `clipped` 625 (pre-existing; verified identical with this session's changes stashed;
+RESULT: FAIL is that gate alone). `check_lod_labels.py` LOD LABEL GATE: PASS (lod4 47 marks, 75 one-line rows,
+curated-out set unchanged). `LD_LIBRARY_PATH=/tmp/localdeps/usr/lib/x86_64-linux-gnu:/tmp/debroot/usr/lib/x86_64-linux-gnu`
+still required. Nothing under `site/` or `data/regions/` changed, so no tile rebuild.
+
+**Commits.** One content commit (research/04, research/08, research/09, allowlist, staging ticks) followed by this
+STATUS + ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
+
+**Next.** All sixteen are corpus-only. The 20 Aug robotaxi-day row ([174][175]) is the strongest Embodiment Road
+event candidate; the Riemann bound ([167]) and the protein-design/AIDO Cell pair ([171][172]) the strongest science
+ones. Staging: 135 unticked rows, no cluster above ~5. No open link follow-ups.
