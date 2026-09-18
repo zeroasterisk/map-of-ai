@@ -8,9 +8,9 @@ z2 solid borders + country names, z3 full country labels), taken at device-scale
 level's tiles. Nothing is resampled between levels, so zooming in swaps in genuinely new content (Google-Maps
 style), not an enlarged copy of the same picture. Leaflet's L.CRS.Simple reads plate units == zoom-0 pixels:
 
-    plate      1800 x 700 viewBox units (W, H in atlas.html)
-    zoom z     1 plate unit = 2**z px   -> the plate is 1800*2**z x 700*2**z px, tiled at TILE px
-    z          sliced from its own 2**z-scale screenshot of lod=z (z3: 8x -> 14400 x 5600 px; z0: 1800 x 700 px)
+    plate      1800 x 1050 viewBox units (W, H in atlas.html; the v12 Y-funnel plate)
+    zoom z     1 plate unit = 2**z px   -> the plate is 1800*2**z x 1050*2**z px, tiled at TILE px
+    z          sliced from its own 2**z-scale screenshot of lod=z (z3: 8x -> 14400 x 8400 px; z0: 1800 x 1050 px)
 
 Outputs (all under site/):
     tiles/{z}/{x}/{y}.png     the pyramid (RGB PNG, plate-coloured padding outside the plate)
@@ -51,19 +51,21 @@ def serve(root: Path, port: int):
 
 LOD_DESC = {
     0: "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
-    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Generative Coast)",
+    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
     2: "+ solid country borders, + country name + one-line tag + years",
-    3: "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Generative Coast)",
-    4: "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Generative Coast; elsewhere as z3)",
+    3: "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
+    4: "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast; elsewhere as z3)",
 }
 LOD_MAX = max(LOD_DESC)
 # LOD pilot: levels above --full-zmax are rendered for these plate-space bboxes only, tile-aligned at z4 (16 plate
 # units per tile). index.html mounts each as its own bounded tile layer; every other continent keeps its z3 art at
 # zoom 4. Widening to the full plate = ~5000 more tiles.
 #   Deep Learning Basin   x 804–1190, y 485–773 (land bbox) plus margin
+#   Transformer Plateau   x 1079–1445, y 319–705 (8 spatial countries + z3/z4 event dots and labels) plus margin
 #   Generative Coast      x 1408–1600, y 67–886 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
 PILOT_BBOXES = {
     "deep-learning-basin": (768, 304, 1216, 624),
+    "transformer-plateau": (1056, 304, 1472, 720),
     "generative-coast": (1280, 128, 1632, 880),
 }
 PILOT_BBOX = PILOT_BBOXES["deep-learning-basin"]   # back-compat name (single-bbox callers / --pilot-bbox default)

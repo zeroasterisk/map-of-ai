@@ -21,6 +21,12 @@
    624
   ],
   [
+   1056,
+   304,
+   1472,
+   720
+  ],
+  [
    1280,
    128,
    1632,
@@ -28,15 +34,15 @@
   ]
  ],
  "source_px": [
-  12800,
+  19456,
   12032
  ],
  "lod": {
   "0": "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
-  "1": "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Generative Coast)",
+  "1": "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
   "2": "+ solid country borders, + country name + one-line tag + years",
-  "3": "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Generative Coast)",
-  "4": "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Generative Coast; elsewhere as z3)"
+  "3": "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
+  "4": "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast; elsewhere as z3)"
  },
  "counts": {
   "0": {
@@ -47,7 +53,7 @@
     1800,
     1050
    ],
-   "bytes": 2044432,
+   "bytes": 2047456,
    "lod": 0
   },
   "1": {
@@ -58,7 +64,7 @@
     3600,
     2100
    ],
-   "bytes": 7398969,
+   "bytes": 7408370,
    "lod": 1
   },
   "2": {
@@ -69,7 +75,7 @@
     7200,
     4200
    ],
-   "bytes": 20332013,
+   "bytes": 20380080,
    "lod": 2
   },
   "3": {
@@ -80,18 +86,18 @@
     14400,
     8400
    ],
-   "bytes": 52937720,
+   "bytes": 53096452,
    "lod": 3
   },
   "4": {
-   "tiles": 1594,
-   "cols": 50,
-   "rows": 67,
+   "tiles": 2270,
+   "cols": 76,
+   "rows": 93,
    "px": [
-    12800,
+    19456,
     12032
    ],
-   "bytes": 41846128,
+   "bytes": 63899972,
    "lod": 4,
    "regions": [
     {
@@ -107,6 +113,21 @@
      "px": [
       7168,
       5120
+     ]
+    },
+    {
+     "bbox": [
+      1056,
+      304,
+      1472,
+      720
+     ],
+     "tiles": 676,
+     "cols": 26,
+     "rows": 26,
+     "px": [
+      6656,
+      6656
      ]
     },
     {
@@ -139,6 +160,12 @@
      624
     ],
     [
+     1056,
+     304,
+     1472,
+     720
+    ],
+    [
      1280,
      128,
      1632,
@@ -147,5 +174,5 @@
    ]
   }
  },
- "bytes": 124559262
+ "bytes": 146832330
 }

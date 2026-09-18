@@ -54,13 +54,13 @@
 </style>
 </head>
 <body>
-<div class="banner"><b>Review prototype — continents + Deep Learning Basin countries (Leaflet tile pyramid, 4 levels of detail).</b> Scroll / pinch to zoom, drag to pan; zooming in reveals years, then country borders and names, then country details. Audit raw tiles at <a href="static-map.html?level=2&px=1000&py=450&r=1">static-map.html</a>; the previous click-to-zoom renderer is <a href="atlas.html">atlas.html</a>.</div>
+<div class="banner"><b>Review prototype — continents + Deep Learning Basin, Transformer Plateau, and Generative Coast countries (Leaflet tile pyramid, 5 levels of detail).</b> Scroll / pinch to zoom, drag to pan; zooming in reveals years, then country borders and names, then country details. Audit raw tiles at <a href="static-map.html?level=2&px=1000&py=450&r=1">static-map.html</a>; the previous click-to-zoom renderer is <a href="atlas.html">atlas.html</a>.</div>
 <div id="map"></div>
 <div class="card" id="card"></div>
 <footer id="foot">Map of AI · continent registry · <span id="stats"></span> · source of truth: data/continents/REGISTRY.md · art: atlas.html (P2-T1-RENDER v11), baked to tiles by site/build_tiles.py</footer>
 <script>
-// ---- Coordinate system. L.CRS.Simple: latlng = [-y, x] with (x, y) in PLATE units (the atlas.html viewBox, 1800×700);
-// at zoom z the plate is 1800·2^z × 700·2^z px, which is exactly how build_tiles.py cut the pyramid (256 px tiles).
+// ---- Coordinate system. L.CRS.Simple: latlng = [-y, x] with (x, y) in PLATE units (the atlas.html viewBox, 1800×1050);
+// at zoom z the plate is 1800·2^z × 1050·2^z px, which is exactly how build_tiles.py cut the pyramid (256 px tiles).
 // Every overlay position below is computed in plate units and converted with P() — the same numbers atlas.html draws.
 const P = (x, y) => L.latLng(-y, x);
 const NS = 'http://www.w3.org/2000/svg';
