@@ -41,7 +41,7 @@ MIN_THREAD_LABELS = 4  # milestone labels that must survive curation on the A1 p
 TEX_STD = 6.0     # min luminance stddev sampled inside a continent (flat colour ≈ 0; generated texture ≫ 6)
 BUILD_MARKER = "P2-T1-RENDER v11"
 COUNTRY_MARKER = "P3-RENDER v2"
-N_COUNTRIES = 23         # spatial countries in entities.json: basin 7 (tooling-guild + pretraining-foothills are spatial: false) + generative coast 8 (P3-T10) + transformer plateau 8 (P3-T9; national-champion-scalers is spatial: false)
+N_COUNTRIES = 24         # spatial countries in entities.json: basin 8 (tooling-guild is spatial: false) + generative coast 8 (P3-T10) + transformer plateau 8 (P3-T9; national-champion-scalers is spatial: false)
 CONTAIN_N = 300          # interior samples per country for the containment gate (A-V2)
 OVERLAP_N = 500          # interior samples per country for the pairwise zero-overlap gate (A-V3)
 ORDER = ["cybernetic-shore", "symbolic-heartland", "winter-steppes", "expert-systems-plateau", "connectionist-revival",
@@ -211,7 +211,7 @@ JS = r"""
   const realClash = (a, b) => { const oy = Math.min(a.b, b.b) - Math.max(a.y, b.y), ox = Math.min(a.r, b.r) - Math.max(a.x, b.x); return oy > .4 * Math.min(a.b - a.y, b.b - b.y) && ox > 4; };
   for (let i = 0; i < allT.length; i++) for (let j = i + 1; j < allT.length; j++) if (realClash(bb(allT[i]), bb(allT[j]))) textClash.push([allT[i].textContent, allT[j].textContent]);
   // every text on the map (labels, margins, ruler, titles) must be inside the viewBox
-  for (const t of svg.querySelectorAll('text')) { const b = bb(t); if (b.x < EDGE || b.y < EDGE || b.r > vb.width - EDGE || b.b > vb.height - EDGE) clipped.push({text: t.textContent, x: +b.x.toFixed(1), r: +b.r.toFixed(1), y: +b.y.toFixed(1), b: +b.b.toFixed(1)}); }
+  for (const t of allT) { const b = bb(t); if (b.x < EDGE || b.y < EDGE || b.r > vb.width - EDGE || b.b > vb.height - EDGE) clipped.push({text: t.textContent, x: +b.x.toFixed(1), r: +b.r.toFixed(1), y: +b.y.toFixed(1), b: +b.b.toFixed(1)}); }
   // 4. leaders
   const allLands = conts.flatMap(c => c.lands.map(l => ({id: c.id, el: l})));
   const leaderProblems = [];

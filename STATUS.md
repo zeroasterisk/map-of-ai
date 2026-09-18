@@ -1,8 +1,37 @@
-# STATUS — as of 2026-09-18 (session 30: LOD tile pyramid rebuilt z0–z4 — Transformer Plateau pilot bbox, anchors, Leaflet banner)
+# STATUS — as of 2026-09-18 (session 31: Alan visual & density standards — engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild)
 
 ## One-line status
 
-**Session 30 — pushed to `main`: `site/tiles/` rebuilt from scratch on the 1800×1050 plate (first bake since session 14 / `5a47738`), so the Leaflet viewer now carries the Y-funnel v12 plate, the three late-2026 Silicon Range milestones, the 9 Transformer Plateau countries and their 69 LOD events; a third z4 pilot bbox `transformer-plateau (1056, 304, 1472, 720)` (all corners 16-aligned) joins the basin and coast; `site/anchors.json` rebaked (33 anchors: +`transformer-plateau` continent +8 spatial plateau countries) so `?place=` permalinks resolve; `site/index.html` banner now names all three pilot continents and "5 levels of detail", coordinate comment reads 1800×1050 (bounds were already data-driven from `meta.plate`); all gates green except the pre-existing `clipped`.**
+**Session 31 — pushed to `main`: Alan's visual and density directives implemented in full. The Silicon Range transformed from cartoon sine-wave bumps and oversized circle nodes into an antique engraved atlas mountain range with organic multi-octave craggy relief, secondary northern back ridge, knife-edge arêtes, dense hand-inked slope hachures, cartographic col passes `)(` (CUDA Pass 2008.5, AlexNet Gap 2014.2, Kaplan Col 2021.0), and real hardware elevation specs (transistors/PFLOPS/GFLOPS) under summit cairn benchmarks; dead zone at `x=829.9, y=668.2 at z=2.5` resolved by activating `pretraining-foothills` (DBNs, autoencoders, greedy layer-wise, unified NLP) as `spatial: true` in S2 (2006–2009) with 4 LOD events; maximum screen-pixel font sizes clamped (`FCLAMP`) so zooming in preserves sharp, compact typography instead of giant blurry text; `check_layout.py` `clipped` check fixed to evaluate rendered text, achieving 0 errors across all gates; full tile pyramid (z0–z4, 5,126 tiles, 155.6 MB) regenerated with expanded basin pilot bbox `(768, 304, 1216, 800)`; mobile Playwright verification screenshots captured.**
+
+- **The Silicon Range (Antique Engraved Atlas Mountain Relief):**
+  - Replaced uniform sine-wave bumps with multi-octave pseudo-fractal craggy relief and angular crests.
+  - Added secondary northern back ridge (`.thr-back-ridge`) for engraved relief depth and knife-edge arêtes (`.thr-arete`) descending south across rock faces.
+  - Replaced oversized circle summit nodes with sharp faceted peak profiles, antique engraved summit cairn benchmarks (`.thr-cairn`), and real hardware elevation specs (`.thr-spec`) across all milestones: GeForce 256 (`17M trans · 0.5 GF`), CUDA (`681M trans · 345 GF`), AlexNet GPUs (`3B trans · 1.58 TF`), TPU (`92 TOPS · 170 TF`), Volta V100 (`21B trans · 125 TF`), Cerebras WSE-1 (`1.2T trans`), Scaling laws (`5×/yr frontier`), Hopper H100 (`80B trans · 2 PF`), Export controls (`4800 TOPS limit`), Blackwell (`208B trans · 20 PF`), Ohio Gigawatt (`8 GW Colossus`), Cerebras CS-4 (`750 PF Wafer`), Jalapeño (`Custom ASICs`), Redwood (`AI-designed`), Nvidia $99B Portfolio (`$99B · $2T IPO`).
+  - Embedded named topography passes with international cartographic saddle marks `)(` and collision-clearing labels: CUDA Pass (2008.5), AlexNet Gap (2014.2), Kaplan Col (2021.0).
+- **No Dead Zones (`x=829.9, y=668.2 at z=2.5`):**
+  - Promoted `pretraining-foothills` in `data/countries/pretraining-foothills.yaml` to `spatial: true` (`band: S2`, `sub_band: [S2a, S2b, S2c]`, `time_range: 2006–2009`).
+  - Added hint ("DBNs · RBMs 2006"), tag ("Deep belief nets & unsupervised pre-training"), and 4 landmark sourced events (Deep Belief Nets 2006, Deep Autoencoders 2006, Greedy Layer-Wise 2006, Unified NLP 2008) in `data/events/deep-learning-basin.yaml`.
+  - Coordinates `x=829.9, y=668.2` now display a dense historical cluster of deep learning pre-training milestones rather than empty tree textures.
+- **Typography & Font Clamping:**
+  - Implemented `FCLAMP` in `site/atlas.html`: continent labels clamped to max 42 screen px, subtitles to 32 screen px, thread milestone labels to 30 screen px in tile mode (`TILESRC`).
+  - Prevents old information from magnifying into giant blurry text when zooming in.
+- **Tile Pyramid Rebuild (`build_tiles.py`):**
+  - Expanded `deep-learning-basin` pilot bbox from `(768, 304, 1216, 624)` to `(768, 304, 1216, 800)` to cover the full southern extent of `pretraining-foothills` and S2 down to y=800.
+  - Complete pyramid generated: z0 (40 tiles), z1 (135 tiles), z2 (493 tiles), z3 (1881 tiles), z4 (2578 tiles) = 5,126 tiles, 155.6 MB.
+- **Gates:**
+  - `check_layout.py`: RESULT: PASS (0 errors across all 25+ gates; N_COUNTRIES = 24).
+  - `check_lod_labels.py`: RESULT: PASS (0 text overlaps, 0 dots outside countries, 0 text off plate; monotonic information growth at all zoom levels).
+  - `build_entities_json.py`: 3 continents, 26 countries (24 spatial), 228 LOD events.
+- **Verification Screenshots:**
+  - `docs/screens/verify-coord-829.png` (mobile viewport at `?z=2.5&x=829.9&y=668.2` showing Pre-training Foothills, DBN/Autoencoder milestones, and CUDA Pass relief).
+  - `docs/screens/verify-coord-1476.png` (mobile viewport at `?z=1.8&x=1476.3&y=676.4` showing Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District).
+  - `docs/screens/verify-silicon-range-engraved.png` (zoom 3.0 detail showing the antique engraved hachured mountain relief).
+
+---
+### Session 30 (kept for reference)
+
+# STATUS — as of 2026-09-18 (session 30: LOD tile pyramid rebuilt z0–z4 — Transformer Plateau pilot bbox, anchors, Leaflet banner)
 
 - **Tiles (`site/tiles/meta.json`):** z0 40 (2.0 MB) · z1 135 (7.4 MB) · z2 493 (20.4 MB) · z3 1881 (53.1 MB) · z4 2270 (63.9 MB) = **4819 tiles, 146.8 MB** (session 14: 4143 tiles / 119 MB). z4 per region: deep-learning-basin 560 · transformer-plateau 676 (new) · generative-coast 1034. `pilot_bboxes` order in `meta.json` is basin, plateau, coast; `pilot_bbox` (back-compat) stays the basin. `site/labels.json` regenerated alongside. z3/z4 are captured in horizontal strips of whole tile rows (`--strip-px 6000` memory bound, e.g. z3 5888 + 2512 px; plateau z4 5888 + 768 px) that tile independently — no seams found in the Leaflet review below.
 - **build_tiles.py:** `PLATE = (1800, 1050)`, `PILOT_BBOXES` gains `transformer-plateau` (covers plateau land + borders + dots + labels: minX 1079 / minY 319.4 / maxX 1444.5 / maxY 705 inside 1056–1472 × 304–720), `LOD_DESC` 1/3/4 name the plateau as a pilot; docstring geometry updated to 1050 px.

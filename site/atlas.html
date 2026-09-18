@@ -71,15 +71,20 @@
   .title { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 2.5px; text-anchor: middle; }
   .title-sub { font-family: Lora, Georgia, serif; font-style: italic; fill: #4b3d29; text-anchor: middle; }
   .graticule { fill: none; stroke: #5b4a30; stroke-width: .7; stroke-opacity: .22; stroke-dasharray: 1 4; }
-  /* THREADS v1 (AXES.md §3 linear features). The Silicon Range: an ink mountain ridge in the coast's linework
-     vocabulary — a sinuous spine, hachured peaks at the milestones (a pen-drawn "caterpillar" range), a soft
-     shadow on the south face, elevation — not water. Labels reuse the event type (Cinzel name + italic year). */
-  .thr-shadow { fill: #2e2212; fill-opacity: .16; filter: url(#landshadow); pointer-events: none; }
-  .thr-face { fill: #b9a47e; fill-opacity: .55; stroke: none; pointer-events: none; }
-  .thr-peak { fill: #e6d7b4; fill-opacity: .85; stroke: #2e2212; stroke-width: 1.15; stroke-linejoin: round; pointer-events: none; }
-  .thr-hachure { fill: none; stroke: #2e2212; stroke-width: .55; stroke-opacity: .62; stroke-linecap: round; pointer-events: none; }
-  .thr-spine { fill: none; stroke: #2e2212; stroke-width: 1.05; stroke-opacity: .75; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
-  .thr-dot { fill: #2a1f11; stroke: #efe3c8; stroke-width: .7; pointer-events: none; }
+  /* THREADS v1 (AXES.md §3 linear features). The Silicon Range: an antique engraved ink mountain ridge
+     — multi-ridge craggy relief, faceted peaks at milestones, passes and gaps ()(), elevation specs (transistors/PFLOPS),
+     dense hand-inked slope hachures, and subtle south-face shading. Labels reuse the event type (Cinzel name + italic year). */
+  .thr-shadow { fill: #2e2212; fill-opacity: .14; filter: url(#landshadow); pointer-events: none; }
+  .thr-face { fill: #b9a47e; fill-opacity: .52; stroke: none; pointer-events: none; }
+  .thr-peak { fill: #e6d7b4; fill-opacity: .88; stroke: #2a1c0c; stroke-width: 1.15; stroke-linejoin: round; pointer-events: none; }
+  .thr-back-ridge { fill: none; stroke: #4a3822; stroke-width: .75; stroke-opacity: .45; stroke-linejoin: round; stroke-dasharray: 2 1; pointer-events: none; }
+  .thr-hachure { fill: none; stroke: #2a1c0c; stroke-width: .42; stroke-opacity: .65; stroke-linecap: round; pointer-events: none; }
+  .thr-spine { fill: none; stroke: #261808; stroke-width: 1.15; stroke-opacity: .88; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
+  .thr-arete { fill: none; stroke: #261808; stroke-width: .85; stroke-opacity: .80; stroke-linejoin: round; pointer-events: none; }
+  .thr-cairn { fill: #2a1f11; stroke: #efe3c8; stroke-width: .4; pointer-events: none; }
+  .thr-pass-mark { fill: none; stroke: #2a1c0c; stroke-width: .9; stroke-linecap: round; pointer-events: none; }
+  .thr-spec { font-family: Lora, Georgia, serif; font-style: italic; fill: #5c3818; paint-order: stroke; stroke: rgba(240,228,200,.88); stroke-width: 1.5px; stroke-linejoin: round; text-anchor: middle; pointer-events: none; }
+  .thr-pass-name { font-family: Lora, Georgia, serif; font-style: italic; font-size: 5.8px; fill: #5c442c; letter-spacing: .5px; paint-order: stroke; stroke: rgba(240,228,200,.88); stroke-width: 1.6px; stroke-linejoin: round; pointer-events: none; }
   .thr-name { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; paint-order: stroke; stroke: rgba(240,228,200,.88); stroke-width: 2.2px; stroke-linejoin: round; text-anchor: middle; pointer-events: none; }
   .thr-year { font-family: Lora, Georgia, serif; font-style: italic; fill: #5a2e14; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 1.8px; stroke-linejoin: round; text-anchor: middle; pointer-events: none; }
   .thr-title { font-family: Cinzel, Georgia, serif; font-weight: 600; fill: #2a1f11; letter-spacing: 2.4px; paint-order: stroke; stroke: rgba(240,228,200,.85); stroke-width: 2.6px; stroke-linejoin: round; pointer-events: none; }
@@ -170,6 +175,7 @@ const TILESRC = document.documentElement.classList.contains('tilesrc');
 const LOD = TILESRC ? +((/lod(\d)/.exec(document.documentElement.className) || [0, 3])[1]) : 3;
 const ZSCALE = 2 ** LOD;
 const PX = (px, plate) => TILESRC ? px / ZSCALE : plate;   // screen-px target in tile mode, else the legacy plate size
+const FCLAMP = (fs, maxPx) => TILESRC ? Math.min(fs, maxPx / ZSCALE) : fs;   // clamp screen font size on zoom
 // Biome → generated terrain texture (site/assets/textures/*.jpg, made once by gen_textures.py + prep_textures.py)
 // and a hand-tint colour used for the border wash and the legend swatch.
 // v10 (per Alan on v9: "if there's some kind of a color coding, it should be on theme but a bit more intense"):
@@ -912,15 +918,17 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const inFill = (p, x, y) => { pt.x = x; pt.y = y; return p.isPointInFill(pt); };
 
   function labelBlock(c, lx, ly, sizeN, sizeS, maxW, withSub) {
-    const nameLines = wrap(c.name, Math.max(8, Math.floor(maxW / (sizeN * 0.72 + 1.2))));
-    const subLines = withSub ? wrap(c.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor(maxW / (sizeS * 0.5)))) : [];
-    const totalH = nameLines.length * (sizeN + 3) + subLines.length * (sizeS + 2) + sizeS + 3;
-    let yy = ly - totalH / 2 + sizeN * 0.8;
+    const sN = TILESRC ? Math.min(sizeN, 42 / ZSCALE) : sizeN;
+    const sS = TILESRC ? Math.min(sizeS, 32 / ZSCALE) : sizeS;
+    const nameLines = wrap(c.name, Math.max(8, Math.floor(maxW / (sN * 0.72 + 1.2))));
+    const subLines = withSub ? wrap(c.subtitle.replace(/, \d{4}.*$/, ''), Math.max(14, Math.floor(maxW / (sS * 0.5)))) : [];
+    const totalH = nameLines.length * (sN + 3) + subLines.length * (sS + 2) + sS + 3;
+    let yy = ly - totalH / 2 + sN * 0.8;
     const ts = [];
-    nameLines.forEach(l => { ts.push(txt(lx, yy, l, 'cname', gLabels, {'font-size': sizeN, 'data-for': c.id})); yy += sizeN + 3; });
+    nameLines.forEach(l => { ts.push(txt(lx, yy, l, 'cname', gLabels, {'font-size': sN, 'data-for': c.id})); yy += sN + 3; });
     yy += 1;
-    subLines.forEach(l => { ts.push(txt(lx, yy, l, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id})); yy += sizeS + 2; });
-    ts.push(txt(lx, yy + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sizeS, 'data-for': c.id}));
+    subLines.forEach(l => { ts.push(txt(lx, yy, l, 'csub', gLabels, {'font-size': sS, 'data-for': c.id})); yy += sS + 2; });
+    ts.push(txt(lx, yy + 1, `${c.start}–${c.end}`, 'csub', gLabels, {'font-size': sS, 'data-for': c.id}));
     return ts;
   }
   const union = ts => { const bs = ts.map(t => t.getBBox()); const x = Math.min(...bs.map(b => b.x)), y = Math.min(...bs.map(b => b.y)); return {x, y, r: Math.max(...bs.map(b => b.x + b.width)), b: Math.max(...bs.map(b => b.y + b.height))}; };
@@ -1205,6 +1213,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const y0 = T.placement.time_range[0], y1 = T.placement.time_range[1] === 'present' ? PRESENT - .06 : T.placement.time_range[1];
       const x0 = X(y0), x1 = X(y1);
       const ms = T.milestones.slice().sort((a, b) => a.year - b.year);
+      const passes = (T.passes || []).slice().sort((a, b) => a.year - b.year);
       // a milestone in the present month sits ON the east coast; its summit is pulled west so the whole peak
       // (half a peak width) stays on land — the year label is unchanged, only the summit x is clamped
       const MX = m => Math.min(X(m.year), x1 - Math.max(18, bandH * yScale(yearAt(x1)) * (.28 + .42 * (m.peak || .5)) * 1.7) / 2 - 2);
@@ -1213,29 +1222,99 @@ fetch('registry.json').then(r => r.json()).then(data => {
       // peak height in screen px at each milestone: 0.3–0.7 of the local band height (the funnel makes eastern peaks taller)
       const peakH = (m, x) => bandH * yScale(yearAt(x)) * (.28 + .42 * (m.peak || .5));
       const peakW = (m, x) => Math.max(18, peakH(m, x) * 1.7);
-      // the range is ONE continuous ridge: a filler row of minor peaks (period ~22 px, height 0.32 of the band)
-      // runs the whole span so the milestones' summits rise out of a chain instead of standing alone on a band
-      const minorH = x => bandH * yScale(yearAt(x)) * .16 * (0.75 + .25 * Math.sin(x * .37));
-      const relief = x => { let h = minorH(x) * Math.max(0, Math.sin((x - x0) / 7)); for (const m of ms) { const mx = MX(m), hw = peakW(m, mx) / 2; if (Math.abs(x - mx) < hw) { const t = 1 - Math.abs(x - mx) / hw; h = Math.max(h, peakH(m, mx) * (t * t * (3 - 2 * t))); } } return h; };
+      // organic, craggy relief: multi-octave pseudo-fractal noise with sharp angular crests
+      const cragFactor = x => {
+        const u = (x - x0) * 0.058;
+        const tri1 = 1 - 2 * Math.abs((u % 1) - 0.5);
+        const tri2 = 1 - 2 * Math.abs(((u * 2.37 + 0.3) % 1) - 0.5);
+        const oct1 = Math.sin((x - x0) * 0.17 + 0.4);
+        const oct2 = Math.sin((x - x0) * 0.41 + 1.7);
+        const oct3 = Math.sin((x - x0) * 0.83 + 0.2);
+        return Math.max(0.10, 0.42 * tri1 + 0.28 * tri2 + 0.20 * Math.max(0, oct1 * 0.7 + oct2 * 0.5) + 0.10 * oct3);
+      };
+      const minorH = x => bandH * yScale(yearAt(x)) * 0.17 * cragFactor(x);
+      const relief = x => {
+        let h = minorH(x);
+        for (const m of ms) {
+          const mx = MX(m), hw = peakW(m, mx) / 2;
+          if (Math.abs(x - mx) < hw) {
+            const t = 1 - Math.abs(x - mx) / hw;
+            const crag = 0.07 * Math.sin((x - mx) * 0.85) * (1 - t);
+            const peakProfile = Math.pow(t, 1.35) + crag;
+            h = Math.max(h, peakH(m, mx) * Math.max(0, peakProfile));
+          }
+        }
+        for (const p of passes) {
+          const px = X(p.year);
+          if (Math.abs(x - px) < 13) {
+            const pt = Math.abs(x - px) / 13;
+            h = Math.min(h, h * (0.45 + 0.55 * pt * pt));
+          }
+        }
+        return h;
+      };
       let spine = ''; for (let x = x0; x <= x1; x += 4) spine += (spine ? 'L' : 'M') + f1(x) + ',' + f1(ridgeY(x));
       const g = el('g', {class: 'thread', 'data-id': T.id}, gThreads);
       const sil = [];   // skyline of the whole range (minor chain + milestone summits) → shadow, south face, and the ink skyline
       for (let x = x0; x <= x1; x += 2) sil.push([x, ridgeY(x) - relief(x)]);
       const silD = 'M' + sil.map(p => f1(p[0]) + ',' + f1(p[1])).join('L');
       const faceD = silD + 'L' + f1(x1) + ',' + f1(ridgeY(x1)) + ' ' + spine.slice(1).split('L').reverse().map(s => 'L' + s).join('') + 'Z';
+
+      // 1. Back ridge: secondary northern crest line for engraved depth
+      const backSil = [];
+      for (let x = x0; x <= x1; x += 3) {
+        const bh = relief(x) * 0.65 + 2.5;
+        backSil.push([x, ridgeY(x) - bh - 3.5 + 2 * Math.sin(x * 0.35)]);
+      }
+      const backD = 'M' + backSil.map(p => f1(p[0]) + ',' + f1(p[1])).join('L');
+      el('path', {d: backD, class: 'thr-back-ridge'}, g);
+
       el('path', {d: faceD, class: 'thr-shadow', transform: 'translate(1.2,2)'}, g);
       el('path', {d: faceD, class: 'thr-face'}, g);
       el('path', {d: silD, class: 'thr-spine'}, g);   // the ink skyline
-      // south-face hachures along the whole chain (short strokes falling from the skyline toward the foot line)
-      for (let x = x0 + 3; x <= x1 - 3; x += 5) { const h = relief(x); if (h < 3) continue; const sx = x + 1.5, sy = ridgeY(x) - h * .8; el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(sx + h * .22)},${f1(ridgeY(x) - h * .12)}`, class: 'thr-hachure'}, g); }
-      // per-milestone summit: a heavier ink peak outline + the summit dot
+
+      // 2. Dense south-face engraved hachures along slopes
+      for (let x = x0 + 2; x <= x1 - 2; x += 3.2) {
+        const h = relief(x);
+        if (h < 2.5) continue;
+        const phase = Math.sin(x * 1.33);
+        const len = (0.32 + 0.48 * Math.abs(phase)) * h;
+        const sx = x, sy = ridgeY(x) - h + 1;
+        const ex = x + h * 0.22 + phase * 1.1, ey = Math.min(ridgeY(x) - 0.5, sy + len);
+        el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(ex)},${f1(ey)}`, class: 'thr-hachure'}, g);
+      }
+
+      // 3. Per-milestone summits: faceted peak outline, arête, and engraved summit cairn (NO circle dots)
       ms.forEach(m => {
         const mx = MX(m), h = peakH(m, mx), w = peakW(m, mx), by = ridgeY(mx), top = by - h;
         const L = mx - w / 2, R = mx + w / 2;
-        const d = `M${f1(L)},${f1(ridgeY(L) - relief(L))} Q${f1(mx - w * .18)},${f1(by - h * .55)} ${f1(mx - w * .05)},${f1(top + 1.5)} Q${f1(mx)},${f1(top - 1)} ${f1(mx + w * .06)},${f1(top + 1.2)} Q${f1(mx + w * .22)},${f1(by - h * .5)} ${f1(R)},${f1(ridgeY(R) - relief(R))}`;
+        const d = `M${f1(L)},${f1(ridgeY(L) - relief(L))} ` +
+          `Q${f1(mx - w * 0.22)},${f1(by - h * 0.58)} ${f1(mx - w * 0.06)},${f1(top + 1.8)} ` +
+          `L${f1(mx)},${f1(top)} ` +
+          `L${f1(mx + w * 0.07)},${f1(top + 1.5)} ` +
+          `Q${f1(mx + w * 0.24)},${f1(by - h * 0.52)} ${f1(R)},${f1(ridgeY(R) - relief(R))}`;
         el('path', {d, class: 'thr-peak'}, g);
-        el('circle', {cx: f1(mx), cy: f1(top), r: 1.7, class: 'thr-dot'}, g);
+
+        // arête: knife-edge spur descending across the face
+        const areteD = `M${f1(mx)},${f1(top)} Q${f1(mx + w * 0.08)},${f1(by - h * 0.45)} ${f1(mx + w * 0.18)},${f1(by)}`;
+        el('path', {d: areteD, class: 'thr-arete'}, g);
+
+        // engraved summit cairn
+        const cairnD = `M${f1(mx)},${f1(top - 2.2)} L${f1(mx - 1.5)},${f1(top + 0.8)} L${f1(mx + 1.5)},${f1(top + 0.8)} Z`;
+        el('path', {d: cairnD, class: 'thr-cairn'}, g);
+
         m._x = mx; m._top = top; m._by = by; m._h = h;
+      });
+
+      // 4. Named passes in the relief gaps (engraved cartographic col mark )()
+      passes.forEach(p => {
+        const px = X(p.year);
+        if (px >= x0 + 10 && px <= x1 - 10) {
+          const ptop = ridgeY(px) - relief(px);
+          const colD = `M${f1(px - 1.4)},${f1(ptop - 2.2)} Q${f1(px - 3.2)},${f1(ptop)} ${f1(px - 1.4)},${f1(ptop + 2.2)} ` +
+                       `M${f1(px + 1.4)},${f1(ptop - 2.2)} Q${f1(px + 3.2)},${f1(ptop)} ${f1(px + 1.4)},${f1(ptop + 2.2)}`;
+          el('path', {d: colD, class: 'thr-pass-mark'}, g);
+        }
       });
       // the range's own skyline is an obstacle for labels (continent labels via placeInside, and the thread's own):
       // no label may sit on a slope (the silhouette sampled into 10 px boxes)
@@ -1247,24 +1326,51 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const show = ev => { card.style.display = 'block'; card.innerHTML = `<h3>${T.name}</h3><div class="sub">${T.subtitle}</div><dl><dt>id</dt><dd><code>${T.id}</code></dd><dt>kind</dt><dd>${T.kind} (linear feature, AXES.md §3)</dd><dt>bank</dt><dd>${T.placement.band.join('–')} seam</dd><dt>research file</dt><dd>research/${T.research_file} thread (${T.thread})</dd></dl>` +
         `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${ms.map(m => `<div><b>${Math.floor(m.year)}</b> — ${m.one_line} <code>${m.sources.map(s => s.ref).filter((v, i, a) => a.indexOf(v) === i).join(' ')}</code></div>`).join('')}</div>`; moveCard(ev); };
       hitP.addEventListener('mouseenter', show); hitP.addEventListener('mousemove', moveCard); hitP.addEventListener('mouseleave', () => card.style.display = 'none');
-      // labels: name over the summit, year under the name; the same offset-search idiom as country/event labels
+      // labels: name over the summit, year under the name, elevation spec under the year
       const placed = placedBoxes.concat(skyline); window.THREAD_CURATED[T.id] = [];
-      const mkL = (m, tx, ty, fs) => [txt(tx, ty, m.label || m.name, 'thr-name', gThrLabels, {'font-size': fs, 'data-for': T.id, 'data-ms': m.name}), txt(tx, ty + fs * .95, String(Math.floor(m.year)), 'thr-year', gThrLabels, {'font-size': fs * .86, 'data-for': T.id, 'data-ms': m.name})];
       const inLand = u => coastMain && fitsInside(coastMain, u, 1);
+      // pass labels placed with collision avoidance
+      passes.forEach(p => {
+        const px = X(p.year);
+        if (px >= x0 + 10 && px <= x1 - 10) {
+          const ptop = ridgeY(px) - relief(px);
+          for (const dy of [-8, 12, -14, 18]) {
+            const pt = txt(px, ptop + dy, p.label || p.name, 'thr-pass-name', gThrLabels, {'font-size': FCLAMP(5.8, 22), 'text-anchor': 'middle', 'data-for': T.id});
+            const u = union([pt]);
+            if (!hit(u, placed) && inLand(u)) {
+              placed.push({x: u.x - 3, y: u.y - 3, r: u.r + 3, b: u.b + 3});
+              break;
+            }
+            pt.remove();
+          }
+        }
+      });
+      const mkL = (m, tx, ty, fs) => {
+        const ts = [
+          txt(tx, ty, m.label || m.name, 'thr-name', gThrLabels, {'font-size': fs, 'data-for': T.id, 'data-ms': m.name}),
+          txt(tx, ty + fs * .95, String(Math.floor(m.year)), 'thr-year', gThrLabels, {'font-size': fs * .86, 'data-for': T.id, 'data-ms': m.name})
+        ];
+        if (m.elev) {
+          ts.push(txt(tx, ty + fs * 1.82, m.elev, 'thr-spec', gThrLabels, {'font-size': fs * .72, 'data-for': T.id, 'data-ms': m.name}));
+        }
+        return ts;
+      };
       // offsets are relative to the summit; the second group sits SOUTH of the range (below the foot line, m._h + …)
       const offsFor = m => [[0, -6], [0, -14], [14, -8], [-14, -8], [0, -24], [22, -14], [-22, -14], [30, -8], [-30, -8], [0, -36], [40, -20], [-40, -20], [0, m._h + 16], [18, m._h + 14], [-18, m._h + 14], [0, m._h + 28], [34, m._h + 10], [-34, m._h + 10], [46, 6], [-46, 6], [0, -48], [0, m._h + 40]];
+      const fsList = [FCLAMP(9.5, 30), FCLAMP(8.6, 26), FCLAMP(8, 24)];
       ms.slice().sort((a, b) => (a.lod || 2) - (b.lod || 2) || b.year - a.year).forEach(m => {
         let ts = null, off = null;
-        for (const fs of [9.5, 8.6, 8]) { for (const [dx, dy] of offsFor(m)) { const cand = mkL(m, m._x + dx, m._top + dy - fs * .15, fs); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
+        for (const fs of fsList) { for (const [dx, dy] of offsFor(m)) { const cand = mkL(m, m._x + dx, m._top + dy - fs * .15, fs); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
           if (!hit(u, placed) && inLand(u)) { ts = cand; off = [dx, dy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
         if (!ts) { if ((m.lod || 2) > 1) { window.THREAD_CURATED[T.id].push(m.name); return; }
-          ts = mkL(m, m._x, m._top - 30, 8.6); off = [0, -30]; }   // lod 1: keep it, with a leader
+          ts = mkL(m, m._x, m._top - 30, fsList[1]); off = [0, -30]; }   // lod 1: keep it, with a leader
         const u = union(ts); placed.push({x: u.x - 4, y: u.y - 4, r: u.r + 4, b: u.b + 4});
         if (Math.abs(off[0]) >= 22 || off[1] <= -24 || off[1] >= 26) { const south = off[1] > 0; const ex = off[0] > 0 ? u.x - 1 : off[0] < 0 ? u.r + 1 : m._x, ey = off[0] ? (u.y + u.b) / 2 : (south ? u.y - 1 : u.b + 1); const tx = m._x, ty = south ? m._by + 1 : m._top - 2; el('path', {d: `M${f1(ex)},${f1(ey)} L${f1(tx)},${f1(ty)}`, class: 'thr-leader', 'data-for': T.id}, gThrLabels); }
       });
       // the range's own name, set along the ridge west of the first milestone that has room (spaced caps, like a real range name)
       const nm = (T.short_name || T.name).toUpperCase();
-      outer: for (const yr of [2014.6, 2010.2, 2018.6, 2009.0]) { const midX = X(yr); for (const dy of [14, 22, -14, 30, -24]) { const t = txt(midX, ridgeY(midX) + dy, nm, 'thr-title', gThrLabels, {'font-size': 8.2, 'data-for': T.id, 'text-anchor': 'middle'}); const u = union([t]); if (!hit(u, placed) && inLand(u)) { placed.push(u); break outer; } t.remove(); } }
+      const titleFs = FCLAMP(8.2, 32);
+      outer: for (const yr of [2014.6, 2010.2, 2018.6, 2009.0]) { const midX = X(yr); for (const dy of [14, 22, -14, 30, -24]) { const t = txt(midX, ridgeY(midX) + dy, nm, 'thr-title', gThrLabels, {'font-size': titleFs, 'data-for': T.id, 'text-anchor': 'middle'}); const u = union([t]); if (!hit(u, placed) && inLand(u)) { placed.push(u); break outer; } t.remove(); } }
     }
   };
   window.drawThreads = drawThreads;

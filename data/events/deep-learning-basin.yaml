@@ -80,3 +80,11 @@ countries:
       - {id: white-house-2016, name: White House report, year: 2016.78, lod: 3, one_line: "Preparing for the Future of AI (12 Oct 2016): first US national AI policy report", sources: [{url: https://obamawhitehouse.archives.gov/blog/2016/10/12/administrations-report-future-artificial-intelligence, title: "The White House, Oct 2016 [117]"}]}
       - {id: vector-2017, name: Vector Institute, year: 2017.25, lod: 4, one_line: "Pan-Canadian AI Strategy (CIFAR); Vector founded in Toronto, Hinton chief scientific advisor", sources: [{url: https://en.wikipedia.org/wiki/Vector_Institute_%28Canada%29, title: "Wikipedia: Vector Institute [109]"}, {url: https://en.wikipedia.org/wiki/Canadian_Institute_for_Advanced_Research, title: "Wikipedia: CIFAR [107]"}]}
       - {id: china-plan-2017, name: China AI plan, year: 2017.55, lod: 3, one_line: "State Council New Generation AI Development Plan (20 Jul 2017): world lead by 2030", sources: [{url: https://en.wikipedia.org/wiki/Artificial_intelligence_industry_in_China, title: "Wikipedia: AI industry in China [112]"}]}
+  pretraining-foothills:
+    hint: "DBNs · RBMs 2006"
+    tag: "Deep belief nets & unsupervised pre-training"
+    events:
+      - {id: dbn-2006, name: Deep Belief Nets, year: 2006.5, lod: 3, one_line: "Hinton, Osindero & Teh: greedy layer-wise training of DBNs", sources: [{url: "https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf", title: "Hinton, Osindero & Teh 2006 [2]"}]}
+      - {id: autoencoder-2006, name: Autoencoders, year: 2006.58, lod: 4, one_line: "Hinton & Salakhutdinov: dimensionality reduction in Science", sources: [{url: "https://www.cs.toronto.edu/~hinton/absps/science.pdf", title: "Hinton & Salakhutdinov 2006 [3]"}]}
+      - {id: greedy-layerwise-2006, name: Greedy Layer-Wise, year: 2006.9, lod: 4, one_line: "Bengio et al.: generalising layer-wise pre-training (NIPS 2006)", sources: [{url: "https://proceedings.neurips.cc/paper/2006/hash/5da713a690c067105aeb2fae32403405-Abstract.html", title: "Bengio et al. 2006 [4]"}]}
+      - {id: nlp-unified-2008, name: Unified NLP, year: 2008.5, lod: 3, one_line: "Collobert & Weston: unified neural architecture for NLP", sources: [{url: "https://dl.acm.org/doi/10.1145/1390156.1390177", title: "Collobert & Weston 2008 [87]"}]}

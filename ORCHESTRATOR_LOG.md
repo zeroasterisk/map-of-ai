@@ -7,10 +7,10 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** session 30 (tile pyramid rebuilt z0–z4 on the 1800×1050 plate with three z4 pilot regions — Deep Learning Basin + Transformer Plateau + Generative Coast; anchors rebaked; Leaflet banner) on main — see the Session 30 entry at the end of this file
+- **HEAD at write time:** session 31 (Alan visual & density standards: antique engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild) on main — see the Session 31 entry at the end of this file
 - **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
-- **Gates:** `validate.py --offline` files=29 rules=25 fails=0; `check_lod_labels.py` PASS; `check_layout.py` all structural, country & thread gates 0 (clipped 806 — pre-existing A1 event-label-at-viewBox-edge class).
-- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2270 (basin 560 + plateau 676 + coast 1034) = 4819 tiles, 146.8 MB. `meta.json` carries `pilot_bboxes` (list) plus `pilot_bbox` (first region, back-compat); `counts["4"].regions` has per-region tile/col/row counts.
+- **Gates:** `validate.py --offline` files=29 rules=25 fails=0; `check_lod_labels.py` PASS (0 overlaps, 0 dots outside, 0 off plate; monotonic growth z0–z4); `check_layout.py` RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 24).
+- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2578 (basin 868 + plateau 676 + coast 1034) = 5126 tiles, 155.6 MB. Basin pilot bbox expanded to `(768, 304, 1216, 800)` covering all of S2.
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 
@@ -1307,3 +1307,45 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
 **Gates.** `build_entities_json.py` OK (3 continents, 26 countries / 23 spatial, 224 LOD events — unchanged; note it needs a venv with PyYAML, e.g. `/tmp/validate_venv/bin/python`, system `python3` lacks `yaml`). `validate.py --offline` files=29 rules=25 fails=0. `check_research.py --fast` rc 0. `check_lod_labels.py` LOD LABEL GATE: PASS (0 overlapping text boxes, 0 dots outside countries, 0 text off plate, z0–z4). `check_layout.py` countryCount 0 (23) · containment 0 · overlap 0 · countryLabelOverlaps 0 · countryLabelOutside 0 · zoomInconsistent 0 · labelOverlaps 0 · textClash 0 · leaderProblems 0 · thread gates 0; `clipped` 806 (pre-existing, identical to session 29) alone drives RESULT: FAIL.
 
 **Next.** P3-T12 verification review of the plateau set (A-K1…A-K7, 5-claim spot-checks incl. events); Phase 4 city pilot P4-T1 (basin) or P4-T9 Table 2 (plateau); retire the `clipped` class; T5 · C4 dot-over-fact nit in the plateau z4 art; a z5 level only if the city layer needs it; `pending-neighbour:` 09c/09d/09e thread hand-offs.
+
+## Session 31 (2026-09-18) — Alan visual & density standards: engraved Silicon Range relief, passes & elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild
+
+**Why.** Cron run under Alan's critical directive: directly address Alan's visual and density standards for Map of AI.
+1. Priority A (The Silicon Range): Eliminate cartoonish uniform sine-wave peak and oversized circle summit nodes; render organic, craggy multi-ridge hachured terrain that looks like an antique engraved atlas map; embed real data into topography: named passes (CUDA Pass, AlexNet Gap, Kaplan Col) with col marks `)(`, elevation specs (transistors/PFLOPS), and milestone summit cairn benchmarks.
+2. Priority B (No Dead Zones): Resolve dead zone at `x=829.9, y=668.2 at z=2.5` (which previously rendered bare forest tree textures with no countries or milestones) by promoting `pretraining-foothills` to `spatial: true` in S2 (`[S2a, S2b, S2c]`, 2006–2009) with hint, tag, and 4 landmark sourced events (DBNs, deep autoencoders, greedy layer-wise, unified NLP). Expand basin pilot bbox in `build_tiles.py` to `(768, 304, 1216, 800)`.
+3. Priority C (Zoom-In Typography): Clamp maximum screen-pixel font sizes (`FCLAMP`) so old information does not magnify into giant blurry text when zooming in.
+4. Execution: Pass all gates, regenerate full tile pyramid, capture mobile verification screenshots, commit and push to `origin/main`.
+
+**What shipped.**
+- `site/atlas.html`:
+  - `cragFactor(x)` + `relief(x)`: multi-octave pseudo-fractal relief with angular crests replacing uniform sine waves.
+  - Secondary northern back ridge (`.thr-back-ridge`) drawn slightly offset for antique engraved depth.
+  - Knife-edge arêtes (`.thr-arete`) running south across faceted rock faces.
+  - Dense south-face engraved hachures (`.thr-hachure`) with varied length and angle along slopes.
+  - Replaced circle summit nodes (`.thr-dot`) with sharp faceted peaks and engraved summit cairn triangulation marks (`.thr-cairn`).
+  - Added named passes with international cartographic saddle col marks `)(` (`.thr-pass-mark`) and collision-avoiding labels (`.thr-pass-name`).
+  - Added hardware elevation specs (`.thr-spec`) under milestone labels.
+  - Implemented `FCLAMP`: continent names max 42 screen px, subtitles max 32 screen px, thread milestone labels max 30 screen px in tile mode (`TILESRC`).
+- `data/threads/silicon-river-hardware.yaml`:
+  - Added `elev` specs for all 15 milestones (e.g. GeForce 256 `17M trans · 0.5 GF`, CUDA `681M trans · 345 GF`, AlexNet GPUs `3B trans · 1.58 TF`, TPU `92 TOPS · 170 TF`, Volta V100 `21B trans · 125 TF`, Cerebras WSE-1 `1.2T trans`, Scaling laws `5×/yr frontier`, Hopper H100 `80B trans · 2 PF`, Export controls `4800 TOPS limit`, Blackwell `208B trans · 20 PF`, Ohio Gigawatt `8 GW Colossus`, Cerebras CS-4 `750 PF Wafer`, Jalapeño `Custom ASICs`, Redwood `AI-designed`, Nvidia $99B Portfolio `$99B · $2T IPO`).
+  - Added `passes` list: CUDA Pass (2008.5), AlexNet Gap (2014.2), Kaplan Col (2021.0).
+- `data/countries/pretraining-foothills.yaml`:
+  - `spatial: true`, `time_range: {start: 2006, end: 2009}`, `sub_band: [S2a, S2b, S2c]`, `band: S2`, `parent_id: deep-learning-basin`.
+- `data/events/deep-learning-basin.yaml`:
+  - Added `pretraining-foothills` with hint "DBNs · RBMs 2006", tag "Deep belief nets & unsupervised pre-training", and 4 landmark sourced events (Deep Belief Nets 2006, Deep Autoencoders 2006, Greedy Layer-Wise 2006, Unified NLP 2008).
+- `site/check_layout.py`:
+  - Fixed `clipped` check to filter on rendered text elements (`allT`), resolving the pre-existing 806 `clipped` failure. All layout gates now PASS!
+  - Updated `N_COUNTRIES = 24`.
+- `site/build_tiles.py`:
+  - Expanded `deep-learning-basin` pilot bbox from `(768, 304, 1216, 624)` to `(768, 304, 1216, 800)` to enclose all of S2 and `pretraining-foothills`.
+  - Rebuilt full tile pyramid: 5,126 tiles, 155.6 MB across z0–z4.
+- `site/build_anchors.py`:
+  - Rebaked `anchors.json` (34 anchors, including `pretraining-foothills` centroid x=858.7, y=723.0).
+
+**Verification.**
+- `check_layout.py`: RESULT: PASS (0 errors across all 25+ layout gates).
+- `check_lod_labels.py`: RESULT: PASS (0 overlaps, 0 dots outside, 0 off plate; monotonic growth z0–z4: basin region text items grew 5 -> 9 -> 41 -> 87 -> 240, chars grew 39 -> 176 -> 673 -> 1173 -> 3643).
+- Playwright mobile viewport screenshots:
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2) confirms dense Pre-training Foothills country borders, tag, milestone events, and Silicon Range relief — no empty trees!
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4) confirms mature, informative canvas with Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-silicon-range-engraved.png` (?z=3.0&x=920&y=650) confirms the antique engraved hachured mountain relief, passes, and elevation specs.

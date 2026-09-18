@@ -29,6 +29,7 @@ milestones:
   - year: 1999
     name: GeForce 256
     label: GeForce 256
+    elev: "17M trans · 0.5 GF"
     one_line: Nvidia GeForce 256, marketed as "the world's first GPU"
     peak: 0.35
     lod: 2
@@ -37,6 +38,7 @@ milestones:
   - year: 2007
     name: CUDA
     label: CUDA
+    elev: "681M trans · 345 GF"
     one_line: Nvidia releases CUDA (created 2004), enabling general-purpose GPU computing
     peak: 0.45
     lod: 2
@@ -46,6 +48,7 @@ milestones:
   - year: 2012.75
     name: AlexNet on GPUs
     label: AlexNet GPUs
+    elev: "3B trans · 1.58 TF"
     one_line: AlexNet trained on two GTX 580 GPUs wins ILSVRC 2012, launching the deep-learning boom
     peak: 0.6
     lod: 1
@@ -54,6 +57,7 @@ milestones:
   - year: 2016.4
     name: TPU
     label: TPU · DGX-1
+    elev: "92 TOPS · 170 TF"
     one_line: Google announces the Tensor Processing Unit at I/O (May 2016); Nvidia announces DGX-1 (Apr 2016)
     peak: 0.7
     lod: 1
@@ -64,6 +68,7 @@ milestones:
   - year: 2017.4
     name: Volta V100
     label: Volta V100
+    elev: "21B trans · 125 TF"
     one_line: Nvidia Volta V100 (May 2017) — first Tensor Cores
     peak: 0.7
     lod: 2
@@ -72,6 +77,7 @@ milestones:
   - year: 2019.6
     name: Cerebras WSE-1
     label: Cerebras WSE
+    elev: "1.2T trans"
     one_line: Cerebras WSE-1 wafer-scale engine (Aug 2019, 1.2 trillion transistors) — specialised AI silicon returns
     peak: 0.75
     lod: 2
@@ -80,6 +86,7 @@ milestones:
   - year: 2020.1
     name: Scaling laws
     label: Scaling laws
+    elev: "5×/yr frontier"
     one_line: Kaplan et al. scaling laws; compute becomes the planning variable for frontier labs (~5×/year since 2020)
     peak: 0.8
     lod: 1
@@ -89,6 +96,7 @@ milestones:
   - year: 2022.2
     name: Hopper H100
     label: Hopper H100
+    elev: "80B trans · 2 PF"
     one_line: Nvidia Hopper architecture / H100 announced at GTC 2022, with a "transformer engine"
     peak: 0.9
     lod: 1
@@ -99,6 +107,7 @@ milestones:
   - year: 2022.77
     name: Export controls
     label: Export controls
+    elev: "4800 TOPS limit"
     one_line: US CHIPS and Science Act signed (9 Aug 2022); US export controls on advanced chips to China take effect (7 Oct 2022)
     peak: 0.6
     lod: 2
@@ -108,6 +117,7 @@ milestones:
   - year: 2024.21
     name: Blackwell
     label: Blackwell
+    elev: "208B trans · 20 PF"
     one_line: Nvidia Blackwell announced at GTC 2024 (18 Mar); Nvidia passes $1T (2023), $4T and $5T (2025) market capitalisation
     peak: 1.0
     lod: 1
@@ -118,6 +128,7 @@ milestones:
   - year: 2026.63
     name: Ohio Gigawatt Campus
     label: Ohio 8 GW
+    elev: "8 GW Colossus"
     one_line: "Nvidia backs up to $105B in credit/compute for OpenAI's Portsmouth, Ohio data centre; SB Energy building 8 GW campus (17 Aug 2026)"
     peak: 0.9
     lod: 2
@@ -126,6 +137,7 @@ milestones:
   - year: 2026.64
     name: Cerebras CS-4
     label: Cerebras CS-4
+    elev: "750 PF Wafer"
     one_line: "Cerebras CS-4: 750 PFLOPS wafer-scale system, targeting 50T-parameter models, following $20B OpenAI compute partnership (19 Aug 2026)"
     peak: 0.85
     lod: 2
@@ -134,6 +146,7 @@ milestones:
   - year: 2026.65
     name: Jalapeño
     label: Jalapeño
+    elev: "Custom ASICs"
     one_line: OpenAI publishes first performance results for Jalapeño, its first custom inference chip (25 Aug 2026); frontier labs join hyperscalers in building their own inference silicon
     peak: 0.85
     lod: 1
@@ -143,6 +156,7 @@ milestones:
   - year: 2026.66
     name: Redwood
     label: Redwood
+    elev: "AI-designed"
     one_line: "Architect Labs Redwood: first production-worthy AI-designed accelerator, designed and verified by AI in two weeks"
     peak: 0.85
     lod: 1
@@ -151,12 +165,17 @@ milestones:
   - year: 2026.70
     name: Nvidia $99B Portfolio & Anthropic IPO Anchor
     label: Nvidia $99B · Mega-IPO
+    elev: "$99B · $2T IPO"
     one_line: "Nvidia investment portfolio expands to $99B; Nvidia in talks to anchor Anthropic's record ~$2T Nasdaq IPO with up to $10B (4–11 Sep 2026)"
     peak: 0.95
     lod: 2
     sources:
       - {ref: d64, title: "CNBC, Nvidia's investments grow to $99 billion as chip giant expands its reach (4 Sep 2026)", url: "https://www.cnbc.com/2026/09/04/nvidia-ai-investments-99-billion.html"}
       - {ref: d65, title: "PYMNTS, Anthropic Could Land Nvidia as $10 Billion IPO Investor (13 Sep 2026)", url: "https://www.pymnts.com/acquisitions/2026/anthropic-could-land-nvidia-as-10-billion-ipo-investor/"}
+passes:
+  - {name: "CUDA Pass", year: 2008.5, label: "CUDA Pass", spec: "Col"}
+  - {name: "AlexNet Gap", year: 2014.2, label: "AlexNet Gap", spec: "Gap"}
+  - {name: "Kaplan Col", year: 2021.0, label: "Kaplan Col", spec: "Pass"}
 # pre-1999 milestones of thread (d) — Lisp machines 1973-87 [d1], Connection Machine 1985 [d2] — sit on the SYMBOLIC
 # bank (research/09: "symbolic bank before [1999]") and west of both pilot continents; they are out of this pilot's
 # drawn span and are not rendered yet (they will need their own northern-bank segment when the range is extended).

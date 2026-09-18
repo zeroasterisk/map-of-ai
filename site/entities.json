@@ -3753,10 +3753,10 @@
    "id": "pretraining-foothills",
    "level": "country",
    "name": "The Pre-training Foothills",
-   "subtitle": "Unsupervised layer-wise pre-training and energy-based deep nets, 2006–2011",
+   "subtitle": "Unsupervised layer-wise pre-training and energy-based deep nets, 2006–2009",
    "parent_id": "deep-learning-basin",
    "start": 2006,
-   "end": 2011,
+   "end": 2009,
    "band": [
     "S2"
    ],
@@ -3774,10 +3774,70 @@
     }
    ],
    "band_override_note": null,
-   "sub_band": null,
-   "spatial": false,
+   "sub_band": [
+    "S2a",
+    "S2b",
+    "S2c"
+   ],
+   "spatial": true,
    "related_facts": [],
-   "file": "data/countries/pretraining-foothills.yaml"
+   "file": "data/countries/pretraining-foothills.yaml",
+   "hint": "DBNs · RBMs 2006",
+   "tag": "Deep belief nets & unsupervised pre-training",
+   "events": [
+    {
+     "id": "dbn-2006",
+     "name": "Deep Belief Nets",
+     "year": 2006.5,
+     "lod": 3,
+     "one_line": "Hinton, Osindero & Teh: greedy layer-wise training of DBNs",
+     "sources": [
+      {
+       "url": "https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf",
+       "title": "Hinton, Osindero & Teh 2006 [2]"
+      }
+     ]
+    },
+    {
+     "id": "autoencoder-2006",
+     "name": "Autoencoders",
+     "year": 2006.58,
+     "lod": 4,
+     "one_line": "Hinton & Salakhutdinov: dimensionality reduction in Science",
+     "sources": [
+      {
+       "url": "https://www.cs.toronto.edu/~hinton/absps/science.pdf",
+       "title": "Hinton & Salakhutdinov 2006 [3]"
+      }
+     ]
+    },
+    {
+     "id": "greedy-layerwise-2006",
+     "name": "Greedy Layer-Wise",
+     "year": 2006.9,
+     "lod": 4,
+     "one_line": "Bengio et al.: generalising layer-wise pre-training (NIPS 2006)",
+     "sources": [
+      {
+       "url": "https://proceedings.neurips.cc/paper/2006/hash/5da713a690c067105aeb2fae32403405-Abstract.html",
+       "title": "Bengio et al. 2006 [4]"
+      }
+     ]
+    },
+    {
+     "id": "nlp-unified-2008",
+     "name": "Unified NLP",
+     "year": 2008.5,
+     "lod": 3,
+     "one_line": "Collobert & Weston: unified neural architecture for NLP",
+     "sources": [
+      {
+       "url": "https://dl.acm.org/doi/10.1145/1390156.1390177",
+       "title": "Collobert & Weston 2008 [87]"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "reasoning-test-time-compute",
@@ -4576,6 +4636,7 @@
      "year": 1999.0,
      "name": "GeForce 256",
      "label": "GeForce 256",
+     "elev": "17M trans · 0.5 GF",
      "one_line": "Nvidia GeForce 256, marketed as \"the world's first GPU\"",
      "peak": 0.35,
      "lod": 2,
@@ -4591,6 +4652,7 @@
      "year": 2007.0,
      "name": "CUDA",
      "label": "CUDA",
+     "elev": "681M trans · 345 GF",
      "one_line": "Nvidia releases CUDA (created 2004), enabling general-purpose GPU computing",
      "peak": 0.45,
      "lod": 2,
@@ -4611,6 +4673,7 @@
      "year": 2012.75,
      "name": "AlexNet on GPUs",
      "label": "AlexNet GPUs",
+     "elev": "3B trans · 1.58 TF",
      "one_line": "AlexNet trained on two GTX 580 GPUs wins ILSVRC 2012, launching the deep-learning boom",
      "peak": 0.6,
      "lod": 1,
@@ -4626,6 +4689,7 @@
      "year": 2016.4,
      "name": "TPU",
      "label": "TPU · DGX-1",
+     "elev": "92 TOPS · 170 TF",
      "one_line": "Google announces the Tensor Processing Unit at I/O (May 2016); Nvidia announces DGX-1 (Apr 2016)",
      "peak": 0.7,
      "lod": 1,
@@ -4651,6 +4715,7 @@
      "year": 2017.4,
      "name": "Volta V100",
      "label": "Volta V100",
+     "elev": "21B trans · 125 TF",
      "one_line": "Nvidia Volta V100 (May 2017) — first Tensor Cores",
      "peak": 0.7,
      "lod": 2,
@@ -4666,6 +4731,7 @@
      "year": 2019.6,
      "name": "Cerebras WSE-1",
      "label": "Cerebras WSE",
+     "elev": "1.2T trans",
      "one_line": "Cerebras WSE-1 wafer-scale engine (Aug 2019, 1.2 trillion transistors) — specialised AI silicon returns",
      "peak": 0.75,
      "lod": 2,
@@ -4681,6 +4747,7 @@
      "year": 2020.1,
      "name": "Scaling laws",
      "label": "Scaling laws",
+     "elev": "5×/yr frontier",
      "one_line": "Kaplan et al. scaling laws; compute becomes the planning variable for frontier labs (~5×/year since 2020)",
      "peak": 0.8,
      "lod": 1,
@@ -4701,6 +4768,7 @@
      "year": 2022.2,
      "name": "Hopper H100",
      "label": "Hopper H100",
+     "elev": "80B trans · 2 PF",
      "one_line": "Nvidia Hopper architecture / H100 announced at GTC 2022, with a \"transformer engine\"",
      "peak": 0.9,
      "lod": 1,
@@ -4726,6 +4794,7 @@
      "year": 2022.77,
      "name": "Export controls",
      "label": "Export controls",
+     "elev": "4800 TOPS limit",
      "one_line": "US CHIPS and Science Act signed (9 Aug 2022); US export controls on advanced chips to China take effect (7 Oct 2022)",
      "peak": 0.6,
      "lod": 2,
@@ -4746,6 +4815,7 @@
      "year": 2024.21,
      "name": "Blackwell",
      "label": "Blackwell",
+     "elev": "208B trans · 20 PF",
      "one_line": "Nvidia Blackwell announced at GTC 2024 (18 Mar); Nvidia passes $1T (2023), $4T and $5T (2025) market capitalisation",
      "peak": 1.0,
      "lod": 1,
@@ -4771,6 +4841,7 @@
      "year": 2026.63,
      "name": "Ohio Gigawatt Campus",
      "label": "Ohio 8 GW",
+     "elev": "8 GW Colossus",
      "one_line": "Nvidia backs up to $105B in credit/compute for OpenAI's Portsmouth, Ohio data centre; SB Energy building 8 GW campus (17 Aug 2026)",
      "peak": 0.9,
      "lod": 2,
@@ -4786,6 +4857,7 @@
      "year": 2026.64,
      "name": "Cerebras CS-4",
      "label": "Cerebras CS-4",
+     "elev": "750 PF Wafer",
      "one_line": "Cerebras CS-4: 750 PFLOPS wafer-scale system, targeting 50T-parameter models, following $20B OpenAI compute partnership (19 Aug 2026)",
      "peak": 0.85,
      "lod": 2,
@@ -4801,6 +4873,7 @@
      "year": 2026.65,
      "name": "Jalapeño",
      "label": "Jalapeño",
+     "elev": "Custom ASICs",
      "one_line": "OpenAI publishes first performance results for Jalapeño, its first custom inference chip (25 Aug 2026); frontier labs join hyperscalers in building their own inference silicon",
      "peak": 0.85,
      "lod": 1,
@@ -4821,6 +4894,7 @@
      "year": 2026.66,
      "name": "Redwood",
      "label": "Redwood",
+     "elev": "AI-designed",
      "one_line": "Architect Labs Redwood: first production-worthy AI-designed accelerator, designed and verified by AI in two weeks",
      "peak": 0.85,
      "lod": 1,
@@ -4836,6 +4910,7 @@
      "year": 2026.7,
      "name": "Nvidia $99B Portfolio & Anthropic IPO Anchor",
      "label": "Nvidia $99B · Mega-IPO",
+     "elev": "$99B · $2T IPO",
      "one_line": "Nvidia investment portfolio expands to $99B; Nvidia in talks to anchor Anthropic's record ~$2T Nasdaq IPO with up to $10B (4–11 Sep 2026)",
      "peak": 0.95,
      "lod": 2,
@@ -4851,6 +4926,26 @@
        "url": "https://www.pymnts.com/acquisitions/2026/anthropic-could-land-nvidia-as-10-billion-ipo-investor/"
       }
      ]
+    }
+   ],
+   "passes": [
+    {
+     "name": "CUDA Pass",
+     "year": 2008.5,
+     "label": "CUDA Pass",
+     "spec": "Col"
+    },
+    {
+     "name": "AlexNet Gap",
+     "year": 2014.2,
+     "label": "AlexNet Gap",
+     "spec": "Gap"
+    },
+    {
+     "name": "Kaplan Col",
+     "year": 2021.0,
+     "label": "Kaplan Col",
+     "spec": "Pass"
     }
    ],
    "not_yet_drawn": [

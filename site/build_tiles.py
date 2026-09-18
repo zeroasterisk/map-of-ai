@@ -64,7 +64,7 @@ LOD_MAX = max(LOD_DESC)
 #   Transformer Plateau   x 1079–1445, y 319–705 (8 spatial countries + z3/z4 event dots and labels) plus margin
 #   Generative Coast      x 1408–1600, y 67–886 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
 PILOT_BBOXES = {
-    "deep-learning-basin": (768, 304, 1216, 624),
+    "deep-learning-basin": (768, 304, 1216, 800),
     "transformer-plateau": (1056, 304, 1472, 720),
     "generative-coast": (1280, 128, 1632, 880),
 }
