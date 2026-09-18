@@ -22,7 +22,7 @@
   }
  },
  "1": {
-  "texts": 67,
+  "texts": 70,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -31,23 +31,23 @@
    "csub": 10,
    "cname haskids": 6,
    "csub haskids": 7,
-   "khint": 4
+   "khint": 7
   },
   "region": {
-   "items": 6,
-   "chars": 107,
+   "items": 8,
+   "chars": 160,
    "marks": 0,
    "kinds": {
     "cname": 1,
     "csub": 1,
     "cname haskids": 1,
     "csub haskids": 1,
-    "khint": 2
+    "khint": 4
    }
   }
  },
  "2": {
-  "texts": 127,
+  "texts": 139,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -55,73 +55,73 @@
    "cname": 17,
    "csub": 10,
    "kname": 34,
-   "ktag": 20,
+   "ktag": 32,
    "kyrs": 23
   },
   "region": {
-   "items": 33,
-   "chars": 469,
+   "items": 35,
+   "chars": 550,
    "marks": 0,
    "kinds": {
     "cname": 1,
     "csub": 1,
     "kname": 14,
-    "ktag": 10,
+    "ktag": 12,
     "kyrs": 7
    }
   }
  },
  "3": {
-  "texts": 260,
-  "events": 66,
+  "texts": 317,
+  "events": 90,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 17,
    "csub": 10,
    "kname": 27,
-   "ktag": 16,
+   "ktag": 25,
    "ksub": 12,
    "kyrs": 23,
-   "kev-name": 66,
-   "kev-year": 66
+   "kev-name": 90,
+   "kev-year": 90
   },
   "region": {
-   "items": 74,
-   "chars": 949,
-   "marks": 21,
+   "items": 79,
+   "chars": 1013,
+   "marks": 23,
    "kinds": {
     "cname": 1,
     "csub": 1,
     "kname": 11,
-    "ktag": 8,
+    "ktag": 9,
     "kyrs": 7,
     "ksub": 4,
-    "kev-name": 21,
-    "kev-year": 21
+    "kev-name": 23,
+    "kev-year": 23
    }
   }
  },
  "4": {
-  "texts": 681,
-  "events": 151,
+  "texts": 931,
+  "events": 219,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 17,
    "csub": 10,
    "kname": 24,
-   "ktag": 15,
-   "ksub": 20,
+   "ktag": 23,
+   "ksub": 19,
    "kyrs": 23,
-   "kev-name": 151,
-   "kev-year": 151,
-   "kev-line": 247
+   "kev-name": 219,
+   "kev-year": 219,
+   "kev-line": 354
   },
   "region": {
-   "items": 201,
-   "chars": 2996,
-   "marks": 47,
+   "items": 222,
+   "chars": 3273,
+   "marks": 53,
    "kinds": {
     "cname": 1,
     "csub": 1,
@@ -129,9 +129,9 @@
     "ktag": 7,
     "ksub": 8,
     "kyrs": 7,
-    "kev-name": 47,
-    "kev-year": 47,
-    "kev-line": 75
+    "kev-name": 53,
+    "kev-year": 53,
+    "kev-line": 84
    }
   }
  }

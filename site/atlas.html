@@ -1079,7 +1079,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
         let ax = cx, ay = cy; for (let i = 0; i < 40 && !inFill(land, ax, ay); i++) ay += 1;
         const placed = [...gKLabels.querySelectorAll('text')].filter(t => t.dataset.for !== k.id).map(t => t.getBBox()).map(b => ({x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}));
         const hits = u => placed.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
-        const offs = [[0, 0], [0, -26], [0, 26], [-40, -20], [40, -20], [-40, 20], [40, 20], [0, -44], [0, 44], [-70, 0], [70, 0], [-60, -36], [60, -36], [-60, 36], [60, 36]];
+        const offs = [[0, 0], [0, -12], [0, 12], [0, -26], [0, 26], [-40, -20], [40, -20], [-40, 20], [40, 20], [0, -44], [0, 44], [-70, 0], [70, 0], [-60, -36], [60, -36], [-60, 36], [60, 36]];   // P3-LOD: ±12 px steps added — with z2 tags the Plateau's leader labels are one line taller and the 26 px steps all collide
         let ts = null; for (const [dx, dy] of offs) { const cand = mk(9, 8, false); cand.forEach(t => { t.setAttribute('x', +t.getAttribute('x') + dx); t.setAttribute('y', +t.getAttribute('y') + dy); t.setAttribute('data-leader', '1'); }); const u = union(cand); if (!hits(u)) { ts = cand; break; } cand.forEach(t => t.remove()); }
         if (!ts) { ts = mk(9, 8, false); ts.forEach(t => t.setAttribute('data-leader', '1')); }
         const u = union(ts); const lx = Math.max(u.x, Math.min(u.r, ax)), ly = ay < u.y ? u.y - 2 : u.b + 2;
