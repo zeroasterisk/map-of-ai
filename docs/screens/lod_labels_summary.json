@@ -1,14 +1,14 @@
 {
  "0": {
-  "texts": 78,
+  "texts": 80,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 24,
    "cname haskids": 6,
-   "thr-name": 12,
-   "thr-year": 12,
+   "thr-name": 13,
+   "thr-year": 13,
    "thr-title": 1
   },
   "region": {

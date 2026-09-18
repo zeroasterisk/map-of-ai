@@ -52,6 +52,31 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/continents/generative-coast.yaml"
+  },
+  {
+   "id": "transformer-plateau",
+   "level": "continent",
+   "name": "The Transformer Plateau",
+   "subtitle": "Attention, pre-trained language models and scaling laws, 2017–2022",
+   "parent_id": null,
+   "start": 2017,
+   "end": 2022,
+   "band": [
+    "N1",
+    "N2",
+    "C",
+    "S1",
+    "S2"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "Between 2017 and 2022 the Transformer architecture unified deep learning across language, vision, code and structural biology, while empirical scaling laws turned compute into a predictable capability dial. The era opens with Vaswani et al.'s \"Attention Is All You Need\" (June 2017), which discarded recurrence and convolution in favour of self-attention, enabling massive parallelisation across GPU clusters. Within two years …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/transformer-plateau.yaml"
   }
  ],
  "countries": [
@@ -3327,6 +3352,36 @@
      ]
     },
     {
+     "year": 2026.63,
+     "name": "Ohio Gigawatt Campus",
+     "label": "Ohio 8 GW",
+     "one_line": "Nvidia backs up to $105B in credit/compute for OpenAI's Portsmouth, Ohio data centre; SB Energy building 8 GW campus (17 Aug 2026)",
+     "peak": 0.9,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d28",
+       "title": "CNBC, Nvidia backing $105 billion in financing for OpenAI data center in Ohio (17 Aug 2026)",
+       "url": "https://www.cnbc.com/2026/08/17/nvidia-backing-105-billion-financing-openai-data-center-ohio.html"
+      }
+     ]
+    },
+    {
+     "year": 2026.64,
+     "name": "Cerebras CS-4",
+     "label": "Cerebras CS-4",
+     "one_line": "Cerebras CS-4: 750 PFLOPS wafer-scale system, targeting 50T-parameter models, following $20B OpenAI compute partnership (19 Aug 2026)",
+     "peak": 0.85,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d15",
+       "title": "Cerebras Unveils CS-4: Up to 30 Times Faster than GPU-based Solutions (19 Aug 2026)",
+       "url": "https://www.globenewswire.com/news-release/2026/08/19/3347356/0/en/cerebras-unveils-cs-4-up-to-30-times-faster-than-gpu-based-solutions.html"
+      }
+     ]
+    },
+    {
      "year": 2026.65,
      "name": "Jalapeño",
      "label": "Jalapeño",
@@ -3360,6 +3415,26 @@
        "url": "https://architectlabs.com/blog/redwood"
       }
      ]
+    },
+    {
+     "year": 2026.7,
+     "name": "Nvidia $99B Portfolio & Anthropic IPO Anchor",
+     "label": "Nvidia $99B · Mega-IPO",
+     "one_line": "Nvidia investment portfolio expands to $99B; Nvidia in talks to anchor Anthropic's record ~$2T Nasdaq IPO with up to $10B (4–11 Sep 2026)",
+     "peak": 0.95,
+     "lod": 2,
+     "sources": [
+      {
+       "ref": "d64",
+       "title": "CNBC, Nvidia's investments grow to $99 billion as chip giant expands its reach (4 Sep 2026)",
+       "url": "https://www.cnbc.com/2026/09/04/nvidia-ai-investments-99-billion.html"
+      },
+      {
+       "ref": "d65",
+       "title": "PYMNTS, Anthropic Could Land Nvidia as $10 Billion IPO Investor (13 Sep 2026)",
+       "url": "https://www.pymnts.com/acquisitions/2026/anthropic-could-land-nvidia-as-10-billion-ipo-investor/"
+      }
+     ]
     }
    ],
    "not_yet_drawn": [
@@ -3378,5 +3453,5 @@
    ]
   }
  ],
- "generated_from": "2 continent + 17 country YAML files under data/ + 1 thread(s)"
+ "generated_from": "3 continent + 17 country YAML files under data/ + 1 thread(s)"
 }

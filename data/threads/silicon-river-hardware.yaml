@@ -115,6 +115,22 @@ milestones:
       - {ref: d9, title: "Wikipedia: Blackwell (microarchitecture)", url: "https://en.wikipedia.org/wiki/Blackwell_%28microarchitecture%29"}
       - {ref: d9, title: "Nvidia Newsroom, Blackwell (18 Mar 2024)", url: "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"}
       - {ref: d9, title: "Wikipedia: Nvidia (market capitalisation)", url: "https://en.wikipedia.org/wiki/Nvidia"}
+  - year: 2026.63
+    name: Ohio Gigawatt Campus
+    label: Ohio 8 GW
+    one_line: "Nvidia backs up to $105B in credit/compute for OpenAI's Portsmouth, Ohio data centre; SB Energy building 8 GW campus (17 Aug 2026)"
+    peak: 0.9
+    lod: 2
+    sources:
+      - {ref: d28, title: "CNBC, Nvidia backing $105 billion in financing for OpenAI data center in Ohio (17 Aug 2026)", url: "https://www.cnbc.com/2026/08/17/nvidia-backing-105-billion-financing-openai-data-center-ohio.html"}
+  - year: 2026.64
+    name: Cerebras CS-4
+    label: Cerebras CS-4
+    one_line: "Cerebras CS-4: 750 PFLOPS wafer-scale system, targeting 50T-parameter models, following $20B OpenAI compute partnership (19 Aug 2026)"
+    peak: 0.85
+    lod: 2
+    sources:
+      - {ref: d15, title: "Cerebras Unveils CS-4: Up to 30 Times Faster than GPU-based Solutions (19 Aug 2026)", url: "https://www.globenewswire.com/news-release/2026/08/19/3347356/0/en/cerebras-unveils-cs-4-up-to-30-times-faster-than-gpu-based-solutions.html"}
   - year: 2026.65
     name: Jalapeño
     label: Jalapeño
@@ -132,6 +148,15 @@ milestones:
     lod: 1
     sources:
       - {ref: d14, title: "Architect Labs, Introducing Redwood: A frontier AI accelerator designed, verified, and deployed from scratch in two weeks by AI (27 Aug 2026)", url: "https://architectlabs.com/blog/redwood"}
+  - year: 2026.70
+    name: Nvidia $99B Portfolio & Anthropic IPO Anchor
+    label: Nvidia $99B · Mega-IPO
+    one_line: "Nvidia investment portfolio expands to $99B; Nvidia in talks to anchor Anthropic's record ~$2T Nasdaq IPO with up to $10B (4–11 Sep 2026)"
+    peak: 0.95
+    lod: 2
+    sources:
+      - {ref: d64, title: "CNBC, Nvidia's investments grow to $99 billion as chip giant expands its reach (4 Sep 2026)", url: "https://www.cnbc.com/2026/09/04/nvidia-ai-investments-99-billion.html"}
+      - {ref: d65, title: "PYMNTS, Anthropic Could Land Nvidia as $10 Billion IPO Investor (13 Sep 2026)", url: "https://www.pymnts.com/acquisitions/2026/anthropic-could-land-nvidia-as-10-billion-ipo-investor/"}
 # pre-1999 milestones of thread (d) — Lisp machines 1973-87 [d1], Connection Machine 1985 [d2] — sit on the SYMBOLIC
 # bank (research/09: "symbolic bank before [1999]") and west of both pilot continents; they are out of this pilot's
 # drawn span and are not rendered yet (they will need their own northern-bank segment when the range is extended).
