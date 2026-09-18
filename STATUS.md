@@ -2,7 +2,7 @@
 
 ## One-line status
 
-**Session 31 — pushed to `main`: Alan's visual and density directives implemented in full. The Silicon Range transformed from cartoon sine-wave bumps and oversized circle nodes into an antique engraved atlas mountain range with organic multi-octave craggy relief, secondary northern back ridge, knife-edge arêtes, dense hand-inked slope hachures, cartographic col passes `)(` (CUDA Pass 2008.5, AlexNet Gap 2014.2, Kaplan Col 2021.0), and real hardware elevation specs (transistors/PFLOPS/GFLOPS) under summit cairn benchmarks; dead zone at `x=829.9, y=668.2 at z=2.5` resolved by activating `pretraining-foothills` (DBNs, autoencoders, greedy layer-wise, unified NLP) as `spatial: true` in S2 (2006–2009) with 4 LOD events; maximum screen-pixel font sizes clamped (`FCLAMP`) so zooming in preserves sharp, compact typography instead of giant blurry text; `check_layout.py` `clipped` check fixed to evaluate rendered text, achieving 0 errors across all gates; full tile pyramid (z0–z4, 5,126 tiles, 155.6 MB) regenerated with expanded basin pilot bbox `(768, 304, 1216, 800)`; mobile Playwright verification screenshots captured.**
+**Session 31 — pushed to `main`: Alan's visual and density directives implemented in full. The Silicon Range transformed from cartoon sine-wave bumps and oversized circle nodes into an antique engraved atlas mountain range with organic multi-octave craggy relief, secondary northern back ridge, knife-edge arêtes, dense hand-inked slope hachures, cartographic col passes `)(` (CUDA Pass 2008.5, AlexNet Gap 2014.2, Kaplan Col 2021.0), and real hardware elevation specs (transistors/PFLOPS/GFLOPS) under summit cairn benchmarks; dead zone at `x=829.9, y=668.2 at z=2.5` resolved by activating `pretraining-foothills` (DBNs, autoencoders, greedy layer-wise, unified NLP) as `spatial: true` in S2 (2006–2009) with 4 LOD events; maximum screen-pixel font sizes clamped (`FCLAMP`) so zooming in preserves sharp, compact typography instead of giant blurry text; `check_layout.py` `clipped` check fixed to evaluate rendered text, achieving 0 errors across all gates; full tile pyramid (z0–z4, 5,127 tiles, 148.4 MB) regenerated with expanded basin pilot bbox `(768, 304, 1216, 800)`; mobile Playwright verification screenshots captured.**
 
 - **The Silicon Range (Antique Engraved Atlas Mountain Relief):**
   - Replaced uniform sine-wave bumps with multi-octave pseudo-fractal craggy relief and angular crests.
@@ -18,7 +18,7 @@
   - Prevents old information from magnifying into giant blurry text when zooming in.
 - **Tile Pyramid Rebuild (`build_tiles.py`):**
   - Expanded `deep-learning-basin` pilot bbox from `(768, 304, 1216, 624)` to `(768, 304, 1216, 800)` to cover the full southern extent of `pretraining-foothills` and S2 down to y=800.
-  - Complete pyramid generated: z0 (40 tiles), z1 (135 tiles), z2 (493 tiles), z3 (1881 tiles), z4 (2578 tiles) = 5,126 tiles, 155.6 MB.
+  - Complete pyramid generated: z0 (40 tiles), z1 (135 tiles), z2 (493 tiles), z3 (1881 tiles), z4 (2578 tiles) = 5,127 tiles, 148.4 MB.
 - **Gates:**
   - `check_layout.py`: RESULT: PASS (0 errors across all 25+ gates; N_COUNTRIES = 24).
   - `check_lod_labels.py`: RESULT: PASS (0 text overlaps, 0 dots outside countries, 0 text off plate; monotonic information growth at all zoom levels).

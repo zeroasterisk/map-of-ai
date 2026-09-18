@@ -10,7 +10,7 @@
 - **HEAD at write time:** session 31 (Alan visual & density standards: antique engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild) on main — see the Session 31 entry at the end of this file
 - **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
 - **Gates:** `validate.py --offline` files=29 rules=25 fails=0; `check_lod_labels.py` PASS (0 overlaps, 0 dots outside, 0 off plate; monotonic growth z0–z4); `check_layout.py` RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 24).
-- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2578 (basin 868 + plateau 676 + coast 1034) = 5126 tiles, 155.6 MB. Basin pilot bbox expanded to `(768, 304, 1216, 800)` covering all of S2.
+- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2578 (basin 868 + plateau 676 + coast 1034) = 5127 tiles, 148.4 MB. Basin pilot bbox expanded to `(768, 304, 1216, 800)` covering all of S2.
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 
@@ -1338,7 +1338,7 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
   - Updated `N_COUNTRIES = 24`.
 - `site/build_tiles.py`:
   - Expanded `deep-learning-basin` pilot bbox from `(768, 304, 1216, 624)` to `(768, 304, 1216, 800)` to enclose all of S2 and `pretraining-foothills`.
-  - Rebuilt full tile pyramid: 5,126 tiles, 155.6 MB across z0–z4.
+  - Rebuilt full tile pyramid: 5,127 tiles, 148.4 MB across z0–z4.
 - `site/build_anchors.py`:
   - Rebaked `anchors.json` (34 anchors, including `pretraining-foothills` centroid x=858.7, y=723.0).
 
