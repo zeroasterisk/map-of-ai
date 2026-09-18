@@ -412,6 +412,46 @@
    ]
   },
   {
+   "id": "alignment-critique-tributaries",
+   "level": "country",
+   "name": "The Human-Feedback Tributaries",
+   "subtitle": "RLHF, the Anthropic split, Stochastic Parrots and the foundation-model critique, 2017–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2017,
+   "end": 2022,
+   "band": [
+    "N2"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "Two tributaries running along the plateau's northern rim, one from each bank. On the alignment bank, Christiano et al.'s \"Deep Reinforcement Learning from Human Preferences\" (June 2017) trained a reward model from pairwise human judgements; Ouyang et al.'s InstructGPT (4 March 2022) turned that into the SFT → reward model → PPO recipe that ChatGPT would ship eight months later, …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "river"
+    },
+    {
+     "id": "scaling-law-empiricists",
+     "relation": "borders"
+    },
+    {
+     "id": "open-replication-commons",
+     "relation": "road"
+    },
+    {
+     "id": "alignment-interpretability-plateau",
+     "relation": "river"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/alignment-critique-tributaries.yaml"
+  },
+  {
    "id": "alignment-interpretability-plateau",
    "level": "country",
    "name": "The Alignment Plateau",
@@ -1217,6 +1257,58 @@
    ]
   },
   {
+   "id": "decoder-generative-school",
+   "level": "country",
+   "name": "The Autoregressive Ridge",
+   "subtitle": "Decoder-only generative pre-training from GPT-1 to InstructGPT, 2018–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2018,
+   "end": 2022,
+   "band": [
+    "C"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "The ridge that won the era. Radford et al.'s GPT-1 (June 2018, 117M parameters) paired a decoder-only Transformer with generative pre-training and task fine-tuning; GPT-2 (February 2019, 1.5B parameters trained on 8M web pages) showed zero-shot task transfer and, withheld in stages until 5 November 2019, opened the first \"too dangerous to release\" argument. Brown et al.'s GPT-3 (28 May …",
+   "neighbours": [
+    {
+     "id": "encoder-understanding-school",
+     "relation": "borders"
+    },
+    {
+     "id": "scaling-law-empiricists",
+     "relation": "borders"
+    },
+    {
+     "id": "alignment-critique-tributaries",
+     "relation": "river"
+    },
+    {
+     "id": "sparse-moe-engineers",
+     "relation": "borders"
+    },
+    {
+     "id": "open-replication-commons",
+     "relation": "road"
+    },
+    {
+     "id": "multimodal-scientific-transformers",
+     "relation": "bridge"
+    },
+    {
+     "id": "closed-frontier-labs",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/decoder-generative-school.yaml"
+  },
+  {
    "id": "deep-generative-shoreline",
    "level": "country",
    "name": "The Generative Shoreline",
@@ -1695,6 +1787,46 @@
    ]
   },
   {
+   "id": "encoder-understanding-school",
+   "level": "country",
+   "name": "The BERT Escarpment",
+   "subtitle": "Encoder-only masked-language pre-training for language understanding, 2018–2020",
+   "parent_id": "transformer-plateau",
+   "start": 2018,
+   "end": 2020,
+   "band": [
+    "C"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The plateau's escarpment of language understanding. Howard and Ruder's ULMFiT (18 January 2018) and Peters et al.'s ELMo (February 2018) showed that a pre-trained language model transfers to text tasks; Devlin et al.'s BERT (11 October 2018) made the recipe bidirectional, pre-training an encoder-only Transformer with masked-language modelling and setting new marks on GLUE, SQuAD and SWAG. Wang, Bowman et …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "borders"
+    },
+    {
+     "id": "open-replication-commons",
+     "relation": "borders"
+    },
+    {
+     "id": "scaling-law-empiricists",
+     "relation": "road"
+    },
+    {
+     "id": "neural-nlp-sequence-school",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/encoder-understanding-school.yaml"
+  },
+  {
    "id": "gpu-convnet-school",
    "level": "country",
    "name": "The ImageNet Escarpment",
@@ -2040,6 +2172,88 @@
    ]
   },
   {
+   "id": "multimodal-scientific-transformers",
+   "level": "country",
+   "name": "The Attention Promontory",
+   "subtitle": "Vision, image–text, protein and generalist Transformers, 2020–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2020,
+   "end": 2022,
+   "band": [
+    "S1"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "The promontory where attention crossed out of language. Dosovitskiy et al.'s Vision Transformer (22 October 2020) cut images into 16×16 patches and displaced convolutional networks at the top of image classification; OpenAI's CLIP and DALL-E (5 January 2021) learned vision from natural-language supervision and generated images from text, and CLIP became the conditioning backbone of later diffusion models. DeepMind's AlphaFold …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "bridge"
+    },
+    {
+     "id": "systems-infrastructure-axis",
+     "relation": "borders"
+    },
+    {
+     "id": "sparse-moe-engineers",
+     "relation": "borders"
+    },
+    {
+     "id": "gpu-convnet-school",
+     "relation": "bridge"
+    },
+    {
+     "id": "diffusion-media-district",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/multimodal-scientific-transformers.yaml"
+  },
+  {
+   "id": "national-champion-scalers",
+   "level": "country",
+   "name": "The Sovereign Scaling Enclaves",
+   "subtitle": "Wu Dao, PanGu-α, ERNIE 3.0, YaLM and BigScience on Jean Zay, 2021–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2021,
+   "end": 2022,
+   "band": [
+    "C"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "Enclaves on the plateau's eastern rim where states and national platforms answered GPT-3. In three months of 2021 China fielded its GPT-3-class models: Huawei's PanGu-α (up to 200B parameters, 26 April), the Beijing Academy of Artificial Intelligence's Wu Dao 2.0 (a 1.75-trillion-parameter mixture of experts, 31 May) and Baidu's ERNIE 3.0 (5 July), a knowledge-enhanced model for understanding and generation. …",
+   "neighbours": [
+    {
+     "id": "open-replication-commons",
+     "relation": "borders"
+    },
+    {
+     "id": "sparse-moe-engineers",
+     "relation": "bridge"
+    },
+    {
+     "id": "chinese-state-response",
+     "relation": "bridge"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": false,
+   "related_facts": [],
+   "file": "data/countries/national-champion-scalers.yaml"
+  },
+  {
    "id": "neural-nlp-sequence-school",
    "level": "country",
    "name": "The Attention Headwaters",
@@ -2195,6 +2409,59 @@
      ]
     }
    ]
+  },
+  {
+   "id": "open-replication-commons",
+   "level": "country",
+   "name": "The Eleutherian Commons",
+   "subtitle": "EleutherAI, the Hugging Face hub, OPT-175B, BLOOM and YaLM, 2020–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2020,
+   "end": 2022,
+   "band": [
+    "C"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The grassroots commons on the plateau's eastern slope. Hugging Face's `transformers` library (2019) was already the de facto hub for sharing pretrained models when EleutherAI — a collective formed on Discord in 2020 — released The Pile (825 GB of open training text, 31 December 2020), then GPT-Neo and GPT-J (6B) in 2021 and GPT-NeoX-20B (April 2022), the first open …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "road"
+    },
+    {
+     "id": "encoder-understanding-school",
+     "relation": "borders"
+    },
+    {
+     "id": "national-champion-scalers",
+     "relation": "borders"
+    },
+    {
+     "id": "systems-infrastructure-axis",
+     "relation": "road"
+    },
+    {
+     "id": "alignment-critique-tributaries",
+     "relation": "road"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [
+    {
+     "id": "national-champion-scalers",
+     "note": "also here, 2021–2022: the sovereign scaling enclaves — Huawei PanGu-α, BAAI Wu Dao 2.0, Baidu ERNIE 3.0, Yandex YaLM-100B, BigScience on Jean Zay"
+    }
+   ],
+   "file": "data/countries/open-replication-commons.yaml"
   },
   {
    "id": "open-weights-movement",
@@ -2986,6 +3253,90 @@
    ]
   },
   {
+   "id": "scaling-law-empiricists",
+   "level": "country",
+   "name": "The Scaling-Law Fault Line",
+   "subtitle": "The Bitter Lesson, Kaplan, Chinchilla and the benchmark street, 2019–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2019,
+   "end": 2022,
+   "band": [
+    "N2"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The fault line that separates the \"bigger is better\" plateau from the RNN lowlands to the west. Rich Sutton's essay \"The Bitter Lesson\" (13 March 2019) supplied the creed: general methods that leverage computation beat built-in human knowledge. Kaplan et al. (23 January 2020) supplied the method, showing that loss falls as a smooth power law in parameters, data and …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "borders"
+    },
+    {
+     "id": "encoder-understanding-school",
+     "relation": "road"
+    },
+    {
+     "id": "alignment-critique-tributaries",
+     "relation": "borders"
+    },
+    {
+     "id": "systems-infrastructure-axis",
+     "relation": "road"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/scaling-law-empiricists.yaml"
+  },
+  {
+   "id": "sparse-moe-engineers",
+   "level": "country",
+   "name": "The Mixture-of-Experts Delta",
+   "subtitle": "Sparsely-gated mixture-of-experts layers from Shazeer to Switch Transformer, 2017–2021",
+   "parent_id": "transformer-plateau",
+   "start": 2017,
+   "end": 2021,
+   "band": [
+    "S1"
+   ],
+   "biome": "jungle",
+   "status": "sourced",
+   "summary60": "A braided delta where the dense river splits into many channels. Shazeer et al.'s \"Outrageously Large Neural Networks\" (23 January 2017) put a sparsely-gated mixture-of-experts layer inside an LSTM and reached 100B+ parameters while activating only a fraction per token — five months before the Transformer itself. Lepikhin et al.'s GShard (June 2020) automated the sharding of conditional computation across …",
+   "neighbours": [
+    {
+     "id": "decoder-generative-school",
+     "relation": "borders"
+    },
+    {
+     "id": "systems-infrastructure-axis",
+     "relation": "borders"
+    },
+    {
+     "id": "national-champion-scalers",
+     "relation": "bridge"
+    },
+    {
+     "id": "open-weights-movement",
+     "relation": "bridge"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/sparse-moe-engineers.yaml"
+  },
+  {
    "id": "speech-recognition-converts",
    "level": "country",
    "name": "The Speech Conversion",
@@ -3093,6 +3444,50 @@
      ]
     }
    ]
+  },
+  {
+   "id": "systems-infrastructure-axis",
+   "level": "country",
+   "name": "The Megatron Yards",
+   "subtitle": "Megatron-LM, ZeRO/DeepSpeed, the A100 and Pathways/TPU v4, 2019–2022",
+   "parent_id": "transformer-plateau",
+   "start": 2019,
+   "end": 2022,
+   "band": [
+    "S2"
+   ],
+   "biome": "harbour",
+   "status": "sourced",
+   "summary60": "The yards where 100-billion-parameter training runs are assembled. Nvidia's Megatron-LM (Shoeybi, Catanzaro et al., 17 September 2019) split a single Transformer layer's matrices across GPUs — tensor parallelism — to train an 8.3B model; Microsoft's ZeRO (October 2019) sharded optimizer state, gradients and parameters across data-parallel workers and shipped as DeepSpeed, producing Turing-NLG (17B, 13 February 2020). Nvidia's Ampere A100 …",
+   "neighbours": [
+    {
+     "id": "sparse-moe-engineers",
+     "relation": "borders"
+    },
+    {
+     "id": "multimodal-scientific-transformers",
+     "relation": "borders"
+    },
+    {
+     "id": "scaling-law-empiricists",
+     "relation": "road"
+    },
+    {
+     "id": "open-replication-commons",
+     "relation": "road"
+    },
+    {
+     "id": "compute-hardware-hinterland",
+     "relation": "road"
+    }
+   ],
+   "band_override_note": null,
+   "sub_band": [
+    "S2a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/systems-infrastructure-axis.yaml"
   },
   {
    "id": "tooling-guild",
@@ -3453,5 +3848,5 @@
    ]
   }
  ],
- "generated_from": "3 continent + 17 country YAML files under data/ + 1 thread(s)"
+ "generated_from": "3 continent + 26 country YAML files under data/ + 1 thread(s)"
 }

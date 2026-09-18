@@ -1,0 +1,49 @@
+id: national-champion-scalers
+level: country
+name: The Sovereign Scaling Enclaves
+subtitle: "Wu Dao, PanGu-α, ERNIE 3.0, YaLM and BigScience on Jean Zay, 2021–2022"
+summary: >
+  Enclaves on the plateau's eastern rim where states and national platforms
+  answered GPT-3. In three months of 2021 China fielded its GPT-3-class models:
+  Huawei's PanGu-α (up to 200B parameters, 26 April), the Beijing Academy of
+  Artificial Intelligence's Wu Dao 2.0 (a 1.75-trillion-parameter mixture of
+  experts, 31 May) and Baidu's ERNIE 3.0 (5 July), a knowledge-enhanced model
+  for understanding and generation. Yandex open-sourced YaLM-100B (June 2022,
+  trained on 800 A100s), and the BigScience workshop trained BLOOM (176B, 46
+  languages) from March to July 2022 on France's Jean Zay public supercomputer
+  under a RAIL licence. None displaced the Bay Area frontier, but together they
+  established that the scaling recipe could be reproduced with state or platform
+  compute outside it — the origin of the Chinese shore (DeepSeek, Qwen) and the
+  European shore (Mistral) of the generative coast, and the continuation of
+  China's 2017 national AI plan.
+time_range: {start: 2021, end: 2022}
+band: C
+biome: highland
+parent_id: transformer-plateau
+spatial: false
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [74, 75, 76, 77, 94]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/Wu_Dao, title: "Wikipedia: Wu Dao (BAAI; Wu Dao 2.0, 31 May 2021)", kind: wikipedia, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2104.12369, title: "Zeng et al., PanGu-α: Large-scale Autoregressive Pretrained Chinese Language Models, 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2107.02137, title: "Sun et al., ERNIE 3.0: Large-scale Knowledge Enhanced Pre-training for Language Understanding and Generation, 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://github.com/yandex/YaLM-100B, title: "Yandex, YaLM-100B (GitHub, June 2022)", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/BLOOM_%28language_model%29, title: "Wikipedia: BLOOM (language model) (Jean Zay, Mar–Jul 2022)", kind: wikipedia, accessed: 2026-09-18}
+threads: [language, open-closed, compute]
+neighbours:
+  - {id: open-replication-commons, relation: borders, note: "BLOOM and YaLM belong to both; the enclaves are the commons' state-backed wing"}
+  - {id: sparse-moe-engineers, relation: bridge, note: "Wu Dao 2.0's 1.75T parameters are a sparse MoE count"}
+  - {id: chinese-state-response, relation: bridge, note: "China's 2017 national AI plan (file 06) is the policy root of PanGu, ERNIE and BAAI"}
+  - {id: open-weights-movement, relation: bridge, note: "the Chinese shore (DeepSeek, Qwen) and European shore (Mistral) of file 08"}
+status: sourced
+notes: >
+  P3-T9 school bullet 9 of 9 ("National-champion scalers outside the Bay
+  Area"). Kept as its own country (not merged) because its citations [74]-[77],
+  [94] overlap the commons only in YaLM/BLOOM and its subject is institutional
+  geography, not openness — but drawn spatial: false (tooling-guild /
+  pretraining-foothills precedent): a 2021–22 enclave would need the same Cb
+  cells as the commons, and it is surfaced instead as a related_facts hover note
+  on open-replication-commons. Neighbours chinese-state-response and
+  open-weights-movement resolve the bullet's file-06 and file-08 borders. Band
+  C (language models). Biome highland: state-directed, hand-planned programmes
+  (the AXES palette's hand-authored terrain) rather than the commons'
+  grassland.

@@ -1,0 +1,48 @@
+id: decoder-generative-school
+level: country
+name: The Autoregressive Ridge
+subtitle: "Decoder-only generative pre-training from GPT-1 to InstructGPT, 2018–2022"
+summary: >
+  The ridge that won the era. Radford et al.'s GPT-1 (June 2018, 117M
+  parameters) paired a decoder-only Transformer with generative pre-training and
+  task fine-tuning; GPT-2 (February 2019, 1.5B parameters trained on 8M web
+  pages) showed zero-shot task transfer and, withheld in stages until 5 November
+  2019, opened the first "too dangerous to release" argument. Brown et al.'s
+  GPT-3 (28 May 2020, 175 billion parameters) turned scale into in-context
+  learning — few-shot behaviour with no gradient updates — and became the first
+  LLM sold as an API (11 June 2020). Chen et al.'s Codex (July 2021) took the
+  same recipe to source code and powered GitHub Copilot's preview (29 June
+  2021). Ouyang et al.'s InstructGPT (4 March 2022) added supervised fine-tuning,
+  a reward model and PPO — the RLHF canal that leads east to ChatGPT (30
+  November 2022). Every next-token generative model of the following era
+  descends from this ridge.
+time_range: {start: 2018, end: 2022}
+band: C
+sub_band: Ca
+biome: jungle
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [5, 11, 19, 28]}
+sources:
+  - {url: https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf, title: "Radford et al., Improving Language Understanding by Generative Pre-Training (GPT-1), OpenAI, June 2018", kind: primary, accessed: 2026-09-18}
+  - {url: https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf, title: "Radford et al., Language Models are Unsupervised Multitask Learners (GPT-2), OpenAI, Feb 2019", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2005.14165, title: "Brown et al., Language Models are Few-Shot Learners (GPT-3), NeurIPS 2020", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2203.02155, title: "Ouyang et al., Training language models to follow instructions with human feedback (InstructGPT), NeurIPS 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/GPT-2, title: "Wikipedia: GPT-2 (staged release 2019)", kind: wikipedia, accessed: 2026-09-18}
+threads: [language, open-closed]
+neighbours:
+  - {id: encoder-understanding-school, relation: borders, note: "the 2018 encoder/decoder fork of the pre-train-then-fine-tune recipe"}
+  - {id: scaling-law-empiricists, relation: borders, note: "Kaplan 2020 is the justification for GPT-3's 175B bet"}
+  - {id: alignment-critique-tributaries, relation: river, note: "the RLHF canal: InstructGPT is shared territory (preferences 2017 -> InstructGPT 2022)"}
+  - {id: sparse-moe-engineers, relation: borders, note: "dense autoregressive scaling versus the sparse route past it"}
+  - {id: open-replication-commons, relation: road, note: "GPT-Neo/J/NeoX and OPT-175B are open replications of GPT-3"}
+  - {id: multimodal-scientific-transformers, relation: bridge, note: "DALL-E is a 12B GPT-3 variant; Codex and CLIP came from the same lab"}
+  - {id: closed-frontier-labs, relation: bridge, note: "ChatGPT (30 Nov 2022) = GPT-3.5 + RLHF: the border with the generative coast (file 08)"}
+status: sourced
+notes: >
+  P3-T9 school bullet 2 of 9 ("Decoder / generative camp (GPT lineage)").
+  Neighbour closed-frontier-labs resolves the bullet's "RLHF/InstructGPT and
+  ChatGPT to the east (file 08)" border. Band C sub-band Ca: the upper language
+  lane, continuous with the generative coast's closed frontier (Ca) so the GPT
+  lineage reads as one east-west ridge across the 30 Nov 2022 border. Biome
+  jungle = parent's (scaled self-supervised models). GPT-2's staged release is
+  the first fort on the open-vs-closed road (research/07 open question 3).

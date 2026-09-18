@@ -740,8 +740,11 @@ const FINE = [ // fine rows, north→south: [name, parent row j, f0, f1]. N1/N2 
   // so the S2b sub-band is two fine rows (7[2/3,1] + 8[0,1/3]); every fine row lies inside ONE continent row.
   ['N1a', 0, 0, 1], ['N1b', 1, 0, 1], ['N2a', 2, 0, 1], ['N2b', 3, 0, 1],
   ['Ca', 4, 0, 1], ['Cb', 5, 0, 1], ['S1a', 6, 0, .5], ['S1b', 6, .5, 1], ['S2a', 7, 0, 2 / 3], ['S2b', 7, 2 / 3, 1], ['S2b', 8, 0, 1 / 3], ['S2c', 8, 1 / 3, 1]];
-// country start/end years COLS lacks: basin 2009/2013/2015/2016; generative coast 2023 (open weights, policy) / 2024 (reasoning)
-const SUBCOLS = [...new Set(COLS.concat([2009, 2013, 2015, 2016, 2023, 2024]))].sort((a, b) => a - b);
+// country start/end years COLS lacks: basin 2009/2013/2015/2016; generative coast 2023 (open weights, policy) / 2024 (reasoning);
+// transformer plateau (P3-T9) 2018 (BERT/GPT-1), 2020 (commons, multimodal). A country that ends within the LICENSE slack
+// (≤ 0.8 yr) of a continent column boundary is drawn to that boundary (kEnd): the plateau's countries end at the registered
+// 2022 but its land runs to the 2022.8 belt, and sparse-moe's 2021 end meets the 2021.3 seam — no orphan slivers of parent land.
+const SUBCOLS = [...new Set(COLS.concat([2009, 2013, 2015, 2016, 2018, 2020, 2023, 2024]))].sort((a, b) => a - b);
 const parentCol = i => { let k = 0; while (k + 1 < COLS.length && COLS[k + 1] <= SUBCOLS[i] + 1e-9) k++; return k; };   // fine col → continent col
 const FNC = SUBCOLS.length - 1, FNR = FINE.length;
 // point at arc-length fraction t of a polyline; slice of a polyline between fractions t0 < t1 (endpoints interpolated)
@@ -806,7 +809,7 @@ function fineTrace(pred) {
 // a fine cell (i, r) belongs to country k iff its year slot is inside k's time_range, its fine row is one of k's
 // sub_bands, AND the parent continent owns the underlying continent cell (containment by construction)
 // a country whose time_range.end is 'present' runs to the present-day coast (E), like its parent continent
-const kEnd = k => k.end === 'present' ? E : k.end;
+const kEnd = k => { if (k.end === 'present') return E; const c = COLS.find(c => c >= k.end - 1e-9); return c !== undefined && c - k.end <= 0.8 + 1e-9 ? c : k.end; };   // snap to the parent column boundary within LICENSE slack
 const fineCell = (k, i, r) => i >= 0 && r >= 0 && i < FNC && r < FNR && SUBCOLS[i] >= k.start - 1e-9 && SUBCOLS[i + 1] <= kEnd(k) + 1e-9 && k.sub_band.includes(FINE[r][0]) && ownerAt(parentCol(i), FINE[r][1]) === k.parent_id;
 window.COUNTRY_GEOM = {SUBCOLS, FINE};
 let drawCountries = () => {};

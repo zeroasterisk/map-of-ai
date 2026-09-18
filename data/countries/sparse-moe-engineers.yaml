@@ -1,0 +1,45 @@
+id: sparse-moe-engineers
+level: country
+name: The Mixture-of-Experts Delta
+subtitle: "Sparsely-gated mixture-of-experts layers from Shazeer to Switch Transformer, 2017–2021"
+summary: >
+  A braided delta where the dense river splits into many channels. Shazeer et
+  al.'s "Outrageously Large Neural Networks" (23 January 2017) put a
+  sparsely-gated mixture-of-experts layer inside an LSTM and reached 100B+
+  parameters while activating only a fraction per token — five months before
+  the Transformer itself. Lepikhin et al.'s GShard (June 2020) automated the
+  sharding of conditional computation across TPU pods for a 600B-parameter
+  multilingual translation model, and Fedus, Zoph and Shazeer's Switch
+  Transformer (11 January 2021) simplified routing to a single expert per token
+  and trained trillion-parameter models. BAAI's Wu Dao 2.0 (31 May 2021) claimed
+  1.75 trillion parameters with the same sparse recipe, making MoE the fastest
+  route to a headline parameter count. Sparsity was a route past dense scaling
+  limits, but the era's flagships (GPT-3, PaLM, Chinchilla) stayed dense; the
+  delta's channels return as Mixtral and DeepSeek in the generative coast.
+time_range: {start: 2017, end: 2021}
+band: S1
+sub_band: S1a
+biome: jungle
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [27, 34, 74, 93]}
+sources:
+  - {url: https://arxiv.org/abs/1701.06538, title: "Shazeer et al., Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer, ICLR 2017", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2006.16668, title: "Lepikhin et al., GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding, 2020", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2101.03961, title: "Fedus, Zoph & Shazeer, Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity, 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/Wu_Dao, title: "Wikipedia: Wu Dao (BAAI; Wu Dao 2.0, 31 May 2021)", kind: wikipedia, accessed: 2026-09-18}
+threads: [language, compute]
+neighbours:
+  - {id: decoder-generative-school, relation: borders, note: "the sparse alternative to dense autoregressive scaling"}
+  - {id: systems-infrastructure-axis, relation: borders, note: "GShard is as much a sharding compiler as a model; MoE lives on TPU pods"}
+  - {id: national-champion-scalers, relation: bridge, note: "Wu Dao 2.0's 1.75T parameters are a sparse MoE count"}
+  - {id: open-weights-movement, relation: bridge, note: "Mixtral and DeepSeek reopen the delta's channels in file 08"}
+status: sourced
+notes: >
+  P3-T9 school bullet 4 of 9 ("Sparse / mixture-of-experts engineers").
+  Neighbour open-weights-movement resolves the bullet's "Mixtral and DeepSeek in
+  file 08" border. time_range starts 2017 (Shazeer, Jan 2017 — inside the
+  parent's 2017 start; the pre-Transformer origin is a note, not a time-overlap)
+  and ends 2021 (Switch, Wu Dao 2.0). Band S1 sub-band S1a: routing and
+  conditional computation are an engineering / action-selection idiom rather
+  than pure language modelling — placed just south of the language belt, north
+  of the systems yards it depends on. Biome jungle = parent's.
