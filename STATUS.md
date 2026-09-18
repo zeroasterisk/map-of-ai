@@ -1,3 +1,28 @@
+# STATUS — as of 2026-09-18 (session 28: P3-T9 The Transformer Plateau country layer — 9 countries + coverage matrix Table 1)
+
+## One-line status
+
+**Session 28 — pushed to `main`: P3-T9 complete. Nine countries authored under `transformer-plateau` in `data/countries/` (8 spatial + `national-champion-scalers` as `spatial: false`, surfaced as a `related_facts` hover note on `open-replication-commons`), mapping 1:1 to the 9 `## Schools of thought` bullets of `research/07-transformers-and-llms-2017-2022.md`; `data/coverage/transformer-plateau.md` Table 1 filled (9 rows = A-M2 awk count 9; 0 merged, 0 dropped); `site/atlas.html` `SUBCOLS` gained 2018/2020 and `kEnd` now snaps a country's end to the next continent column within the 0.8-yr LICENSE slack (no orphan parent slivers at the 2022.8 belt / 2021.3 seam); `site/check_layout.py` N_COUNTRIES 15→23; `site/entities.json` + `entities.js` regenerated; all gates green except the pre-existing `clipped` 625.**
+
+- **Countries (`data/countries/`, parent `transformer-plateau`, all `status: sourced`, summaries 144–160 words, ≥ 4 sources each, every URL an exact substring of research/07, every `research_ref.sources` ⊆ its bullet's [n]s — A-K2 checked by script, 0 fails):**
+  1. `encoder-understanding-school` The BERT Escarpment — 2018–2020, C/Cb, forest — [4, 7, 30, 46, 47, 48, 53, 54, 55, 71, 89]
+  2. `decoder-generative-school` The Autoregressive Ridge — 2018–2022, C/Ca, jungle — [5, 11, 19, 28]
+  3. `scaling-law-empiricists` The Scaling-Law Fault Line — 2019–2022, N2/N2b, grassland — [9, 20, 49, 63, 64, 65, 70]
+  4. `sparse-moe-engineers` The Mixture-of-Experts Delta — 2017–2021, S1/S1a, jungle — [27, 34, 74, 93]
+  5. `systems-infrastructure-axis` The Megatron Yards — 2019–2022, S2/S2a, harbour — [23, 57, 58, 61]
+  6. `multimodal-scientific-transformers` The Attention Promontory — 2020–2022, S1/S1b, jungle — [13, 14, 16, 17, 40, 42, 80, 81, 82]
+  7. `alignment-critique-tributaries` The Human-Feedback Tributaries — 2017–2022, N2/N2a, mixed — [19, 37, 38, 44, 68, 69, 85]
+  8. `open-replication-commons` The Eleutherian Commons — 2020–2022, C/Cb, grassland — [22, 32, 41, 72, 73, 77]
+  9. `national-champion-scalers` The Sovereign Scaling Enclaves — 2021–2022, C, highland, `spatial: false` — [74, 75, 76, 77, 94]
+  Cross-continent neighbours resolved per A-K4 where the entity exists (`closed-frontier-labs`, `open-weights-movement`, `alignment-interpretability-plateau`, `diffusion-media-district`, `compute-hardware-hinterland`, `neural-nlp-sequence-school`, `gpu-convnet-school`, `chinese-state-response`); `pending-neighbour:` notes left for the 09c/09d/09e threads and RAG/robotics. A-K7 calls (N2a not N1 for alignment; S1b not S2 for multimodal; harbour territory for systems) recorded in `data/coverage/transformer-plateau.md` for P3-T12.
+- **Renderer:** the plateau's grid owns N2b–S2a from 2017, N2a from 2019.6, S1/S2a only until 2021.3 and never N1 — lanes were chosen to fit that (one lane each, N→S: N2a · N2b · Ca · Cb (BERT then commons) · S1a · S1b · S2a). `kEnd` snap is generic (applies to all continents; basin/coast polygons unchanged — generative-coast A2 probe re-run and reverted, check_layout containment/overlap still 0). New screenshot `docs/screens/transformer-plateau-a2.png` (probe_continent_countries.py).
+- **Entity counts:** 3 continents, 26 countries (23 spatial), 155 LOD events, 1 thread / 15 milestones.
+- **Gates:** `validate.py --offline` files=29 rules=25 fails=0; `validate.py --file` online (V-20 live) 0 fails on each of the 9 new files; `check_research.py --fast` PASS; `check_registry.py` rows=10 fails=0; `check_lod_labels.py` LOD LABEL GATE: PASS; `check_layout.py` countryCount/containment/overlap/labelOverlaps/labelOutside/zoomInconsistent/a2FewTexts all 0 (N_COUNTRIES 23), thread gates 0; `clipped` 625 pre-existing alone drives RESULT: FAIL.
+- **Open follow-ups:** P3-T12 review of the plateau set (A-K1…A-K7 evidence, 5-claim spot-checks); Phase 4 city pilot (P4-T1 on the basin) or P4-T9 Table 2 for the plateau; LOD hints/events (`data/events/transformer-plateau.yaml`) so the plateau's provinces carry lod1 hints and lod3/4 events like the basin and coast; the `pending-neighbour:` 09c/09d/09e thread hand-offs.
+
+---
+### Session 27 (kept for reference)
+
 # STATUS — as of 2026-09-18 (session 27: P2-T9 The Transformer Plateau Continent YAML + coverage matrix initialization + Silicon Range hardware thread milestones)
 
 ## One-line status
