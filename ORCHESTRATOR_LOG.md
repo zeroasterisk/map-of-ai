@@ -1233,3 +1233,33 @@ ORCHESTRATOR_LOG commit; both pushed straight to `main` per the brief.
 event candidates from this session: the 24 Aug autonomous-drone strike ([306]/[b25]) for the Conscience Road and the
 Nvidia equity-circularity pair — $99B book (4 Sep) + Anthropic IPO anchor (11 Sep) ([316][318]/[d64][d65]) — for the
 Silicon River. No open link follow-ups.
+
+## Session 27 (2026-09-18) — P2-T9: The Transformer Plateau Continent YAML + coverage matrix initialization + Silicon Range hardware thread update
+
+**Brief.** Execute the next backlog milestones from `PLAN.md`: P2-T9 (continent entity `data/continents/transformer-plateau.yaml` and coverage matrix header `data/coverage/transformer-plateau.md`), plus the Silicon Range hardware thread update (`data/threads/silicon-river-hardware.yaml`) for late-2026 milestones (`[d15]`, `[d28]`, `[d64]`, `[d65]`); rebuild site entities; verify all gates; update STATUS + ORCHESTRATOR_LOG; commit and push to `origin/main`.
+
+**Continent Entity (P2-T9).** Authored `data/continents/transformer-plateau.yaml` per `REGISTRY.md` row 9:
+- `id`: `transformer-plateau`, `level`: `continent`, `name`: `The Transformer Plateau`
+- `subtitle`: `"Attention, pre-trained language models and scaling laws, 2017–2022"` (matches time_range `{start: 2017, end: 2022}` per V-12)
+- `band`: `[N1, N2, C, S1, S2]` (home band C spreading to all bands, formatted strictly contiguous N1→N2→C→S1→S2 per V-08)
+- `biome`: `jungle`
+- `summary`: 235 words (V-11 120–300 words budget) tracing Vaswani (2017), BERT (2018), GPT-1/2/3 (2018–2020), scaling laws (Kaplan 2020, Chinchilla 2022), multimodal cross-overs (ViT, CLIP, AlphaFold 2), systems (Megatron-LM, A100, DeepSpeed), InstructGPT (2022), and open-weights precursors.
+- `research_ref`: `research/07-transformers-and-llms-2017-2022.md` sources `[1, 2, 7, 9, 11, 14, 19, 20]`.
+- `sources`: 8 sources (Vaswani, Devlin/BERT, Kaplan, Brown/GPT-3, Jumper/AlphaFold 2, Ouyang/InstructGPT, Hoffmann/Chinchilla, and Wikipedia Attention Is All You Need). All fetched and verified 200 online (V-20 PASS).
+
+**Coverage Matrix (P2-T9).** Initialized `data/coverage/transformer-plateau.md` with A-M1 header block. Verified A-M2 shell check: `research/07` has 9 bullets under `## Schools of thought / sub-clusters`. Table 1 mapped to upcoming P3-T9 country authoring.
+
+**Silicon Range Update (Thread d).** Added 3 landmark late-2026 milestones to `data/threads/silicon-river-hardware.yaml` matching `research/09` Thread (d):
+- Ohio Gigawatt Campus (year: 2026.63, ref: d28, Nvidia $105B credit/compute for OpenAI's Ohio campus)
+- Cerebras CS-4 (year: 2026.64, ref: d15, 750 PFLOPS wafer-scale system, $20B OpenAI compute partnership)
+- Nvidia $99B Portfolio & Anthropic IPO Anchor (year: 2026.70, ref: d64/d65, Nvidia $99B equity book and anchor in Anthropic's record Nasdaq IPO)
+Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_json.py`.
+
+**Gates.**
+- `validate.py`: files=20 rules=25 fails=0
+- `check_research.py --fast`: PASS
+- `check_registry.py`: rows=10 fails=0
+- `check_lod_labels.py`: LOD LABEL GATE: PASS
+- `check_layout.py`: all structural / country / containment / zero-overlap / thread gates 0 (15 peaks drawn; new dense milestones curated out cleanly without label clashes); pre-existing clipped 625 alone drives RESULT: FAIL.
+
+**Next.** P3-T9: author the country layer for `transformer-plateau` in `data/countries/` (5–9 countries mapping to the 9 bullets in `research/07`) and complete Table 1 in `data/coverage/transformer-plateau.md`.
