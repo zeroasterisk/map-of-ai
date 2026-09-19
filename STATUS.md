@@ -1,8 +1,40 @@
-# STATUS — as of 2026-09-18 (session 31: Alan visual & density standards — engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild)
+# STATUS — as of 2026-09-19 (session 32: Alan visual & density standards — S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild)
 
 ## One-line status
 
-**Session 31 — pushed to `main`: Alan's visual and density directives implemented in full. The Silicon Range transformed from cartoon sine-wave bumps and oversized circle nodes into an antique engraved atlas mountain range with organic multi-octave craggy relief, secondary northern back ridge, knife-edge arêtes, dense hand-inked slope hachures, cartographic col passes `)(` (CUDA Pass 2008.5, AlexNet Gap 2014.2, Kaplan Col 2021.0), and real hardware elevation specs (transistors/PFLOPS/GFLOPS) under summit cairn benchmarks; dead zone at `x=829.9, y=668.2 at z=2.5` resolved by activating `pretraining-foothills` (DBNs, autoencoders, greedy layer-wise, unified NLP) as `spatial: true` in S2 (2006–2009) with 4 LOD events; maximum screen-pixel font sizes clamped (`FCLAMP`) so zooming in preserves sharp, compact typography instead of giant blurry text; `check_layout.py` `clipped` check fixed to evaluate rendered text, achieving 0 errors across all gates; full tile pyramid (z0–z4, 5,127 tiles, 148.4 MB) regenerated with expanded basin pilot bbox `(768, 304, 1216, 800)`; mobile Playwright verification screenshots captured.**
+**Session 32 — pushed to `main`: Alan's visual and density standards advanced in full. The dead zone at `x=829.9, y=668.2 at z=2.5` permanently eliminated by expanding `pretraining-foothills` to `band: [S1, S2]` (`sub_band: [S1b, S2a, S2b, S2c]`), placing `y=668.2` squarely inside the country polygon and rendering the dense cluster of DBNs, autoencoders, greedy layer-wise training, and CUDA Pass relief; restored and revealed the Silicon Range's milestone summits, named passes (CUDA Pass, AlexNet Gap, Kaplan Col) with saddle col marks `)(`, and real hardware elevation specs across zoomed tile levels (`lod1`–`lod4`), removing the blanket CSS suppression; instituted a strict 4-tier cartographic layout hierarchy (Continents → Countries → Topography summits/passes/specs → Historic paper events) with bidirectional obstacle avoidance, achieving 0 label collisions across all LOD levels; rebuilt the complete 5,127-tile pyramid (z0–z4, 156.2 MB) and verified mobile viewports at `?z=2.5&x=829.9&y=668.2` and `?z=1.8&x=1476.3&y=676.4`.**
+
+- **Dead Zone Elimination (`x=829.9, y=668.2 at z=2.5`):**
+  - Diagnosis: `pretraining-foothills` was previously restricted to `band: S2` (`y > 668.9`), leaving `y=668.2` in `S1b` as an unclaimed orphan continent sliver of bare forest texture.
+  - Solution: Promoted `pretraining-foothills.yaml` to `band: [S1, S2]` with `sub_band: [S1b, S2a, S2b, S2c]`.
+  - Centroid updated to `x=859.1, y=704.1` with bbox `[804.2, 635.6, 911.8, 773.5]`.
+  - Coordinate `x=829.9, y=668.2` now renders fully inside Pre-training Foothills with its historical DBN, greedy layer-wise, and deep autoencoder milestones and the craggy relief of CUDA Pass.
+- **Mountain Topography & Zoom-In Detail Disclosure across all LODs:**
+  - Removed blanket `#thread-labels { display: none; }` at `lod1`–`lod4` in `site/atlas.html`.
+  - In tile mode, only the macro range title (`.thr-title`) is hidden at zoom levels ≥ 1, while named passes (`CUDA Pass`, `AlexNet Gap`, `Kaplan Col`) with `)(` marks, summit cairns, and hardware elevation specs (`80B trans · 2 PF`, `208B trans · 20 PF`, `3B trans · 1.58 TF`, `681M trans · 345 GF`) are visible and sharp.
+- **Hierarchical Layout Pipeline & Zero Collisions:**
+  - Pipelined layout execution: `drawThreads('geometry')` (relief & skyline obstacles) → `relayout()` (continent labels) → `layoutCountries()` (country names/tags) → `drawThreads()` (summits, passes, specs) → `placeLod()` (LOD hints, paper events, one-line facts).
+  - Thread summits and passes check `countryBoxes` to place into open valleys or south slope foot lines (`offsFor(m)`), avoiding country names.
+  - Country hints and LOD events check `gThrLabels` so event dots and text never collide with mountain passes or summits.
+  - Result: 0 text collisions at every level (`lod0`, `lod1`, `lod2`, `lod3`, `lod4`).
+- **Tile Pyramid Rebuild (`build_tiles.py`):**
+  - Full pyramid rebuilt across all levels: z0 (40), z1 (135), z2 (493), z3 (1,881), z4 (2,578) = 5,127 tiles, 156.2 MB.
+  - Basin pilot bbox `(768, 304, 1216, 800)` fully covers S1b + S2 down to y=800.
+- **Gates:**
+  - `validate.py --offline`: PASS (29 files, 25 rules, 0 failures).
+  - `check_research.py --fast`: PASS (rc 0).
+  - `check_layout.py`: RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 24).
+  - `check_lod_labels.py`: LOD LABEL GATE: PASS (0 text overlaps, 0 dots outside countries, 0 text off plate; monotonic information growth at all zoom levels).
+  - `build_entities_json.py`: 3 continents, 26 countries (24 spatial), 228 LOD events.
+- **Verification Screenshots:**
+  - `docs/screens/verify-coord-829.png`: mobile viewport at `?z=2.5&x=829.9&y=668.2` showing Pre-training Foothills country polygon, milestones, and CUDA Pass mountain relief.
+  - `docs/screens/verify-coord-1476.png`: mobile viewport at `?z=1.8&x=1476.3&y=676.4` showing Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-silicon-range-engraved.png`: mobile viewport at `?z=2.75&x=920&y=650` showing antique engraved hachured mountain relief, passes, and elevation specs.
+
+---
+### Session 31 (kept for reference)
+
+# STATUS — as of 2026-09-18 (session 31: Alan visual & density standards — engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild)
 
 - **The Silicon Range (Antique Engraved Atlas Mountain Relief):**
   - Replaced uniform sine-wave bumps with multi-octave pseudo-fractal craggy relief and angular crests.

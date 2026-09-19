@@ -7,10 +7,10 @@
 ## Current iteration status (as of this write)
 
 - **Live:** https://zeroasterisk.github.io/map-of-ai/
-- **HEAD at write time:** session 31 (Alan visual & density standards: antique engraved Silicon Range relief, passes/elevation specs, Pre-training Foothills spatial layer, font clamping, full tile pyramid rebuild) on main — see the Session 31 entry at the end of this file
+- **HEAD at write time:** session 32 (Alan visual & density standards: S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild) on main — see the Session 32 entry at the end of this file
 - **Active Cron Watchdog:** `map-of-ai-rework-trigger` (every 3h, idle > 30m guard via `/home/node/agent/scripts/map_of_ai_watchdog.py`)
 - **Gates:** `validate.py --offline` files=29 rules=25 fails=0; `check_lod_labels.py` PASS (0 overlaps, 0 dots outside, 0 off plate; monotonic growth z0–z4); `check_layout.py` RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 24).
-- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2578 (basin 868 + plateau 676 + coast 1034) = 5127 tiles, 148.4 MB. Basin pilot bbox expanded to `(768, 304, 1216, 800)` covering all of S2.
+- **Tiles:** z0 40 / z1 135 / z2 493 / z3 1881 / z4 2578 (basin 868 + plateau 676 + coast 1034) = 5127 tiles, 156.2 MB. Mountain topography labels, passes, and hardware elevation specs restored across all zoomed tile levels (lod1–lod4).
 
 ## Rating history (visual review, "map-like vs bar-chart/rectangular", 1-10)
 
@@ -1349,3 +1349,38 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
   - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2) confirms dense Pre-training Foothills country borders, tag, milestone events, and Silicon Range relief — no empty trees!
   - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4) confirms mature, informative canvas with Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
   - `docs/screens/verify-silicon-range-engraved.png` (?z=3.0&x=920&y=650) confirms the antique engraved hachured mountain relief, passes, and elevation specs.
+
+## Session 32 (2026-09-19) — Alan visual & density standards: S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild
+
+**Why.** Cron run under Alan's critical directive: directly address Alan's visual and density standards for Map of AI.
+1. Priority B (No Dead Zones): Coordinate `x=829.9, y=668.2 at z=2.5` had fallen into an empty tree dead zone because `pretraining-foothills` was previously restricted to `band: S2` (`y > 668.9`), leaving `y=668.2` in `S1b` as an unclaimed orphan continent sliver.
+2. Priority A (The Silicon Range) & Priority C (Zoom-In Detail Disclosure): Discovered that `html.tilesrc.lod1-4 #thread-labels { display: none; }` in `atlas.html` had completely hidden all mountain summit milestones, named passes (`CUDA Pass`, `AlexNet Gap`, `Kaplan Col`), and hardware elevation specs from all zoomed tiles in Leaflet! When zooming in, users saw blank ridges without names or specs.
+3. Execution: Resolve the dead zone, restore mountain labels across `lod1`–`lod4`, solve the underlying obstacle avoidance hierarchy so no collisions occur, rebuild the 5,127-tile pyramid, verify with mobile Playwright screenshots, and push to main.
+
+**What shipped.**
+- `data/countries/pretraining-foothills.yaml`:
+  - Extended to `band: [S1, S2]` and `sub_band: [S1b, S2a, S2b, S2c]`, expanding the country's northern extent from `y=668.9` up to `y=635.6`.
+  - Coordinate `x=829.9, y=668.2` is now completely inside the `pretraining-foothills` polygon.
+- `site/atlas.html`:
+  - Removed `#thread-labels { display: none; }` at `lod1`–`lod4`. Restored mountain passes, milestone summits, and elevation specs to all zoomed tile views.
+  - Only the macro range title (`.thr-title`) is hidden at `lod ≥ 1` in tile mode, preventing macro title clash while foregrounding local topography.
+  - Established a 4-tier cartographic layout hierarchy: Continents (LOD0) → Countries (LOD1/2) → Mountain summits/passes/specs (LOD2/3/4) → Paper events & facts (LOD3/4).
+  - Mountain summits and passes check `countryBoxes` and open south foot lines (`offsFor(m)`), avoiding country names.
+  - Country hints (`khints`) and LOD events (`layers`) include `gThrLabels` in obstacle checks, ensuring event dots and fact lines never collide with mountain features.
+  - Curate rather than collide on tight milestone positions with expanded candidate offsets.
+- `site/build_anchors.py`:
+  - Rebaked `site/anchors.json` with updated `pretraining-foothills` centroid `x=859.1, y=704.1`.
+- `site/build_entities_json.py`:
+  - Regenerated `site/entities.json` and `site/entities.js`.
+- `site/build_tiles.py`:
+  - Rebuilt full tile pyramid across all levels: z0 (40), z1 (135), z2 (493), z3 (1,881), z4 (2,578) = 5,127 tiles, 156.2 MB.
+
+**Verification.**
+- `scripts/validate.py --offline`: PASS (29 files, 25 rules, 0 failures).
+- `scripts/check_research.py --fast`: PASS (rc 0).
+- `site/check_layout.py`: RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 24).
+- `site/check_lod_labels.py`: LOD LABEL GATE: PASS (0 text overlaps across all levels `lod0`–`lod4`, 0 dots outside countries, 0 text off plate; monotonic growth: basin text items 5 → 7 → 41 → 86 → 240, chars 39 → 113 → 673 → 1174 → 3643).
+- Playwright mobile viewport screenshots:
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2): Confirms dense Pre-training Foothills country borders, tag, milestone events, and CUDA Pass mountain relief — no empty trees!
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4): Confirms Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-silicon-range-engraved.png` (?z=2.75&x=920&y=650): Confirms antique engraved hachured mountain relief, passes, and hardware elevation specs.

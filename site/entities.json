@@ -3758,6 +3758,7 @@
    "start": 2006,
    "end": 2009,
    "band": [
+    "S1",
     "S2"
    ],
    "biome": "forest",
@@ -3775,6 +3776,7 @@
    ],
    "band_override_note": null,
    "sub_band": [
+    "S1b",
     "S2a",
     "S2b",
     "S2c"

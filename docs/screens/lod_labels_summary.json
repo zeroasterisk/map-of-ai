@@ -24,7 +24,7 @@
   }
  },
  "1": {
-  "texts": 71,
+  "texts": 108,
   "events": 0,
   "count": {
    "ruler-num": 20,
@@ -33,29 +33,37 @@
    "csub": 10,
    "cname haskids": 6,
    "csub haskids": 7,
-   "khint": 8
+   "thr-pass-name": 3,
+   "thr-name": 12,
+   "thr-year": 12,
+   "thr-spec": 12,
+   "khint": 6
   },
   "region": {
-   "items": 9,
-   "chars": 176,
+   "items": 7,
+   "chars": 113,
    "marks": 0,
    "kinds": {
     "cname": 1,
     "csub": 1,
     "cname haskids": 1,
     "csub haskids": 1,
-    "khint": 5
+    "khint": 3
    }
   }
  },
  "2": {
-  "texts": 145,
+  "texts": 179,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 16,
    "csub": 11,
+   "thr-pass-name": 1,
+   "thr-name": 11,
+   "thr-year": 11,
+   "thr-spec": 11,
    "kname": 37,
    "ktag": 34,
    "kyrs": 24
@@ -74,14 +82,18 @@
   }
  },
  "3": {
-  "texts": 322,
+  "texts": 367,
   "events": 92,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 11,
    "csub": 13,
-   "kname": 29,
+   "thr-pass-name": 1,
+   "thr-name": 15,
+   "thr-year": 15,
+   "thr-spec": 15,
+   "kname": 28,
    "ktag": 26,
    "ksub": 12,
    "kyrs": 24,
@@ -89,13 +101,13 @@
    "kev-year": 92
   },
   "region": {
-   "items": 87,
-   "chars": 1173,
+   "items": 86,
+   "chars": 1174,
    "marks": 25,
    "kinds": {
     "cname": 1,
     "csub": 1,
-    "kname": 13,
+    "kname": 12,
     "ktag": 10,
     "kyrs": 8,
     "ksub": 4,
@@ -105,13 +117,17 @@
   }
  },
  "4": {
-  "texts": 946,
+  "texts": 993,
   "events": 223,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
    "cname": 10,
    "csub": 14,
+   "thr-pass-name": 2,
+   "thr-name": 15,
+   "thr-year": 15,
+   "thr-spec": 15,
    "kname": 25,
    "ktag": 24,
    "ksub": 20,

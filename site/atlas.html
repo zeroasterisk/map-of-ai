@@ -144,10 +144,9 @@
   /* lod2/3: as in A2, a continent whose countries are labelled hides its own (huge) name + leader — it would sit on
      top of its country labels (haskids is set by drawCountries on the parent's label/leader elements) */
   html.tilesrc.lod2 .haskids, html.tilesrc.lod3 .haskids, html.tilesrc.lod4 .haskids { display: none; }
-  /* thread labels: macro A1 feature labels (SILICON RANGE, milestone summits) belong on the continent-scale
-     overview (lod0). Zooming in reveals country hints (lod1), country names (lod2), and paper milestones (lod3/4),
-     so static macro thread labels are hidden to let country/paper labels occupy the space cleanly */
-  html.tilesrc.lod1 #thread-labels, html.tilesrc.lod2 #thread-labels, html.tilesrc.lod3 #thread-labels, html.tilesrc.lod4 #thread-labels { display: none; }
+  /* thread labels: macro range title belongs on the continent-scale overview (lod0);
+     zooming into lod1-4 reveals named passes, milestone summits, and real hardware elevation specs */
+  html.tilesrc.lod1 .thr-title, html.tilesrc.lod2 .thr-title, html.tilesrc.lod3 .thr-title, html.tilesrc.lod4 .thr-title { display: none; }
 </style>
 <script>if (/[?&]tilesrc=1/.test(location.search)) { const m = /[?&]lod=(\d)/.exec(location.search); document.documentElement.classList.add('tilesrc', 'lod' + (m ? Math.min(4, +m[1]) : 4)); }</script>
 </head>
@@ -819,6 +818,8 @@ const kEnd = k => { if (k.end === 'present') return E; const c = COLS.find(c => 
 const fineCell = (k, i, r) => i >= 0 && r >= 0 && i < FNC && r < FNR && SUBCOLS[i] >= k.start - 1e-9 && SUBCOLS[i + 1] <= kEnd(k) + 1e-9 && k.sub_band.includes(FINE[r][0]) && ownerAt(parentCol(i), FINE[r][1]) === k.parent_id;
 window.COUNTRY_GEOM = {SUBCOLS, FINE};
 let drawCountries = () => {};
+let layoutCountries = () => {};
+let layoutK = () => {};
 
 fetch('registry.json').then(r => r.json()).then(data => {
   const C = data.continents;
@@ -1049,6 +1050,9 @@ fetch('registry.json').then(r => r.json()).then(data => {
     (facts && facts.length ? `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${facts.map(f => `<div><b>${f.id}</b> — ${f.note}</div>`).join('')}</div>` : '');
   const kCard = (k, facts, extra) => { const show = ev => { card.style.display = 'block'; card.innerHTML = cardHTML(k, facts, extra); moveCard(ev); }; return show; };
   const moveCard = (ev) => { const wrapR = svg.parentElement.getBoundingClientRect(); let lx = ev.clientX - wrapR.left + 16 + svg.parentElement.scrollLeft, ly = ev.clientY - wrapR.top + 16; if (lx + 430 > wrapR.width + svg.parentElement.scrollLeft) lx -= 460; card.style.left = lx + 'px'; card.style.top = ly + 'px'; };
+  const grow = (b, m) => ({x: b.x - m, y: b.y - m, r: b.x + b.width + m, b: b.y + b.height + m});
+  const hitAny = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
+  const visibleBoxes = (gs, m) => gs.flatMap(g => [...g.querySelectorAll('text')]).filter(t => t.getClientRects().length).map(t => grow(t.getBBox(), m));
   drawCountries = () => {
     // continent-level related_facts (tooling-guild on the Deep Learning Basin) are appended to the continent's own card
     for (const ce of ENT.continents) if (ce.related_facts && ce.related_facts.length) { const g = gShapes.querySelector(`.continent[data-id="${ce.id}"]`); if (g) g._facts = ce.related_facts; }
@@ -1114,9 +1118,6 @@ fetch('registry.json').then(r => r.json()).then(data => {
     // is curated out of the raster (it stays on the hover card) rather than overlap (SPEC G7 "curate, don't overlap").
     const gHints = el('g', {id: 'khints', 'pointer-events': 'none'}), gEv3 = el('g', {id: 'kevents3', 'pointer-events': 'none'}), gEv4 = el('g', {id: 'kevents4', 'pointer-events': 'none'});
     svg.insertBefore(gHints, gKLabels.nextSibling); svg.insertBefore(gEv3, gHints.nextSibling); svg.insertBefore(gEv4, gEv3.nextSibling);
-    const grow = (b, m) => ({x: b.x - m, y: b.y - m, r: b.x + b.width + m, b: b.y + b.height + m});
-    const hitAny = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
-    const visibleBoxes = (gs, m) => gs.flatMap(g => [...g.querySelectorAll('text')]).filter(t => t.getClientRects().length).map(t => grow(t.getBBox(), m));
     const laneAt = (land, bbx, x) => { let y0 = null, y1 = null; for (let y = bbx.y; y <= bbx.y + bbx.height; y += 1) if (inFill(land, x, y)) { if (y0 === null) y0 = y; y1 = y; } return y0 === null ? null : [y0, y1]; };
     const ubox = (ts, KS) => { const u = union(ts); return KS > 1 ? {x: u.x / KS, y: u.y / KS, r: u.r / KS, b: u.b / KS} : u; };   // text box in user space (undo the scale(1/KS) group)
     window.LOD_CURATED = {hints: [], ev3: [], ev4: []};
@@ -1130,7 +1131,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
         const cx = sn ? sx / sn : bbx.x + bbx.width / 2, cy = sn ? sy / sn : bbx.y + bbx.height / 2; let ok = false;
         for (const [dx, dy] of [[0, 0], [0, -14], [0, 14], [-40, 0], [40, 0], [-40, -14], [40, -14], [-40, 14], [40, 14], [-80, 0], [80, 0]]) {
           const t = txt(cx + dx, cy + dy + 2.5, k.hint, 'khint', gHints, {'font-size': PX(16, 7), 'data-for': k.id}); const u = grow(t.getBBox(), 0);   // lod1 (ZSCALE 2): 16 screen px = 8 plate; lanes are too narrow at lod1 for more (28 px fits none)
-          if (fitsInside(land, u, 2) && !hitAny(u, visibleBoxes([gLabels, gHints].map(x => x), 4).filter(b => !(b.x === u.x - 4 && b.y === u.y - 4)))) { ok = true; break; } t.remove(); }
+          if (fitsInside(land, u, 2) && !hitAny(u, visibleBoxes([gLabels, gHints, gThrLabels].map(x => x), 4).filter(b => !(b.x === u.x - 4 && b.y === u.y - 4)))) { ok = true; break; } t.remove(); }
         if (!ok) window.LOD_CURATED.hints.push(k.id); }
       // events: lod3 = headline events (lod === 3) at z3 sizes; lod4 = every event at z4 sizes, headline events with
       // their one_line. Each group is an independent layout against the (shared) country labels. Sizes are screen-px
@@ -1140,7 +1141,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       // (GPT-4o, Closed Frontier) — the gate's box test passed but it read as touching at DPR 16.
       const layers = [[gEv3, e => e.lod <= 3, {n: 30 / 8, y: 22 / 8, l: 0, gap: 1.2, r: 1.4}, 'ev3'], [gEv4, () => true, {n: 26 / 16, y: 19 / 16, l: 19 / 16, gap: 1.0, r: .9}, 'ev4']];
       for (const [gE, pick, S, key] of layers) {
-        const placed = visibleBoxes([gKLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
+        const placed = visibleBoxes([gKLabels, gThrLabels], 2); const all = ks.flatMap(k => (k.events || []).filter(pick).map(e => ({k, e}))).sort((a, b) => (a.e.lod - b.e.lod) || (a.e.year - b.e.year));
         for (const {k, e} of all) { const g = gCountries.querySelector(`.country[data-id="${k.id}"]`); if (!g) continue; const land = g.querySelector('path.cland'); const bbx = land.getBBox();
           const x0 = Math.min(Math.max(X(e.year), bbx.x + 2), bbx.x + bbx.width - 2); const lane0 = laneAt(land, bbx, x0);
           const lines = [[e.name, 'kev-name', S.n], [String(Math.floor(e.year)), 'kev-year', S.y]].concat(S.l && e.lod <= 3 ? wrap(e.one_line, 26).map(l => [l, 'kev-line', S.l]) : []);
@@ -1187,7 +1188,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
     const H_PLATE = () => H;
     window.placeLod = placeLod;
     // country labels need font metrics: lay them out once (hidden at A1; they are only shown under #map.zoomed)
-    const layoutK = () => { const was = gKLabels.style.display; gKLabels.style.display = 'block'; gCountries.querySelectorAll('.country').forEach(c => c._label && c._label()); placeLod(); gKLabels.style.display = was; };
+    layoutCountries = () => { const was = gKLabels.style.display; gKLabels.style.display = 'block'; gCountries.querySelectorAll('.country').forEach(c => c._label && c._label()); gKLabels.style.display = was; };
+    layoutK = () => { layoutCountries(); placeLod(); };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutK); else layoutK();
   };
   drawCountries();
@@ -1205,6 +1207,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
     gThreads.innerHTML = ''; gThrLabels.innerHTML = ''; window.THREAD_OBSTACLES = [];
     const coastMain = gCoast.querySelector('path');
     const placedBoxes = [...gLabels.querySelectorAll('text')].filter(t => t.getClientRects().length).map(t => { const b = t.getBBox(); return {x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}; });
+    const countryBoxes = [...gKLabels.querySelectorAll('text')].filter(t => t.getClientRects().length).map(t => { const b = t.getBBox(); return {x: b.x - 3, y: b.y - 3, r: b.x + b.width + 3, b: b.y + b.height + 3}; });
     const hit = (u, boxes) => boxes.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
     for (const T of ENT.threads || []) {
       if (T.kind !== 'mountain-range') { console.warn('thread kind not implemented', T.kind, T.id); continue; }
@@ -1327,7 +1330,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
         `<div class="facts" style="margin-top:6px;border-top:1px dashed #b9a683;padding-top:4px;color:#4b3d29;font-size:12px">${ms.map(m => `<div><b>${Math.floor(m.year)}</b> — ${m.one_line} <code>${m.sources.map(s => s.ref).filter((v, i, a) => a.indexOf(v) === i).join(' ')}</code></div>`).join('')}</div>`; moveCard(ev); };
       hitP.addEventListener('mouseenter', show); hitP.addEventListener('mousemove', moveCard); hitP.addEventListener('mouseleave', () => card.style.display = 'none');
       // labels: name over the summit, year under the name, elevation spec under the year
-      const placed = placedBoxes.concat(skyline); window.THREAD_CURATED[T.id] = [];
+      const placed = placedBoxes.concat(skyline).concat(countryBoxes); window.THREAD_CURATED[T.id] = [];
       const inLand = u => coastMain && fitsInside(coastMain, u, 1);
       // pass labels placed with collision avoidance
       passes.forEach(p => {
@@ -1356,14 +1359,22 @@ fetch('registry.json').then(r => r.json()).then(data => {
         return ts;
       };
       // offsets are relative to the summit; the second group sits SOUTH of the range (below the foot line, m._h + …)
-      const offsFor = m => [[0, -6], [0, -14], [14, -8], [-14, -8], [0, -24], [22, -14], [-22, -14], [30, -8], [-30, -8], [0, -36], [40, -20], [-40, -20], [0, m._h + 16], [18, m._h + 14], [-18, m._h + 14], [0, m._h + 28], [34, m._h + 10], [-34, m._h + 10], [46, 6], [-46, 6], [0, -48], [0, m._h + 40]];
+      const offsFor = m => [[0, -6], [0, -14], [14, -8], [-14, -8], [0, -24], [22, -14], [-22, -14], [30, -8], [-30, -8], [0, -36], [40, -20], [-40, -20], [0, m._h + 16], [18, m._h + 14], [-18, m._h + 14], [20, m._h + 18], [24, m._h + 22], [0, m._h + 28], [34, m._h + 10], [-34, m._h + 10], [46, 6], [-46, 6], [0, -48], [0, m._h + 40]];
       const fsList = [FCLAMP(9.5, 30), FCLAMP(8.6, 26), FCLAMP(8, 24)];
       ms.slice().sort((a, b) => (a.lod || 2) - (b.lod || 2) || b.year - a.year).forEach(m => {
         let ts = null, off = null;
         for (const fs of fsList) { for (const [dx, dy] of offsFor(m)) { const cand = mkL(m, m._x + dx, m._top + dy - fs * .15, fs); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = union(cand);
           if (!hit(u, placed) && inLand(u)) { ts = cand; off = [dx, dy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
-        if (!ts) { if ((m.lod || 2) > 1) { window.THREAD_CURATED[T.id].push(m.name); return; }
-          ts = mkL(m, m._x, m._top - 30, fsList[1]); off = [0, -30]; }   // lod 1: keep it, with a leader
+        if (!ts) {
+          for (const [fdx, fdy] of [[20, m._h + 18], [24, m._h + 22], [0, m._h + 22], [-20, m._h + 18], [0, -30], [20, -30], [-20, -30]]) {
+            const cand = mkL(m, m._x + fdx, m._top + fdy - fsList[1] * .15, fsList[1]);
+            if (fdx) cand.forEach(t => t.setAttribute('text-anchor', fdx > 0 ? 'start' : 'end'));
+            const u = union(cand);
+            if (!hit(u, placed) && inLand(u)) { ts = cand; off = [fdx, fdy]; break; }
+            cand.forEach(t => t.remove());
+          }
+        }
+        if (!ts) { window.THREAD_CURATED[T.id].push(m.name); return; }
         const u = union(ts); placed.push({x: u.x - 4, y: u.y - 4, r: u.r + 4, b: u.b + 4});
         if (Math.abs(off[0]) >= 22 || off[1] <= -24 || off[1] >= 26) { const south = off[1] > 0; const ex = off[0] > 0 ? u.x - 1 : off[0] < 0 ? u.r + 1 : m._x, ey = off[0] ? (u.y + u.b) / 2 : (south ? u.y - 1 : u.b + 1); const tx = m._x, ty = south ? m._by + 1 : m._top - 2; el('path', {d: `M${f1(ex)},${f1(ey)} L${f1(tx)},${f1(ty)}`, class: 'thr-leader', 'data-for': T.id}, gThrLabels); }
       });
@@ -1408,8 +1419,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
     });
     markHasKids();
   };
-  // order: thread relief first (registers its skyline as label obstacles) → continent labels relaid around it → thread labels
-  const layoutAll = () => { drawThreads('geometry'); relayout(); drawThreads(); };
+  // order: thread relief first (registers its skyline as label obstacles) → continent labels relaid around it → country labels → thread labels → lod events
+  const layoutAll = () => { drawThreads('geometry'); relayout(); layoutCountries(); drawThreads(); placeLod(); };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layoutAll(); document.dispatchEvent(new Event('map:ready')); });
   else { layoutAll(); document.dispatchEvent(new Event('map:ready')); }
   // Leaflet re-platform (index.html): the placed continent labels + leaders are exported as plate-space geometry
