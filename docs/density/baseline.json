@@ -1,0 +1,293 @@
+{
+  "timestamp": 1789787116.7886667,
+  "total_frames": 100,
+  "failing_frames": 100,
+  "pass_rate": 0.0,
+  "worst_frames": [
+    {
+      "id": "z0-000",
+      "name": "symbolic-heartland",
+      "x": 427.4,
+      "y": 447.6,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-001",
+      "name": "deep-learning-basin",
+      "x": 960.9,
+      "y": 648.1,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-002",
+      "name": "cybernetic-shore",
+      "x": 300.1,
+      "y": 544.2,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-003",
+      "name": "cybernetic-shore",
+      "x": 310.4,
+      "y": 579.6,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-004",
+      "name": "cybernetic-shore",
+      "x": 221.3,
+      "y": 458.0,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-005",
+      "name": "generative-coast",
+      "x": 1573.5,
+      "y": 576.1,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-006",
+      "name": "cybernetic-shore",
+      "x": 202.8,
+      "y": 571.1,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-007",
+      "name": "winter-steppes",
+      "x": 615.7,
+      "y": 418.8,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-008",
+      "name": "symbolic-heartland",
+      "x": 424.4,
+      "y": 432.5,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-009",
+      "name": "cybernetic-shore",
+      "x": 162.2,
+      "y": 495.9,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-010",
+      "name": "statistical-isthmus",
+      "x": 652.1,
+      "y": 441.8,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-011",
+      "name": "generative-coast",
+      "x": 1417.0,
+      "y": 278.3,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-012",
+      "name": "transformer-plateau",
+      "x": 1329.4,
+      "y": 487.2,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-013",
+      "name": "connectionist-revival",
+      "x": 535.4,
+      "y": 645.4,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    },
+    {
+      "id": "z0-014",
+      "name": "connectionist-revival",
+      "x": 556.1,
+      "y": 607.2,
+      "level": 0,
+      "zoom": 0.0,
+      "metrics": {
+        "visibleLabels": 0,
+        "landmarks": 0,
+        "clipped": 0,
+        "overlaps": 0,
+        "sampleTexts": []
+      },
+      "reasons": [
+        "labels=0 < min=8",
+        "landmarks=0 < min=1"
+      ]
+    }
+  ]
+}
