@@ -1,8 +1,47 @@
-# STATUS — as of 2026-09-22 (session 33: Alan visual & density standards — Western Continents Dead Zone Elimination: Statistical Isthmus & Connectionist Revival countries & events, 7 new spatial countries, 45 new LOD events, full 5,467-tile pyramid rebuild z0–z4)
+# STATUS — as of 2026-09-22 (session 34: Alan visual & density standards — Antique Engraved Mountain Topography with 7 Named Passes, Symbolic Heartland Dead Zone Elimination with 5 New Spatial Countries, 31 New LOD Events, Full 5,755-Tile Pyramid Rebuild z0–z4)
 
 ## One-line status
 
-**Session 33 — pushed to `main`: Alan's visual and density standards advanced in full across the western half of the map. Permanently eliminated dead zones in the Statistical Isthmus (1988–2011, x=800–980) and Connectionist Revival (1982–1998) by authoring full continent definitions, 7 new spatial countries (expanding the map to 31 spatial countries), and 45 new dated, sourced historical milestones with hints, tags, and one-line facts (increasing total LOD events from 228 to 273). Expanded the z4 high-resolution tile pyramid to cover the new connectionist and statistical pilot region `(496, 416, 768, 736)`, creating a continuous z4 pilot from 1982 through present day. All layout gates passed with 0 collisions, 0 overlaps, and 100% containment across all 31 countries. Rebuilt the complete 5,467-tile pyramid (z0–z4, 167.5 MB) and verified mobile viewports at `?z=2.5&x=829.9&y=668.2`, `?z=1.8&x=1476.3&y=676.4`, `?z=2.5&x=760&y=540`, and `?z=2.5&x=620&y=620`.**
+**Session 34 — pushed to `main`: Alan's visual and density standards advanced across mountains and the western founding continent. Replaced uniform mountain slopes with an authentic antique engraved atlas relief featuring multi-tier south-face hachuring, northern cirque hachuring, foot-line base scree, dual arête rock spurs, benchmark triangulation cairns, and 4 new named topography passes (ImageNet Saddle, Tensor Col, Transformer Gap, Blackwell Chasm; 7 passes total). Permanently eliminated the dead zone across the entire Symbolic Heartland (1956–1974) by authoring the full continent definition, 5 new spatial countries (expanding the map from 31 to 36 spatial countries), and 31 new dated, sourced historical milestones with hints, tags, and one-line facts (increasing total LOD events from 273 to 304). Expanded the high-resolution z4 pyramid to cover Symbolic Heartland `(240, 400, 496, 688)`, creating an unbroken continuous z4 high-resolution pilot across the entire modern AI timeline from 1956 to present day (5 pilot regions). Rebuilt the complete 5,755-tile pyramid (z0–z4, 178.7 MB) and verified mobile viewports with Playwright at `?z=2.5&x=829.9&y=668.2`, `?z=1.8&x=1476.3&y=676.4`, `?z=2.5&x=360&y=535`, and `?z=2.75&x=920&y=650`.**
+
+- **The Silicon Range (Antique Engraved Atlas Mountain Relief & Data Topography):**
+  - Diagnosis: While session 31/32 added initial relief profiles, the mountain ridge needed deeper antique engraved copperplate textures, northern shadow/depth, base scree, and richer topography data to meet Alan's atlas standard.
+  - Solution:
+    1. Multi-tier slope hachuring: Upper steep rockface hachures (`.thr-hachure-upper`, stroke 0.48px, dense 2.0px spacing) near the crest, combined with mid-to-lower talus slope hachures (`.thr-hachure`).
+    2. Northern cirque hachures (`.thr-north-hachure`, 0.36px stroke) descending south from the northern back-crest line (`backSil`) to the ink skyline, producing authentic dual-ridge engraved atlas depth.
+    3. Base scree and talus stippling (`.thr-scree`, 1 2.2 dash) along the foot line.
+    4. Secondary western spur arêtes descending across the rock face beside primary knife-edge arêtes.
+    5. Summit benchmarks: Triangulation cairns with central survey masts (`.thr-cairn` + `.thr-spine`) replacing simple markers.
+    6. 4 new named topography passes with cartographic col marks `)(`: ImageNet Saddle (2010.5), Tensor Col (2017.0), Transformer Gap (2022.8), and Blackwell Chasm (2024.8), joining CUDA Pass (2008.5), AlexNet Gap (2014.2), and Kaplan Col (2021.0).
+- **Western Continents Dead Zone Elimination (The Symbolic Heartland, 1956–1974):**
+  - Diagnosis: Previously, the founding and golden era of AI (Dartmouth 1956 to First Winter 1974) was rendered as empty highland texture with zero countries, zero regional schools, and zero historical events.
+  - Solution: Fully authored `data/continents/symbolic-heartland.yaml` and 5 spatial countries:
+    1. `logic-representation-plateau` (The Logic & Representation Plateau, N2, 1956–1974): McCarthy, Lisp 1958, Advice Taker, Robinson Resolution 1965, Green QA3, Prolog 1972.
+    2. `heuristic-search-highlands` (The Heuristic Search Highlands, Ca, 1956–1974): Newell, Shaw & Simon Logic Theorist 1956, Samuel checkers learning 1959, GPS 1959, Gelernter geometry prover, SAINT 1961, Mac Hack VI, Kaissa.
+    3. `microworlds-language-basin` (The Micro-Worlds Basin, Cb, 1956–1974): Minsky Steps Toward AI 1961, Bobrow STUDENT 1964, ALPAC report 1966, Weizenbaum ELIZA 1966, Quillian semantic nets 1968, Winograd SHRDLU 1970, Minsky frames 1974.
+    4. `early-perceptron-strip` (The Perceptron Escarpment, S1, 1956–1965): Rosenblatt Perceptron 1957–58, Selfridge Pandemonium 1958–59, Mark I hardware 1960, Widrow ADALINE / delta rule 1960, MADALINE 1962.
+    5. `robotics-planning-peninsula` (The Robotics & Planning Peninsula, S1, 1965–1974): SRI Shakey 1966–1972, Hart/Nilsson/Raphael A* 1968, Minsky & Papert Perceptrons 1969, Fikes & Nilsson STRIPS 1971, Lighthill report 1973.
+  - Authored 31 dated, sourced historical milestone events in `data/events/symbolic-heartland.yaml`. Total LOD events increased from 273 to 304 across 36 spatial countries.
+- **Topography, Layout Hierarchy & Gate Verification:**
+  - `site/check_layout.py`: Updated `N_COUNTRIES = 36`. All 36 spatial countries passed with 100% containment (300/300 interior points inside parent continent, 0% in others) and 0 pairwise overlaps (56 bbox-intersecting pairs, 28,000 point tests).
+  - Staggered horizontal clearance added for country labels in wide polygons, ensuring ≥ 6px clearance (`LABEL_GAP`) across vertically adjacent borders with 0 text collisions.
+  - `site/check_lod_labels.py`: PASSED with 0 text overlaps, 0 dots outside countries, 0 text off plate; monotonic information growth maintained across all LOD levels (`lod0` through `lod4`).
+  - `scripts/validate.py --offline`: PASSED (44 files, 25 rules, 0 failures).
+  - `scripts/check_research.py --fast`: PASSED (rc 0).
+- **Tile Pyramid Rebuild (`build_tiles.py`):**
+  - Added `"symbolic-heartland": (240, 400, 496, 688)` to `PILOT_BBOXES`.
+  - Continuous z4 high-resolution pilot now spans 1956 to present across 5 contiguous regions: Symbolic Heartland (288 tiles), Connectionist-Isthmus (340 tiles), Basin (868 tiles), Plateau (676 tiles), Coast (1,034 tiles).
+  - Rebuilt full pyramid across all levels: z0 (40), z1 (135), z2 (493), z3 (1,881), z4 (3,206) = **5,755 tiles, 178.7 MB**.
+- **Mobile Viewport Verification Screenshots (412x892 @ DPR 2):**
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2): Confirms dense Pre-training Foothills, DBNs, CUDA Pass relief.
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4): Confirms Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-symbolic-heartland-z25.png` (?z=2.5&x=360&y=535): Confirms dense Symbolic Heartland with Logic Plateau, Heuristic Search Highlands, Micro-Worlds Basin, Perceptron Escarpment, and Robotics Planning Peninsula.
+  - `docs/screens/verify-silicon-range-engraved.png` (?z=2.75&x=920&y=650): Confirms antique engraved multi-tier hachured mountain relief, passes, and elevation specs.
+
+---
+### Session 33 (kept for reference)
+
+# STATUS — as of 2026-09-22 (session 33: Alan visual & density standards — Western Continents Dead Zone Elimination: Statistical Isthmus & Connectionist Revival countries & events, 7 new spatial countries, 45 new LOD events, full 5,467-tile pyramid rebuild z0–z4)
 
 - **Western Continents Dead Zone Elimination (Statistical Isthmus & Connectionist Revival):**
   - Diagnosis: Previously, only 3 eastern continents (Deep Learning Basin, Transformer Plateau, Generative Coast) had country layers and events. The entire western half of the map (Statistical Isthmus 1988–2011, Connectionist Revival 1982–1998, and older eras) was rendered as empty biome textures without country borders, regional schools, or named paper events.

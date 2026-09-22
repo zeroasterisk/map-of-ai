@@ -1,0 +1,28 @@
+id: heuristic-search-highlands
+level: country
+name: The Heuristic Search Highlands
+subtitle: "Logic Theorist, General Problem Solver and game-tree search, 1956–1974"
+summary: >
+  The core of the symbolic paradigm, establishing intelligence as heuristic search
+  across combinatorial problem spaces. Allen Newell, J. C. Shaw, and Herbert Simon
+  at Carnegie Tech and RAND created Logic Theorist (1956) to prove mathematical theorems
+  and the General Problem Solver (GPS, 1959), pioneering means–ends analysis and
+  the physical symbol system hypothesis. Concurrently, Arthur Samuel's checkers player
+  at IBM (1956–1959) demonstrated rote learning and generalization from self-play,
+  while alpha-beta pruning and computer chess advanced game search through Mac Hack VI
+  and the Soviet Kaissa system, establishing search as the central engine of classical AI.
+time_range: {start: 1956, end: 1974}
+band: C
+sub_band: [Ca]
+biome: highland
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [2, 3, 4, 10, 18, 24, 37, 47]
+sources:
+  - {url: "https://doi.org/10.1109/TIT.1956.1056797", title: "Newell & Simon, The Logic Theory Machine, 1956 [3]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1147/rd.33.0210", title: "Samuel, Studies in Machine Learning Using Checkers, IBM 1959 [4]", kind: primary, accessed: 2026-09-22}
+  - {url: "http://bitsavers.trailing-edge.com/pdf/rand/ipl/P-1584_Report_On_A_General_Problem-Solving_Program_Feb59.pdf", title: "Newell, Shaw & Simon, GPS Report, RAND 1959 [10]", kind: primary, accessed: 2026-09-22}
+threads: [compute, rl]
+status: sourced

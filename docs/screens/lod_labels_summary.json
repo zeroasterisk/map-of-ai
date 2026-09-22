@@ -1,13 +1,13 @@
 {
  "0": {
-  "texts": 93,
+  "texts": 94,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
-   "cname": 15,
-   "cname haskids": 15,
-   "thr-pass-name": 3,
+   "cname": 12,
+   "cname haskids": 18,
+   "thr-pass-name": 4,
    "thr-name": 12,
    "thr-year": 12,
    "thr-spec": 12,
@@ -23,20 +23,20 @@
   }
  },
  "1": {
-  "texts": 111,
+  "texts": 114,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
-   "cname": 13,
-   "csub": 8,
-   "cname haskids": 10,
-   "csub haskids": 9,
-   "thr-pass-name": 3,
+   "cname": 11,
+   "csub": 7,
+   "cname haskids": 12,
+   "csub haskids": 10,
+   "thr-pass-name": 4,
    "thr-name": 12,
    "thr-year": 12,
    "thr-spec": 12,
-   "khint": 9
+   "khint": 11
   },
   "region": {
    "items": 9,
@@ -50,93 +50,93 @@
   }
  },
  "2": {
-  "texts": 199,
+  "texts": 224,
   "events": 0,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
-   "cname": 13,
-   "csub": 8,
-   "thr-pass-name": 1,
+   "cname": 11,
+   "csub": 7,
+   "thr-pass-name": 2,
    "thr-name": 11,
    "thr-year": 11,
    "thr-spec": 11,
-   "kname": 47,
-   "ktag": 43,
-   "kyrs": 31
+   "kname": 59,
+   "ktag": 53,
+   "kyrs": 36
   },
   "region": {
-   "items": 45,
-   "chars": 761,
+   "items": 44,
+   "chars": 752,
    "marks": 0,
    "kinds": {
-    "kyrs": 9,
     "kname": 19,
-    "ktag": 17
+    "ktag": 17,
+    "kyrs": 8
    }
   }
  },
  "3": {
-  "texts": 429,
-  "events": 113,
+  "texts": 485,
+  "events": 127,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
-   "cname": 9,
-   "csub": 9,
-   "thr-pass-name": 1,
+   "cname": 8,
+   "csub": 7,
+   "thr-pass-name": 3,
    "thr-name": 15,
    "thr-year": 15,
    "thr-spec": 15,
-   "kname": 36,
-   "ktag": 33,
-   "ksub": 16,
-   "kyrs": 31,
-   "kev-name": 113,
-   "kev-year": 113
+   "kname": 45,
+   "ktag": 40,
+   "ksub": 24,
+   "kyrs": 36,
+   "kev-name": 127,
+   "kev-year": 127
   },
   "region": {
-   "items": 95,
-   "chars": 1367,
+   "items": 96,
+   "chars": 1412,
    "marks": 29,
    "kinds": {
     "kname": 13,
     "ktag": 11,
     "kyrs": 8,
-    "ksub": 6,
+    "ksub": 7,
     "kev-name": 29,
     "kev-year": 28
    }
   }
  },
  "4": {
-  "texts": 1168,
-  "events": 268,
+  "texts": 1304,
+  "events": 298,
   "count": {
    "ruler-num": 20,
    "ruler-cap": 3,
-   "cname": 8,
-   "csub": 10,
-   "thr-pass-name": 2,
+   "cname": 7,
+   "csub": 8,
+   "thr-pass-name": 3,
    "thr-name": 15,
    "thr-year": 15,
    "thr-spec": 15,
-   "kname": 32,
-   "ktag": 31,
-   "ksub": 27,
-   "kyrs": 31,
-   "kev-name": 268,
-   "kev-year": 268,
-   "kev-line": 423
+   "kname": 38,
+   "ktag": 36,
+   "ksub": 35,
+   "kyrs": 36,
+   "kev-name": 298,
+   "kev-year": 298,
+   "kev-line": 477
   },
   "region": {
-   "items": 265,
-   "chars": 4073,
+   "items": 266,
+   "chars": 4131,
    "marks": 61,
    "kinds": {
     "kname": 10,
     "ktag": 9,
-    "ksub": 10,
+    "ksub": 11,
     "kyrs": 8,
     "kev-name": 64,
     "kev-year": 62,

@@ -1350,6 +1350,53 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
   - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4) confirms mature, informative canvas with Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
   - `docs/screens/verify-silicon-range-engraved.png` (?z=3.0&x=920&y=650) confirms the antique engraved hachured mountain relief, passes, and elevation specs.
 
+## Session 34 (2026-09-22) — Alan visual & density standards: Antique Engraved Mountain Topography with 7 Named Passes, Symbolic Heartland Dead Zone Elimination with 5 New Spatial Countries, 31 New LOD Events, Full 5,755-Tile Pyramid Rebuild z0–z4
+
+**Why.** Cron run under Alan's critical visual and density directive.
+1. Priority A (The Silicon Range): Elevate the mountain relief from basic ridges into authentic antique engraved copperplate atlas terrain with multi-tier slope hachuring, northern cirque shading, base scree, dual arête spurs, triangulation benchmark cairns, and rich named topography passes.
+2. Priority B (No Dead Zones): Eliminate the dead zone across `The Symbolic Heartland` (1956–1974), the founding and golden age of AI, which previously lacked countries and events.
+3. Priority C (Typography & Progressive Disclosure): Ensure zero collisions and monotonic information growth from macro continent at lod0 to deep paper events with one-line facts at lod4.
+4. Tile Pyramid: Expand the high-resolution z4 pyramid to cover Symbolic Heartland `(240, 400, 496, 688)`, creating an unbroken continuous z4 high-resolution pilot across the entire modern AI timeline from 1956 to present day (5 contiguous pilot regions). Rebuild the complete 5,755-tile pyramid (z0–z4, 178.7 MB).
+
+**What shipped.**
+- `data/threads/silicon-river-hardware.yaml`:
+  - Added 4 new named topography passes with cartographic col marks `)(`: `ImageNet Saddle` (2010.5), `Tensor Col` (2017.0), `Transformer Gap` (2022.8), and `Blackwell Chasm` (2024.8), joining `CUDA Pass` (2008.5), `AlexNet Gap` (2014.2), and `Kaplan Col` (2021.0). Total 7 named passes embedded into the topography.
+- `site/atlas.html`:
+  - Multi-tier engraved slope hachuring: Upper steep rockface hachures (`.thr-hachure-upper`, stroke 0.48px, dense 2.0px spacing) near crest, mid-to-lower talus slope hachures (`.thr-hachure`).
+  - Northern cirque hachures (`.thr-north-hachure`, 0.36px stroke) descending south from the northern back ridge line (`backSil`) to the ink skyline, giving genuine dual-ridge copperplate depth.
+  - Foot-line base scree and talus stippling (`.thr-scree`, 1 2.2 dash) along the foot line.
+  - Secondary western spur arêtes descending across the rock face beside primary knife-edge arêtes.
+  - Summit benchmarks: Triangulation cairns with central survey masts (`.thr-cairn` + `.thr-spine`) replacing simple markers.
+  - Staggered horizontal clearance added for country labels in wide polygons, ensuring ≥ 6px clearance (`LABEL_GAP`) across vertically adjacent borders with 0 text collisions.
+- `data/continents/`:
+  - `symbolic-heartland.yaml`: The Symbolic Heartland (1956–1974, N2–S1, highland).
+- `data/countries/`:
+  - `logic-representation-plateau.yaml` (The Logic & Representation Plateau, N2, 1956–1974): McCarthy, Lisp 1958, Advice Taker, Robinson Resolution 1965, Green QA3, Prolog 1972.
+  - `heuristic-search-highlands.yaml` (The Heuristic Search Highlands, Ca, 1956–1974): Newell, Shaw & Simon Logic Theorist 1956, Samuel checkers learning 1959, GPS 1959, Gelernter geometry prover, SAINT 1961, Mac Hack VI, Kaissa.
+  - `microworlds-language-basin.yaml` (The Micro-Worlds Basin, Cb, 1956–1974): Minsky Steps Toward AI 1961, Bobrow STUDENT 1964, ALPAC report 1966, Weizenbaum ELIZA 1966, Quillian semantic nets 1968, Winograd SHRDLU 1970, Minsky frames 1974.
+  - `early-perceptron-strip.yaml` (The Perceptron Escarpment, S1, 1956–1965): Rosenblatt Perceptron 1957–58, Selfridge Pandemonium 1958–59, Mark I hardware 1960, Widrow ADALINE / delta rule 1960, MADALINE 1962.
+  - `robotics-planning-peninsula.yaml` (The Robotics & Planning Peninsula, S1, 1965–1974): SRI Shakey 1966–1972, Hart/Nilsson/Raphael A* 1968, Minsky & Papert Perceptrons 1969, Fikes & Nilsson STRIPS 1971, Lighthill report 1973.
+- `data/events/`:
+  - `symbolic-heartland.yaml`: 31 dated, sourced historical milestone events across the 5 heartland countries. Total LOD events increased from 273 to 304 across 36 spatial countries.
+- `site/check_layout.py`:
+  - Updated `N_COUNTRIES = 36`.
+- `site/build_tiles.py`:
+  - Added `"symbolic-heartland": (240, 400, 496, 688)` to `PILOT_BBOXES`.
+  - Rebuilt full 5,755-tile pyramid (z0–z4, 178.7 MB).
+- `site/build_anchors.py`:
+  - Rebaked `anchors.json` with 46 anchors across continents and countries.
+
+**Verification.**
+- `scripts/check_research.py --fast`: PASS (rc 0).
+- `scripts/validate.py --offline`: PASS (44 files, 25 rules, 0 failures).
+- `site/check_layout.py`: RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 36; 56 bbox-intersecting pairs, 28,000 point tests, 100% containment).
+- `site/check_lod_labels.py`: LOD LABEL GATE: PASS (0 text overlaps across all levels `lod0`–`lod4`, 0 dots outside countries, 0 text off plate; monotonic growth confirmed).
+- Playwright mobile viewport screenshots:
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2): Confirms dense Pre-training Foothills country borders, tag, milestone events, and CUDA Pass mountain relief.
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4): Confirms Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-symbolic-heartland-z25.png` (?z=2.5&x=360&y=535): Confirms dense Symbolic Heartland with Logic Plateau, Heuristic Search Highlands, Micro-Worlds Basin, Perceptron Escarpment, and Robotics Planning Peninsula.
+  - `docs/screens/verify-silicon-range-engraved.png` (?z=2.75&x=920&y=650): Confirms antique engraved multi-tier hachured mountain relief, passes, and elevation specs.
+
 ## Session 33 (2026-09-22) — Alan visual & density standards: Western Continents Dead Zone Elimination (Statistical Isthmus & Connectionist Revival), 7 new spatial countries, 45 LOD milestone events, full 5,467-tile pyramid rebuild z0–z4
 
 **Why.** Cron run under Alan's critical visual and density directive.

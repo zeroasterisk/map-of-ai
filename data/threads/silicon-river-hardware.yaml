@@ -174,8 +174,12 @@ milestones:
       - {ref: d65, title: "PYMNTS, Anthropic Could Land Nvidia as $10 Billion IPO Investor (13 Sep 2026)", url: "https://www.pymnts.com/acquisitions/2026/anthropic-could-land-nvidia-as-10-billion-ipo-investor/"}
 passes:
   - {name: "CUDA Pass", year: 2008.5, label: "CUDA Pass", spec: "Col"}
+  - {name: "ImageNet Saddle", year: 2010.5, label: "ImageNet Saddle", spec: "Saddle"}
   - {name: "AlexNet Gap", year: 2014.2, label: "AlexNet Gap", spec: "Gap"}
+  - {name: "Tensor Col", year: 2017.0, label: "Tensor Col", spec: "Col"}
   - {name: "Kaplan Col", year: 2021.0, label: "Kaplan Col", spec: "Pass"}
+  - {name: "Transformer Gap", year: 2022.8, label: "Transformer Gap", spec: "Gap"}
+  - {name: "Blackwell Chasm", year: 2024.8, label: "Blackwell Chasm", spec: "Chasm"}
 # pre-1999 milestones of thread (d) — Lisp machines 1973-87 [d1], Connection Machine 1985 [d2] — sit on the SYMBOLIC
 # bank (research/09: "symbolic bank before [1999]") and west of both pilot continents; they are out of this pilot's
 # drawn span and are not rendered yet (they will need their own northern-bank segment when the range is extended).

@@ -1,0 +1,31 @@
+id: logic-representation-plateau
+level: country
+name: The Logic & Representation Plateau
+subtitle: "Lisp, automated theorem proving, resolution and Prolog, 1956–1974"
+summary: >
+  The northern highland of the Symbolic Heartland, formalizing reasoning as logic
+  deduction and symbolic computation. Initiated by John McCarthy at the 1956 Dartmouth
+  workshop, this region introduced Lisp (1958)—the premier programming language of
+  AI for decades—and the Advice Taker (1959), outlining knowledge representation in
+  formal logic. In 1965, J. Alan Robinson formulated the resolution principle, providing
+  a refutation-complete inference rule for first-order logic that enabled automated
+  theorem proving. This culminated in Alain Colmerauer and Robert Kowalski's creation
+  of Prolog (1972) and logic programming, establishing a declarative paradigm that
+  governed automated deduction, question answering, and formal knowledge engineering
+  across Europe and North America.
+time_range: {start: 1956, end: 1974}
+band: N2
+sub_band: [N2a, N2b]
+biome: highland
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [1, 7, 9, 14, 16, 31, 39]
+sources:
+  - {url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf", title: "McCarthy et al., Dartmouth Proposal 1955 [1]", kind: primary, accessed: 2026-09-22}
+  - {url: "http://jmc.stanford.edu/articles/recursive/recursive.pdf", title: "McCarthy, Recursive Functions of Symbolic Expressions, CACM 1960 [7]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1145/321250.321253", title: "Robinson, Resolution Principle, JACM 1965 [16]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Prolog", title: "Wikipedia: Prolog [31]", kind: wikipedia, accessed: 2026-09-22}
+threads: [compute, language]
+status: sourced

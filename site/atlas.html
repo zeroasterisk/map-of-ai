@@ -78,7 +78,10 @@
   .thr-face { fill: #b9a47e; fill-opacity: .52; stroke: none; pointer-events: none; }
   .thr-peak { fill: #e6d7b4; fill-opacity: .88; stroke: #2a1c0c; stroke-width: 1.15; stroke-linejoin: round; pointer-events: none; }
   .thr-back-ridge { fill: none; stroke: #4a3822; stroke-width: .75; stroke-opacity: .45; stroke-linejoin: round; stroke-dasharray: 2 1; pointer-events: none; }
+  .thr-north-hachure { fill: none; stroke: #42321c; stroke-width: .36; stroke-opacity: .48; stroke-linecap: round; pointer-events: none; }
+  .thr-hachure-upper { fill: none; stroke: #261808; stroke-width: .48; stroke-opacity: .75; stroke-linecap: round; pointer-events: none; }
   .thr-hachure { fill: none; stroke: #2a1c0c; stroke-width: .42; stroke-opacity: .65; stroke-linecap: round; pointer-events: none; }
+  .thr-scree { fill: none; stroke: #3e2d1a; stroke-width: .38; stroke-opacity: .52; stroke-dasharray: 1 2.2; pointer-events: none; }
   .thr-spine { fill: none; stroke: #261808; stroke-width: 1.15; stroke-opacity: .88; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
   .thr-arete { fill: none; stroke: #261808; stroke-width: .85; stroke-opacity: .80; stroke-linejoin: round; pointer-events: none; }
   .thr-cairn { fill: #2a1f11; stroke: #efe3c8; stroke-width: .4; pointer-events: none; }
@@ -1085,13 +1088,21 @@ fetch('registry.json').then(r => r.json()).then(data => {
           tl.forEach(l => { ts.push(txt(cx, yy, l, 'ktag', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + LG; });
           sl.forEach(l => { ts.push(txt(cx, yy, l, 'ksub', gKLabels, {'font-size': sS, 'data-for': k.id})); yy += sS + LG; });
           ts.push(txt(cx, yy, `${k.start}–${k.end}`, 'kyrs', gKLabels, {'font-size': sS, 'data-for': k.id})); return ts; };
-        for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) { const ts = mk(sN, sS, sub); if (fitsInside(land, union(ts), 1)) return; ts.forEach(t => t.remove()); }
+        const placed = [...gKLabels.querySelectorAll('text')].filter(t => t.dataset.for !== k.id).map(t => t.getBBox()).map(b => ({x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}));
+        const hits = u => placed.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
+        for (const [sN, sS, sub] of [[10.2, 8.5, true], [10.2, 8.5, false], [9.4, 8, false], [8.6, 7.6, false]]) {
+          for (const [dx, dy] of [[0, 0], [-25, 0], [25, 0], [-45, 0], [45, 0]]) {
+            const ts = mk(sN, sS, sub);
+            if (dx || dy) ts.forEach(t => { t.setAttribute('x', +t.getAttribute('x') + dx); t.setAttribute('y', +t.getAttribute('y') + dy); });
+            const u = union(ts);
+            if (fitsInside(land, u, 1) && !hits(u)) return;
+            ts.forEach(t => t.remove());
+          }
+        }
         // too small for an inside label: keep name + years near the polygon, on the first offset whose box does not hit
         // an already-placed country label (grown by 6 px) — then a leader to the nearest interior point
         let ax = cx, ay = cy; for (let i = 0; i < 40 && !inFill(land, ax, ay); i++) ay += 1;
-        const placed = [...gKLabels.querySelectorAll('text')].filter(t => t.dataset.for !== k.id).map(t => t.getBBox()).map(b => ({x: b.x - 6, y: b.y - 6, r: b.x + b.width + 6, b: b.y + b.height + 6}));
-        const hits = u => placed.some(b => u.x < b.r && b.x < u.r && u.y < b.b && b.y < u.b);
-        const offs = [[0, 0], [0, -12], [0, 12], [0, -26], [0, 26], [-40, -20], [40, -20], [-40, 20], [40, 20], [0, -44], [0, 44], [-70, 0], [70, 0], [-60, -36], [60, -36], [-60, 36], [60, 36]];   // P3-LOD: ±12 px steps added — with z2 tags the Plateau's leader labels are one line taller and the 26 px steps all collide
+        const offs = [[0, 0], [0, -12], [0, 12], [0, -26], [0, 26], [-40, -20], [40, -20], [-40, 20], [40, 20], [0, -44], [0, 44], [-70, 0], [70, 0], [-75, 0], [75, 0], [-80, 0], [80, 0], [-85, 0], [85, 0], [-60, -36], [60, -36], [-60, 36], [60, 36]];   // P3-LOD: ±12 px steps added — with z2 tags the Plateau's leader labels are one line taller and the 26 px steps all collide
         let ts = null; for (const [dx, dy] of offs) { const cand = mk(9, 8, false); cand.forEach(t => { t.setAttribute('x', +t.getAttribute('x') + dx); t.setAttribute('y', +t.getAttribute('y') + dy); t.setAttribute('data-leader', '1'); }); const u = union(cand); if (!hits(u)) { ts = cand; break; } cand.forEach(t => t.remove()); }
         if (!ts) { ts = mk(9, 8, false); ts.forEach(t => t.setAttribute('data-leader', '1')); }
         const u = union(ts); const lx = Math.max(u.x, Math.min(u.r, ax)), ly = ay < u.y ? u.y - 2 : u.b + 2;
@@ -1263,7 +1274,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const silD = 'M' + sil.map(p => f1(p[0]) + ',' + f1(p[1])).join('L');
       const faceD = silD + 'L' + f1(x1) + ',' + f1(ridgeY(x1)) + ' ' + spine.slice(1).split('L').reverse().map(s => 'L' + s).join('') + 'Z';
 
-      // 1. Back ridge: secondary northern crest line for engraved depth
+      // 1. Back ridge: secondary northern crest line for engraved depth with northern cirque hachures
       const backSil = [];
       for (let x = x0; x <= x1; x += 3) {
         const bh = relief(x) * 0.65 + 2.5;
@@ -1272,22 +1283,56 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const backD = 'M' + backSil.map(p => f1(p[0]) + ',' + f1(p[1])).join('L');
       el('path', {d: backD, class: 'thr-back-ridge'}, g);
 
+      // Northern cirque slope hachuring for dual-ridge engraved depth
+      for (let x = x0 + 3; x <= x1 - 3; x += 3.8) {
+        const h = relief(x);
+        if (h < 3) continue;
+        const mainY = ridgeY(x) - h;
+        const bh = h * 0.65 + 2.5;
+        const backY = ridgeY(x) - bh - 3.5 + 2 * Math.sin(x * 0.35);
+        if (mainY > backY) {
+          const sx = x, sy = backY;
+          const ex = x - 1.2, ey = backY + (mainY - backY) * 0.55;
+          el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(ex)},${f1(ey)}`, class: 'thr-north-hachure'}, g);
+        }
+      }
+
       el('path', {d: faceD, class: 'thr-shadow', transform: 'translate(1.2,2)'}, g);
       el('path', {d: faceD, class: 'thr-face'}, g);
       el('path', {d: silD, class: 'thr-spine'}, g);   // the ink skyline
 
-      // 2. Dense south-face engraved hachures along slopes
-      for (let x = x0 + 2; x <= x1 - 2; x += 3.2) {
+      // 2. Multi-tier south-face engraved hachures along slopes
+      // Tier 1: Steep upper rockface hachures (dense, crisp strokes near crest)
+      for (let x = x0 + 1.5; x <= x1 - 1.5; x += 2.0) {
         const h = relief(x);
         if (h < 2.5) continue;
-        const phase = Math.sin(x * 1.33);
-        const len = (0.32 + 0.48 * Math.abs(phase)) * h;
-        const sx = x, sy = ridgeY(x) - h + 1;
-        const ex = x + h * 0.22 + phase * 1.1, ey = Math.min(ridgeY(x) - 0.5, sy + len);
+        const phase = Math.sin(x * 1.57);
+        const len = (0.28 + 0.32 * Math.abs(phase)) * h;
+        const sx = x, sy = ridgeY(x) - h + 0.8;
+        const ex = x + h * 0.18 + phase * 0.8, ey = sy + len;
+        el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(ex)},${f1(ey)}`, class: 'thr-hachure-upper'}, g);
+      }
+      // Tier 2: Mid-to-lower talus slope hachures
+      for (let x = x0 + 2; x <= x1 - 2; x += 3.6) {
+        const h = relief(x);
+        if (h < 3.5) continue;
+        const phase = Math.sin(x * 1.13);
+        const startOff = (0.35 + 0.15 * Math.abs(phase)) * h;
+        const len = (0.42 + 0.38 * Math.abs(Math.cos(x * 0.89))) * h;
+        const sx = x + h * 0.16, sy = ridgeY(x) - h + startOff;
+        const ex = sx + h * 0.20 + phase * 1.2, ey = Math.min(ridgeY(x) - 0.4, sy + len);
         el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(ex)},${f1(ey)}`, class: 'thr-hachure'}, g);
       }
+      // Base scree / talus along foot line
+      for (let x = x0 + 4; x <= x1 - 4; x += 6.5) {
+        const h = relief(x);
+        if (h < 4) continue;
+        const sx = x, sy = ridgeY(x) - 1.8;
+        const ex = x + 3.2, ey = ridgeY(x) + 0.5;
+        el('path', {d: `M${f1(sx)},${f1(sy)} L${f1(ex)},${f1(ey)}`, class: 'thr-scree'}, g);
+      }
 
-      // 3. Per-milestone summits: faceted peak outline, arête, and engraved summit cairn (NO circle dots)
+      // 3. Per-milestone summits: faceted peak outline, arêtes, and engraved summit cairn benchmark (NO circle dots)
       ms.forEach(m => {
         const mx = MX(m), h = peakH(m, mx), w = peakW(m, mx), by = ridgeY(mx), top = by - h;
         const L = mx - w / 2, R = mx + w / 2;
@@ -1302,9 +1347,14 @@ fetch('registry.json').then(r => r.json()).then(data => {
         const areteD = `M${f1(mx)},${f1(top)} Q${f1(mx + w * 0.08)},${f1(by - h * 0.45)} ${f1(mx + w * 0.18)},${f1(by)}`;
         el('path', {d: areteD, class: 'thr-arete'}, g);
 
-        // engraved summit cairn
-        const cairnD = `M${f1(mx)},${f1(top - 2.2)} L${f1(mx - 1.5)},${f1(top + 0.8)} L${f1(mx + 1.5)},${f1(top + 0.8)} Z`;
+        // secondary western spur arête
+        const spurD = `M${f1(mx)},${f1(top + 1.2)} Q${f1(mx - w * 0.10)},${f1(by - h * 0.38)} ${f1(mx - w * 0.15)},${f1(by - 1.5)}`;
+        el('path', {d: spurD, class: 'thr-arete'}, g);
+
+        // engraved summit cairn benchmark
+        const cairnD = `M${f1(mx)},${f1(top - 2.8)} L${f1(mx - 1.6)},${f1(top + 0.8)} L${f1(mx + 1.6)},${f1(top + 0.8)} Z`;
         el('path', {d: cairnD, class: 'thr-cairn'}, g);
+        el('path', {d: `M${f1(mx)},${f1(top - 3.6)} L${f1(mx)},${f1(top - 2.6)}`, class: 'thr-spine'}, g);
 
         m._x = mx; m._top = top; m._by = by; m._h = h;
       });

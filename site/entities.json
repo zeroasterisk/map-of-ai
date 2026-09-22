@@ -100,6 +100,29 @@
    "file": "data/continents/statistical-isthmus.yaml"
   },
   {
+   "id": "symbolic-heartland",
+   "level": "continent",
+   "name": "The Symbolic Heartland",
+   "subtitle": "Dartmouth and the golden age of symbolic AI, 1956–1974",
+   "parent_id": null,
+   "start": 1956,
+   "end": 1974,
+   "band": [
+    "N2",
+    "C",
+    "S1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "Between 1956 and 1974, artificial intelligence was founded and developed as the study of physical symbol systems and heuristic search. Coined at the 1956 Dartmouth Summer Research Project, the discipline coalesced around Allen Newell, J. C. Shaw, and Herbert Simon's Logic Theorist and General Problem Solver, formalizing means–ends analysis. John McCarthy created Lisp (1958) and proposed logic-based commonsense reasoning, while …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/symbolic-heartland.yaml"
+  },
+  {
    "id": "transformer-plateau",
    "level": "continent",
    "name": "The Transformer Plateau",
@@ -2322,6 +2345,99 @@
    ]
   },
   {
+   "id": "early-perceptron-strip",
+   "level": "country",
+   "name": "The Perceptron Escarpment",
+   "subtitle": "Perceptrons, ADALINE and early neural networks, 1956–1965",
+   "parent_id": "symbolic-heartland",
+   "start": 1956,
+   "end": 1965,
+   "band": [
+    "S1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The southern frontier of the golden age, where early connectionist networks and learning machines emerged. At Cornell Aeronautical Laboratory, Frank Rosenblatt formulated the perceptron model of the brain (1957–1958) and constructed the Mark I Perceptron hardware demonstration (1960). In parallel, Bernard Widrow and Ted Hoff at Stanford developed ADALINE and the Least Mean Squares (LMS) delta rule (1960), the mathematical …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/early-perceptron-strip.yaml",
+   "hint": "Perceptron 1957 · ADALINE",
+   "tag": "Perceptron → Mark I → ADALINE → MADALINE",
+   "events": [
+    {
+     "id": "rosenblatt-perceptron-1957",
+     "name": "Perceptron Model",
+     "year": 1957.9,
+     "lod": 3,
+     "one_line": "Frank Rosenblatt publishes probabilistic neural storage model",
+     "sources": [
+      {
+       "url": "https://homepages.math.uic.edu/~lreyzin/papers/rosenblatt58.pdf",
+       "title": "Rosenblatt 1958 [5]"
+      }
+     ]
+    },
+    {
+     "id": "selfridge-pandemonium-1958",
+     "name": "Pandemonium",
+     "year": 1958.9,
+     "lod": 4,
+     "one_line": "Oliver Selfridge presents parallel feature demons learning architecture",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Pandemonium_architecture",
+       "title": "Selfridge 1959 [8]"
+      }
+     ]
+    },
+    {
+     "id": "mark-1-perceptron-1960",
+     "name": "Mark I Perceptron",
+     "year": 1960.5,
+     "lod": 3,
+     "one_line": "Cornell Aeronautical Lab builds custom hardware perceptron machine",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Perceptron",
+       "title": "Rosenblatt 1960 [6]"
+      }
+     ]
+    },
+    {
+     "id": "adaline-widrow-1960",
+     "name": "ADALINE Delta Rule",
+     "year": 1960.8,
+     "lod": 4,
+     "one_line": "Widrow & Hoff develop adaptive linear neuron with LMS gradient learning",
+     "sources": [
+      {
+       "url": "https://isl.stanford.edu/~widrow/papers/c1960adaptiveswitching.pdf",
+       "title": "Widrow & Hoff 1960 [12]"
+      }
+     ]
+    },
+    {
+     "id": "madaline-network-1962",
+     "name": "MADALINE Hardware",
+     "year": 1962.6,
+     "lod": 4,
+     "one_line": "Stanford demonstrates multi-layer ADALINE memistor hardware for speech",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/ADALINE",
+       "title": "Widrow 1962 [12]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "encoder-understanding-school",
    "level": "country",
    "name": "The BERT Escarpment",
@@ -2821,6 +2937,124 @@
    ]
   },
   {
+   "id": "heuristic-search-highlands",
+   "level": "country",
+   "name": "The Heuristic Search Highlands",
+   "subtitle": "Logic Theorist, General Problem Solver and game-tree search, 1956–1974",
+   "parent_id": "symbolic-heartland",
+   "start": 1956,
+   "end": 1974,
+   "band": [
+    "C"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The core of the symbolic paradigm, establishing intelligence as heuristic search across combinatorial problem spaces. Allen Newell, J. C. Shaw, and Herbert Simon at Carnegie Tech and RAND created Logic Theorist (1956) to prove mathematical theorems and the General Problem Solver (GPS, 1959), pioneering means–ends analysis and the physical symbol system hypothesis. Concurrently, Arthur Samuel's checkers player at IBM (1956–1959) …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/heuristic-search-highlands.yaml",
+   "hint": "Logic Theorist · GPS 1959",
+   "tag": "Logic Theorist → GPS → Checkers",
+   "events": [
+    {
+     "id": "logic-theorist-1956",
+     "name": "Logic Theorist",
+     "year": 1956.7,
+     "lod": 3,
+     "one_line": "Newell, Shaw & Simon complete first artificial intelligence reasoning program",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TIT.1956.1056797",
+       "title": "Newell & Simon 1956 [3]"
+      }
+     ]
+    },
+    {
+     "id": "samuel-checkers-1959",
+     "name": "Samuel Checkers",
+     "year": 1959.5,
+     "lod": 3,
+     "one_line": "Arthur Samuel coins machine learning with self-playing checkers program",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1147/rd.33.0210",
+       "title": "Samuel 1959 [4]"
+      }
+     ]
+    },
+    {
+     "id": "general-problem-solver-1959",
+     "name": "GPS Means–Ends",
+     "year": 1959.2,
+     "lod": 3,
+     "one_line": "Newell, Shaw & Simon formalize means–ends analysis in GPS",
+     "sources": [
+      {
+       "url": "http://bitsavers.trailing-edge.com/pdf/rand/ipl/P-1584_Report_On_A_General_Problem-Solving_Program_Feb59.pdf",
+       "title": "Newell, Shaw & Simon 1959 [10]"
+      }
+     ]
+    },
+    {
+     "id": "geometry-prover-1959",
+     "name": "Geometry Prover",
+     "year": 1959.8,
+     "lod": 4,
+     "one_line": "Herbert Gelernter prunes theorem search using diagrammatic semantic models",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1145/368273.368565",
+       "title": "Gelernter 1959 [37]"
+      }
+     ]
+    },
+    {
+     "id": "saint-integrator-1961",
+     "name": "SAINT Integrator",
+     "year": 1961.4,
+     "lod": 4,
+     "one_line": "James Slagle's SAINT solves freshman calculus symbolic integration problems",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1145/368273.368565",
+       "title": "Slagle 1961 [38]"
+      }
+     ]
+    },
+    {
+     "id": "mac-hack-chess-1967",
+     "name": "Mac Hack VI",
+     "year": 1967.3,
+     "lod": 4,
+     "one_line": "Richard Greenblatt chess program becomes first to beat tournament humans",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mac_Hack",
+       "title": "Greenblatt 1967 [24]"
+      }
+     ]
+    },
+    {
+     "id": "human-problem-solving-1972",
+     "name": "Human Problem Solving",
+     "year": 1972.2,
+     "lod": 4,
+     "one_line": "Newell & Simon publish definitive physical symbol system treatise",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Allen_Newell",
+       "title": "Newell & Simon 1972 [18]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "industrial-lab-founders",
    "level": "country",
    "name": "The Corporate Lab Colonies",
@@ -2961,6 +3195,230 @@
       {
        "url": "https://en.wikipedia.org/wiki/OpenAI",
        "title": "Wikipedia: OpenAI [45]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "logic-representation-plateau",
+   "level": "country",
+   "name": "The Logic & Representation Plateau",
+   "subtitle": "Lisp, automated theorem proving, resolution and Prolog, 1956–1974",
+   "parent_id": "symbolic-heartland",
+   "start": 1956,
+   "end": 1974,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The northern highland of the Symbolic Heartland, formalizing reasoning as logic deduction and symbolic computation. Initiated by John McCarthy at the 1956 Dartmouth workshop, this region introduced Lisp (1958)—the premier programming language of AI for decades—and the Advice Taker (1959), outlining knowledge representation in formal logic. In 1965, J. Alan Robinson formulated the resolution principle, providing a refutation-complete inference rule …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a",
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/logic-representation-plateau.yaml",
+   "hint": "Lisp 1958 · Resolution 1965",
+   "tag": "Dartmouth → Lisp → Resolution → Prolog",
+   "events": [
+    {
+     "id": "dartmouth-workshop-1956",
+     "name": "Dartmouth Workshop",
+     "year": 1956.6,
+     "lod": 3,
+     "one_line": "McCarthy, Minsky, Shannon and Rochester convene founding project and coin AI",
+     "sources": [
+      {
+       "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf",
+       "title": "McCarthy et al. 1955 [1]"
+      }
+     ]
+    },
+    {
+     "id": "lisp-creation-1958",
+     "name": "Lisp Designed",
+     "year": 1958.8,
+     "lod": 3,
+     "one_line": "John McCarthy creates Lisp: recursion, list processing and dynamic memory",
+     "sources": [
+      {
+       "url": "http://jmc.stanford.edu/articles/recursive/recursive.pdf",
+       "title": "McCarthy 1960 [7]"
+      }
+     ]
+    },
+    {
+     "id": "programs-common-sense-1959",
+     "name": "Advice Taker",
+     "year": 1959.0,
+     "lod": 4,
+     "one_line": "McCarthy proposes formal logic for commonsense knowledge representation",
+     "sources": [
+      {
+       "url": "http://jmc.stanford.edu/articles/mcc59/mcc59.pdf",
+       "title": "McCarthy 1959 [9]"
+      }
+     ]
+    },
+    {
+     "id": "resolution-principle-1965",
+     "name": "Resolution Principle",
+     "year": 1965.1,
+     "lod": 3,
+     "one_line": "J. Alan Robinson discovers single refutation-complete rule for predicate logic",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1145/321250.321253",
+       "title": "Robinson 1965 [16]"
+      }
+     ]
+    },
+    {
+     "id": "qa3-deduction-1969",
+     "name": "QA3 Question Answering",
+     "year": 1969.4,
+     "lod": 4,
+     "one_line": "Bertram Raphael and Cordell Green demonstrate first-order deductive retrieval",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Question_answering",
+       "title": "Green 1969 [35]"
+      }
+     ]
+    },
+    {
+     "id": "prolog-creation-1972",
+     "name": "Prolog Created",
+     "year": 1972.4,
+     "lod": 3,
+     "one_line": "Colmerauer & Roussel create Prolog with Kowalski Horn-clause logic",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Prolog",
+       "title": "Colmerauer & Kowalski 1972 [31]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "microworlds-language-basin",
+   "level": "country",
+   "name": "The Micro-Worlds Basin",
+   "subtitle": "Semantic information processing, ELIZA, SHRDLU and frames, 1956–1974",
+   "parent_id": "symbolic-heartland",
+   "start": 1956,
+   "end": 1974,
+   "band": [
+    "C"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The natural language and knowledge representation valley at MIT, exploring domain-bounded reasoning and semantic understanding. Formulated in Marvin Minsky's \"Steps Toward Artificial Intelligence\" (1961), MIT researchers created programs like Slagle's SAINT (1961), Bobrow's STUDENT (1964), and Raphael's SIR (1964). In 1966, Joseph Weizenbaum built ELIZA, revealing how readily human interlocutors project deep understanding onto simple pattern-matching rules. Terry Winograd's SHRDLU …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/microworlds-language-basin.yaml",
+   "hint": "ELIZA 1966 · SHRDLU 1970",
+   "tag": "ELIZA → SHRDLU → Frames",
+   "events": [
+    {
+     "id": "minsky-steps-1961",
+     "name": "Steps Toward AI",
+     "year": 1961.1,
+     "lod": 4,
+     "one_line": "Marvin Minsky surveys heuristic search, pattern recognition, and learning",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/JRPROC.1961.287775",
+       "title": "Minsky 1961 [13]"
+      }
+     ]
+    },
+    {
+     "id": "bobrow-student-1964",
+     "name": "STUDENT Algebra",
+     "year": 1964.4,
+     "lod": 4,
+     "one_line": "Daniel Bobrow solves high school algebra story problems in English",
+     "sources": [
+      {
+       "url": "https://dspace.mit.edu/handle/1721.1/6908",
+       "title": "Bobrow 1964 [40]"
+      }
+     ]
+    },
+    {
+     "id": "alpac-report-1966",
+     "name": "ALPAC Report",
+     "year": 1966.5,
+     "lod": 3,
+     "one_line": "US National Academy halts machine-translation funding citing poor quality",
+     "sources": [
+      {
+       "url": "https://nap.nationalacademies.org/catalog/9547/language-and-machines-computers-in-translation-and-linguistics",
+       "title": "ALPAC Report 1966 [19]"
+      }
+     ]
+    },
+    {
+     "id": "eliza-weizenbaum-1966",
+     "name": "ELIZA",
+     "year": 1966.1,
+     "lod": 3,
+     "one_line": "Joseph Weizenbaum creates ELIZA doctor script demonstrating user projection",
+     "sources": [
+      {
+       "url": "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf",
+       "title": "Weizenbaum 1966 [20]"
+      }
+     ]
+    },
+    {
+     "id": "quillian-semantic-memory-1968",
+     "name": "Semantic Networks",
+     "year": 1968.4,
+     "lod": 4,
+     "one_line": "Ross Quillian introduces graph-based associative concept networks",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Semantic_network",
+       "title": "Quillian 1968 [25]"
+      }
+     ]
+    },
+    {
+     "id": "shrdlu-blocks-1970",
+     "name": "SHRDLU Blocks World",
+     "year": 1970.6,
+     "lod": 3,
+     "one_line": "Terry Winograd demonstrates English dialog and planning in micro-world",
+     "sources": [
+      {
+       "url": "https://dspace.mit.edu/handle/1721.1/7095",
+       "title": "Winograd 1971 [29]"
+      }
+     ]
+    },
+    {
+     "id": "minsky-frames-1974",
+     "name": "Frame Theory",
+     "year": 1974.2,
+     "lod": 4,
+     "one_line": "Minsky proposes frame structures for visual and conceptual knowledge",
+     "sources": [
+      {
+       "url": "https://dspace.mit.edu/handle/1721.1/6089",
+       "title": "Minsky 1974 [35]"
       }
      ]
     }
@@ -4504,6 +4962,112 @@
    ]
   },
   {
+   "id": "robotics-planning-peninsula",
+   "level": "country",
+   "name": "The Robotics & Planning Peninsula",
+   "subtitle": "Shakey the Robot, A* search, STRIPS and plan execution, 1965–1974",
+   "parent_id": "symbolic-heartland",
+   "start": 1965,
+   "end": 1974,
+   "band": [
+    "S1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The embodied intelligence region developed at Stanford Research Institute (SRI), uniting perception, representation, and physical action. Between 1966 and 1972, Charles Rosen, Nils Nilsson, and Peter Hart created Shakey the Robot, the world's first mobile robot to reason about its actions. To navigate and manipulate its environment, Hart, Nilsson, and Bertram Raphael developed the A* shortest-path algorithm (1968), and Richard …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/robotics-planning-peninsula.yaml",
+   "hint": "Shakey 1966 · STRIPS 1971",
+   "tag": "Shakey → A* Search → STRIPS → Lighthill",
+   "events": [
+    {
+     "id": "shakey-project-start-1966",
+     "name": "Shakey Initiated",
+     "year": 1966.7,
+     "lod": 4,
+     "one_line": "SRI begins Shakey project integrating vision, navigation and reasoning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Shakey_the_robot",
+       "title": "Rosen & Nilsson 1966 [21]"
+      }
+     ]
+    },
+    {
+     "id": "a-star-algorithm-1968",
+     "name": "A* Algorithm",
+     "year": 1968.6,
+     "lod": 3,
+     "one_line": "Hart, Nilsson & Raphael formulate optimal heuristic pathfinding A*",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TSSC.1968.300136",
+       "title": "Hart, Nilsson & Raphael 1968 [22]"
+      }
+     ]
+    },
+    {
+     "id": "perceptrons-critique-1969",
+     "name": "Perceptrons Book",
+     "year": 1969.5,
+     "lod": 3,
+     "one_line": "Minsky & Papert prove single-layer net limitations, chilling connectionism",
+     "sources": [
+      {
+       "url": "https://archive.org/details/perceptronsintro00mins",
+       "title": "Minsky & Papert 1969 [26]"
+      }
+     ]
+    },
+    {
+     "id": "strips-planner-1971",
+     "name": "STRIPS Planner",
+     "year": 1971.8,
+     "lod": 3,
+     "one_line": "Richard Fikes & Nils Nilsson introduce state-space automated planning",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2871%2990010-5",
+       "title": "Fikes & Nilsson 1971 [23]"
+      }
+     ]
+    },
+    {
+     "id": "shakey-completion-1972",
+     "name": "Shakey Deployed",
+     "year": 1972.8,
+     "lod": 4,
+     "one_line": "Shakey demonstrates multi-room block pushing and path re-planning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Shakey_the_robot",
+       "title": "Nilsson 1984 [21]"
+      }
+     ]
+    },
+    {
+     "id": "lighthill-report-1973",
+     "name": "Lighthill Report",
+     "year": 1973.4,
+     "lod": 3,
+     "one_line": "Sir James Lighthill SRC survey ends UK academic AI funding",
+     "sources": [
+      {
+       "url": "http://www.chilton-computing.org.uk/inf/tech_rep/lighthill.htm",
+       "title": "Lighthill 1973 [33]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "scaling-law-empiricists",
    "level": "country",
    "name": "The Scaling-Law Fault Line",
@@ -5762,16 +6326,40 @@
      "spec": "Col"
     },
     {
+     "name": "ImageNet Saddle",
+     "year": 2010.5,
+     "label": "ImageNet Saddle",
+     "spec": "Saddle"
+    },
+    {
      "name": "AlexNet Gap",
      "year": 2014.2,
      "label": "AlexNet Gap",
      "spec": "Gap"
     },
     {
+     "name": "Tensor Col",
+     "year": 2017.0,
+     "label": "Tensor Col",
+     "spec": "Col"
+    },
+    {
      "name": "Kaplan Col",
      "year": 2021.0,
      "label": "Kaplan Col",
      "spec": "Pass"
+    },
+    {
+     "name": "Transformer Gap",
+     "year": 2022.8,
+     "label": "Transformer Gap",
+     "spec": "Gap"
+    },
+    {
+     "name": "Blackwell Chasm",
+     "year": 2024.8,
+     "label": "Blackwell Chasm",
+     "spec": "Chasm"
     }
    ],
    "not_yet_drawn": [
@@ -5790,5 +6378,5 @@
    ]
   }
  ],
- "generated_from": "5 continent + 33 country YAML files under data/ + 1 thread(s)"
+ "generated_from": "6 continent + 38 country YAML files under data/ + 1 thread(s)"
 }

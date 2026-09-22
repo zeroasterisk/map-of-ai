@@ -1,0 +1,28 @@
+id: robotics-planning-peninsula
+level: country
+name: The Robotics & Planning Peninsula
+subtitle: "Shakey the Robot, A* search, STRIPS and plan execution, 1965–1974"
+summary: >
+  The embodied intelligence region developed at Stanford Research Institute (SRI),
+  uniting perception, representation, and physical action. Between 1966 and 1972,
+  Charles Rosen, Nils Nilsson, and Peter Hart created Shakey the Robot, the world's
+  first mobile robot to reason about its actions. To navigate and manipulate its
+  environment, Hart, Nilsson, and Bertram Raphael developed the A* shortest-path
+  algorithm (1968), and Richard Fikes and Nilsson created the STRIPS automated
+  planner (1971), establishing the classical hierarchy of deliberative robotics
+  that linked perception, spatial mapping, and symbolic action execution into an integrated agent.
+time_range: {start: 1965, end: 1974}
+band: S1
+sub_band: [S1a, S1b]
+biome: highland
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [21, 22, 23, 26, 33]
+sources:
+  - {url: "https://doi.org/10.1109/TSSC.1968.300136", title: "Hart, Nilsson & Raphael, Formal Basis for Heuristic Determination of Minimum Cost Paths (A*), 1968 [22]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1016/0004-3702%2871%2990010-5", title: "Fikes & Nilsson, STRIPS, Artificial Intelligence 1971 [23]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Shakey_the_robot", title: "Wikipedia: Shakey the robot [21]", kind: wikipedia, accessed: 2026-09-22}
+threads: [rl, compute]
+status: sourced

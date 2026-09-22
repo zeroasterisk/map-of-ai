@@ -1,0 +1,27 @@
+id: early-perceptron-strip
+level: country
+name: The Perceptron Escarpment
+subtitle: "Perceptrons, ADALINE and early neural networks, 1956–1965"
+summary: >
+  The southern frontier of the golden age, where early connectionist networks and
+  learning machines emerged. At Cornell Aeronautical Laboratory, Frank Rosenblatt
+  formulated the perceptron model of the brain (1957–1958) and constructed the
+  Mark I Perceptron hardware demonstration (1960). In parallel, Bernard Widrow and
+  Ted Hoff at Stanford developed ADALINE and the Least Mean Squares (LMS) delta rule
+  (1960), the mathematical direct ancestor of gradient-descent backpropagation,
+  demonstrating hardware adaptive switching circuits for speech and pattern recognition,
+  keeping the physiological and neural thread alive during the rise of symbolic computation.
+time_range: {start: 1956, end: 1965}
+band: S1
+sub_band: [S1a, S1b]
+biome: highland
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [5, 6, 8, 12, 28, 53]
+sources:
+  - {url: "https://homepages.math.uic.edu/~lreyzin/papers/rosenblatt58.pdf", title: "Rosenblatt, The Perceptron, Psych Review 1958 [5]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://isl.stanford.edu/~widrow/papers/c1960adaptiveswitching.pdf", title: "Widrow & Hoff, Adaptive Switching Circuits, 1960 [12]", kind: primary, accessed: 2026-09-22}
+threads: [compute]
+status: sourced
