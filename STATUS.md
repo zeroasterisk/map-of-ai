@@ -1,8 +1,39 @@
-# STATUS — as of 2026-09-19 (session 32: Alan visual & density standards — S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild)
+# STATUS — as of 2026-09-22 (session 33: Alan visual & density standards — Western Continents Dead Zone Elimination: Statistical Isthmus & Connectionist Revival countries & events, 7 new spatial countries, 45 new LOD events, full 5,467-tile pyramid rebuild z0–z4)
 
 ## One-line status
 
-**Session 32 — pushed to `main`: Alan's visual and density standards advanced in full. The dead zone at `x=829.9, y=668.2 at z=2.5` permanently eliminated by expanding `pretraining-foothills` to `band: [S1, S2]` (`sub_band: [S1b, S2a, S2b, S2c]`), placing `y=668.2` squarely inside the country polygon and rendering the dense cluster of DBNs, autoencoders, greedy layer-wise training, and CUDA Pass relief; restored and revealed the Silicon Range's milestone summits, named passes (CUDA Pass, AlexNet Gap, Kaplan Col) with saddle col marks `)(`, and real hardware elevation specs across zoomed tile levels (`lod1`–`lod4`), removing the blanket CSS suppression; instituted a strict 4-tier cartographic layout hierarchy (Continents → Countries → Topography summits/passes/specs → Historic paper events) with bidirectional obstacle avoidance, achieving 0 label collisions across all LOD levels; rebuilt the complete 5,127-tile pyramid (z0–z4, 156.2 MB) and verified mobile viewports at `?z=2.5&x=829.9&y=668.2` and `?z=1.8&x=1476.3&y=676.4`.**
+**Session 33 — pushed to `main`: Alan's visual and density standards advanced in full across the western half of the map. Permanently eliminated dead zones in the Statistical Isthmus (1988–2011, x=800–980) and Connectionist Revival (1982–1998) by authoring full continent definitions, 7 new spatial countries (expanding the map to 31 spatial countries), and 45 new dated, sourced historical milestones with hints, tags, and one-line facts (increasing total LOD events from 228 to 273). Expanded the z4 high-resolution tile pyramid to cover the new connectionist and statistical pilot region `(496, 416, 768, 736)`, creating a continuous z4 pilot from 1982 through present day. All layout gates passed with 0 collisions, 0 overlaps, and 100% containment across all 31 countries. Rebuilt the complete 5,467-tile pyramid (z0–z4, 167.5 MB) and verified mobile viewports at `?z=2.5&x=829.9&y=668.2`, `?z=1.8&x=1476.3&y=676.4`, `?z=2.5&x=760&y=540`, and `?z=2.5&x=620&y=620`.**
+
+- **Western Continents Dead Zone Elimination (Statistical Isthmus & Connectionist Revival):**
+  - Diagnosis: Previously, only 3 eastern continents (Deep Learning Basin, Transformer Plateau, Generative Coast) had country layers and events. The entire western half of the map (Statistical Isthmus 1988–2011, Connectionist Revival 1982–1998, and older eras) was rendered as empty biome textures without country borders, regional schools, or named paper events.
+  - Solution: Fully authored `data/continents/statistical-isthmus.yaml` and `data/continents/connectionist-revival.yaml`, plus 7 spatial countries:
+    1. `bayesian-plateau` (The Bayesian Plateau, N2, 1993–2011): Pearl, Lauritzen & Spiegelhalter junction tree, Jordan variational methods, Blei LDA, Koller & Friedman.
+    2. `statistical-corpus-basin` (The Statistical Corpus Basin, Ca, 1988–2011): CMU Sphinx, Rabiner HMM, IBM Candide SMT, Penn Treebank, Collins parser, PageRank, BLEU, "Unreasonable Effectiveness of Data", IBM Watson Jeopardy!
+    3. `ensemble-highlands` (The Ensemble Highlands, Cb, 1993–2006): Quinlan C4.5, AdaBoost, Breiman Bagging, Breiman Random Forests, Friedman Gradient Boosting, Viola–Jones face detector.
+    4. `support-vector-escarpment` (The Support Vector Escarpment, S1, 1998–2006): Cortes & Vapnik soft-margin SVM, Mercer kernels, Sutton & Barto RL, Monte Carlo localization, Thrun's Stanley DARPA Grand Challenge winner.
+    5. `pdp-cognitive-school` (The PDP Basin, C, 1982–1993): Hopfield networks, Boltzmann machines, Rumelhart/Hinton/Williams Nature backprop, PDP books, NETtalk, Cybenko universal approximation, Elman recurrent networks.
+    6. `temporal-difference-valley` (The Temporal Difference Valley, S1, 1982–1998): Barto/Sutton/Anderson actor-critic, Sutton TD(lambda), Watkins Q-learning, Tesauro TD-Gammon self-play, Williams REINFORCE.
+    7. `early-convnet-ridge` (The Early ConvNet Ridge, S2, 1982–1998): Fukushima Neocognitron, LeCun Bell Labs zip codes, Hochreiter vanishing gradients, Hochreiter & Schmidhuber LSTM, LeNet-5 & MNIST.
+  - Authored 45 sourced events in `data/events/statistical-isthmus.yaml` and `data/events/connectionist-revival.yaml`. Total LOD events increased from 228 to 273.
+- **Topography, Layout Hierarchy & Gate Verification:**
+  - `site/check_layout.py`: Updated `N_COUNTRIES = 31`. All 31 spatial countries passed with 100% containment (300/300 interior points inside parent continent, 0% in others) and 0 pairwise overlaps (51 bbox-intersecting pairs, 25,500 point tests).
+  - `site/check_lod_labels.py`: PASSED with 0 text overlaps, 0 dots outside countries, 0 text off plate; monotonic information growth maintained across all LOD levels (`lod0` through `lod4`).
+  - `scripts/validate.py --offline`: PASSED (38 files, 25 rules, 0 failures).
+  - `scripts/check_research.py --fast`: PASSED (rc 0).
+- **Tile Pyramid Rebuild (`build_tiles.py`):**
+  - Added `"connectionist-isthmus": (496, 416, 768, 736)` to `PILOT_BBOXES`.
+  - Rebuilt full pyramid across all levels: z0 (40), z1 (135), z2 (493), z3 (1,881), z4 (2,918) = **5,467 tiles, 167.5 MB**.
+  - Sits continuously across 4 pilot regions at z4: Connectionist-Isthmus (340 tiles), Basin (868 tiles), Plateau (676 tiles), Coast (1,034 tiles).
+- **Mobile Viewport Verification Screenshots (412x892 @ DPR 2):**
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2): Confirms dense Pre-training Foothills, DBNs, CUDA Pass relief.
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4): Confirms Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-stat-isthmus-z25.png` (?z=2.5&x=760&y=540): Confirms dense Statistical Isthmus canvas with Bayesian Plateau, Statistical Corpus Basin, Ensemble Highlands, and Support Vector Escarpment.
+  - `docs/screens/verify-connectionist-revival-z25.png` (?z=2.5&x=620&y=620): Confirms dense Connectionist Revival canvas with PDP Basin, Temporal Difference Valley, and Early ConvNet Ridge.
+
+---
+### Session 32 (kept for reference)
+
+# STATUS — as of 2026-09-19 (session 32: Alan visual & density standards — S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild)
 
 - **Dead Zone Elimination (`x=829.9, y=668.2 at z=2.5`):**
   - Diagnosis: `pretraining-foothills` was previously restricted to `band: S2` (`y > 668.9`), leaving `y=668.2` in `S1b` as an unclaimed orphan continent sliver of bare forest texture.

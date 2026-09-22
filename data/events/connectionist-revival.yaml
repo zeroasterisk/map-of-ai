@@ -1,0 +1,143 @@
+# Connectionist Revival — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/04-connectionism-and-backprop-revival-1982-1998.md.
+countries:
+  pdp-cognitive-school:
+    hint: "Hopfield · PDP Backprop 1986"
+    tag: "Hopfield → Boltzmann → Backprop → PDP"
+    events:
+      - id: hopfield-network-1982
+        name: Hopfield Networks
+        year: 1982.3
+        lod: 3
+        one_line: "John Hopfield introduces energy-based associative memory networks"
+        sources:
+          - url: "https://pubmed.ncbi.nlm.nih.gov/6953413/"
+            title: "Hopfield 1982 [3]"
+      - id: boltzmann-machine-1985
+        name: Boltzmann Machine
+        year: 1985.4
+        lod: 4
+        one_line: "Ackley, Hinton & Sejnowski introduce stochastic learning in nets"
+        sources:
+          - url: "https://www.cs.toronto.edu/~hinton/absps/cogscibm.pdf"
+            title: "Ackley et al. 1985 [13]"
+      - id: nature-backprop-1986
+        name: Nature Backprop
+        year: 1986.75
+        lod: 3
+        one_line: "Rumelhart, Hinton & Williams popularize backprop for hidden layers"
+        sources:
+          - url: "https://doi.org/10.1038/323533a0"
+            title: "Rumelhart et al. 1986 [8]"
+      - id: pdp-books-1986
+        name: PDP Books
+        year: 1986.85
+        lod: 3
+        one_line: "Rumelhart & McClelland publish Parallel Distributed Processing"
+        sources:
+          - url: "https://stanford.edu/~jlmcc/papers/PDP/"
+            title: "Rumelhart & McClelland 1986 [14]"
+      - id: nettalk-1987
+        name: NETtalk
+        year: 1987.4
+        lod: 4
+        one_line: "Sejnowski & Rosenberg: neural network learns to pronounce English"
+        sources:
+          - url: "https://www.complex-systems.com/abstracts/v01_i01_a10/"
+            title: "Sejnowski & Rosenberg 1987 [17]"
+      - id: universal-approximation-1989
+        name: Universal Approximation
+        year: 1989.4
+        lod: 4
+        one_line: "Cybenko & Hornik prove feedforward nets approximate functions"
+        sources:
+          - url: "https://doi.org/10.1007/BF02551274"
+            title: "Cybenko 1989 [27]"
+      - id: elman-srn-1990
+        name: Elman RNN
+        year: 1990.2
+        lod: 4
+        one_line: "Jeffrey Elman introduces simple recurrent networks for sequences"
+        sources:
+          - url: "https://www.semanticscholar.org/paper/668087f0ae7ce1de6e0bd0965dbb480c08103260"
+            title: "Elman 1990 [33]"
+  temporal-difference-valley:
+    hint: "TD-Gammon · Q-learning"
+    tag: "Actor-Critic → TD(λ) → Q-Learning → TD-Gammon"
+    events:
+      - id: actor-critic-1983
+        name: Actor-Critic Cart-Pole
+        year: 1983.8
+        lod: 4
+        one_line: "Barto, Sutton & Anderson balance cart-pole with adaptive elements"
+        sources:
+          - url: "https://doi.org/10.1109/TSMC.1983.6313077"
+            title: "Barto et al. 1983 [60]"
+      - id: td-lambda-1988
+        name: TD(λ) Formulation
+        year: 1988.6
+        lod: 3
+        one_line: "Richard Sutton formalizes temporal-difference learning methods"
+        sources:
+          - url: "https://doi.org/10.1007/BF00115009"
+            title: "Sutton 1988 [62]"
+      - id: q-learning-1989
+        name: Q-Learning
+        year: 1989.8
+        lod: 4
+        one_line: "Chris Watkins formulates model-free Q-learning for MDPs"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Q-learning"
+            title: "Wikipedia: Q-learning [41]"
+      - id: td-gammon-1992
+        name: TD-Gammon
+        year: 1992.6
+        lod: 3
+        one_line: "Gerald Tesauro: neural net plays master backgammon via TD(λ)"
+        sources:
+          - url: "https://doi.org/10.1145/203330.203343"
+            title: "Tesauro 1995 [29]"
+      - id: reinforce-1992
+        name: REINFORCE
+        year: 1992.8
+        lod: 4
+        one_line: "Ronald Williams derives foundational policy-gradient algorithm"
+        sources:
+          - url: "https://doi.org/10.1007/BF00992696"
+            title: "Williams 1992 [65]"
+  early-convnet-ridge:
+    hint: "LeNet-5 · MNIST · LSTM"
+    tag: "Neocognitron → Zip Codes → LSTM → LeNet-5"
+    events:
+      - id: zip-code-convnet-1989
+        name: Bell Labs ConvNet
+        year: 1989.7
+        lod: 3
+        one_line: "Yann LeCun: backprop ConvNets recognize handwritten zip codes"
+        sources:
+          - url: "http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf"
+            title: "LeCun et al. 1989 [19]"
+      - id: vanishing-gradient-1991
+        name: Vanishing Gradients
+        year: 1991.6
+        lod: 4
+        one_line: "Sepp Hochreiter diagnoses why deep recurrent nets fail backprop"
+        sources:
+          - url: "https://people.idsia.ch/~juergen/hochreiter1991thesis.html"
+            title: "Hochreiter 1991 [46]"
+      - id: lstm-1997
+        name: LSTM
+        year: 1997.85
+        lod: 3
+        one_line: "Hochreiter & Schmidhuber introduce Long Short-Term Memory nets"
+        sources:
+          - url: "https://doi.org/10.1162/neco.1997.9.8.1735"
+            title: "Hochreiter & Schmidhuber 1997 [23]"
+      - id: lenet5-mnist-1998
+        name: LeNet-5 & MNIST
+        year: 1998.85
+        lod: 3
+        one_line: "LeCun et al. release LeNet-5 and MNIST, establishing ConvNets"
+        sources:
+          - url: "https://doi.org/10.1109/5.726791"
+            title: "LeCun et al. 1998 [20]"

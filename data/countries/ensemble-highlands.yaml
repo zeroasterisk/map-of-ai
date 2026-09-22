@@ -1,0 +1,28 @@
+id: ensemble-highlands
+level: country
+name: The Ensemble Highlands
+subtitle: "Boosting, bagging, random forests and the algorithmic culture, 1993–2006"
+summary: >
+  The practical engine of applied machine learning in the 1990s and 2000s. Quinlan's
+  C4.5 (1993) popularized decision trees, while Yoav Freund and Robert Schapire's
+  AdaBoost (1995) proved that weak learners could be combined into strong classifiers.
+  Leo Breiman introduced bootstrap aggregation (Bagging, 1996) and Random Forests
+  (2001), publishing his landmark 'Two Cultures' manifesto arguing for predictive
+  performance over data-generation models. Jerome Friedman developed gradient boosting
+  machines (2001), and Viola and Jones combined boosted cascades with integral images
+  to achieve the first real-time face detection system in 2001.
+time_range: {start: 1993, end: 2006}
+band: C
+sub_band: [Cb]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [13, 15, 16, 18, 19, 20, 21, 72, 86]
+sources:
+  - {url: "https://doi.org/10.1006/jcss.1997.1504", title: "Freund & Schapire, A Decision-Theoretic Generalization of On-Line Learning, 1997", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1023/A:1010933404324", title: "Breiman, Random Forests, Machine Learning 2001", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1214/aos/1013203451", title: "Friedman, Greedy function approximation: a gradient boosting machine, 2001", kind: primary, accessed: 2026-09-22}
+threads: [compute, vision]
+status: sourced

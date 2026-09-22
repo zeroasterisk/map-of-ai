@@ -1,0 +1,28 @@
+id: support-vector-escarpment
+level: country
+name: The Support Vector Escarpment
+subtitle: "Kernel methods, margin classification and probabilistic robotics, 1998–2006"
+summary: >
+  The southern boundary of the isthmus, uniting statistical learning theory with
+  autonomous physical control. Vladimir Vapnik and Corinna Cortes's soft-margin
+  support-vector network (1995) and the Mercer kernel trick dominated classification
+  through the early 2000s, delivering state-of-the-art results on MNIST. Simultaneously,
+  Richard Sutton and Andrew Barto published the definitive reinforcement learning
+  textbook (1998). Sebastian Thrun, Wolfram Burgard, and Dieter Fox introduced
+  particle filters and Monte Carlo localization (1999), leading to Stanford's robotic
+  vehicle Stanley winning the 2005 DARPA Grand Challenge across 212 km of desert.
+time_range: {start: 1998, end: 2006}
+band: S1
+sub_band: [S1a, S1b]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [7, 10, 12, 36, 37, 38, 39, 42, 78]
+sources:
+  - {url: "https://doi.org/10.1007/BF00994018", title: "Cortes & Vapnik, Support-Vector Networks, Machine Learning 1995", kind: primary, accessed: 2026-09-22}
+  - {url: "http://incompleteideas.net/book/first/the-book.html", title: "Sutton & Barto, Reinforcement Learning: An Introduction, MIT Press 1998", kind: primary, accessed: 2026-09-22}
+  - {url: "https://robots.stanford.edu/papers/thrun.stanley05.pdf", title: "Thrun et al., Stanley: The robot that won the DARPA Grand Challenge, 2006", kind: primary, accessed: 2026-09-22}
+threads: [rl, compute]
+status: sourced

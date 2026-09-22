@@ -1,0 +1,30 @@
+id: pdp-cognitive-school
+level: country
+name: The PDP Basin
+subtitle: "Parallel distributed processing, backpropagation and cognitive representations, 1982–1993"
+summary: >
+  The intellectual heartland of 1980s connectionism and cognitive modeling.
+  John Hopfield's 1982 associative memory network and Geoffrey Hinton and Terry
+  Sejnowski's Boltzmann machine (1985) introduced statistical energy minimization
+  and distributed representation to artificial neural networks. In 1986, David
+  Rumelhart, James McClelland, and the PDP Research Group published the landmark
+  two-volume Parallel Distributed Processing, while Rumelhart, Hinton, and Ronald
+  Williams established backpropagation in Nature. Terry Sejnowski and Charles
+  Rosenberg's NETtalk (1987) demonstrated text-to-speech learning on national
+  television, and Michael Jordan and Jeffrey Elman (1990) introduced recurrent
+  neural networks for temporal sequences and linguistic structure.
+time_range: {start: 1982, end: 1993}
+band: C
+sub_band: [Ca, Cb]
+biome: forest
+parent_id: connectionist-revival
+spatial: true
+research_ref:
+  file: research/04-connectionism-and-backprop-revival-1982-1998.md
+  sources: [2, 3, 8, 12, 13, 14, 15, 17, 33]
+sources:
+  - {url: "https://doi.org/10.1038/323533a0", title: "Rumelhart, Hinton & Williams, Learning representations by back-propagating errors, Nature 1986", kind: primary, accessed: 2026-09-22}
+  - {url: "https://stanford.edu/~jlmcc/papers/PDP/", title: "Rumelhart, McClelland & PDP Group, Parallel Distributed Processing, MIT Press 1986", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.semanticscholar.org/paper/668087f0ae7ce1de6e0bd0965dbb480c08103260", title: "Elman, Finding Structure in Time, Cognitive Science 1990", kind: primary, accessed: 2026-09-22}
+threads: [language, compute]
+status: sourced

@@ -1,0 +1,29 @@
+id: temporal-difference-valley
+level: country
+name: The Temporal Difference Valley
+subtitle: "Neuronlike reinforcement learning, TD(lambda) and self-play gammon, 1982–1998"
+summary: >
+  The reinforcement learning wing of 1980s connectionism. Andrew Barto, Richard
+  Sutton, and Charles Anderson introduced actor-critic architectures with associative
+  search elements (1983). Sutton formalized temporal-difference learning methods
+  (TD(lambda), 1988), and Chris Watkins formulated Q-learning for Markov decision
+  processes (1989). Gerald Tesauro's TD-Gammon (1992) achieved master-level backgammon
+  play by training a multi-layer neural network through self-play, demonstrating the
+  practical power of neural value function approximation that later inspired AlphaGo.
+  Ronald Williams formulated the foundational REINFORCE policy-gradient algorithm in
+  1992, completing the classical RL toolkit.
+time_range: {start: 1982, end: 1998}
+band: S1
+sub_band: [S1a, S1b]
+biome: forest
+parent_id: connectionist-revival
+spatial: true
+research_ref:
+  file: research/04-connectionism-and-backprop-revival-1982-1998.md
+  sources: [29, 30, 41, 60, 61, 62, 65, 66]
+sources:
+  - {url: "https://doi.org/10.1109/TSMC.1983.6313077", title: "Barto, Sutton & Anderson, Neuronlike adaptive elements, IEEE Trans. SMC 1983", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1007/BF00115009", title: "Sutton, Learning to predict by the methods of temporal differences, 1988", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1145/203330.203343", title: "Tesauro, Temporal Difference Learning and TD-Gammon, CACM 1995", kind: primary, accessed: 2026-09-22}
+threads: [rl]
+status: sourced

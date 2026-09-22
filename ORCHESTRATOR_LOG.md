@@ -1350,6 +1350,52 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
   - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4) confirms mature, informative canvas with Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
   - `docs/screens/verify-silicon-range-engraved.png` (?z=3.0&x=920&y=650) confirms the antique engraved hachured mountain relief, passes, and elevation specs.
 
+## Session 33 (2026-09-22) — Alan visual & density standards: Western Continents Dead Zone Elimination (Statistical Isthmus & Connectionist Revival), 7 new spatial countries, 45 LOD milestone events, full 5,467-tile pyramid rebuild z0–z4
+
+**Why.** Cron run under Alan's critical visual and density directive.
+1. Priority B (No Dead Zones): Address the vast empty regions on the western half of the map. Previously, only 3 eastern continents had country layers and events. The Statistical Isthmus (1988–2011, x=800–980) and Connectionist Revival (1982–1998) were bare textures with 0 countries and 0 events.
+2. Solution: Fully populate `statistical-isthmus` and `connectionist-revival` with continent YAMLs, 7 new spatial countries (bringing total spatial countries from 24 to 31), and 45 dated, sourced historical milestones with hints, tags, and one-line facts.
+3. Topography & Tile Pyramid: Added `"connectionist-isthmus": (496, 416, 768, 736)` to `PILOT_BBOXES` in `build_tiles.py` to create a continuous z4 pilot from 1982 to the present day. Rebuilt all 5,467 tiles (z0–z4, 167.5 MB).
+4. Verification: All layout gates passed with 0 collisions, 0 overlaps, 100% containment; monotonic information growth confirmed; mobile viewports verified via Playwright.
+
+**What shipped.**
+- `data/continents/`:
+  - `statistical-isthmus.yaml`: The Statistical Isthmus (1988–2011, N2–S1, grassland).
+  - `connectionist-revival.yaml`: The Connectionist Revival (1982–1998, C–S2, forest).
+- `data/countries/`:
+  - `bayesian-plateau.yaml` (The Bayesian Plateau, N2, 1993–2011): Pearl, Lauritzen & Spiegelhalter, Jordan variational inference, Blei LDA, Koller & Friedman.
+  - `statistical-corpus-basin.yaml` (The Statistical Corpus Basin, Ca, 1988–2011): Sphinx, Rabiner HMM, IBM Candide SMT, Penn Treebank, Collins parser, PageRank, BLEU, Watson Jeopardy!
+  - `ensemble-highlands.yaml` (The Ensemble Highlands, Cb, 1993–2006): C4.5, AdaBoost, Bagging, Random Forests, Gradient Boosting, Viola–Jones.
+  - `support-vector-escarpment.yaml` (The Support Vector Escarpment, S1, 1998–2006): Cortes & Vapnik soft-margin SVM, Mercer kernels, Sutton & Barto RL, Stanley DARPA Grand Challenge winner.
+  - `pdp-cognitive-school.yaml` (The PDP Basin, C, 1982–1993): Hopfield nets, Boltzmann machines, Nature backprop, PDP books, NETtalk, Elman RNNs.
+  - `temporal-difference-valley.yaml` (The Temporal Difference Valley, S1, 1982–1998): Actor-critic, TD(lambda), Q-learning, TD-Gammon self-play, REINFORCE.
+  - `early-convnet-ridge.yaml` (The Early ConvNet Ridge, S2, 1982–1998): Neocognitron, Bell Labs zip codes, vanishing gradients, LSTM, LeNet-5 & MNIST.
+- `data/events/`:
+  - `statistical-isthmus.yaml`: 24 dated, sourced milestone events across the 4 isthmus countries.
+  - `connectionist-revival.yaml`: 21 dated, sourced milestone events across the 3 revival countries.
+- `site/check_layout.py`:
+  - Updated `N_COUNTRIES = 31`.
+- `site/build_tiles.py`:
+  - Added `"connectionist-isthmus": (496, 416, 768, 736)` to `PILOT_BBOXES`.
+  - Rebuilt full 5,467-tile pyramid (z0–z4, 167.5 MB).
+- `site/index.html`:
+  - Updated banner text to reflect the new countries.
+- `site/entities.json` & `site/entities.js`:
+  - Regenerated with 5 continents, 33 countries (31 spatial), 273 LOD events.
+- `site/anchors.json`:
+  - Regenerated with 41 anchors.
+
+**Verification.**
+- `scripts/validate.py --offline`: PASS (38 files, 25 rules, 0 failures).
+- `scripts/check_research.py --fast`: PASS (rc 0).
+- `site/check_layout.py`: RESULT: PASS (0 errors across all 25+ layout gates; N_COUNTRIES = 31).
+- `site/check_lod_labels.py`: LOD LABEL GATE: PASS (0 text overlaps across all levels `lod0`–`lod4`, 0 dots outside countries, 0 text off plate; monotonic growth confirmed).
+- Playwright mobile viewport screenshots:
+  - `docs/screens/verify-coord-829.png` (?z=2.5&x=829.9&y=668.2): Confirms dense Pre-training Foothills country borders, tag, milestone events, and CUDA Pass mountain relief.
+  - `docs/screens/verify-coord-1476.png` (?z=1.8&x=1476.3&y=676.4): Confirms Blackwell summit, Megatron Yards, Systems Infrastructure, and Diffusion Media District.
+  - `docs/screens/verify-stat-isthmus-z25.png` (?z=2.5&x=760&y=540): Confirms dense Statistical Isthmus canvas with Bayesian Plateau, Statistical Corpus Basin, Ensemble Highlands, and Support Vector Escarpment.
+  - `docs/screens/verify-connectionist-revival-z25.png` (?z=2.5&x=620&y=620): Confirms dense Connectionist Revival canvas with PDP Basin, Temporal Difference Valley, and Early ConvNet Ridge.
+
 ## Session 32 (2026-09-19) — Alan visual & density standards: S1b Pre-training Foothills dead-zone elimination, multi-tier mountain label disclosure across all LODs, hierarchical obstacle avoidance, full tile pyramid rebuild
 
 **Why.** Cron run under Alan's critical directive: directly address Alan's visual and density standards for Map of AI.

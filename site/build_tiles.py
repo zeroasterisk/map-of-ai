@@ -60,10 +60,12 @@ LOD_MAX = max(LOD_DESC)
 # LOD pilot: levels above --full-zmax are rendered for these plate-space bboxes only, tile-aligned at z4 (16 plate
 # units per tile). index.html mounts each as its own bounded tile layer; every other continent keeps its z3 art at
 # zoom 4. Widening to the full plate = ~5000 more tiles.
-#   Deep Learning Basin   x 804–1190, y 485–773 (land bbox) plus margin
-#   Transformer Plateau   x 1079–1445, y 319–705 (8 spatial countries + z3/z4 event dots and labels) plus margin
-#   Generative Coast      x 1408–1600, y 67–886 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
+#   Connectionist + Isthmus x 496–768, y 416–736 (Connectionist Revival + Statistical Isthmus west)
+#   Deep Learning Basin   x 768–1216, y 304–800 (Basin + Statistical Isthmus east)
+#   Transformer Plateau   x 1056–1472, y 304–720 (8 spatial countries + z3/z4 event dots and labels) plus margin
+#   Generative Coast      x 1280–1632, y 128–880 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
 PILOT_BBOXES = {
+    "connectionist-isthmus": (496, 416, 768, 736),
     "deep-learning-basin": (768, 304, 1216, 800),
     "transformer-plateau": (1056, 304, 1472, 720),
     "generative-coast": (1280, 128, 1632, 880),

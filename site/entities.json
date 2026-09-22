@@ -1,6 +1,29 @@
 {
  "continents": [
   {
+   "id": "connectionist-revival",
+   "level": "continent",
+   "name": "The Connectionist Revival",
+   "subtitle": "Hopfield nets, backpropagation and the PDP era of neural networks, 1982–1998",
+   "parent_id": null,
+   "start": 1982,
+   "end": 1998,
+   "band": [
+    "C",
+    "S1",
+    "S2"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "Following the first neural network winter, the second connectionist wave emerged vigorously in the 1980s. John Hopfield's 1982 associative memory network imported statistical physics into neural modeling, while Geoffrey Hinton and Terry Sejnowski formulated the stochastic Boltzmann machine (1985). In 1986, Rumelhart, Hinton, and Williams published backpropagation in Nature, and the Parallel Distributed Processing (PDP) books established distributed representation as …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/connectionist-revival.yaml"
+  },
+  {
    "id": "deep-learning-basin",
    "level": "continent",
    "name": "The Deep Learning Basin",
@@ -52,6 +75,29 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/continents/generative-coast.yaml"
+  },
+  {
+   "id": "statistical-isthmus",
+   "level": "continent",
+   "name": "The Statistical Isthmus",
+   "subtitle": "Probabilistic, Bayesian and statistical machine learning, 1988–2011",
+   "parent_id": null,
+   "start": 1988,
+   "end": 2011,
+   "band": [
+    "N2",
+    "C",
+    "S1"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "Between 1988 and 2011, artificial intelligence shifted from hand-crafted knowledge bases toward rigorous statistical foundations, probabilistic reasoning, and benchmark-driven learning. Judea Pearl's 1988 treatise established Bayesian networks and belief propagation as the principled calculus for reasoning under uncertainty. Vladimir Vapnik and Corinna Cortes introduced support-vector machines at AT&T Bell Labs (1995), providing strong generalization bounds through VC theory and kernel …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/statistical-isthmus.yaml"
   },
   {
    "id": "transformer-plateau",
@@ -701,6 +747,125 @@
       {
        "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
        "title": "OpenAI, Pacing model development on cyber capabilities, 18 Aug 2026 [122]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bayesian-plateau",
+   "level": "country",
+   "name": "The Bayesian Plateau",
+   "subtitle": "Probabilistic graphical models, belief propagation and variational methods, 1993–2011",
+   "parent_id": "statistical-isthmus",
+   "start": 1993,
+   "end": 2011,
+   "band": [
+    "N2"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The northern highland of the isthmus, where reasoning under uncertainty was formalized with directed and undirected graphs. Following Judea Pearl's belief propagation foundations, Steffen Lauritzen and David Spiegelhalter's junction-tree algorithm enabled exact probabilistic inference in medical diagnostic systems and complex expert systems. In the late 1990s, Michael I. Jordan, Zoubin Ghahramani, Tommi Jaakkola, and Lawrence Saul introduced variational methods for …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a",
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/bayesian-plateau.yaml",
+   "hint": "Bayesian Nets · LDA 2003",
+   "tag": "Pearl → Junction Tree → Variational → LDA",
+   "events": [
+    {
+     "id": "junction-tree-1988",
+     "name": "Junction Tree",
+     "year": 1993.5,
+     "lod": 4,
+     "one_line": "Lauritzen & Spiegelhalter: exact probabilistic inference on graphs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1111/j.2517-6161.1988.tb01721.x",
+       "title": "Lauritzen & Spiegelhalter 1988 [71]"
+      }
+     ]
+    },
+    {
+     "id": "pearl-prob-reasoning-1988",
+     "name": "Probabilistic Reasoning",
+     "year": 1994.2,
+     "lod": 3,
+     "one_line": "Judea Pearl establishes Bayesian networks as calculus for AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bayesian_network",
+       "title": "Wikipedia: Bayesian network [4]"
+      }
+     ]
+    },
+    {
+     "id": "variational-inference-1999",
+     "name": "Variational Methods",
+     "year": 1999.5,
+     "lod": 4,
+     "one_line": "Jordan et al.: mean-field variational inference for large graphs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1023/A:1007665907178",
+       "title": "Jordan et al. 1999 [80]"
+      }
+     ]
+    },
+    {
+     "id": "lda-topic-models-2003",
+     "name": "Latent Dirichlet Allocation",
+     "year": 2003.3,
+     "lod": 3,
+     "one_line": "Blei, Ng & Jordan: generative Bayesian topic modeling at scale",
+     "sources": [
+      {
+       "url": "https://www.jmlr.org/papers/v3/blei03a.html",
+       "title": "Blei, Ng & Jordan 2003 [22]"
+      }
+     ]
+    },
+    {
+     "id": "gaussian-processes-2006",
+     "name": "Gaussian Processes",
+     "year": 2006.2,
+     "lod": 4,
+     "one_line": "Rasmussen & Williams: non-parametric Bayesian kernel regression",
+     "sources": [
+      {
+       "url": "https://gaussianprocess.org/gpml/",
+       "title": "Rasmussen & Williams 2006 [83]"
+      }
+     ]
+    },
+    {
+     "id": "markov-logic-networks-2006",
+     "name": "Markov Logic Nets",
+     "year": 2006.6,
+     "lod": 4,
+     "one_line": "Richardson & Domingos: combining first-order logic and graphs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/s10994-006-5833-1",
+       "title": "Richardson & Domingos 2006 [85]"
+      }
+     ]
+    },
+    {
+     "id": "koller-friedman-pgm-2009",
+     "name": "Graphical Models",
+     "year": 2009.7,
+     "lod": 3,
+     "one_line": "Koller & Friedman publish canonical textbook on graphical models",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Daphne_Koller",
+       "title": "Wikipedia: Daphne Koller [52]"
       }
      ]
     }
@@ -2078,6 +2243,85 @@
    ]
   },
   {
+   "id": "early-convnet-ridge",
+   "level": "country",
+   "name": "The Early ConvNet Ridge",
+   "subtitle": "Neocognitron, Bell Labs digit recognition and LSTM foundations, 1982–1998",
+   "parent_id": "connectionist-revival",
+   "start": 1982,
+   "end": 1998,
+   "band": [
+    "S2"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The perception and deep architecture ridge of the second connectionist wave. Building on Kunihiko Fukushima's shift-invariant Neocognitron (1980), Yann LeCun and colleagues at AT&T Bell Labs trained multi-layer convolutional neural networks with backpropagation for handwritten zip code recognition on postal envelopes (1989), culminating in LeNet-5, commercial cheque-reading systems, and the canonical MNIST benchmark dataset (1998). In parallel, Sepp Hochreiter diagnosed …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S2a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/early-convnet-ridge.yaml",
+   "hint": "LeNet-5 · MNIST · LSTM",
+   "tag": "Neocognitron → Zip Codes → LSTM → LeNet-5",
+   "events": [
+    {
+     "id": "zip-code-convnet-1989",
+     "name": "Bell Labs ConvNet",
+     "year": 1989.7,
+     "lod": 3,
+     "one_line": "Yann LeCun: backprop ConvNets recognize handwritten zip codes",
+     "sources": [
+      {
+       "url": "http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf",
+       "title": "LeCun et al. 1989 [19]"
+      }
+     ]
+    },
+    {
+     "id": "vanishing-gradient-1991",
+     "name": "Vanishing Gradients",
+     "year": 1991.6,
+     "lod": 4,
+     "one_line": "Sepp Hochreiter diagnoses why deep recurrent nets fail backprop",
+     "sources": [
+      {
+       "url": "https://people.idsia.ch/~juergen/hochreiter1991thesis.html",
+       "title": "Hochreiter 1991 [46]"
+      }
+     ]
+    },
+    {
+     "id": "lstm-1997",
+     "name": "LSTM",
+     "year": 1997.85,
+     "lod": 3,
+     "one_line": "Hochreiter & Schmidhuber introduce Long Short-Term Memory nets",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+       "title": "Hochreiter & Schmidhuber 1997 [23]"
+      }
+     ]
+    },
+    {
+     "id": "lenet5-mnist-1998",
+     "name": "LeNet-5 & MNIST",
+     "year": 1998.85,
+     "lod": 3,
+     "one_line": "LeCun et al. release LeNet-5 and MNIST, establishing ConvNets",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/5.726791",
+       "title": "LeCun et al. 1998 [20]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "encoder-understanding-school",
    "level": "country",
    "name": "The BERT Escarpment",
@@ -2267,6 +2511,111 @@
       {
        "url": "https://arxiv.org/abs/2005.11401",
        "title": "Lewis et al., RAG, arXiv 2005.11401 [89]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ensemble-highlands",
+   "level": "country",
+   "name": "The Ensemble Highlands",
+   "subtitle": "Boosting, bagging, random forests and the algorithmic culture, 1993–2006",
+   "parent_id": "statistical-isthmus",
+   "start": 1993,
+   "end": 2006,
+   "band": [
+    "C"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The practical engine of applied machine learning in the 1990s and 2000s. Quinlan's C4.5 (1993) popularized decision trees, while Yoav Freund and Robert Schapire's AdaBoost (1995) proved that weak learners could be combined into strong classifiers. Leo Breiman introduced bootstrap aggregation (Bagging, 1996) and Random Forests (2001), publishing his landmark 'Two Cultures' manifesto arguing for predictive performance over data-generation models. …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/ensemble-highlands.yaml",
+   "hint": "AdaBoost · Random Forests",
+   "tag": "C4.5 → AdaBoost → Bagging → Random Forests",
+   "events": [
+    {
+     "id": "c45-decision-trees-1993",
+     "name": "C4.5 Decision Trees",
+     "year": 1993.2,
+     "lod": 4,
+     "one_line": "Ross Quinlan publishes C4.5, standardizing decision trees",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/C4.5_algorithm",
+       "title": "Wikipedia: C4.5 [72]"
+      }
+     ]
+    },
+    {
+     "id": "adaboost-1995",
+     "name": "AdaBoost",
+     "year": 1995.6,
+     "lod": 3,
+     "one_line": "Freund & Schapire: adaptive boosting converts weak to strong",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1006/jcss.1997.1504",
+       "title": "Freund & Schapire 1997 [15]"
+      }
+     ]
+    },
+    {
+     "id": "bagging-1996",
+     "name": "Bagging Predictors",
+     "year": 1996.7,
+     "lod": 4,
+     "one_line": "Leo Breiman: bootstrap aggregation reduces variance",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00058655",
+       "title": "Breiman 1996 [18]"
+      }
+     ]
+    },
+    {
+     "id": "random-forests-2001",
+     "name": "Random Forests",
+     "year": 2001.1,
+     "lod": 3,
+     "one_line": "Breiman: ensembles of randomized trees yield top accuracy",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1023/A:1010933404324",
+       "title": "Breiman 2001 [19]"
+      }
+     ]
+    },
+    {
+     "id": "gradient-boosting-2001",
+     "name": "Gradient Boosting",
+     "year": 2001.5,
+     "lod": 3,
+     "one_line": "Jerome Friedman: greedy function approximation via gradients",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1214/aos/1013203451",
+       "title": "Friedman 2001 [21]"
+      }
+     ]
+    },
+    {
+     "id": "viola-jones-2001",
+     "name": "Viola–Jones Detector",
+     "year": 2001.9,
+     "lod": 4,
+     "one_line": "Viola & Jones: boosted Haar feature cascades detect faces",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/CVPR.2001.990517",
+       "title": "Viola & Jones 2001 [86]"
       }
      ]
     }
@@ -3544,6 +3893,125 @@
    ]
   },
   {
+   "id": "pdp-cognitive-school",
+   "level": "country",
+   "name": "The PDP Basin",
+   "subtitle": "Parallel distributed processing, backpropagation and cognitive representations, 1982–1993",
+   "parent_id": "connectionist-revival",
+   "start": 1982,
+   "end": 1993,
+   "band": [
+    "C"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The intellectual heartland of 1980s connectionism and cognitive modeling. John Hopfield's 1982 associative memory network and Geoffrey Hinton and Terry Sejnowski's Boltzmann machine (1985) introduced statistical energy minimization and distributed representation to artificial neural networks. In 1986, David Rumelhart, James McClelland, and the PDP Research Group published the landmark two-volume Parallel Distributed Processing, while Rumelhart, Hinton, and Ronald Williams established …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca",
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/pdp-cognitive-school.yaml",
+   "hint": "Hopfield · PDP Backprop 1986",
+   "tag": "Hopfield → Boltzmann → Backprop → PDP",
+   "events": [
+    {
+     "id": "hopfield-network-1982",
+     "name": "Hopfield Networks",
+     "year": 1982.3,
+     "lod": 3,
+     "one_line": "John Hopfield introduces energy-based associative memory networks",
+     "sources": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/6953413/",
+       "title": "Hopfield 1982 [3]"
+      }
+     ]
+    },
+    {
+     "id": "boltzmann-machine-1985",
+     "name": "Boltzmann Machine",
+     "year": 1985.4,
+     "lod": 4,
+     "one_line": "Ackley, Hinton & Sejnowski introduce stochastic learning in nets",
+     "sources": [
+      {
+       "url": "https://www.cs.toronto.edu/~hinton/absps/cogscibm.pdf",
+       "title": "Ackley et al. 1985 [13]"
+      }
+     ]
+    },
+    {
+     "id": "nature-backprop-1986",
+     "name": "Nature Backprop",
+     "year": 1986.75,
+     "lod": 3,
+     "one_line": "Rumelhart, Hinton & Williams popularize backprop for hidden layers",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1038/323533a0",
+       "title": "Rumelhart et al. 1986 [8]"
+      }
+     ]
+    },
+    {
+     "id": "pdp-books-1986",
+     "name": "PDP Books",
+     "year": 1986.85,
+     "lod": 3,
+     "one_line": "Rumelhart & McClelland publish Parallel Distributed Processing",
+     "sources": [
+      {
+       "url": "https://stanford.edu/~jlmcc/papers/PDP/",
+       "title": "Rumelhart & McClelland 1986 [14]"
+      }
+     ]
+    },
+    {
+     "id": "nettalk-1987",
+     "name": "NETtalk",
+     "year": 1987.4,
+     "lod": 4,
+     "one_line": "Sejnowski & Rosenberg: neural network learns to pronounce English",
+     "sources": [
+      {
+       "url": "https://www.complex-systems.com/abstracts/v01_i01_a10/",
+       "title": "Sejnowski & Rosenberg 1987 [17]"
+      }
+     ]
+    },
+    {
+     "id": "universal-approximation-1989",
+     "name": "Universal Approximation",
+     "year": 1989.4,
+     "lod": 4,
+     "one_line": "Cybenko & Hornik prove feedforward nets approximate functions",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF02551274",
+       "title": "Cybenko 1989 [27]"
+      }
+     ]
+    },
+    {
+     "id": "elman-srn-1990",
+     "name": "Elman RNN",
+     "year": 1990.2,
+     "lod": 4,
+     "one_line": "Jeffrey Elman introduces simple recurrent networks for sequences",
+     "sources": [
+      {
+       "url": "https://www.semanticscholar.org/paper/668087f0ae7ce1de6e0bd0965dbb480c08103260",
+       "title": "Elman 1990 [33]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "policy-governance-coast",
    "level": "country",
    "name": "The Policy Coast",
@@ -4426,6 +4894,269 @@
    ]
   },
   {
+   "id": "statistical-corpus-basin",
+   "level": "country",
+   "name": "The Statistical Corpus Basin",
+   "subtitle": "HMMs, statistical translation, and web-scale language corpora, 1988–2011",
+   "parent_id": "statistical-isthmus",
+   "start": 1988,
+   "end": 2011,
+   "band": [
+    "C"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The linguistic spine of the statistical turn, replacing hand-coded syntactic grammars with data-driven probability. Frederick Jelinek's IBM Continuous Speech group and Kai-Fu Lee's CMU Sphinx deployed HMMs and n-grams for continuous speech recognition. IBM's Candide project (Brown et al., 1990/1993) re-founded machine translation on statistical word alignments, the Penn Treebank (1993) enabled Collins and Charniak's lexicalized parsers, and BLEU (2002) …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/statistical-corpus-basin.yaml",
+   "hint": "IBM SMT · PageRank · Watson",
+   "tag": "Sphinx → IBM Models → PageRank → Watson",
+   "events": [
+    {
+     "id": "cmu-sphinx-1988",
+     "name": "CMU Sphinx",
+     "year": 1988.7,
+     "lod": 4,
+     "one_line": "Kai-Fu Lee: first continuous speaker-independent speech recognizer",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/CMU_Sphinx",
+       "title": "Wikipedia: CMU Sphinx [74]"
+      }
+     ]
+    },
+    {
+     "id": "rabiner-hmm-1989",
+     "name": "Rabiner HMM Tutorial",
+     "year": 1989.2,
+     "lod": 4,
+     "one_line": "Lawrence Rabiner publishes canonical HMM tutorial for speech",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/5.18626",
+       "title": "Rabiner 1989 [23]"
+      }
+     ]
+    },
+    {
+     "id": "ibm-candide-1990",
+     "name": "IBM Candide SMT",
+     "year": 1990.5,
+     "lod": 3,
+     "one_line": "Brown et al.: statistical translation replaces linguistic rules",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/J90-2002/",
+       "title": "Brown et al. 1990 [26]"
+      }
+     ]
+    },
+    {
+     "id": "ibm-models-1993",
+     "name": "IBM Models 1–5",
+     "year": 1993.4,
+     "lod": 4,
+     "one_line": "Brown, Della Pietra & Mercer: mathematical foundation of SMT",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/J93-2003/",
+       "title": "Brown et al. 1993 [27]"
+      }
+     ]
+    },
+    {
+     "id": "penn-treebank-1993",
+     "name": "Penn Treebank",
+     "year": 1993.6,
+     "lod": 3,
+     "one_line": "Marcus et al. release benchmark corpus for statistical parsing",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/J93-2004/",
+       "title": "Marcus et al. 1993 [73]"
+      }
+     ]
+    },
+    {
+     "id": "collins-parser-1997",
+     "name": "Collins Parser",
+     "year": 1997.5,
+     "lod": 4,
+     "one_line": "Michael Collins: lexicalized PCFGs achieve breakthrough parsing",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/P97-1003/",
+       "title": "Collins 1997 [76]"
+      }
+     ]
+    },
+    {
+     "id": "pagerank-1998",
+     "name": "Google PageRank",
+     "year": 1998.3,
+     "lod": 3,
+     "one_line": "Brin & Page: link structure and random walks scale web search",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/S0169-7552%2898%2900110-X",
+       "title": "Brin & Page 1998 [35]"
+      }
+     ]
+    },
+    {
+     "id": "crfs-2001",
+     "name": "Conditional Random Fields",
+     "year": 2001.4,
+     "lod": 4,
+     "one_line": "Lafferty, McCallum & Pereira: discriminative sequence modeling",
+     "sources": [
+      {
+       "url": "http://www.cs.columbia.edu/~jebara/6772/papers/crf.pdf",
+       "title": "Lafferty et al. 2001 [30]"
+      }
+     ]
+    },
+    {
+     "id": "bleu-metric-2002",
+     "name": "BLEU Metric",
+     "year": 2002.5,
+     "lod": 4,
+     "one_line": "Papineni et al. introduce automated n-gram evaluation for MT",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/P02-1040/",
+       "title": "Papineni et al. 2002 [87]"
+      }
+     ]
+    },
+    {
+     "id": "unreasonable-effectiveness-2009",
+     "name": "Unreasonable Data",
+     "year": 2009.3,
+     "lod": 3,
+     "one_line": "Halevy, Norvig & Pereira: massive corpora beat algorithms",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/MIS.2009.36",
+       "title": "Halevy et al. 2009 [31]"
+      }
+     ]
+    },
+    {
+     "id": "ibm-watson-jeopardy-2011",
+     "name": "IBM Watson Jeopardy!",
+     "year": 2011.15,
+     "lod": 3,
+     "one_line": "Ferrucci's DeepQA defeats Jennings and Rutter on Jeopardy!",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/IBM_Watson",
+       "title": "Wikipedia: IBM Watson [43]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "support-vector-escarpment",
+   "level": "country",
+   "name": "The Support Vector Escarpment",
+   "subtitle": "Kernel methods, margin classification and probabilistic robotics, 1998–2006",
+   "parent_id": "statistical-isthmus",
+   "start": 1998,
+   "end": 2006,
+   "band": [
+    "S1"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The southern boundary of the isthmus, uniting statistical learning theory with autonomous physical control. Vladimir Vapnik and Corinna Cortes's soft-margin support-vector network (1995) and the Mercer kernel trick dominated classification through the early 2000s, delivering state-of-the-art results on MNIST. Simultaneously, Richard Sutton and Andrew Barto published the definitive reinforcement learning textbook (1998). Sebastian Thrun, Wolfram Burgard, and Dieter Fox introduced …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/support-vector-escarpment.yaml",
+   "hint": "SVM · Stanley 2005",
+   "tag": "SVM → Kernel Trick → SLAM → Stanley",
+   "events": [
+    {
+     "id": "svm-optimal-margin-1998",
+     "name": "Kernel SVM",
+     "year": 1998.2,
+     "lod": 4,
+     "one_line": "Boser, Guyon & Vapnik apply Mercer kernels to maximal margins",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Support_vector_machine",
+       "title": "Wikipedia: Support vector machine [7]"
+      }
+     ]
+    },
+    {
+     "id": "soft-margin-svm-1998",
+     "name": "Soft-Margin SVM",
+     "year": 1998.5,
+     "lod": 3,
+     "one_line": "Cortes & Vapnik introduce soft-margin support-vector networks",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00994018",
+       "title": "Cortes & Vapnik 1995 [10]"
+      }
+     ]
+    },
+    {
+     "id": "sutton-barto-book-1998",
+     "name": "Sutton & Barto RL",
+     "year": 1998.7,
+     "lod": 4,
+     "one_line": "Reinforcement Learning: An Introduction becomes standard RL text",
+     "sources": [
+      {
+       "url": "http://incompleteideas.net/book/first/the-book.html",
+       "title": "Sutton & Barto 1998 [42]"
+      }
+     ]
+    },
+    {
+     "id": "monte-carlo-localization-1999",
+     "name": "Monte Carlo Localization",
+     "year": 1999.4,
+     "lod": 4,
+     "one_line": "Dellaert, Fox, Burgard & Thrun: particle filters for robots",
+     "sources": [
+      {
+       "url": "https://www.ri.cmu.edu/pub_files/pub1/dellaert_frank_1999_2/dellaert_frank_1999_2.pdf",
+       "title": "Dellaert et al. 1999 [78]"
+      }
+     ]
+    },
+    {
+     "id": "stanley-darpa-2005",
+     "name": "Stanley Wins DARPA",
+     "year": 2005.77,
+     "lod": 3,
+     "one_line": "Thrun's Stanley completes 212 km of desert to win DARPA Grand Challenge",
+     "sources": [
+      {
+       "url": "https://robots.stanford.edu/papers/thrun.stanley05.pdf",
+       "title": "Thrun et al. 2006 [39]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "systems-infrastructure-axis",
    "level": "country",
    "name": "The Megatron Yards",
@@ -4567,6 +5298,99 @@
       {
        "url": "https://arxiv.org/abs/2206.14858",
        "title": "Lewkowycz et al., Minerva, arXiv 2206.14858 [79]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "temporal-difference-valley",
+   "level": "country",
+   "name": "The Temporal Difference Valley",
+   "subtitle": "Neuronlike reinforcement learning, TD(lambda) and self-play gammon, 1982–1998",
+   "parent_id": "connectionist-revival",
+   "start": 1982,
+   "end": 1998,
+   "band": [
+    "S1"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The reinforcement learning wing of 1980s connectionism. Andrew Barto, Richard Sutton, and Charles Anderson introduced actor-critic architectures with associative search elements (1983). Sutton formalized temporal-difference learning methods (TD(lambda), 1988), and Chris Watkins formulated Q-learning for Markov decision processes (1989). Gerald Tesauro's TD-Gammon (1992) achieved master-level backgammon play by training a multi-layer neural network through self-play, demonstrating the practical power of …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/temporal-difference-valley.yaml",
+   "hint": "TD-Gammon · Q-learning",
+   "tag": "Actor-Critic → TD(λ) → Q-Learning → TD-Gammon",
+   "events": [
+    {
+     "id": "actor-critic-1983",
+     "name": "Actor-Critic Cart-Pole",
+     "year": 1983.8,
+     "lod": 4,
+     "one_line": "Barto, Sutton & Anderson balance cart-pole with adaptive elements",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TSMC.1983.6313077",
+       "title": "Barto et al. 1983 [60]"
+      }
+     ]
+    },
+    {
+     "id": "td-lambda-1988",
+     "name": "TD(λ) Formulation",
+     "year": 1988.6,
+     "lod": 3,
+     "one_line": "Richard Sutton formalizes temporal-difference learning methods",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00115009",
+       "title": "Sutton 1988 [62]"
+      }
+     ]
+    },
+    {
+     "id": "q-learning-1989",
+     "name": "Q-Learning",
+     "year": 1989.8,
+     "lod": 4,
+     "one_line": "Chris Watkins formulates model-free Q-learning for MDPs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Q-learning",
+       "title": "Wikipedia: Q-learning [41]"
+      }
+     ]
+    },
+    {
+     "id": "td-gammon-1992",
+     "name": "TD-Gammon",
+     "year": 1992.6,
+     "lod": 3,
+     "one_line": "Gerald Tesauro: neural net plays master backgammon via TD(λ)",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1145/203330.203343",
+       "title": "Tesauro 1995 [29]"
+      }
+     ]
+    },
+    {
+     "id": "reinforce-1992",
+     "name": "REINFORCE",
+     "year": 1992.8,
+     "lod": 4,
+     "one_line": "Ronald Williams derives foundational policy-gradient algorithm",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00992696",
+       "title": "Williams 1992 [65]"
       }
      ]
     }
@@ -4966,5 +5790,5 @@
    ]
   }
  ],
- "generated_from": "3 continent + 26 country YAML files under data/ + 1 thread(s)"
+ "generated_from": "5 continent + 33 country YAML files under data/ + 1 thread(s)"
 }

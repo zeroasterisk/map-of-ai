@@ -1,0 +1,35 @@
+id: statistical-isthmus
+level: continent
+name: The Statistical Isthmus
+subtitle: "Probabilistic, Bayesian and statistical machine learning, 1988–2011"
+summary: >
+  Between 1988 and 2011, artificial intelligence shifted from hand-crafted
+  knowledge bases toward rigorous statistical foundations, probabilistic reasoning,
+  and benchmark-driven learning. Judea Pearl's 1988 treatise established Bayesian
+  networks and belief propagation as the principled calculus for reasoning under
+  uncertainty. Vladimir Vapnik and Corinna Cortes introduced support-vector machines
+  at AT&T Bell Labs (1995), providing strong generalization bounds through VC theory
+  and kernel methods. In parallel, Leo Breiman and Jerome Friedman pioneered tree
+  ensembles—bagging (1996), random forests (2001), and gradient boosting (2001)—defining
+  the algorithmic culture of practical machine learning. Natural language processing
+  and speech recognition abandoned rule systems for hidden Markov models, the Penn
+  Treebank (1993), IBM statistical translation (1993), and BLEU (2002), culminating
+  in the "unreasonable effectiveness of data" (2009). The era established landmark
+  public achievements—Deep Blue defeating Kasparov (1997), Stanley winning the DARPA
+  Grand Challenge (2005), and Watson winning Jeopardy! (2011)—and institutionalized
+  the modern ML conference, benchmark, and open-source software ecosystem.
+time_range: {start: 1988, end: 2011}
+band: [N2, C, S1]
+biome: grassland
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [3, 4, 5, 7, 10, 15, 18, 19, 21, 23, 26, 31, 33, 37, 43, 53]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Bayesian_network", title: "Wikipedia: Bayesian network", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1007/BF00994018", title: "Cortes & Vapnik, Support-Vector Networks, Machine Learning 1995", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1023/A:1010933404324", title: "Breiman, Random Forests, Machine Learning 2001", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1109/MIS.2009.36", title: "Halevy, Norvig & Pereira, The Unreasonable Effectiveness of Data, 2009", kind: primary, accessed: 2026-09-22}
+threads: [language, compute, rl]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 7 (The Statistical Isthmus).
