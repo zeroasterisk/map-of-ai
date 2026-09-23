@@ -1,0 +1,32 @@
+id: funding-passes
+level: country
+name: The Funding Passes
+subtitle: "Funding cliffs, the Lisp-machine crash and the second AI winter, 1974–1993"
+summary: >
+  The funding-politics ridge of the Winter Steppes, which traces AI's money from cliff
+  to boom to collapse. Its western wall is the First Winter escarpment of 1974. DARPA
+  cut back basic AI funding in the United States after the 1973 Lighthill Report in
+  the UK, and British AI survived only at Edinburgh, Essex and Sussex. DARPA's Speech
+  Understanding Research programme closed in 1976. At the 1984 AAAI annual meeting,
+  Roger Schank and Marvin Minsky coined the term "AI winter" as a warning that the
+  business bubble would burst. It burst in 1987, when Sun and Apple workstations and
+  PCs ran Lisp more cheaply than dedicated Lisp machines and that market collapsed. In
+  1988 the Strategic Computing Initiative cancelled new AI spending. By 1993 Symbolics
+  and most Lisp companies had failed or exited and the SCI had concluded. "AI" had
+  become a label to avoid, and research continued under names such as machine
+  learning, informatics and knowledge-based systems. This is the eastern fog bank.
+time_range: {start: 1974, end: 1993}
+band: N1
+sub_band: [N1b]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [1, 2, 13, 14, 19, 36]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/AI_winter", title: "Wikipedia: AI winter [1]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Lisp_machine", title: "Wikipedia: Lisp machine [14]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative", title: "Wikipedia: Strategic Computing Initiative [19]", kind: wikipedia, accessed: 2026-09-23}
+threads: [compute]
+status: sourced

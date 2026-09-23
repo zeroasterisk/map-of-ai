@@ -1,0 +1,38 @@
+id: formal-logic-isles
+level: country
+name: The Formal Logic Isles
+subtitle: "Formal logic and the foundations of mathematics, 1666–1931"
+summary: >
+  The northern chain of the archipelago, where reasoning was first treated as
+  symbol manipulation under explicit rules. Leibniz's characteristica
+  universalis and calculus ratiocinator (1666–1679) are the symbolic pole's
+  founding fantasy of mechanised reasoning. George Boole's An Investigation of
+  the Laws of Thought (1854) gave an algebra of logic. Gottlob Frege's
+  Begriffsschrift (1879) introduced modern predicate logic with quantifiers,
+  the notation symbolic AI later used. Whitehead and Russell's Principia
+  Mathematica (1910–1913) derived mathematics formally from logic, and Logic
+  Theorist proved its theorems in 1956. David Hilbert's programme of the 1920s
+  sought a finitary proof of the consistency, completeness and decidability of
+  mathematics, and so posed the Entscheidungsproblem. Kurt Gödel's
+  incompleteness theorems (1931) showed the limits of formal systems. Those
+  theorems were later cited both for and against machine intelligence.
+time_range: {start: 1666, end: 1931}
+band: N2
+sub_band: [N2a, N2b]
+biome: highland
+parent_id: antecedent-isles
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [1, 4, 5, 6, 8, 9]
+sources:
+  - {url: "https://plato.stanford.edu/entries/leibniz-logic-influence/", title: "SEP, Leibniz's Influence on 19th Century Logic [1]", kind: secondary, accessed: 2026-09-06}
+  - {url: "https://www.gutenberg.org/ebooks/15114", title: "Boole, An Investigation of the Laws of Thought, 1854 [4]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Begriffsschrift", title: "Wikipedia: Begriffsschrift [5]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://plato.stanford.edu/entries/hilbert-program/", title: "SEP, Hilbert's Program [8]", kind: secondary, accessed: 2026-09-06}
+  - {url: "https://doi.org/10.1007/BF01700692", title: "Gödel, Über formal unentscheidbare Sätze…, 1931 [9]", kind: primary, accessed: 2026-09-06}
+threads: []
+status: sourced
+notes: >
+  P3-T1 school bullet "Formal logic & foundations of mathematics" (research/01).
+  Bridge east: Principia Mathematica → Logic Theorist 1956 (symbolic-heartland).

@@ -1,0 +1,39 @@
+id: winter-steppes
+level: continent
+name: The Winter Steppes
+subtitle: "The two AI winters — funding collapse and retrenchment, 1974–1993"
+summary: >
+  The northern steppe of the knowledge era, drawn as sparse frozen ground on either
+  side of the expert-systems boom. Its western border is the First Winter escarpment
+  of 1974, when DARPA cut back basic AI funding in the United States following the
+  1973 Lighthill Report in the UK, and British AI survived only at Edinburgh, Essex
+  and Sussex. On that cold western band the field regrouped: Newell and Simon stated
+  the physical symbol system hypothesis (1975), MYCIN and PROSPECTOR showed rule-based
+  consultants could rival specialists, Hearsay-II introduced the blackboard, and
+  Feigenbaum declared that "knowledge is power" (1977). AAAI was founded in 1979.
+  Critics kept the ground contested throughout: Weizenbaum (1976), Searle's Chinese
+  Room (1980), the Dreyfus brothers' Mind over Machine (1986) and Brooks's
+  anti-representationalist manifestos (1990–91). The eastern frozen band begins in
+  1987, when the Lisp-machine market collapsed; the Strategic Computing Initiative
+  cut new AI spending in 1988, and by 1993 "AI" had become a label researchers avoided.
+  The eastern border is a fog bank rather than a cliff: the field does not end, it
+  renames itself as machine learning, knowledge-based systems and informatics.
+time_range: {start: 1974, end: 1993}
+band: [N1, N2]
+biome: highland
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [1, 2, 3, 5, 6, 7, 12, 14, 19, 32, 44]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/AI_winter", title: "Wikipedia: AI winter [1]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence", title: "Wikipedia: History of artificial intelligence [2]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf", title: "Feigenbaum, The Art of Artificial Intelligence, IJCAI-77 [7]", kind: primary, accessed: 2026-09-23}
+  - {url: "https://doi.org/10.1017/S0140525X00005756", title: "Searle, Minds, Brains, and Programs, BBS 1980 [12]", kind: primary, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Lisp_machine", title: "Wikipedia: Lisp machine [14]", kind: wikipedia, accessed: 2026-09-23}
+threads: [compute, safety]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 4 (The Winter Steppes); research/03 split per
+  REGISTRY.md D2. Brooks's behaviour-based robotics has its home in S2; only his
+  1990–91 anti-representationalist critiques are placed here (N1). The 1980s
+  connectionist revival items of research/03 live in connectionist-revival.

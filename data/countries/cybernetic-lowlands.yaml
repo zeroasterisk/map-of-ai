@@ -1,0 +1,42 @@
+id: cybernetic-lowlands
+level: country
+name: The Cybernetic Lowlands
+subtitle: "Feedback, control, homeostasis and adaptive machines, 1943–1955"
+summary: >
+  The southern lowlands of the shore, where feedback, control and homeostasis
+  were studied as one science of animals and machines. Rosenblueth, Wiener and
+  Bigelow's "Behavior, Purpose and Teleology" (1943) was the manifesto. The Macy
+  Conferences in New York (1946–1953) brought Wiener, McCulloch, Pitts, von
+  Neumann, Shannon, Bateson and Mead together. Wiener's Cybernetics (1948) named
+  the field, and The Human Use of Human Beings (1950) took it to the public and
+  to the automation debate. The lowlands also hold the computing coast: von
+  Neumann's EDVAC report (1945), first realised in the Manchester Baby (1948),
+  and his Hixon lecture on automata (1948). In Britain, Grey Walter's tortoises
+  (1948–49), Ross Ashby's Homeostat and Design for a Brain (1952), and the Ratio
+  Club, founded in 1949 with Kenneth Craik as its acknowledged precursor,
+  embodied adaptive behaviour in hardware. Couffignal's 1951 Paris colloque
+  brought cybernetics to continental Europe. The Soviet press denounced it as a
+  "reactionary pseudoscience" from 1950 to 1954, and rehabilitation began in
+  1955.
+time_range: {start: 1943, end: 1955}
+band: S2
+sub_band: [S2a, S2b]
+biome: mixed
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [13, 14, 15, 16, 19, 21, 22, 26, 34, 37, 42, 47, 48, 50]
+sources:
+  - {url: "https://doi.org/10.1086/286788", title: "Rosenblueth, Wiener & Bigelow, Behavior, Purpose and Teleology, 1943 [13]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Macy_conferences", title: "Wikipedia: Macy conferences [15]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://archive.org/details/cyberneticsorcon00wien", title: "Wiener, Cybernetics, 1948 [16]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://archive.org/details/designforbrain00ashb", title: "Ashby, Design for a Brain, 1952 [26]", kind: primary, accessed: 2026-09-06}
+threads: [robotics, compute]
+status: sourced
+notes: >
+  P3-T2 school bullet "Cybernetics" (research/01). The von Neumann EDVAC and
+  automata items are folded in here, following the split table ("folded into
+  the shore's cybernetics/computing coast, not a separate school"). Map notes
+  open question (b), whether the Macy Conferences get city or street status, is
+  still open; they are an event here.

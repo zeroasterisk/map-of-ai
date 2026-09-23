@@ -1,0 +1,41 @@
+id: fifth-generation-shogunate
+level: country
+name: The Fifth Generation Shogunate
+subtitle: "Logic programming, ICOT and the national AI programmes it provoked, 1980–1984"
+summary: >
+  Tokyo and ICOT, with Alvey, ESPRIT, MCC and the Strategic Computing Initiative as
+  satellite provinces. In 1982 Japan's MITI launched the Fifth Generation Computer
+  Systems project, a ten-year national programme to build massively parallel
+  logic-programming machines. Ehud Shapiro, visiting ICOT that year, set out the
+  programme's rationale and developed Concurrent Prolog. David H. D. Warren's abstract
+  machine (1983) became the compiler model for Prolog. The project set off a global
+  competitive response. The MCC consortium formed in Austin in 1982, Feigenbaum
+  co-wrote The Fifth Generation (1983), and DARPA's Strategic Computing Initiative
+  (1983, about $1B) followed. Europe's ESPRIT programme began in 1983, and the UK's
+  Alvey Programme followed in 1984 with £350M. Governments were funding AI at scale
+  again. Research/03 treats these national programmes as funding geography rather
+  than ideas, drawn here as forts. Their later decline (SCI's 1988 cuts, and the
+  project's close in 1992 without meeting its original goals) belongs to the eastern
+  frozen band of the Winter Steppes.
+time_range: {start: 1980, end: 1984}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: expert-systems-plateau
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [15, 18, 19, 20, 34, 41, 51]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems", title: "Wikipedia: Fifth Generation Computer Systems [15]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative", title: "Wikipedia: Strategic Computing Initiative [19]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Alvey", title: "Wikipedia: Alvey [20]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Warren_Abstract_Machine", title: "Wikipedia: Warren Abstract Machine [51]", kind: wikipedia, accessed: 2026-09-23}
+threads: [compute]
+status: sourced
+notes: >
+  The span covers the launch period of the Fifth Generation project and the national
+  responses to it (1982–84). It starts at the plateau's 1980 west edge because logic
+  programming predates the project (Prolog 1972, era 02). The N2b row passes to
+  cyc-territory from 1984. The programmes' later wind-down is shown in funding-passes
+  (winter-steppes).

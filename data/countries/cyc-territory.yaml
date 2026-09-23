@@ -1,0 +1,31 @@
+id: cyc-territory
+level: country
+name: The Cyc Territory
+subtitle: "Cyc, hand-coded commonsense and ontologies in Austin, 1984–1993"
+summary: >
+  The symbolic pole's most ambitious bet, in Austin. In July 1984 Douglas Lenat, who
+  had come from Stanford with the discovery programs AM and EURISKO behind him, began
+  Cyc at the MCC consortium. MCC had been formed in 1982 as the American answer to
+  Japan's Fifth Generation. Cyc was a decades-long attempt to hand-code commonsense
+  knowledge as an encyclopaedic ontology. It drew on the knowledge-representation
+  community's results and looked back to McCarthy's Advice Taker. Close by, Ronald
+  Brachman and James Schmolze's 1985 overview of KL-ONE gave frame-based
+  representation formal semantics. KL-ONE was the first description-logic system, and
+  its lineage runs to OWL and the Semantic Web. The territory's eastern frontier leads
+  across the 1993 fog bank to knowledge graphs and the commonsense debates of the LLM
+  era.
+time_range: {start: 1984, end: 1993}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: expert-systems-plateau
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [18, 37, 52]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Cyc", title: "Wikipedia: Cyc [18]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Douglas_Lenat", title: "Wikipedia: Douglas Lenat [18]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/KL-ONE", title: "Wikipedia: KL-ONE [52]", kind: wikipedia, accessed: 2026-09-23}
+threads: [language]
+status: sourced

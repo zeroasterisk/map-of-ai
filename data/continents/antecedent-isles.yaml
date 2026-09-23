@@ -1,0 +1,46 @@
+id: antecedent-isles
+level: continent
+name: The Antecedent Isles
+subtitle: "Logic, computability and the mathematical prehistory of AI, 1666–1942"
+summary: >
+  An offshore archipelago west of the 1943 coastline, holding the logic and
+  computability ideas that came before anyone spoke of artificial intelligence.
+  Leibniz's characteristica universalis and calculus ratiocinator (1666–1679)
+  imagined reasoning reduced to calculation, and they form the outermost isle.
+  Babbage designed the Analytical Engine from 1837, and Ada Lovelace's 1843 notes
+  described how to program it. The same notes argued that the machine "has no
+  pretensions to originate anything", an objection Turing answered in 1950.
+  Boole's Laws of Thought (1854) treated reasoning as algebra. Frege's
+  Begriffsschrift (1879) introduced predicate logic with quantifiers, and
+  Whitehead and Russell's Principia Mathematica (1910–1913) derived mathematics
+  from logic. Hilbert's programme of the 1920s posed the Entscheidungsproblem,
+  and Gödel's incompleteness theorems (1931) set limits on formal systems. In
+  1936 Church's lambda calculus and Turing's universal machine, with Post's
+  equivalent model, answered Hilbert in the negative and defined what a computer
+  is. The Turing isle, largest and nearest, is drawn with a causeway to the
+  shore. These isles are indispensable context but are not AI research, which
+  is why they sit offshore on a log-compressed scale.
+time_range: {start: 1666, end: 1942}
+offshore: true
+band: [N1, N2]
+biome: highland
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 44]
+sources:
+  - {url: "https://plato.stanford.edu/entries/leibniz-logic-influence/", title: "SEP, Leibniz's Influence on 19th Century Logic [1]", kind: secondary, accessed: 2026-09-06}
+  - {url: "https://www.gutenberg.org/ebooks/15114", title: "Boole, An Investigation of the Laws of Thought, 1854 [4]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://doi.org/10.1007/BF01700692", title: "Gödel, Über formal unentscheidbare Sätze…, 1931 [9]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf", title: "Turing, On Computable Numbers, 1936 [11]", kind: primary, accessed: 2026-09-06}
+threads: [compute]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 1 (The Antecedent Isles). Content is the
+  archipelago half of the research/01 split table (P1-T11): timeline rows 1–9,
+  school bullets "Formal logic & foundations of mathematics" and "Computability
+  / theory of computation", and the Lovelace objection as the offshore
+  antecedent of the shore's Turing-test school. The research file has only nine
+  archipelago timeline rows, so the isles carry fewer events than the 30 target;
+  no events were added beyond what research/01 states. research/01 open
+  question (a) (a single "Myths & Automata" islet) is left undrawn because the
+  file gives no sourced content for it.

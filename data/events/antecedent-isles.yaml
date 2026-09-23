@@ -1,0 +1,35 @@
+# Antecedent Isles — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/01-origins-pre-1956.md ([n] = its source number); archipelago half of its
+# P1-T11 split table (timeline rows 1–9). `lod: 1–2` = landmark; `lod: 3` = headline event (labelled dot at z3 and
+# z4, one_line at z4); `lod: 4` = detail event (z4 only). `hint` = z1 landmark hint; `tag` = z2 one-line tag.
+# research/01 has only nine pre-1943 timeline rows; this file does not pad beyond what the research states.
+countries:
+  formal-logic-isles:
+    hint: "Leibniz 1666 · Gödel 1931"
+    tag: "Leibniz → Boole → Frege → Principia → Gödel"
+    events:
+      - {id: leibniz-characteristica-1666, name: Calculus Ratiocinator, year: 1666.0, lod: 2, one_line: "Leibniz proposes a universal formal language and mechanical rules of reasoning (1666–1679)", sources: [{url: "https://plato.stanford.edu/entries/leibniz-logic-influence/", title: "SEP, Leibniz's Influence on 19th Century Logic [1]"}]}
+      - {id: boole-laws-of-thought-1854, name: Laws of Thought, year: 1854.0, lod: 3, one_line: "George Boole's algebra of logic: reasoning as symbol manipulation", sources: [{url: "https://www.gutenberg.org/ebooks/15114", title: "Boole, An Investigation of the Laws of Thought, 1854 [4]"}]}
+      - {id: frege-begriffsschrift-1879, name: Begriffsschrift, year: 1879.0, lod: 3, one_line: "Frege's predicate logic with quantifiers: the notation of symbolic AI", sources: [{url: "https://en.wikipedia.org/wiki/Begriffsschrift", title: "Wikipedia: Begriffsschrift [5]"}]}
+      - {id: principia-mathematica-1910, name: Principia Mathematica, year: 1910.0, lod: 3, one_line: "Whitehead & Russell begin deriving mathematics formally from logic", sources: [{url: "https://en.wikipedia.org/wiki/Principia_Mathematica", title: "Wikipedia: Principia Mathematica [6]"}]}
+      - {id: principia-completed-1913, name: Principia Completed, year: 1913.0, lod: 4, one_line: "Final volume appears; Logic Theorist will prove its theorems in 1956", sources: [{url: "https://en.wikipedia.org/wiki/Principia_Mathematica", title: "Wikipedia: Principia Mathematica [6]"}]}
+      - {id: hilbert-programme-1920, name: Hilbert's Programme, year: 1920.0, lod: 3, one_line: "1920s: finitary proof of consistency, completeness and decidability of mathematics", sources: [{url: "https://plato.stanford.edu/entries/hilbert-program/", title: "SEP, Hilbert's Program [8]"}]}
+      - {id: entscheidungsproblem-1920, name: Entscheidungsproblem, year: 1920.5, lod: 4, one_line: "Hilbert's decision problem, which Church and Turing answer in 1936", sources: [{url: "https://plato.stanford.edu/entries/hilbert-program/", title: "SEP, Hilbert's Program [8]"}]}
+      - {id: godel-incompleteness-1931, name: Gödel Incompleteness, year: 1931.0, lod: 2, one_line: "Limits of formal systems; later cited both for and against machine intelligence", sources: [{url: "https://doi.org/10.1007/BF01700692", title: "Gödel, Über formal unentscheidbare Sätze…, 1931 [9]"}]}
+
+  analytical-engine-isle:
+    hint: "Babbage · Lovelace 1843"
+    tag: "Analytical Engine → Lovelace's notes"
+    events:
+      - {id: analytical-engine-1837, name: Analytical Engine, year: 1837.0, lod: 3, one_line: "Babbage designs the first general-purpose programmable machine", sources: [{url: "https://en.wikipedia.org/wiki/Analytical_Engine", title: "Wikipedia: Analytical Engine [2]"}]}
+      - {id: lovelace-notes-1843, name: Lovelace's Notes, year: 1843.5, lod: 3, one_line: "Notes on Menabrea's Sketch describe programming the Engine: the first published program", sources: [{url: "https://www.fourmilab.ch/babbage/sketch.html", title: "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]"}]}
+      - {id: lovelace-objection-1843, name: Lovelace's Objection, year: 1843.6, lod: 4, one_line: "The Engine \"has no pretensions to originate anything\"; Turing answers in 1950", sources: [{url: "https://www.fourmilab.ch/babbage/sketch.html", title: "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]"}, {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing 1950 [7]"}]}
+
+  computability-isle:
+    hint: "Church · Turing 1936"
+    tag: "Lambda calculus → Turing machine → Church–Turing thesis"
+    events:
+      - {id: church-lambda-calculus-1936, name: Lambda Calculus, year: 1936.3, lod: 3, one_line: "Church's independent negative answer to the Entscheidungsproblem; later underpins Lisp", sources: [{url: "https://doi.org/10.2307/2371045", title: "Church, An Unsolvable Problem of Elementary Number Theory, 1936 [10]"}]}
+      - {id: turing-computable-numbers-1936, name: On Computable Numbers, year: 1936.9, lod: 1, one_line: "Turing defines the Turing machine and the universal machine: the theoretical computer", sources: [{url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf", title: "Turing, On Computable Numbers, 1936 [11]"}]}
+      - {id: post-machine-1936, name: Post Machine, year: 1936.8, lod: 4, one_line: "Emil Post independently publishes an equivalent worker-and-boxes model", sources: [{url: "https://en.wikipedia.org/wiki/Emil_Leon_Post", title: "Wikipedia: Emil Leon Post [44]"}]}
+      - {id: church-turing-thesis-1937, name: Church–Turing Thesis, year: 1937.0, lod: 4, one_line: "Church, Turing, Post and Kleene formulations prove equivalent: the Church–Turing thesis", sources: [{url: "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis", title: "Wikipedia: Church–Turing thesis [44]"}]}

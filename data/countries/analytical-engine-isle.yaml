@@ -1,0 +1,36 @@
+id: analytical-engine-isle
+level: country
+name: The Analytical Engine Isle
+subtitle: "Babbage's Analytical Engine and Lovelace's notes, 1837–1843"
+summary: >
+  A small isle for the first design of a general-purpose programmable machine.
+  Charles Babbage designed the Analytical Engine in London from 1837. In 1843
+  Ada Lovelace translated Luigi Menabrea's Sketch of the Analytical Engine and
+  added her own notes. The notes describe how to program the engine and are
+  counted as the first published program. They also contain the first argument
+  about machine creativity: the engine "has no pretensions to originate
+  anything". Alan Turing answered this "Lady Lovelace's objection" in 1950, as
+  one of the nine objections in Computing Machinery and Intelligence. For that
+  reason the isle is the offshore antecedent of the shore's Turing-test and
+  philosophy-of-mind country, which sits on the mainland across the 1943
+  coastline.
+time_range: {start: 1837, end: 1843}
+band: N1
+sub_band: [N1a, N1b]
+biome: highland
+parent_id: antecedent-isles
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [2, 3, 7]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Analytical_Engine", title: "Wikipedia: Analytical Engine [2]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://www.fourmilab.ch/babbage/sketch.html", title: "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing, Computing Machinery and Intelligence, 1950 [7]", kind: primary, accessed: 2026-09-06}
+threads: [compute]
+status: sourced
+notes: >
+  P3-T1: research/01 timeline row 2 (Babbage / Lovelace). The split table makes
+  the Lovelace objection the offshore antecedent of the shore's "Turing test &
+  philosophy of machine intelligence" school; it is drawn as its own isle
+  rather than folded into the logic chain.

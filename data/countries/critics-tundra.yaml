@@ -1,0 +1,38 @@
+id: critics-tundra
+level: country
+name: The Critics' Tundra
+subtitle: "Physical symbol systems and the philosophical critics of AI, 1974–1993"
+summary: >
+  The philosophy-and-foundations ridge at the far north of the Winter Steppes. At one
+  end stands symbolic AI's creed, Newell and Simon's physical symbol system hypothesis,
+  stated in their 1975 Turing Award lecture and published in 1976. Around it, critics
+  pressed on AI's claims. Joseph Weizenbaum's insider critique Computer Power and
+  Human Reason appeared in 1976. John Searle's Chinese Room (1980) argued that
+  manipulating symbols is not understanding and gave "strong AI" its name. In 1986
+  Hubert and Stuart Dreyfus's Mind over Machine argued that expertise is intuitive
+  know-how, not rules, taking direct aim at expert systems. Winograd and Flores's
+  Understanding Computers and Cognition and Minsky's The Society of Mind appeared the
+  same year. Moravec's Mind Children (1988) named the lesson that perception and
+  mobility are harder than reasoning. Rodney Brooks's "Elephants Don't Play Chess"
+  (1990) and "Intelligence Without Representation" (1991) are the definitive
+  anti-representationalist manifestos.
+time_range: {start: 1974, end: 1993}
+band: N1
+sub_band: [N1a]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [5, 6, 12, 32, 39, 44, 49, 50]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Physical_symbol_system", title: "Wikipedia: Physical symbol system (Newell & Simon 1976) [5]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://doi.org/10.1017/S0140525X00005756", title: "Searle, Minds, Brains, and Programs, BBS 1980 [12]", kind: primary, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Hubert_Dreyfus", title: "Wikipedia: Hubert Dreyfus [44]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://doi.org/10.1016/0004-3702%2891%2990053-M", title: "Brooks, Intelligence Without Representation, AIJ 1991 [32]", kind: primary, accessed: 2026-09-23}
+threads: [safety]
+status: sourced
+notes: >
+  Brooks's subsumption robotics (S2) is not placed here. Only his 1990–91 manifestos,
+  which research/03 files under Nouvelle AI's critique of representation, are placed
+  here.
