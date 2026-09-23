@@ -195,7 +195,14 @@ def dump_dom(port):
             pg = b.new_page(viewport={"width": PLATE_W, "height": PLATE_H})
             pg.route(re.compile(r"^https?://(?!127\.0\.0\.1)"), lambda r: r.abort())   # offline: no Google Fonts
             pg.goto(f"http://127.0.0.1:{port}/atlas.html?tilesrc=1&lod=4", wait_until="networkidle")
-            pg.wait_for_selector("#kevents4 .kev-dot")
+            # poll with evaluate: rAF-driven waits (wait_for_selector / wait_for_function) stall on this heavy SVG page
+            # under SwiftShader (frames take seconds), while plain evaluate returns immediately
+            import time as _t
+            t0 = _t.time()
+            while pg.evaluate("document.querySelectorAll('#kevents4 .kev-dot').length") == 0:
+                if _t.time() - t0 > 60:
+                    raise RuntimeError("atlas.html did not render #kevents4 .kev-dot within 60 s")
+                pg.wait_for_timeout(500)
             pg.wait_for_timeout(800)
             dom = pg.evaluate(DOM_JS)
             b.close()

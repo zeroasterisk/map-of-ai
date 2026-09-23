@@ -124,7 +124,7 @@ V2_EVAL_JS = r"""(ARGS) => {
   } catch (e) { engineErr = e.message; }
   const seen = new Set(); const boxes = [];
   const counts = {continent: 0, country: 0, landmark: 0, fact: 0}; const kinds = {};
-  let clipped = 0, clippedMajor = 0, clippedMajorAnchored = 0, clipMax = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = []; const majorByLayer = {};
+  let clipped = 0, clippedMajor = 0, clippedMajorAnchored = 0, clippedAnyAnchored = 0, clipMax = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = []; const majorByLayer = {}; const anyAnchoredTexts = [];
   for (const f of feats) {
     const key = f.layer.id + ':' + f.properties.id;
     if (seen.has(key)) continue; seen.add(key);
@@ -152,15 +152,19 @@ V2_EVAL_JS = r"""(ARGS) => {
     }
     Object.assign(box, {text: text.slice(0, 40), cls, layer: f.layer.id, size});
     boxes.push(box);
+    const anchored = p.x >= 0 && p.x <= vw && p.y >= 0 && p.y <= vh;
     if (box.x1 < -2 || box.x2 > vw + 2 || box.y1 < -2 || box.y2 > vh + 2) {
       clipped++;
       const over = Math.max(-box.x1, box.x2 - vw, -box.y1, box.y2 - vh); clipMax = Math.max(clipMax, over);
+      // Phase 4d task A: ANY part of a label off-screen while its anchor is on-screen (sea labels excluded: they may be
+      // hidden entirely instead, and the ocean layer hides them via text-optional/padding rather than clipping)
+      if (anchored && f.layer.id !== 'symbol-ocean') { clippedAnyAnchored++; if (anyAnchoredTexts.length < 6) anyAnchoredTexts.push(f.layer.id + ':' + text.slice(0, 24)); }
       const visW = Math.max(0, Math.min(box.x2, vw) - Math.max(box.x1, 0)), visH = Math.max(0, Math.min(box.y2, vh) - Math.max(box.y1, 0));
       if (visW * visH < 0.5 * (box.x2 - box.x1) * (box.y2 - box.y1)) {
         clippedMajor++; majorByLayer[f.layer.id] = (majorByLayer[f.layer.id] || 0) + 1;
         // anchor (the feature's own point) inside the viewport → the label is chopped although its subject is on screen;
         // anchor outside → MapLibre placed a label for an off-screen feature inside its 100 px padding band (pan-in behaviour)
-        if (p.x >= 0 && p.x <= vw && p.y >= 0 && p.y <= vh) clippedMajorAnchored++;
+        if (anchored) clippedMajorAnchored++;
       }
     }
     minFont = Math.min(minFont, size); maxFont = Math.max(maxFont, size);
@@ -176,6 +180,7 @@ V2_EVAL_JS = r"""(ARGS) => {
   const total = counts.continent + counts.country + counts.landmark + counts.fact;
   const html = document.querySelectorAll('.maplibregl-marker, .leaflet-marker-icon').length;
   return {visibleLabels: total, labels: counts, kinds, landmarks: counts.landmark, facts: counts.fact, clipped, clipped_major: clippedMajor, clipped_major_anchored: clippedMajorAnchored,
+          clipped_any_anchored: clippedAnyAnchored, clipped_any_anchored_texts: anyAnchoredTexts,
           clipped_major_by_layer: majorByLayer, clip_max_px: Math.round(clipMax), overlaps, overlapPairs,
           box_source: engineBoxes ? 'engine' : 'canvas', unmatched_boxes: unmatched, engine_boxes: engineBoxes, engine_error: engineErr,
           min_font_px: isFinite(minFont) ? minFont : null, max_font_px: maxFont || null, font_cap_violations: capViol.slice(0, 5),
@@ -426,6 +431,36 @@ def run_sampler(port=8992, save_shots=True):
     return pass_rate >= 0.95
 
 
+def blank_ratio(png_bytes, grid=16, var_floor=6.0):
+    """Phase 4d task A: fraction of the map canvas with neither text, icon, terrain nor sea texture. The screenshot is cut
+    into a grid×grid lattice of cells; a cell is BLANK when the luminance standard deviation of its pixels is below
+    `var_floor` (0–255 scale) — flat parchment, flat land fill and flat sea all fail this, while text, dots, borders,
+    hatching, hillshade and cartouches pass. Tolerant to SwiftShader vs GPU: the floor is ~6 grey levels, an order of
+    magnitude above rasteriser noise, an order below any drawn ink. Returns (ratio, blank_cells_grid_as_rows)."""
+    import io
+    import numpy as np
+    from PIL import Image
+    im = Image.open(io.BytesIO(png_bytes)).convert("L")
+    a = np.asarray(im, dtype=np.float32)
+    h, w = a.shape
+    h -= int(round(BAR_CSS_PX * DPR))          # the 28 px chrome bar below the canvas is not map
+    rows = []
+    blank = 0
+    for gy in range(grid):
+        row = ""
+        for gx in range(grid):
+            cell = a[gy * h // grid:(gy + 1) * h // grid, gx * w // grid:(gx + 1) * w // grid]
+            b = float(cell.std()) < var_floor
+            blank += b
+            row += "." if b else "#"
+        rows.append(row)
+    return blank / (grid * grid), rows
+
+
+BAR_CSS_PX = 28            # site/v2/index.html --bar
+BLANK_SOFT_MAX = {1: 0.5, 2: 0.5, 3: 0.5}      # §2.4 (Phase 4d): soft floor blank_ratio ≤ 0.5 at z1–z3
+
+
 def _v2_judge(level, m):
     """§2.4 row for the level → (hard_failures, soft_failures). Hard: clipped_major==0 (planner decision, Phase 4b: a
     placed label with < 50 % of its box inside the viewport — the "giant half-cut banner"; raw `clipped` = any box over
@@ -440,12 +475,17 @@ def _v2_judge(level, m):
     # < 50 % of its box is visible). Major clips of off-screen anchors are MapLibre's 100 px padding band: reported only.
     if m.get("clipped_major_anchored", 0) > 0:
         hard.append(f"clipped_major_anchored={m['clipped_major_anchored']}")
+    # Phase 4d task A: ANY part of an on-screen-anchored label off-screen is a hard failure (sea labels excluded)
+    if m.get("clipped_any_anchored", 0) > 0:
+        hard.append(f"clipped_any_anchored={m['clipped_any_anchored']}")
     if m["overlaps"] > 0:
         hard.append(f"overlaps={m['overlaps']}")
     if m.get("font_cap_violations"):
         hard.append(f"font caps: {m['font_cap_violations'][:2]}")
     if m.get("html_markers"):
         hard.append(f"html_markers={m['html_markers']}")
+    if level in BLANK_SOFT_MAX and m.get("blank_ratio") is not None and m["blank_ratio"] > BLANK_SOFT_MAX[level]:
+        soft.append(f"blank_ratio={m['blank_ratio']:.2f} > {BLANK_SOFT_MAX[level]}")
     # land frame = sea_ratio ≤ 0.6 (§2.4). Measured: on a 412×892 portrait phone the z0 frame (whole plate) and the z1
     # frame (≈640×1385 units vs a ≈560-unit-tall land band) can never reach 40 % land, so z0/z1 floors apply to every
     # frame (the §2.4 z0 row already says "whole plate fits"); z2/z3 floors apply to land frames only.
@@ -515,6 +555,12 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
                     if level == 1 and Z1_COUNTRIES_ARE_LANDMARKS and not m.get("error"):
                         m["landmarks_symbols"] = m["landmarks"]
                         m["landmarks"] = m["labels"]["landmark"] + m["labels"]["country"]
+                    if not m.get("error"):
+                        try:
+                            png = pg.screenshot()
+                            m["blank_ratio"], m["blank_grid"] = blank_ratio(png)
+                        except Exception as e:
+                            m["blank_ratio"], m["blank_error"] = None, str(e)[:80]
                     hard, soft = _v2_judge(level, m)
                     land = m["sea_ratio"] <= 0.6 or level <= 1
                     stats["n"] += 1
@@ -534,7 +580,7 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
                     records.append(rec)
                     tag = "HARD-FAIL" if hard else ("soft-fail" if soft else ("PASS" if land else "sea (skipped floors)"))
                     print(f"  {f['id']:20s} z{zoom} x={f['x']:<7} y={f['y']:<6} labels={m['visibleLabels']:>2} lm={m['landmarks']:>2} facts={m['facts']:>2} "
-                          f"clip={m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)} ovl={m['overlaps']} sea={m['sea_ratio']:.2f} {tag} {'; '.join((hard + soft)[:3])}")
+                          f"clip={m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)}/any{m.get('clipped_any_anchored', 0)} ovl={m['overlaps']} sea={m['sea_ratio']:.2f} blank={m.get('blank_ratio') if m.get('blank_ratio') is None else round(m['blank_ratio'], 2)} {tag} {'; '.join((hard + soft)[:3])}")
                     if save_shots and (hard or f.get("pinned")):
                         pg.screenshot(path=str(SHOTS_DIR / f"v2-{'hardfail' if hard else 'pinned'}_{f['id']}.png"))
                     pg.close()
@@ -559,24 +605,24 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
     lines = [f"# Density sampler — v2 (MapLibre) — {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())}", "",
              f"Renderer `site/v2/index.html`, {VIEWPORT['width']}×{VIEWPORT['height']} CSS px @ DPR {DPR}, {total} fixture frames "
              f"({len(land_recs)} land frames with sea_ratio ≤ 0.6), {report['seconds']} s.", "",
-             f"Hard gates (clipped_major_anchored==0, overlaps==0, font caps, no HTML markers): **{total - hard_fails}/{total} frames pass**.",
+             f"Hard gates (clipped_any_anchored==0, clipped_major_anchored==0, overlaps==0, font caps, no HTML markers): **{total - hard_fails}/{total} frames pass**.",
              f"External (non-localhost) requests: {len(ext_requests)}. Console errors: {len(console_errors)}.", "",
-             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped / clipped_major / major_anchored | p50 sea | top failure reasons |", "|---|---|---|---|---|---|---|---|---|---|---|"]
+             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped / clipped_major / major_anchored / any_anchored | p50 sea | p50 blank | top failure reasons |", "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     def p50(lv, key):
-        vals = sorted(r["metrics"].get(key, 0) for r in records if r["level"] == lv)
+        vals = sorted((r["metrics"].get(key) or 0) for r in records if r["level"] == lv)
         return vals[len(vals) // 2] if vals else 0
     for lk, s in report["per_level"].items():
         lv = int(lk[1])
         pr = "–" if s["pass_rate_land"] is None else f"{100 * s['pass_rate_land']:.0f}%"
         top = ", ".join(f"{k}×{v}" for k, v in sorted(s["reasons"].items(), key=lambda kv: -kv[1])[:4])
         lines.append(f"| {lk} | {V2_LEVELS[lv]['zoom']} | {s['n']} | {s['land']} | {s['pass']} | {s['soft_fail']} | {s['hard_fail']} | {pr} | "
-                     f"{p50(lv, 'visibleLabels')} / {p50(lv, 'landmarks')} / {p50(lv, 'facts')} / {p50(lv, 'clipped')} / {p50(lv, 'clipped_major')} / {p50(lv, 'clipped_major_anchored')} | {p50(lv, 'sea_ratio'):.2f} | {top} |")
-    lines += ["", "## Worst 10 frames", "", "| frame | level | labels | landmarks | facts | clip/major/anchored | ovl | sea | reasons | link |", "|---|---|---|---|---|---|---|---|---|---|"]
+                     f"{p50(lv, 'visibleLabels')} / {p50(lv, 'landmarks')} / {p50(lv, 'facts')} / {p50(lv, 'clipped')} / {p50(lv, 'clipped_major')} / {p50(lv, 'clipped_major_anchored')} / {p50(lv, 'clipped_any_anchored')} | {p50(lv, 'sea_ratio'):.2f} | {(p50(lv, 'blank_ratio') or 0):.2f} | {top} |")
+    lines += ["", "## Worst 10 frames", "", "| frame | level | labels | landmarks | facts | clip/major/anchored/any | ovl | sea | blank | reasons | link |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     def badness(r):
         return (len(r["hard"]) * 100 + len(r["soft"]) * 10 - r["metrics"]["visibleLabels"] * 0.1) if r["land_frame"] else -1
     for r in sorted(records, key=badness, reverse=True)[:10]:
         m = r["metrics"]
-        lines.append(f"| {r['id']} | z{r['level']} | {m['visibleLabels']} | {m['landmarks']} | {m['facts']} | {m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)} | {m['overlaps']} | {m['sea_ratio']:.2f} | "
+        lines.append(f"| {r['id']} | z{r['level']} | {m['visibleLabels']} | {m['landmarks']} | {m['facts']} | {m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)}/{m.get('clipped_any_anchored', 0)} | {m['overlaps']} | {m['sea_ratio']:.2f} | {(m.get('blank_ratio') or 0):.2f} | "
                      f"{'; '.join(r['hard'] + r['soft'])[:90]} | [`?z={r['zoom']}&x={r['x']}&y={r['y']}`]({r['link']}) |")
     lines += ["", "## Measurement notes", "",
               "- `labels`/`landmarks`/`facts` = symbols MapLibre actually placed (`queryRenderedFeatures` over the symbol layers, deduped by layer+feature id).",
@@ -588,6 +634,9 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
               "  `clipped` and `clipped_major` (which includes labels of off-screen anchors in MapLibre's padding band) are reported, not gated.",
               "- z0/z1 frames on a portrait phone can never reach sea_ratio ≤ 0.6 (the land band is ≈560 units tall vs a 1385–3920-unit frame), so their",
               "  density floors are applied to every frame; z2/z3 floors apply to land frames only.",
+              "- Phase 4d task A: `clipped_any_anchored` (HARD, == 0) = a placed label whose anchor is on-screen and ANY part of whose box is off-screen by",
+              "  > 2 CSS px; sea labels (symbol-ocean) are exempt because they may be hidden entirely instead. `blank_ratio` (soft, ≤ 0.5 at z1–z3) = share of",
+              "  a 16×16 grid over the canvas screenshot whose luminance std-dev < 6 grey levels (no text, icon, terrain, sea texture or border ink).",
               "- z1 `landmarks` = landmark-class symbols (lod 1–2 events, lod ≤ 1 summits) + country names (Phase 4b task D); `landmarks_symbols` in the JSON",
               "  is the symbol-only count."]
     (DENSITY_DIR / "summary.md").write_text("\n".join(lines) + "\n")

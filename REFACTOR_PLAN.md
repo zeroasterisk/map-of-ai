@@ -118,6 +118,16 @@ of its box is visible. Labels anchored off-screen are MapLibre's 100 px padding 
 `text-variable-anchor`) so the big titles never render half-cut. Density floors in the table above stay as
 written: they are content-bound and content is being expanded in parallel (`refactor/v2-content`).
 
+Planner decision (2026-09-23, Phase 4d task A, supersedes the 4c clipping gate): the hard clipping gate is
+**`clipped_any_anchored == 0`** — a placed label whose anchor point is inside the viewport and ANY part of whose box is
+off-screen (> 2 CSS px). Sea labels (`symbol-ocean`) are exempt: they may be hidden entirely instead of clipped. The
+renderer meets it by `text-variable-anchor` on every label class (labels flip inward near an edge) plus the map's
+`padding`. `clipped_major_anchored == 0` stays hard as well (implied). New soft metric **`blank_ratio`** = share of a
+16×16 grid over the canvas screenshot whose luminance std-dev is < 6 grey levels, i.e. no text, icon, terrain, sea
+texture or border ink; soft ceiling **≤ 0.5 at z1–z3** (z0 reported only). Re-baseline at commit af7c510 geometry under
+the new gates: **15/100 hard-pass** (was 73/100 under the 4c definition); p50 blank_ratio z0 0.82 · z1 0.54 · z2 0.40 ·
+z3 0.67; p50 clipped_any_anchored z0 1 · z1 3 · z2 5 · z3 2.
+
 Calibration note: min-label floors were derived from the entity target (§5.4): with ~2,000 entities
 over ~1.1 M plate units² of land, a z3 frame (~13,800 units²) contains ~25 entities on average, a z2
 frame ~200 (collision-culled to the 14–45 band by priority). If the content target is missed, the
