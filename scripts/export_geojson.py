@@ -52,10 +52,12 @@ OUT = SITE / "v2" / "data"
 
 PLATE_W, PLATE_H = 1800, 1050
 X0, Y0, UNITS_PER_DEG = 900.0, 525.0, 50.0
+LAT_SCALE = 1.8     # Phase 4c task E: vertical exaggeration of the land band for the v2 export (portrait framing); the
+                    # renderer inverts it (site/v2/index.html toPlate) so ?x=&y= deep links still round-trip
 
 
 def to_lnglat(x, y):
-    return [round((x - X0) / UNITS_PER_DEG, 5), round(-(y - Y0) / UNITS_PER_DEG, 5)]
+    return [round((x - X0) / UNITS_PER_DEG, 5), round(-(y - Y0) * LAT_SCALE / UNITS_PER_DEG, 5)]
 
 
 # atlas.html BIOME tints (v11) — same palette as the SVG wash / legend swatches
@@ -330,7 +332,7 @@ def main():
                     x=round(tx, 1), y=round(ty, 1)))
 
     def write(name, feats):
-        fc = {"type": "FeatureCollection", "generated_by": "scripts/export_geojson.py", "crs_note": "lng=(x-900)/50 lat=-(y-525)/50 (plate units, 1 unit = 0.02°)",
+        fc = {"type": "FeatureCollection", "generated_by": "scripts/export_geojson.py", "crs_note": "lng=(x-900)/50 lat=-(y-525)*1.8/50 (plate units, 1 unit = 0.02° lng, 0.036° lat; LAT_SCALE 1.8 = Phase 4c task E)",
               "features": feats}
         (OUT / name).write_text(json.dumps(fc, ensure_ascii=False, separators=(",", ":")) + "\n")
         print(f"{name}: {len(feats)} features")

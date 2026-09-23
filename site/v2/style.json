@@ -6,7 +6,7 @@
    1800,
    1050
   ],
-  "mapofai:crs": "lng=(x-900)/50 lat=-(y-525)/50 ; 1 plate unit = 0.02 deg (scripts/export_geojson.py)",
+  "mapofai:crs": "lng=(x-900)/50 lat=-(y-525)*1.8/50 ; 1 plate unit = 0.02 deg lng, 0.036 deg lat (LAT_SCALE 1.8, Phase 4c task E; scripts/export_geojson.py)",
   "mapofai:levels": {
    "z0": 3.0,
    "z1": 4.5,

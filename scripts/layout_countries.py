@@ -24,6 +24,14 @@ Runs AFTER scripts/export_geojson.py and post-processes site/v2/data/{countries,
     vertical chord at that x (start fraction from a hash of the event id, golden-ratio steps, first position ≥ MIN_SEP
     plate units from every other event of the plate wins; otherwise the farthest one). No randomness.
  D. `class` property on point features (landmark / country / continent / fact) for the sampler.
+ Phase 4c:
+ C'. Display-text dedupe: hint/tag tokens that repeat a same-country event name (or a nearby summit) are dropped from the
+    exported label (data/ untouched; hints re-sourced from entities.json each run); an event whose name repeats a
+    lower-lod summit within 80 units gets `dedup` and the symbol-event layers hide its text (dot and fact stay).
+ F. Lobes: a country whose events need x = X(year) outside its polygon grows an organic lobe (noisy box ∩ continent)
+    from same-continent neighbours; donors are never emptied/halved/split/holed, their atlas-placed events are carved
+    out. Modified atlas polygons carry `layout: "lobe"` + `geom_atlas` (pristine geometry, restored on re-run).
+    Atlas-placed events > 2 units off X(year) whose country now has a chord there are re-walked (chord layout).
 
 Deterministic: same inputs → byte-identical outputs. Idempotent: features this script generated carry
 `layout: "lane"` (countries/labels) or `layout: "chord"` (events) and are recomputed on every run.
@@ -41,7 +49,7 @@ import math
 import sys
 from pathlib import Path
 
-from shapely.geometry import Point, Polygon, MultiPolygon, box, mapping, shape
+from shapely.geometry import Point, Polygon, MultiPolygon, LineString, box, mapping, shape
 from shapely.ops import unary_union, polylabel
 
 REPO = Path(__file__).resolve().parent.parent
@@ -49,9 +57,9 @@ SITE = REPO / "site"
 DATA = SITE / "v2" / "data"
 
 # ---- plate ↔ lng/lat (scripts/export_geojson.py)
-X0, Y0, UNITS_PER_DEG = 900.0, 525.0, 50.0
-to_lnglat = lambda x, y: [round((x - X0) / UNITS_PER_DEG, 5), round(-(y - Y0) / UNITS_PER_DEG, 5)]
-to_plate = lambda lng, lat: (lng * UNITS_PER_DEG + X0, -lat * UNITS_PER_DEG + Y0)
+X0, Y0, UNITS_PER_DEG, LAT_SCALE = 900.0, 525.0, 50.0, 1.8      # LAT_SCALE: Phase 4c task E (export_geojson.py)
+to_lnglat = lambda x, y: [round((x - X0) / UNITS_PER_DEG, 5), round(-(y - Y0) * LAT_SCALE / UNITS_PER_DEG, 5)]
+to_plate = lambda lng, lat: (lng * UNITS_PER_DEG + X0, -lat * UNITS_PER_DEG / LAT_SCALE + Y0)
 
 # ---- X axis: atlas.html (AXES.md §1) — piecewise 1943–74 1×, 1974–2006 1.5×, 2006–17 3×, 2017–present 6×; pre-1943 log
 _now = datetime.date.today()
@@ -467,6 +475,114 @@ def token_matches_event(tok, events, max_lod):
     return False
 
 
+def organic_box(x0, y0, x1, y1, seed):
+    """A rectangle whose four edges are seeded midpoint-displaced + Chaikin-smoothed curves (task 4c-F lobes): the
+    lobe is subtracted from the donor and unioned into the receiver, so both share the identical noisy edge."""
+    amp = min(RIDGE_AMP, 0.2 * (y1 - y0), 0.2 * (x1 - x0))
+    corners = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+    ring = []
+    for i in range(4):
+        a, b = corners[i], corners[(i + 1) % 4]
+        ring += chaikin(noisy_line(a, b, amp, f"{seed}:{i}", min_seg=4.0), 2)[:-1]
+    return Polygon(ring).buffer(0)
+
+
+def grow_lobes(all_polys, continents, parent_of, ev_x, prot_pts):
+    """Task 4c-F. For every country whose events need an x = X(year) outside the polygon's x-extent, grow a contiguous
+    LOBE from the neighbouring land of the same continent: continent ∩ [x_target, edge] ∩ a y-band. Candidate bands
+    (deterministic order): the country's own edge chord, then every donor's chord centre at x_target; heights from
+    the events' stacking need down to 9 units. A donor keeps its largest piece; slivers it would be cut into go to
+    the lobe; a donor is never emptied below 50 % of its area, and its atlas-placed events (± MIN_SEP) are carved out
+    of the lobe. The first band whose merged polygon is ONE piece and covers every needed x wins.
+    Returns (changed {id: geometry}, log rows)."""
+    log, changed = [], {}
+    chord_at = lambda g, x: LineString([(x, g.bounds[1] - 1), (x, g.bounds[3] + 1)])
+    for kid in sorted(all_polys):
+        xs = ev_x.get(kid, [])
+        if not xs:
+            continue
+        for side in ("W", "E"):
+            g = all_polys[kid]
+            bx0, by0, bx1, by1 = g.bounds
+            need = [x for x in xs if (x < bx0 - 0.5 if side == "W" else x > bx1 + 0.5)]
+            need = [x for x in need if not g.intersects(chord_at(g, x))]
+            if not need:
+                continue
+            xt = (min(need) - INSET - 1) if side == "W" else (max(need) + INSET + 1)
+            cont = continents[parent_of[kid]]
+            span = (xt, bx0 + 6) if side == "W" else (bx1 - 6, xt)
+            strip = clean(cont.intersection(box(span[0], -1e9, span[1], 1e9)))
+            if strip.is_empty:
+                log.append((kid, side, round(xt), "no land in continent at that x"))
+                continue
+            edge = g.intersection(box(bx0, -1e9, bx0 + 8, 1e9) if side == "W" else box(bx1 - 8, -1e9, bx1, 1e9))
+            centres = [(edge.bounds[1] + edge.bounds[3]) / 2]
+            tline = chord_at(cont, xt)
+            for did in sorted(all_polys):
+                if did != kid and parent_of.get(did) == parent_of[kid]:
+                    ch = all_polys[did].intersection(tline)
+                    if not ch.is_empty:
+                        centres.append((ch.bounds[1] + ch.bounds[3]) / 2)
+            # coastal corridors (a strip hugging the continent's north / south coast never splits an interior donor)
+            cch = cont.intersection(tline)
+            if not cch.is_empty:
+                centres += [cch.bounds[1] + 7.0, cch.bounds[3] - 7.0]
+            h0 = max((edge.bounds[3] - edge.bounds[1]) / 2, 9.0, (len(need) * MIN_SEP + 2 * INSET) / 2)
+            holes = [Point(px, py).buffer(MIN_SEP) for (px, py, owner) in prot_pts if owner != kid and strip.intersects(Point(px, py))]
+            accepted = None
+            for yc in centres:
+                h = h0
+                while h >= 6.0 and accepted is None:
+                    lobe = clean(strip.intersection(organic_box(span[0], yc - h, span[1], yc + h, f"{kid}:{side}:{round(yc)}:{round(h, 1)}")))
+                    # a band that misses the country's own edge chord gets a NECK along the edge so the union stays one piece
+                    ey0, ey1 = edge.bounds[1], edge.bounds[3]
+                    if yc + h < ey0 or yc - h > ey1:
+                        nx = (bx0 - 14, bx0 + 6) if side == "W" else (bx1 - 6, bx1 + 14)
+                        neck = organic_box(nx[0], min(yc - h, ey0 + 4), nx[1], max(yc + h, ey1 - 4), f"{kid}:{side}:neck:{round(yc)}")
+                        lobe = clean(unary_union([lobe, clean(strip.intersection(neck))]))
+                    if holes and not lobe.is_empty:
+                        lobe = clean(lobe.difference(unary_union(holes)))
+                    if lobe.is_empty:
+                        h *= 0.8
+                        continue
+                    donors, ok = {}, True
+                    for did, dg in all_polys.items():
+                        if did == kid or parent_of.get(did) != parent_of[kid] or not dg.intersects(lobe):
+                            continue
+                        nd = clean(dg.difference(lobe))
+                        n_holes = lambda gg: len(gg.interiors) if gg.geom_type == "Polygon" else sum(len(p.interiors) for p in gg.geoms)
+                        if nd.is_empty or nd.area < 0.5 * dg.area or n_holes(nd) > n_holes(dg):
+                            ok = False          # never empty, halve, or punch a hole through a donor
+                            break
+                        if nd.geom_type == "MultiPolygon" and dg.geom_type != "MultiPolygon":
+                            big = max(nd.geoms, key=lambda p: p.area)
+                            slivers = [p for p in nd.geoms if p is not big]
+                            if sum(p.area for p in slivers) > 0.1 * dg.area:
+                                ok = False
+                                break
+                            lobe = clean(unary_union([lobe] + slivers))
+                            nd = big
+                        donors[did] = nd
+                    if ok:
+                        merged = clean(unary_union([g, lobe]))
+                        if merged.geom_type == "Polygon" and all(merged.intersects(chord_at(cont, x)) for x in need):
+                            accepted = (merged, donors, lobe)
+                    h *= 0.8
+                if accepted:
+                    break
+            if accepted is None:
+                log.append((kid, side, round(xt), "no lobe (would split / consume a donor)"))
+                continue
+            merged, donors, lobe = accepted
+            all_polys[kid] = merged
+            changed[kid] = merged
+            for did, nd in donors.items():
+                all_polys[did] = nd
+                changed[did] = nd
+            log.append((kid, side, round(xt), f"lobe {lobe.area:.0f} u² from {sorted(donors)}"))
+    return changed, log
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -478,6 +594,10 @@ def main():
     # drop what a previous run generated (idempotent)
     ctry_fc["features"] = [f for f in ctry_fc["features"] if f["properties"].get("layout") != "lane"]
     lab_fc["features"] = [f for f in lab_fc["features"] if f["properties"].get("layout") != "lane"]
+    for f in ctry_fc["features"]:                       # 4c-F lobes modify atlas polygons: restore the pristine export first
+        if "geom_atlas" in f["properties"]:
+            f["geometry"] = f["properties"].pop("geom_atlas")
+            f["properties"].pop("layout", None)
     existing = {f["properties"]["id"]: geom_plate(f["geometry"]) for f in ctry_fc["features"]}
     next_fid = max(f.get("id") or 0 for fc in (cont_fc, ctry_fc, lab_fc, ev_fc) for f in fc["features"]) + 1
     report = {"generated": [], "overlap_max_units2": 0.0, "outside_max_units2": 0.0, "multipolygon": [], "no_polygon": []}
@@ -512,6 +632,11 @@ def main():
         report["outside_max_units2"] = max(report["outside_max_units2"], out)
     ids = sorted(all_polys)
     worst = ("", "", 0.0)
+    existing_overlap = {}
+    for i, a_id in enumerate(ids):
+        for b_id in ids[i + 1:]:
+            if a_id in existing and b_id in existing and all_polys[a_id].intersects(all_polys[b_id]):
+                existing_overlap[frozenset((a_id, b_id))] = all_polys[a_id].intersection(all_polys[b_id]).area
     for i, a_id in enumerate(ids):
         for b_id in ids[i + 1:]:
             if a_id not in generated and b_id not in generated:
@@ -524,6 +649,38 @@ def main():
                 worst = (a_id, b_id, ov)
     report["overlap_max_units2"] = worst[2]
     report["overlap_worst_pair"] = worst[:2]
+
+    # ---- F. lobes: every event's X(year) must be inside its country's x-extent (target: 0 events > 2 units off)
+    ev_x, prot = {}, []
+    for f in ev_fc["features"]:
+        p = f["properties"]
+        if p["kind"] == "event" and p["country"] in all_polys:
+            ev_x.setdefault(p["country"], []).append(X(p["year"]))
+            if p.get("placed") and p.get("layout") != "chord":
+                prot.append((p["x"], p["y"], p["country"]))
+    lobed, lobe_log = grow_lobes(all_polys, continents, parent_of, ev_x, prot)
+    for kid in lobed:
+        if kid in generated:
+            generated[kid] = all_polys[kid]
+    # atlas polygons changed by a lobe: write back, keeping the pristine geometry for idempotent re-runs
+    for f in ctry_fc["features"]:
+        kid = f["properties"]["id"]
+        if kid in lobed and kid in existing:
+            f["properties"]["geom_atlas"] = f["geometry"]
+            f["geometry"] = geom_lnglat(all_polys[kid])
+            f["properties"]["layout"] = "lobe"
+            f["properties"]["area"] = round(all_polys[kid].area, 1)
+    # re-check gates after lobes (containment + overlap over EVERY pair touched by a lobe)
+    for kid in lobed:      # a lobe is continent ∩ …, so it can only inherit the atlas polygon's own coastline slop (≤ 0.25 u²)
+        before = existing[kid].difference(continents[parent_of[kid]]).area if kid in existing else 0.0
+        report["outside_max_units2"] = max(report["outside_max_units2"], all_polys[kid].difference(continents[parent_of[kid]]).area - before)
+    for a_id in sorted(lobed):
+        for b_id in ids:
+            if a_id == b_id or not all_polys[a_id].intersects(all_polys[b_id]):
+                continue
+            ov = all_polys[a_id].intersection(all_polys[b_id]).area
+            if ov > report["overlap_max_units2"] and not (a_id not in generated and b_id not in generated and ov <= existing_overlap.get(frozenset((a_id, b_id)), 0) + 1e-6):
+                report["overlap_max_units2"], report["overlap_worst_pair"] = ov, (a_id, b_id)
 
     # ---- write countries + labels for the generated ones
     ctry_by_id = {f["properties"]["id"]: f for f in ctry_fc["features"]}
@@ -558,6 +715,15 @@ def main():
         if key in seen_pts:
             redo.add(p["id"])
         seen_pts.add(key)
+    # 4c-F: atlas-placed events > 2 units off X(year) whose country now has a chord at X(year) are re-walked too
+    for f in ev_fc["features"]:
+        p = f["properties"]
+        if p["kind"] != "event" or not p.get("placed") or p.get("layout") == "chord":
+            continue
+        poly = all_polys.get(p["country"])
+        xx = X(year_of.get(p["id"], p["year"]))
+        if poly is not None and abs(p["x"] - xx) > 2 and poly.intersects(LineString([(xx, poly.bounds[1] - 1), (xx, poly.bounds[3] + 1)])):
+            redo.add(p["id"])
     fixed = lambda p: p.get("placed") and p["id"] not in redo and p.get("layout") != "chord"
     taken = [(f["properties"]["x"], f["properties"]["y"]) for f in ev_fc["features"] if fixed(f["properties"])]
     moved, dx_over, crowded, outside_ev, no_poly_ev = 0, [], [], [], []
@@ -661,6 +827,10 @@ def main():
     print(f"overlap (generated × any): max pairwise intersection {report['overlap_max_units2']:.6f} units² {report['overlap_worst_pair'] if report['overlap_max_units2'] > 0 else ''}")
     print(f"events: chord-placed {moved}; |x-X(year)| > 0.5: {len(dx_over)} {dx_over[:12]}; min-sep < {MIN_SEP}: {len(crowded)} {crowded[:8]}; outside polygon: {outside_ev}; no polygon: {no_poly_ev}; duplicate points: {dup}")
     print(f"atlas-placed events inside their country polygon (±0.5): {inside_prev}/{n_prev}")
+    off = [(f["properties"]["id"], round(f["properties"]["x"] - X(f["properties"]["year"]), 1)) for f in ev_fc["features"]
+           if f["properties"]["kind"] == "event" and abs(f["properties"]["x"] - X(f["properties"]["year"])) > 2]
+    print(f"lobes (4c-F): {len(lobed)} polygons changed; {len(lobe_log)} requests: " + "; ".join(f"{k}/{s}@{x}: {msg}" for k, s, x, msg in lobe_log))
+    print(f"events > 2 units off X(year): {len(off)} {off[:10]}")
     ok = (not report["no_polygon"] and report["outside_max_units2"] < 1e-6 and report["overlap_max_units2"] < 1e-6
           and not outside_ev and not no_poly_ev and not dup)
     if a.check:

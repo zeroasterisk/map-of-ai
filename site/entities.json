@@ -1129,6 +1129,97 @@
        "title": "Neal 1996 [74]"
       }
      ]
+    },
+    {
+     "id": "softmax-bridle-1989",
+     "name": "Softmax Output",
+     "year": 1989.92,
+     "lod": 4,
+     "one_line": "Bridle names the softmax output layer for probabilistic classifiers",
+     "sources": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/1989/hash/0336dcbab05b9d5ad24f4333c7658a0e-Abstract.html",
+       "title": "Bridle, NIPS 1989 [100]"
+      }
+     ]
+    },
+    {
+     "id": "bias-variance-1992",
+     "name": "Bias/Variance Dilemma",
+     "year": 1992.05,
+     "lod": 3,
+     "one_line": "Geman, Bienenstock & Doursat frame neural generalisation as bias versus variance",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1992.4.1.1",
+       "title": "Geman, Bienenstock & Doursat 1992 [107]"
+      }
+     ]
+    },
+    {
+     "id": "hierarchical-moe-1994",
+     "name": "Hierarchical MoE",
+     "year": 1994.2,
+     "lod": 3,
+     "one_line": "Jordan & Jacobs train hierarchical mixtures of experts with EM",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1994.6.2.181",
+       "title": "Jordan & Jacobs 1994, Neural Computation [111]"
+      }
+     ]
+    },
+    {
+     "id": "infomax-ica-1995",
+     "name": "Infomax ICA",
+     "year": 1995.85,
+     "lod": 3,
+     "one_line": "Bell & Sejnowski's infomax rule separates mixed signals blindly",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1995.7.6.1129",
+       "title": "Bell & Sejnowski 1995, Neural Computation [113]"
+      }
+     ]
+    },
+    {
+     "id": "sparse-coding-1996",
+     "name": "Sparse Coding",
+     "year": 1996.45,
+     "lod": 3,
+     "one_line": "Olshausen & Field: sparse codes of natural images yield V1-like receptive fields",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1038/381607a0",
+       "title": "Olshausen & Field 1996, Nature [115]"
+      }
+     ]
+    },
+    {
+     "id": "no-free-lunch-1997",
+     "name": "No Free Lunch",
+     "year": 1997.25,
+     "lod": 3,
+     "one_line": "Wolpert & Macready: no optimiser beats all others across all problems",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/4235.585893",
+       "title": "Wolpert & Macready 1997 [119]"
+      }
+     ]
+    },
+    {
+     "id": "kernel-pca-1998",
+     "name": "Kernel PCA",
+     "year": 1998.5,
+     "lod": 4,
+     "one_line": "Schölkopf, Smola & Müller carry the kernel trick into PCA",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kernel_principal_component_analysis",
+       "title": "Kernel principal component analysis — Wikipedia [121]"
+      }
+     ]
     }
    ]
   },
@@ -1259,6 +1350,140 @@
       {
        "url": "https://en.wikipedia.org/wiki/AI_winter",
        "title": "Wikipedia: AI winter [28]"
+      }
+     ]
+    },
+    {
+     "id": "man-computer-symbiosis-1960",
+     "name": "Man-Computer Symbiosis",
+     "year": 1960.2,
+     "lod": 3,
+     "one_line": "Licklider's human–computer partnership agenda, before he directs IPTO",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/THFE2.1960.4503259",
+       "title": "Licklider, 'Man-Computer Symbiosis', IRE Trans. Human Factors in Electronics (1960), doi:10.1109/THFE2.1960.4503259 [64]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Man-Computer_Symbiosis",
+       "title": "Wikipedia: Man-Computer Symbiosis [65]"
+      }
+     ]
+    },
+    {
+     "id": "kiev-cybernetics-1962",
+     "name": "Kiev Cybernetics Inst.",
+     "year": 1962.5,
+     "lod": 4,
+     "one_line": "Glushkov founds and directs the Institute of Cybernetics in Kiev",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Victor_Glushkov",
+       "title": "Wikipedia: Victor Glushkov [68]"
+      }
+     ]
+    },
+    {
+     "id": "sketchpad-1963",
+     "name": "Sketchpad",
+     "year": 1963.0,
+     "lod": 4,
+     "one_line": "Sutherland's interactive graphics program; inspires GUIs and object-oriented programming",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sketchpad",
+       "title": "Wikipedia: Sketchpad [69]"
+      }
+     ]
+    },
+    {
+     "id": "unimate-gm-1961",
+     "name": "Unimate on GM Line",
+     "year": 1961.5,
+     "lod": 4,
+     "one_line": "First Unimate industrial robot works a General Motors assembly line",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Unimate",
+       "title": "Wikipedia: Unimate [67]"
+      }
+     ]
+    },
+    {
+     "id": "moores-law-1965",
+     "name": "Moore's Law",
+     "year": 1965.3,
+     "lod": 4,
+     "one_line": "Gordon Moore observes integrated-circuit component counts doubling on schedule",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Moore%27s_law",
+       "title": "Wikipedia: Moore's law [72]"
+      }
+     ]
+    },
+    {
+     "id": "first-turing-award-1966",
+     "name": "First Turing Award",
+     "year": 1966.5,
+     "lod": 4,
+     "one_line": "Alan Perlis receives the first ACM Turing Award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Turing_Award",
+       "title": "Wikipedia: Turing Award [73]"
+      }
+     ]
+    },
+    {
+     "id": "mother-of-all-demos-1968",
+     "name": "Mother of All Demos",
+     "year": 1968.94,
+     "lod": 3,
+     "one_line": "Engelbart demonstrates mouse, hypertext and collaboration in NLS",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Mother_of_All_Demos",
+       "title": "Wikipedia: The Mother of All Demos [78]"
+      }
+     ]
+    },
+    {
+     "id": "arpanet-1969",
+     "name": "ARPANET",
+     "year": 1969.82,
+     "lod": 3,
+     "one_line": "First host-to-host connection links SRI and UCLA",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/ARPANET",
+       "title": "Wikipedia: ARPANET [79]"
+      }
+     ]
+    },
+    {
+     "id": "minsky-turing-award-1969",
+     "name": "Minsky Turing Award",
+     "year": 1969.5,
+     "lod": 4,
+     "one_line": "Marvin Minsky receives the ACM Turing Award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marvin_Minsky",
+       "title": "Wikipedia: Marvin Minsky [30]"
+      }
+     ]
+    },
+    {
+     "id": "intel-4004-1971",
+     "name": "Intel 4004",
+     "year": 1971.88,
+     "lod": 4,
+     "one_line": "Intel releases the 4004, first of its line of CPUs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Intel_4004",
+       "title": "Wikipedia: Intel 4004 [84]"
       }
      ]
     }
@@ -1443,6 +1668,32 @@
       {
        "url": "https://en.wikipedia.org/wiki/Judea_Pearl",
        "title": "Wikipedia: Judea Pearl [5]"
+      }
+     ]
+    },
+    {
+     "id": "bn-structure-learning-1995",
+     "name": "Learning Bayes Nets",
+     "year": 1995.7,
+     "lod": 4,
+     "one_line": "Heckerman, Geiger & Chickering learn Bayesian network structure from data",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00994016",
+       "title": "Heckerman, Geiger & Chickering 1995 [98]"
+      }
+     ]
+    },
+    {
+     "id": "naive-bayes-optimality-1997",
+     "name": "Naive Bayes Optimality",
+     "year": 1997.8,
+     "lod": 4,
+     "one_line": "Domingos & Pazzani explain why naive Bayes works despite dependence",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1023/A:1007413511361",
+       "title": "Domingos & Pazzani 1997 [101]"
       }
      ]
     }
@@ -1656,6 +1907,84 @@
       {
        "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html",
        "title": "Pedregosa et al. 2011 [53]"
+      }
+     ]
+    },
+    {
+     "id": "robocup-founded-1996",
+     "name": "RoboCup Founded",
+     "year": 1996.5,
+     "lod": 3,
+     "one_line": "RoboCup founded: robot soccer as a grand challenge for multi-agent AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/RoboCup",
+       "title": "RoboCup — Wikipedia [100]"
+      }
+     ]
+    },
+    {
+     "id": "uct-mcts-2006",
+     "name": "UCT / MCTS",
+     "year": 2006.7,
+     "lod": 3,
+     "one_line": "Kocsis & Szepesvári's UCT and Coulom's MCTS transform computer Go",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/11871842_29",
+       "title": "Kocsis & Szepesvári, ECML 2006 [116]"
+      }
+     ]
+    },
+    {
+     "id": "funk-svd-2006",
+     "name": "Funk SVD",
+     "year": 2006.94,
+     "lod": 4,
+     "one_line": "Simon Funk's blog recipe: SGD matrix factorisation for the Netflix Prize",
+     "sources": [
+      {
+       "url": "https://sifter.org/~simon/journal/20061211.html",
+       "title": "Funk, Netflix Update: Try This at Home [117]"
+      }
+     ]
+    },
+    {
+     "id": "caltech-101-2003",
+     "name": "Caltech 101",
+     "year": 2003.7,
+     "lod": 4,
+     "one_line": "Fei-Fei Li, Perona and colleagues compile the Caltech 101 image dataset",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Caltech_101",
+       "title": "Caltech 101 — Wikipedia [120]"
+      }
+     ]
+    },
+    {
+     "id": "checkers-solved-2007",
+     "name": "Checkers Solved",
+     "year": 2007.55,
+     "lod": 3,
+     "one_line": "Schaeffer's Chinook proves perfect checkers play is a draw",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1126/science.1144079",
+       "title": "Schaeffer et al. 2007, Science [121]"
+      }
+     ]
+    },
+    {
+     "id": "t-sne-2008",
+     "name": "t-SNE",
+     "year": 2008.85,
+     "lod": 3,
+     "one_line": "van der Maaten & Hinton's t-SNE becomes the standard embedding visualiser",
+     "sources": [
+      {
+       "url": "https://jmlr.org/papers/v9/vandermaaten08a.html",
+       "title": "van der Maaten & Hinton 2008, JMLR [122]"
       }
      ]
     }
@@ -2320,6 +2649,105 @@
        "title": "Wikipedia: Church–Turing thesis [44]"
       }
      ]
+    },
+    {
+     "id": "shannon-switching-1937",
+     "name": "Shannon Switching Thesis",
+     "year": 1937.5,
+     "lod": 3,
+     "one_line": "Shannon maps Boolean algebra onto relay circuits: logic becomes hardware",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/A_Symbolic_Analysis_of_Relay_and_Switching_Circuits",
+       "title": "Wikipedia: A Symbolic Analysis of Relay and Switching Circuits [64]"
+      },
+      {
+       "url": "https://doi.org/10.1109/T-AIEE.1938.5057767",
+       "title": "Shannon, 'A Symbolic Analysis of Relay and Switching Circuits', Trans. AIEE 57 (1938), doi:10.1109/T-AIEE.1938.5057767 [65]"
+      }
+     ]
+    },
+    {
+     "id": "zuse-z1-1938",
+     "name": "Zuse Z1",
+     "year": 1938.0,
+     "lod": 4,
+     "one_line": "Zuse finishes a motor-driven mechanical binary computer in Berlin",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Z1_%28computer%29",
+       "title": "Wikipedia: Z1 (computer) [66]"
+      }
+     ]
+    },
+    {
+     "id": "turing-ordinal-logics-1938",
+     "name": "Ordinal Logics",
+     "year": 1938.5,
+     "lod": 4,
+     "one_line": "Turing's Princeton thesis introduces oracle machines",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Systems_of_Logic_Based_on_Ordinals",
+       "title": "Wikipedia: Systems of Logic Based on Ordinals [67]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1112/plms/s2-45.1.161",
+       "title": "Crossref record [68]"
+      }
+     ]
+    },
+    {
+     "id": "bombe-1939",
+     "name": "The Bombe",
+     "year": 1939.5,
+     "lod": 3,
+     "one_line": "Turing's electromechanical search machine attacks Enigma at Bletchley Park",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bombe",
+       "title": "Wikipedia: Bombe [69]"
+      }
+     ]
+    },
+    {
+     "id": "zuse-z3-1941",
+     "name": "Zuse Z3",
+     "year": 1941.0,
+     "lod": 4,
+     "one_line": "Zuse completes a working programmable electromechanical computer",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Z3_%28computer%29",
+       "title": "Wikipedia: Z3 (computer) [70]"
+      }
+     ]
+    },
+    {
+     "id": "atanasoff-berry-1942",
+     "name": "Atanasoff–Berry Computer",
+     "year": 1942.0,
+     "lod": 4,
+     "one_line": "Electronic digital solver for linear equations successfully tested",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Atanasoff%E2%80%93Berry_computer",
+       "title": "Wikipedia: Atanasoff–Berry computer [71]"
+      }
+     ]
+    },
+    {
+     "id": "asimov-three-laws-1942",
+     "name": "Asimov's Three Laws",
+     "year": 1942.2,
+     "lod": 4,
+     "one_line": "Asimov's story Runaround introduces the Three Laws of Robotics",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Three_Laws_of_Robotics",
+       "title": "Wikipedia: Three Laws of Robotics [72]"
+      }
+     ]
     }
    ]
   },
@@ -2644,6 +3072,45 @@
        "title": "Brooks, Intelligence Without Representation (1991) [32]"
       }
      ]
+    },
+    {
+     "id": "godel-escher-bach-1979",
+     "name": "Gödel, Escher, Bach",
+     "year": 1979.0,
+     "lod": 3,
+     "one_line": "Hofstadter's GEB on minds and self-reference draws a generation into AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach",
+       "title": "Gödel, Escher, Bach — Wikipedia [58]"
+      }
+     ]
+    },
+    {
+     "id": "loebner-prize-1990",
+     "name": "Loebner Prize",
+     "year": 1990.5,
+     "lod": 3,
+     "one_line": "Hugh Loebner launches an annual Turing-test contest for chatbots",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Loebner_Prize",
+       "title": "Loebner Prize — Wikipedia [72]"
+      }
+     ]
+    },
+    {
+     "id": "genghis-robot-1991",
+     "name": "Genghis Hexapod",
+     "year": 1991.0,
+     "lod": 3,
+     "one_line": "Brooks's six-legged Genghis walks by subsumption, with no central world model",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Genghis_%28robot%29",
+       "title": "Genghis (robot) — Wikipedia [74]"
+      }
+     ]
     }
    ]
   },
@@ -2884,6 +3351,231 @@
        "title": "Wikipedia: Cybernetics in the Soviet Union [42]"
       }
      ]
+    },
+    {
+     "id": "colossus-1943",
+     "name": "Colossus",
+     "year": 1943.95,
+     "lod": 3,
+     "one_line": "Programmable electronic codebreaking computer working at Bletchley Park",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Colossus_computer",
+       "title": "Wikipedia: Colossus computer [73]"
+      }
+     ]
+    },
+    {
+     "id": "harvard-mark-i-1944",
+     "name": "Harvard Mark I",
+     "year": 1944.24,
+     "lod": 4,
+     "one_line": "Electromechanical calculator runs one of its first programs for von Neumann",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Harvard_Mark_I",
+       "title": "Wikipedia: Harvard Mark I [74]"
+      }
+     ]
+    },
+    {
+     "id": "theory-of-games-1944",
+     "name": "Theory of Games",
+     "year": 1944.5,
+     "lod": 3,
+     "one_line": "Von Neumann and Morgenstern found game theory, later behind minimax search",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Theory_of_Games_and_Economic_Behavior",
+       "title": "Wikipedia: Theory of Games and Economic Behavior [75]"
+      }
+     ]
+    },
+    {
+     "id": "as-we-may-think-1945",
+     "name": "As We May Think",
+     "year": 1945.5,
+     "lod": 4,
+     "one_line": "Vannevar Bush imagines the memex, an associative information machine",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/As_We_May_Think",
+       "title": "Wikipedia: As We May Think [76]"
+      }
+     ]
+    },
+    {
+     "id": "eniac-1946",
+     "name": "ENIAC",
+     "year": 1946.12,
+     "lod": 3,
+     "one_line": "Programmable electronic computer dedicated at Penn; the press calls it a Giant Brain",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/ENIAC",
+       "title": "Wikipedia: ENIAC [77]"
+      }
+     ]
+    },
+    {
+     "id": "turing-ace-design-1945",
+     "name": "ACE Design",
+     "year": 1945.9,
+     "lod": 4,
+     "one_line": "Turing completes a detailed stored-program computer design at NPL",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Automatic_Computing_Engine",
+       "title": "Wikipedia: Automatic Computing Engine [78]"
+      }
+     ]
+    },
+    {
+     "id": "edsac-1949",
+     "name": "EDSAC",
+     "year": 1949.35,
+     "lod": 3,
+     "one_line": "Cambridge stored-program machine runs its first programs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/EDSAC",
+       "title": "Wikipedia: EDSAC [79]"
+      }
+     ]
+    },
+    {
+     "id": "mesm-1950",
+     "name": "MESM",
+     "year": 1950.5,
+     "lod": 4,
+     "one_line": "Lebedev's MESM in Kiev: the first Soviet programmable electronic computer",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/MESM",
+       "title": "Wikipedia: MESM [80]"
+      }
+     ]
+    },
+    {
+     "id": "ferranti-mark-1-1951",
+     "name": "Ferranti Mark 1",
+     "year": 1951.1,
+     "lod": 4,
+     "one_line": "First commercially available general-purpose stored-program computer reaches Manchester",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ferranti_Mark_1",
+       "title": "Wikipedia: Ferranti Mark 1 [25]"
+      }
+     ]
+    },
+    {
+     "id": "univac-i-1951",
+     "name": "UNIVAC I",
+     "year": 1951.25,
+     "lod": 4,
+     "one_line": "US Census Bureau accepts the first UNIVAC",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/UNIVAC_I",
+       "title": "Wikipedia: UNIVAC I [82]"
+      }
+     ]
+    },
+    {
+     "id": "leo-i-1951",
+     "name": "LEO I",
+     "year": 1951.8,
+     "lod": 4,
+     "one_line": "LEO I runs the first routine business application on a computer",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/LEO_%28computer%29",
+       "title": "Wikipedia: LEO (computer) [83]"
+      }
+     ]
+    },
+    {
+     "id": "whirlwind-i-1951",
+     "name": "Whirlwind I",
+     "year": 1951.5,
+     "lod": 4,
+     "one_line": "MIT's real-time digital computer becomes operational; leads to SAGE",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Whirlwind_I",
+       "title": "Wikipedia: Whirlwind I [85]"
+      }
+     ]
+    },
+    {
+     "id": "hopper-a0-1952",
+     "name": "Hopper's A-0",
+     "year": 1952.0,
+     "lod": 4,
+     "one_line": "Grace Hopper writes an early compiler-related tool for the UNIVAC I",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/A-0_System",
+       "title": "Wikipedia: A-0 System [87]"
+      }
+     ]
+    },
+    {
+     "id": "ias-machine-1952",
+     "name": "IAS Machine",
+     "year": 1952.44,
+     "lod": 4,
+     "one_line": "Von Neumann's Princeton machine becomes fully operational",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/IAS_machine",
+       "title": "Wikipedia: IAS machine [92]"
+      }
+     ]
+    },
+    {
+     "id": "besm-1-1952",
+     "name": "BESM-1",
+     "year": 1952.5,
+     "lod": 4,
+     "one_line": "Moscow's BESM-1 completed: the fastest computer in Europe",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/BESM",
+       "title": "Wikipedia: BESM [93]"
+      }
+     ]
+    },
+    {
+     "id": "turing-morphogenesis-1952",
+     "name": "Turing Morphogenesis",
+     "year": 1952.6,
+     "lod": 4,
+     "one_line": "Turing's reaction–diffusion theory of biological pattern formation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Chemical_Basis_of_Morphogenesis",
+       "title": "Wikipedia: The Chemical Basis of Morphogenesis [90]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1098/rstb.1952.0012",
+       "title": "Crossref record [91]"
+      }
+     ]
+    },
+    {
+     "id": "unimate-patent-1954",
+     "name": "Unimate Patent",
+     "year": 1954.94,
+     "lod": 4,
+     "one_line": "George Devol files the patent for a programmable industrial arm",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Unimate",
+       "title": "Wikipedia: Unimate [94]"
+      }
+     ]
     }
    ]
   },
@@ -2943,6 +3635,84 @@
       {
        "url": "https://en.wikipedia.org/wiki/Description_logic",
        "title": "Description logic — Wikipedia [52]"
+      }
+     ]
+    },
+    {
+     "id": "common-lisp-cltl1-1984",
+     "name": "Common Lisp (CLtL1)",
+     "year": 1984.5,
+     "lod": 3,
+     "one_line": "Common Lisp the Language unifies the Lisp dialects of the expert-system industry",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Common_Lisp",
+       "title": "Common Lisp — Wikipedia [64]"
+      }
+     ]
+    },
+    {
+     "id": "symbolics-com-1985",
+     "name": "symbolics.com",
+     "year": 1985.2,
+     "lod": 3,
+     "one_line": "A Lisp-machine maker registers symbolics.com, the first .com domain",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Symbolics",
+       "title": "Symbolics — Wikipedia [65]"
+      }
+     ]
+    },
+    {
+     "id": "ida-star-1985",
+     "name": "IDA* Search",
+     "year": 1985.5,
+     "lod": 4,
+     "one_line": "Korf's iterative deepening gives optimal heuristic search in linear memory",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2885%2990084-0",
+       "title": "Korf 1985, Artificial Intelligence 27 [66]"
+      }
+     ]
+    },
+    {
+     "id": "bb1-blackboard-1985",
+     "name": "BB1 Blackboard Control",
+     "year": 1985.6,
+     "lod": 4,
+     "one_line": "Hayes-Roth's BB1 lets blackboard systems reason about their own control",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2885%2990063-3",
+       "title": "Hayes-Roth 1985, Artificial Intelligence 26 [67]"
+      }
+     ]
+    },
+    {
+     "id": "explanation-based-1986",
+     "name": "Explanation-Based Learn.",
+     "year": 1986.3,
+     "lod": 4,
+     "one_line": "EBL: generalise from one example using a domain theory, in Machine Learning vol. 1",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00116250",
+       "title": "Mitchell, Keller & Kedar-Cabelli 1986 [68]"
+      }
+     ]
+    },
+    {
+     "id": "intention-commitment-1990",
+     "name": "Intention as Commitment",
+     "year": 1990.3,
+     "lod": 4,
+     "one_line": "Cohen & Levesque's logic of intention grounds BDI agent architectures",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2890%2990055-5",
+       "title": "Cohen & Levesque 1990, Artificial Intelligence 42 [73]"
       }
      ]
     }
@@ -4227,6 +4997,110 @@
        "title": "LeCun et al. 1998 [20]"
       }
      ]
+    },
+    {
+     "id": "cellular-nn-1988",
+     "name": "Cellular Neural Nets",
+     "year": 1988.8,
+     "lod": 4,
+     "one_line": "Chua & Yang's cellular neural networks: locally coupled analog arrays",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Cellular_neural_network",
+       "title": "Cellular neural network — Wikipedia [95]"
+      }
+     ]
+    },
+    {
+     "id": "rbf-networks-1989",
+     "name": "RBF Networks",
+     "year": 1989.4,
+     "lod": 4,
+     "one_line": "Moody & Darken: fast-training radial basis function networks",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1989.1.2.281",
+       "title": "Moody & Darken 1989, Neural Computation [97]"
+      }
+     ]
+    },
+    {
+     "id": "optimal-brain-damage-1989",
+     "name": "Optimal Brain Damage",
+     "year": 1989.9,
+     "lod": 4,
+     "one_line": "LeCun, Denker & Solla prune networks by second-derivative saliency",
+     "sources": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/1989/hash/6c9882bbac1c7093bd25041881277658-Abstract.html",
+       "title": "LeCun, Denker & Solla, NIPS 1989 [99]"
+      }
+     ]
+    },
+    {
+     "id": "neural-gas-1991",
+     "name": "Neural Gas",
+     "year": 1991.5,
+     "lod": 4,
+     "one_line": "Martinetz & Schulten's neural gas: topology-free competitive vector quantisation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Neural_gas",
+       "title": "Neural gas — Wikipedia [104]"
+      }
+     ]
+    },
+    {
+     "id": "rprop-1993",
+     "name": "Rprop",
+     "year": 1993.3,
+     "lod": 4,
+     "one_line": "Riedmiller & Braun's sign-based Rprop speeds up backprop training",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/ICNN.1993.298623",
+       "title": "Riedmiller & Braun, ICNN 1993 [109]"
+      }
+     ]
+    },
+    {
+     "id": "siamese-tdnn-1993",
+     "name": "Siamese Network",
+     "year": 1993.9,
+     "lod": 3,
+     "one_line": "Bromley, LeCun et al.: twin networks learn a similarity metric for signatures",
+     "sources": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/1993/hash/288cc0ff022877bd3df94bc9360b9c5d-Abstract.html",
+       "title": "Bromley et al., NIPS 1993 [110]"
+      }
+     ]
+    },
+    {
+     "id": "spiking-third-gen-1997",
+     "name": "Spiking Nets 3rd Gen",
+     "year": 1997.9,
+     "lod": 4,
+     "one_line": "Maass argues spiking neurons are the third generation of neural models",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Spiking_neural_network",
+       "title": "Spiking neural network — Wikipedia [118]"
+      }
+     ]
+    },
+    {
+     "id": "rowley-face-detection-1998",
+     "name": "Neural Face Detection",
+     "year": 1998.05,
+     "lod": 4,
+     "one_line": "Rowley, Baluja & Kanade's neural face detector leads until Viola–Jones",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/34.655647",
+       "title": "Rowley, Baluja & Kanade 1998, TPAMI [120]"
+      }
+     ]
     }
    ]
   },
@@ -4370,6 +5244,96 @@
       {
        "url": "https://en.wikipedia.org/wiki/Frank_Rosenblatt",
        "title": "Wikipedia: Frank Rosenblatt [53]"
+      }
+     ]
+    },
+    {
+     "id": "frogs-eye-1959",
+     "name": "Frog's Eye",
+     "year": 1959.0,
+     "lod": 4,
+     "one_line": "Lettvin et al. find retinal cells acting as feature detectors",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Jerome_Lettvin",
+       "title": "Wikipedia: Jerome Lettvin [59]"
+      },
+      {
+       "url": "https://doi.org/10.1109/JRPROC.1959.287207",
+       "title": "Lettvin, Maturana, McCulloch & Pitts, 'What the Frog's Eye Tells the Frog's Brain', Proc. IRE 47 (1959), doi:10.1109/JRPROC.1959.287207 [60]"
+      }
+     ]
+    },
+    {
+     "id": "hubel-wiesel-1959",
+     "name": "Hubel & Wiesel",
+     "year": 1959.8,
+     "lod": 3,
+     "one_line": "Cat visual-cortex receptive fields; hierarchical cells later inspire CNNs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/David_H._Hubel",
+       "title": "Wikipedia: David H. Hubel [61]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1113/jphysiol.1959.sp006308",
+       "title": "Crossref record [62]"
+      }
+     ]
+    },
+    {
+     "id": "bledsoe-n-tuple-1959",
+     "name": "N-tuple Method",
+     "year": 1959.5,
+     "lod": 4,
+     "one_line": "Bledsoe's early method for learning a pattern-recognition program",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Woody_Bledsoe",
+       "title": "Wikipedia: Woody Bledsoe [63]"
+      }
+     ]
+    },
+    {
+     "id": "neurodynamics-1962",
+     "name": "Neurodynamics",
+     "year": 1962.0,
+     "lod": 4,
+     "one_line": "Rosenblatt's book-length statement of the perceptron programme",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Frank_Rosenblatt",
+       "title": "Wikipedia: Frank Rosenblatt [53]"
+      }
+     ]
+    },
+    {
+     "id": "cover-hart-1967",
+     "name": "Cover & Hart",
+     "year": 1967.0,
+     "lod": 4,
+     "one_line": "Error bound for nearest-neighbour classification: early learning theory",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TIT.1967.1053964",
+       "title": "Cover & Hart, 'Nearest neighbor pattern classification', IEEE Trans. Inf. Theory 13 (1967), doi:10.1109/TIT.1967.1053964 [74]"
+      }
+     ]
+    },
+    {
+     "id": "amari-sgd-1967",
+     "name": "Amari SGD Network",
+     "year": 1967.5,
+     "lod": 3,
+     "one_line": "Amari trains a multilayer adaptive classifier by stochastic gradient descent",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Shun%27ichi_Amari",
+       "title": "Wikipedia: Shun'ichi Amari [75]"
+      },
+      {
+       "url": "https://doi.org/10.1109/PGEC.1967.264666",
+       "title": "Amari, 'A Theory of Adaptive Pattern Classifiers', IEEE Trans. Electronic Computers (1967), doi:10.1109/PGEC.1967.264666 [76]"
       }
      ]
     }
@@ -4867,6 +5831,19 @@
        "title": "Wikipedia: Gödel Prize [60]"
       }
      ]
+    },
+    {
+     "id": "lasso-1996",
+     "name": "Lasso",
+     "year": 1996.1,
+     "lod": 3,
+     "one_line": "Tibshirani's lasso: L1 shrinkage for sparse regression models",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1111/j.2517-6161.1996.tb02080.x",
+       "title": "Tibshirani 1996, JRSS B [99]"
+      }
+     ]
     }
    ]
   },
@@ -5192,6 +6169,58 @@
        "title": "Deep Thought (chess computer) — Wikipedia [45]"
       }
      ]
+    },
+    {
+     "id": "intellicorp-kee-1980",
+     "name": "IntelliCorp KEE",
+     "year": 1980.5,
+     "lod": 3,
+     "one_line": "IntelliCorp founded; its KEE shell becomes a leading expert-system tool",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/IntelliCorp_%28software%29",
+       "title": "IntelliCorp (software) — Wikipedia [61]"
+      }
+     ]
+    },
+    {
+     "id": "eurisko-traveller-1981",
+     "name": "EURISKO Wins Traveller",
+     "year": 1981.5,
+     "lod": 3,
+     "one_line": "Lenat's EURISKO wins the Traveller TCS championship by exploiting rule loopholes",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eurisko",
+       "title": "Eurisko — Wikipedia [62]"
+      }
+     ]
+    },
+    {
+     "id": "version-spaces-1982",
+     "name": "Version Spaces",
+     "year": 1982.3,
+     "lod": 4,
+     "one_line": "Mitchell's 'Generalization as search' casts concept learning as version-space search",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Version_space_learning",
+       "title": "Version space learning — Wikipedia [63]"
+      }
+     ]
+    },
+    {
+     "id": "sendai-fuzzy-subway-1987",
+     "name": "Sendai Fuzzy Subway",
+     "year": 1987.54,
+     "lod": 3,
+     "one_line": "Sendai's Namboku Line opens as the first railway with fuzzy-logic speed control",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line",
+       "title": "Sendai Subway Namboku Line — Wikipedia [71]"
+      }
+     ]
     }
    ]
   },
@@ -5459,6 +6488,162 @@
        "title": "Gödel, Über formal unentscheidbare Sätze…, 1931 [9]"
       }
      ]
+    },
+    {
+     "id": "stepped-reckoner-1673",
+     "name": "Stepped Reckoner",
+     "year": 1673.0,
+     "lod": 4,
+     "one_line": "Leibniz shows a wooden model of his four-function calculator to the Royal Society",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stepped_reckoner",
+       "title": "Wikipedia: Stepped reckoner [52]"
+      }
+     ]
+    },
+    {
+     "id": "jacquard-loom-1804",
+     "name": "Jacquard Loom",
+     "year": 1804.0,
+     "lod": 4,
+     "one_line": "Jacquard patents a loom run by punched cards, later borrowed by Babbage",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Jacquard_machine",
+       "title": "Wikipedia: Jacquard machine [53]"
+      }
+     ]
+    },
+    {
+     "id": "difference-engine-1822",
+     "name": "Difference Engine",
+     "year": 1822.45,
+     "lod": 3,
+     "one_line": "Babbage announces a machine to compute mathematical tables automatically",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Difference_engine",
+       "title": "Wikipedia: Difference engine [54]"
+      }
+     ]
+    },
+    {
+     "id": "jevons-logic-piano-1870",
+     "name": "Jevons Logic Piano",
+     "year": 1870.0,
+     "lod": 4,
+     "one_line": "Jevons exhibits a mechanical computer for Boolean logic to the Royal Society",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/William_Stanley_Jevons",
+       "title": "Wikipedia: William Stanley Jevons [55]"
+      }
+     ]
+    },
+    {
+     "id": "hollerith-tabulator-1890",
+     "name": "Hollerith Tabulator",
+     "year": 1890.0,
+     "lod": 4,
+     "one_line": "Punched-card tabulating machines process the 1890 US census",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Tabulating_machine",
+       "title": "Wikipedia: Tabulating machine [56]"
+      }
+     ]
+    },
+    {
+     "id": "hilbert-problems-1900",
+     "name": "Hilbert's 23 Problems",
+     "year": 1900.6,
+     "lod": 3,
+     "one_line": "Hilbert's problem list sets the agenda that leads to the Entscheidungsproblem",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+       "title": "Wikipedia: Hilbert's problems [57]"
+      }
+     ]
+    },
+    {
+     "id": "russell-paradox-1901",
+     "name": "Russell's Paradox",
+     "year": 1901.0,
+     "lod": 4,
+     "one_line": "Russell's set-theoretic paradox undermines naive set theory and Frege's system",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Russell%27s_paradox",
+       "title": "Wikipedia: Russell's paradox [58]"
+      }
+     ]
+    },
+    {
+     "id": "markov-chains-1906",
+     "name": "Markov Chains",
+     "year": 1906.0,
+     "lod": 3,
+     "one_line": "Markov's first chain paper; later fed n-grams, HMMs and MDPs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Markov_chain",
+       "title": "Wikipedia: Markov chain [59]"
+      }
+     ]
+    },
+    {
+     "id": "el-ajedrecista-1913",
+     "name": "El Ajedrecista",
+     "year": 1913.0,
+     "lod": 3,
+     "one_line": "Torres Quevedo's automaton plays a king-and-rook chess endgame unaided",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/El_Ajedrecista",
+       "title": "Wikipedia: El Ajedrecista [60]"
+      }
+     ]
+    },
+    {
+     "id": "rur-robot-1920",
+     "name": "R.U.R.",
+     "year": 1920.0,
+     "lod": 4,
+     "one_line": "Čapek's play introduces the word robot",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/R.U.R.",
+       "title": "Wikipedia: R.U.R. [61]"
+      }
+     ]
+    },
+    {
+     "id": "godel-completeness-1929",
+     "name": "Gödel Completeness",
+     "year": 1929.0,
+     "lod": 3,
+     "one_line": "Gödel proves every valid first-order formula is provable",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem",
+       "title": "Wikipedia: Gödel's completeness theorem [62]"
+      }
+     ]
+    },
+    {
+     "id": "differential-analyser-1931",
+     "name": "Differential Analyser",
+     "year": 1931.0,
+     "lod": 4,
+     "one_line": "Hazen and Bush complete a practical general-purpose analogue computer at MIT",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Differential_analyser",
+       "title": "Wikipedia: Differential analyser [63]"
+      }
+     ]
     }
    ]
   },
@@ -5630,6 +6815,58 @@
       {
        "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
        "title": "History of artificial intelligence — Wikipedia [2]"
+      }
+     ]
+    },
+    {
+     "id": "ml-workshop-cmu-1980",
+     "name": "First ML Workshop",
+     "year": 1980.5,
+     "lod": 3,
+     "one_line": "First Machine Learning workshop at CMU, the start of ICML",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning",
+       "title": "International Conference on Machine Learning — Wikipedia [60]"
+      }
+     ]
+    },
+    {
+     "id": "gibbs-sampler-1984",
+     "name": "Gibbs Sampler",
+     "year": 1984.8,
+     "lod": 3,
+     "one_line": "Geman & Geman introduce the Gibbs sampler for Bayesian image restoration",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TPAMI.1984.4767596",
+       "title": "Geman & Geman 1984, IEEE TPAMI [75]"
+      }
+     ]
+    },
+    {
+     "id": "vamors-1986",
+     "name": "VaMoRs Robot Car",
+     "year": 1986.5,
+     "lod": 3,
+     "one_line": "Dickmanns's vision-guided VaMoRs van drives itself, reaching 96 km/h by 1987",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ernst_Dickmanns",
+       "title": "Ernst Dickmanns — Wikipedia [69]"
+      }
+     ]
+    },
+    {
+     "id": "eureka-prometheus-1987",
+     "name": "PROMETHEUS Project",
+     "year": 1987.5,
+     "lod": 4,
+     "one_line": "European carmakers launch the Eureka PROMETHEUS driverless-car programme (1987–1995)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eureka_Prometheus_Project",
+       "title": "Eureka Prometheus Project — Wikipedia [70]"
       }
      ]
     }
@@ -5821,6 +7058,45 @@
       {
        "url": "https://en.wikipedia.org/wiki/Arthur_Samuel_%28computer_scientist%29",
        "title": "Wikipedia: Arthur Samuel [27]"
+      }
+     ]
+    },
+    {
+     "id": "bertie-the-brain-1950",
+     "name": "Bertie the Brain",
+     "year": 1950.7,
+     "lod": 4,
+     "one_line": "Josef Kates's tic-tac-toe computer plays visitors at the Canadian National Exhibition",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bertie_the_Brain",
+       "title": "Wikipedia: Bertie the Brain [81]"
+      }
+     ]
+    },
+    {
+     "id": "nimrod-1951",
+     "name": "Nimrod",
+     "year": 1951.4,
+     "lod": 4,
+     "one_line": "Ferranti's Nim-playing computer challenges visitors at the Festival of Britain",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Nimrod_%28computer%29",
+       "title": "Wikipedia: Nimrod (computer) [84]"
+      }
+     ]
+    },
+    {
+     "id": "ipl-1956",
+     "name": "IPL",
+     "year": 1956.0,
+     "lod": 4,
+     "one_line": "Newell, Shaw and Simon's IPL introduces list processing",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Information_Processing_Language",
+       "title": "Wikipedia: Information Processing Language [95]"
       }
      ]
     }
@@ -6244,6 +7520,58 @@
        "title": "Ng & Jordan 2001 [81]"
       }
      ]
+    },
+    {
+     "id": "winnow-1988",
+     "name": "Winnow",
+     "year": 1988.3,
+     "lod": 4,
+     "one_line": "Littlestone's Winnow: mistake-bound online learning with multiplicative updates",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00116827",
+       "title": "Littlestone 1988, Machine Learning 2 [94]"
+      }
+     ]
+    },
+    {
+     "id": "gibbs-bayes-1990",
+     "name": "Gibbs for Bayesians",
+     "year": 1990.45,
+     "lod": 4,
+     "one_line": "Gelfand & Smith bring Gibbs sampling into mainstream Bayesian statistics",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1080/01621459.1990.10476213",
+       "title": "Gelfand & Smith 1990, JASA [95]"
+      }
+     ]
+    },
+    {
+     "id": "turbo-codes-1993",
+     "name": "Turbo Codes",
+     "year": 1993.4,
+     "lod": 4,
+     "one_line": "Berrou et al.'s turbo codes near the Shannon limit via iterative decoding",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/ICC.1993.397441",
+       "title": "Berrou, Glavieux & Thitimajshima, ICC 1993 [97]"
+      }
+     ]
+    },
+    {
+     "id": "factor-graphs-2001",
+     "name": "Factor Graphs",
+     "year": 2001.1,
+     "lod": 4,
+     "one_line": "Kschischang, Frey & Loeliger unify message passing with factor graphs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/18.910572",
+       "title": "Kschischang, Frey & Loeliger 2001 [112]"
+      }
+     ]
     }
    ]
   },
@@ -6451,6 +7779,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Kaissa",
        "title": "Wikipedia: Kaissa [47]"
+      }
+     ]
+    },
+    {
+     "id": "menace-1961",
+     "name": "MENACE",
+     "year": 1961.5,
+     "lod": 3,
+     "one_line": "Michie's 304-matchbox noughts-and-crosses learner refines play by reinforcement",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Matchbox_Educable_Noughts_and_Crosses_Engine",
+       "title": "Wikipedia: Matchbox Educable Noughts and Crosses Engine [66]"
       }
      ]
     }
@@ -6805,6 +8146,45 @@
        "title": "AAAI — Wikipedia [9]"
       }
      ]
+    },
+    {
+     "id": "automated-mathematician-award-1977",
+     "name": "AM Computers & Thought",
+     "year": 1977.6,
+     "lod": 4,
+     "one_line": "Lenat's Automated Mathematician wins the IJCAI Computers and Thought Award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Automated_Mathematician",
+       "title": "Automated Mathematician — Wikipedia [56]"
+      }
+     ]
+    },
+    {
+     "id": "simon-nobel-1978",
+     "name": "Simon's Nobel",
+     "year": 1978.8,
+     "lod": 3,
+     "one_line": "Herbert Simon wins the economics Nobel for bounded rationality in decision-making",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+       "title": "Herbert A. Simon — Wikipedia [57]"
+      }
+     ]
+    },
+    {
+     "id": "truth-maintenance-1979",
+     "name": "Truth Maintenance",
+     "year": 1979.5,
+     "lod": 4,
+     "one_line": "Doyle's truth maintenance system gives rule systems belief revision",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2879%2990008-0",
+       "title": "Doyle 1979, A truth maintenance system [59]"
+      }
+     ]
     }
    ]
   },
@@ -6991,6 +8371,53 @@
       {
        "url": "https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29",
        "title": "Wikipedia: John McCarthy [14]"
+      }
+     ]
+    },
+    {
+     "id": "zadeh-fuzzy-sets-1965",
+     "name": "Fuzzy Sets",
+     "year": 1965.5,
+     "lod": 3,
+     "one_line": "Zadeh introduces graded set membership, root of fuzzy logic",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fuzzy_set",
+       "title": "Wikipedia: Fuzzy set [70]"
+      },
+      {
+       "url": "https://doi.org/10.1016/S0019-9958%2865%2990241-X",
+       "title": "Zadeh, 'Fuzzy sets', Information and Control 8 (1965), doi:10.1016/S0019-9958(65)90241-X [71]"
+      }
+     ]
+    },
+    {
+     "id": "vc-theory-1971",
+     "name": "VC Theory",
+     "year": 1971.0,
+     "lod": 3,
+     "one_line": "Vapnik and Chervonenkis prove uniform convergence: capacity-based learning theory",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_dimension",
+       "title": "Wikipedia: Vapnik–Chervonenkis dimension [82]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1137/1116025",
+       "title": "Crossref record [83]"
+      }
+     ]
+    },
+    {
+     "id": "actor-model-1973",
+     "name": "Actor Model",
+     "year": 1973.0,
+     "lod": 4,
+     "one_line": "Hewitt, Bishop and Steiger model concurrent computation with actors",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Actor_model",
+       "title": "Wikipedia: Actor model [86]"
       }
      ]
     }
@@ -7297,6 +8724,62 @@
       {
        "url": "https://en.wikipedia.org/wiki/What_Computers_Can%27t_Do",
        "title": "Wikipedia: What Computers Can't Do [32]"
+      }
+     ]
+    },
+    {
+     "id": "syntactic-structures-1957",
+     "name": "Syntactic Structures",
+     "year": 1957.0,
+     "lod": 3,
+     "one_line": "Chomsky's generative grammar frames language as rule-governed symbol manipulation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Syntactic_Structures",
+       "title": "Wikipedia: Syntactic Structures [58]"
+      }
+     ]
+    },
+    {
+     "id": "hal-9000-1968",
+     "name": "HAL 9000",
+     "year": 1968.3,
+     "lod": 4,
+     "one_line": "Kubrick's 2001 gives the public its image of general machine intelligence",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/HAL_9000",
+       "title": "Wikipedia: HAL 9000 [77]"
+      }
+     ]
+    },
+    {
+     "id": "woods-atn-1970",
+     "name": "Transition Net Grammars",
+     "year": 1970.5,
+     "lod": 3,
+     "one_line": "Woods's recursive network grammars for natural-language question answering",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Augmented_transition_network",
+       "title": "Wikipedia: Augmented transition network [80]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1145/355598.362773",
+       "title": "Crossref record [81]"
+      }
+     ]
+    },
+    {
+     "id": "parry-1972",
+     "name": "PARRY",
+     "year": 1972.0,
+     "lod": 3,
+     "one_line": "Colby's chatbot simulates a person with paranoid schizophrenia",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/PARRY",
+       "title": "Wikipedia: PARRY [85]"
       }
      ]
     }
@@ -7795,6 +9278,36 @@
       {
        "url": "https://doi.org/10.1109/TIT.1954.1057468",
        "title": "Farley & Clark, 1954 [30]"
+      }
+     ]
+    },
+    {
+     "id": "hodgkin-huxley-1952",
+     "name": "Hodgkin–Huxley Model",
+     "year": 1952.65,
+     "lod": 3,
+     "one_line": "Quantitative model of the squid-axon action potential",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hodgkin%E2%80%93Huxley_model",
+       "title": "Wikipedia: Hodgkin–Huxley model [88]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1113/jphysiol.1952.sp004764",
+       "title": "Crossref record [89]"
+      }
+     ]
+    },
+    {
+     "id": "fix-hodges-knn-1951",
+     "name": "Nearest Neighbour Rule",
+     "year": 1951.5,
+     "lod": 4,
+     "one_line": "Fix and Hodges introduce nearest-neighbour pattern classification",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm",
+       "title": "Wikipedia: k-nearest neighbors algorithm [86]"
       }
      ]
     }
@@ -9125,6 +10638,84 @@
        "title": "Jacobs et al. 1991 [67]"
       }
      ]
+    },
+    {
+     "id": "simulated-annealing-1983",
+     "name": "Simulated Annealing",
+     "year": 1983.37,
+     "lod": 3,
+     "one_line": "Kirkpatrick, Gelatt & Vecchi borrow annealing from physics for optimisation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Simulated_annealing",
+       "title": "Simulated annealing — Wikipedia [93]"
+      }
+     ]
+    },
+    {
+     "id": "linsker-infomax-1988",
+     "name": "Linsker's Infomax",
+     "year": 1988.2,
+     "lod": 4,
+     "one_line": "Linsker: self-organising layers maximise information about their input",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Infomax",
+       "title": "Infomax — Wikipedia [94]"
+      }
+     ]
+    },
+    {
+     "id": "kosko-bam-1988",
+     "name": "Kosko's BAM",
+     "year": 1988.1,
+     "lod": 4,
+     "one_line": "Kosko's bidirectional associative memory extends Hopfield nets to two layers",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/21.87054",
+       "title": "Kosko 1988, IEEE Trans. SMC [96]"
+      }
+     ]
+    },
+    {
+     "id": "rtrl-1989",
+     "name": "RTRL",
+     "year": 1989.45,
+     "lod": 4,
+     "one_line": "Williams & Zipser's real-time recurrent learning trains recurrent nets online",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1989.1.2.270",
+       "title": "Williams & Zipser 1989, Neural Computation [98]"
+      }
+     ]
+    },
+    {
+     "id": "cascade-correlation-1989",
+     "name": "Cascade-Correlation",
+     "year": 1989.91,
+     "lod": 4,
+     "one_line": "Fahlman & Lebiere grow networks one hidden unit at a time",
+     "sources": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/1989/hash/69adc1e107f7f7d035d7baf04342e1ca-Abstract.html",
+       "title": "Fahlman & Lebiere, NIPS 1989 [99]"
+      }
+     ]
+    },
+    {
+     "id": "bptt-werbos-1990",
+     "name": "BPTT Tutorial",
+     "year": 1990.8,
+     "lod": 4,
+     "one_line": "Werbos's backpropagation-through-time tutorial for training recurrent nets",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/5.58337",
+       "title": "Werbos 1990, Proc. IEEE [101]"
+      }
+     ]
     }
    ]
   },
@@ -9452,19 +11043,6 @@
    "tag": "Q-learning → Rhino → Minerva → Boss",
    "events": [
     {
-     "id": "watkins-dayan-q-1992",
-     "name": "Q-Learning Convergence",
-     "year": 1992.4,
-     "lod": 4,
-     "one_line": "Watkins & Dayan prove Q-learning converges (Machine Learning 8)",
-     "sources": [
-      {
-       "url": "https://en.wikipedia.org/wiki/Q-learning",
-       "title": "Wikipedia: Q-learning [41]"
-      }
-     ]
-    },
-    {
      "id": "rhino-museum-1997",
      "name": "Rhino Museum Robot",
      "year": 1997.5,
@@ -9526,6 +11104,97 @@
       {
        "url": "https://en.wikipedia.org/wiki/DARPA_Urban_Challenge",
        "title": "Wikipedia: DARPA Urban Challenge [79]"
+      }
+     ]
+    },
+    {
+     "id": "pomdp-planning-1998",
+     "name": "POMDP Planning",
+     "year": 1998.4,
+     "lod": 4,
+     "one_line": "Kaelbling, Littman & Cassandra make POMDPs AI's model of acting under uncertainty",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/S0004-3702%2898%2900023-X",
+       "title": "Kaelbling, Littman & Cassandra 1998 [103]"
+      }
+     ]
+    },
+    {
+     "id": "remote-agent-1998",
+     "name": "Remote Agent",
+     "year": 1998.81,
+     "lod": 3,
+     "one_line": "NASA's Remote Agent flies on Deep Space 1: onboard planning and diagnosis",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Deep_Space_1",
+       "title": "Deep Space 1 — Wikipedia [104]"
+      }
+     ]
+    },
+    {
+     "id": "graphplan-1997",
+     "name": "Graphplan",
+     "year": 1997.1,
+     "lod": 4,
+     "one_line": "Blum & Furst's planning graphs speed up classical planning",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/S0004-3702%2896%2900047-1",
+       "title": "Blum & Furst 1997, Artificial Intelligence 90 [105]"
+      }
+     ]
+    },
+    {
+     "id": "aibo-1999",
+     "name": "Sony AIBO",
+     "year": 1999.36,
+     "lod": 3,
+     "one_line": "Sony's AIBO robot dog: first mass-market entertainment robot",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AIBO",
+       "title": "AIBO — Wikipedia [106]"
+      }
+     ]
+    },
+    {
+     "id": "asimo-2000",
+     "name": "Honda ASIMO",
+     "year": 2000.8,
+     "lod": 3,
+     "one_line": "Honda unveils ASIMO, the public face of humanoid robotics",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/ASIMO",
+       "title": "ASIMO — Wikipedia [110]"
+      }
+     ]
+    },
+    {
+     "id": "roomba-2002",
+     "name": "Roomba",
+     "year": 2002.7,
+     "lod": 3,
+     "one_line": "iRobot's Roomba brings behaviour-based robotics into millions of homes",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Roomba",
+       "title": "Roomba — Wikipedia [114]"
+      }
+     ]
+    },
+    {
+     "id": "apprenticeship-irl-2004",
+     "name": "Apprenticeship IRL",
+     "year": 2004.55,
+     "lod": 4,
+     "one_line": "Abbeel & Ng learn from demonstration by inverse reinforcement learning",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1145/1015330.1015430",
+       "title": "Abbeel & Ng, ICML 2004 [118]"
       }
      ]
     }
@@ -10726,6 +12395,45 @@
        "title": "Wikipedia: Eugene Charniak [77]"
       }
      ]
+    },
+    {
+     "id": "timit-1988",
+     "name": "TIMIT Corpus",
+     "year": 1988.5,
+     "lod": 3,
+     "one_line": "TI/MIT's TIMIT speech corpus becomes the phone-recognition benchmark",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/TIMIT",
+       "title": "TIMIT — Wikipedia [93]"
+      }
+     ]
+    },
+    {
+     "id": "ldc-founded-1992",
+     "name": "LDC Founded",
+     "year": 1992.5,
+     "lod": 3,
+     "one_line": "Linguistic Data Consortium founded at Penn to share speech and text corpora",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Linguistic_Data_Consortium",
+       "title": "Linguistic Data Consortium — Wikipedia [96]"
+      }
+     ]
+    },
+    {
+     "id": "mapreduce-2004",
+     "name": "MapReduce",
+     "year": 2004.95,
+     "lod": 3,
+     "one_line": "Dean & Ghemawat's MapReduce makes web-scale data processing routine",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/MapReduce",
+       "title": "MapReduce — Wikipedia [119]"
+      }
+     ]
     }
    ]
   },
@@ -10830,6 +12538,97 @@
       {
        "url": "https://en.wikipedia.org/wiki/MNIST_database",
        "title": "Wikipedia: MNIST database [36]"
+      }
+     ]
+    },
+    {
+     "id": "svm-text-1998",
+     "name": "SVM Text Categorisation",
+     "year": 1998.3,
+     "lod": 4,
+     "one_line": "Joachims makes SVMs the default text classifier",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BFb0026683",
+       "title": "Joachims, ECML 1998 [102]"
+      }
+     ]
+    },
+    {
+     "id": "sift-1999",
+     "name": "SIFT Features",
+     "year": 1999.7,
+     "lod": 3,
+     "one_line": "Lowe's scale-invariant features anchor pre-deep-learning computer vision",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Scale-invariant_feature_transform",
+       "title": "Scale-invariant feature transform — Wikipedia [107]"
+      }
+     ]
+    },
+    {
+     "id": "isomap-lle-2000",
+     "name": "Isomap & LLE",
+     "year": 2000.97,
+     "lod": 3,
+     "one_line": "Isomap and LLE in Science launch nonlinear manifold learning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Isomap",
+       "title": "Isomap — Wikipedia [108]"
+      }
+     ]
+    },
+    {
+     "id": "normalized-cuts-2000",
+     "name": "Normalized Cuts",
+     "year": 2000.6,
+     "lod": 4,
+     "one_line": "Shi & Malik's normalized cuts make spectral segmentation standard",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/34.868688",
+       "title": "Shi & Malik 2000, TPAMI [109]"
+      }
+     ]
+    },
+    {
+     "id": "libsvm-2000",
+     "name": "LIBSVM",
+     "year": 2000.3,
+     "lod": 4,
+     "one_line": "NTU's LIBSVM becomes the standard support vector machine library",
+     "sources": [
+      {
+       "url": "https://www.csie.ntu.edu.tw/~cjlin/libsvm/",
+       "title": "LIBSVM homepage [111]"
+      }
+     ]
+    },
+    {
+     "id": "mean-shift-2002",
+     "name": "Mean Shift",
+     "year": 2002.35,
+     "lod": 4,
+     "one_line": "Comaniciu & Meer's mean shift: non-parametric mode seeking for vision",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/34.1000236",
+       "title": "Comaniciu & Meer 2002, TPAMI [113]"
+      }
+     ]
+    },
+    {
+     "id": "hog-2005",
+     "name": "HOG Detector",
+     "year": 2005.45,
+     "lod": 3,
+     "one_line": "Dalal & Triggs: gradient histograms plus linear SVM detect pedestrians",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/CVPR.2005.177",
+       "title": "Dalal & Triggs, CVPR 2005 [115]"
       }
      ]
     }
@@ -11135,6 +12934,123 @@
       {
        "url": "https://www.bkgm.com/articles/tesauro/tdl.html",
        "title": "Tesauro 1995 [30]"
+      }
+     ]
+    },
+    {
+     "id": "neural-control-1990",
+     "name": "Neural Adaptive Control",
+     "year": 1990.2,
+     "lod": 4,
+     "one_line": "Narendra & Parthasarathy bring neural networks into system identification and control",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/72.80202",
+       "title": "Narendra & Parthasarathy 1990 [102]"
+      }
+     ]
+    },
+    {
+     "id": "dyna-1990",
+     "name": "Dyna",
+     "year": 1990.5,
+     "lod": 3,
+     "one_line": "Sutton's Dyna plans with simulated experience from a learned model",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/B978-1-55860-141-3.50030-4",
+       "title": "Sutton 1990, ICML [103]"
+      }
+     ]
+    },
+    {
+     "id": "experience-replay-1992",
+     "name": "Experience Replay",
+     "year": 1992.3,
+     "lod": 3,
+     "one_line": "Long-Ji Lin introduces experience replay, later central to DQN",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00992699",
+       "title": "Lin 1992, Machine Learning 8 [105]"
+      }
+     ]
+    },
+    {
+     "id": "td-lambda-convergence-1992",
+     "name": "TD(λ) Convergence",
+     "year": 1992.31,
+     "lod": 4,
+     "one_line": "Dayan proves convergence of TD(λ) for general λ",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00992701",
+       "title": "Dayan 1992, Machine Learning 8 [106]"
+      }
+     ]
+    },
+    {
+     "id": "rl-behavior-robots-1992",
+     "name": "RL Robot Behaviours",
+     "year": 1992.5,
+     "lod": 4,
+     "one_line": "Mahadevan & Connell: RL learns subsumption behaviours on a real robot",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2892%2990058-6",
+       "title": "Mahadevan & Connell 1992 [108]"
+      }
+     ]
+    },
+    {
+     "id": "rtdp-1995",
+     "name": "Real-Time DP",
+     "year": 1995.0,
+     "lod": 4,
+     "one_line": "Barto, Bradtke & Singh link RL, heuristic search and asynchronous DP",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2894%2900011-O",
+       "title": "Barto, Bradtke & Singh 1995 [112]"
+      }
+     ]
+    },
+    {
+     "id": "elevator-rl-1995",
+     "name": "Elevator RL",
+     "year": 1995.9,
+     "lod": 4,
+     "one_line": "Crites & Barto: multi-agent RL beats elevator dispatch heuristics",
+     "sources": [
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/1995/hash/390e982518a50e280d8e2b535462ec1f-Abstract.html",
+       "title": "Crites & Barto, NIPS 1995 [114]"
+      }
+     ]
+    },
+    {
+     "id": "rl-survey-1996",
+     "name": "RL Survey",
+     "year": 1996.3,
+     "lod": 4,
+     "one_line": "Kaelbling, Littman & Moore's JAIR survey maps reinforcement learning",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1613/jair.301",
+       "title": "Kaelbling, Littman & Moore 1996, JAIR [116]"
+      }
+     ]
+    },
+    {
+     "id": "td-function-approx-1997",
+     "name": "TD Convergence Analysis",
+     "year": 1997.35,
+     "lod": 4,
+     "one_line": "Tsitsiklis & Van Roy prove linear TD convergence and show off-policy divergence",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/9.580874",
+       "title": "Tsitsiklis & Van Roy 1997 [117]"
       }
      ]
     }
