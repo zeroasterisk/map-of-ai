@@ -61,6 +61,46 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Daphne_Koller"
             title: "Wikipedia: Daphne Koller [52]"
+      - id: mackay-itila-2003
+        name: MacKay's ITILA
+        year: 2003.6
+        lod: 4
+        one_line: "MacKay's free textbook unites Bayesian inference, coding theory and neural nets"
+        sources:
+          - url: "https://www.inference.org.uk/mackay/itila/"
+            title: "MacKay 2003, Information Theory, Inference, and Learning Algorithms [84]"
+      - id: koller-macarthur-2004
+        name: Koller MacArthur
+        year: 2004.7
+        lod: 4
+        one_line: "Daphne Koller named MacArthur Fellow for probabilistic representation and learning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Daphne_Koller"
+            title: "Wikipedia: Daphne Koller [64]"
+      - id: bishop-prml-2006
+        name: Bishop's PRML
+        year: 2006.4
+        lod: 3
+        one_line: "Pattern Recognition and Machine Learning: the Bayesian textbook of the era"
+        sources:
+          - url: "https://doi.org/10.1007/978-0-387-45528-0"
+            title: "Bishop 2006, Pattern Recognition and Machine Learning [51]"
+      - id: hdp-2006
+        name: Hierarchical Dirichlet
+        year: 2006.9
+        lod: 4
+        one_line: "Teh, Jordan, Beal & Blei: Bayesian nonparametrics for shared mixture models"
+        sources:
+          - url: "https://www.stats.ox.ac.uk/~teh/research/npbayes/jasa2006.pdf"
+            title: "Teh et al. 2006, Hierarchical Dirichlet Processes [82]"
+      - id: pearl-turing-2011
+        name: Pearl Turing Award
+        year: 2011.2
+        lod: 3
+        one_line: "Pearl honoured for a calculus of probabilistic and causal reasoning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Judea_Pearl"
+            title: "Wikipedia: Judea Pearl [5]"
   statistical-corpus-basin:
     hint: "IBM SMT · PageRank · Watson"
     tag: "Sphinx → IBM Models → PageRank → Watson"
@@ -153,6 +193,86 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/IBM_Watson"
             title: "Wikipedia: IBM Watson [43]"
+      - id: jelinek-clsp-1993
+        name: Jelinek to JHU CLSP
+        year: 1993.5
+        lod: 4
+        one_line: "Jelinek leaves IBM's speech group to lead Johns Hopkins CLSP (1993–2010)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Frederick_Jelinek"
+            title: "Wikipedia: Frederick Jelinek [28]"
+      - id: wordnet-cacm-1995
+        name: WordNet
+        year: 1995.8
+        lod: 4
+        one_line: "Miller's Princeton lexical database, later ImageNet's category tree"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/WordNet"
+            title: "Wikipedia: WordNet [91]"
+      - id: naturallyspeaking-1997
+        name: NaturallySpeaking 1.0
+        year: 1997.4
+        lod: 4
+        one_line: "Dragon ships the first continuous-dictation consumer product"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Dragon_NaturallySpeaking"
+            title: "Wikipedia: Dragon NaturallySpeaking [75]"
+      - id: charniak-parser-1997
+        name: Charniak Parser
+        year: 1997.6
+        lod: 4
+        one_line: "Charniak: statistical parsing with a CFG and word statistics (AAAI-97)"
+        sources:
+          - url: "https://aaai.org/papers/00598-AAAI97-093-statistical-parsing-with-a-context-free-grammar-and-word-statistics/"
+            title: "Charniak 1997, AAAI-97 [77]"
+      - id: naive-bayes-spam-1998
+        name: Naive Bayes Spam
+        year: 1998.5
+        lod: 4
+        one_line: "Sahami et al.: Bayesian spam filtering brings probability to everyday email"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering"
+            title: "Wikipedia: Naive Bayes spam filtering [44]"
+      - id: manning-schutze-1999
+        name: Foundations of Stat NLP
+        year: 1999.5
+        lod: 4
+        one_line: "Manning & Schütze give statistical NLP its textbook"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Christopher_D._Manning"
+            title: "Wikipedia: Christopher D. Manning [92]"
+      - id: banko-brill-2001
+        name: Banko & Brill
+        year: 2001.5
+        lod: 3
+        one_line: "Scaling to very very large corpora: more data beats better algorithms"
+        sources:
+          - url: "https://aclanthology.org/P01-1005/"
+            title: "Banko & Brill 2001, ACL [30]"
+      - id: phrase-based-smt-2003
+        name: Phrase-Based SMT
+        year: 2003.4
+        lod: 4
+        one_line: "Koehn, Och & Marcu: phrase-based translation becomes the SMT state of the art"
+        sources:
+          - url: "https://aclanthology.org/N03-1017/"
+            title: "Koehn, Och & Marcu 2003, NAACL [29]"
+      - id: google-translate-smt-2006
+        name: Google Translate
+        year: 2006.32
+        lod: 4
+        one_line: "Google Translate launches as a statistical MT service (28 April 2006)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Google_Translate"
+            title: "Wikipedia: Google Translate [32]"
+      - id: charniak-acl-award-2011
+        name: Charniak ACL Award
+        year: 2011.5
+        lod: 4
+        one_line: "Eugene Charniak receives the ACL Lifetime Achievement Award"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Eugene_Charniak"
+            title: "Wikipedia: Eugene Charniak [77]"
   ensemble-highlands:
     hint: "AdaBoost · Random Forests"
     tag: "C4.5 → AdaBoost → Bagging → Random Forests"
@@ -205,6 +325,38 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/CVPR.2001.990517"
             title: "Viola & Jones 2001 [86]"
+      - id: ho-random-decision-forests-1995
+        name: Random Decision Forests
+        year: 1995.7
+        lod: 4
+        one_line: "Tin Kam Ho's random-subspace forests open the ensemble decade (ICDAR)"
+        sources:
+          - url: "https://doi.org/10.1109/ICDAR.1995.598994"
+            title: "Ho 1995, Random decision forests [17]"
+      - id: two-cultures-2001
+        name: The Two Cultures
+        year: 2001.6
+        lod: 3
+        one_line: "Breiman's manifesto for algorithmic prediction over data modelling"
+        sources:
+          - url: "https://doi.org/10.1214/ss/1009213726"
+            title: "Breiman 2001, Statistical Modeling: The Two Cultures [20]"
+      - id: elements-stat-learning-2001
+        name: Elements of Stat. Learn.
+        year: 2001.8
+        lod: 4
+        one_line: "Hastie, Tibshirani & Friedman: statisticians' canonical synthesis of the field"
+        sources:
+          - url: "https://doi.org/10.1007/978-0-387-21606-5"
+            title: "Hastie, Tibshirani & Friedman 2001 [55]"
+      - id: adaboost-godel-2003
+        name: AdaBoost Gödel Prize
+        year: 2003.5
+        lod: 4
+        one_line: "Freund & Schapire win the 2003 Gödel Prize for AdaBoost"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/G%C3%B6del_Prize"
+            title: "Wikipedia: Gödel Prize [60]"
   support-vector-escarpment:
     hint: "SVM · Stanley 2005"
     tag: "SVM → Kernel Trick → SLAM → Stanley"
@@ -249,3 +401,209 @@ countries:
         sources:
           - url: "https://robots.stanford.edu/papers/thrun.stanley05.pdf"
             title: "Thrun et al. 2006 [39]"
+      - id: svm-mnist-1998
+        name: SVMs on MNIST
+        year: 1998.9
+        lod: 4
+        one_line: "MNIST's original paper reports 0.8% error for an SVM on the new benchmark"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/MNIST_database"
+            title: "Wikipedia: MNIST database [36]"
+  graphical-valley:
+    hint: "Pearl 1988 · Causality"
+    tag: "Pearl → Jordan → Causality → Ng & Jordan"
+    events:
+      - id: jordan-mit-1988
+        name: Jordan at MIT
+        year: 1988.6
+        lod: 4
+        one_line: "Michael I. Jordan joins MIT (1988–98), popularising Bayesian nets in ML"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Michael_I._Jordan"
+            title: "Wikipedia: Michael I. Jordan [62]"
+      - id: pearl-causality-2000
+        name: Pearl's Causality
+        year: 2000.5
+        lod: 3
+        one_line: "Pearl extends graphical models to structural causal models"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Causality_%28book%29"
+            title: "Wikipedia: Causality (book) [6]"
+      - id: ng-jordan-discriminative-2001
+        name: Discriminative vs Gen.
+        year: 2001.9
+        lod: 4
+        one_line: "Ng & Jordan compare logistic regression and naive Bayes (NIPS 2001)"
+        sources:
+          - url: "https://proceedings.neurips.cc/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html"
+            title: "Ng & Jordan 2001 [81]"
+  probabilistic-robotics-marsh:
+    hint: "Particle filters · Urban Challenge"
+    tag: "Q-learning → Rhino → Minerva → Boss"
+    events:
+      - id: watkins-dayan-q-1992
+        name: Q-Learning Convergence
+        year: 1992.4
+        lod: 4
+        one_line: "Watkins & Dayan prove Q-learning converges (Machine Learning 8)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Q-learning"
+            title: "Wikipedia: Q-learning [41]"
+      - id: rhino-museum-1997
+        name: Rhino Museum Robot
+        year: 1997.5
+        lod: 4
+        one_line: "Burgard, Fox and Thrun's probabilistic museum tour-guide robot Rhino"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Wolfram_Burgard"
+            title: "Wikipedia: Wolfram Burgard [78]"
+      - id: minerva-robot-1998
+        name: Minerva Robot
+        year: 1998.5
+        lod: 4
+        one_line: "Minerva follows Rhino as a probabilistic museum tour-guide robot"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Wolfram_Burgard"
+            title: "Wikipedia: Wolfram Burgard [78]"
+      - id: particle-filter-mcl-1999
+        name: Particle Filter MCL
+        year: 1999.6
+        lod: 4
+        one_line: "Particle filters enter robotics: core of Rhino/Minerva and later Stanley"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Monte_Carlo_localization"
+            title: "Wikipedia: Monte Carlo localization [78]"
+      - id: probabilistic-robotics-2005
+        name: Probabilistic Robotics
+        year: 2005.5
+        lod: 3
+        one_line: "Thrun, Burgard & Fox codify particle filters, Kalman filters and SLAM"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Sebastian_Thrun"
+            title: "Wikipedia: Sebastian Thrun [66]"
+      - id: darpa-urban-2007
+        name: DARPA Urban Challenge
+        year: 2007.84
+        lod: 3
+        one_line: "CMU/GM's Boss wins, Stanford's Junior second, among traffic (3 Nov 2007)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/DARPA_Urban_Challenge"
+            title: "Wikipedia: DARPA Urban Challenge [79]"
+  benchmark-plains:
+    hint: "Deep Blue · Netflix · scikit-learn"
+    tag: "ICML → AIMA → JMLR → VOC → Kaggle"
+    events:
+      - id: icml-conference-1993
+        name: ICML Conference
+        year: 1993.5
+        lod: 4
+        one_line: "ICML, a CMU workshop since 1980, becomes a full annual conference"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning"
+            title: "Wikipedia: ICML [46]"
+      - id: weka-toolkit-1993
+        name: Weka Toolkit
+        year: 1993.8
+        lod: 4
+        one_line: "Waikato begins Weka, starting the open ML toolkit tradition"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Weka_%28software%29"
+            title: "Wikipedia: Weka (software) [90]"
+      - id: aima-textbook-1995
+        name: AIMA Textbook
+        year: 1995.5
+        lod: 3
+        one_line: "Russell & Norvig re-frame AI around rational agents and probability"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Artificial_Intelligence:_A_Modern_Approach"
+            title: "Wikipedia: AIMA [47]"
+      - id: kdd-conference-1995
+        name: KDD Conference
+        year: 1995.6
+        lod: 4
+        one_line: "After workshops from 1989, KDD becomes an annual data-mining conference"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/SIGKDD"
+            title: "Wikipedia: SIGKDD [90]"
+      - id: deep-blue-kasparov-1997
+        name: Deep Blue v Kasparov
+        year: 1997.36
+        lod: 3
+        one_line: "IBM's Deep Blue beats Kasparov 3½–2½ in the New York rematch (11 May 1997)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29"
+            title: "Wikipedia: Deep Blue [33]"
+          - url: "https://www.ibm.com/history/deep-blue"
+            title: "IBM History: Deep Blue [34]"
+      - id: mitchell-ml-book-1997
+        name: Mitchell's ML
+        year: 1997.7
+        lod: 4
+        one_line: "Tom Mitchell's Machine Learning: the first standard ML textbook"
+        sources:
+          - url: "https://www.cs.cmu.edu/~tom/mlbook.html"
+            title: "Mitchell 1997, Machine Learning [48]"
+      - id: jmlr-founded-2000
+        name: JMLR Founded
+        year: 2000.5
+        lod: 4
+        one_line: "Open-access JMLR launches under Leslie Kaelbling; ML board defects in 2001"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Journal_of_Machine_Learning_Research"
+            title: "Wikipedia: JMLR [49]"
+      - id: pascal-voc-2005
+        name: PASCAL VOC
+        year: 2005.5
+        lod: 4
+        one_line: "Visual Object Classes challenge (2005–2012): vision's pre-ImageNet benchmark"
+        sources:
+          - url: "https://www.robots.ox.ac.uk/~vgg/projects/pascal/VOC/"
+            title: "PASCAL VOC Homepage [88]"
+      - id: netflix-prize-2006
+        name: Netflix Prize Opens
+        year: 2006.75
+        lod: 4
+        one_line: "Netflix opens the first crowd-sourced ML competition (2 October 2006)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Netflix_Prize"
+            title: "Wikipedia: Netflix Prize [40]"
+      - id: netflix-prize-awarded-2009
+        name: Netflix Prize Won
+        year: 2009.72
+        lod: 3
+        one_line: "BellKor's Pragmatic Chaos wins with a 10.06% gain over Cinematch"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Netflix_Prize"
+            title: "Wikipedia: Netflix Prize [40]"
+      - id: scikit-learn-2010
+        name: scikit-learn v0.1
+        year: 2010.05
+        lod: 4
+        one_line: "INRIA's first public scikit-learn release gives ML a common Python toolkit"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Scikit-learn"
+            title: "Wikipedia: Scikit-learn [58]"
+      - id: kaggle-founded-2010
+        name: Kaggle Founded
+        year: 2010.3
+        lod: 4
+        one_line: "Kaggle (April 2010) makes ML competitions a mass practice"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Kaggle"
+            title: "Wikipedia: Kaggle [58]"
+      - id: valiant-turing-2010
+        name: Valiant Turing Award
+        year: 2010.3
+        lod: 4
+        one_line: "Leslie Valiant honoured for PAC learning, the root of learning theory"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Leslie_Valiant"
+            title: "Wikipedia: Leslie Valiant [2]"
+      - id: scikit-learn-jmlr-2011
+        name: scikit-learn Paper
+        year: 2011.8
+        lod: 4
+        one_line: "Pedregosa et al. publish scikit-learn: Machine Learning in Python in JMLR"
+        sources:
+          - url: "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+            title: "Pedregosa et al. 2011 [53]"

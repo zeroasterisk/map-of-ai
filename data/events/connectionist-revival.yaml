@@ -61,6 +61,214 @@ countries:
         sources:
           - url: "https://www.semanticscholar.org/paper/668087f0ae7ce1de6e0bd0965dbb480c08103260"
             title: "Elman 1990 [33]"
+      - id: werbos-mlp-backprop-1982
+        name: Werbos Backprop on MLPs
+        year: 1982.5
+        lod: 4
+        one_line: "Paul Werbos applies backpropagation to multilayer perceptrons"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Paul_Werbos"
+            title: "Wikipedia: Paul Werbos [11]"
+      - id: kohonen-som-1982
+        name: Self-Organizing Maps
+        year: 1982.6
+        lod: 4
+        one_line: "Teuvo Kohonen: self-organized, topologically correct feature maps"
+        sources:
+          - url: "https://doi.org/10.1007/BF00337288"
+            title: "Kohonen 1982 [37]"
+      - id: oja-rule-1982
+        name: Oja's Rule
+        year: 1982.7
+        lod: 4
+        one_line: "Erkki Oja: a normalised Hebbian neuron extracts principal components"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Oja%27s_rule"
+            title: "Wikipedia: Oja's rule [90]"
+      - id: hopfield-graded-1984
+        name: Continuous Hopfield Net
+        year: 1984.4
+        lod: 4
+        one_line: "Hopfield extends his model to neurons with graded response"
+        sources:
+          - url: "https://pubmed.ncbi.nlm.nih.gov/6587342/"
+            title: "Hopfield 1984 [4]"
+      - id: hnc-software-1986
+        name: HNC Software
+        year: 1986.3
+        lod: 4
+        one_line: "Hecht-Nielsen founds HNC, leading a wave of neural-net start-ups"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Robert_Hecht-Nielsen"
+            title: "Wikipedia: Robert Hecht-Nielsen [92]"
+      - id: jordan-network-1986
+        name: Jordan Network
+        year: 1986.5
+        lod: 4
+        one_line: "Michael I. Jordan proposes the Jordan recurrent network"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Recurrent_neural_network"
+            title: "Wikipedia: Recurrent neural network [32]"
+      - id: harmonium-rbm-1986
+        name: Harmonium (First RBM)
+        year: 1986.8
+        lod: 4
+        one_line: "Smolensky's Harmonium in PDP vol. 1: the first restricted Boltzmann machine"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine"
+            title: "Wikipedia: Restricted Boltzmann machine [79]"
+      - id: inns-founded-1987
+        name: INNS Founded
+        year: 1987.3
+        lod: 4
+        one_line: "Stephen Grossberg founds the International Neural Network Society"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stephen_Grossberg"
+            title: "Wikipedia: Stephen Grossberg [81]"
+      - id: art1-1987
+        name: ART 1
+        year: 1987.5
+        lod: 4
+        one_line: "Carpenter & Grossberg: Adaptive Resonance Theory tackles stability–plasticity"
+        sources:
+          - url: "https://doi.org/10.1016/S0734-189X%2887%2980014-2"
+            title: "Carpenter & Grossberg 1987 [82]"
+      - id: hinton-toronto-1987
+        name: Hinton Moves to Toronto
+        year: 1987.6
+        lod: 4
+        one_line: "Geoffrey Hinton moves from CMU to Toronto, also a CIFAR fellow"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Geoffrey_Hinton"
+            title: "Wikipedia: Geoffrey Hinton [41]"
+      - id: darpa-nn-study-1987
+        name: DARPA Neural Net Study
+        year: 1987.8
+        lod: 4
+        one_line: "DARPA Neural Network Study (1987–88) revives US government funding"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stephen_Grossberg"
+            title: "Wikipedia: Stephen Grossberg [81]"
+      - id: first-nips-1987
+        name: First NIPS
+        year: 1987.9
+        lod: 3
+        one_line: "First NIPS conference held in Denver; connectionists get annual meeting"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Conference_on_Neural_Information_Processing_Systems"
+            title: "Wikipedia: NeurIPS [31]"
+      - id: neural-networks-journal-1988
+        name: Neural Networks Journal
+        year: 1988.05
+        lod: 4
+        one_line: "INNS launches the journal Neural Networks, founding editor Grossberg"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Neural_Networks_%28journal%29"
+            title: "Wikipedia: Neural Networks (journal) [83]"
+      - id: smolensky-ptc-1988
+        name: Proper Treatment
+        year: 1988.1
+        lod: 4
+        one_line: "Smolensky, \"On the proper treatment of connectionism\" in BBS"
+        sources:
+          - url: "https://doi.org/10.1017/S0140525X00052432"
+            title: "Smolensky 1988 [78]"
+      - id: fodor-pylyshyn-1988
+        name: Fodor–Pylyshyn Critique
+        year: 1988.2
+        lod: 3
+        one_line: "Fodor & Pylyshyn attack connectionism's account of cognitive architecture"
+        sources:
+          - url: "https://doi.org/10.1016/0010-0277%2888%2990031-5"
+            title: "Fodor & Pylyshyn 1988 [38]"
+      - id: pinker-prince-1988
+        name: Pinker & Prince
+        year: 1988.3
+        lod: 4
+        one_line: "Pinker & Prince, \"On language and connectionism\", join the debate"
+        sources:
+          - url: "https://doi.org/10.1016/0010-0277%2888%2990032-7"
+            title: "Pinker & Prince 1988 [39]"
+      - id: perceptrons-reissue-1988
+        name: Perceptrons Reissued
+        year: 1988.4
+        lod: 4
+        one_line: "Minsky & Papert reissue Perceptrons with an epilogue answering the revival"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Perceptrons_%28book%29"
+            title: "Wikipedia: Perceptrons (book) [85]"
+      - id: neural-computation-1989
+        name: Neural Computation
+        year: 1989.1
+        lod: 4
+        one_line: "MIT Press launches Neural Computation, edited by Terry Sejnowski"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Neural_Computation_%28journal%29"
+            title: "Wikipedia: Neural Computation (journal) [84]"
+      - id: ijcnn-1989
+        name: IJCNN
+        year: 1989.5
+        lod: 4
+        one_line: "IEEE ICNN and the INNS meeting merge into IJCNN"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stephen_Grossberg"
+            title: "Wikipedia: Stephen Grossberg [81]"
+      - id: analog-vlsi-mead-1989
+        name: Analog VLSI Neural Nets
+        year: 1989.6
+        lod: 4
+        one_line: "Carver Mead publishes Analog VLSI and Neural Systems at Caltech"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Carver_Mead"
+            title: "Wikipedia: Carver Mead [86]"
+      - id: raam-1990
+        name: RAAM
+        year: 1990.4
+        lod: 4
+        one_line: "Pollack's recursive distributed representations encode structures"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2890%2990005-K"
+            title: "Pollack 1990 [80]"
+      - id: tensor-product-1990
+        name: Tensor Product Binding
+        year: 1990.45
+        lod: 4
+        one_line: "Smolensky: tensor-product variable binding for symbolic structures"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2890%2990007-M"
+            title: "Smolensky 1990 [77]"
+      - id: neuromorphic-mead-1990
+        name: Neuromorphic Systems
+        year: 1990.8
+        lod: 4
+        one_line: "Mead's \"Neuromorphic electronic systems\" names neuromorphic engineering"
+        sources:
+          - url: "https://doi.org/10.1109/5.58356"
+            title: "Mead 1990 [87]"
+      - id: silicon-retina-1992
+        name: Silicon Retina
+        year: 1992.5
+        lod: 4
+        one_line: "Misha Mahowald completes her Caltech PhD on the silicon retina"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Misha_Mahowald"
+            title: "Wikipedia: Misha Mahowald [88]"
+      - id: parker-backprop-1985
+        name: Parker Backprop
+        year: 1985.5
+        lod: 4
+        one_line: "David Parker independently derives backpropagation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Backpropagation"
+            title: "Wikipedia: Backpropagation [7]"
+      - id: mixture-of-experts-1991
+        name: Mixture of Experts
+        year: 1991.1
+        lod: 4
+        one_line: "Jacobs, Jordan, Nowlan & Hinton: adaptive mixtures of local experts"
+        sources:
+          - url: "https://www.cs.toronto.edu/~hinton/absps/jjnh91.pdf"
+            title: "Jacobs et al. 1991 [67]"
   temporal-difference-valley:
     hint: "TD-Gammon · Q-learning"
     tag: "Actor-Critic → TD(λ) → Q-Learning → TD-Gammon"
@@ -105,6 +313,30 @@ countries:
         sources:
           - url: "https://doi.org/10.1007/BF00992696"
             title: "Williams 1992 [65]"
+      - id: sutton-gte-labs-1985
+        name: Sutton Joins GTE Labs
+        year: 1985.5
+        lod: 4
+        one_line: "Richard Sutton works at GTE Labs from 1985 to 1994"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Richard_S._Sutton"
+            title: "Wikipedia: Richard S. Sutton [64]"
+      - id: q-learning-convergence-1992
+        name: Q-Learning Convergence
+        year: 1992.4
+        lod: 4
+        one_line: "Watkins & Dayan prove convergence of Q-learning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Peter_Dayan"
+            title: "Wikipedia: Peter Dayan [72]"
+      - id: td-gammon-cacm-1995
+        name: TD-Gammon in CACM
+        year: 1995.2
+        lod: 4
+        one_line: "Tesauro's \"Temporal Difference Learning and TD-Gammon\" in CACM"
+        sources:
+          - url: "https://www.bkgm.com/articles/tesauro/tdl.html"
+            title: "Tesauro 1995 [30]"
   early-convnet-ridge:
     hint: "LeNet-5 · MNIST · LSTM"
     tag: "Neocognitron → Zip Codes → LSTM → LeNet-5"
@@ -125,6 +357,38 @@ countries:
         sources:
           - url: "https://people.idsia.ch/~juergen/hochreiter1991thesis.html"
             title: "Hochreiter 1991 [46]"
+      - id: lecun-paris-thesis-1987
+        name: LeCun Paris Thesis
+        year: 1987.5
+        lod: 4
+        one_line: "Yann LeCun's Paris PhD thesis gives an independent backprop derivation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Yann_LeCun"
+            title: "Wikipedia: Yann LeCun [42]"
+      - id: tdnn-1989
+        name: Time-Delay Neural Nets
+        year: 1989.2
+        lod: 4
+        one_line: "Waibel et al.: TDNNs share weights over time for phoneme recognition"
+        sources:
+          - url: "https://doi.org/10.1109/29.21701"
+            title: "Waibel et al. 1989 [35]"
+      - id: history-compressor-1991
+        name: History Compressor
+        year: 1991.4
+        lod: 4
+        one_line: "Schmidhuber's neural history compressor pre-trains stacked RNNs"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber"
+            title: "Wikipedia: Jürgen Schmidhuber [47]"
+      - id: long-term-deps-1994
+        name: Long-Term Dependencies
+        year: 1994.2
+        lod: 4
+        one_line: "Bengio, Simard & Frasconi formalise vanishing gradients in RNNs"
+        sources:
+          - url: "https://doi.org/10.1109/72.279181"
+            title: "Bengio et al. 1994 [25]"
       - id: lstm-1997
         name: LSTM
         year: 1997.85
@@ -133,6 +397,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1162/neco.1997.9.8.1735"
             title: "Hochreiter & Schmidhuber 1997 [23]"
+      - id: bidirectional-rnn-1997
+        name: Bidirectional RNNs
+        year: 1997.9
+        lod: 4
+        one_line: "Schuster & Paliwal introduce bidirectional recurrent neural networks"
+        sources:
+          - url: "https://doi.org/10.1109/78.650093"
+            title: "Schuster & Paliwal 1997 [40]"
       - id: lenet5-mnist-1998
         name: LeNet-5 & MNIST
         year: 1998.85
@@ -141,3 +413,63 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/5.726791"
             title: "LeCun et al. 1998 [20]"
+  approximation-bayes-shelf:
+    hint: "Universal approx. · Bayesian nets"
+    tag: "RBF → Universal Approx. → Bayesian Nets → Wake-Sleep"
+    events:
+      - id: rbf-networks-1988
+        name: RBF Networks
+        year: 1988.5
+        lod: 4
+        one_line: "Broomhead & Lowe: radial-basis-function networks as interpolation"
+        sources:
+          - url: "https://www.complex-systems.com/abstracts/v02_i03_a05/"
+            title: "Broomhead & Lowe 1988 [89]"
+      - id: hornik-approximators-1989
+        name: Hornik Approximators
+        year: 1989.6
+        lod: 4
+        one_line: "Hornik, Stinchcombe & White: multilayer nets are universal approximators"
+        sources:
+          - url: "https://doi.org/10.1016/0893-6080%2889%2990020-8"
+            title: "Hornik et al. 1989 [28]"
+      - id: mackay-bayesian-nn-1992
+        name: MacKay Evidence
+        year: 1992.3
+        lod: 4
+        one_line: "MacKay: a practical Bayesian framework for backpropagation networks"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1992.4.3.448"
+            title: "MacKay 1992 [73]"
+      - id: bishop-nnpr-1995
+        name: Bishop's NNPR
+        year: 1995.3
+        lod: 4
+        one_line: "Bishop publishes Neural Networks for Pattern Recognition"
+        sources:
+          - url: "https://api.crossref.org/works/10.1093/oso/9780198538493.001.0001"
+            title: "Bishop 1995 [76]"
+      - id: wake-sleep-1995
+        name: Wake-Sleep Algorithm
+        year: 1995.4
+        lod: 4
+        one_line: "Hinton, Dayan, Frey & Neal: wake-sleep for unsupervised nets in Science"
+        sources:
+          - url: "https://www.cs.toronto.edu/~hinton/absps/ws.pdf"
+            title: "Hinton et al. 1995 [70]"
+      - id: helmholtz-machine-1995
+        name: Helmholtz Machine
+        year: 1995.7
+        lod: 4
+        one_line: "Dayan, Hinton, Neal & Zemel: recognition + generative nets, VAE ancestor"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Helmholtz_machine"
+            title: "Wikipedia: Helmholtz machine [71]"
+      - id: neal-bayesian-nn-1996
+        name: Neal Bayesian Learning
+        year: 1996.5
+        lod: 4
+        one_line: "Radford Neal: Bayesian Learning for Neural Networks, infinite-width priors"
+        sources:
+          - url: "https://doi.org/10.1007/978-1-4612-0745-0"
+            title: "Neal 1996 [74]"

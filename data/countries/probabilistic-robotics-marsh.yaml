@@ -1,0 +1,28 @@
+id: probabilistic-robotics-marsh
+level: country
+name: Probabilistic Robotics Marsh
+subtitle: "Particle filters, museum robots, Q-learning and the DARPA challenges, 1992–2007"
+summary: >
+  The southern wetland where estimation theory met learning and machines left the lab.
+  Chris Watkins's Q-learning received its convergence proof with Peter Dayan in 1992.
+  Sebastian Thrun, Wolfram Burgard and Dieter Fox brought Kalman and particle filters,
+  Monte Carlo localization and SLAM to mobile robots, fielding the museum guides Rhino
+  (1997) and Minerva (1998) and codifying the approach in Probabilistic Robotics (2005).
+  The marsh drains east through the DARPA Urban Challenge of 3 November 2007, won by
+  CMU/GM's Tartan Racing "Boss" with Stanford's "Junior" second, whose teams seeded
+  Google's self-driving project.
+time_range: {start: 1992, end: 2007}
+band: S1
+sub_band: [S1b]
+biome: wetland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [41, 66, 78, 79]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Wolfram_Burgard", title: "Wikipedia: Wolfram Burgard (Rhino 1997, Minerva 1998)", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/DARPA_Urban_Challenge", title: "Wikipedia: DARPA Urban Challenge", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Q-learning", title: "Wikipedia: Q-learning (Watkins 1989; Watkins & Dayan 1992)", kind: wikipedia, accessed: 2026-09-23}
+threads: [robotics, rl]
+status: sourced

@@ -1,0 +1,33 @@
+id: approximation-bayes-shelf
+level: country
+name: The Approximation Shelf
+subtitle: "Universal approximation, RBF networks and Bayesian neural nets, 1988–1998"
+summary: >
+  The theoretical and statistical shelf on the southern edge of the connectionist
+  continent. George Cybenko (1989) and Kurt Hornik, Maxwell Stinchcombe and Halbert
+  White proved that feedforward networks with one hidden layer are universal
+  approximators, while David Broomhead and David Lowe at RSRE Malvern recast learning
+  as interpolation with radial-basis-function networks (1988), a bridge from neural
+  nets toward kernel methods. In the 1990s the field acquired a Bayesian footing:
+  David MacKay's evidence framework for backpropagation networks (1992), Christopher
+  Bishop's textbook Neural Networks for Pattern Recognition (1995), and Radford Neal's
+  Bayesian Learning for Neural Networks (1996) with its priors for infinite-width
+  networks. Hinton, Dayan, Frey and Neal's wake-sleep algorithm and the Helmholtz
+  machine (1995) trained recognition and generative networks together, pointing
+  toward variational autoencoders and the statistical-learning era.
+time_range: {start: 1988, end: 1998}
+band: S2
+sub_band: [S2b]
+biome: forest
+parent_id: connectionist-revival
+spatial: true
+research_ref:
+  file: research/04-connectionism-and-backprop-revival-1982-1998.md
+  sources: [26, 27, 28, 70, 71, 73, 74, 75, 76, 89]
+sources:
+  - {url: "https://doi.org/10.1016/0893-6080%2889%2990020-8", title: "Hornik, Stinchcombe & White, Multilayer feedforward networks are universal approximators, Neural Networks 1989", kind: primary, accessed: 2026-09-23}
+  - {url: "https://www.complex-systems.com/abstracts/v02_i03_a05/", title: "Broomhead & Lowe, Multivariable functional interpolation and adaptive networks, Complex Systems 1988", kind: primary, accessed: 2026-09-23}
+  - {url: "https://api.crossref.org/works/10.1162/neco.1992.4.3.448", title: "MacKay, A Practical Bayesian Framework for Backpropagation Networks, Neural Computation 1992", kind: primary, accessed: 2026-09-23}
+  - {url: "https://doi.org/10.1007/978-1-4612-0745-0", title: "Neal, Bayesian Learning for Neural Networks, Springer 1996", kind: primary, accessed: 2026-09-23}
+threads: [compute]
+status: sourced
