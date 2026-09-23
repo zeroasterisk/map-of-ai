@@ -1,0 +1,33 @@
+id: arpa-lab-belt
+level: country
+name: The ARPA Lab Belt
+subtitle: "MIT, Stanford, CMU, SRI and Edinburgh labs and their funders, 1959–1974"
+summary: >
+  The institutional belt that carried the golden age. McCarthy and Minsky founded
+  the MIT AI project in 1959; ARPA's Information Processing Techniques Office was
+  created in October 1962 under J. C. R. Licklider, and Project MAC opened at MIT
+  on 1 July 1963 on a $2M ARPA grant, housing the Minsky–McCarthy AI Group.
+  McCarthy started the Stanford AI Laboratory in 1963, the year Feigenbaum and
+  Feldman's anthology Computers and Thought appeared. In Britain, Donald Michie
+  established Edinburgh's Department of Machine Intelligence and Perception in
+  1965. The field gained its conference (the first IJCAI, Washington 1969) and its
+  journal (Artificial Intelligence, 1970), but the Mansfield Amendment of 1969
+  pushed DARPA toward mission-oriented research, and the 1973–74 cutbacks that
+  followed the Speech Understanding Research disappointments form the belt's
+  eastern edge at the First AI Winter.
+time_range: {start: 1959, end: 1974}
+band: C
+sub_band: [Ca, Cb]
+biome: mixed
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [11, 14, 15, 27, 28, 42, 43, 56]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Information_Processing_Techniques_Office", title: "Wikipedia: Information Processing Techniques Office [43]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/MIT_Computer_Science_and_Artificial_Intelligence_Laboratory", title: "Wikipedia: MIT CSAIL [11]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Stanford_Artificial_Intelligence_Laboratory", title: "Wikipedia: Stanford Artificial Intelligence Laboratory [14]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/AI_winter", title: "Wikipedia: AI winter [28]", kind: wikipedia, accessed: 2026-09-06}
+threads: [compute]
+status: sourced

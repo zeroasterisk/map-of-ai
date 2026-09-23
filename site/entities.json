@@ -1,6 +1,28 @@
 {
  "continents": [
   {
+   "id": "antecedent-isles",
+   "level": "continent",
+   "name": "The Antecedent Isles",
+   "subtitle": "Logic, computability and the mathematical prehistory of AI, 1666–1942",
+   "parent_id": null,
+   "start": 1666,
+   "end": 1942,
+   "band": [
+    "N1",
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "An offshore archipelago west of the 1943 coastline, holding the logic and computability ideas that came before anyone spoke of artificial intelligence. Leibniz's characteristica universalis and calculus ratiocinator (1666–1679) imagined reasoning reduced to calculation, and they form the outermost isle. Babbage designed the Analytical Engine from 1837, and Ada Lovelace's 1843 notes described how to program it. The same notes …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/antecedent-isles.yaml"
+  },
+  {
    "id": "connectionist-revival",
    "level": "continent",
    "name": "The Connectionist Revival",
@@ -22,6 +44,31 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/continents/connectionist-revival.yaml"
+  },
+  {
+   "id": "cybernetic-shore",
+   "level": "continent",
+   "name": "The Cybernetic Shore",
+   "subtitle": "Cybernetics, neural modelling and the first thinking-machine programmes, 1943–1956",
+   "parent_id": null,
+   "start": 1943,
+   "end": 1956,
+   "band": [
+    "N1",
+    "N2",
+    "C",
+    "S1",
+    "S2"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "The first mainland of the map, running from the 1943 west coast to the Dartmouth delta. Two rivers cross it. The cybernetic and neural river starts with McCulloch and Pitts (1943), who showed that networks of idealised neurons can compute any logical function, and with Rosenblueth, Wiener and Bigelow's account of feedback and purpose. It flows through the Macy Conferences …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/cybernetic-shore.yaml"
   },
   {
    "id": "deep-learning-basin",
@@ -50,6 +97,27 @@
     }
    ],
    "file": "data/continents/deep-learning-basin.yaml"
+  },
+  {
+   "id": "expert-systems-plateau",
+   "level": "continent",
+   "name": "The Expert Systems Plateau",
+   "subtitle": "Knowledge engineering, expert systems and the Fifth Generation boom, 1980–1993",
+   "parent_id": null,
+   "start": 1980,
+   "end": 1993,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The warm valley between the two AI winters, sitting at the symbolic/logic pole. Its western edge is 1980, when John McDermott's R1/XCON, written in OPS5, went into production at Digital Equipment's Salem, New Hampshire plant; by 1986 it had processed 80,000 orders and was saving DEC an estimated $25M a year, and corporations worldwide were building in-house AI groups. Knowledge …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/expert-systems-plateau.yaml"
   },
   {
    "id": "generative-coast",
@@ -146,6 +214,28 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/continents/transformer-plateau.yaml"
+  },
+  {
+   "id": "winter-steppes",
+   "level": "continent",
+   "name": "The Winter Steppes",
+   "subtitle": "The two AI winters — funding collapse and retrenchment, 1974–1993",
+   "parent_id": null,
+   "start": 1974,
+   "end": 1993,
+   "band": [
+    "N1",
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The northern steppe of the knowledge era, drawn as sparse frozen ground on either side of the expert-systems boom. Its western border is the First Winter escarpment of 1974, when DARPA cut back basic AI funding in the United States following the 1973 Lighthill Report in the UK, and British AI survived only at Edinburgh, Essex and Sussex. On that …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": null,
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/continents/winter-steppes.yaml"
   }
  ],
  "countries": [
@@ -776,6 +866,327 @@
    ]
   },
   {
+   "id": "analytical-engine-isle",
+   "level": "country",
+   "name": "The Analytical Engine Isle",
+   "subtitle": "Babbage's Analytical Engine and Lovelace's notes, 1837–1843",
+   "parent_id": "antecedent-isles",
+   "start": 1837,
+   "end": 1843,
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "A small isle for the first design of a general-purpose programmable machine. Charles Babbage designed the Analytical Engine in London from 1837. In 1843 Ada Lovelace translated Luigi Menabrea's Sketch of the Analytical Engine and added her own notes. The notes describe how to program the engine and are counted as the first published program. They also contain the first …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N1a",
+    "N1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/analytical-engine-isle.yaml",
+   "hint": "Babbage · Lovelace 1843",
+   "tag": "Analytical Engine → Lovelace's notes",
+   "events": [
+    {
+     "id": "analytical-engine-1837",
+     "name": "Analytical Engine",
+     "year": 1837.0,
+     "lod": 3,
+     "one_line": "Babbage designs the first general-purpose programmable machine",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Analytical_Engine",
+       "title": "Wikipedia: Analytical Engine [2]"
+      }
+     ]
+    },
+    {
+     "id": "lovelace-notes-1843",
+     "name": "Lovelace's Notes",
+     "year": 1843.5,
+     "lod": 3,
+     "one_line": "Notes on Menabrea's Sketch describe programming the Engine: the first published program",
+     "sources": [
+      {
+       "url": "https://www.fourmilab.ch/babbage/sketch.html",
+       "title": "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]"
+      }
+     ]
+    },
+    {
+     "id": "lovelace-objection-1843",
+     "name": "Lovelace's Objection",
+     "year": 1843.6,
+     "lod": 4,
+     "one_line": "The Engine \"has no pretensions to originate anything\"; Turing answers in 1950",
+     "sources": [
+      {
+       "url": "https://www.fourmilab.ch/babbage/sketch.html",
+       "title": "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]"
+      },
+      {
+       "url": "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf",
+       "title": "Turing 1950 [7]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "approximation-bayes-shelf",
+   "level": "country",
+   "name": "The Approximation Shelf",
+   "subtitle": "Universal approximation, RBF networks and Bayesian neural nets, 1988–1998",
+   "parent_id": "connectionist-revival",
+   "start": 1988,
+   "end": 1998,
+   "band": [
+    "S2"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The theoretical and statistical shelf on the southern edge of the connectionist continent. George Cybenko (1989) and Kurt Hornik, Maxwell Stinchcombe and Halbert White proved that feedforward networks with one hidden layer are universal approximators, while David Broomhead and David Lowe at RSRE Malvern recast learning as interpolation with radial-basis-function networks (1988), a bridge from neural nets toward kernel methods. …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/approximation-bayes-shelf.yaml",
+   "hint": "Universal approx. · Bayesian nets",
+   "tag": "RBF → Universal Approx. → Bayesian Nets → Wake-Sleep",
+   "events": [
+    {
+     "id": "rbf-networks-1988",
+     "name": "RBF Networks",
+     "year": 1988.5,
+     "lod": 4,
+     "one_line": "Broomhead & Lowe: radial-basis-function networks as interpolation",
+     "sources": [
+      {
+       "url": "https://www.complex-systems.com/abstracts/v02_i03_a05/",
+       "title": "Broomhead & Lowe 1988 [89]"
+      }
+     ]
+    },
+    {
+     "id": "hornik-approximators-1989",
+     "name": "Hornik Approximators",
+     "year": 1989.6,
+     "lod": 4,
+     "one_line": "Hornik, Stinchcombe & White: multilayer nets are universal approximators",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0893-6080%2889%2990020-8",
+       "title": "Hornik et al. 1989 [28]"
+      }
+     ]
+    },
+    {
+     "id": "mackay-bayesian-nn-1992",
+     "name": "MacKay Evidence",
+     "year": 1992.3,
+     "lod": 4,
+     "one_line": "MacKay: a practical Bayesian framework for backpropagation networks",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1162/neco.1992.4.3.448",
+       "title": "MacKay 1992 [73]"
+      }
+     ]
+    },
+    {
+     "id": "bishop-nnpr-1995",
+     "name": "Bishop's NNPR",
+     "year": 1995.3,
+     "lod": 4,
+     "one_line": "Bishop publishes Neural Networks for Pattern Recognition",
+     "sources": [
+      {
+       "url": "https://api.crossref.org/works/10.1093/oso/9780198538493.001.0001",
+       "title": "Bishop 1995 [76]"
+      }
+     ]
+    },
+    {
+     "id": "wake-sleep-1995",
+     "name": "Wake-Sleep Algorithm",
+     "year": 1995.4,
+     "lod": 4,
+     "one_line": "Hinton, Dayan, Frey & Neal: wake-sleep for unsupervised nets in Science",
+     "sources": [
+      {
+       "url": "https://www.cs.toronto.edu/~hinton/absps/ws.pdf",
+       "title": "Hinton et al. 1995 [70]"
+      }
+     ]
+    },
+    {
+     "id": "helmholtz-machine-1995",
+     "name": "Helmholtz Machine",
+     "year": 1995.7,
+     "lod": 4,
+     "one_line": "Dayan, Hinton, Neal & Zemel: recognition + generative nets, VAE ancestor",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Helmholtz_machine",
+       "title": "Wikipedia: Helmholtz machine [71]"
+      }
+     ]
+    },
+    {
+     "id": "neal-bayesian-nn-1996",
+     "name": "Neal Bayesian Learning",
+     "year": 1996.5,
+     "lod": 4,
+     "one_line": "Radford Neal: Bayesian Learning for Neural Networks, infinite-width priors",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/978-1-4612-0745-0",
+       "title": "Neal 1996 [74]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "arpa-lab-belt",
+   "level": "country",
+   "name": "The ARPA Lab Belt",
+   "subtitle": "MIT, Stanford, CMU, SRI and Edinburgh labs and their funders, 1959–1974",
+   "parent_id": "symbolic-heartland",
+   "start": 1959,
+   "end": 1974,
+   "band": [
+    "C"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "The institutional belt that carried the golden age. McCarthy and Minsky founded the MIT AI project in 1959; ARPA's Information Processing Techniques Office was created in October 1962 under J. C. R. Licklider, and Project MAC opened at MIT on 1 July 1963 on a $2M ARPA grant, housing the Minsky–McCarthy AI Group. McCarthy started the Stanford AI Laboratory in …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca",
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/arpa-lab-belt.yaml",
+   "hint": "Project MAC 1963 · IJCAI 1969",
+   "tag": "MIT AI → IPTO → SAIL → Edinburgh → Mansfield",
+   "events": [
+    {
+     "id": "mit-ai-project-1959",
+     "name": "MIT AI Project",
+     "year": 1959.7,
+     "lod": 3,
+     "one_line": "McCarthy & Minsky found the MIT AI project (MIT AI Lab from 1970)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/MIT_Computer_Science_and_Artificial_Intelligence_Laboratory",
+       "title": "Wikipedia: MIT CSAIL [11]"
+      }
+     ]
+    },
+    {
+     "id": "arpa-ipto-1962",
+     "name": "ARPA IPTO",
+     "year": 1962.8,
+     "lod": 3,
+     "one_line": "ARPA creates IPTO with J. C. R. Licklider as first director (Oct 1962)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Information_Processing_Techniques_Office",
+       "title": "Wikipedia: Information Processing Techniques Office [43]"
+      }
+     ]
+    },
+    {
+     "id": "project-mac-1963",
+     "name": "Project MAC",
+     "year": 1963.5,
+     "lod": 3,
+     "one_line": "Project MAC opens at MIT (1 Jul 1963) on $2M ARPA money, housing the AI Group",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Information_Processing_Techniques_Office",
+       "title": "Wikipedia: Information Processing Techniques Office [43]"
+      }
+     ]
+    },
+    {
+     "id": "stanford-sail-1963",
+     "name": "Stanford AI Lab",
+     "year": 1963.7,
+     "lod": 3,
+     "one_line": "McCarthy, at Stanford from 1962, starts SAIL: robotics, vision, hand–eye work",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stanford_Artificial_Intelligence_Laboratory",
+       "title": "Wikipedia: Stanford Artificial Intelligence Laboratory [14]"
+      }
+     ]
+    },
+    {
+     "id": "computers-and-thought-1963",
+     "name": "Computers and Thought",
+     "year": 1963.6,
+     "lod": 4,
+     "one_line": "Feigenbaum & Feldman publish the first AI anthology; royalties later fund an award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Edward_Feigenbaum",
+       "title": "Wikipedia: Edward Feigenbaum [42]"
+      }
+     ]
+    },
+    {
+     "id": "edinburgh-mip-1965",
+     "name": "Edinburgh MIP Dept",
+     "year": 1965.5,
+     "lod": 4,
+     "one_line": "Donald Michie establishes Edinburgh's Machine Intelligence and Perception dept",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Donald_Michie",
+       "title": "Wikipedia: Donald Michie [15]"
+      }
+     ]
+    },
+    {
+     "id": "first-ijcai-1969",
+     "name": "First IJCAI",
+     "year": 1969.4,
+     "lod": 3,
+     "one_line": "The first International Joint Conference on AI meets in Washington, D.C.",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/International_Joint_Conference_on_Artificial_Intelligence",
+       "title": "Wikipedia: IJCAI [27]"
+      }
+     ]
+    },
+    {
+     "id": "mansfield-amendment-1969",
+     "name": "Mansfield Amendment",
+     "year": 1969.8,
+     "lod": 3,
+     "one_line": "Congress requires DARPA to fund mission-oriented research; the funding tightens",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "Wikipedia: AI winter [28]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "bayesian-plateau",
    "level": "country",
    "name": "The Bayesian Plateau",
@@ -889,6 +1300,367 @@
       {
        "url": "https://en.wikipedia.org/wiki/Daphne_Koller",
        "title": "Wikipedia: Daphne Koller [52]"
+      }
+     ]
+    },
+    {
+     "id": "mackay-itila-2003",
+     "name": "MacKay's ITILA",
+     "year": 2003.6,
+     "lod": 4,
+     "one_line": "MacKay's free textbook unites Bayesian inference, coding theory and neural nets",
+     "sources": [
+      {
+       "url": "https://www.inference.org.uk/mackay/itila/",
+       "title": "MacKay 2003, Information Theory, Inference, and Learning Algorithms [84]"
+      }
+     ]
+    },
+    {
+     "id": "koller-macarthur-2004",
+     "name": "Koller MacArthur",
+     "year": 2004.7,
+     "lod": 4,
+     "one_line": "Daphne Koller named MacArthur Fellow for probabilistic representation and learning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Daphne_Koller",
+       "title": "Wikipedia: Daphne Koller [64]"
+      }
+     ]
+    },
+    {
+     "id": "bishop-prml-2006",
+     "name": "Bishop's PRML",
+     "year": 2006.4,
+     "lod": 3,
+     "one_line": "Pattern Recognition and Machine Learning: the Bayesian textbook of the era",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/978-0-387-45528-0",
+       "title": "Bishop 2006, Pattern Recognition and Machine Learning [51]"
+      }
+     ]
+    },
+    {
+     "id": "hdp-2006",
+     "name": "Hierarchical Dirichlet",
+     "year": 2006.9,
+     "lod": 4,
+     "one_line": "Teh, Jordan, Beal & Blei: Bayesian nonparametrics for shared mixture models",
+     "sources": [
+      {
+       "url": "https://www.stats.ox.ac.uk/~teh/research/npbayes/jasa2006.pdf",
+       "title": "Teh et al. 2006, Hierarchical Dirichlet Processes [82]"
+      }
+     ]
+    },
+    {
+     "id": "pearl-turing-2011",
+     "name": "Pearl Turing Award",
+     "year": 2011.2,
+     "lod": 3,
+     "one_line": "Pearl honoured for a calculus of probabilistic and causal reasoning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Judea_Pearl",
+       "title": "Wikipedia: Judea Pearl [5]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "benchmark-plains",
+   "level": "country",
+   "name": "The Benchmark Plains",
+   "subtitle": "Conferences, textbooks, shared benchmarks, prizes and toolkits, 1993–2011",
+   "parent_id": "statistical-isthmus",
+   "start": 1993,
+   "end": 2011,
+   "band": [
+    "S1"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The institutional flatlands where machine learning became a self-standing discipline. ICML became a full conference in 1993; Russell and Norvig's Artificial Intelligence: A Modern Approach (1995) and Tom Mitchell's Machine Learning (1997) became the standard texts; Deep Blue's May 1997 win over Kasparov gave the era its most-watched public milestone. JMLR (2000) made open-access publishing the norm, PASCAL VOC (2005–2012) …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/benchmark-plains.yaml",
+   "hint": "Deep Blue · Netflix · scikit-learn",
+   "tag": "ICML → AIMA → JMLR → VOC → Kaggle",
+   "events": [
+    {
+     "id": "icml-conference-1993",
+     "name": "ICML Conference",
+     "year": 1993.5,
+     "lod": 4,
+     "one_line": "ICML, a CMU workshop since 1980, becomes a full annual conference",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning",
+       "title": "Wikipedia: ICML [46]"
+      }
+     ]
+    },
+    {
+     "id": "weka-toolkit-1993",
+     "name": "Weka Toolkit",
+     "year": 1993.8,
+     "lod": 4,
+     "one_line": "Waikato begins Weka, starting the open ML toolkit tradition",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Weka_%28software%29",
+       "title": "Wikipedia: Weka (software) [90]"
+      }
+     ]
+    },
+    {
+     "id": "aima-textbook-1995",
+     "name": "AIMA Textbook",
+     "year": 1995.5,
+     "lod": 3,
+     "one_line": "Russell & Norvig re-frame AI around rational agents and probability",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Artificial_Intelligence:_A_Modern_Approach",
+       "title": "Wikipedia: AIMA [47]"
+      }
+     ]
+    },
+    {
+     "id": "kdd-conference-1995",
+     "name": "KDD Conference",
+     "year": 1995.6,
+     "lod": 4,
+     "one_line": "After workshops from 1989, KDD becomes an annual data-mining conference",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/SIGKDD",
+       "title": "Wikipedia: SIGKDD [90]"
+      }
+     ]
+    },
+    {
+     "id": "deep-blue-kasparov-1997",
+     "name": "Deep Blue v Kasparov",
+     "year": 1997.36,
+     "lod": 3,
+     "one_line": "IBM's Deep Blue beats Kasparov 3½–2½ in the New York rematch (11 May 1997)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Deep_Blue_%28chess_computer%29",
+       "title": "Wikipedia: Deep Blue [33]"
+      },
+      {
+       "url": "https://www.ibm.com/history/deep-blue",
+       "title": "IBM History: Deep Blue [34]"
+      }
+     ]
+    },
+    {
+     "id": "mitchell-ml-book-1997",
+     "name": "Mitchell's ML",
+     "year": 1997.7,
+     "lod": 4,
+     "one_line": "Tom Mitchell's Machine Learning: the first standard ML textbook",
+     "sources": [
+      {
+       "url": "https://www.cs.cmu.edu/~tom/mlbook.html",
+       "title": "Mitchell 1997, Machine Learning [48]"
+      }
+     ]
+    },
+    {
+     "id": "jmlr-founded-2000",
+     "name": "JMLR Founded",
+     "year": 2000.5,
+     "lod": 4,
+     "one_line": "Open-access JMLR launches under Leslie Kaelbling; ML board defects in 2001",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Journal_of_Machine_Learning_Research",
+       "title": "Wikipedia: JMLR [49]"
+      }
+     ]
+    },
+    {
+     "id": "pascal-voc-2005",
+     "name": "PASCAL VOC",
+     "year": 2005.5,
+     "lod": 4,
+     "one_line": "Visual Object Classes challenge (2005–2012): vision's pre-ImageNet benchmark",
+     "sources": [
+      {
+       "url": "https://www.robots.ox.ac.uk/~vgg/projects/pascal/VOC/",
+       "title": "PASCAL VOC Homepage [88]"
+      }
+     ]
+    },
+    {
+     "id": "netflix-prize-2006",
+     "name": "Netflix Prize Opens",
+     "year": 2006.75,
+     "lod": 4,
+     "one_line": "Netflix opens the first crowd-sourced ML competition (2 October 2006)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Netflix_Prize",
+       "title": "Wikipedia: Netflix Prize [40]"
+      }
+     ]
+    },
+    {
+     "id": "netflix-prize-awarded-2009",
+     "name": "Netflix Prize Won",
+     "year": 2009.72,
+     "lod": 3,
+     "one_line": "BellKor's Pragmatic Chaos wins with a 10.06% gain over Cinematch",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Netflix_Prize",
+       "title": "Wikipedia: Netflix Prize [40]"
+      }
+     ]
+    },
+    {
+     "id": "scikit-learn-2010",
+     "name": "scikit-learn v0.1",
+     "year": 2010.05,
+     "lod": 4,
+     "one_line": "INRIA's first public scikit-learn release gives ML a common Python toolkit",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Scikit-learn",
+       "title": "Wikipedia: Scikit-learn [58]"
+      }
+     ]
+    },
+    {
+     "id": "kaggle-founded-2010",
+     "name": "Kaggle Founded",
+     "year": 2010.3,
+     "lod": 4,
+     "one_line": "Kaggle (April 2010) makes ML competitions a mass practice",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kaggle",
+       "title": "Wikipedia: Kaggle [58]"
+      }
+     ]
+    },
+    {
+     "id": "valiant-turing-2010",
+     "name": "Valiant Turing Award",
+     "year": 2010.3,
+     "lod": 4,
+     "one_line": "Leslie Valiant honoured for PAC learning, the root of learning theory",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Leslie_Valiant",
+       "title": "Wikipedia: Leslie Valiant [2]"
+      }
+     ]
+    },
+    {
+     "id": "scikit-learn-jmlr-2011",
+     "name": "scikit-learn Paper",
+     "year": 2011.8,
+     "lod": 4,
+     "one_line": "Pedregosa et al. publish scikit-learn: Machine Learning in Python in JMLR",
+     "sources": [
+      {
+       "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html",
+       "title": "Pedregosa et al. 2011 [53]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blackboard-scripts-reach",
+   "level": "country",
+   "name": "The Blackboard & Scripts Reach",
+   "subtitle": "Hearsay-II, Schank's scripts and the Stanford Cart, 1974–1980",
+   "parent_id": "winter-steppes",
+   "start": 1974,
+   "end": 1980,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The second strip of the western frozen band, where knowledge-based architectures for language, speech and action were tried out before the commercial boom. At CMU, Lee Erman, Rick Hayes-Roth, Victor Lesser and Raj Reddy demonstrated the Hearsay-II speech-understanding system in 1976, as DARPA's Speech Understanding Research programme closed. Its \"blackboard\" architecture, written up in 1980, had many knowledge sources cooperating …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/blackboard-scripts-reach.yaml",
+   "hint": "Hearsay-II 1976",
+   "tag": "Hearsay-II → Scripts → Stanford Cart",
+   "events": [
+    {
+     "id": "hearsay-ii-1976",
+     "name": "Hearsay-II",
+     "year": 1976.6,
+     "lod": 3,
+     "one_line": "CMU speech-understanding system: knowledge sources cooperate on a shared blackboard",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Blackboard_system",
+       "title": "Blackboard system — Wikipedia [38]"
+      },
+      {
+       "url": "https://aitopics.org/misc/brief-history",
+       "title": "AAAI, A Brief History of AI [36]"
+      }
+     ]
+    },
+    {
+     "id": "scripts-plans-goals-1977",
+     "name": "Scripts, Plans, Goals",
+     "year": 1977.4,
+     "lod": 3,
+     "one_line": "Schank & Abelson: scripts as stereotyped knowledge structures for understanding",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Roger_Schank",
+       "title": "Roger Schank — Wikipedia [43]"
+      }
+     ]
+    },
+    {
+     "id": "stanford-cart-1979",
+     "name": "Stanford Cart",
+     "year": 1979.7,
+     "lod": 3,
+     "one_line": "Moravec's Cart crosses a chair-filled room by stereo vision: first autonomous vehicle",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hans_Moravec",
+       "title": "Hans Moravec — Wikipedia [39]"
+      }
+     ]
+    },
+    {
+     "id": "cmu-robotics-institute-1980",
+     "name": "CMU Robotics Institute",
+     "year": 1980.0,
+     "lod": 4,
+     "one_line": "Moravec moves to CMU's new Robotics Institute",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hans_Moravec",
+       "title": "Hans Moravec — Wikipedia [39]"
       }
      ]
     }
@@ -1394,6 +2166,86 @@
    ]
   },
   {
+   "id": "computability-isle",
+   "level": "country",
+   "name": "The Computability Isle",
+   "subtitle": "Church, Turing, Post and the theory of computation, 1936–1942",
+   "parent_id": "antecedent-isles",
+   "start": 1936,
+   "end": 1942,
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The largest and nearest isle, close enough that the shore is in sight. It holds the work that asked what can be computed mechanically at all. In 1936 Alonzo Church at Princeton published \"An Unsolvable Problem of Elementary Number Theory\", which introduced the lambda calculus and gave an independent negative answer to Hilbert's Entscheidungsproblem. Lisp later drew on the lambda …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N1a",
+    "N1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/computability-isle.yaml",
+   "hint": "Church · Turing 1936",
+   "tag": "Lambda calculus → Turing machine → Church–Turing thesis",
+   "events": [
+    {
+     "id": "church-lambda-calculus-1936",
+     "name": "Lambda Calculus",
+     "year": 1936.3,
+     "lod": 3,
+     "one_line": "Church's independent negative answer to the Entscheidungsproblem; later underpins Lisp",
+     "sources": [
+      {
+       "url": "https://doi.org/10.2307/2371045",
+       "title": "Church, An Unsolvable Problem of Elementary Number Theory, 1936 [10]"
+      }
+     ]
+    },
+    {
+     "id": "turing-computable-numbers-1936",
+     "name": "On Computable Numbers",
+     "year": 1936.9,
+     "lod": 1,
+     "one_line": "Turing defines the Turing machine and the universal machine: the theoretical computer",
+     "sources": [
+      {
+       "url": "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+       "title": "Turing, On Computable Numbers, 1936 [11]"
+      }
+     ]
+    },
+    {
+     "id": "post-machine-1936",
+     "name": "Post Machine",
+     "year": 1936.8,
+     "lod": 4,
+     "one_line": "Emil Post independently publishes an equivalent worker-and-boxes model",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Emil_Leon_Post",
+       "title": "Wikipedia: Emil Leon Post [44]"
+      }
+     ]
+    },
+    {
+     "id": "church-turing-thesis-1937",
+     "name": "Church–Turing Thesis",
+     "year": 1937.0,
+     "lod": 4,
+     "one_line": "Church, Turing, Post and Kleene formulations prove equivalent: the Church–Turing thesis",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+       "title": "Wikipedia: Church–Turing thesis [44]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "compute-hardware-hinterland",
    "level": "country",
    "name": "The Compute Hinterland",
@@ -1551,6 +2403,468 @@
       {
        "url": "https://en.wikipedia.org/wiki/Hugging_Face",
        "title": "Wikipedia: Hugging Face [124]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "critics-tundra",
+   "level": "country",
+   "name": "The Critics' Tundra",
+   "subtitle": "Physical symbol systems and the philosophical critics of AI, 1974–1993",
+   "parent_id": "winter-steppes",
+   "start": 1974,
+   "end": 1993,
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The philosophy-and-foundations ridge at the far north of the Winter Steppes. At one end stands symbolic AI's creed, Newell and Simon's physical symbol system hypothesis, stated in their 1975 Turing Award lecture and published in 1976. Around it, critics pressed on AI's claims. Joseph Weizenbaum's insider critique Computer Power and Human Reason appeared in 1976. John Searle's Chinese Room (1980) …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N1a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/critics-tundra.yaml",
+   "hint": "Chinese Room 1980",
+   "tag": "Symbol systems → Weizenbaum → Searle → Dreyfus → Brooks",
+   "events": [
+    {
+     "id": "physical-symbol-lecture-1975",
+     "name": "Physical Symbol Systems",
+     "year": 1975.8,
+     "lod": 3,
+     "one_line": "Newell and Simon's Turing Award lecture states the physical symbol system hypothesis",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+       "title": "Physical symbol system — Wikipedia [5]"
+      }
+     ]
+    },
+    {
+     "id": "empirical-inquiry-cacm-1976",
+     "name": "Empirical Inquiry",
+     "year": 1976.2,
+     "lod": 4,
+     "one_line": "CACM publishes 'Computer Science as Empirical Inquiry: Symbols and Search'",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Physical_symbol_system",
+       "title": "Newell & Simon 1976, via Physical symbol system — Wikipedia [5]"
+      }
+     ]
+    },
+    {
+     "id": "computer-power-reason-1976",
+     "name": "Computer Power & Reason",
+     "year": 1976.5,
+     "lod": 3,
+     "one_line": "Weizenbaum's insider critique of AI's social claims",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Computer_Power_and_Human_Reason",
+       "title": "Computer Power and Human Reason — Wikipedia [6]"
+      }
+     ]
+    },
+    {
+     "id": "chinese-room-1980",
+     "name": "Chinese Room",
+     "year": 1980.7,
+     "lod": 2,
+     "one_line": "Searle: symbol manipulation is not understanding; defines 'strong AI'",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1017/S0140525X00005756",
+       "title": "Searle, Minds, Brains, and Programs (1980) [12]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Chinese_room",
+       "title": "Chinese room — Wikipedia [12]"
+      }
+     ]
+    },
+    {
+     "id": "mind-over-machine-1986",
+     "name": "Mind over Machine",
+     "year": 1986.2,
+     "lod": 3,
+     "one_line": "Dreyfus brothers: expertise is intuitive know-how, not rules — aimed at expert systems",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hubert_Dreyfus",
+       "title": "Hubert Dreyfus — Wikipedia [44]"
+      }
+     ]
+    },
+    {
+     "id": "society-of-mind-1986",
+     "name": "The Society of Mind",
+     "year": 1986.5,
+     "lod": 4,
+     "one_line": "Minsky publishes The Society of Mind",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Society_of_Mind",
+       "title": "Society of Mind — Wikipedia [49]"
+      }
+     ]
+    },
+    {
+     "id": "winograd-flores-1986",
+     "name": "Winograd & Flores",
+     "year": 1986.7,
+     "lod": 4,
+     "one_line": "Understanding Computers and Cognition: Winograd turns critic of symbolic AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Terry_Winograd",
+       "title": "Terry Winograd — Wikipedia [50]"
+      }
+     ]
+    },
+    {
+     "id": "moravec-mind-children-1988",
+     "name": "Moravec's Paradox",
+     "year": 1988.5,
+     "lod": 4,
+     "one_line": "Mind Children: perception and mobility prove harder than reasoning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Moravec%27s_paradox",
+       "title": "Moravec's paradox — Wikipedia [39]"
+      }
+     ]
+    },
+    {
+     "id": "elephants-chess-1990",
+     "name": "Elephants & Chess",
+     "year": 1990.5,
+     "lod": 4,
+     "one_line": "Brooks stakes out Nouvelle AI's post-symbolic future",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Rodney_Brooks",
+       "title": "Rodney Brooks — Wikipedia [32]"
+      }
+     ]
+    },
+    {
+     "id": "intelligence-without-rep-1991",
+     "name": "Without Representation",
+     "year": 1991.1,
+     "lod": 3,
+     "one_line": "Brooks's definitive anti-representationalist manifesto in Artificial Intelligence 47",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2891%2990053-M",
+       "title": "Brooks, Intelligence Without Representation (1991) [32]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cybernetic-lowlands",
+   "level": "country",
+   "name": "The Cybernetic Lowlands",
+   "subtitle": "Feedback, control, homeostasis and adaptive machines, 1943–1955",
+   "parent_id": "cybernetic-shore",
+   "start": 1943,
+   "end": 1955,
+   "band": [
+    "S2"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "The southern lowlands of the shore, where feedback, control and homeostasis were studied as one science of animals and machines. Rosenblueth, Wiener and Bigelow's \"Behavior, Purpose and Teleology\" (1943) was the manifesto. The Macy Conferences in New York (1946–1953) brought Wiener, McCulloch, Pitts, von Neumann, Shannon, Bateson and Mead together. Wiener's Cybernetics (1948) named the field, and The Human Use …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S2a",
+    "S2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/cybernetic-lowlands.yaml",
+   "hint": "Wiener's Cybernetics 1948",
+   "tag": "Teleology → Macy → Cybernetics → Homeostat",
+   "events": [
+    {
+     "id": "behavior-purpose-teleology-1943",
+     "name": "Purpose and Teleology",
+     "year": 1943.0,
+     "lod": 2,
+     "one_line": "Rosenblueth, Wiener & Bigelow: feedback as the basis of purposive behaviour",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1086/286788",
+       "title": "Rosenblueth, Wiener & Bigelow, Behavior, Purpose and Teleology, 1943 [13]"
+      }
+     ]
+    },
+    {
+     "id": "craik-nature-of-explanation-1943",
+     "name": "Nature of Explanation",
+     "year": 1943.5,
+     "lod": 4,
+     "one_line": "Kenneth Craik's mental-model theory, the Ratio Club's acknowledged precursor",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kenneth_Craik",
+       "title": "Wikipedia: Kenneth Craik [48]"
+      }
+     ]
+    },
+    {
+     "id": "edvac-first-draft-1945",
+     "name": "EDVAC First Draft",
+     "year": 1945.5,
+     "lod": 3,
+     "one_line": "von Neumann's stored-program architecture makes programmable computers real",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC",
+       "title": "Wikipedia: First Draft of a Report on the EDVAC [14]"
+      }
+     ]
+    },
+    {
+     "id": "macy-conferences-1946",
+     "name": "Macy Conferences",
+     "year": 1946.2,
+     "lod": 3,
+     "one_line": "New York forum where Wiener, McCulloch, von Neumann, Shannon, Mead shape cybernetics",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Macy_conferences",
+       "title": "Wikipedia: Macy conferences [15]"
+      }
+     ]
+    },
+    {
+     "id": "manchester-baby-1948",
+     "name": "Manchester Baby",
+     "year": 1948.47,
+     "lod": 3,
+     "one_line": "First stored-program computer runs (21 June 1948); prototype of the Ferranti Mark 1",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Manchester_Baby",
+       "title": "Wikipedia: Manchester Baby [50]"
+      }
+     ]
+    },
+    {
+     "id": "grey-walter-tortoises-1948",
+     "name": "Grey Walter's Tortoises",
+     "year": 1948.5,
+     "lod": 3,
+     "one_line": "Elmer and Elsie: first autonomous electronic robots with goal-seeking behaviour",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/William_Grey_Walter",
+       "title": "Wikipedia: William Grey Walter [19]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Turtle_%28robot%29",
+       "title": "Wikipedia: Turtle (robot) [19]"
+      }
+     ]
+    },
+    {
+     "id": "hixon-automata-1948",
+     "name": "Theory of Automata",
+     "year": 1948.7,
+     "lod": 4,
+     "one_line": "von Neumann's Hixon lecture compares self-reproducing automata with McCulloch–Pitts nets",
+     "sources": [
+      {
+       "url": "https://www.vordenker.de/ggphilosophy/jvn_the-general-and-logical-theory-of-automata.pdf",
+       "title": "von Neumann, The General and Logical Theory of Automata, 1948 [34]"
+      }
+     ]
+    },
+    {
+     "id": "wiener-cybernetics-1948",
+     "name": "Wiener's Cybernetics",
+     "year": 1948.8,
+     "lod": 2,
+     "one_line": "Names the field: feedback, control and information in animal and machine",
+     "sources": [
+      {
+       "url": "https://archive.org/details/cyberneticsorcon00wien",
+       "title": "Wiener, Cybernetics, 1948 [16]"
+      }
+     ]
+    },
+    {
+     "id": "ashby-homeostat-1949",
+     "name": "Ashby's Homeostat",
+     "year": 1949.2,
+     "lod": 3,
+     "one_line": "Ross Ashby builds ultrastability and adaptation into hardware",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Homeostat",
+       "title": "Wikipedia: Homeostat [21]"
+      }
+     ]
+    },
+    {
+     "id": "ratio-club-1949",
+     "name": "Ratio Club",
+     "year": 1949.5,
+     "lod": 3,
+     "one_line": "UK cybernetics circle: Turing, Ashby, Walter and Uttley",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ratio_Club",
+       "title": "Wikipedia: Ratio Club [22]"
+      }
+     ]
+    },
+    {
+     "id": "human-use-of-human-beings-1950",
+     "name": "Human Use of Humans",
+     "year": 1950.3,
+     "lod": 4,
+     "one_line": "Wiener takes cybernetics to the public and to the automation debate",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Human_Use_of_Human_Beings",
+       "title": "Wikipedia: The Human Use of Human Beings [47]"
+      }
+     ]
+    },
+    {
+     "id": "soviet-denunciation-1950",
+     "name": "Soviet Denunciation",
+     "year": 1950.5,
+     "lod": 3,
+     "one_line": "Soviet press brands cybernetics a \"reactionary pseudoscience\" (1950–54)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Cybernetics_in_the_Soviet_Union",
+       "title": "Wikipedia: Cybernetics in the Soviet Union [42]"
+      }
+     ]
+    },
+    {
+     "id": "paris-colloque-1951",
+     "name": "Paris Colloque",
+     "year": 1951.02,
+     "lod": 3,
+     "one_line": "Couffignal's CNRS colloque on machines and thought; Wiener, Ashby, McCulloch attend",
+     "sources": [
+      {
+       "url": "https://fr.wikipedia.org/wiki/Louis_Couffignal",
+       "title": "Wikipédia: Louis Couffignal [37]"
+      }
+     ]
+    },
+    {
+     "id": "design-for-a-brain-1952",
+     "name": "Design for a Brain",
+     "year": 1952.5,
+     "lod": 4,
+     "one_line": "Ashby frames adaptive behaviour as a dynamical-systems property",
+     "sources": [
+      {
+       "url": "https://archive.org/details/designforbrain00ashb",
+       "title": "Ashby, Design for a Brain, 1952 [26]"
+      }
+     ]
+    },
+    {
+     "id": "macy-conferences-end-1953",
+     "name": "Last Macy Conference",
+     "year": 1953.5,
+     "lod": 4,
+     "one_line": "The 1946–1953 Macy series on cybernetics closes",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Macy_conferences",
+       "title": "Wikipedia: Macy conferences [15]"
+      }
+     ]
+    },
+    {
+     "id": "soviet-rehabilitation-1955",
+     "name": "Soviet Rehabilitation",
+     "year": 1955.3,
+     "lod": 4,
+     "one_line": "Voprosy Filosofii articles begin cybernetics' rehabilitation in the Khrushchev thaw",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Cybernetics_in_the_Soviet_Union",
+       "title": "Wikipedia: Cybernetics in the Soviet Union [42]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cyc-territory",
+   "level": "country",
+   "name": "The Cyc Territory",
+   "subtitle": "Cyc, hand-coded commonsense and ontologies in Austin, 1984–1993",
+   "parent_id": "expert-systems-plateau",
+   "start": 1984,
+   "end": 1993,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The symbolic pole's most ambitious bet, in Austin. In July 1984 Douglas Lenat, who had come from Stanford with the discovery programs AM and EURISKO behind him, began Cyc at the MCC consortium. MCC had been formed in 1982 as the American answer to Japan's Fifth Generation. Cyc was a decades-long attempt to hand-code commonsense knowledge as an encyclopaedic ontology. …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/cyc-territory.yaml",
+   "hint": "Cyc 1984",
+   "tag": "Cyc → KL-ONE → description logics",
+   "events": [
+    {
+     "id": "cyc-begins-1984",
+     "name": "Cyc Begins",
+     "year": 1984.5,
+     "lod": 2,
+     "one_line": "Lenat starts hand-coding commonsense knowledge at MCC (July 1984)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Cyc",
+       "title": "Cyc — Wikipedia [18]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Douglas_Lenat",
+       "title": "Douglas Lenat — Wikipedia [18]"
+      }
+     ]
+    },
+    {
+     "id": "kl-one-1985",
+     "name": "KL-ONE",
+     "year": 1985.4,
+     "lod": 3,
+     "one_line": "Brachman & Schmolze: frame KR with formal semantics, the first description logic",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/KL-ONE",
+       "title": "KL-ONE — Wikipedia [52]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Description_logic",
+       "title": "Description logic — Wikipedia [52]"
       }
      ]
     }
@@ -2317,6 +3631,58 @@
      ]
     },
     {
+     "id": "lecun-paris-thesis-1987",
+     "name": "LeCun Paris Thesis",
+     "year": 1987.5,
+     "lod": 4,
+     "one_line": "Yann LeCun's Paris PhD thesis gives an independent backprop derivation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Yann_LeCun",
+       "title": "Wikipedia: Yann LeCun [42]"
+      }
+     ]
+    },
+    {
+     "id": "tdnn-1989",
+     "name": "Time-Delay Neural Nets",
+     "year": 1989.2,
+     "lod": 4,
+     "one_line": "Waibel et al.: TDNNs share weights over time for phoneme recognition",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/29.21701",
+       "title": "Waibel et al. 1989 [35]"
+      }
+     ]
+    },
+    {
+     "id": "history-compressor-1991",
+     "name": "History Compressor",
+     "year": 1991.4,
+     "lod": 4,
+     "one_line": "Schmidhuber's neural history compressor pre-trains stacked RNNs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber",
+       "title": "Wikipedia: Jürgen Schmidhuber [47]"
+      }
+     ]
+    },
+    {
+     "id": "long-term-deps-1994",
+     "name": "Long-Term Dependencies",
+     "year": 1994.2,
+     "lod": 4,
+     "one_line": "Bengio, Simard & Frasconi formalise vanishing gradients in RNNs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/72.279181",
+       "title": "Bengio et al. 1994 [25]"
+      }
+     ]
+    },
+    {
      "id": "lstm-1997",
      "name": "LSTM",
      "year": 1997.85,
@@ -2326,6 +3692,19 @@
       {
        "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
        "title": "Hochreiter & Schmidhuber 1997 [23]"
+      }
+     ]
+    },
+    {
+     "id": "bidirectional-rnn-1997",
+     "name": "Bidirectional RNNs",
+     "year": 1997.9,
+     "lod": 4,
+     "one_line": "Schuster & Paliwal introduce bidirectional recurrent neural networks",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/78.650093",
+       "title": "Schuster & Paliwal 1997 [40]"
       }
      ]
     },
@@ -2348,10 +3727,10 @@
    "id": "early-perceptron-strip",
    "level": "country",
    "name": "The Perceptron Escarpment",
-   "subtitle": "Perceptrons, ADALINE and early neural networks, 1956–1965",
+   "subtitle": "Perceptrons, ADALINE, GMDH and early neural networks, 1956–1971",
    "parent_id": "symbolic-heartland",
    "start": 1956,
-   "end": 1965,
+   "end": 1971,
    "band": [
     "S1"
    ],
@@ -2432,6 +3811,58 @@
       {
        "url": "https://en.wikipedia.org/wiki/ADALINE",
        "title": "Widrow 1962 [12]"
+      }
+     ]
+    },
+    {
+     "id": "sri-minos-1960",
+     "name": "SRI MINOS Machines",
+     "year": 1960.9,
+     "lod": 4,
+     "one_line": "SRI's MINOS I–III perceptron machines under Rosen and Brain (1960–68)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "Wikipedia: AI winter [28]"
+      }
+     ]
+    },
+    {
+     "id": "gmdh-ivakhnenko-1968",
+     "name": "GMDH",
+     "year": 1968.3,
+     "lod": 4,
+     "one_line": "Ivakhnenko's Kyiv method trains layered polynomial nets inductively",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Group_method_of_data_handling",
+       "title": "Wikipedia: Group method of data handling [48]"
+      }
+     ]
+    },
+    {
+     "id": "gmdh-eight-layers-1971",
+     "name": "Eight-Layer GMDH",
+     "year": 1971.3,
+     "lod": 4,
+     "one_line": "Ivakhnenko's GMDH networks reach eight layers deep: a Soviet deep-net ancestor",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Alexey_Ivakhnenko",
+       "title": "Wikipedia: Alexey Ivakhnenko [48]"
+      }
+     ]
+    },
+    {
+     "id": "rosenblatt-death-1971",
+     "name": "Rosenblatt Dies",
+     "year": 1971.5,
+     "lod": 4,
+     "one_line": "Frank Rosenblatt dies in a boating accident, two years after Perceptrons",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Frank_Rosenblatt",
+       "title": "Wikipedia: Frank Rosenblatt [53]"
       }
      ]
     }
@@ -2734,6 +4165,1014 @@
        "title": "Viola & Jones 2001 [86]"
       }
      ]
+    },
+    {
+     "id": "ho-random-decision-forests-1995",
+     "name": "Random Decision Forests",
+     "year": 1995.7,
+     "lod": 4,
+     "one_line": "Tin Kam Ho's random-subspace forests open the ensemble decade (ICDAR)",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/ICDAR.1995.598994",
+       "title": "Ho 1995, Random decision forests [17]"
+      }
+     ]
+    },
+    {
+     "id": "two-cultures-2001",
+     "name": "The Two Cultures",
+     "year": 2001.6,
+     "lod": 3,
+     "one_line": "Breiman's manifesto for algorithmic prediction over data modelling",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1214/ss/1009213726",
+       "title": "Breiman 2001, Statistical Modeling: The Two Cultures [20]"
+      }
+     ]
+    },
+    {
+     "id": "elements-stat-learning-2001",
+     "name": "Elements of Stat. Learn.",
+     "year": 2001.8,
+     "lod": 4,
+     "one_line": "Hastie, Tibshirani & Friedman: statisticians' canonical synthesis of the field",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/978-0-387-21606-5",
+       "title": "Hastie, Tibshirani & Friedman 2001 [55]"
+      }
+     ]
+    },
+    {
+     "id": "adaboost-godel-2003",
+     "name": "AdaBoost Gödel Prize",
+     "year": 2003.5,
+     "lod": 4,
+     "one_line": "Freund & Schapire win the 2003 Gödel Prize for AdaBoost",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/G%C3%B6del_Prize",
+       "title": "Wikipedia: Gödel Prize [60]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "expert-systems-country",
+   "level": "country",
+   "name": "The Expert Systems Country",
+   "subtitle": "XCON, knowledge engineering, Lisp machines and knowledge representation, 1980–1993",
+   "parent_id": "expert-systems-plateau",
+   "start": 1980,
+   "end": 1993,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The commercial heart of the boom, on the Stanford–CMU–DEC axis. In 1980 John McDermott's R1/XCON, written in OPS5, went into production at DEC's Salem, New Hampshire plant. By 1986 its roughly 2,500 rules had configured 80,000 orders and were saving an estimated $25M a year. PROSPECTOR's 1982 molybdenum find at Mount Tolman became the boom's most-cited non-medical success. Shells such …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/expert-systems-country.yaml",
+   "hint": "XCON/R1 1980 · PROSPECTOR 1982",
+   "tag": "XCON → Lisp machines → KL-ONE → Soar → Deep Thought",
+   "events": [
+    {
+     "id": "xcon-production-1980",
+     "name": "XCON/R1 at DEC",
+     "year": 1980.1,
+     "lod": 1,
+     "one_line": "McDermott's OPS5 configurer enters production at DEC Salem: first big commercial success",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Xcon",
+       "title": "Xcon — Wikipedia [10]"
+      }
+     ]
+    },
+    {
+     "id": "circumscription-1980",
+     "name": "Circumscription",
+     "year": 1980.2,
+     "lod": 3,
+     "one_line": "McCarthy's circumscription, a form of non-monotonic reasoning (AIJ 13)",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2880%2990011-9",
+       "title": "McCarthy, Circumscription (1980) [40]"
+      }
+     ]
+    },
+    {
+     "id": "default-logic-1980",
+     "name": "Default Logic",
+     "year": 1980.3,
+     "lod": 4,
+     "one_line": "Reiter's default logic launches formal commonsense reasoning (AIJ 13)",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2880%2990014-4",
+       "title": "Reiter, A Logic for Default Reasoning (1980) [40]"
+      }
+     ]
+    },
+    {
+     "id": "aaai-first-conference-1980",
+     "name": "First AAAI Conference",
+     "year": 1980.6,
+     "lod": 4,
+     "one_line": "First AAAI National Conference held at Stanford; AI Magazine launched",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AAAI_Conference_on_Artificial_Intelligence",
+       "title": "AAAI Conference on Artificial Intelligence — Wikipedia [55]"
+      }
+     ]
+    },
+    {
+     "id": "blackboard-writeup-1980",
+     "name": "Blackboard Written Up",
+     "year": 1980.8,
+     "lod": 4,
+     "one_line": "Hearsay-II's blackboard architecture is written up, then reused across 1980s AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Blackboard_system",
+       "title": "Blackboard system — Wikipedia [38]"
+      }
+     ]
+    },
+    {
+     "id": "symbolics-lm2-1981",
+     "name": "Symbolics LM-2",
+     "year": 1981.5,
+     "lod": 3,
+     "one_line": "Symbolics ships the LM-2; the Lisp-machine industry begins",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Symbolics",
+       "title": "Symbolics — Wikipedia [13]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Lisp_machine",
+       "title": "Lisp machine — Wikipedia [14]"
+      }
+     ]
+    },
+    {
+     "id": "r1-paper-1982",
+     "name": "R1 Paper",
+     "year": 1982.0,
+     "lod": 4,
+     "one_line": "McDermott's 'R1: A Rule-Based Configurer of Computer Systems' in AIJ 19",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2882%2990021-2",
+       "title": "McDermott, R1 (1982) [11]"
+      }
+     ]
+    },
+    {
+     "id": "dynamic-memory-1982",
+     "name": "Dynamic Memory",
+     "year": 1982.4,
+     "lod": 4,
+     "one_line": "Schank's Dynamic Memory seeds case-based reasoning (Kolodner's CYRUS)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Case-based_reasoning",
+       "title": "Case-based reasoning — Wikipedia [43]"
+      }
+     ]
+    },
+    {
+     "id": "prospector-molybdenum-1982",
+     "name": "PROSPECTOR Find",
+     "year": 1982.6,
+     "lod": 3,
+     "one_line": "PROSPECTOR's map analysis locates a molybdenum deposit at Mount Tolman",
+     "sources": [
+      {
+       "url": "https://ai.stanford.edu/~nilsson/QAI/qai.pdf",
+       "title": "Nilsson, The Quest for AI (2010) [37]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Expert_system",
+       "title": "Expert system — Wikipedia [35]"
+      }
+     ]
+    },
+    {
+     "id": "act-star-1983",
+     "name": "ACT* Architecture",
+     "year": 1983.3,
+     "lod": 4,
+     "one_line": "Anderson's ACT*: the cognitive-psychology production-system architecture",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/ACT-R",
+       "title": "ACT-R — Wikipedia [42]"
+      }
+     ]
+    },
+    {
+     "id": "thinking-machines-1983",
+     "name": "Thinking Machines",
+     "year": 1983.5,
+     "lod": 4,
+     "one_line": "Hillis founds TMC: the Connection Machine as AI hardware's massively parallel wing",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Connection_Machine",
+       "title": "Connection Machine — Wikipedia [46]"
+      }
+     ]
+    },
+    {
+     "id": "qualitative-process-1984",
+     "name": "Qualitative Process",
+     "year": 1984.3,
+     "lod": 4,
+     "one_line": "Forbus's Qualitative Process Theory formalises naive physics",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2884%2990038-9",
+       "title": "Forbus, Qualitative Process Theory (1984) [53]"
+      }
+     ]
+    },
+    {
+     "id": "rule-based-es-book-1984",
+     "name": "Rule-Based Expert Sys.",
+     "year": 1984.6,
+     "lod": 4,
+     "one_line": "Buchanan & Shortliffe publish the MYCIN experiments of Stanford's HPP",
+     "sources": [
+      {
+       "url": "https://www.shortliffe.net/Buchanan-Shortliffe-1984/MYCIN%20Book.htm",
+       "title": "Buchanan & Shortliffe, Rule-Based Expert Systems (1984) [4]"
+      }
+     ]
+    },
+    {
+     "id": "clips-shell-1985",
+     "name": "NASA CLIPS",
+     "year": 1985.3,
+     "lod": 4,
+     "one_line": "NASA's CLIPS expert-system shell spreads the rule-based method",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/CLIPS",
+       "title": "CLIPS — Wikipedia [54]"
+      }
+     ]
+    },
+    {
+     "id": "pearl-bayesian-networks-1985",
+     "name": "Bayesian Networks",
+     "year": 1985.6,
+     "lod": 3,
+     "one_line": "Pearl coins 'Bayesian networks', rival to ad-hoc certainty factors",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bayesian_network",
+       "title": "Bayesian network — Wikipedia [21]"
+      }
+     ]
+    },
+    {
+     "id": "xcon-80000-orders-1986",
+     "name": "XCON Pays Off",
+     "year": 1986.0,
+     "lod": 3,
+     "one_line": "XCON's ~2,500 rules have handled 80,000 orders, saving DEC ~$25M a year",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Xcon",
+       "title": "Xcon — Wikipedia [10]"
+      }
+     ]
+    },
+    {
+     "id": "machine-learning-journal-1986",
+     "name": "Machine Learning Journal",
+     "year": 1986.2,
+     "lod": 4,
+     "one_line": "The new journal Machine Learning gives ML its own venue",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Machine_Learning_%28journal%29",
+       "title": "Machine Learning (journal) — Wikipedia [26]"
+      }
+     ]
+    },
+    {
+     "id": "id3-decision-trees-1986",
+     "name": "ID3 Decision Trees",
+     "year": 1986.3,
+     "lod": 3,
+     "one_line": "Quinlan's 'Induction of Decision Trees': symbolic machine learning matures",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00116251",
+       "title": "Quinlan, Induction of Decision Trees (1986) [25]"
+      }
+     ]
+    },
+    {
+     "id": "soar-architecture-1987",
+     "name": "Soar",
+     "year": 1987.4,
+     "lod": 3,
+     "one_line": "Laird, Newell & Rosenbloom's production architecture with subgoaling and chunking",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2887%2990050-6",
+       "title": "Laird, Newell & Rosenbloom, SOAR (1987) [42]"
+      }
+     ]
+    },
+    {
+     "id": "deep-thought-hitech-1988",
+     "name": "Deep Thought & HiTech",
+     "year": 1988.8,
+     "lod": 3,
+     "one_line": "CMU chess machines each defeat a grandmaster: Denker (HiTech) and Larsen (Deep Thought)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29",
+       "title": "Deep Thought (chess computer) — Wikipedia [45]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/HiTech",
+       "title": "HiTech — Wikipedia [45]"
+      }
+     ]
+    },
+    {
+     "id": "chinook-checkers-1989",
+     "name": "Chinook",
+     "year": 1989.3,
+     "lod": 4,
+     "one_line": "Schaeffer's Chinook checkers program begins at Alberta",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chinook_%28computer_program%29",
+       "title": "Chinook — Wikipedia [45]"
+      }
+     ]
+    },
+    {
+     "id": "deep-thought-kasparov-1989",
+     "name": "Deep Thought v Kasparov",
+     "year": 1989.8,
+     "lod": 4,
+     "one_line": "Deep Thought loses 0–2 to Kasparov; the team moves to IBM and builds Deep Blue",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29",
+       "title": "Deep Thought (chess computer) — Wikipedia [45]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fifth-generation-shogunate",
+   "level": "country",
+   "name": "The Fifth Generation Shogunate",
+   "subtitle": "Logic programming, ICOT and the national AI programmes it provoked, 1980–1984",
+   "parent_id": "expert-systems-plateau",
+   "start": 1980,
+   "end": 1984,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "Tokyo and ICOT, with Alvey, ESPRIT, MCC and the Strategic Computing Initiative as satellite provinces. In 1982 Japan's MITI launched the Fifth Generation Computer Systems project, a ten-year national programme to build massively parallel logic-programming machines. Ehud Shapiro, visiting ICOT that year, set out the programme's rationale and developed Concurrent Prolog. David H. D. Warren's abstract machine (1983) became the …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/fifth-generation-shogunate.yaml",
+   "hint": "Fifth Generation 1982",
+   "tag": "ICOT → MCC → SCI · ESPRIT · Alvey",
+   "events": [
+    {
+     "id": "fifth-generation-launch-1982",
+     "name": "Fifth Generation",
+     "year": 1982.3,
+     "lod": 2,
+     "one_line": "MITI launches ICOT: ten-year programme for parallel logic-programming machines",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems",
+       "title": "Fifth Generation Computer Systems — Wikipedia [15]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Institute_for_New_Generation_Computer_Technology",
+       "title": "ICOT — Wikipedia [15]"
+      }
+     ]
+    },
+    {
+     "id": "mcc-consortium-1982",
+     "name": "MCC Consortium",
+     "year": 1982.6,
+     "lod": 3,
+     "one_line": "MCC forms in Austin under Inman as the US industrial response to Japan",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Microelectronics_and_Computer_Technology_Corporation",
+       "title": "MCC — Wikipedia [18]"
+      }
+     ]
+    },
+    {
+     "id": "concurrent-prolog-1982",
+     "name": "Concurrent Prolog",
+     "year": 1982.8,
+     "lod": 4,
+     "one_line": "Shapiro, visiting ICOT, develops Concurrent Prolog and states the programme's rationale",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems",
+       "title": "Fifth Generation Computer Systems — Wikipedia [15]"
+      }
+     ]
+    },
+    {
+     "id": "warren-abstract-machine-1983",
+     "name": "Warren Abstract Machine",
+     "year": 1983.2,
+     "lod": 4,
+     "one_line": "Warren's WAM becomes the compiler model for Prolog (Quintus Prolog)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Warren_Abstract_Machine",
+       "title": "Warren Abstract Machine — Wikipedia [51]"
+      }
+     ]
+    },
+    {
+     "id": "esprit-programme-1983",
+     "name": "ESPRIT",
+     "year": 1983.4,
+     "lod": 4,
+     "one_line": "The EEC's ESPRIT programme starts; ESPRIT I budget 1.5 billion ECU",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/European_Strategic_Programme_on_Research_in_Information_Technology",
+       "title": "ESPRIT — Wikipedia [41]"
+      }
+     ]
+    },
+    {
+     "id": "strategic-computing-1983",
+     "name": "Strategic Computing",
+     "year": 1983.6,
+     "lod": 3,
+     "one_line": "DARPA's ~$1B Strategic Computing Initiative (1983–1993) answers the Fifth Generation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative",
+       "title": "Strategic Computing Initiative — Wikipedia [19]"
+      }
+     ]
+    },
+    {
+     "id": "fifth-generation-book-1983",
+     "name": "The Fifth Generation",
+     "year": 1983.7,
+     "lod": 4,
+     "one_line": "Feigenbaum co-authors The Fifth Generation, sounding the competitive alarm",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Edward_Feigenbaum",
+       "title": "Edward Feigenbaum — Wikipedia [34]"
+      }
+     ]
+    },
+    {
+     "id": "alvey-programme-1984",
+     "name": "Alvey Programme",
+     "year": 1984.0,
+     "lod": 3,
+     "one_line": "UK's £350M Alvey Programme (1984–1990) re-funds AI after Lighthill",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Alvey",
+       "title": "Alvey — Wikipedia [20]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "formal-logic-isles",
+   "level": "country",
+   "name": "The Formal Logic Isles",
+   "subtitle": "Formal logic and the foundations of mathematics, 1666–1931",
+   "parent_id": "antecedent-isles",
+   "start": 1666,
+   "end": 1931,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The northern chain of the archipelago, where reasoning was first treated as symbol manipulation under explicit rules. Leibniz's characteristica universalis and calculus ratiocinator (1666–1679) are the symbolic pole's founding fantasy of mechanised reasoning. George Boole's An Investigation of the Laws of Thought (1854) gave an algebra of logic. Gottlob Frege's Begriffsschrift (1879) introduced modern predicate logic with quantifiers, the notation …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a",
+    "N2b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/formal-logic-isles.yaml",
+   "hint": "Leibniz 1666 · Gödel 1931",
+   "tag": "Leibniz → Boole → Frege → Principia → Gödel",
+   "events": [
+    {
+     "id": "leibniz-characteristica-1666",
+     "name": "Calculus Ratiocinator",
+     "year": 1666.0,
+     "lod": 2,
+     "one_line": "Leibniz proposes a universal formal language and mechanical rules of reasoning (1666–1679)",
+     "sources": [
+      {
+       "url": "https://plato.stanford.edu/entries/leibniz-logic-influence/",
+       "title": "SEP, Leibniz's Influence on 19th Century Logic [1]"
+      }
+     ]
+    },
+    {
+     "id": "boole-laws-of-thought-1854",
+     "name": "Laws of Thought",
+     "year": 1854.0,
+     "lod": 3,
+     "one_line": "George Boole's algebra of logic: reasoning as symbol manipulation",
+     "sources": [
+      {
+       "url": "https://www.gutenberg.org/ebooks/15114",
+       "title": "Boole, An Investigation of the Laws of Thought, 1854 [4]"
+      }
+     ]
+    },
+    {
+     "id": "frege-begriffsschrift-1879",
+     "name": "Begriffsschrift",
+     "year": 1879.0,
+     "lod": 3,
+     "one_line": "Frege's predicate logic with quantifiers: the notation of symbolic AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Begriffsschrift",
+       "title": "Wikipedia: Begriffsschrift [5]"
+      }
+     ]
+    },
+    {
+     "id": "principia-mathematica-1910",
+     "name": "Principia Mathematica",
+     "year": 1910.0,
+     "lod": 3,
+     "one_line": "Whitehead & Russell begin deriving mathematics formally from logic",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Principia_Mathematica",
+       "title": "Wikipedia: Principia Mathematica [6]"
+      }
+     ]
+    },
+    {
+     "id": "principia-completed-1913",
+     "name": "Principia Completed",
+     "year": 1913.0,
+     "lod": 4,
+     "one_line": "Final volume appears; Logic Theorist will prove its theorems in 1956",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Principia_Mathematica",
+       "title": "Wikipedia: Principia Mathematica [6]"
+      }
+     ]
+    },
+    {
+     "id": "hilbert-programme-1920",
+     "name": "Hilbert's Programme",
+     "year": 1920.0,
+     "lod": 3,
+     "one_line": "1920s: finitary proof of consistency, completeness and decidability of mathematics",
+     "sources": [
+      {
+       "url": "https://plato.stanford.edu/entries/hilbert-program/",
+       "title": "SEP, Hilbert's Program [8]"
+      }
+     ]
+    },
+    {
+     "id": "entscheidungsproblem-1920",
+     "name": "Entscheidungsproblem",
+     "year": 1920.5,
+     "lod": 4,
+     "one_line": "Hilbert's decision problem, which Church and Turing answer in 1936",
+     "sources": [
+      {
+       "url": "https://plato.stanford.edu/entries/hilbert-program/",
+       "title": "SEP, Hilbert's Program [8]"
+      }
+     ]
+    },
+    {
+     "id": "godel-incompleteness-1931",
+     "name": "Gödel Incompleteness",
+     "year": 1931.0,
+     "lod": 2,
+     "one_line": "Limits of formal systems; later cited both for and against machine intelligence",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF01700692",
+       "title": "Gödel, Über formal unentscheidbare Sätze…, 1931 [9]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "funding-passes",
+   "level": "country",
+   "name": "The Funding Passes",
+   "subtitle": "Funding cliffs, the Lisp-machine crash and the second AI winter, 1974–1993",
+   "parent_id": "winter-steppes",
+   "start": 1974,
+   "end": 1993,
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The funding-politics ridge of the Winter Steppes, which traces AI's money from cliff to boom to collapse. Its western wall is the First Winter escarpment of 1974. DARPA cut back basic AI funding in the United States after the 1973 Lighthill Report in the UK, and British AI survived only at Edinburgh, Essex and Sussex. DARPA's Speech Understanding Research programme …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/funding-passes.yaml",
+   "hint": "Winter 1974 · Lisp crash 1987",
+   "tag": "Escarpment 1974 → 'AI winter' 1984 → crash 1987 → fog 1993",
+   "events": [
+    {
+     "id": "first-ai-winter-1974",
+     "name": "First AI Winter",
+     "year": 1974.0,
+     "lod": 1,
+     "one_line": "DARPA cuts basic AI funding after the 1973 Lighthill Report: the First Winter escarpment",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "AI winter — Wikipedia [1]"
+      }
+     ]
+    },
+    {
+     "id": "lighthill-pass-1974",
+     "name": "Lighthill Pass",
+     "year": 1974.2,
+     "lod": 4,
+     "one_line": "Post-Lighthill, UK AI survives only at Edinburgh, Essex and Sussex",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+       "title": "History of artificial intelligence — Wikipedia [2]"
+      }
+     ]
+    },
+    {
+     "id": "speech-understanding-end-1976",
+     "name": "SUR Programme Closes",
+     "year": 1976.5,
+     "lod": 4,
+     "one_line": "DARPA's Speech Understanding Research programme closes with Hearsay-II's demo",
+     "sources": [
+      {
+       "url": "https://ai.stanford.edu/~nilsson/QAI/qai.pdf",
+       "title": "Nilsson, The Quest for AI (2010) [37]"
+      }
+     ]
+    },
+    {
+     "id": "ai-winter-coined-1984",
+     "name": "'AI Winter' Coined",
+     "year": 1984.6,
+     "lod": 2,
+     "one_line": "Schank and Minsky warn at AAAI 1984 that the AI business bubble will burst",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "AI winter — Wikipedia [1]"
+      }
+     ]
+    },
+    {
+     "id": "lisp-machine-crash-1987",
+     "name": "Lisp Machine Crash",
+     "year": 1987.3,
+     "lod": 1,
+     "one_line": "Cheaper Sun/Apple workstations and PCs running Lisp kill the Lisp-machine market",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Lisp_machine",
+       "title": "Lisp machine — Wikipedia [14]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "AI winter — Wikipedia [1]"
+      }
+     ]
+    },
+    {
+     "id": "sci-cuts-ai-1988",
+     "name": "SCI Cuts AI Spending",
+     "year": 1988.3,
+     "lod": 3,
+     "one_line": "The Strategic Computing Initiative cancels new AI spending: government retreats",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "AI winter — Wikipedia [1]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative",
+       "title": "Strategic Computing Initiative — Wikipedia [19]"
+      }
+     ]
+    },
+    {
+     "id": "fifth-generation-ends-1992",
+     "name": "Fifth Generation Ends",
+     "year": 1992.4,
+     "lod": 3,
+     "one_line": "ICOT's ten-year plan concludes short of its original goals; wind-down to 1994",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems",
+       "title": "Fifth Generation Computer Systems — Wikipedia [15]"
+      }
+     ]
+    },
+    {
+     "id": "lisp-companies-fail-1993",
+     "name": "Symbolics Fails",
+     "year": 1993.0,
+     "lod": 3,
+     "one_line": "Symbolics and most Lisp-machine companies fail or exit the market",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Symbolics",
+       "title": "Symbolics — Wikipedia [13]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Lisp_machine",
+       "title": "Lisp machine — Wikipedia [14]"
+      }
+     ]
+    },
+    {
+     "id": "sci-concludes-1993",
+     "name": "SCI Concludes",
+     "year": 1993.0,
+     "lod": 4,
+     "one_line": "DARPA's decade-long, ~$1B Strategic Computing Initiative comes to an end",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative",
+       "title": "Strategic Computing Initiative — Wikipedia [19]"
+      }
+     ]
+    },
+    {
+     "id": "ai-fog-bank-1993",
+     "name": "The 1993 Fog Bank",
+     "year": 1993.0,
+     "lod": 3,
+     "one_line": "'AI' becomes a label to avoid; work continues as ML, informatics, knowledge systems",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "AI winter — Wikipedia [1]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+       "title": "History of artificial intelligence — Wikipedia [2]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "game-search-foothills",
+   "level": "country",
+   "name": "The Game Search Foothills",
+   "subtitle": "Information theory, chess and checkers programs, 1948–1956",
+   "parent_id": "cybernetic-shore",
+   "start": 1948,
+   "end": 1956,
+   "band": [
+    "S1"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The foothills where information was first quantified and game playing became the testbed for machine reasoning. Claude Shannon's \"A Mathematical Theory of Communication\" (1948) founded information theory, which later underpinned probabilistic AI. In 1948 Turing and Champernowne devised Turochamp, a paper chess program that was never run on a computer. Zuse had earlier drafted chess routines in Plankalkül, also never …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1a",
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/game-search-foothills.yaml",
+   "hint": "Shannon 1948 · Dartmouth 1955",
+   "tag": "Information theory → Minimax → Checkers → Dartmouth",
+   "events": [
+    {
+     "id": "turochamp-1948",
+     "name": "Turochamp",
+     "year": 1948.3,
+     "lod": 4,
+     "one_line": "Turing & Champernowne's paper chess program; Zuse's Plankalkül routines also never ran",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Turochamp",
+       "title": "Wikipedia: Turochamp [41]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Plankalk%C3%BCl",
+       "title": "Wikipedia: Plankalkül [45]"
+      }
+     ]
+    },
+    {
+     "id": "shannon-information-theory-1948",
+     "name": "Information Theory",
+     "year": 1948.55,
+     "lod": 2,
+     "one_line": "Shannon quantifies information; later underlies probabilistic AI",
+     "sources": [
+      {
+       "url": "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf",
+       "title": "Shannon, A Mathematical Theory of Communication, 1948 [17]"
+      }
+     ]
+    },
+    {
+     "id": "shannon-chess-1950",
+     "name": "Shannon's Chess Paper",
+     "year": 1950.2,
+     "lod": 3,
+     "one_line": "Minimax search with an evaluation function: the template for game-playing AI",
+     "sources": [
+      {
+       "url": "https://vision.unipv.it/IA1/ProgrammingaComputerforPlayingChess.pdf",
+       "title": "Shannon, Programming a Computer for Playing Chess, 1950 [23]"
+      }
+     ]
+    },
+    {
+     "id": "strachey-draughts-1951",
+     "name": "Strachey's Draughts",
+     "year": 1951.5,
+     "lod": 3,
+     "one_line": "First game-playing programs on a stored-program computer, the Ferranti Mark 1",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ferranti_Mark_1",
+       "title": "Wikipedia: Ferranti Mark 1 [25]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Christopher_Strachey",
+       "title": "Wikipedia: Christopher Strachey [25]"
+      }
+     ]
+    },
+    {
+     "id": "prinz-chess-1951",
+     "name": "Prinz's Chess",
+     "year": 1951.6,
+     "lod": 4,
+     "one_line": "Dietrich Prinz's chess program runs on the Ferranti Mark 1, inspired by Turochamp",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dietrich_Prinz",
+       "title": "Wikipedia: Dietrich Prinz [25]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Turochamp",
+       "title": "Wikipedia: Turochamp [41]"
+      }
+     ]
+    },
+    {
+     "id": "turochamp-glennie-1952",
+     "name": "Turochamp vs Glennie",
+     "year": 1952.2,
+     "lod": 4,
+     "one_line": "Turing hand-simulates Turochamp in a game against Alick Glennie",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Turochamp",
+       "title": "Wikipedia: Turochamp [41]"
+      }
+     ]
+    },
+    {
+     "id": "ibm-701-1952",
+     "name": "IBM 701",
+     "year": 1952.37,
+     "lod": 4,
+     "one_line": "IBM's first commercial scientific computer announced (May 1952); Samuel's checkers host",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/IBM_701",
+       "title": "Wikipedia: IBM 701 [43]"
+      }
+     ]
+    },
+    {
+     "id": "strachey-love-letters-1952",
+     "name": "Love-Letter Generator",
+     "year": 1952.5,
+     "lod": 4,
+     "one_line": "Strachey's Ferranti Mark 1 love letters: the first computer-generated text",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Strachey_love_letter_algorithm",
+       "title": "Wikipedia: Strachey love letter algorithm [46]"
+      }
+     ]
+    },
+    {
+     "id": "samuel-checkers-701-1952",
+     "name": "Samuel's Checkers",
+     "year": 1952.6,
+     "lod": 3,
+     "one_line": "Samuel's IBM checkers program learns by rote and self-play; he coins \"machine learning\"",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1147/rd.33.0210",
+       "title": "Samuel, Checkers, IBM J. 1959 [27]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Arthur_Samuel_%28computer_scientist%29",
+       "title": "Wikipedia: Arthur Samuel [27]"
+      }
+     ]
+    },
+    {
+     "id": "dartmouth-proposal-1955",
+     "name": "Dartmouth Proposal",
+     "year": 1955.66,
+     "lod": 2,
+     "one_line": "McCarthy, Minsky, Rochester & Shannon coin \"artificial intelligence\" (31 Aug 1955)",
+     "sources": [
+      {
+       "url": "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf",
+       "title": "McCarthy et al., Dartmouth Proposal, 1955 [29]"
+      }
+     ]
+    },
+    {
+     "id": "samuel-checkers-demo-1956",
+     "name": "Checkers Demo",
+     "year": 1956.1,
+     "lod": 4,
+     "one_line": "Samuel's learning checkers program is publicly demonstrated on the IBM 701",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/IBM_701",
+       "title": "Wikipedia: IBM 701 [43]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Arthur_Samuel_%28computer_scientist%29",
+       "title": "Wikipedia: Arthur Samuel [27]"
+      }
+     ]
     }
    ]
   },
@@ -2937,6 +5376,72 @@
    ]
   },
   {
+   "id": "graphical-valley",
+   "level": "country",
+   "name": "The Graphical Valley",
+   "subtitle": "Bayesian networks, junction trees and the generative/discriminative debate, 1988–2009",
+   "parent_id": "statistical-isthmus",
+   "start": 1988,
+   "end": 2009,
+   "band": [
+    "C"
+   ],
+   "biome": "grassland",
+   "status": "sourced",
+   "summary60": "The low western entry to the isthmus, where probability replaced certainty factors. Judea Pearl's Probabilistic Reasoning in Intelligent Systems (1988) made Bayesian networks and belief propagation the calculus of uncertain reasoning, and Steffen Lauritzen and David Spiegelhalter's junction-tree paper of the same year made exact inference in general networks practical (the basis of HUGIN and medical expert systems). Michael I. …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/graphical-valley.yaml",
+   "hint": "Pearl 1988 · Causality",
+   "tag": "Pearl → Jordan → Causality → Ng & Jordan",
+   "events": [
+    {
+     "id": "jordan-mit-1988",
+     "name": "Jordan at MIT",
+     "year": 1988.6,
+     "lod": 4,
+     "one_line": "Michael I. Jordan joins MIT (1988–98), popularising Bayesian nets in ML",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Michael_I._Jordan",
+       "title": "Wikipedia: Michael I. Jordan [62]"
+      }
+     ]
+    },
+    {
+     "id": "pearl-causality-2000",
+     "name": "Pearl's Causality",
+     "year": 2000.5,
+     "lod": 3,
+     "one_line": "Pearl extends graphical models to structural causal models",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Causality_%28book%29",
+       "title": "Wikipedia: Causality (book) [6]"
+      }
+     ]
+    },
+    {
+     "id": "ng-jordan-discriminative-2001",
+     "name": "Discriminative vs Gen.",
+     "year": 2001.9,
+     "lod": 4,
+     "one_line": "Ng & Jordan compare logistic regression and naive Bayes (NIPS 2001)",
+     "sources": [
+      {
+       "url": "https://proceedings.neurips.cc/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html",
+       "title": "Ng & Jordan 2001 [81]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "heuristic-search-highlands",
    "level": "country",
    "name": "The Heuristic Search Highlands",
@@ -3008,7 +5513,7 @@
      "one_line": "Herbert Gelernter prunes theorem search using diagrammatic semantic models",
      "sources": [
       {
-       "url": "https://doi.org/10.1145/368273.368565",
+       "url": "https://en.wikipedia.org/wiki/Herbert_Gelernter",
        "title": "Gelernter 1959 [37]"
       }
      ]
@@ -3021,7 +5526,7 @@
      "one_line": "James Slagle's SAINT solves freshman calculus symbolic integration problems",
      "sources": [
       {
-       "url": "https://doi.org/10.1145/368273.368565",
+       "url": "https://en.wikipedia.org/wiki/James_Robert_Slagle",
        "title": "Slagle 1961 [38]"
       }
      ]
@@ -3047,8 +5552,166 @@
      "one_line": "Newell & Simon publish definitive physical symbol system treatise",
      "sources": [
       {
-       "url": "https://en.wikipedia.org/wiki/Allen_Newell",
+       "url": "https://archive.org/details/humanproblemsolv0000newe",
        "title": "Newell & Simon 1972 [18]"
+      }
+     ]
+    },
+    {
+     "id": "simon-chess-prophecy-1957",
+     "name": "Simon's Chess Prophecy",
+     "year": 1957.9,
+     "lod": 4,
+     "one_line": "Simon predicts a computer will be chess champion within ten years",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+       "title": "Wikipedia: Herbert A. Simon [18]"
+      }
+     ]
+    },
+    {
+     "id": "epam-feigenbaum-1960",
+     "name": "EPAM",
+     "year": 1960.0,
+     "lod": 4,
+     "one_line": "Feigenbaum's EPAM: the first computer model of human verbal learning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Elementary_Perceiver_and_Memorizer",
+       "title": "Wikipedia: EPAM [57]"
+      }
+     ]
+    },
+    {
+     "id": "dendral-begins-1965",
+     "name": "Dendral Begins",
+     "year": 1965.5,
+     "lod": 3,
+     "one_line": "Feigenbaum, Lederberg & Buchanan start Dendral: the first expert system",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dendral",
+       "title": "Wikipedia: Dendral [17]"
+      }
+     ]
+    },
+    {
+     "id": "simon-twenty-years-1965",
+     "name": "Simon's 20-Year Claim",
+     "year": 1965.6,
+     "lod": 4,
+     "one_line": "Simon: machines will do any work a man can do within twenty years",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Herbert_A._Simon",
+       "title": "Wikipedia: Herbert A. Simon [18]"
+      }
+     ]
+    },
+    {
+     "id": "macsyma-1968",
+     "name": "Macsyma",
+     "year": 1968.5,
+     "lod": 4,
+     "one_line": "Project MAC's Macsyma algebra system extends the SAINT / SIN lineage",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Macsyma",
+       "title": "Wikipedia: Macsyma [54]"
+      }
+     ]
+    },
+    {
+     "id": "kotok-itep-match-1967",
+     "name": "Kotok vs ITEP Match",
+     "year": 1967.2,
+     "lod": 4,
+     "one_line": "Moscow's ITEP program beats Kotok–McCarthy 3–1 in the first computer-vs-computer match",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kotok-McCarthy",
+       "title": "Wikipedia: Kotok-McCarthy [46]"
+      }
+     ]
+    },
+    {
+     "id": "kaissa-wccc-1974",
+     "name": "Kaissa Champion",
+     "year": 1974.6,
+     "lod": 4,
+     "one_line": "Soviet Kaissa wins the first World Computer Chess Championship in Stockholm",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Kaissa",
+       "title": "Wikipedia: Kaissa [47]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "imitation-game-heights",
+   "level": "country",
+   "name": "The Imitation Game Heights",
+   "subtitle": "The Turing test and the philosophy of machine intelligence, 1948–1950",
+   "parent_id": "cybernetic-shore",
+   "start": 1948,
+   "end": 1950,
+   "band": [
+    "N1"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The northern ridge of the shore, where the question \"can machines think?\" was first given a behavioural test. In 1948 Alan Turing wrote the NPL report \"Intelligent Machinery\". It described \"unorganised machines\" (random neural nets), learning and search, and was not published until 1968. In 1950 his \"Computing Machinery and Intelligence\" in Mind proposed the imitation game, later called the …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N1a",
+    "N1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/imitation-game-heights.yaml",
+   "hint": "Turing test 1950",
+   "tag": "Intelligent Machinery → Imitation Game",
+   "events": [
+    {
+     "id": "turing-intelligent-machinery-1948",
+     "name": "Intelligent Machinery",
+     "year": 1948.5,
+     "lod": 3,
+     "one_line": "Turing's NPL report on unorganised machines, learning and search; unpublished until 1968",
+     "sources": [
+      {
+       "url": "https://weightagnostic.github.io/papers/turing1948.pdf",
+       "title": "Turing, Intelligent Machinery, 1948 [18]"
+      }
+     ]
+    },
+    {
+     "id": "turing-imitation-game-1950",
+     "name": "The Imitation Game",
+     "year": 1950.75,
+     "lod": 1,
+     "one_line": "Turing's Computing Machinery and Intelligence in Mind proposes the Turing test",
+     "sources": [
+      {
+       "url": "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf",
+       "title": "Turing, Computing Machinery and Intelligence, 1950 [7]"
+      }
+     ]
+    },
+    {
+     "id": "turing-nine-objections-1950",
+     "name": "Nine Objections",
+     "year": 1950.8,
+     "lod": 4,
+     "one_line": "Turing rebuts nine objections to thinking machines, including Lovelace's",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence",
+       "title": "Wikipedia: Computing Machinery and Intelligence [7]"
       }
      ]
     }
@@ -3201,6 +5864,132 @@
    ]
   },
   {
+   "id": "knowledge-turn-frontier",
+   "level": "country",
+   "name": "The Knowledge Turn Frontier",
+   "subtitle": "MYCIN, PROSPECTOR and 'knowledge is power' on the first frozen band, 1974–1980",
+   "parent_id": "winter-steppes",
+   "start": 1974,
+   "end": 1980,
+   "band": [
+    "N2"
+   ],
+   "biome": "highland",
+   "status": "sourced",
+   "summary60": "The western frozen band of the Winter Steppes. After the 1974 funding cliff, AI regrouped here around a new thesis: intelligence in a domain comes less from clever general search than from large bodies of hand-coded expert knowledge. MYCIN, developed at Stanford from 1972 to 1976 as Edward Shortliffe's PhD with Bruce Buchanan and Stanley Cohen, was a backward-chaining consultant …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "N2a"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/knowledge-turn-frontier.yaml",
+   "hint": "MYCIN · 'knowledge is power'",
+   "tag": "MYCIN → PROSPECTOR → knowledge engineering → AAAI",
+   "events": [
+    {
+     "id": "mycin-explanation-1975",
+     "name": "MYCIN Paper",
+     "year": 1975.4,
+     "lod": 4,
+     "one_line": "Shortliffe et al. describe MYCIN's explanation and rule-acquisition capabilities",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0010-4809%2875%2990009-9",
+       "title": "Shortliffe et al. 1975 [3]"
+      }
+     ]
+    },
+    {
+     "id": "mycin-consultant-1976",
+     "name": "MYCIN",
+     "year": 1976.0,
+     "lod": 3,
+     "one_line": "Stanford's ~600-rule backward-chaining consultant with certainty factors (1972–76)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Mycin",
+       "title": "Mycin — Wikipedia [3]"
+      },
+      {
+       "url": "https://www.shortliffe.net/Buchanan-Shortliffe-1984/MYCIN%20Book.htm",
+       "title": "Buchanan & Shortliffe, Rule-Based Expert Systems (1984) [4]"
+      }
+     ]
+    },
+    {
+     "id": "prospector-ijcai-1975",
+     "name": "PROSPECTOR Described",
+     "year": 1975.6,
+     "lod": 4,
+     "one_line": "Hart describes SRI's mineral-exploration consultant with Bayesian-style inference nets",
+     "sources": [
+      {
+       "url": "https://ai.stanford.edu/~nilsson/QAI/qai.pdf",
+       "title": "Nilsson, The Quest for AI (2010) [37]"
+      }
+     ]
+    },
+    {
+     "id": "knowledge-is-power-1977",
+     "name": "Knowledge Is Power",
+     "year": 1977.6,
+     "lod": 3,
+     "one_line": "Feigenbaum's IJCAI-77 lecture makes knowledge engineering a programme",
+     "sources": [
+      {
+       "url": "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf",
+       "title": "Feigenbaum, The Art of Artificial Intelligence (1977) [7]"
+      }
+     ]
+    },
+    {
+     "id": "emycin-shell-1977",
+     "name": "EMYCIN Shell",
+     "year": 1977.8,
+     "lod": 4,
+     "one_line": "EMYCIN separates the inference engine from the knowledge base",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Knowledge_engineering",
+       "title": "Knowledge engineering — Wikipedia [7]"
+      }
+     ]
+    },
+    {
+     "id": "ops5-rete-1979",
+     "name": "OPS5 and Rete",
+     "year": 1979.3,
+     "lod": 4,
+     "one_line": "Forgy's OPS5 and Rete algorithm (1979–82): the production engine behind XCON",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/OPS5",
+       "title": "OPS5 — Wikipedia [10]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Rete_algorithm",
+       "title": "Rete algorithm — Wikipedia [10]"
+      }
+     ]
+    },
+    {
+     "id": "aaai-founded-1979",
+     "name": "AAAI Founded",
+     "year": 1979.5,
+     "lod": 3,
+     "one_line": "American Association for Artificial Intelligence founded: the field institutionalises",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Association_for_the_Advancement_of_Artificial_Intelligence",
+       "title": "AAAI — Wikipedia [9]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "logic-representation-plateau",
    "level": "country",
    "name": "The Logic & Representation Plateau",
@@ -3273,7 +6062,7 @@
      "one_line": "J. Alan Robinson discovers single refutation-complete rule for predicate logic",
      "sources": [
       {
-       "url": "https://doi.org/10.1145/321250.321253",
+       "url": "https://en.wikipedia.org/wiki/Resolution_%28logic%29",
        "title": "Robinson 1965 [16]"
       }
      ]
@@ -3286,7 +6075,7 @@
      "one_line": "Bertram Raphael and Cordell Green demonstrate first-order deductive retrieval",
      "sources": [
       {
-       "url": "https://en.wikipedia.org/wiki/Question_answering",
+       "url": "https://aitopics.org/misc/brief-history",
        "title": "Green 1969 [35]"
       }
      ]
@@ -3301,6 +6090,172 @@
       {
        "url": "https://en.wikipedia.org/wiki/Prolog",
        "title": "Colmerauer & Kowalski 1972 [31]"
+      }
+     ]
+    },
+    {
+     "id": "wang-prover-1959",
+     "name": "Wang's Prover",
+     "year": 1959.5,
+     "lod": 4,
+     "one_line": "Hao Wang's IBM 704 program proves hundreds of Principia theorems in ~9 minutes",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hao_Wang_%28academic%29",
+       "title": "Wikipedia: Hao Wang (academic) [39]"
+      }
+     ]
+    },
+    {
+     "id": "lisp-cacm-paper-1960",
+     "name": "Lisp Paper",
+     "year": 1960.3,
+     "lod": 4,
+     "one_line": "McCarthy's Recursive Functions of Symbolic Expressions appears in CACM",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Lisp_%28programming_language%29",
+       "title": "Wikipedia: Lisp (programming language) [7]"
+      }
+     ]
+    },
+    {
+     "id": "solomonoff-induction-1964",
+     "name": "Solomonoff Induction",
+     "year": 1964.3,
+     "lod": 4,
+     "one_line": "A Formal Theory of Inductive Inference: algorithmic probability, Parts I–II",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Ray_Solomonoff",
+       "title": "Wikipedia: Ray Solomonoff [49]"
+      }
+     ]
+    },
+    {
+     "id": "planner-hewitt-1969",
+     "name": "PLANNER",
+     "year": 1969.3,
+     "lod": 4,
+     "one_line": "Hewitt's procedural PLANNER: the scruffy counter-proposal to resolution",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Planner_%28programming_language%29",
+       "title": "Wikipedia: Planner (programming language) [45]"
+      }
+     ]
+    },
+    {
+     "id": "frame-problem-1969",
+     "name": "The Frame Problem",
+     "year": 1969.6,
+     "lod": 3,
+     "one_line": "McCarthy & Hayes introduce situation calculus and name the frame problem",
+     "sources": [
+      {
+       "url": "http://jmc.stanford.edu/articles/mcchay69/mcchay69.pdf",
+       "title": "McCarthy & Hayes, Some Philosophical Problems, 1969 [44]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Frame_problem",
+       "title": "Wikipedia: Frame problem [44]"
+      }
+     ]
+    },
+    {
+     "id": "mccarthy-turing-award-1971",
+     "name": "McCarthy Turing Award",
+     "year": 1971.5,
+     "lod": 4,
+     "one_line": "John McCarthy, coiner of 'AI' and designer of Lisp, receives the 1971 Turing Award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29",
+       "title": "Wikipedia: John McCarthy [14]"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "machine-translation-inlet",
+   "level": "country",
+   "name": "The Machine Translation Inlet",
+   "subtitle": "Weaver's memorandum and the Georgetown–IBM experiment, 1949–1954",
+   "parent_id": "cybernetic-shore",
+   "start": 1949,
+   "end": 1954,
+   "band": [
+    "C"
+   ],
+   "biome": "mixed",
+   "status": "sourced",
+   "summary60": "A narrow inlet at mid-latitude and the first funded \"language AI\". In July 1949 Warren Weaver of the Rockefeller Foundation circulated his \"Translation\" memorandum. It proposed computer translation through cryptanalysis, McCulloch–Pitts-style logic and language universals, and it launched funded machine-translation research in the United States. Yehoshua Bar-Hillel became the first full-time MT researcher at MIT and organised the first MT …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "Ca",
+    "Cb"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/machine-translation-inlet.yaml",
+   "hint": "Georgetown–IBM 1954",
+   "tag": "Weaver memo → MIT conference → Georgetown–IBM",
+   "events": [
+    {
+     "id": "weaver-translation-memo-1949",
+     "name": "Weaver's Memorandum",
+     "year": 1949.54,
+     "lod": 3,
+     "one_line": "Weaver proposes computer translation via cryptanalysis and logic; launches US MT funding",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Warren_Weaver",
+       "title": "Wikipedia: Warren Weaver [35]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/History_of_machine_translation",
+       "title": "Wikipedia: History of machine translation [35]"
+      }
+     ]
+    },
+    {
+     "id": "bar-hillel-mit-1951",
+     "name": "Bar-Hillel at MIT",
+     "year": 1951.5,
+     "lod": 4,
+     "one_line": "Yehoshua Bar-Hillel becomes the first full-time machine-translation researcher",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Yehoshua_Bar-Hillel",
+       "title": "Wikipedia: Yehoshua Bar-Hillel [40]"
+      }
+     ]
+    },
+    {
+     "id": "mit-mt-conference-1952",
+     "name": "First MT Conference",
+     "year": 1952.45,
+     "lod": 4,
+     "one_line": "Bar-Hillel organises the first machine-translation conference at MIT (June 1952)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Yehoshua_Bar-Hillel",
+       "title": "Wikipedia: Yehoshua Bar-Hillel [40]"
+      }
+     ]
+    },
+    {
+     "id": "georgetown-ibm-1954",
+     "name": "Georgetown–IBM",
+     "year": 1954.02,
+     "lod": 3,
+     "one_line": "Public Russian→English MT demo (7 Jan 1954); a decade of funding until ALPAC",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment",
+       "title": "Wikipedia: Georgetown–IBM experiment [28]"
       }
      ]
     }
@@ -3352,7 +6307,7 @@
      "one_line": "Daniel Bobrow solves high school algebra story problems in English",
      "sources": [
       {
-       "url": "https://dspace.mit.edu/handle/1721.1/6908",
+       "url": "https://en.wikipedia.org/wiki/STUDENT_%28computer_program%29",
        "title": "Bobrow 1964 [40]"
       }
      ]
@@ -3419,6 +6374,110 @@
       {
        "url": "https://dspace.mit.edu/handle/1721.1/6089",
        "title": "Minsky 1974 [35]"
+      }
+     ]
+    },
+    {
+     "id": "bar-hillel-mt-critique-1960",
+     "name": "Bar-Hillel's MT Critique",
+     "year": 1960.5,
+     "lod": 4,
+     "one_line": "Bar-Hillel argues fully automatic high-quality translation is infeasible",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Yehoshua_Bar-Hillel",
+       "title": "Wikipedia: Yehoshua Bar-Hillel [55]"
+      }
+     ]
+    },
+    {
+     "id": "evans-analogy-1963",
+     "name": "ANALOGY",
+     "year": 1963.5,
+     "lod": 4,
+     "one_line": "Evans's MIT thesis program solves IQ-test geometric analogy problems",
+     "sources": [
+      {
+       "url": "https://aitopics.org/misc/brief-history",
+       "title": "AAAI, A Brief History of AI [35]"
+      }
+     ]
+    },
+    {
+     "id": "raphael-sir-1964",
+     "name": "SIR",
+     "year": 1964.6,
+     "lod": 4,
+     "one_line": "Raphael's SIR performs logical question answering over stored relations",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Bertram_Raphael",
+       "title": "Wikipedia: Bertram Raphael [41]"
+      }
+     ]
+    },
+    {
+     "id": "dreyfus-alchemy-1965",
+     "name": "Alchemy and AI",
+     "year": 1965.9,
+     "lod": 4,
+     "one_line": "Hubert Dreyfus's RAND memo attacks the assumptions of symbolic AI",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Hubert_Dreyfus%27s_views_on_artificial_intelligence",
+       "title": "Wikipedia: Hubert Dreyfus's views on AI [32]"
+      }
+     ]
+    },
+    {
+     "id": "semantic-info-processing-1968",
+     "name": "Semantic Info Processing",
+     "year": 1968.6,
+     "lod": 4,
+     "one_line": "Minsky's edited volume collects STUDENT, SIR, ANALOGY and Quillian's nets",
+     "sources": [
+      {
+       "url": "https://aitopics.org/misc/brief-history",
+       "title": "AAAI, A Brief History of AI [35]"
+      }
+     ]
+    },
+    {
+     "id": "winston-arch-1970",
+     "name": "Winston's ARCH",
+     "year": 1970.5,
+     "lod": 4,
+     "one_line": "Patrick Winston's MIT thesis learns structural concepts from examples",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Patrick_Winston",
+       "title": "Wikipedia: Patrick Winston [51]"
+      }
+     ]
+    },
+    {
+     "id": "minsky-life-prophecy-1970",
+     "name": "Minsky's Life Quote",
+     "year": 1970.9,
+     "lod": 4,
+     "one_line": "Minsky in Life: human-level machine intelligence 'in from three to eight years'",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+       "title": "Wikipedia: History of artificial intelligence [28]"
+      }
+     ]
+    },
+    {
+     "id": "dreyfus-wccd-1972",
+     "name": "What Computers Can't Do",
+     "year": 1972.5,
+     "lod": 3,
+     "one_line": "Dreyfus's phenomenological critique of symbolic AI appears as a book",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/What_Computers_Can%27t_Do",
+       "title": "Wikipedia: What Computers Can't Do [32]"
       }
      ]
     }
@@ -3647,6 +6706,163 @@
    "spatial": false,
    "related_facts": [],
    "file": "data/countries/national-champion-scalers.yaml"
+  },
+  {
+   "id": "neural-modelling-marshes",
+   "level": "country",
+   "name": "The Neural Modelling Marshes",
+   "subtitle": "Logical neurons, Hebbian learning and the first learning machines, 1943–1954",
+   "parent_id": "cybernetic-shore",
+   "start": 1943,
+   "end": 1954,
+   "band": [
+    "S2"
+   ],
+   "biome": "forest",
+   "status": "sourced",
+   "summary60": "The birthplace of the connectionist pole: brain-inspired computation, synaptic learning and the first learning devices and programs. Warren McCulloch and Walter Pitts's \"A Logical Calculus of the Ideas Immanent in Nervous Activity\" (1943) gave the first mathematical neuron and showed that neural nets can compute any logical function. Their \"How We Know Universals\" (1947) offered the first neural-net account of …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S2b",
+    "S2c"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/neural-modelling-marshes.yaml",
+   "hint": "McCulloch–Pitts 1943 · SNARC",
+   "tag": "McCulloch–Pitts → Hebb → Theseus → SNARC",
+   "events": [
+    {
+     "id": "mcculloch-pitts-1943",
+     "name": "McCulloch–Pitts Neuron",
+     "year": 1943.9,
+     "lod": 1,
+     "one_line": "First mathematical neuron: nets compute any logical function; connectionist pole is born",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF02478259",
+       "title": "McCulloch & Pitts, A Logical Calculus…, 1943 [12]"
+      }
+     ]
+    },
+    {
+     "id": "how-we-know-universals-1947",
+     "name": "How We Know Universals",
+     "year": 1947.5,
+     "lod": 3,
+     "one_line": "Pitts & McCulloch: first neural-net account of invariant pattern recognition",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF02478291",
+       "title": "Pitts & McCulloch, How We Know Universals, 1947 [33]"
+      }
+     ]
+    },
+    {
+     "id": "hebb-organization-of-behavior-1949",
+     "name": "Hebbian Learning",
+     "year": 1949.5,
+     "lod": 3,
+     "one_line": "Hebb's synaptic rule: \"cells that fire together wire together\"",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Organization_of_Behavior",
+       "title": "Wikipedia: The Organization of Behavior [20]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Hebbian_theory",
+       "title": "Wikipedia: Hebbian theory [20]"
+      }
+     ]
+    },
+    {
+     "id": "shannon-theseus-1950",
+     "name": "Theseus Mouse",
+     "year": 1950.5,
+     "lod": 3,
+     "one_line": "Shannon's relay mouse learns a maze by trial and error",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Claude_Shannon",
+       "title": "Wikipedia: Claude Shannon [36]"
+      }
+     ]
+    },
+    {
+     "id": "snarc-1951",
+     "name": "SNARC",
+     "year": 1951.5,
+     "lod": 3,
+     "one_line": "Minsky & Edmonds: first neural-network learning machine, 40 Hebb-style synapses",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stochastic_neural_analog_reinforcement_calculator",
+       "title": "Wikipedia: SNARC [24]"
+      }
+     ]
+    },
+    {
+     "id": "kleene-regular-events-1951",
+     "name": "Regular Events",
+     "year": 1951.6,
+     "lod": 4,
+     "one_line": "Kleene's RAND memo on nerve nets gives birth to regular expressions and finite automata",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stephen_Cole_Kleene",
+       "title": "Wikipedia: Stephen Cole Kleene [38]"
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Regular_expression",
+       "title": "Wikipedia: Regular expression [38]"
+      }
+     ]
+    },
+    {
+     "id": "oettinger-edsac-1951",
+     "name": "Oettinger's Shopper",
+     "year": 1951.8,
+     "lod": 4,
+     "one_line": "EDSAC response-learning and Shopper programs: the first written to learn (1951–52)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Anthony_Oettinger",
+       "title": "Wikipedia: Anthony Oettinger [39]"
+      },
+      {
+       "url": "https://api.crossref.org/works/10.1080/14786441208520256",
+       "title": "Oettinger, Programming a Digital Computer to Learn, 1952 [39]"
+      }
+     ]
+    },
+    {
+     "id": "mit-rle-neural-hub-1952",
+     "name": "MIT RLE Group",
+     "year": 1952.0,
+     "lod": 4,
+     "one_line": "McCulloch, Pitts and Lettvin at MIT's RLE become the neural-modelling hub",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Walter_Pitts",
+       "title": "Wikipedia: Walter Pitts [51]"
+      }
+     ]
+    },
+    {
+     "id": "farley-clark-1954",
+     "name": "Farley & Clark",
+     "year": 1954.5,
+     "lod": 4,
+     "one_line": "Simulation of self-organizing systems by digital computer",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TIT.1954.1057468",
+       "title": "Farley & Clark, 1954 [30]"
+      }
+     ]
+    }
+   ]
   },
   {
    "id": "neural-nlp-sequence-school",
@@ -4466,6 +7682,344 @@
        "title": "Elman 1990 [33]"
       }
      ]
+    },
+    {
+     "id": "werbos-mlp-backprop-1982",
+     "name": "Werbos Backprop on MLPs",
+     "year": 1982.5,
+     "lod": 4,
+     "one_line": "Paul Werbos applies backpropagation to multilayer perceptrons",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_Werbos",
+       "title": "Wikipedia: Paul Werbos [11]"
+      }
+     ]
+    },
+    {
+     "id": "kohonen-som-1982",
+     "name": "Self-Organizing Maps",
+     "year": 1982.6,
+     "lod": 4,
+     "one_line": "Teuvo Kohonen: self-organized, topologically correct feature maps",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00337288",
+       "title": "Kohonen 1982 [37]"
+      }
+     ]
+    },
+    {
+     "id": "oja-rule-1982",
+     "name": "Oja's Rule",
+     "year": 1982.7,
+     "lod": 4,
+     "one_line": "Erkki Oja: a normalised Hebbian neuron extracts principal components",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Oja%27s_rule",
+       "title": "Wikipedia: Oja's rule [90]"
+      }
+     ]
+    },
+    {
+     "id": "hopfield-graded-1984",
+     "name": "Continuous Hopfield Net",
+     "year": 1984.4,
+     "lod": 4,
+     "one_line": "Hopfield extends his model to neurons with graded response",
+     "sources": [
+      {
+       "url": "https://pubmed.ncbi.nlm.nih.gov/6587342/",
+       "title": "Hopfield 1984 [4]"
+      }
+     ]
+    },
+    {
+     "id": "hnc-software-1986",
+     "name": "HNC Software",
+     "year": 1986.3,
+     "lod": 4,
+     "one_line": "Hecht-Nielsen founds HNC, leading a wave of neural-net start-ups",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Robert_Hecht-Nielsen",
+       "title": "Wikipedia: Robert Hecht-Nielsen [92]"
+      }
+     ]
+    },
+    {
+     "id": "jordan-network-1986",
+     "name": "Jordan Network",
+     "year": 1986.5,
+     "lod": 4,
+     "one_line": "Michael I. Jordan proposes the Jordan recurrent network",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Recurrent_neural_network",
+       "title": "Wikipedia: Recurrent neural network [32]"
+      }
+     ]
+    },
+    {
+     "id": "harmonium-rbm-1986",
+     "name": "Harmonium (First RBM)",
+     "year": 1986.8,
+     "lod": 4,
+     "one_line": "Smolensky's Harmonium in PDP vol. 1: the first restricted Boltzmann machine",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine",
+       "title": "Wikipedia: Restricted Boltzmann machine [79]"
+      }
+     ]
+    },
+    {
+     "id": "inns-founded-1987",
+     "name": "INNS Founded",
+     "year": 1987.3,
+     "lod": 4,
+     "one_line": "Stephen Grossberg founds the International Neural Network Society",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stephen_Grossberg",
+       "title": "Wikipedia: Stephen Grossberg [81]"
+      }
+     ]
+    },
+    {
+     "id": "art1-1987",
+     "name": "ART 1",
+     "year": 1987.5,
+     "lod": 4,
+     "one_line": "Carpenter & Grossberg: Adaptive Resonance Theory tackles stability–plasticity",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/S0734-189X%2887%2980014-2",
+       "title": "Carpenter & Grossberg 1987 [82]"
+      }
+     ]
+    },
+    {
+     "id": "hinton-toronto-1987",
+     "name": "Hinton Moves to Toronto",
+     "year": 1987.6,
+     "lod": 4,
+     "one_line": "Geoffrey Hinton moves from CMU to Toronto, also a CIFAR fellow",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
+       "title": "Wikipedia: Geoffrey Hinton [41]"
+      }
+     ]
+    },
+    {
+     "id": "darpa-nn-study-1987",
+     "name": "DARPA Neural Net Study",
+     "year": 1987.8,
+     "lod": 4,
+     "one_line": "DARPA Neural Network Study (1987–88) revives US government funding",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stephen_Grossberg",
+       "title": "Wikipedia: Stephen Grossberg [81]"
+      }
+     ]
+    },
+    {
+     "id": "first-nips-1987",
+     "name": "First NIPS",
+     "year": 1987.9,
+     "lod": 3,
+     "one_line": "First NIPS conference held in Denver; connectionists get annual meeting",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Conference_on_Neural_Information_Processing_Systems",
+       "title": "Wikipedia: NeurIPS [31]"
+      }
+     ]
+    },
+    {
+     "id": "neural-networks-journal-1988",
+     "name": "Neural Networks Journal",
+     "year": 1988.05,
+     "lod": 4,
+     "one_line": "INNS launches the journal Neural Networks, founding editor Grossberg",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Neural_Networks_%28journal%29",
+       "title": "Wikipedia: Neural Networks (journal) [83]"
+      }
+     ]
+    },
+    {
+     "id": "smolensky-ptc-1988",
+     "name": "Proper Treatment",
+     "year": 1988.1,
+     "lod": 4,
+     "one_line": "Smolensky, \"On the proper treatment of connectionism\" in BBS",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1017/S0140525X00052432",
+       "title": "Smolensky 1988 [78]"
+      }
+     ]
+    },
+    {
+     "id": "fodor-pylyshyn-1988",
+     "name": "Fodor–Pylyshyn Critique",
+     "year": 1988.2,
+     "lod": 3,
+     "one_line": "Fodor & Pylyshyn attack connectionism's account of cognitive architecture",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0010-0277%2888%2990031-5",
+       "title": "Fodor & Pylyshyn 1988 [38]"
+      }
+     ]
+    },
+    {
+     "id": "pinker-prince-1988",
+     "name": "Pinker & Prince",
+     "year": 1988.3,
+     "lod": 4,
+     "one_line": "Pinker & Prince, \"On language and connectionism\", join the debate",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0010-0277%2888%2990032-7",
+       "title": "Pinker & Prince 1988 [39]"
+      }
+     ]
+    },
+    {
+     "id": "perceptrons-reissue-1988",
+     "name": "Perceptrons Reissued",
+     "year": 1988.4,
+     "lod": 4,
+     "one_line": "Minsky & Papert reissue Perceptrons with an epilogue answering the revival",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Perceptrons_%28book%29",
+       "title": "Wikipedia: Perceptrons (book) [85]"
+      }
+     ]
+    },
+    {
+     "id": "neural-computation-1989",
+     "name": "Neural Computation",
+     "year": 1989.1,
+     "lod": 4,
+     "one_line": "MIT Press launches Neural Computation, edited by Terry Sejnowski",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Neural_Computation_%28journal%29",
+       "title": "Wikipedia: Neural Computation (journal) [84]"
+      }
+     ]
+    },
+    {
+     "id": "ijcnn-1989",
+     "name": "IJCNN",
+     "year": 1989.5,
+     "lod": 4,
+     "one_line": "IEEE ICNN and the INNS meeting merge into IJCNN",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stephen_Grossberg",
+       "title": "Wikipedia: Stephen Grossberg [81]"
+      }
+     ]
+    },
+    {
+     "id": "analog-vlsi-mead-1989",
+     "name": "Analog VLSI Neural Nets",
+     "year": 1989.6,
+     "lod": 4,
+     "one_line": "Carver Mead publishes Analog VLSI and Neural Systems at Caltech",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Carver_Mead",
+       "title": "Wikipedia: Carver Mead [86]"
+      }
+     ]
+    },
+    {
+     "id": "raam-1990",
+     "name": "RAAM",
+     "year": 1990.4,
+     "lod": 4,
+     "one_line": "Pollack's recursive distributed representations encode structures",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2890%2990005-K",
+       "title": "Pollack 1990 [80]"
+      }
+     ]
+    },
+    {
+     "id": "tensor-product-1990",
+     "name": "Tensor Product Binding",
+     "year": 1990.45,
+     "lod": 4,
+     "one_line": "Smolensky: tensor-product variable binding for symbolic structures",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2890%2990007-M",
+       "title": "Smolensky 1990 [77]"
+      }
+     ]
+    },
+    {
+     "id": "neuromorphic-mead-1990",
+     "name": "Neuromorphic Systems",
+     "year": 1990.8,
+     "lod": 4,
+     "one_line": "Mead's \"Neuromorphic electronic systems\" names neuromorphic engineering",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/5.58356",
+       "title": "Mead 1990 [87]"
+      }
+     ]
+    },
+    {
+     "id": "silicon-retina-1992",
+     "name": "Silicon Retina",
+     "year": 1992.5,
+     "lod": 4,
+     "one_line": "Misha Mahowald completes her Caltech PhD on the silicon retina",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Misha_Mahowald",
+       "title": "Wikipedia: Misha Mahowald [88]"
+      }
+     ]
+    },
+    {
+     "id": "parker-backprop-1985",
+     "name": "Parker Backprop",
+     "year": 1985.5,
+     "lod": 4,
+     "one_line": "David Parker independently derives backpropagation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Backpropagation",
+       "title": "Wikipedia: Backpropagation [7]"
+      }
+     ]
+    },
+    {
+     "id": "mixture-of-experts-1991",
+     "name": "Mixture of Experts",
+     "year": 1991.1,
+     "lod": 4,
+     "one_line": "Jacobs, Jordan, Nowlan & Hinton: adaptive mixtures of local experts",
+     "sources": [
+      {
+       "url": "https://www.cs.toronto.edu/~hinton/absps/jjnh91.pdf",
+       "title": "Jacobs et al. 1991 [67]"
+      }
+     ]
     }
    ]
   },
@@ -4768,6 +8322,111 @@
    ]
   },
   {
+   "id": "probabilistic-robotics-marsh",
+   "level": "country",
+   "name": "Probabilistic Robotics Marsh",
+   "subtitle": "Particle filters, museum robots, Q-learning and the DARPA challenges, 1992–2007",
+   "parent_id": "statistical-isthmus",
+   "start": 1992,
+   "end": 2007,
+   "band": [
+    "S1"
+   ],
+   "biome": "wetland",
+   "status": "sourced",
+   "summary60": "The southern wetland where estimation theory met learning and machines left the lab. Chris Watkins's Q-learning received its convergence proof with Peter Dayan in 1992. Sebastian Thrun, Wolfram Burgard and Dieter Fox brought Kalman and particle filters, Monte Carlo localization and SLAM to mobile robots, fielding the museum guides Rhino (1997) and Minerva (1998) and codifying the approach in Probabilistic …",
+   "neighbours": [],
+   "band_override_note": null,
+   "sub_band": [
+    "S1b"
+   ],
+   "spatial": true,
+   "related_facts": [],
+   "file": "data/countries/probabilistic-robotics-marsh.yaml",
+   "hint": "Particle filters · Urban Challenge",
+   "tag": "Q-learning → Rhino → Minerva → Boss",
+   "events": [
+    {
+     "id": "watkins-dayan-q-1992",
+     "name": "Q-Learning Convergence",
+     "year": 1992.4,
+     "lod": 4,
+     "one_line": "Watkins & Dayan prove Q-learning converges (Machine Learning 8)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Q-learning",
+       "title": "Wikipedia: Q-learning [41]"
+      }
+     ]
+    },
+    {
+     "id": "rhino-museum-1997",
+     "name": "Rhino Museum Robot",
+     "year": 1997.5,
+     "lod": 4,
+     "one_line": "Burgard, Fox and Thrun's probabilistic museum tour-guide robot Rhino",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wolfram_Burgard",
+       "title": "Wikipedia: Wolfram Burgard [78]"
+      }
+     ]
+    },
+    {
+     "id": "minerva-robot-1998",
+     "name": "Minerva Robot",
+     "year": 1998.5,
+     "lod": 4,
+     "one_line": "Minerva follows Rhino as a probabilistic museum tour-guide robot",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Wolfram_Burgard",
+       "title": "Wikipedia: Wolfram Burgard [78]"
+      }
+     ]
+    },
+    {
+     "id": "particle-filter-mcl-1999",
+     "name": "Particle Filter MCL",
+     "year": 1999.6,
+     "lod": 4,
+     "one_line": "Particle filters enter robotics: core of Rhino/Minerva and later Stanley",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monte_Carlo_localization",
+       "title": "Wikipedia: Monte Carlo localization [78]"
+      }
+     ]
+    },
+    {
+     "id": "probabilistic-robotics-2005",
+     "name": "Probabilistic Robotics",
+     "year": 2005.5,
+     "lod": 3,
+     "one_line": "Thrun, Burgard & Fox codify particle filters, Kalman filters and SLAM",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Sebastian_Thrun",
+       "title": "Wikipedia: Sebastian Thrun [66]"
+      }
+     ]
+    },
+    {
+     "id": "darpa-urban-2007",
+     "name": "DARPA Urban Challenge",
+     "year": 2007.84,
+     "lod": 3,
+     "one_line": "CMU/GM's Boss wins, Stanford's Junior second, among traffic (3 Nov 2007)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/DARPA_Urban_Challenge",
+       "title": "Wikipedia: DARPA Urban Challenge [79]"
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "reasoning-test-time-compute",
    "level": "country",
    "name": "Reasoning Ridge",
@@ -4965,9 +8624,9 @@
    "id": "robotics-planning-peninsula",
    "level": "country",
    "name": "The Robotics & Planning Peninsula",
-   "subtitle": "Shakey the Robot, A* search, STRIPS and plan execution, 1965–1974",
+   "subtitle": "Blocks-world vision, Shakey the Robot, A* search, STRIPS and plan execution, 1963–1974",
    "parent_id": "symbolic-heartland",
-   "start": 1965,
+   "start": 1963,
    "end": 1974,
    "band": [
     "S1"
@@ -5060,8 +8719,60 @@
      "one_line": "Sir James Lighthill SRC survey ends UK academic AI funding",
      "sources": [
       {
-       "url": "http://www.chilton-computing.org.uk/inf/tech_rep/lighthill.htm",
+       "url": "http://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/p001.htm",
        "title": "Lighthill 1973 [33]"
+      }
+     ]
+    },
+    {
+     "id": "roberts-3d-solids-1963",
+     "name": "Roberts's 3-D Solids",
+     "year": 1963.4,
+     "lod": 4,
+     "one_line": "Roberts's MIT thesis on blocks-world edge detection starts computer vision",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Lawrence_Roberts_%28scientist%29",
+       "title": "Wikipedia: Lawrence Roberts (scientist) [50]"
+      }
+     ]
+    },
+    {
+     "id": "summer-vision-project-1966",
+     "name": "Summer Vision Project",
+     "year": 1966.5,
+     "lod": 4,
+     "one_line": "MIT's over-optimistic summer project to solve computer vision",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Computer_vision",
+       "title": "Wikipedia: Computer vision [50]"
+      }
+     ]
+    },
+    {
+     "id": "freddy-robots-1969",
+     "name": "Freddy Robots",
+     "year": 1969.5,
+     "lod": 4,
+     "one_line": "Edinburgh's Freddy hand–eye robots (1969–76) assemble objects from parts",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Freddy_II",
+       "title": "Wikipedia: Freddy II [52]"
+      }
+     ]
+    },
+    {
+     "id": "lighthill-bbc-debate-1973",
+     "name": "Lighthill BBC Debate",
+     "year": 1973.35,
+     "lod": 4,
+     "one_line": "Lighthill debates Michie, McCarthy and Gregory on BBC TV (9 May 1973)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Lighthill_report",
+       "title": "Wikipedia: Lighthill report [33]"
       }
      ]
     }
@@ -5624,6 +9335,136 @@
        "title": "Wikipedia: IBM Watson [43]"
       }
      ]
+    },
+    {
+     "id": "jelinek-clsp-1993",
+     "name": "Jelinek to JHU CLSP",
+     "year": 1993.5,
+     "lod": 4,
+     "one_line": "Jelinek leaves IBM's speech group to lead Johns Hopkins CLSP (1993–2010)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Frederick_Jelinek",
+       "title": "Wikipedia: Frederick Jelinek [28]"
+      }
+     ]
+    },
+    {
+     "id": "wordnet-cacm-1995",
+     "name": "WordNet",
+     "year": 1995.8,
+     "lod": 4,
+     "one_line": "Miller's Princeton lexical database, later ImageNet's category tree",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/WordNet",
+       "title": "Wikipedia: WordNet [91]"
+      }
+     ]
+    },
+    {
+     "id": "naturallyspeaking-1997",
+     "name": "NaturallySpeaking 1.0",
+     "year": 1997.4,
+     "lod": 4,
+     "one_line": "Dragon ships the first continuous-dictation consumer product",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dragon_NaturallySpeaking",
+       "title": "Wikipedia: Dragon NaturallySpeaking [75]"
+      }
+     ]
+    },
+    {
+     "id": "charniak-parser-1997",
+     "name": "Charniak Parser",
+     "year": 1997.6,
+     "lod": 4,
+     "one_line": "Charniak: statistical parsing with a CFG and word statistics (AAAI-97)",
+     "sources": [
+      {
+       "url": "https://aaai.org/papers/00598-AAAI97-093-statistical-parsing-with-a-context-free-grammar-and-word-statistics/",
+       "title": "Charniak 1997, AAAI-97 [77]"
+      }
+     ]
+    },
+    {
+     "id": "naive-bayes-spam-1998",
+     "name": "Naive Bayes Spam",
+     "year": 1998.5,
+     "lod": 4,
+     "one_line": "Sahami et al.: Bayesian spam filtering brings probability to everyday email",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering",
+       "title": "Wikipedia: Naive Bayes spam filtering [44]"
+      }
+     ]
+    },
+    {
+     "id": "manning-schutze-1999",
+     "name": "Foundations of Stat NLP",
+     "year": 1999.5,
+     "lod": 4,
+     "one_line": "Manning & Schütze give statistical NLP its textbook",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Christopher_D._Manning",
+       "title": "Wikipedia: Christopher D. Manning [92]"
+      }
+     ]
+    },
+    {
+     "id": "banko-brill-2001",
+     "name": "Banko & Brill",
+     "year": 2001.5,
+     "lod": 3,
+     "one_line": "Scaling to very very large corpora: more data beats better algorithms",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/P01-1005/",
+       "title": "Banko & Brill 2001, ACL [30]"
+      }
+     ]
+    },
+    {
+     "id": "phrase-based-smt-2003",
+     "name": "Phrase-Based SMT",
+     "year": 2003.4,
+     "lod": 4,
+     "one_line": "Koehn, Och & Marcu: phrase-based translation becomes the SMT state of the art",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/N03-1017/",
+       "title": "Koehn, Och & Marcu 2003, NAACL [29]"
+      }
+     ]
+    },
+    {
+     "id": "google-translate-smt-2006",
+     "name": "Google Translate",
+     "year": 2006.32,
+     "lod": 4,
+     "one_line": "Google Translate launches as a statistical MT service (28 April 2006)",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Google_Translate",
+       "title": "Wikipedia: Google Translate [32]"
+      }
+     ]
+    },
+    {
+     "id": "charniak-acl-award-2011",
+     "name": "Charniak ACL Award",
+     "year": 2011.5,
+     "lod": 4,
+     "one_line": "Eugene Charniak receives the ACL Lifetime Achievement Award",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eugene_Charniak",
+       "title": "Wikipedia: Eugene Charniak [77]"
+      }
+     ]
     }
    ]
   },
@@ -5715,6 +9556,19 @@
       {
        "url": "https://robots.stanford.edu/papers/thrun.stanley05.pdf",
        "title": "Thrun et al. 2006 [39]"
+      }
+     ]
+    },
+    {
+     "id": "svm-mnist-1998",
+     "name": "SVMs on MNIST",
+     "year": 1998.9,
+     "lod": 4,
+     "one_line": "MNIST's original paper reports 0.8% error for an SVM on the new benchmark",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/MNIST_database",
+       "title": "Wikipedia: MNIST database [36]"
       }
      ]
     }
@@ -5955,6 +9809,45 @@
       {
        "url": "https://doi.org/10.1007/BF00992696",
        "title": "Williams 1992 [65]"
+      }
+     ]
+    },
+    {
+     "id": "sutton-gte-labs-1985",
+     "name": "Sutton Joins GTE Labs",
+     "year": 1985.5,
+     "lod": 4,
+     "one_line": "Richard Sutton works at GTE Labs from 1985 to 1994",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Richard_S._Sutton",
+       "title": "Wikipedia: Richard S. Sutton [64]"
+      }
+     ]
+    },
+    {
+     "id": "q-learning-convergence-1992",
+     "name": "Q-Learning Convergence",
+     "year": 1992.4,
+     "lod": 4,
+     "one_line": "Watkins & Dayan prove convergence of Q-learning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Peter_Dayan",
+       "title": "Wikipedia: Peter Dayan [72]"
+      }
+     ]
+    },
+    {
+     "id": "td-gammon-cacm-1995",
+     "name": "TD-Gammon in CACM",
+     "year": 1995.2,
+     "lod": 4,
+     "one_line": "Tesauro's \"Temporal Difference Learning and TD-Gammon\" in CACM",
+     "sources": [
+      {
+       "url": "https://www.bkgm.com/articles/tesauro/tdl.html",
+       "title": "Tesauro 1995 [30]"
       }
      ]
     }
@@ -6378,5 +10271,5 @@
    ]
   }
  ],
- "generated_from": "6 continent + 38 country YAML files under data/ + 1 thread(s)"
+ "generated_from": "10 continent + 58 country YAML files under data/ + 1 thread(s)"
 }

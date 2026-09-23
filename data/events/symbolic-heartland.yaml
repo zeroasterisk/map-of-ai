@@ -35,7 +35,7 @@ countries:
         lod: 3
         one_line: "J. Alan Robinson discovers single refutation-complete rule for predicate logic"
         sources:
-          - url: "https://doi.org/10.1145/321250.321253"
+          - url: "https://en.wikipedia.org/wiki/Resolution_%28logic%29"
             title: "Robinson 1965 [16]"
       - id: qa3-deduction-1969
         name: QA3 Question Answering
@@ -43,7 +43,7 @@ countries:
         lod: 4
         one_line: "Bertram Raphael and Cordell Green demonstrate first-order deductive retrieval"
         sources:
-          - url: "https://en.wikipedia.org/wiki/Question_answering"
+          - url: "https://aitopics.org/misc/brief-history"
             title: "Green 1969 [35]"
       - id: prolog-creation-1972
         name: Prolog Created
@@ -53,6 +53,56 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Prolog"
             title: "Colmerauer & Kowalski 1972 [31]"
+      - id: wang-prover-1959
+        name: Wang's Prover
+        year: 1959.5
+        lod: 4
+        one_line: "Hao Wang's IBM 704 program proves hundreds of Principia theorems in ~9 minutes"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hao_Wang_%28academic%29"
+            title: "Wikipedia: Hao Wang (academic) [39]"
+      - id: lisp-cacm-paper-1960
+        name: Lisp Paper
+        year: 1960.3
+        lod: 4
+        one_line: "McCarthy's Recursive Functions of Symbolic Expressions appears in CACM"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Lisp_%28programming_language%29"
+            title: "Wikipedia: Lisp (programming language) [7]"
+      - id: solomonoff-induction-1964
+        name: Solomonoff Induction
+        year: 1964.3
+        lod: 4
+        one_line: "A Formal Theory of Inductive Inference: algorithmic probability, Parts I–II"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Ray_Solomonoff"
+            title: "Wikipedia: Ray Solomonoff [49]"
+      - id: planner-hewitt-1969
+        name: PLANNER
+        year: 1969.3
+        lod: 4
+        one_line: "Hewitt's procedural PLANNER: the scruffy counter-proposal to resolution"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Planner_%28programming_language%29"
+            title: "Wikipedia: Planner (programming language) [45]"
+      - id: frame-problem-1969
+        name: The Frame Problem
+        year: 1969.6
+        lod: 3
+        one_line: "McCarthy & Hayes introduce situation calculus and name the frame problem"
+        sources:
+          - url: "http://jmc.stanford.edu/articles/mcchay69/mcchay69.pdf"
+            title: "McCarthy & Hayes, Some Philosophical Problems, 1969 [44]"
+          - url: "https://en.wikipedia.org/wiki/Frame_problem"
+            title: "Wikipedia: Frame problem [44]"
+      - id: mccarthy-turing-award-1971
+        name: McCarthy Turing Award
+        year: 1971.5
+        lod: 4
+        one_line: "John McCarthy, coiner of 'AI' and designer of Lisp, receives the 1971 Turing Award"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
+            title: "Wikipedia: John McCarthy [14]"
 
   heuristic-search-highlands:
     hint: "Logic Theorist · GPS 1959"
@@ -88,7 +138,7 @@ countries:
         lod: 4
         one_line: "Herbert Gelernter prunes theorem search using diagrammatic semantic models"
         sources:
-          - url: "https://doi.org/10.1145/368273.368565"
+          - url: "https://en.wikipedia.org/wiki/Herbert_Gelernter"
             title: "Gelernter 1959 [37]"
       - id: saint-integrator-1961
         name: SAINT Integrator
@@ -96,7 +146,7 @@ countries:
         lod: 4
         one_line: "James Slagle's SAINT solves freshman calculus symbolic integration problems"
         sources:
-          - url: "https://doi.org/10.1145/368273.368565"
+          - url: "https://en.wikipedia.org/wiki/James_Robert_Slagle"
             title: "Slagle 1961 [38]"
       - id: mac-hack-chess-1967
         name: Mac Hack VI
@@ -112,8 +162,64 @@ countries:
         lod: 4
         one_line: "Newell & Simon publish definitive physical symbol system treatise"
         sources:
-          - url: "https://en.wikipedia.org/wiki/Allen_Newell"
+          - url: "https://archive.org/details/humanproblemsolv0000newe"
             title: "Newell & Simon 1972 [18]"
+      - id: simon-chess-prophecy-1957
+        name: Simon's Chess Prophecy
+        year: 1957.9
+        lod: 4
+        one_line: "Simon predicts a computer will be chess champion within ten years"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Herbert_A._Simon"
+            title: "Wikipedia: Herbert A. Simon [18]"
+      - id: epam-feigenbaum-1960
+        name: EPAM
+        year: 1960.0
+        lod: 4
+        one_line: "Feigenbaum's EPAM: the first computer model of human verbal learning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Elementary_Perceiver_and_Memorizer"
+            title: "Wikipedia: EPAM [57]"
+      - id: dendral-begins-1965
+        name: Dendral Begins
+        year: 1965.5
+        lod: 3
+        one_line: "Feigenbaum, Lederberg & Buchanan start Dendral: the first expert system"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Dendral"
+            title: "Wikipedia: Dendral [17]"
+      - id: simon-twenty-years-1965
+        name: Simon's 20-Year Claim
+        year: 1965.6
+        lod: 4
+        one_line: "Simon: machines will do any work a man can do within twenty years"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Herbert_A._Simon"
+            title: "Wikipedia: Herbert A. Simon [18]"
+      - id: macsyma-1968
+        name: Macsyma
+        year: 1968.5
+        lod: 4
+        one_line: "Project MAC's Macsyma algebra system extends the SAINT / SIN lineage"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Macsyma"
+            title: "Wikipedia: Macsyma [54]"
+      - id: kotok-itep-match-1967
+        name: Kotok vs ITEP Match
+        year: 1967.2
+        lod: 4
+        one_line: "Moscow's ITEP program beats Kotok–McCarthy 3–1 in the first computer-vs-computer match"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Kotok-McCarthy"
+            title: "Wikipedia: Kotok-McCarthy [46]"
+      - id: kaissa-wccc-1974
+        name: Kaissa Champion
+        year: 1974.6
+        lod: 4
+        one_line: "Soviet Kaissa wins the first World Computer Chess Championship in Stockholm"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Kaissa"
+            title: "Wikipedia: Kaissa [47]"
 
   microworlds-language-basin:
     hint: "ELIZA 1966 · SHRDLU 1970"
@@ -133,7 +239,7 @@ countries:
         lod: 4
         one_line: "Daniel Bobrow solves high school algebra story problems in English"
         sources:
-          - url: "https://dspace.mit.edu/handle/1721.1/6908"
+          - url: "https://en.wikipedia.org/wiki/STUDENT_%28computer_program%29"
             title: "Bobrow 1964 [40]"
       - id: alpac-report-1966
         name: ALPAC Report
@@ -175,6 +281,70 @@ countries:
         sources:
           - url: "https://dspace.mit.edu/handle/1721.1/6089"
             title: "Minsky 1974 [35]"
+      - id: bar-hillel-mt-critique-1960
+        name: Bar-Hillel's MT Critique
+        year: 1960.5
+        lod: 4
+        one_line: "Bar-Hillel argues fully automatic high-quality translation is infeasible"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Yehoshua_Bar-Hillel"
+            title: "Wikipedia: Yehoshua Bar-Hillel [55]"
+      - id: evans-analogy-1963
+        name: ANALOGY
+        year: 1963.5
+        lod: 4
+        one_line: "Evans's MIT thesis program solves IQ-test geometric analogy problems"
+        sources:
+          - url: "https://aitopics.org/misc/brief-history"
+            title: "AAAI, A Brief History of AI [35]"
+      - id: raphael-sir-1964
+        name: SIR
+        year: 1964.6
+        lod: 4
+        one_line: "Raphael's SIR performs logical question answering over stored relations"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Bertram_Raphael"
+            title: "Wikipedia: Bertram Raphael [41]"
+      - id: dreyfus-alchemy-1965
+        name: Alchemy and AI
+        year: 1965.9
+        lod: 4
+        one_line: "Hubert Dreyfus's RAND memo attacks the assumptions of symbolic AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hubert_Dreyfus%27s_views_on_artificial_intelligence"
+            title: "Wikipedia: Hubert Dreyfus's views on AI [32]"
+      - id: semantic-info-processing-1968
+        name: Semantic Info Processing
+        year: 1968.6
+        lod: 4
+        one_line: "Minsky's edited volume collects STUDENT, SIR, ANALOGY and Quillian's nets"
+        sources:
+          - url: "https://aitopics.org/misc/brief-history"
+            title: "AAAI, A Brief History of AI [35]"
+      - id: winston-arch-1970
+        name: Winston's ARCH
+        year: 1970.5
+        lod: 4
+        one_line: "Patrick Winston's MIT thesis learns structural concepts from examples"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Patrick_Winston"
+            title: "Wikipedia: Patrick Winston [51]"
+      - id: minsky-life-prophecy-1970
+        name: Minsky's Life Quote
+        year: 1970.9
+        lod: 4
+        one_line: "Minsky in Life: human-level machine intelligence 'in from three to eight years'"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+            title: "Wikipedia: History of artificial intelligence [28]"
+      - id: dreyfus-wccd-1972
+        name: What Computers Can't Do
+        year: 1972.5
+        lod: 3
+        one_line: "Dreyfus's phenomenological critique of symbolic AI appears as a book"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/What_Computers_Can%27t_Do"
+            title: "Wikipedia: What Computers Can't Do [32]"
 
   early-perceptron-strip:
     hint: "Perceptron 1957 · ADALINE"
@@ -220,6 +390,38 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/ADALINE"
             title: "Widrow 1962 [12]"
+      - id: sri-minos-1960
+        name: SRI MINOS Machines
+        year: 1960.9
+        lod: 4
+        one_line: "SRI's MINOS I–III perceptron machines under Rosen and Brain (1960–68)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [28]"
+      - id: gmdh-ivakhnenko-1968
+        name: GMDH
+        year: 1968.3
+        lod: 4
+        one_line: "Ivakhnenko's Kyiv method trains layered polynomial nets inductively"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Group_method_of_data_handling"
+            title: "Wikipedia: Group method of data handling [48]"
+      - id: gmdh-eight-layers-1971
+        name: Eight-Layer GMDH
+        year: 1971.3
+        lod: 4
+        one_line: "Ivakhnenko's GMDH networks reach eight layers deep: a Soviet deep-net ancestor"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Alexey_Ivakhnenko"
+            title: "Wikipedia: Alexey Ivakhnenko [48]"
+      - id: rosenblatt-death-1971
+        name: Rosenblatt Dies
+        year: 1971.5
+        lod: 4
+        one_line: "Frank Rosenblatt dies in a boating accident, two years after Perceptrons"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Frank_Rosenblatt"
+            title: "Wikipedia: Frank Rosenblatt [53]"
 
   robotics-planning-peninsula:
     hint: "Shakey 1966 · STRIPS 1971"
@@ -271,5 +473,106 @@ countries:
         lod: 3
         one_line: "Sir James Lighthill SRC survey ends UK academic AI funding"
         sources:
-          - url: "http://www.chilton-computing.org.uk/inf/tech_rep/lighthill.htm"
+          - url: "http://www.chilton-computing.org.uk/inf/literature/reports/lighthill_report/p001.htm"
             title: "Lighthill 1973 [33]"
+      - id: roberts-3d-solids-1963
+        name: Roberts's 3-D Solids
+        year: 1963.4
+        lod: 4
+        one_line: "Roberts's MIT thesis on blocks-world edge detection starts computer vision"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Lawrence_Roberts_%28scientist%29"
+            title: "Wikipedia: Lawrence Roberts (scientist) [50]"
+      - id: summer-vision-project-1966
+        name: Summer Vision Project
+        year: 1966.5
+        lod: 4
+        one_line: "MIT's over-optimistic summer project to solve computer vision"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Computer_vision"
+            title: "Wikipedia: Computer vision [50]"
+      - id: freddy-robots-1969
+        name: Freddy Robots
+        year: 1969.5
+        lod: 4
+        one_line: "Edinburgh's Freddy hand–eye robots (1969–76) assemble objects from parts"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Freddy_II"
+            title: "Wikipedia: Freddy II [52]"
+      - id: lighthill-bbc-debate-1973
+        name: Lighthill BBC Debate
+        year: 1973.35
+        lod: 4
+        one_line: "Lighthill debates Michie, McCarthy and Gregory on BBC TV (9 May 1973)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Lighthill_report"
+            title: "Wikipedia: Lighthill report [33]"
+
+  arpa-lab-belt:
+    hint: "Project MAC 1963 · IJCAI 1969"
+    tag: "MIT AI → IPTO → SAIL → Edinburgh → Mansfield"
+    events:
+      - id: mit-ai-project-1959
+        name: MIT AI Project
+        year: 1959.7
+        lod: 3
+        one_line: "McCarthy & Minsky found the MIT AI project (MIT AI Lab from 1970)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/MIT_Computer_Science_and_Artificial_Intelligence_Laboratory"
+            title: "Wikipedia: MIT CSAIL [11]"
+      - id: arpa-ipto-1962
+        name: ARPA IPTO
+        year: 1962.8
+        lod: 3
+        one_line: "ARPA creates IPTO with J. C. R. Licklider as first director (Oct 1962)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Information_Processing_Techniques_Office"
+            title: "Wikipedia: Information Processing Techniques Office [43]"
+      - id: project-mac-1963
+        name: Project MAC
+        year: 1963.5
+        lod: 3
+        one_line: "Project MAC opens at MIT (1 Jul 1963) on $2M ARPA money, housing the AI Group"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Information_Processing_Techniques_Office"
+            title: "Wikipedia: Information Processing Techniques Office [43]"
+      - id: stanford-sail-1963
+        name: Stanford AI Lab
+        year: 1963.7
+        lod: 3
+        one_line: "McCarthy, at Stanford from 1962, starts SAIL: robotics, vision, hand–eye work"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stanford_Artificial_Intelligence_Laboratory"
+            title: "Wikipedia: Stanford Artificial Intelligence Laboratory [14]"
+      - id: computers-and-thought-1963
+        name: Computers and Thought
+        year: 1963.6
+        lod: 4
+        one_line: "Feigenbaum & Feldman publish the first AI anthology; royalties later fund an award"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Edward_Feigenbaum"
+            title: "Wikipedia: Edward Feigenbaum [42]"
+      - id: edinburgh-mip-1965
+        name: Edinburgh MIP Dept
+        year: 1965.5
+        lod: 4
+        one_line: "Donald Michie establishes Edinburgh's Machine Intelligence and Perception dept"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Donald_Michie"
+            title: "Wikipedia: Donald Michie [15]"
+      - id: first-ijcai-1969
+        name: First IJCAI
+        year: 1969.4
+        lod: 3
+        one_line: "The first International Joint Conference on AI meets in Washington, D.C."
+        sources:
+          - url: "https://en.wikipedia.org/wiki/International_Joint_Conference_on_Artificial_Intelligence"
+            title: "Wikipedia: IJCAI [27]"
+      - id: mansfield-amendment-1969
+        name: Mansfield Amendment
+        year: 1969.8
+        lod: 3
+        one_line: "Congress requires DARPA to fund mission-oriented research; the funding tightens"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [28]"

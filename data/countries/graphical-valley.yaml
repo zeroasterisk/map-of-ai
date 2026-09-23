@@ -1,0 +1,30 @@
+id: graphical-valley
+level: country
+name: The Graphical Valley
+subtitle: "Bayesian networks, junction trees and the generative/discriminative debate, 1988–2009"
+summary: >
+  The low western entry to the isthmus, where probability replaced certainty factors.
+  Judea Pearl's Probabilistic Reasoning in Intelligent Systems (1988) made Bayesian
+  networks and belief propagation the calculus of uncertain reasoning, and Steffen
+  Lauritzen and David Spiegelhalter's junction-tree paper of the same year made exact
+  inference in general networks practical (the basis of HUGIN and medical expert
+  systems). Michael I. Jordan, at MIT from 1988, popularised Bayesian networks within
+  machine learning; Pearl's Causality (2000) extended the calculus to cause and effect,
+  and Ng and Jordan's 2001 comparison of logistic regression and naive Bayes framed the
+  discriminative-versus-generative choice that ran through the era.
+time_range: {start: 1988, end: 2009}
+band: C
+sub_band: [Ca]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+notes: "Events here run 1988.6–2001.9; span kept to 2009 per REFACTOR_PLAN.md §5.2."
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [4, 5, 6, 62, 71, 81]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Bayesian_network", title: "Wikipedia: Bayesian network", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Junction_tree_algorithm", title: "Wikipedia: Junction tree algorithm", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://proceedings.neurips.cc/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html", title: "Ng & Jordan, On Discriminative vs. Generative Classifiers, NIPS 2001", kind: primary, accessed: 2026-09-23}
+threads: [compute]
+status: sourced

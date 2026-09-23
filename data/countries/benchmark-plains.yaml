@@ -1,0 +1,28 @@
+id: benchmark-plains
+level: country
+name: The Benchmark Plains
+subtitle: "Conferences, textbooks, shared benchmarks, prizes and toolkits, 1993–2011"
+summary: >
+  The institutional flatlands where machine learning became a self-standing discipline.
+  ICML became a full conference in 1993; Russell and Norvig's Artificial Intelligence:
+  A Modern Approach (1995) and Tom Mitchell's Machine Learning (1997) became the
+  standard texts; Deep Blue's May 1997 win over Kasparov gave the era its most-watched
+  public milestone. JMLR (2000) made open-access publishing the norm, PASCAL VOC
+  (2005–2012) gave vision a shared benchmark, and the Netflix Prize (2006–2009), Kaggle
+  (2010) and scikit-learn (2010) turned statistical learning into a mass practice,
+  while Valiant's 2010 Turing Award canonised learning theory.
+time_range: {start: 1993, end: 2011}
+band: S1
+sub_band: [S1a]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [2, 33, 40, 46, 47, 48, 49, 53, 58, 88]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Netflix_Prize", title: "Wikipedia: Netflix Prize", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://www.jmlr.org/papers/v12/pedregosa11a.html", title: "Pedregosa et al., Scikit-learn: Machine Learning in Python, JMLR 2011", kind: primary, accessed: 2026-09-23}
+  - {url: "https://www.robots.ox.ac.uk/~vgg/projects/pascal/VOC/", title: "The PASCAL Visual Object Classes Homepage", kind: primary, accessed: 2026-09-23}
+threads: [compute, vision, games]
+status: sourced
