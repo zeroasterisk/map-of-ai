@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Map of AI — v2 (MapLibre)</title>
+<!-- Phase 4a renderer (REFACTOR_PLAN.md §3): MapLibre GL JS over GeoJSON exported from atlas.html by
+     scripts/export_geojson.py. Everything is served from this directory: vendor/ (maplibre-gl 5.24.0),
+     glyphs/ (SDF PBFs, Cinzel + Lora, OFL), data/*.geojson, style.json. No CDN, no web fonts at runtime.
+
+     Deep links (docs/URL_SCHEME.md contract, unchanged): ?z=<zoom>&x=<plate_x>&y=<plate_y>
+       x, y  plate units (1800×1050, origin top-left, y down) — converted with lng=(x-900)/50, lat=-(y-525)/50.
+       z     the SEMANTIC zoom = MapLibre zoom 1:1 (z0 World 3.0 · z1 Regions 4.5 · z2 Countries 6.0 · z3 Papers 7.5,
+             overzoom to 8.5). Legacy Leaflet links (z ≤ 2.5, tile pyramid) are NOT translated: v1 and v2 zoom numbers
+             differ by design (v2 z = leaflet z + 3, same px/unit), and v1 stays at site/index.html until Phase 5 cutover.
+       ?place=<id> resolves through anchors.json exactly as v1 (continent → z 4.5, country → z 6.0).
+     ?test=1  fadeDuration 0, no attribution/nav controls, bearing/pitch pinned, window.map exposed, window.__idle set
+              true after the first 'idle' (tests/sample_frames.py --target v2 waits for it). -->
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<style>
+  :root { --paper: #dccfae; --ink: #2f2416; --ink-dim: #6e5f47; }
+  html, body { margin: 0; height: 100%; background: var(--paper); font-family: Lora, Georgia, serif; color: var(--ink); }
+  #map { position: absolute; inset: 0; background: var(--paper); }
+  .hud { position: absolute; right: 10px; top: 8px; z-index: 5; font-size: 11.5px; font-style: italic; color: var(--ink-dim);
+         background: rgba(246,236,214,.85); border: 1px solid #b9a683; padding: 2px 8px; pointer-events: none; }
+  .copylink { position: absolute; right: 10px; bottom: 28px; z-index: 5; font: italic 12px/26px Lora, Georgia, serif; color: var(--ink);
+              background: #f6ecd6; border: 1px solid #8f7b57; border-radius: 3px; padding: 0 10px; cursor: pointer; box-shadow: 0 1px 4px rgba(60,40,10,.25); }
+  .copylink:hover { background: #efe3c8; }
+  .maplibregl-ctrl-attrib { font-size: 10px; }
+  .test .maplibregl-control-container { display: none; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="hud" id="hud">z – · x – · y –</div>
+<button class="copylink" id="copylink" title="copy a link to this exact view">copy link</button>
+<script src="vendor/maplibre-gl.js"></script>
+<script>
+// ---- plate ↔ lng/lat (must match scripts/export_geojson.py)
+const PLATE = [1800, 1050], UNITS_PER_DEG = 50, X0 = 900, Y0 = 525;
+const toLngLat = (x, y) => [(x - X0) / UNITS_PER_DEG, -(y - Y0) / UNITS_PER_DEG];
+const toPlate = (lng, lat) => [lng * UNITS_PER_DEG + X0, -lat * UNITS_PER_DEG + Y0];
+const LEVELS = {z0: 3.0, z1: 4.5, z2: 6.0, z3: 7.5}, ZMIN = 2.5, ZMAX = 8.5;
+
+const Q = new URLSearchParams(location.search);
+const TEST = Q.get('test') === '1';
+if (TEST) document.documentElement.classList.add('test');
+
+const num = (k, d) => { const v = parseFloat(Q.get(k)); return Number.isFinite(v) ? v : d; };
+let cx = num('x', NaN), cy = num('y', NaN), z = num('z', NaN);
+
+const plateBounds = [toLngLat(0, PLATE[1]), toLngLat(PLATE[0], 0)];   // [[west, south], [east, north]]
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'style.json',
+  center: toLngLat(Number.isFinite(cx) ? cx : X0, Number.isFinite(cy) ? cy : Y0),
+  zoom: Number.isFinite(z) ? Math.min(ZMAX, Math.max(ZMIN, z)) : ZMIN,
+  minZoom: ZMIN, maxZoom: ZMAX,
+  bearing: 0, pitch: 0, pitchWithRotate: false, dragRotate: false, touchPitch: false,
+  attributionControl: false,
+  fadeDuration: TEST ? 0 : 300,
+  renderWorldCopies: false,
+  hash: false,
+  locale: {},
+});
+map.touchZoomRotate.disableRotation();
+map.keyboard.disableRotation();
+if (!TEST) {
+  map.addControl(new maplibregl.NavigationControl({showCompass: false}), 'top-left');
+  map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: 'Map of AI · MapLibre GL JS · Cinzel & Lora (OFL)'}));
+}
+window.map = map;   // always exposed (the sampler needs it under ?test=1; harmless otherwise)
+
+// ---- default view / named anchors (docs/URL_SCHEME.md §2): ?place=<id> → anchors.json (continent z1, country z2)
+const applyPlace = async () => {
+  const place = Q.get('place');
+  if (!place) return false;
+  try {
+    const a = (await (await fetch('../anchors.json')).json()).anchors[place];
+    if (!a) { console.warn('unknown place', place); return false; }
+    if (!Number.isFinite(cx)) cx = a.x; if (!Number.isFinite(cy)) cy = a.y;
+    if (!Number.isFinite(z)) z = a.level === 'country' ? LEVELS.z2 : LEVELS.z1;
+    map.jumpTo({center: toLngLat(cx, cy), zoom: z});
+    return true;
+  } catch (e) { console.warn('anchors.json unavailable', e); return false; }
+};
+map.once('load', async () => {
+  const placed = await applyPlace();
+  if (!placed && !(Number.isFinite(cx) && Number.isFinite(cy) && Number.isFinite(z))) {
+    if (!Number.isFinite(z) && !Number.isFinite(cx)) map.fitBounds(plateBounds, {padding: 8, duration: 0, maxZoom: LEVELS.z0});
+    else if (!Number.isFinite(z)) map.jumpTo({zoom: LEVELS.z0});
+  }
+  syncUrl();
+});
+
+// ---- URL ↔ view (150 ms debounce, replaceState, 0.1 unit / 0.1 zoom rounding — same as v1)
+const r1 = v => Math.round(v * 10) / 10;
+let urlT = null;
+const viewParams = () => { const c = map.getCenter(); const [x, y] = toPlate(c.lng, c.lat); return {z: r1(map.getZoom()), x: r1(x), y: r1(y)}; };
+const syncUrl = () => {
+  const v = viewParams();
+  const p = new URLSearchParams(); p.set('z', v.z); p.set('x', v.x); p.set('y', v.y); if (TEST) p.set('test', '1');
+  history.replaceState(null, '', location.pathname + '?' + p.toString());
+  document.getElementById('hud').textContent = `z ${v.z} · x ${v.x} · y ${v.y}`;
+};
+map.on('moveend', () => { clearTimeout(urlT); urlT = setTimeout(syncUrl, 150); });
+map.on('move', () => { const v = viewParams(); document.getElementById('hud').textContent = `z ${v.z} · x ${v.x} · y ${v.y}`; });
+
+document.getElementById('copylink').addEventListener('click', async ev => {
+  syncUrl();
+  const href = location.href;
+  try { await navigator.clipboard.writeText(href); ev.target.textContent = 'copied ✓'; }
+  catch (e) { window.prompt('copy this link', href); }
+  setTimeout(() => ev.target.textContent = 'copy link', 1400);
+});
+
+// ---- test hooks
+window.__idle = false;
+map.once('idle', () => { window.__idle = true; });
+map.on('error', e => console.error('maplibre error', e && e.error ? e.error.message : e));
+window.__mapofai = {toPlate, toLngLat, LEVELS, viewParams};
+</script>
+</body>
+</html>

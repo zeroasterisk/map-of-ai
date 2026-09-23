@@ -1,0 +1,1003 @@
+{
+ "version": 8,
+ "name": "Map of AI v2 — Phase 4a (MapLibre, GeoJSON from atlas.html)",
+ "metadata": {
+  "mapofai:plate": [
+   1800,
+   1050
+  ],
+  "mapofai:crs": "lng=(x-900)/50 lat=-(y-525)/50 ; 1 plate unit = 0.02 deg (scripts/export_geojson.py)",
+  "mapofai:levels": {
+   "z0": 3.0,
+   "z1": 4.5,
+   "z2": 6.0,
+   "z3": 7.5,
+   "max": 8.5
+  },
+  "mapofai:font_caps_css_px": {
+   "continent": 42,
+   "country": 28,
+   "landmark": 16,
+   "fact": 13,
+   "min": 11
+  },
+  "mapofai:placement": "point labels use text-variable-anchor (8 anchors, text-radial-offset in em) so MapLibre can slide a label around its dot; continent/ocean/range titles stay centred"
+ },
+ "glyphs": "glyphs/{fontstack}/{range}.pbf",
+ "sources": {
+  "continents": {
+   "type": "geojson",
+   "data": "data/continents.geojson",
+   "promoteId": "id"
+  },
+  "countries": {
+   "type": "geojson",
+   "data": "data/countries.geojson",
+   "promoteId": "id"
+  },
+  "labels": {
+   "type": "geojson",
+   "data": "data/labels.geojson",
+   "promoteId": "id"
+  },
+  "events": {
+   "type": "geojson",
+   "data": "data/events.geojson",
+   "promoteId": "id"
+  },
+  "range": {
+   "type": "geojson",
+   "data": "data/range.geojson",
+   "promoteId": "id"
+  }
+ },
+ "layers": [
+  {
+   "id": "background",
+   "type": "background",
+   "paint": {
+    "background-color": "#dccfae"
+   }
+  },
+  {
+   "id": "continent-shadow",
+   "type": "fill",
+   "source": "continents",
+   "paint": {
+    "fill-color": "#2e2212",
+    "fill-opacity": 0.18,
+    "fill-translate": [
+     2,
+     3
+    ],
+    "fill-translate-anchor": "viewport"
+   }
+  },
+  {
+   "id": "continent-fill",
+   "type": "fill",
+   "source": "continents",
+   "paint": {
+    "fill-color": "#e6d9b6",
+    "fill-opacity": 1
+   }
+  },
+  {
+   "id": "continent-tint",
+   "type": "fill",
+   "source": "continents",
+   "paint": {
+    "fill-color": [
+     "get",
+     "tint"
+    ],
+    "fill-opacity": 0.3
+   }
+  },
+  {
+   "id": "country-tint",
+   "type": "fill",
+   "source": "countries",
+   "minzoom": 4.0,
+   "paint": {
+    "fill-color": [
+     "get",
+     "tint"
+    ],
+    "fill-opacity": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.0,
+     0,
+     5.0,
+     0.22,
+     8.5,
+     0.22
+    ]
+   }
+  },
+  {
+   "id": "country-border",
+   "type": "line",
+   "source": "countries",
+   "minzoom": 4.0,
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": "#3d2e1a",
+    "line-opacity": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.0,
+     0,
+     5.0,
+     0.8,
+     8.5,
+     0.9
+    ],
+    "line-width": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.5,
+     0.6,
+     6.0,
+     1.0,
+     8.5,
+     1.6
+    ],
+    "line-dasharray": [
+     3,
+     1.6
+    ]
+   }
+  },
+  {
+   "id": "continent-tint-band",
+   "type": "line",
+   "source": "continents",
+   "layout": {
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": [
+     "get",
+     "tint"
+    ],
+    "line-opacity": 0.45,
+    "line-width": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     3,
+     6.0,
+     8,
+     8.5,
+     12
+    ],
+    "line-offset": 0
+   }
+  },
+  {
+   "id": "continent-border",
+   "type": "line",
+   "source": "continents",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": "#2e2212",
+    "line-width": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     0.9,
+     6.0,
+     1.7,
+     8.5,
+     2.4
+    ]
+   }
+  },
+  {
+   "id": "event-dot",
+   "type": "circle",
+   "source": "events",
+   "minzoom": 6.0,
+   "filter": [
+    "any",
+    [
+     ">=",
+     [
+      "zoom"
+     ],
+     7.5
+    ],
+    [
+     "<=",
+     [
+      "get",
+      "lod"
+     ],
+     3
+    ]
+   ],
+   "paint": {
+    "circle-color": "#7a2414",
+    "circle-stroke-color": "#f0e4c8",
+    "circle-stroke-width": 1,
+    "circle-radius": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     6.0,
+     2.2,
+     8.5,
+     3.2
+    ]
+   }
+  },
+  {
+   "id": "symbol-pass",
+   "type": "symbol",
+   "source": "range",
+   "minzoom": 7.5,
+   "maxzoom": 8.5,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "pass"
+   ],
+   "layout": {
+    "text-field": [
+     "concat",
+     ")( ",
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Lora Italic"
+    ],
+    "text-size": 12,
+    "text-max-width": 12,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-letter-spacing": 0.03,
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 0.5,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#5c442c",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.4
+   }
+  },
+  {
+   "id": "symbol-fact",
+   "type": "symbol",
+   "source": "events",
+   "minzoom": 7.5,
+   "maxzoom": 8.5,
+   "filter": [
+    "==",
+    [
+     "get",
+     "lod"
+    ],
+    3
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "one_line"
+    ],
+    "text-font": [
+     "Lora Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     7.5,
+     11,
+     8.5,
+     13
+    ],
+    "text-max-width": 14,
+    "text-justify": "auto",
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "+",
+     20000,
+     [
+      "get",
+      "rank"
+     ]
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 1.6
+   },
+   "paint": {
+    "text-color": "#3f321f",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.1
+   }
+  },
+  {
+   "id": "symbol-event",
+   "type": "symbol",
+   "source": "events",
+   "minzoom": 6.0,
+   "maxzoom": 8.5,
+   "filter": [
+    "any",
+    [
+     ">=",
+     [
+      "zoom"
+     ],
+     7.5
+    ],
+    [
+     "<=",
+     [
+      "get",
+      "lod"
+     ],
+     3
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "format",
+     [
+      "get",
+      "name"
+     ],
+     {
+      "font-scale": 1.0
+     },
+     "\n",
+     {},
+     [
+      "get",
+      "yr"
+     ],
+     {
+      "font-scale": 0.82,
+      "text-font": [
+       "literal",
+       [
+        "Lora Italic"
+       ]
+      ]
+     }
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     6.0,
+     11,
+     7.5,
+     14,
+     8.5,
+     16
+    ],
+    "text-max-width": 9,
+    "text-line-height": 1.1,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 0.45,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.3
+   }
+  },
+  {
+   "id": "symbol-summit",
+   "type": "symbol",
+   "source": "range",
+   "minzoom": 4.5,
+   "maxzoom": 8.5,
+   "filter": [
+    "all",
+    [
+     "==",
+     [
+      "get",
+      "kind"
+     ],
+     "summit"
+    ],
+    [
+     "any",
+     [
+      ">=",
+      [
+       "zoom"
+      ],
+      6.0
+     ],
+     [
+      "<=",
+      [
+       "get",
+       "lod"
+      ],
+      1
+     ]
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "format",
+     "▲ ",
+     {
+      "font-scale": 0.9
+     },
+     [
+      "get",
+      "name"
+     ],
+     {},
+     "\n",
+     {},
+     [
+      "get",
+      "yr"
+     ],
+     {
+      "font-scale": 0.82,
+      "text-font": [
+       "literal",
+       [
+        "Lora Italic"
+       ]
+      ]
+     }
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.5,
+     11,
+     6.0,
+     13,
+     8.5,
+     16
+    ],
+    "text-max-width": 8,
+    "text-line-height": 1.1,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 0.5,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "symbol-country-tag",
+   "type": "symbol",
+   "source": "labels",
+   "minzoom": 6.0,
+   "maxzoom": 8.5,
+   "filter": [
+    "all",
+    [
+     "==",
+     [
+      "get",
+      "kind"
+     ],
+     "country"
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "tag"
+     ],
+     ""
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "tag"
+    ],
+    "text-font": [
+     "Lora Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     6.0,
+     11,
+     8.5,
+     13
+    ],
+    "text-max-width": 16,
+    "text-justify": "auto",
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "+",
+     10000,
+     [
+      "get",
+      "rank"
+     ]
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 1.3
+   },
+   "paint": {
+    "text-color": "#5a2a12",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.2
+   }
+  },
+  {
+   "id": "symbol-country-hint",
+   "type": "symbol",
+   "source": "labels",
+   "minzoom": 4.5,
+   "maxzoom": 6.0,
+   "filter": [
+    "all",
+    [
+     "==",
+     [
+      "get",
+      "kind"
+     ],
+     "country"
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "hint"
+     ],
+     ""
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "hint"
+    ],
+    "text-font": [
+     "Lora Italic"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.5,
+     11,
+     6.0,
+     13
+    ],
+    "text-max-width": 12,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "+",
+     10000,
+     [
+      "get",
+      "rank"
+     ]
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 1.0,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#4b3a22",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.2
+   }
+  },
+  {
+   "id": "symbol-country",
+   "type": "symbol",
+   "source": "labels",
+   "minzoom": 4.5,
+   "maxzoom": 8.5,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "country"
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "name"
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.5,
+     12,
+     6.0,
+     17,
+     7.5,
+     24,
+     8.5,
+     28
+    ],
+    "text-max-width": 8,
+    "text-letter-spacing": 0.04,
+    "text-line-height": 1.1,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 3,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 0.15,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.8
+   }
+  },
+  {
+   "id": "symbol-range",
+   "type": "symbol",
+   "source": "range",
+   "minzoom": 3.0,
+   "maxzoom": 7.5,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "range"
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "name"
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     11,
+     4.5,
+     14,
+     7.5,
+     16
+    ],
+    "text-letter-spacing": 0.3,
+    "text-max-width": 30,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 4,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ]
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.6
+   }
+  },
+  {
+   "id": "symbol-ocean",
+   "type": "symbol",
+   "source": "labels",
+   "minzoom": 3.0,
+   "maxzoom": 6.0,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "ocean"
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "name"
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     11,
+     4.5,
+     14,
+     6.0,
+     16
+    ],
+    "text-letter-spacing": 0.35,
+    "text-max-width": 6,
+    "text-line-height": 1.3,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 4,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ]
+   },
+   "paint": {
+    "text-color": "#7f6d4c",
+    "text-halo-color": "#dccfae",
+    "text-halo-width": 1.0
+   }
+  },
+  {
+   "id": "symbol-continent",
+   "type": "symbol",
+   "source": "labels",
+   "minzoom": 3.0,
+   "maxzoom": 6.0,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "continent"
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "name"
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     13,
+     4.5,
+     24,
+     6.0,
+     42
+    ],
+    "text-max-width": 7,
+    "text-letter-spacing": 0.08,
+    "text-line-height": 1.1,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 4,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ]
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 2.2,
+    "text-opacity": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     5.0,
+     1,
+     6.0,
+     0.35
+    ]
+   }
+  }
+ ]
+}
