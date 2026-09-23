@@ -55,8 +55,12 @@ V2_FONT_MIN = 11
 V2_CLASS_OF_LAYER = {   # symbol layer id → §2.3 label class
     "symbol-continent": "continent", "symbol-ocean": "continent", "symbol-range": "landmark",   # §2.4 z0: min landmarks 1 = the Silicon Range title
     "symbol-country": "country", "symbol-country-hint": "fact", "symbol-country-tag": "fact",
-    "symbol-event": "landmark", "symbol-summit": "landmark", "symbol-pass": "landmark", "symbol-fact": "fact",
+    "symbol-event": "landmark", "symbol-event-z1": "landmark", "symbol-summit": "landmark", "symbol-pass": "landmark", "symbol-fact": "fact",
 }
+# Phase 4b (task D): at z1 "Regions" the landmarks a reader sees are the lod 1–2 events (symbol-event-z1), the lod ≤ 1
+# summits and the country names themselves (§2.4 z1 row: "≥ 3 country names, ≥ 2 summits/passes" ≈ the 4-landmark floor),
+# so at level 1 `landmarks` = landmark-class symbols + country labels. `labels.country` stays separate for the country floor.
+Z1_COUNTRIES_ARE_LANDMARKS = True
 
 # One page.evaluate per frame (§2.3). Placed symbols = map.queryRenderedFeatures over the symbol layers (only
 # uncollided symbols are returned). Text boxes = MapLibre's OWN committed collision boxes (style.placement.collisionIndex
@@ -497,6 +501,9 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
                     if errs:
                         m["console_errors"] = errs[:3]
                         console_errors.extend(errs[:3])
+                    if level == 1 and Z1_COUNTRIES_ARE_LANDMARKS and not m.get("error"):
+                        m["landmarks_symbols"] = m["landmarks"]
+                        m["landmarks"] = m["labels"]["landmark"] + m["labels"]["country"]
                     hard, soft = _v2_judge(level, m)
                     land = m["sea_ratio"] <= 0.6 or level <= 1
                     stats["n"] += 1
@@ -568,7 +575,9 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
               "  labels exist near the frame edge. Planner decision (Phase 4b): the HARD gate is `clipped_major == 0` (a placed label with < 50 % of its",
               "  box visible — the half-cut banner); raw `clipped` is reported, not gated.",
               "- z0/z1 frames on a portrait phone can never reach sea_ratio ≤ 0.6 (the land band is ≈560 units tall vs a 1385–3920-unit frame), so their",
-              "  density floors are applied to every frame; z2/z3 floors apply to land frames only."]
+              "  density floors are applied to every frame; z2/z3 floors apply to land frames only.",
+              "- z1 `landmarks` = landmark-class symbols (lod 1–2 events, lod ≤ 1 summits) + country names (Phase 4b task D); `landmarks_symbols` in the JSON",
+              "  is the symbol-only count."]
     (DENSITY_DIR / "summary.md").write_text("\n".join(lines) + "\n")
     print(f"\nv2 sampler: {total} frames, hard-gate failures {hard_fails}, soft pass rate (land) "
           f"{(100 * report['soft_pass_rate_land']) if report['soft_pass_rate_land'] is not None else 0:.1f}% → {DENSITY_DIR / report_name}, {DENSITY_DIR / 'summary.md'}")

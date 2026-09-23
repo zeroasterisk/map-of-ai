@@ -1,6 +1,6 @@
 {
  "version": 8,
- "name": "Map of AI v2 — Phase 4a (MapLibre, GeoJSON from atlas.html)",
+ "name": "Map of AI v2 — Phase 4b (MapLibre, GeoJSON from atlas.html + layout_countries.py)",
  "metadata": {
   "mapofai:plate": [
    1800,
@@ -21,7 +21,8 @@
    "fact": 13,
    "min": 11
   },
-  "mapofai:placement": "point labels use text-variable-anchor (8 anchors, text-radial-offset in em) so MapLibre can slide a label around its dot; continent/ocean/range titles stay centred"
+  "mapofai:placement": "point labels use text-variable-anchor (8 anchors, text-radial-offset in em) so MapLibre can slide a label around its dot; continent/ocean/range titles stay centred",
+  "mapofai:z1_landmarks": "lod 1–2 events (symbol-event-z1) + summits lod ≤ 1 (symbol-summit) + country labels count as landmarks at z1 (tests/sample_frames.py)"
  },
  "glyphs": "glyphs/{fontstack}/{range}.pbf",
  "sources": {
@@ -230,7 +231,7 @@
    "id": "event-dot",
    "type": "circle",
    "source": "events",
-   "minzoom": 6.0,
+   "minzoom": 4.5,
    "filter": [
     "any",
     [
@@ -241,12 +242,30 @@
      7.5
     ],
     [
+     "all",
+     [
+      ">=",
+      [
+       "zoom"
+      ],
+      6.0
+     ],
+     [
+      "<=",
+      [
+       "get",
+       "lod"
+      ],
+      3
+     ]
+    ],
+    [
      "<=",
      [
       "get",
       "lod"
      ],
-     3
+     2
     ]
    ],
    "paint": {
@@ -261,6 +280,8 @@
      [
       "zoom"
      ],
+     4.5,
+     1.8,
      6.0,
      2.2,
      8.5,
@@ -388,6 +409,95 @@
     "text-color": "#3f321f",
     "text-halo-color": "#f0e4c8",
     "text-halo-width": 1.1
+   }
+  },
+  {
+   "id": "symbol-event-z1",
+   "type": "symbol",
+   "source": "events",
+   "minzoom": 4.5,
+   "maxzoom": 6.0,
+   "filter": [
+    "<=",
+    [
+     "get",
+     "lod"
+    ],
+    2
+   ],
+   "layout": {
+    "text-field": [
+     "format",
+     [
+      "get",
+      "name"
+     ],
+     {
+      "font-scale": 1.0
+     },
+     "\n",
+     {},
+     [
+      "get",
+      "yr"
+     ],
+     {
+      "font-scale": 0.82,
+      "text-font": [
+       "literal",
+       [
+        "Lora Italic"
+       ]
+      ]
+     }
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     4.5,
+     11,
+     6.0,
+     12
+    ],
+    "text-max-width": 8,
+    "text-line-height": 1.1,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 2,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-variable-anchor": [
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 0.45,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.3
+   },
+   "metadata": {
+    "mapofai:class": "landmark",
+    "mapofai:note": "Phase 4b: lod 1–2 events are z1 landmarks (REFACTOR_PLAN §2.4 z1 min landmarks 4); symbol-sort-key = rank = 1000·lod + age → lod1 before lod2"
    }
   },
   {
