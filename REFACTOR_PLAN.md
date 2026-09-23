@@ -99,10 +99,17 @@ differences cannot flip the result.
 | z2 Countries / Schools | 6.0 | ≈ 225 × 487 | 14 | 10 | 2 | ≥ 2 country names, ≥ 1 country tag, ≥ 6 dated landmarks | 45 | 0.32 | 0 |
 | z3 Papers / Milestones | 7.5 | ≈ 80 × 172 | 24 | 18 | 6 | ≥ 1 country name, ≥ 12 dated landmarks, ≥ 6 one-line facts | 60 | 0.38 | 0 |
 
-Hard (100 % of frames): `clipped == 0`, `overlaps == 0`, `11 ≤ font_px ≤ 42` (continent ≤ 42,
+Hard (100 % of frames): `clipped_major == 0`, `overlaps == 0`, `11 ≤ font_px ≤ 42` (continent ≤ 42,
 country ≤ 28, landmark ≤ 16, fact ≤ 13 CSS px), static contrast ≥ 4.5:1, rendered contrast ≥ 3:1.
 Soft (pass rate): ≥ 95 % of land frames per level meet the min/max density row; the failing 5 % are
 listed in the report so the worker can target them. Pinned probes are hard.
+
+Planner decision (2026-09-23, Phase 4b, supersedes the `clipped == 0` wording above and in §2.3): the hard
+clipping gate is **`clipped_major == 0`** — a *placed* label with < 50 % of its collision box inside the
+viewport (the "giant half-cut banner" Alan reported). Raw `clipped` (any box over the edge by > 2 CSS px)
+stays **reported, not gated**: MapLibre places symbols inside a fixed 100 px band outside the viewport and
+has no option to suppress edge-straddling labels (measured in Phase 4a), so `clipped == 0` is structurally
+unreachable on a continuous-pan map.
 
 Calibration note: min-label floors were derived from the entity target (§5.4): with ~2,000 entities
 over ~1.1 M plate units² of land, a z3 frame (~13,800 units²) contains ~25 entities on average, a z2
@@ -159,7 +166,9 @@ The monolithic SVG plate screenshotted into raster tiles failed Alan's review fo
 ### 3.2 Coordinate System & Zoom Mapping
 The map uses an unprojected planar coordinate system mapped to Web Mercator bounds:
 - Plate width $W = 1800$, height $H = 1050$.
-- Bounding Box: `[[-1050, 0], [0, 1800]]` mapped to plate units.
+- Plate → lng/lat mapping (binding, supersedes the earlier bbox text `[[-1050, 0], [0, 1800]]`):
+  `lng = (x − 900) / 50`, `lat = −(y − 525) / 50` (1 plate unit = 0.02°; implemented in
+  `scripts/export_geojson.py`, `site/v2/index.html`, `style.json` metadata). Semantic zoom = MapLibre zoom 1:1.
 - **The Four Semantic Zoom Levels:**
   - **z0 World ($z = 3.0$):** Global continent shapes, ocean basins, major era dates, and the Silicon Range spine. Max font 42px.
   - **z1 Regions / Provinces ($z = 4.5$):** Continents split into labeled provinces; major landmark hints appear; mountain peaks labeled. Max font 28px.

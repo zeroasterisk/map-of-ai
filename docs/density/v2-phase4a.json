@@ -1,5 +1,5 @@
 {
- "timestamp": 1790124752.019834,
+ "timestamp": 1790125502.637195,
  "target": "v2",
  "renderer": "site/v2/index.html (MapLibre GL JS)",
  "viewport": {
@@ -43,20 +43,20 @@
  },
  "total_frames": 100,
  "land_frames": 88,
- "hard_gate_failures": 97,
+ "hard_gate_failures": 92,
  "soft_pass_rate_land": 0.0,
  "external_requests": [],
  "console_errors": [],
- "seconds": 247.1,
+ "seconds": 232.8,
  "per_level": {
   "z0": {
    "n": 25,
    "land": 25,
-   "hard_fail": 25,
-   "soft_fail": 0,
+   "hard_fail": 22,
+   "soft_fail": 3,
    "pass": 0,
    "reasons": {
-    "clipped": 25,
+    "clipped_major": 22,
     "labels": 25,
     "continents": 25
    },
@@ -69,7 +69,7 @@
    "soft_fail": 0,
    "pass": 0,
    "reasons": {
-    "clipped": 25,
+    "clipped_major": 25,
     "landmarks": 25,
     "countries": 7
    },
@@ -82,7 +82,7 @@
    "soft_fail": 0,
    "pass": 0,
    "reasons": {
-    "clipped": 25,
+    "clipped_major": 25,
     "landmarks": 8
    },
    "pass_rate_land": 0.0
@@ -90,11 +90,11 @@
   "z3": {
    "n": 25,
    "land": 18,
-   "hard_fail": 22,
-   "soft_fail": 0,
+   "hard_fail": 20,
+   "soft_fail": 1,
    "pass": 0,
    "reasons": {
-    "clipped": 22,
+    "clipped_major": 20,
     "labels": 18,
     "landmarks": 18,
     "facts": 9,
@@ -155,7 +155,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 9",
@@ -216,7 +216,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -273,9 +273,7 @@
      "The Deep Learning Basin"
     ]
    },
-   "hard": [
-    "clipped=2"
-   ],
+   "hard": [],
    "soft": [
     "labels=6 < 9",
     "continents=5 < 8"
@@ -333,7 +331,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 9",
@@ -391,7 +389,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -450,7 +448,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -508,7 +506,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -569,7 +567,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=8 < 9",
@@ -628,7 +626,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 9",
@@ -686,7 +684,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -747,7 +745,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=8 < 9",
@@ -806,7 +804,7 @@
     ]
    },
    "hard": [
-    "clipped=1"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -864,9 +862,7 @@
      "TERRA INCOGNITA"
     ]
    },
-   "hard": [
-    "clipped=1"
-   ],
+   "hard": [],
    "soft": [
     "labels=6 < 9",
     "continents=5 < 8"
@@ -926,7 +922,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -987,7 +983,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1048,7 +1044,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1107,7 +1103,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -1166,7 +1162,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 9",
@@ -1227,7 +1223,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1284,9 +1280,7 @@
      "The Deep Learning Basin"
     ]
    },
-   "hard": [
-    "clipped=3"
-   ],
+   "hard": [],
    "soft": [
     "labels=6 < 9",
     "continents=5 < 8"
@@ -1344,7 +1338,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 9",
@@ -1405,7 +1399,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1466,7 +1460,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1527,7 +1521,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=8 < 9",
@@ -1586,7 +1580,7 @@
     ]
    },
    "hard": [
-    "clipped=1"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=6 < 9",
@@ -1650,7 +1644,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -1711,7 +1705,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -1772,7 +1766,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -1834,7 +1828,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=2"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -1895,7 +1889,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -1958,7 +1952,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=3"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -2019,7 +2013,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2082,7 +2076,7 @@
     ]
    },
    "hard": [
-    "clipped=2"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -2145,7 +2139,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=3"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -2205,7 +2199,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2269,7 +2263,7 @@
     ]
    },
    "hard": [
-    "clipped=8"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=2 < 4"
@@ -2328,7 +2322,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=3"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2391,7 +2385,7 @@
     ]
    },
    "hard": [
-    "clipped=7"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -2452,7 +2446,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -2515,7 +2509,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=2 < 4"
@@ -2576,7 +2570,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -2637,7 +2631,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -2697,7 +2691,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2761,7 +2755,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=3"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -2821,7 +2815,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2881,7 +2875,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=4"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -2943,7 +2937,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [
     "landmarks=0 < 4"
@@ -3003,7 +2997,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=2"
    ],
    "soft": [
     "landmarks=0 < 4",
@@ -3067,7 +3061,7 @@
     ]
    },
    "hard": [
-    "clipped=10"
+    "clipped_major=9"
    ],
    "soft": [
     "landmarks=2 < 4"
@@ -3129,7 +3123,7 @@
     ]
    },
    "hard": [
-    "clipped=8"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=1 < 4"
@@ -3191,7 +3185,7 @@
     ]
    },
    "hard": [
-    "clipped=7"
+    "clipped_major=3"
    ],
    "soft": [],
    "passed": false
@@ -3251,7 +3245,7 @@
     ]
    },
    "hard": [
-    "clipped=9"
+    "clipped_major=3"
    ],
    "soft": [],
    "passed": false
@@ -3310,7 +3304,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [],
    "passed": false
@@ -3366,7 +3360,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=1"
    ],
    "soft": [],
    "passed": false
@@ -3426,7 +3420,7 @@
     ]
    },
    "hard": [
-    "clipped=16"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -3487,7 +3481,7 @@
     ]
    },
    "hard": [
-    "clipped=12"
+    "clipped_major=9"
    ],
    "soft": [],
    "passed": false
@@ -3547,7 +3541,7 @@
     ]
    },
    "hard": [
-    "clipped=8"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=8 < 10"
@@ -3609,7 +3603,7 @@
     ]
    },
    "hard": [
-    "clipped=17"
+    "clipped_major=13"
    ],
    "soft": [],
    "passed": false
@@ -3670,7 +3664,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=3"
    ],
    "soft": [],
    "passed": false
@@ -3729,7 +3723,7 @@
     ]
    },
    "hard": [
-    "clipped=12"
+    "clipped_major=8"
    ],
    "soft": [],
    "passed": false
@@ -3788,7 +3782,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=5"
    ],
    "soft": [
     "landmarks=8 < 10"
@@ -3850,7 +3844,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=5"
    ],
    "soft": [],
    "passed": false
@@ -3911,7 +3905,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=5"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -3973,7 +3967,7 @@
     ]
    },
    "hard": [
-    "clipped=13"
+    "clipped_major=3"
    ],
    "soft": [],
    "passed": false
@@ -4032,7 +4026,7 @@
     ]
    },
    "hard": [
-    "clipped=14"
+    "clipped_major=9"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -4094,7 +4088,7 @@
     ]
    },
    "hard": [
-    "clipped=23"
+    "clipped_major=6"
    ],
    "soft": [],
    "passed": false
@@ -4154,7 +4148,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=5"
    ],
    "soft": [],
    "passed": false
@@ -4214,7 +4208,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=3"
    ],
    "soft": [],
    "passed": false
@@ -4273,7 +4267,7 @@
     ]
    },
    "hard": [
-    "clipped=10"
+    "clipped_major=7"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -4335,7 +4329,7 @@
     ]
    },
    "hard": [
-    "clipped=9"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -4396,7 +4390,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=9"
    ],
    "soft": [],
    "passed": false
@@ -4455,7 +4449,7 @@
     ]
    },
    "hard": [
-    "clipped=10"
+    "clipped_major=7"
    ],
    "soft": [],
    "passed": false
@@ -4514,7 +4508,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=9 < 10"
@@ -4575,7 +4569,7 @@
     ]
    },
    "hard": [
-    "clipped=12"
+    "clipped_major=11"
    ],
    "soft": [],
    "passed": false
@@ -4634,7 +4628,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [],
    "passed": false
@@ -4693,7 +4687,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=5"
    ],
    "soft": [
     "labels=15 < 24",
@@ -4745,7 +4739,7 @@
     ]
    },
    "hard": [
-    "clipped=1"
+    "clipped_major=1"
    ],
    "soft": [],
    "passed": false
@@ -4849,7 +4843,7 @@
     ]
    },
    "hard": [
-    "clipped=8"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=14 < 24",
@@ -4955,7 +4949,7 @@
     ]
    },
    "hard": [
-    "clipped=11"
+    "clipped_major=6"
    ],
    "soft": [
     "labels=20 < 24",
@@ -5017,7 +5011,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [],
    "passed": false
@@ -5069,7 +5063,7 @@
     ]
    },
    "hard": [
-    "clipped=3"
+    "clipped_major=2"
    ],
    "soft": [],
    "passed": false
@@ -5124,7 +5118,7 @@
     ]
    },
    "hard": [
-    "clipped=5"
+    "clipped_major=4"
    ],
    "soft": [
     "labels=6 < 24",
@@ -5187,7 +5181,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=13 < 24",
@@ -5248,9 +5242,7 @@
      "Cyc Begins\n1984"
     ]
    },
-   "hard": [
-    "clipped=8"
-   ],
+   "hard": [],
    "soft": [
     "labels=14 < 24",
     "landmarks=7 < 18",
@@ -5313,7 +5305,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=13 < 24",
@@ -5375,7 +5367,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=8 < 24",
@@ -5438,7 +5430,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=2"
    ],
    "soft": [
     "labels=11 < 24",
@@ -5500,7 +5492,7 @@
     ]
    },
    "hard": [
-    "clipped=9"
+    "clipped_major=3"
    ],
    "soft": [
     "labels=12 < 24",
@@ -5564,7 +5556,7 @@
     ]
    },
    "hard": [
-    "clipped=10"
+    "clipped_major=6"
    ],
    "soft": [
     "labels=21 < 24",
@@ -5626,7 +5618,7 @@
     ]
    },
    "hard": [
-    "clipped=8"
+    "clipped_major=6"
    ],
    "soft": [
     "labels=16 < 24",
@@ -5686,7 +5678,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=6"
    ],
    "soft": [
     "labels=8 < 24",
@@ -5745,7 +5737,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=7 < 24",
@@ -5809,7 +5801,7 @@
     ]
    },
    "hard": [
-    "clipped=4"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=17 < 24",
@@ -5871,7 +5863,7 @@
     ]
    },
    "hard": [
-    "clipped=6"
+    "clipped_major=4"
    ],
    "soft": [
     "labels=19 < 24",
@@ -5933,7 +5925,7 @@
     ]
    },
    "hard": [
-    "clipped=9"
+    "clipped_major=5"
    ],
    "soft": [
     "labels=16 < 24",
@@ -5985,7 +5977,7 @@
     ]
    },
    "hard": [
-    "clipped=1"
+    "clipped_major=1"
    ],
    "soft": [
     "labels=1 < 24",
@@ -6046,11 +6038,9 @@
      "Minimax search with an evaluation functi"
     ]
    },
-   "hard": [
-    "clipped=2"
-   ],
+   "hard": [],
    "soft": [],
-   "passed": false
+   "passed": true
   },
   {
    "id": "z3-024",
