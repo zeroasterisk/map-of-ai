@@ -1,0 +1,40 @@
+id: expert-systems-plateau
+level: continent
+name: The Expert Systems Plateau
+subtitle: "Knowledge engineering, expert systems and the Fifth Generation boom, 1980–1993"
+summary: >
+  The warm valley between the two AI winters, sitting at the symbolic/logic pole.
+  Its western edge is 1980, when John McDermott's R1/XCON, written in OPS5, went into
+  production at Digital Equipment's Salem, New Hampshire plant; by 1986 it had
+  processed 80,000 orders and was saving DEC an estimated $25M a year, and
+  corporations worldwide were building in-house AI groups. Knowledge engineering
+  spread through shells such as EMYCIN and NASA's CLIPS, while PROSPECTOR's 1982
+  molybdenum find became the boom's most-cited non-medical success. Formal knowledge
+  representation matured alongside: circumscription and default logic (1980),
+  qualitative process theory, KL-ONE (1985) and the Soar architecture (1987), and
+  Douglas Lenat began hand-coding commonsense in Cyc at MCC in 1984. Japan's Fifth
+  Generation Computer Systems project (1982) provoked DARPA's Strategic Computing
+  Initiative, the UK's Alvey Programme and Europe's ESPRIT, and a Lisp-machine
+  industry led by Symbolics grew to hundreds of millions of dollars. The plateau
+  fades east after the 1987 Lisp-machine crash; the Fifth Generation's ten-year plan
+  concluded in 1992 without meeting its original goals, and the ground dissolves into
+  the 1993 fog bank.
+time_range: {start: 1980, end: 1993}
+band: N2
+biome: highland
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [10, 11, 13, 14, 15, 18, 19, 20, 35, 37, 40, 42, 52]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Xcon", title: "Wikipedia: Xcon [10]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://doi.org/10.1016/0004-3702%2882%2990021-2", title: "McDermott, R1: A Rule-Based Configurer of Computer Systems, 1982 [11]", kind: primary, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems", title: "Wikipedia: Fifth Generation Computer Systems [15]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Cyc", title: "Wikipedia: Cyc [18]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf", title: "Nilsson, The Quest for Artificial Intelligence, 2010 [37]", kind: secondary, accessed: 2026-09-23}
+threads: [compute]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 5 (The Expert Systems Plateau); research/03 split
+  per REGISTRY.md D2. National programmes (SCI, Alvey, ESPRIT, MCC) are funding
+  geography drawn as "forts" inside the Fifth Generation country (research/03 open
+  question (b)).

@@ -1,0 +1,33 @@
+id: blackboard-scripts-reach
+level: country
+name: The Blackboard & Scripts Reach
+subtitle: "Hearsay-II, Schank's scripts and the Stanford Cart, 1974–1980"
+summary: >
+  The second strip of the western frozen band, where knowledge-based architectures for
+  language, speech and action were tried out before the commercial boom. At CMU, Lee
+  Erman, Rick Hayes-Roth, Victor Lesser and Raj Reddy demonstrated the Hearsay-II
+  speech-understanding system in 1976, as DARPA's Speech Understanding Research
+  programme closed. Its "blackboard" architecture, written up in 1980, had many knowledge
+  sources cooperating on a shared blackboard, and later 1980s AI reused it as a control
+  architecture. At Yale, Roger Schank and Robert Abelson's Scripts, Plans, Goals and
+  Understanding (1977) made scripts the stereotyped knowledge structures of language
+  understanding. At Stanford, Hans Moravec's Cart crossed a chair-filled room
+  autonomously using stereo vision in 1979, the first computer-controlled autonomous
+  vehicle. Moravec then moved to CMU's new Robotics Institute in 1980. The Cart's
+  deliberative approach is the foil that Brooks's behaviour-based robotics would later
+  reject.
+time_range: {start: 1974, end: 1980}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [36, 37, 38, 39, 43]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Blackboard_system", title: "Wikipedia: Blackboard system [38]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Roger_Schank", title: "Wikipedia: Roger Schank [43]", kind: wikipedia, accessed: 2026-09-23}
+  - {url: "https://en.wikipedia.org/wiki/Hans_Moravec", title: "Wikipedia: Hans Moravec [39]", kind: wikipedia, accessed: 2026-09-23}
+threads: [language, robotics]
+status: sourced

@@ -1,0 +1,287 @@
+# Winter Steppes — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/03-ai-winters-and-expert-systems-1974-1993.md (timeline, Key people,
+# Schools of thought, Map notes); every url is one already cited in its ## Sources.
+countries:
+  funding-passes:
+    hint: "Winter 1974 · Lisp crash 1987"
+    tag: "Escarpment 1974 → 'AI winter' 1984 → crash 1987 → fog 1993"
+    events:
+      - id: first-ai-winter-1974
+        name: First AI Winter
+        year: 1974.0
+        lod: 1
+        one_line: "DARPA cuts basic AI funding after the 1973 Lighthill Report: the First Winter escarpment"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "AI winter — Wikipedia [1]"
+      - id: lighthill-pass-1974
+        name: Lighthill Pass
+        year: 1974.2
+        lod: 4
+        one_line: "Post-Lighthill, UK AI survives only at Edinburgh, Essex and Sussex"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+            title: "History of artificial intelligence — Wikipedia [2]"
+      - id: speech-understanding-end-1976
+        name: SUR Programme Closes
+        year: 1976.5
+        lod: 4
+        one_line: "DARPA's Speech Understanding Research programme closes with Hearsay-II's demo"
+        sources:
+          - url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf"
+            title: "Nilsson, The Quest for AI (2010) [37]"
+      - id: ai-winter-coined-1984
+        name: "'AI Winter' Coined"
+        year: 1984.6
+        lod: 2
+        one_line: "Schank and Minsky warn at AAAI 1984 that the AI business bubble will burst"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "AI winter — Wikipedia [1]"
+      - id: lisp-machine-crash-1987
+        name: Lisp Machine Crash
+        year: 1987.3
+        lod: 1
+        one_line: "Cheaper Sun/Apple workstations and PCs running Lisp kill the Lisp-machine market"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Lisp_machine"
+            title: "Lisp machine — Wikipedia [14]"
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "AI winter — Wikipedia [1]"
+      - id: sci-cuts-ai-1988
+        name: SCI Cuts AI Spending
+        year: 1988.3
+        lod: 3
+        one_line: "The Strategic Computing Initiative cancels new AI spending: government retreats"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "AI winter — Wikipedia [1]"
+          - url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative"
+            title: "Strategic Computing Initiative — Wikipedia [19]"
+      - id: fifth-generation-ends-1992
+        name: Fifth Generation Ends
+        year: 1992.4
+        lod: 3
+        one_line: "ICOT's ten-year plan concludes short of its original goals; wind-down to 1994"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+            title: "Fifth Generation Computer Systems — Wikipedia [15]"
+      - id: lisp-companies-fail-1993
+        name: Symbolics Fails
+        year: 1993.0
+        lod: 3
+        one_line: "Symbolics and most Lisp-machine companies fail or exit the market"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Symbolics"
+            title: "Symbolics — Wikipedia [13]"
+          - url: "https://en.wikipedia.org/wiki/Lisp_machine"
+            title: "Lisp machine — Wikipedia [14]"
+      - id: sci-concludes-1993
+        name: SCI Concludes
+        year: 1993.0
+        lod: 4
+        one_line: "DARPA's decade-long, ~$1B Strategic Computing Initiative comes to an end"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative"
+            title: "Strategic Computing Initiative — Wikipedia [19]"
+      - id: ai-fog-bank-1993
+        name: The 1993 Fog Bank
+        year: 1993.0
+        lod: 3
+        one_line: "'AI' becomes a label to avoid; work continues as ML, informatics, knowledge systems"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "AI winter — Wikipedia [1]"
+          - url: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
+            title: "History of artificial intelligence — Wikipedia [2]"
+
+  critics-tundra:
+    hint: "Chinese Room 1980"
+    tag: "Symbol systems → Weizenbaum → Searle → Dreyfus → Brooks"
+    events:
+      - id: physical-symbol-lecture-1975
+        name: Physical Symbol Systems
+        year: 1975.8
+        lod: 3
+        one_line: "Newell and Simon's Turing Award lecture states the physical symbol system hypothesis"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Physical_symbol_system"
+            title: "Physical symbol system — Wikipedia [5]"
+      - id: empirical-inquiry-cacm-1976
+        name: Empirical Inquiry
+        year: 1976.2
+        lod: 4
+        one_line: "CACM publishes 'Computer Science as Empirical Inquiry: Symbols and Search'"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Physical_symbol_system"
+            title: "Newell & Simon 1976, via Physical symbol system — Wikipedia [5]"
+      - id: computer-power-reason-1976
+        name: Computer Power & Reason
+        year: 1976.5
+        lod: 3
+        one_line: "Weizenbaum's insider critique of AI's social claims"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Computer_Power_and_Human_Reason"
+            title: "Computer Power and Human Reason — Wikipedia [6]"
+      - id: chinese-room-1980
+        name: Chinese Room
+        year: 1980.7
+        lod: 2
+        one_line: "Searle: symbol manipulation is not understanding; defines 'strong AI'"
+        sources:
+          - url: "https://doi.org/10.1017/S0140525X00005756"
+            title: "Searle, Minds, Brains, and Programs (1980) [12]"
+          - url: "https://en.wikipedia.org/wiki/Chinese_room"
+            title: "Chinese room — Wikipedia [12]"
+      - id: mind-over-machine-1986
+        name: Mind over Machine
+        year: 1986.2
+        lod: 3
+        one_line: "Dreyfus brothers: expertise is intuitive know-how, not rules — aimed at expert systems"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hubert_Dreyfus"
+            title: "Hubert Dreyfus — Wikipedia [44]"
+      - id: society-of-mind-1986
+        name: The Society of Mind
+        year: 1986.5
+        lod: 4
+        one_line: "Minsky publishes The Society of Mind"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Society_of_Mind"
+            title: "Society of Mind — Wikipedia [49]"
+      - id: winograd-flores-1986
+        name: Winograd & Flores
+        year: 1986.7
+        lod: 4
+        one_line: "Understanding Computers and Cognition: Winograd turns critic of symbolic AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Terry_Winograd"
+            title: "Terry Winograd — Wikipedia [50]"
+      - id: moravec-mind-children-1988
+        name: Moravec's Paradox
+        year: 1988.5
+        lod: 4
+        one_line: "Mind Children: perception and mobility prove harder than reasoning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Moravec%27s_paradox"
+            title: "Moravec's paradox — Wikipedia [39]"
+      - id: elephants-chess-1990
+        name: Elephants & Chess
+        year: 1990.5
+        lod: 4
+        one_line: "Brooks stakes out Nouvelle AI's post-symbolic future"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Rodney_Brooks"
+            title: "Rodney Brooks — Wikipedia [32]"
+      - id: intelligence-without-rep-1991
+        name: Without Representation
+        year: 1991.1
+        lod: 3
+        one_line: "Brooks's definitive anti-representationalist manifesto in Artificial Intelligence 47"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2891%2990053-M"
+            title: "Brooks, Intelligence Without Representation (1991) [32]"
+
+  knowledge-turn-frontier:
+    hint: "MYCIN · 'knowledge is power'"
+    tag: "MYCIN → PROSPECTOR → knowledge engineering → AAAI"
+    events:
+      - id: mycin-explanation-1975
+        name: MYCIN Paper
+        year: 1975.4
+        lod: 4
+        one_line: "Shortliffe et al. describe MYCIN's explanation and rule-acquisition capabilities"
+        sources:
+          - url: "https://doi.org/10.1016/0010-4809%2875%2990009-9"
+            title: "Shortliffe et al. 1975 [3]"
+      - id: mycin-consultant-1976
+        name: MYCIN
+        year: 1976.0
+        lod: 3
+        one_line: "Stanford's ~600-rule backward-chaining consultant with certainty factors (1972–76)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Mycin"
+            title: "Mycin — Wikipedia [3]"
+          - url: "https://www.shortliffe.net/Buchanan-Shortliffe-1984/MYCIN%20Book.htm"
+            title: "Buchanan & Shortliffe, Rule-Based Expert Systems (1984) [4]"
+      - id: prospector-ijcai-1975
+        name: PROSPECTOR Described
+        year: 1975.6
+        lod: 4
+        one_line: "Hart describes SRI's mineral-exploration consultant with Bayesian-style inference nets"
+        sources:
+          - url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf"
+            title: "Nilsson, The Quest for AI (2010) [37]"
+      - id: knowledge-is-power-1977
+        name: Knowledge Is Power
+        year: 1977.6
+        lod: 3
+        one_line: "Feigenbaum's IJCAI-77 lecture makes knowledge engineering a programme"
+        sources:
+          - url: "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf"
+            title: "Feigenbaum, The Art of Artificial Intelligence (1977) [7]"
+      - id: emycin-shell-1977
+        name: EMYCIN Shell
+        year: 1977.8
+        lod: 4
+        one_line: "EMYCIN separates the inference engine from the knowledge base"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Knowledge_engineering"
+            title: "Knowledge engineering — Wikipedia [7]"
+      - id: ops5-rete-1979
+        name: OPS5 and Rete
+        year: 1979.3
+        lod: 4
+        one_line: "Forgy's OPS5 and Rete algorithm (1979–82): the production engine behind XCON"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/OPS5"
+            title: "OPS5 — Wikipedia [10]"
+          - url: "https://en.wikipedia.org/wiki/Rete_algorithm"
+            title: "Rete algorithm — Wikipedia [10]"
+      - id: aaai-founded-1979
+        name: AAAI Founded
+        year: 1979.5
+        lod: 3
+        one_line: "American Association for Artificial Intelligence founded: the field institutionalises"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Association_for_the_Advancement_of_Artificial_Intelligence"
+            title: "AAAI — Wikipedia [9]"
+
+  blackboard-scripts-reach:
+    hint: "Hearsay-II 1976"
+    tag: "Hearsay-II → Scripts → Stanford Cart"
+    events:
+      - id: hearsay-ii-1976
+        name: Hearsay-II
+        year: 1976.6
+        lod: 3
+        one_line: "CMU speech-understanding system: knowledge sources cooperate on a shared blackboard"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Blackboard_system"
+            title: "Blackboard system — Wikipedia [38]"
+          - url: "https://aitopics.org/misc/brief-history"
+            title: "AAAI, A Brief History of AI [36]"
+      - id: scripts-plans-goals-1977
+        name: Scripts, Plans, Goals
+        year: 1977.4
+        lod: 3
+        one_line: "Schank & Abelson: scripts as stereotyped knowledge structures for understanding"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Roger_Schank"
+            title: "Roger Schank — Wikipedia [43]"
+      - id: stanford-cart-1979
+        name: Stanford Cart
+        year: 1979.7
+        lod: 3
+        one_line: "Moravec's Cart crosses a chair-filled room by stereo vision: first autonomous vehicle"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hans_Moravec"
+            title: "Hans Moravec — Wikipedia [39]"
+      - id: cmu-robotics-institute-1980
+        name: CMU Robotics Institute
+        year: 1980.0
+        lod: 4
+        one_line: "Moravec moves to CMU's new Robotics Institute"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hans_Moravec"
+            title: "Hans Moravec — Wikipedia [39]"

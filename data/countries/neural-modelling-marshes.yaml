@@ -1,0 +1,42 @@
+id: neural-modelling-marshes
+level: country
+name: The Neural Modelling Marshes
+subtitle: "Logical neurons, Hebbian learning and the first learning machines, 1943–1954"
+summary: >
+  The birthplace of the connectionist pole: brain-inspired computation, synaptic
+  learning and the first learning devices and programs. Warren McCulloch and
+  Walter Pitts's "A Logical Calculus of the Ideas Immanent in Nervous Activity"
+  (1943) gave the first mathematical neuron and showed that neural nets can
+  compute any logical function. Their "How We Know Universals" (1947) offered
+  the first neural-net account of invariant pattern recognition. Donald Hebb's
+  The Organization of Behavior (1949) proposed the synaptic learning rule that
+  bears his name. Claude Shannon's relay mouse Theseus (1950) learned a maze by
+  trial and error. Marvin Minsky and Dean Edmonds's SNARC (1951) at Princeton
+  was the first neural-network learning machine. Anthony Oettinger's EDSAC
+  programs (1951–52) were the first programs written to learn. Stephen Kleene's
+  1951 RAND analysis of nerve nets gave rise to regular expressions. Albert
+  Uttley built conditional-probability nets, and Farley and Clark simulated
+  self-organising systems in 1954. From 1952 McCulloch's group at MIT's Research
+  Laboratory of Electronics was the neural-modelling hub.
+time_range: {start: 1943, end: 1954}
+band: S2
+sub_band: [S2b, S2c]
+biome: forest
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [12, 20, 24, 30, 33, 36, 38, 39, 49, 51]
+sources:
+  - {url: "https://doi.org/10.1007/BF02478259", title: "McCulloch & Pitts, A Logical Calculus…, 1943 [12]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Organization_of_Behavior", title: "Wikipedia: The Organization of Behavior [20]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Stochastic_neural_analog_reinforcement_calculator", title: "Wikipedia: SNARC [24]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://doi.org/10.1109/TIT.1954.1057468", title: "Farley & Clark, Simulation of Self-Organizing Systems by Digital Computer, 1954 [30]", kind: primary, accessed: 2026-09-06}
+threads: [rl]
+status: sourced
+notes: >
+  P3-T2 school bullet "Neural modelling & learning machines" (research/01).
+  Kleene's 1951 regular events is an adjacent-field item (theory of
+  computation). It sits here because the research treats it as an analysis of
+  McCulloch–Pitts nets. Bridge east: Hebb/SNARC → perceptron 1957–58
+  (symbolic-heartland early-perceptron-strip).

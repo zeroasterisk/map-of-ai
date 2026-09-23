@@ -1,0 +1,44 @@
+id: cybernetic-shore
+level: continent
+name: The Cybernetic Shore
+subtitle: "Cybernetics, neural modelling and the first thinking-machine programmes, 1943–1956"
+summary: >
+  The first mainland of the map, running from the 1943 west coast to the
+  Dartmouth delta. Two rivers cross it. The cybernetic and neural river starts
+  with McCulloch and Pitts (1943), who showed that networks of idealised neurons
+  can compute any logical function, and with Rosenblueth, Wiener and Bigelow's
+  account of feedback and purpose. It flows through the Macy Conferences
+  (1946–1953), Wiener's Cybernetics (1948), Grey Walter's tortoises, Ashby's
+  Homeostat, Britain's Ratio Club, Hebb's learning rule (1949), Shannon's
+  maze-solving mouse Theseus (1950) and Minsky and Edmonds's SNARC (1951). The
+  logic and computing river brings von Neumann's EDVAC report (1945), Shannon's
+  information theory (1948) and his chess paper (1950), and the first game
+  programs on the Ferranti Mark 1 and the IBM 701. Turing's Computing Machinery
+  and Intelligence (1950) proposed the imitation game. Weaver's 1949 memorandum
+  and the 1954 Georgetown–IBM demonstration started machine translation. The
+  Soviet press denounced cybernetics from 1950 to 1954, and the Paris colloque
+  of 1951 carried it to continental Europe. The two rivers meet where McCarthy,
+  Minsky, Rochester and Shannon's 1955 Dartmouth proposal named the field.
+time_range: {start: 1943, end: 1956}
+band: [N1, N2, C, S1, S2]
+biome: mixed
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [7, 12, 13, 14, 15, 16, 17, 20, 21, 23, 24, 27, 28, 29, 42]
+sources:
+  - {url: "https://doi.org/10.1007/BF02478259", title: "McCulloch & Pitts, A Logical Calculus of the Ideas Immanent in Nervous Activity, 1943 [12]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://archive.org/details/cyberneticsorcon00wien", title: "Wiener, Cybernetics, 1948 [16]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing, Computing Machinery and Intelligence, Mind 1950 [7]", kind: primary, accessed: 2026-09-06}
+  - {url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf", title: "McCarthy et al., Dartmouth Proposal, 1955 [29]", kind: primary, accessed: 2026-09-06}
+threads: [compute, language, games, robotics, rl]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 2 (The Cybernetic Shore). Content is the
+  shore half of the research/01 split table (P1-T11): timeline rows 10–36 and
+  school bullets Turing test & philosophy, Cybernetics, Neural modelling &
+  learning machines, Information theory & game search, and Machine translation.
+  Biome `mixed` (SPEC.md §2.6 justification, REGISTRY.md D7): the shore is
+  half logic (McCulloch–Pitts is a paper about propositional logic) and half
+  control/neural (Wiener, Ashby, Hebb, SNARC). The span ends 1956 so that
+  Kleene's Automata Studies paper (1956) and the IBM 701 checkers demo can sit
+  on the delta. The 1956 workshop itself belongs to symbolic-heartland.

@@ -1,0 +1,36 @@
+id: computability-isle
+level: country
+name: The Computability Isle
+subtitle: "Church, Turing, Post and the theory of computation, 1936–1942"
+summary: >
+  The largest and nearest isle, close enough that the shore is in sight. It
+  holds the work that asked what can be computed mechanically at all. In 1936
+  Alonzo Church at Princeton published "An Unsolvable Problem of Elementary
+  Number Theory", which introduced the lambda calculus and gave an independent
+  negative answer to Hilbert's Entscheidungsproblem. Lisp later drew on the
+  lambda calculus. In 1936–37 Alan Turing's "On Computable Numbers" defined
+  the Turing machine and the universal machine, the theoretical computer.
+  Emil Post independently published an equivalent model in 1936, and Stephen
+  Kleene developed recursion theory alongside Church and Turing. The
+  equivalence of these formulations became the Church–Turing thesis. Church
+  was Turing's doctoral supervisor. The Turing 1936 isle is drawn with a
+  causeway to the shore, where Turing's 1950 paper sits.
+time_range: {start: 1936, end: 1942}
+band: N1
+sub_band: [N1a, N1b]
+biome: highland
+parent_id: antecedent-isles
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [10, 11, 44]
+sources:
+  - {url: "https://doi.org/10.2307/2371045", title: "Church, An Unsolvable Problem of Elementary Number Theory, 1936 [10]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf", title: "Turing, On Computable Numbers, 1936 [11]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Emil_Leon_Post", title: "Wikipedia: Emil Leon Post [44]", kind: wikipedia, accessed: 2026-09-06}
+threads: [compute]
+status: sourced
+notes: >
+  P3-T1 school bullet "Computability / theory of computation" (research/01),
+  pre-1943 part only; von Neumann 1945/1948 and Kleene 1951 sit on the shore
+  per the split table. Bridge east: lambda calculus → Lisp 1958.

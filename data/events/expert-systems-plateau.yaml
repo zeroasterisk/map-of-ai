@@ -1,0 +1,286 @@
+# Expert Systems Plateau — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/03-ai-winters-and-expert-systems-1974-1993.md (timeline, Key people,
+# Schools of thought, Map notes); every url is one already cited in its ## Sources.
+countries:
+  expert-systems-country:
+    hint: "XCON/R1 1980 · PROSPECTOR 1982"
+    tag: "XCON → Lisp machines → KL-ONE → Soar → Deep Thought"
+    events:
+      - id: xcon-production-1980
+        name: XCON/R1 at DEC
+        year: 1980.1
+        lod: 1
+        one_line: "McDermott's OPS5 configurer enters production at DEC Salem: first big commercial success"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Xcon"
+            title: "Xcon — Wikipedia [10]"
+      - id: circumscription-1980
+        name: Circumscription
+        year: 1980.2
+        lod: 3
+        one_line: "McCarthy's circumscription, a form of non-monotonic reasoning (AIJ 13)"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2880%2990011-9"
+            title: "McCarthy, Circumscription (1980) [40]"
+      - id: default-logic-1980
+        name: Default Logic
+        year: 1980.3
+        lod: 4
+        one_line: "Reiter's default logic launches formal commonsense reasoning (AIJ 13)"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2880%2990014-4"
+            title: "Reiter, A Logic for Default Reasoning (1980) [40]"
+      - id: aaai-first-conference-1980
+        name: First AAAI Conference
+        year: 1980.6
+        lod: 4
+        one_line: "First AAAI National Conference held at Stanford; AI Magazine launched"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AAAI_Conference_on_Artificial_Intelligence"
+            title: "AAAI Conference on Artificial Intelligence — Wikipedia [55]"
+      - id: blackboard-writeup-1980
+        name: Blackboard Written Up
+        year: 1980.8
+        lod: 4
+        one_line: "Hearsay-II's blackboard architecture is written up, then reused across 1980s AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Blackboard_system"
+            title: "Blackboard system — Wikipedia [38]"
+      - id: symbolics-lm2-1981
+        name: Symbolics LM-2
+        year: 1981.5
+        lod: 3
+        one_line: "Symbolics ships the LM-2; the Lisp-machine industry begins"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Symbolics"
+            title: "Symbolics — Wikipedia [13]"
+          - url: "https://en.wikipedia.org/wiki/Lisp_machine"
+            title: "Lisp machine — Wikipedia [14]"
+      - id: r1-paper-1982
+        name: R1 Paper
+        year: 1982.0
+        lod: 4
+        one_line: "McDermott's 'R1: A Rule-Based Configurer of Computer Systems' in AIJ 19"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2882%2990021-2"
+            title: "McDermott, R1 (1982) [11]"
+      - id: dynamic-memory-1982
+        name: Dynamic Memory
+        year: 1982.4
+        lod: 4
+        one_line: "Schank's Dynamic Memory seeds case-based reasoning (Kolodner's CYRUS)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Case-based_reasoning"
+            title: "Case-based reasoning — Wikipedia [43]"
+      - id: prospector-molybdenum-1982
+        name: PROSPECTOR Find
+        year: 1982.6
+        lod: 3
+        one_line: "PROSPECTOR's map analysis locates a molybdenum deposit at Mount Tolman"
+        sources:
+          - url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf"
+            title: "Nilsson, The Quest for AI (2010) [37]"
+          - url: "https://en.wikipedia.org/wiki/Expert_system"
+            title: "Expert system — Wikipedia [35]"
+      - id: act-star-1983
+        name: ACT* Architecture
+        year: 1983.3
+        lod: 4
+        one_line: "Anderson's ACT*: the cognitive-psychology production-system architecture"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/ACT-R"
+            title: "ACT-R — Wikipedia [42]"
+      - id: thinking-machines-1983
+        name: Thinking Machines
+        year: 1983.5
+        lod: 4
+        one_line: "Hillis founds TMC: the Connection Machine as AI hardware's massively parallel wing"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Connection_Machine"
+            title: "Connection Machine — Wikipedia [46]"
+      - id: qualitative-process-1984
+        name: Qualitative Process
+        year: 1984.3
+        lod: 4
+        one_line: "Forbus's Qualitative Process Theory formalises naive physics"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2884%2990038-9"
+            title: "Forbus, Qualitative Process Theory (1984) [53]"
+      - id: rule-based-es-book-1984
+        name: Rule-Based Expert Sys.
+        year: 1984.6
+        lod: 4
+        one_line: "Buchanan & Shortliffe publish the MYCIN experiments of Stanford's HPP"
+        sources:
+          - url: "https://www.shortliffe.net/Buchanan-Shortliffe-1984/MYCIN%20Book.htm"
+            title: "Buchanan & Shortliffe, Rule-Based Expert Systems (1984) [4]"
+      - id: clips-shell-1985
+        name: NASA CLIPS
+        year: 1985.3
+        lod: 4
+        one_line: "NASA's CLIPS expert-system shell spreads the rule-based method"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/CLIPS"
+            title: "CLIPS — Wikipedia [54]"
+      - id: pearl-bayesian-networks-1985
+        name: Bayesian Networks
+        year: 1985.6
+        lod: 3
+        one_line: "Pearl coins 'Bayesian networks', rival to ad-hoc certainty factors"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Bayesian_network"
+            title: "Bayesian network — Wikipedia [21]"
+      - id: xcon-80000-orders-1986
+        name: XCON Pays Off
+        year: 1986.0
+        lod: 3
+        one_line: "XCON's ~2,500 rules have handled 80,000 orders, saving DEC ~$25M a year"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Xcon"
+            title: "Xcon — Wikipedia [10]"
+      - id: machine-learning-journal-1986
+        name: Machine Learning Journal
+        year: 1986.2
+        lod: 4
+        one_line: "The new journal Machine Learning gives ML its own venue"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Machine_Learning_%28journal%29"
+            title: "Machine Learning (journal) — Wikipedia [26]"
+      - id: id3-decision-trees-1986
+        name: ID3 Decision Trees
+        year: 1986.3
+        lod: 3
+        one_line: "Quinlan's 'Induction of Decision Trees': symbolic machine learning matures"
+        sources:
+          - url: "https://doi.org/10.1007/BF00116251"
+            title: "Quinlan, Induction of Decision Trees (1986) [25]"
+      - id: soar-architecture-1987
+        name: Soar
+        year: 1987.4
+        lod: 3
+        one_line: "Laird, Newell & Rosenbloom's production architecture with subgoaling and chunking"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2887%2990050-6"
+            title: "Laird, Newell & Rosenbloom, SOAR (1987) [42]"
+      - id: deep-thought-hitech-1988
+        name: Deep Thought & HiTech
+        year: 1988.8
+        lod: 3
+        one_line: "CMU chess machines each defeat a grandmaster: Denker (HiTech) and Larsen (Deep Thought)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29"
+            title: "Deep Thought (chess computer) — Wikipedia [45]"
+          - url: "https://en.wikipedia.org/wiki/HiTech"
+            title: "HiTech — Wikipedia [45]"
+      - id: chinook-checkers-1989
+        name: Chinook
+        year: 1989.3
+        lod: 4
+        one_line: "Schaeffer's Chinook checkers program begins at Alberta"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Chinook_%28computer_program%29"
+            title: "Chinook — Wikipedia [45]"
+      - id: deep-thought-kasparov-1989
+        name: Deep Thought v Kasparov
+        year: 1989.8
+        lod: 4
+        one_line: "Deep Thought loses 0–2 to Kasparov; the team moves to IBM and builds Deep Blue"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29"
+            title: "Deep Thought (chess computer) — Wikipedia [45]"
+
+  fifth-generation-shogunate:
+    hint: "Fifth Generation 1982"
+    tag: "ICOT → MCC → SCI · ESPRIT · Alvey"
+    events:
+      - id: fifth-generation-launch-1982
+        name: Fifth Generation
+        year: 1982.3
+        lod: 2
+        one_line: "MITI launches ICOT: ten-year programme for parallel logic-programming machines"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+            title: "Fifth Generation Computer Systems — Wikipedia [15]"
+          - url: "https://en.wikipedia.org/wiki/Institute_for_New_Generation_Computer_Technology"
+            title: "ICOT — Wikipedia [15]"
+      - id: mcc-consortium-1982
+        name: MCC Consortium
+        year: 1982.6
+        lod: 3
+        one_line: "MCC forms in Austin under Inman as the US industrial response to Japan"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Microelectronics_and_Computer_Technology_Corporation"
+            title: "MCC — Wikipedia [18]"
+      - id: concurrent-prolog-1982
+        name: Concurrent Prolog
+        year: 1982.8
+        lod: 4
+        one_line: "Shapiro, visiting ICOT, develops Concurrent Prolog and states the programme's rationale"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+            title: "Fifth Generation Computer Systems — Wikipedia [15]"
+      - id: warren-abstract-machine-1983
+        name: Warren Abstract Machine
+        year: 1983.2
+        lod: 4
+        one_line: "Warren's WAM becomes the compiler model for Prolog (Quintus Prolog)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Warren_Abstract_Machine"
+            title: "Warren Abstract Machine — Wikipedia [51]"
+      - id: esprit-programme-1983
+        name: ESPRIT
+        year: 1983.4
+        lod: 4
+        one_line: "The EEC's ESPRIT programme starts; ESPRIT I budget 1.5 billion ECU"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/European_Strategic_Programme_on_Research_in_Information_Technology"
+            title: "ESPRIT — Wikipedia [41]"
+      - id: strategic-computing-1983
+        name: Strategic Computing
+        year: 1983.6
+        lod: 3
+        one_line: "DARPA's ~$1B Strategic Computing Initiative (1983–1993) answers the Fifth Generation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative"
+            title: "Strategic Computing Initiative — Wikipedia [19]"
+      - id: fifth-generation-book-1983
+        name: The Fifth Generation
+        year: 1983.7
+        lod: 4
+        one_line: "Feigenbaum co-authors The Fifth Generation, sounding the competitive alarm"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Edward_Feigenbaum"
+            title: "Edward Feigenbaum — Wikipedia [34]"
+      - id: alvey-programme-1984
+        name: Alvey Programme
+        year: 1984.0
+        lod: 3
+        one_line: "UK's £350M Alvey Programme (1984–1990) re-funds AI after Lighthill"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Alvey"
+            title: "Alvey — Wikipedia [20]"
+
+  cyc-territory:
+    hint: "Cyc 1984"
+    tag: "Cyc → KL-ONE → description logics"
+    events:
+      - id: cyc-begins-1984
+        name: Cyc Begins
+        year: 1984.5
+        lod: 2
+        one_line: "Lenat starts hand-coding commonsense knowledge at MCC (July 1984)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Cyc"
+            title: "Cyc — Wikipedia [18]"
+          - url: "https://en.wikipedia.org/wiki/Douglas_Lenat"
+            title: "Douglas Lenat — Wikipedia [18]"
+      - id: kl-one-1985
+        name: KL-ONE
+        year: 1985.4
+        lod: 3
+        one_line: "Brachman & Schmolze: frame KR with formal semantics, the first description logic"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/KL-ONE"
+            title: "KL-ONE — Wikipedia [52]"
+          - url: "https://en.wikipedia.org/wiki/Description_logic"
+            title: "Description logic — Wikipedia [52]"

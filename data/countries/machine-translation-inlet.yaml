@@ -1,0 +1,34 @@
+id: machine-translation-inlet
+level: country
+name: The Machine Translation Inlet
+subtitle: "Weaver's memorandum and the Georgetown–IBM experiment, 1949–1954"
+summary: >
+  A narrow inlet at mid-latitude and the first funded "language AI". In July
+  1949 Warren Weaver of the Rockefeller Foundation circulated his "Translation"
+  memorandum. It proposed computer translation through cryptanalysis,
+  McCulloch–Pitts-style logic and language universals, and it launched funded
+  machine-translation research in the United States. Yehoshua Bar-Hillel became
+  the first full-time MT researcher at MIT and organised the first MT
+  conference there in June 1952. On 7 January 1954 the Georgetown–IBM
+  experiment publicly demonstrated Russian-to-English machine translation. The
+  demonstration triggered a decade of MT funding, which the ALPAC report of
+  1966 later reversed. The inlet borders the winter episode of the Symbolic
+  Heartland to the east and, much further on, statistical NLP.
+time_range: {start: 1949, end: 1954}
+band: C
+sub_band: [Ca, Cb]
+biome: mixed
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [28, 35, 40]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Warren_Weaver", title: "Wikipedia: Warren Weaver (1949 Translation memorandum) [35]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Yehoshua_Bar-Hillel", title: "Wikipedia: Yehoshua Bar-Hillel [40]", kind: wikipedia, accessed: 2026-09-06}
+  - {url: "https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment", title: "Wikipedia: Georgetown–IBM experiment [28]", kind: wikipedia, accessed: 2026-09-06}
+threads: [language]
+status: sourced
+notes: >
+  P3-T2 school bullet "Machine translation (proto-NLP)" (research/01). Bridge
+  east: Georgetown MT → ALPAC 1966 (symbolic-heartland).

@@ -1,0 +1,38 @@
+id: imitation-game-heights
+level: country
+name: The Imitation Game Heights
+subtitle: "The Turing test and the philosophy of machine intelligence, 1948–1950"
+summary: >
+  The northern ridge of the shore, where the question "can machines think?"
+  was first given a behavioural test. In 1948 Alan Turing wrote the NPL report
+  "Intelligent Machinery". It described "unorganised machines" (random neural
+  nets), learning and search, and was not published until 1968. In 1950 his
+  "Computing Machinery and Intelligence" in Mind proposed the imitation game,
+  later called the Turing test, and rebutted nine objections to machine
+  intelligence. One of them was Lady Lovelace's 1843 objection that the
+  Analytical Engine "has no pretensions to originate anything", which forms
+  this school's offshore antecedent. The heights connect eastward to ELIZA,
+  to the Dreyfus and Searle critiques, and eventually to the debates of the
+  LLM era.
+time_range: {start: 1948, end: 1950}
+band: N1
+sub_band: [N1a, N1b]
+biome: highland
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [3, 7, 18]
+sources:
+  - {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing, Computing Machinery and Intelligence, Mind 1950 [7]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://weightagnostic.github.io/papers/turing1948.pdf", title: "Turing, Intelligent Machinery, NPL 1948 [18]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://www.fourmilab.ch/babbage/sketch.html", title: "Menabrea/Lovelace, Sketch of the Analytical Engine, 1843 [3]", kind: primary, accessed: 2026-09-06}
+threads: []
+status: sourced
+notes: >
+  P3-T2 school bullet "Turing test & philosophy of machine intelligence"
+  (research/01). Map notes open question (c) is contested: Turing 1948
+  "Intelligent Machinery" is chronologically connectionist (unorganised
+  machines) but was written by the symbolic pole's founder, and the research
+  suggests a mid-latitude placement. It is kept here with Turing's other work;
+  the renderer may place its dot toward the south edge.

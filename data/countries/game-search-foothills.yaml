@@ -1,0 +1,40 @@
+id: game-search-foothills
+level: country
+name: The Game Search Foothills
+subtitle: "Information theory, chess and checkers programs, 1948–1956"
+summary: >
+  The foothills where information was first quantified and game playing became
+  the testbed for machine reasoning. Claude Shannon's "A Mathematical Theory of
+  Communication" (1948) founded information theory, which later underpinned
+  probabilistic AI. In 1948 Turing and Champernowne devised Turochamp, a paper
+  chess program that was never run on a computer. Zuse had earlier drafted
+  chess routines in Plankalkül, also never run. Shannon's "Programming a
+  Computer for Playing Chess" (1950) set out minimax search with an evaluation
+  function, the template for game-playing AI. In 1951 Strachey's draughts and
+  Prinz's chess ran on the Ferranti Mark 1 in Manchester, the first game
+  programs on a stored-program computer, and Strachey's love-letter generator
+  followed in 1952. From 1952 Arthur Samuel wrote a checkers program on IBM's
+  701 that learned by rote and self-play; he coined the term "machine
+  learning". The foothills end at the 1955 Dartmouth proposal of McCarthy,
+  Minsky, Rochester and Shannon, which named the field.
+time_range: {start: 1948, end: 1956}
+band: S1
+sub_band: [S1a, S1b]
+biome: grassland
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [17, 23, 25, 27, 29, 41, 43, 45, 46]
+sources:
+  - {url: "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf", title: "Shannon, A Mathematical Theory of Communication, 1948 [17]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://vision.unipv.it/IA1/ProgrammingaComputerforPlayingChess.pdf", title: "Shannon, Programming a Computer for Playing Chess, 1950 [23]", kind: primary, accessed: 2026-09-06}
+  - {url: "https://doi.org/10.1147/rd.33.0210", title: "Samuel, Some Studies in Machine Learning Using the Game of Checkers, 1959 [27]", kind: primary, accessed: 2026-09-06}
+  - {url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf", title: "McCarthy et al., Dartmouth Proposal, 1955 [29]", kind: primary, accessed: 2026-09-06}
+threads: [games, compute]
+status: sourced
+notes: >
+  P3-T2 school bullet "Information theory & game search" (research/01). The
+  Dartmouth proposal (split-table row 36, the eastern border) is placed here
+  because Shannon co-proposed it. Bridge east: Shannon/Samuel game search → Newell–Simon
+  heuristics (heuristic-search-highlands).
