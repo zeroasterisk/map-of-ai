@@ -21,7 +21,7 @@
    "fact": 13,
    "min": 11
   },
-  "mapofai:placement": "point labels use text-variable-anchor (8 anchors, text-radial-offset in em) so MapLibre can slide a label around its dot; continent/ocean/range titles stay centred",
+  "mapofai:placement": "event/summit/pass/fact/tag/hint labels use text-variable-anchor (8 anchors, text-radial-offset ≥ dot radius + 2 px) so MapLibre can slide a label around its dot; continent/country/ocean/range titles are centre-anchored only (Phase 4c planner decision 1). All text halos ≥ 2 px in the land-fill colour so border lines are knocked out under text (Phase 4c task B).",
   "mapofai:z1_landmarks": "lod 1–2 events (symbol-event-z1) + summits lod ≤ 1 (symbol-summit) + country labels count as landmarks at z1 (tests/sample_frames.py)"
  },
  "glyphs": "glyphs/{fontstack}/{range}.pbf",
@@ -341,7 +341,7 @@
    "paint": {
     "text-color": "#5c442c",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.4
+    "text-halo-width": 2.0
    }
   },
   {
@@ -408,7 +408,7 @@
    "paint": {
     "text-color": "#3f321f",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.1
+    "text-halo-width": 2.0
    }
   },
   {
@@ -418,12 +418,22 @@
    "minzoom": 4.5,
    "maxzoom": 6.0,
    "filter": [
-    "<=",
+    "all",
     [
-     "get",
-     "lod"
+     "<=",
+     [
+      "get",
+      "lod"
+     ],
+     2
     ],
-    2
+    [
+     "!",
+     [
+      "has",
+      "dedup"
+     ]
+    ]
    ],
    "layout": {
     "text-field": [
@@ -493,7 +503,7 @@
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.3
+    "text-halo-width": 2.2
    },
    "metadata": {
     "mapofai:class": "landmark",
@@ -507,21 +517,31 @@
    "minzoom": 6.0,
    "maxzoom": 8.5,
    "filter": [
-    "any",
+    "all",
     [
-     ">=",
+     "any",
      [
-      "zoom"
+      ">=",
+      [
+       "zoom"
+      ],
+      7.5
      ],
-     7.5
+     [
+      "<=",
+      [
+       "get",
+       "lod"
+      ],
+      3
+     ]
     ],
     [
-     "<=",
+     "!",
      [
-      "get",
-      "lod"
-     ],
-     3
+      "has",
+      "dedup"
+     ]
     ]
    ],
    "layout": {
@@ -588,13 +608,25 @@
      "bottom-left",
      "bottom-right"
     ],
-    "text-radial-offset": 0.45,
+    "text-radial-offset": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     6.0,
+     0.5,
+     8.5,
+     0.4
+    ],
     "text-justify": "auto"
    },
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.3
+    "text-halo-width": 2.2
    }
   },
   {
@@ -704,7 +736,7 @@
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.5
+    "text-halo-width": 2.2
    }
   },
   {
@@ -782,7 +814,7 @@
    "paint": {
     "text-color": "#5a2a12",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.2
+    "text-halo-width": 2.0
    }
   },
   {
@@ -860,7 +892,7 @@
    "paint": {
     "text-color": "#4b3a22",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.2
+    "text-halo-width": 2.0
    }
   },
   {
@@ -913,23 +945,13 @@
      "get",
      "rank"
     ],
-    "text-variable-anchor": [
-     "top",
-     "bottom",
-     "left",
-     "right",
-     "top-left",
-     "top-right",
-     "bottom-left",
-     "bottom-right"
-    ],
-    "text-radial-offset": 0.15,
-    "text-justify": "auto"
+    "text-justify": "center",
+    "text-anchor": "center"
    },
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.8
+    "text-halo-width": 2.4
    }
   },
   {
@@ -984,7 +1006,7 @@
    "paint": {
     "text-color": "#7f6d4c",
     "text-halo-color": "#dccfae",
-    "text-halo-width": 1.0
+    "text-halo-width": 2.0
    }
   },
   {
@@ -1035,24 +1057,13 @@
      "get",
      "rank"
     ],
-    "text-variable-anchor": [
-     "center",
-     "top",
-     "bottom",
-     "left",
-     "right",
-     "top-left",
-     "top-right",
-     "bottom-left",
-     "bottom-right"
-    ],
-    "text-radial-offset": 1.2,
-    "text-justify": "auto"
+    "text-justify": "center",
+    "text-anchor": "center"
    },
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 2.2,
+    "text-halo-width": 2.6,
     "text-opacity": [
      "interpolate",
      [
@@ -1129,7 +1140,7 @@
    "paint": {
     "text-color": "#2a1f11",
     "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.6
+    "text-halo-width": 2.2
    }
   }
  ]

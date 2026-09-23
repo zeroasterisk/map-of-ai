@@ -719,6 +719,84 @@
        "title": "MIT Technology Review, 18 Nov 2022 [86]"
       }
      ]
+    },
+    {
+     "id": "malicious-use-2018",
+     "name": "Malicious Use report",
+     "year": 2018.14,
+     "lod": 4,
+     "one_line": "Brundage et al.: forecasting and preventing AI misuse",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1802.07228",
+       "title": "Brundage et al., The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation, arXiv 1802.07228 [96]"
+      }
+     ]
+    },
+    {
+     "id": "datasheets-2018",
+     "name": "Datasheets for Datasets",
+     "year": 2018.23,
+     "lod": 4,
+     "one_line": "Gebru et al.: standard documentation for training datasets",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1803.09010",
+       "title": "Gebru et al., Datasheets for Datasets, arXiv 1803.09010 [97]"
+      }
+     ]
+    },
+    {
+     "id": "energy-nlp-2019",
+     "name": "Energy & policy in NLP",
+     "year": 2019.43,
+     "lod": 4,
+     "one_line": "Strubell, Ganesh & McCallum: carbon and cost of training NLP models",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1906.02243",
+       "title": "Strubell et al., Energy and Policy Considerations for Deep Learning in NLP, arXiv 1906.02243 [102]"
+      }
+     ]
+    },
+    {
+     "id": "truthfulqa-2021",
+     "name": "TruthfulQA",
+     "year": 2021.69,
+     "lod": 4,
+     "one_line": "Lin, Hilton & Evans: larger models were less truthful",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2109.07958",
+       "title": "Lin et al., TruthfulQA: Measuring How Models Mimic Human Falsehoods, arXiv 2109.07958 [130]"
+      }
+     ]
+    },
+    {
+     "id": "red-teaming-2022",
+     "name": "LM red teaming",
+     "year": 2022.1,
+     "lod": 4,
+     "one_line": "Perez et al. (DeepMind): one LM finds another's harmful outputs",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2202.03286",
+       "title": "Perez et al., Red Teaming Language Models with Language Models, arXiv 2202.03286 [138]"
+      }
+     ]
+    },
+    {
+     "id": "anthropic-hh-2022",
+     "name": "Anthropic HH RLHF",
+     "year": 2022.28,
+     "lod": 4,
+     "one_line": "Bai et al.: helpful-and-harmless assistant trained with RLHF",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2204.05862",
+       "title": "Bai et al., Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback, arXiv 2204.05862 [142]"
+      }
+     ]
     }
    ]
   },
@@ -3098,6 +3176,162 @@
        "title": "Ouyang et al., InstructGPT, arXiv 2203.02155 [19]"
       }
      ]
+    },
+    {
+     "id": "ctrl-2019",
+     "name": "CTRL",
+     "year": 2019.7,
+     "lod": 4,
+     "one_line": "Keskar et al. (Salesforce): 1.63 B LM steered by control codes",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1909.05858",
+       "title": "Keskar et al., CTRL: A Conditional Transformer Language Model for Controllable Generation, arXiv 1909.05858 [107]"
+      }
+     ]
+    },
+    {
+     "id": "dialogpt-2019",
+     "name": "DialoGPT",
+     "year": 2019.84,
+     "lod": 4,
+     "one_line": "Zhang et al. (Microsoft): GPT-2-style dialogue pre-training on Reddit",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1911.00536",
+       "title": "Zhang et al., DialoGPT: Large-Scale Generative Pre-training for Conversational Response Generation, arXiv 1911.00536 [108]"
+      }
+     ]
+    },
+    {
+     "id": "blenderbot-2020",
+     "name": "BlenderBot",
+     "year": 2020.33,
+     "lod": 4,
+     "one_line": "Roller et al. (Facebook AI): open-domain chatbot, open-sourced to 9.4 B",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2004.13637",
+       "title": "Roller et al., Recipes for building an open-domain chatbot, arXiv 2004.13637 [120]"
+      }
+     ]
+    },
+    {
+     "id": "prefix-tuning-2021",
+     "name": "Prefix-Tuning",
+     "year": 2021.0,
+     "lod": 4,
+     "one_line": "Li & Liang (Stanford): train continuous prompts, freeze the model",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2101.00190",
+       "title": "Li et al., Prefix-Tuning: Optimizing Continuous Prompts for Generation, arXiv 2101.00190 [124]"
+      }
+     ]
+    },
+    {
+     "id": "prompt-tuning-2021",
+     "name": "Prompt Tuning",
+     "year": 2021.3,
+     "lod": 4,
+     "one_line": "Lester et al. (Google): soft prompts match fine-tuning at scale",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2104.08691",
+       "title": "Lester et al., The Power of Scale for Parameter-Efficient Prompt Tuning, arXiv 2104.08691 [125]"
+      }
+     ]
+    },
+    {
+     "id": "lora-2021",
+     "name": "LoRA",
+     "year": 2021.46,
+     "lod": 3,
+     "one_line": "Hu et al. (Microsoft): low-rank adapters cut trainable weights ~10,000×",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2106.09685",
+       "title": "Hu et al., LoRA: Low-Rank Adaptation of Large Language Models, arXiv 2106.09685 [129]"
+      }
+     ]
+    },
+    {
+     "id": "webgpt-2021",
+     "name": "WebGPT",
+     "year": 2021.96,
+     "lod": 4,
+     "one_line": "Nakano et al. (OpenAI): a browsing LM that cites sources, trained with RLHF",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2112.09332",
+       "title": "Nakano et al., WebGPT: Browser-assisted question-answering with human feedback, arXiv 2112.09332 [136]"
+      }
+     ]
+    },
+    {
+     "id": "lamda-paper-2022",
+     "name": "LaMDA paper",
+     "year": 2022.05,
+     "lod": 4,
+     "one_line": "Thoppilan et al. (Google): 137 B dialogue model, safety fine-tuning",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2201.08239",
+       "title": "Thoppilan et al., LaMDA: Language Models for Dialog Applications, arXiv 2201.08239 [137]"
+      }
+     ]
+    },
+    {
+     "id": "self-consistency-2022",
+     "name": "Self-consistency",
+     "year": 2022.22,
+     "lod": 4,
+     "one_line": "Wang et al. (Google): sample many reasoning chains and vote",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2203.11171",
+       "title": "Wang et al., Self-Consistency Improves Chain of Thought Reasoning in Language Models, arXiv 2203.11171 [139]"
+      }
+     ]
+    },
+    {
+     "id": "zero-shot-cot-2022",
+     "name": "Let's think step by step",
+     "year": 2022.4,
+     "lod": 4,
+     "one_line": "Kojima et al.: zero-shot chain-of-thought prompting",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.11916",
+       "title": "Kojima et al., Large Language Models are Zero-Shot Reasoners, arXiv 2205.11916 [140]"
+      }
+     ]
+    },
+    {
+     "id": "ul2-2022",
+     "name": "UL2",
+     "year": 2022.36,
+     "lod": 4,
+     "one_line": "Tay et al. (Google): mixture-of-denoisers unifies pre-training objectives",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.05131",
+       "title": "Tay et al., UL2: Unifying Language Learning Paradigms, arXiv 2205.05131 [145]"
+      }
+     ]
+    },
+    {
+     "id": "flan-palm-2022",
+     "name": "Flan-PaLM / Flan-T5",
+     "year": 2022.8,
+     "lod": 4,
+     "one_line": "Chung et al. (Google): instruction tuning scaled to 1,800 tasks",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2210.11416",
+       "title": "Chung et al., Scaling Instruction-Finetuned Language Models, arXiv 2210.11416 [148]"
+      }
+     ]
     }
    ]
   },
@@ -3227,6 +3461,136 @@
       {
        "url": "https://arxiv.org/abs/1609.03499",
        "title": "van den Oord et al., WaveNet [50]"
+      }
+     ]
+    },
+    {
+     "id": "nice-2014",
+     "name": "NICE flows",
+     "year": 2014.83,
+     "lod": 4,
+     "one_line": "Dinh, Krueger & Bengio: the first deep normalizing flow",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1410.8516",
+       "title": "Dinh et al., NICE: Non-linear Independent Components Estimation, arXiv 1410.8516 [128]"
+      }
+     ]
+    },
+    {
+     "id": "real-nvp-2016",
+     "name": "Real NVP",
+     "year": 2016.41,
+     "lod": 4,
+     "one_line": "Dinh, Sohl-Dickstein & Bengio: flows scale to natural images",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1605.08803",
+       "title": "Dinh et al., Density estimation using Real NVP, arXiv 1605.08803 [151]"
+      }
+     ]
+    },
+    {
+     "id": "improved-gans-2016",
+     "name": "Improved GAN training",
+     "year": 2016.44,
+     "lod": 4,
+     "one_line": "Salimans, Goodfellow et al. (OpenAI): feature matching, Inception Score",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1606.03498",
+       "title": "Salimans et al., Improved Techniques for Training GANs, arXiv 1606.03498 [153]"
+      }
+     ]
+    },
+    {
+     "id": "infogan-2016",
+     "name": "InfoGAN",
+     "year": 2016.45,
+     "lod": 4,
+     "one_line": "Chen et al.: GANs that learn disentangled latent codes",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1606.03657",
+       "title": "Chen et al., InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets, arXiv 1606.03657 [152]"
+      }
+     ]
+    },
+    {
+     "id": "pix2pix-2016",
+     "name": "pix2pix",
+     "year": 2016.89,
+     "lod": 4,
+     "one_line": "Isola et al. (Berkeley): conditional-GAN image-to-image translation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1611.07004",
+       "title": "Isola et al., Image-to-Image Translation with Conditional Adversarial Networks, arXiv 1611.07004 [157]"
+      }
+     ]
+    },
+    {
+     "id": "wgan-2017",
+     "name": "Wasserstein GAN",
+     "year": 2017.07,
+     "lod": 3,
+     "one_line": "Arjovsky, Chintala & Bottou: a more stable GAN training loss",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1701.07875",
+       "title": "Arjovsky et al., Wasserstein GAN, arXiv 1701.07875 [160]"
+      }
+     ]
+    },
+    {
+     "id": "tacotron-2017",
+     "name": "Tacotron",
+     "year": 2017.24,
+     "lod": 4,
+     "one_line": "Wang et al. (Google): end-to-end text-to-speech with attention",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1703.10135",
+       "title": "Wang et al., Tacotron: Towards End-to-End Speech Synthesis, arXiv 1703.10135 [162]"
+      }
+     ]
+    },
+    {
+     "id": "cyclegan-2017",
+     "name": "CycleGAN",
+     "year": 2017.25,
+     "lod": 4,
+     "one_line": "Zhu et al. (Berkeley): unpaired image translation via cycle consistency",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1703.10593",
+       "title": "Zhu et al., Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks, arXiv 1703.10593 [161]"
+      }
+     ]
+    },
+    {
+     "id": "progan-2017",
+     "name": "Progressive GANs",
+     "year": 2017.82,
+     "lod": 4,
+     "one_line": "Karras et al. (Nvidia): first convincing 1024×1024 GAN faces",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1710.10196",
+       "title": "Karras et al., Progressive Growing of GANs for Improved Quality, Stability, and Variation, arXiv 1710.10196 [164]"
+      }
+     ]
+    },
+    {
+     "id": "vq-vae-2017",
+     "name": "VQ-VAE",
+     "year": 2017.84,
+     "lod": 4,
+     "one_line": "van den Oord et al. (DeepMind): discrete latent codes for generation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1711.00937",
+       "title": "Oord et al., Neural Discrete Representation Learning, arXiv 1711.00937 [165]"
       }
      ]
     }
@@ -3362,6 +3726,149 @@
       {
        "url": "https://www.nature.com/articles/nature24270",
        "title": "Silver et al., Nature 550 [54]"
+      }
+     ]
+    },
+    {
+     "id": "trpo-2015",
+     "name": "TRPO",
+     "year": 2015.13,
+     "lod": 3,
+     "one_line": "Schulman et al. (Berkeley): trust-region policy optimisation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1502.05477",
+       "title": "Schulman et al., Trust Region Policy Optimization, arXiv 1502.05477 [130]"
+      }
+     ]
+    },
+    {
+     "id": "visuomotor-2015",
+     "name": "Visuomotor policies",
+     "year": 2015.26,
+     "lod": 4,
+     "one_line": "Levine, Finn, Darrell & Abbeel: end-to-end deep policies on real robots",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1504.00702",
+       "title": "Levine et al., End-to-End Training of Deep Visuomotor Policies, arXiv 1504.00702 [133]"
+      }
+     ]
+    },
+    {
+     "id": "gae-2015",
+     "name": "GAE",
+     "year": 2015.44,
+     "lod": 4,
+     "one_line": "Schulman et al.: generalised advantage estimation for policy gradients",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.02438",
+       "title": "Schulman et al., High-Dimensional Continuous Control Using Generalized Advantage Estimation, arXiv 1506.02438 [134]"
+      }
+     ]
+    },
+    {
+     "id": "ddpg-2015",
+     "name": "DDPG",
+     "year": 2015.69,
+     "lod": 4,
+     "one_line": "Lillicrap et al. (DeepMind): deep RL for continuous control",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1509.02971",
+       "title": "Lillicrap et al., Continuous control with deep reinforcement learning, arXiv 1509.02971 [142]"
+      }
+     ]
+    },
+    {
+     "id": "double-dqn-2015",
+     "name": "Double DQN",
+     "year": 2015.73,
+     "lod": 4,
+     "one_line": "van Hasselt, Guez & Silver: fixing Q-value overestimation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1509.06461",
+       "title": "van Hasselt et al., Deep Reinforcement Learning with Double Q-learning, arXiv 1509.06461 [143]"
+      }
+     ]
+    },
+    {
+     "id": "prioritized-replay-2015",
+     "name": "Prioritized replay",
+     "year": 2015.88,
+     "lod": 4,
+     "one_line": "Schaul et al. (DeepMind): replay surprising transitions more often",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1511.05952",
+       "title": "Schaul et al., Prioritized Experience Replay, arXiv 1511.05952 [144]"
+      }
+     ]
+    },
+    {
+     "id": "dueling-dqn-2015",
+     "name": "Dueling DQN",
+     "year": 2015.89,
+     "lod": 4,
+     "one_line": "Wang et al. (DeepMind): separate value and advantage streams",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1511.06581",
+       "title": "Wang et al., Dueling Network Architectures for Deep Reinforcement Learning, arXiv 1511.06581 [145]"
+      }
+     ]
+    },
+    {
+     "id": "nas-2016",
+     "name": "Neural Arch. Search",
+     "year": 2016.85,
+     "lod": 4,
+     "one_line": "Zoph & Le (Google Brain): an RL controller designs networks",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1611.01578",
+       "title": "Zoph et al., Neural Architecture Search with Reinforcement Learning, arXiv 1611.01578 [156]"
+      }
+     ]
+    },
+    {
+     "id": "ewc-2016",
+     "name": "Elastic weight consol.",
+     "year": 2016.92,
+     "lod": 4,
+     "one_line": "Kirkpatrick et al. (DeepMind): overcoming catastrophic forgetting",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1612.00796",
+       "title": "Kirkpatrick et al., Overcoming catastrophic forgetting in neural networks, arXiv 1612.00796 [158]"
+      }
+     ]
+    },
+    {
+     "id": "deepstack-2017",
+     "name": "DeepStack",
+     "year": 2017.02,
+     "lod": 4,
+     "one_line": "Moravčík et al.: expert-level heads-up no-limit poker",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1701.01724",
+       "title": "Moravčík et al., DeepStack: Expert-Level Artificial Intelligence in No-Limit Poker, arXiv 1701.01724 [159]"
+      }
+     ]
+    },
+    {
+     "id": "ppo-2017",
+     "name": "PPO",
+     "year": 2017.55,
+     "lod": 3,
+     "one_line": "Schulman et al. (OpenAI): clipped policy optimisation, later RLHF's optimiser",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1707.06347",
+       "title": "Schulman et al., Proximal Policy Optimization Algorithms, arXiv 1707.06347 [163]"
       }
      ]
     }
@@ -4058,6 +4565,149 @@
       {
        "url": "https://arxiv.org/abs/2005.11401",
        "title": "Lewis et al., RAG, arXiv 2005.11401 [89]"
+      }
+     ]
+    },
+    {
+     "id": "adapters-2019",
+     "name": "Adapters",
+     "year": 2019.09,
+     "lod": 4,
+     "one_line": "Houlsby et al. (Google): small trainable modules in a frozen BERT",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1902.00751",
+       "title": "Houlsby et al., Parameter-Efficient Transfer Learning for NLP, arXiv 1902.00751 [100]"
+      }
+     ]
+    },
+    {
+     "id": "sentence-bert-2019",
+     "name": "Sentence-BERT",
+     "year": 2019.66,
+     "lod": 4,
+     "one_line": "Reimers & Gurevych: siamese BERT sentence embeddings for retrieval",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1908.10084",
+       "title": "Reimers et al., Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks, arXiv 1908.10084 [103]"
+      }
+     ]
+    },
+    {
+     "id": "albert-2019",
+     "name": "ALBERT",
+     "year": 2019.74,
+     "lod": 4,
+     "one_line": "Lan et al. (Google): parameter-shared, lighter BERT",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1909.11942",
+       "title": "Lan et al., ALBERT: A Lite BERT for Self-supervised Learning of Language Representations, arXiv 1909.11942 [104]"
+      }
+     ]
+    },
+    {
+     "id": "bart-2019",
+     "name": "BART",
+     "year": 2019.83,
+     "lod": 4,
+     "one_line": "Lewis et al. (Facebook AI): denoising seq2seq pre-training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1910.13461",
+       "title": "Lewis et al., BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension, arXiv 1910.13461 [105]"
+      }
+     ]
+    },
+    {
+     "id": "xlm-r-2019",
+     "name": "XLM-R",
+     "year": 2019.85,
+     "lod": 4,
+     "one_line": "Conneau et al. (Facebook AI): cross-lingual pre-training in 100 languages",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1911.02116",
+       "title": "Conneau et al., Unsupervised Cross-lingual Representation Learning at Scale, arXiv 1911.02116 [106]"
+      }
+     ]
+    },
+    {
+     "id": "moco-2019",
+     "name": "MoCo",
+     "year": 2019.87,
+     "lod": 4,
+     "one_line": "He et al. (FAIR): momentum-contrast self-supervised visual features",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1911.05722",
+       "title": "He et al., Momentum Contrast for Unsupervised Visual Representation Learning, arXiv 1911.05722 [110]"
+      }
+     ]
+    },
+    {
+     "id": "realm-2020",
+     "name": "REALM",
+     "year": 2020.11,
+     "lod": 4,
+     "one_line": "Guu et al. (Google): retrieval-augmented language-model pre-training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2002.08909",
+       "title": "Guu et al., REALM: Retrieval-Augmented Language Model Pre-Training, arXiv 2002.08909 [115]"
+      }
+     ]
+    },
+    {
+     "id": "simclr-2020",
+     "name": "SimCLR",
+     "year": 2020.12,
+     "lod": 4,
+     "one_line": "Chen, Kornblith, Norouzi & Hinton: simple contrastive image pre-training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2002.05709",
+       "title": "Chen et al., A Simple Framework for Contrastive Learning of Visual Representations, arXiv 2002.05709 [117]"
+      }
+     ]
+    },
+    {
+     "id": "electra-2020",
+     "name": "ELECTRA",
+     "year": 2020.23,
+     "lod": 3,
+     "one_line": "Clark et al.: replaced-token detection, far cheaper than masked LM",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2003.10555",
+       "title": "Clark et al., ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators, arXiv 2003.10555 [119]"
+      }
+     ]
+    },
+    {
+     "id": "dpr-2020",
+     "name": "Dense Passage Retr.",
+     "year": 2020.28,
+     "lod": 4,
+     "one_line": "Karpukhin et al. (Facebook AI): learned dense retrieval for QA",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2004.04906",
+       "title": "Karpukhin et al., Dense Passage Retrieval for Open-Domain Question Answering, arXiv 2004.04906 [116]"
+      }
+     ]
+    },
+    {
+     "id": "byol-2020",
+     "name": "BYOL",
+     "year": 2020.45,
+     "lod": 4,
+     "one_line": "Grill et al. (DeepMind): self-supervised learning without negatives",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2006.07733",
+       "title": "Grill et al., Bootstrap your own latent: A new approach to self-supervised Learning, arXiv 2006.07733 [118]"
       }
      ]
     }
@@ -5372,6 +6022,162 @@
        "title": "He et al., Deep Residual Learning, arXiv 1512.03385 [42]"
       }
      ]
+    },
+    {
+     "id": "maxout-2013",
+     "name": "Maxout networks",
+     "year": 2013.13,
+     "lod": 4,
+     "one_line": "Goodfellow et al. (Montréal): a learned piecewise-linear unit built to pair with dropout",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1302.4389",
+       "title": "Goodfellow et al., Maxout Networks, arXiv 1302.4389 [121]"
+      }
+     ]
+    },
+    {
+     "id": "zfnet-2013",
+     "name": "ZFNet visualisation",
+     "year": 2013.87,
+     "lod": 4,
+     "one_line": "Zeiler & Fergus: deconvnet views inside CNNs; wins ILSVRC 2013",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1311.2901",
+       "title": "Zeiler et al., Visualizing and Understanding Convolutional Networks, arXiv 1311.2901 [122]"
+      }
+     ]
+    },
+    {
+     "id": "nin-2013",
+     "name": "Network In Network",
+     "year": 2013.96,
+     "lod": 4,
+     "one_line": "Lin, Chen & Yan (NUS): 1×1 convolutions and global average pooling",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1312.4400",
+       "title": "Lin et al., Network In Network, arXiv 1312.4400 [124]"
+      }
+     ]
+    },
+    {
+     "id": "overfeat-2013",
+     "name": "OverFeat",
+     "year": 2013.97,
+     "lod": 4,
+     "one_line": "Sermanet et al. (NYU): one convnet for recognition, localisation and detection",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1312.6229",
+       "title": "Sermanet et al., OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks, arXiv 1312.6229 [123]"
+      }
+     ]
+    },
+    {
+     "id": "spp-net-2014",
+     "name": "SPP-net",
+     "year": 2014.47,
+     "lod": 4,
+     "one_line": "He et al. (MSRA): spatial pyramid pooling makes CNN detection far faster",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1406.4729",
+       "title": "He et al., Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition, arXiv 1406.4729 [126]"
+      }
+     ]
+    },
+    {
+     "id": "deeplab-2014",
+     "name": "DeepLab",
+     "year": 2014.98,
+     "lod": 4,
+     "one_line": "Chen et al.: atrous convolution plus CRF for semantic segmentation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1412.7062",
+       "title": "Chen et al., Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs, arXiv 1412.7062 [129]"
+      }
+     ]
+    },
+    {
+     "id": "facenet-2015",
+     "name": "FaceNet",
+     "year": 2015.2,
+     "lod": 4,
+     "one_line": "Schroff et al. (Google): triplet-loss face embeddings at production scale",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1503.03832",
+       "title": "Schroff et al., FaceNet: A Unified Embedding for Face Recognition and Clustering, arXiv 1503.03832 [131]"
+      }
+     ]
+    },
+    {
+     "id": "fast-rcnn-2015",
+     "name": "Fast R-CNN",
+     "year": 2015.33,
+     "lod": 4,
+     "one_line": "Girshick (Microsoft Research): RoI pooling, single-stage detector training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1504.08083",
+       "title": "Girshick, Fast R-CNN, arXiv 1504.08083 [132]"
+      }
+     ]
+    },
+    {
+     "id": "stn-2015",
+     "name": "Spatial Transformers",
+     "year": 2015.43,
+     "lod": 4,
+     "one_line": "Jaderberg et al. (DeepMind): a differentiable module that learns to warp inputs",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.02025",
+       "title": "Jaderberg et al., Spatial Transformer Networks, arXiv 1506.02025 [135]"
+      }
+     ]
+    },
+    {
+     "id": "deep-compression-2015",
+     "name": "Deep Compression",
+     "year": 2015.75,
+     "lod": 4,
+     "one_line": "Han, Mao & Dally: pruning and quantisation shrink CNNs 35–49×",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1510.00149",
+       "title": "Han et al., Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding, arXiv 1510.00149 [146]"
+      }
+     ]
+    },
+    {
+     "id": "inception-v3-2015",
+     "name": "Inception-v3",
+     "year": 2015.92,
+     "lod": 4,
+     "one_line": "Szegedy et al.: factorised convolutions and label smoothing",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1512.00567",
+       "title": "Szegedy et al., Rethinking the Inception Architecture for Computer Vision, arXiv 1512.00567 [148]"
+      }
+     ]
+    },
+    {
+     "id": "ssd-2015",
+     "name": "SSD detector",
+     "year": 2015.94,
+     "lod": 4,
+     "one_line": "Liu et al.: single-shot multibox detection in real time",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1512.02325",
+       "title": "Liu et al., SSD: Single Shot MultiBox Detector, arXiv 1512.02325 [147]"
+      }
+     ]
     }
    ]
   },
@@ -5858,6 +6664,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/OpenAI",
        "title": "Wikipedia: OpenAI [45]"
+      }
+     ]
+    },
+    {
+     "id": "mxnet-2015",
+     "name": "MXNet",
+     "year": 2015.92,
+     "lod": 4,
+     "one_line": "Chen, Li et al.: distributed deep-learning library, later Amazon's pick",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1512.01274",
+       "title": "Chen et al., MXNet: A Flexible and Efficient Machine Learning Library for Heterogeneous Distributed Systems, arXiv 1512.01274 [149]"
       }
      ]
     }
@@ -6666,6 +7485,123 @@
        "title": "Wikipedia: Whisper (speech recognition system) [42]"
       }
      ]
+    },
+    {
+     "id": "detr-2020",
+     "name": "DETR",
+     "year": 2020.4,
+     "lod": 4,
+     "one_line": "Carion et al. (Facebook AI): end-to-end detection with a Transformer",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2005.12872",
+       "title": "Carion et al., End-to-End Object Detection with Transformers, arXiv 2005.12872 [121]"
+      }
+     ]
+    },
+    {
+     "id": "wav2vec2-2020",
+     "name": "wav2vec 2.0",
+     "year": 2020.47,
+     "lod": 4,
+     "one_line": "Baevski et al. (Facebook AI): self-supervised speech pre-training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2006.11477",
+       "title": "Baevski et al., wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations, arXiv 2006.11477 [122]"
+      }
+     ]
+    },
+    {
+     "id": "swin-2021",
+     "name": "Swin Transformer",
+     "year": 2021.23,
+     "lod": 4,
+     "one_line": "Liu et al. (MSRA): hierarchical shifted-window vision backbone",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2103.14030",
+       "title": "Liu et al., Swin Transformer: Hierarchical Vision Transformer using Shifted Windows, arXiv 2103.14030 [126]"
+      }
+     ]
+    },
+    {
+     "id": "dino-2021",
+     "name": "DINO",
+     "year": 2021.33,
+     "lod": 4,
+     "one_line": "Caron et al. (Facebook AI): self-distilled ViTs learn to segment objects",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2104.14294",
+       "title": "Caron et al., Emerging Properties in Self-Supervised Vision Transformers, arXiv 2104.14294 [127]"
+      }
+     ]
+    },
+    {
+     "id": "decision-transformer-2021",
+     "name": "Decision Transformer",
+     "year": 2021.42,
+     "lod": 4,
+     "one_line": "Chen et al.: offline RL recast as sequence modelling",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2106.01345",
+       "title": "Chen et al., Decision Transformer: Reinforcement Learning via Sequence Modeling, arXiv 2106.01345 [128]"
+      }
+     ]
+    },
+    {
+     "id": "mae-2021",
+     "name": "Masked Autoencoders",
+     "year": 2021.86,
+     "lod": 4,
+     "one_line": "He et al. (FAIR): BERT-style masked pre-training works for images",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2111.06377",
+       "title": "He et al., Masked Autoencoders Are Scalable Vision Learners, arXiv 2111.06377 [134]"
+      }
+     ]
+    },
+    {
+     "id": "saycan-2022",
+     "name": "SayCan",
+     "year": 2022.26,
+     "lod": 4,
+     "one_line": "Ahn et al. (Google): LLM plans grounded in robot affordances",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2204.01691",
+       "title": "Ahn et al., Do As I Can, Not As I Say: Grounding Language in Robotic Affordances, arXiv 2204.01691 [141]"
+      }
+     ]
+    },
+    {
+     "id": "imagen-2022",
+     "name": "Imagen",
+     "year": 2022.4,
+     "lod": 3,
+     "one_line": "Saharia et al. (Google): photorealistic text-to-image diffusion",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.11487",
+       "title": "Saharia et al., Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding, arXiv 2205.11487 [143]"
+      }
+     ]
+    },
+    {
+     "id": "parti-2022",
+     "name": "Parti",
+     "year": 2022.48,
+     "lod": 4,
+     "one_line": "Yu et al. (Google): autoregressive text-to-image generation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2206.10789",
+       "title": "Yu et al., Scaling Autoregressive Models for Content-Rich Text-to-Image Generation, arXiv 2206.10789 [144]"
+      }
+     ]
     }
    ]
   },
@@ -7018,6 +7954,136 @@
        "title": "Wu et al., GNMT, arXiv 1609.08144 [51]"
       }
      ]
+    },
+    {
+     "id": "doc2vec-2014",
+     "name": "Paragraph vectors",
+     "year": 2014.38,
+     "lod": 4,
+     "one_line": "Le & Mikolov (Google): doc2vec extends word2vec to whole documents",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1405.4053",
+       "title": "Le et al., Distributed Representations of Sentences and Documents, arXiv 1405.4053 [125]"
+      }
+     ]
+    },
+    {
+     "id": "kim-cnn-2014",
+     "name": "CNN sentence classes",
+     "year": 2014.65,
+     "lod": 4,
+     "one_line": "Yoon Kim: one-layer CNN over word2vec sets text-classification records",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1408.5882",
+       "title": "Kim, Convolutional Neural Networks for Sentence Classification, arXiv 1408.5882 [127]"
+      }
+     ]
+    },
+    {
+     "id": "pointer-nets-2015",
+     "name": "Pointer Networks",
+     "year": 2015.44,
+     "lod": 4,
+     "one_line": "Vinyals, Fortunato & Jaitly: attention as a pointer over input positions",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.03134",
+       "title": "Vinyals et al., Pointer Networks, arXiv 1506.03134 [136]"
+      }
+     ]
+    },
+    {
+     "id": "cnn-dailymail-2015",
+     "name": "CNN/Daily Mail QA",
+     "year": 2015.44,
+     "lod": 4,
+     "one_line": "Hermann et al. (DeepMind): large-scale neural reading comprehension",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.03340",
+       "title": "Hermann et al., Teaching Machines to Read and Comprehend, arXiv 1506.03340 [137]"
+      }
+     ]
+    },
+    {
+     "id": "neural-chatbot-2015",
+     "name": "Neural Conversation",
+     "year": 2015.47,
+     "lod": 4,
+     "one_line": "Vinyals & Le (Google): a seq2seq chatbot trained end to end",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.05869",
+       "title": "Vinyals et al., A Neural Conversational Model, arXiv 1506.05869 [138]"
+      }
+     ]
+    },
+    {
+     "id": "skip-thought-2015",
+     "name": "Skip-Thought",
+     "year": 2015.48,
+     "lod": 4,
+     "one_line": "Kiros et al.: unsupervised sentence encoders from book text",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1506.06726",
+       "title": "Kiros et al., Skip-Thought Vectors, arXiv 1506.06726 [139]"
+      }
+     ]
+    },
+    {
+     "id": "luong-attention-2015",
+     "name": "Luong attention",
+     "year": 2015.63,
+     "lod": 4,
+     "one_line": "Luong, Pham & Manning (Stanford): global and local attention for NMT",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1508.04025",
+       "title": "Luong et al., Effective Approaches to Attention-based Neural Machine Translation, arXiv 1508.04025 [140]"
+      }
+     ]
+    },
+    {
+     "id": "bpe-2015",
+     "name": "BPE subwords",
+     "year": 2015.67,
+     "lod": 3,
+     "one_line": "Sennrich, Haddow & Birch: byte-pair subword units for rare words",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1508.07909",
+       "title": "Sennrich et al., Neural Machine Translation of Rare Words with Subword Units, arXiv 1508.07909 [141]"
+      }
+     ]
+    },
+    {
+     "id": "squad-2016",
+     "name": "SQuAD",
+     "year": 2016.46,
+     "lod": 3,
+     "one_line": "Rajpurkar et al. (Stanford): 100,000+ reading-comprehension questions",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1606.05250",
+       "title": "Rajpurkar et al., SQuAD: 100,000+ Questions for Machine Comprehension of Text, arXiv 1606.05250 [154]"
+      }
+     ]
+    },
+    {
+     "id": "fasttext-2016",
+     "name": "fastText",
+     "year": 2016.54,
+     "lod": 4,
+     "one_line": "Bojanowski et al. (FAIR): subword-aware word vectors",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1607.04606",
+       "title": "Bojanowski et al., Enriching Word Vectors with Subword Information, arXiv 1607.04606 [155]"
+      }
+     ]
     }
    ]
   },
@@ -7202,6 +8268,45 @@
       {
        "url": "https://en.wikipedia.org/wiki/BLOOM_%28language_model%29",
        "title": "Wikipedia: BLOOM [94]"
+      }
+     ]
+    },
+    {
+     "id": "laion-400m-2021",
+     "name": "LAION-400M",
+     "year": 2021.84,
+     "lod": 3,
+     "one_line": "Schuhmann et al.: open CLIP-filtered image–text dataset",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2111.02114",
+       "title": "Schuhmann et al., LAION-400M: Open Dataset of CLIP-Filtered 400 Million Image-Text Pairs, arXiv 2111.02114 [132]"
+      }
+     ]
+    },
+    {
+     "id": "glm-130b-2022",
+     "name": "GLM-130B",
+     "year": 2022.76,
+     "lod": 4,
+     "one_line": "Zeng et al. (Tsinghua/Zhipu): open bilingual 130 B model",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2210.02414",
+       "title": "Zeng et al., GLM-130B: An Open Bilingual Pre-trained Model, arXiv 2210.02414 [147]"
+      }
+     ]
+    },
+    {
+     "id": "laion-5b-2022",
+     "name": "LAION-5B",
+     "year": 2022.79,
+     "lod": 4,
+     "one_line": "Schuhmann et al.: larger open CLIP-filtered image–text dataset",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2210.08402",
+       "title": "Schuhmann et al., LAION-5B: An open large-scale dataset for training next generation image-text models, arXiv 2210.08402 [133]"
       }
      ]
     }
@@ -8939,6 +10044,45 @@
        "title": "Liang et al., HELM, arXiv 2211.09110 [66]"
       }
      ]
+    },
+    {
+     "id": "double-descent-2019",
+     "name": "Deep double descent",
+     "year": 2019.93,
+     "lod": 4,
+     "one_line": "Nakkiran et al.: bigger models can generalise better past interpolation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1912.02292",
+       "title": "Nakkiran et al., Deep Double Descent: Where Bigger Models and More Data Hurt, arXiv 1912.02292 [111]"
+      }
+     ]
+    },
+    {
+     "id": "gen-scaling-laws-2020",
+     "name": "Multimodal scaling laws",
+     "year": 2020.83,
+     "lod": 4,
+     "one_line": "Henighan, Kaplan et al. (OpenAI): power laws beyond text",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2010.14701",
+       "title": "Henighan et al., Scaling Laws for Autoregressive Generative Modeling, arXiv 2010.14701 [123]"
+      }
+     ]
+    },
+    {
+     "id": "gsm8k-2021",
+     "name": "GSM8K",
+     "year": 2021.82,
+     "lod": 4,
+     "one_line": "Cobbe et al. (OpenAI): grade-school maths benchmark plus verifiers",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2110.14168",
+       "title": "Cobbe et al., Training Verifiers to Solve Math Word Problems, arXiv 2110.14168 [131]"
+      }
+     ]
     }
    ]
   },
@@ -9056,6 +10200,110 @@
        "title": "Wikipedia: Wu Dao [74]"
       }
      ]
+    },
+    {
+     "id": "mixed-precision-2017",
+     "name": "Mixed precision",
+     "year": 2017.78,
+     "lod": 4,
+     "one_line": "Micikevicius et al. (Nvidia/Baidu): FP16 training with loss scaling",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1710.03740",
+       "title": "Micikevicius et al., Mixed Precision Training, arXiv 1710.03740 [95]"
+      }
+     ]
+    },
+    {
+     "id": "jax-2018",
+     "name": "JAX",
+     "year": 2018.82,
+     "lod": 4,
+     "one_line": "Google's grad/vmap/jit transformations of NumPy, compiled via XLA",
+     "sources": [
+      {
+       "url": "https://github.com/jax-ml/jax",
+       "title": "GitHub: jax-ml/jax (created 25 Oct 2018) [98]"
+      }
+     ]
+    },
+    {
+     "id": "gpipe-2018",
+     "name": "GPipe",
+     "year": 2018.88,
+     "lod": 4,
+     "one_line": "Huang et al. (Google): pipeline parallelism for giant networks",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1811.06965",
+       "title": "Huang et al., GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism, arXiv 1811.06965 [99]"
+      }
+     ]
+    },
+    {
+     "id": "sparse-transformer-2019",
+     "name": "Sparse Transformer",
+     "year": 2019.31,
+     "lod": 4,
+     "one_line": "Child et al. (OpenAI): factorised attention for very long sequences",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1904.10509",
+       "title": "Child et al., Generating Long Sequences with Sparse Transformers, arXiv 1904.10509 [101]"
+      }
+     ]
+    },
+    {
+     "id": "reformer-2020",
+     "name": "Reformer",
+     "year": 2020.03,
+     "lod": 4,
+     "one_line": "Kitaev, Kaiser & Levskaya: hashed attention and reversible layers",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2001.04451",
+       "title": "Kitaev et al., Reformer: The Efficient Transformer, arXiv 2001.04451 [112]"
+      }
+     ]
+    },
+    {
+     "id": "longformer-2020",
+     "name": "Longformer",
+     "year": 2020.28,
+     "lod": 4,
+     "one_line": "Beltagy, Peters & Cohan (AI2): local-plus-global attention for long documents",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2004.05150",
+       "title": "Beltagy et al., Longformer: The Long-Document Transformer, arXiv 2004.05150 [113]"
+      }
+     ]
+    },
+    {
+     "id": "performer-2020",
+     "name": "Performer",
+     "year": 2020.75,
+     "lod": 4,
+     "one_line": "Choromanski et al.: kernel approximation of softmax attention",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2009.14794",
+       "title": "Choromanski et al., Rethinking Attention with Performers, arXiv 2009.14794 [114]"
+      }
+     ]
+    },
+    {
+     "id": "glam-2021",
+     "name": "GLaM",
+     "year": 2021.95,
+     "lod": 4,
+     "one_line": "Du et al. (Google): 1.2 T-parameter MoE, GPT-3 quality for less energy",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2112.06905",
+       "title": "Du et al., GLaM: Efficient Scaling of Language Models with Mixture-of-Experts, arXiv 2112.06905 [135]"
+      }
+     ]
     }
    ]
   },
@@ -9163,6 +10411,19 @@
       {
        "url": "https://arxiv.org/abs/1610.05256",
        "title": "Xiong et al., arXiv 1610.05256 [95]"
+      }
+     ]
+    },
+    {
+     "id": "deep-speech-2-2015",
+     "name": "Deep Speech 2",
+     "year": 2015.94,
+     "lod": 4,
+     "one_line": "Baidu (Amodei et al.): one end-to-end model for English and Mandarin",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1512.02595",
+       "title": "Amodei et al., Deep Speech 2: End-to-End Speech Recognition in English and Mandarin, arXiv 1512.02595 [150]"
       }
      ]
     }
@@ -9716,6 +10977,32 @@
       {
        "url": "https://arxiv.org/abs/2206.14858",
        "title": "Lewkowycz et al., Minerva, arXiv 2206.14858 [79]"
+      }
+     ]
+    },
+    {
+     "id": "hf-paper-2019",
+     "name": "Transformers paper",
+     "year": 2019.77,
+     "lod": 4,
+     "one_line": "Wolf et al.: the Hugging Face library's paper of record",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1910.03771",
+       "title": "Wolf et al., HuggingFace's Transformers: State-of-the-art Natural Language Processing, arXiv 1910.03771 [109]"
+      }
+     ]
+    },
+    {
+     "id": "flashattention-2022",
+     "name": "FlashAttention",
+     "year": 2022.41,
+     "lod": 3,
+     "one_line": "Dao et al. (Stanford): IO-aware exact attention in linear memory",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.14135",
+       "title": "Dao et al., FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness, arXiv 2205.14135 [146]"
       }
      ]
     }

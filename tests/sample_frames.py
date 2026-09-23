@@ -74,7 +74,10 @@ Z1_COUNTRIES_ARE_LANDMARKS = True
 # does not hold for MapLibre. clipped is reported as measured.
 V2_EVAL_JS = r"""(ARGS) => {
   const {classOf} = ARGS;
-  const vw = window.innerWidth, vh = window.innerHeight, zoom = map.getZoom();
+  // viewport = the MAP CANVAS (Phase 4c task D: the UI chrome is a bottom bar outside the canvas, so the canvas is
+  // shorter than the window; collision boxes and projections are in canvas px)
+  const cr = map.getCanvas().getBoundingClientRect();
+  const vw = cr.width, vh = cr.height, zoom = map.getZoom();
   const style = map.getStyle();
   const symLayers = style.layers.filter(l => l.type === 'symbol');
   const ids = symLayers.map(l => l.id);

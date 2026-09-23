@@ -1,31 +1,31 @@
-# Density sampler — v2 (MapLibre) — 2026-09-23 02:05 UTC
+# Density sampler — v2 (MapLibre) — 2026-09-23 03:02 UTC
 
-Renderer `site/v2/index.html`, 412×892 CSS px @ DPR 2, 100 fixture frames (88 land frames with sea_ratio ≤ 0.6), 239.5 s.
+Renderer `site/v2/index.html`, 412×892 CSS px @ DPR 2, 100 fixture frames (88 land frames with sea_ratio ≤ 0.6), 233.6 s.
 
-Hard gates (clipped_major_anchored==0, overlaps==0, font caps, no HTML markers): **56/100 frames pass**.
+Hard gates (clipped_major_anchored==0, overlaps==0, font caps, no HTML markers): **75/100 frames pass**.
 External (non-localhost) requests: 0. Console errors: 0.
 
 | level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped / clipped_major / major_anchored | p50 sea | top failure reasons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| z0 | 3.0 | 25 | 25 | 4 | 16 | 5 | 16% | 8 / 1 / 0 / 2 / 1 / 0 | 0.95 | labels×19, continents×19, clipped_major_anchored×5 |
-| z1 | 4.5 | 25 | 25 | 16 | 0 | 9 | 64% | 13 / 7 / 1 / 5 / 2 / 0 | 0.82 | clipped_major_anchored×9 |
-| z2 | 6.0 | 25 | 20 | 4 | 2 | 19 | 20% | 25 / 10 / 5 / 11 / 6 / 1 | 0.46 | clipped_major_anchored×19, landmarks×5 |
-| z3 | 7.5 | 25 | 18 | 0 | 9 | 11 | 0% | 14 / 7 / 5 / 6 / 2 / 0 | 0.29 | landmarks×18, labels×16, clipped_major_anchored×11, facts×10 |
+| z0 | 3.0 | 25 | 25 | 0 | 25 | 0 | 0% | 3 / 1 / 0 / 1 / 1 / 0 | 0.95 | labels×25, continents×25 |
+| z1 | 4.5 | 25 | 25 | 9 | 12 | 4 | 36% | 15 / 3 / 7 / 6 / 2 / 0 | 0.82 | landmarks×15, countries×15, clipped_major_anchored×4 |
+| z2 | 6.0 | 25 | 20 | 8 | 4 | 10 | 40% | 23 / 13 / 2 / 10 / 4 / 0 | 0.45 | clipped_major_anchored×10, facts×8 |
+| z3 | 7.5 | 25 | 18 | 0 | 7 | 11 | 0% | 12 / 7 / 3 / 5 / 3 / 0 | 0.29 | landmarks×18, labels×17, facts×15, clipped_major_anchored×11 |
 
 ## Worst 10 frames
 
 | frame | level | labels | landmarks | facts | clip/major/anchored | ovl | sea | reasons | link |
 |---|---|---|---|---|---|---|---|---|---|
+| z3-014 | z3 | 10 | 5 | 5 | 7/2/1 | 0 | 0.01 | clipped_major_anchored=1; labels=10 < 24; landmarks=5 < 18; facts=5 < 6; countries=0 < 1 | [`?z=7.5&x=929.4&y=573.7`](v2/index.html?z=7.5&x=929.4&y=573.7) |
+| z3-011 | z3 | 15 | 10 | 5 | 9/4/1 | 0 | 0.00 | clipped_major_anchored=1; labels=15 < 24; landmarks=10 < 18; facts=5 < 6; countries=0 < 1 | [`?z=7.5&x=1367.9&y=621.4`](v2/index.html?z=7.5&x=1367.9&y=621.4) |
 | z3-013 | z3 | 11 | 5 | 5 | 4/2/1 | 0 | 0.48 | clipped_major_anchored=1; labels=11 < 24; landmarks=5 < 18; facts=5 < 6 | [`?z=7.5&x=1465.6&y=249.9`](v2/index.html?z=7.5&x=1465.6&y=249.9) |
-| z3-020 | z3 | 19 | 11 | 5 | 6/4/1 | 0 | 0.30 | clipped_major_anchored=1; labels=19 < 24; landmarks=11 < 18; facts=5 < 6 | [`?z=7.5&x=408.4&y=577.9`](v2/index.html?z=7.5&x=408.4&y=577.9) |
-| z0-012 | z0 | 7 | 1 | 0 | 2/2/1 | 0 | 0.95 | clipped_major_anchored=1; labels=7 < 9; continents=6 < 8 | [`?z=3.0&x=1329.4&y=487.2`](v2/index.html?z=3.0&x=1329.4&y=487.2) |
-| z0-024 | z0 | 7 | 1 | 0 | 2/2/1 | 0 | 0.94 | clipped_major_anchored=1; labels=7 < 9; continents=6 < 8 | [`?z=3.0&x=1353.2&y=514.6`](v2/index.html?z=3.0&x=1353.2&y=514.6) |
-| z0-022 | z0 | 8 | 1 | 0 | 3/2/1 | 0 | 0.94 | clipped_major_anchored=1; labels=8 < 9; continents=7 < 8 | [`?z=3.0&x=1190.9&y=535.0`](v2/index.html?z=3.0&x=1190.9&y=535.0) |
-| z3-009 | z3 | 13 | 6 | 6 | 6/2/1 | 0 | 0.02 | clipped_major_anchored=1; labels=13 < 24; landmarks=6 < 18 | [`?z=7.5&x=695.4&y=627.7`](v2/index.html?z=7.5&x=695.4&y=627.7) |
-| z3-016 | z3 | 16 | 5 | 8 | 8/6/2 | 0 | 0.46 | clipped_major_anchored=2; labels=16 < 24; landmarks=5 < 18 | [`?z=7.5&x=1022.5&y=511.1`](v2/index.html?z=7.5&x=1022.5&y=511.1) |
-| z3-019 | z3 | 18 | 7 | 8 | 5/2/1 | 0 | 0.00 | clipped_major_anchored=1; labels=18 < 24; landmarks=7 < 18 | [`?z=7.5&x=612.3&y=601.3`](v2/index.html?z=7.5&x=612.3&y=601.3) |
-| z3-005 | z3 | 20 | 11 | 7 | 11/6/1 | 0 | 0.27 | clipped_major_anchored=1; labels=20 < 24; landmarks=11 < 18 | [`?z=7.5&x=429.2&y=517.8`](v2/index.html?z=7.5&x=429.2&y=517.8) |
-| z3-015 | z3 | 22 | 9 | 9 | 11/4/1 | 0 | 0.26 | clipped_major_anchored=1; labels=22 < 24; landmarks=9 < 18 | [`?z=7.5&x=785.5&y=645.7`](v2/index.html?z=7.5&x=785.5&y=645.7) |
+| z3-009 | z3 | 12 | 6 | 5 | 5/2/1 | 0 | 0.00 | clipped_major_anchored=1; labels=12 < 24; landmarks=6 < 18; facts=5 < 6 | [`?z=7.5&x=695.4&y=627.7`](v2/index.html?z=7.5&x=695.4&y=627.7) |
+| z3-003 | z3 | 16 | 9 | 5 | 7/4/1 | 0 | 0.29 | clipped_major_anchored=1; labels=16 < 24; landmarks=9 < 18; facts=5 < 6 | [`?z=7.5&x=1123.4&y=703.6`](v2/index.html?z=7.5&x=1123.4&y=703.6) |
+| z3-000 | z3 | 20 | 11 | 3 | 11/5/1 | 0 | 0.26 | clipped_major_anchored=1; labels=20 < 24; landmarks=11 < 18; facts=3 < 6 | [`?z=7.5&x=534.5&y=478.4`](v2/index.html?z=7.5&x=534.5&y=478.4) |
+| z3-010 | z3 | 20 | 13 | 3 | 6/2/1 | 0 | 0.15 | clipped_major_anchored=1; labels=20 < 24; landmarks=13 < 18; facts=3 < 6 | [`?z=7.5&x=568.6&y=457.4`](v2/index.html?z=7.5&x=568.6&y=457.4) |
+| z3-021 | z3 | 15 | 7 | 6 | 8/5/1 | 0 | 0.00 | clipped_major_anchored=1; labels=15 < 24; landmarks=7 < 18 | [`?z=7.5&x=681.2&y=546.2`](v2/index.html?z=7.5&x=681.2&y=546.2) |
+| z1-001 | z1 | 16 | 3 | 9 | 8/5/3 | 0 | 0.83 | clipped_major_anchored=3; landmarks=3 < 4; countries=2 < 3 | [`?z=4.5&x=530.0&y=694.9`](v2/index.html?z=4.5&x=530.0&y=694.9) |
+| z1-021 | z1 | 16 | 3 | 9 | 8/5/3 | 0 | 0.83 | clipped_major_anchored=3; landmarks=3 < 4; countries=2 < 3 | [`?z=4.5&x=532.6&y=650.6`](v2/index.html?z=4.5&x=532.6&y=650.6) |
 
 ## Measurement notes
 

@@ -445,6 +445,28 @@ def place_event(poly, year, eid, taken):
     return x, y, x - x0, d
 
 
+def norm_text(s):
+    import re
+    return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+
+
+def token_matches_event(tok, events, max_lod):
+    """True when a hint/tag token names an event of lod ≤ max_lod in the same country: equal after normalisation (years
+    stripped from the token), or one contains the other with ≥ 5 chars. 'Winter 1974' vs 'First AI winter' does not
+    match (neither contains the other) — only genuine repeats are dropped."""
+    import re
+    t = norm_text(re.sub(r"\b(1[6-9]|20)\d\d\b", "", tok))
+    if len(t) < 3:
+        return False
+    for e in events:
+        if int(e.get("lod", 4)) > max_lod:
+            continue
+        n = norm_text(e["name"])
+        if t == n or (len(t) >= 5 and (t in n or n in t)):
+            return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -571,6 +593,63 @@ def main():
     inside_prev = sum(1 for f in ev_fc["features"] if f["properties"].get("placed") and f["properties"]["country"] in all_polys
                       and all_polys[f["properties"]["country"]].buffer(0.5).contains(Point(f["properties"]["x"], f["properties"]["y"])))
     n_prev = sum(1 for f in ev_fc["features"] if f["properties"].get("placed"))
+
+    # ---- 4c-C. dedupe display text: hint/tag tokens that repeat an event name of the same country (the event keeps its
+    # label; the hint is display-only). Hints show at z 4.5–6 next to lod ≤ 2 events, tags at z 6–8.5 next to lod ≤ 3
+    # events and all events from z 7.5; a token is dropped when it names an event that is visible in that band.
+    # The AlexNet summit (range.geojson, lod 1) vs the AlexNet event (lod 3): the summit wins at z < 7.5 (the event
+    # is lod 3 so it only appears from z 6); the event keeps its label at z ≥ 6 where the summit label is its
+    # neighbour 48 units away — dedupe by dropping the event's name from the hint/tag only (data untouched).
+    ev_by_country = {}
+    for f in ev_fc["features"]:
+        p = f["properties"]
+        if p["kind"] == "event":
+            ev_by_country.setdefault(p["country"], []).append(p)
+    range_fc = load("range.geojson")
+    summits = [f["properties"] for f in range_fc["features"] if f["properties"]["kind"] == "summit"]
+
+    def summits_near(kid):
+        g = all_polys.get(kid)
+        return [s for s in summits if g is not None and g.buffer(40).contains(Point(s["x"], s["y"]))]
+    hint_dropped, tag_dropped = [], []
+    for f in lab_fc["features"]:
+        p = f["properties"]
+        if p["kind"] != "country":
+            continue
+        evs = ev_by_country.get(p["ref"], [])
+        meta = countries_meta.get(p["ref"], {})
+        for field, max_lod, dropped in (("hint", 2, hint_dropped), ("tag", 3, tag_dropped)):
+            raw = meta.get(field) or ""                     # always re-sourced from entities.json (idempotent)
+            if not raw:
+                continue
+            sep = " · " if " · " in raw else (" → " if " → " in raw else "\x00")
+            keep = []
+            for tok in raw.split(sep):
+                if token_matches_event(tok, evs + summits_near(p["ref"]), max_lod):
+                    dropped.append((p["ref"], tok.strip()))
+                else:
+                    keep.append(tok)
+            if not keep and field == "hint":                # never blank a hint: keep the first token
+                keep = raw.split(sep)[:1]
+            p[field] = sep.join(keep)                       # a fully-deduped tag becomes "" (style filter hides it)
+    # event whose name repeats a nearby summit's name (range.geojson, e.g. 'AlexNet' event vs 'AlexNet GPUs' summit):
+    # the lower lod wins; the loser gets dedup=<winner> and the symbol-event layers filter it out (dot + fact stay)
+    ev_dedup = []
+    for f in ev_fc["features"]:
+        p = f["properties"]
+        p.pop("dedup", None)
+        if p["kind"] != "event":
+            continue
+        n = norm_text(p["name"])
+        for s in summits:
+            ns = norm_text(s["name"])
+            if (n == ns or (len(n) >= 5 and n in ns)) and int(s.get("lod", 2)) <= int(p.get("lod", 4)) \
+                    and math.hypot(s["x"] - p["x"], s["y"] - p["y"]) < 80:
+                p["dedup"] = f"summit:{s['name']}"
+                ev_dedup.append((p["id"], s["name"]))
+                break
+    print(f"dedupe (4c-C): hint tokens dropped {len(hint_dropped)} {hint_dropped[:6]}…; tag tokens dropped {len(tag_dropped)}; "
+          f"events deduped against summits {ev_dedup}")
 
     # ---- report
     n_spatial = len(spatial)
