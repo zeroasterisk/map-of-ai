@@ -1020,11 +1020,11 @@
      3.0,
      11,
      4.5,
-     24,
+     17,
      6.0,
-     42
+     30
     ],
-    "text-max-width": 5,
+    "text-max-width": 7,
     "text-letter-spacing": 0.08,
     "text-line-height": 1.1,
     "text-allow-overlap": false,
@@ -1066,6 +1066,9 @@
      6.0,
      0.35
     ]
+   },
+   "metadata": {
+    "mapofai:note": "Phase 4b: z1 title 24→17 px, max-width 5→7 em — a 3-line 200 px banner was the main clipped_major source (26/39 major-clipped boxes on 10 z1 frames)"
    }
   },
   {

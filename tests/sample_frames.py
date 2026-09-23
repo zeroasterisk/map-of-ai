@@ -121,7 +121,7 @@ V2_EVAL_JS = r"""(ARGS) => {
   } catch (e) { engineErr = e.message; }
   const seen = new Set(); const boxes = [];
   const counts = {continent: 0, country: 0, landmark: 0, fact: 0}; const kinds = {};
-  let clipped = 0, clippedMajor = 0, clipMax = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = [];
+  let clipped = 0, clippedMajor = 0, clippedMajorAnchored = 0, clipMax = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = []; const majorByLayer = {};
   for (const f of feats) {
     const key = f.layer.id + ':' + f.properties.id;
     if (seen.has(key)) continue; seen.add(key);
@@ -153,7 +153,12 @@ V2_EVAL_JS = r"""(ARGS) => {
       clipped++;
       const over = Math.max(-box.x1, box.x2 - vw, -box.y1, box.y2 - vh); clipMax = Math.max(clipMax, over);
       const visW = Math.max(0, Math.min(box.x2, vw) - Math.max(box.x1, 0)), visH = Math.max(0, Math.min(box.y2, vh) - Math.max(box.y1, 0));
-      if (visW * visH < 0.5 * (box.x2 - box.x1) * (box.y2 - box.y1)) clippedMajor++;
+      if (visW * visH < 0.5 * (box.x2 - box.x1) * (box.y2 - box.y1)) {
+        clippedMajor++; majorByLayer[f.layer.id] = (majorByLayer[f.layer.id] || 0) + 1;
+        // anchor (the feature's own point) inside the viewport → the label is chopped although its subject is on screen;
+        // anchor outside → MapLibre placed a label for an off-screen feature inside its 100 px padding band (pan-in behaviour)
+        if (p.x >= 0 && p.x <= vw && p.y >= 0 && p.y <= vh) clippedMajorAnchored++;
+      }
     }
     minFont = Math.min(minFont, size); maxFont = Math.max(maxFont, size);
     if (size > ARGS.caps[cls] + 0.01 || size < ARGS.fontMin - 0.01) capViol.push({layer: f.layer.id, size, cls});
@@ -167,7 +172,8 @@ V2_EVAL_JS = r"""(ARGS) => {
   let land = 0, tot = 0; for (let gx = 0.5; gx < 12; gx++) for (let gy = 0.5; gy < 26; gy++) { tot++; if (map.queryRenderedFeatures([gx * vw / 12, gy * vh / 26], {layers: ['continent-fill']}).length) land++; }
   const total = counts.continent + counts.country + counts.landmark + counts.fact;
   const html = document.querySelectorAll('.maplibregl-marker, .leaflet-marker-icon').length;
-  return {visibleLabels: total, labels: counts, kinds, landmarks: counts.landmark, facts: counts.fact, clipped, clipped_major: clippedMajor, clip_max_px: Math.round(clipMax), overlaps, overlapPairs,
+  return {visibleLabels: total, labels: counts, kinds, landmarks: counts.landmark, facts: counts.fact, clipped, clipped_major: clippedMajor, clipped_major_anchored: clippedMajorAnchored,
+          clipped_major_by_layer: majorByLayer, clip_max_px: Math.round(clipMax), overlaps, overlapPairs,
           box_source: engineBoxes ? 'engine' : 'canvas', unmatched_boxes: unmatched, engine_boxes: engineBoxes, engine_error: engineErr,
           min_font_px: isFinite(minFont) ? minFont : null, max_font_px: maxFont || null, font_cap_violations: capViol.slice(0, 5),
           ink_ratio: ink / (vw * vh), sea_ratio: 1 - land / tot, html_markers: html, zoom, sampleTexts: boxes.slice(0, 10).map(b => b.text)};

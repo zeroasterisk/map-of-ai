@@ -1,4 +1,5 @@
-"""Phase 4a review shots: 4 mobile frames (412×892 DPR 2) of site/v2 → docs/density/shots/v2-*.png"""
+"""Review shots: mobile frames (412×892 DPR 2) of site/v2 → docs/density/shots/<prefix>-*.png
+Usage: v2_review_shots.py [prefix]   (Phase 4a used prefix v2, Phase 4b v2b; the 5th shot is the Phase 4b laid-out west)"""
 import threading, sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -9,8 +10,9 @@ class Q(SimpleHTTPRequestHandler):
     def log_message(self, *a, **k): pass
 httpd = ThreadingHTTPServer(("127.0.0.1", 8999), partial(Q, directory=str(REPO / "site")))
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
-SHOTS = [("v2-z0-world", "z=3&x=900&y=525"), ("v2-z1-gen-coast", "z=4.5&x=1476.3&y=676.4"),
-         ("v2-z2-stat-isthmus", "z=6&x=829.9&y=668.2"), ("v2-z3-imagenet", "z=7.5&x=1000&y=650")]
+P = sys.argv[1] if len(sys.argv) > 1 else "v2b"
+SHOTS = [(f"{P}-z0-world", "z=3&x=900&y=525"), (f"{P}-z1-gen-coast", "z=4.5&x=1476.3&y=676.4"),
+         (f"{P}-z2-stat-isthmus", "z=6&x=829.9&y=668.2"), (f"{P}-z3-imagenet", "z=7.5&x=1000&y=650"), (f"{P}-z1-west", "z=4.5&x=300&y=560")]
 out = REPO / "docs" / "density" / "shots"; out.mkdir(parents=True, exist_ok=True)
 with sync_playwright() as p:
     b = p.chromium.launch()

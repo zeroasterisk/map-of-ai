@@ -1501,3 +1501,32 @@ Rebuilt `site/entities.json` and `site/entities.js` via `site/build_entities_jso
 2. §2.4 land-frame rule (`sea_ratio ≤ 0.6`) is unreachable at z0/z1 on a portrait phone (land band ≈ 560 units tall vs a 1385–3920-unit frame); sampler applies z0/z1 floors to all frames, z2/z3 to land frames.
 3. §3.2 bbox text `[[-1050, 0], [0, 1800]]` is superseded by the concrete mapping above (documented in `export_geojson.py` header + `style.json` metadata).
 4. `symbol-sort-key` + variable anchors: events use 8-anchor `text-variable-anchor` with radial offsets; this raised placed labels ~50 % (z2 pinned 11 → 18) at zero overlap cost.
+
+## Phase 4b (2026-09-23) — data-driven layout for v2: polygons for every spatial country, event placement, z1 landmarks, clipped gate
+
+**Planner decisions recorded (binding).** (1) Hard clipping gate = `clipped_major == 0` (placed label with < 50 % of its box visible); raw `clipped` reported, not gated — REFACTOR_PLAN §2.4. (2) §3.2 mapping `lng=(x-900)/50, lat=-(y-525)/50` supersedes the bbox text; semantic zoom = MapLibre zoom 1:1.
+
+**Commits on `refactor/v2`.**
+- `67a87af` gate change (task A) + baseline at the c37b1bd data: hard gate **8/100** (was 3/100 under `clipped==0`).
+- `e291f65` `scripts/layout_countries.py` (tasks B/C/D), runs after `export_geojson.py`, idempotent (byte-identical on re-run):
+  - B: lane slicing of each continent's FREE land (continent − existing atlas polygons) at x = X(start)/X(end) columns of the missing countries (same AXES §1 piecewise axis as atlas.html), equal horizontal lanes ordered N1a…S2c per column; every piece = free ∩ column ∩ lane → containment and zero overlap by construction. Antecedent Isles: whole isles assigned to countries (each gets ≥ 1). Existing 47 atlas polygons untouched. Result: **56/56 spatial countries have one polygon**, max area outside parent 0.000000 units², max pairwise overlap 0.000000 units² (shapely), 1 MultiPolygon (formal-logic-isles = 2 isles, legitimately).
+  - C: 121 events atlas.html never placed (were stacked at country centroid) → x = X(year) clamped into the polygon, y = deterministic chord walk (sha1(id) start, golden-ratio steps, ≥ 6 units from every other event, ±1-unit x nudge up to 12 units when the chord is full). 0 outside their polygon, **0 duplicate points plate-wide** (also fixed 2 atlas-placed coincident pairs), 1 event at 5.1 < 6 units. |x − X(year)| > 2 units on 33 events: these are events whose year lies outside the country's drawn polygon (e.g. `kaggle-founded-2010` in benchmark-plains whose lane ends 1998; `expert-systems-country` events 1980–82 west of the plateau's 1982 start column). Data/geometry mismatch, flagged below.
+  - D: `symbol-event-z1` layer (lod 1–2 events, z 4.5–6.0, sort-key = rank = 1000·lod + age → lod1 first); event dots for lod ≤ 2 from z 4.5; country names count toward z1 `landmarks` in the sampler (`landmarks_symbols` keeps the symbol-only count). `class` property on point features.
+- (this commit) style: continent title at z1 24→17 px, max-width 5→7 em (the 3-line 200 px banner was 26/39 major-clipped boxes on 10 sampled z1 frames); sampler adds `clipped_major_by_layer` + `clipped_major_anchored` diagnostics; shots `docs/density/shots/v2b-*.png` (5, incl. the laid-out west `?z=4.5&x=300&y=560`); report `docs/density/v2-phase4b.json` (baseline copy `v2-phase4b-baseline.json`).
+
+**Measured (100 fixture frames, 412×892 @ DPR 2, 0 console errors, 0 external requests, overlaps 0/100).**
+
+| level | p50 labels / landmarks / facts / clipped / clipped_major — before (c37b1bd) | after |
+|---|---|---|
+| z0 | 7 / 1 / 0 / 3 / 1 | 7 / 1 / 0 / 2 / 1 |
+| z1 | 12 / 0 / 2 / 6 / 3 | 13 / 7 / 1 / 5 / 2 |
+| z2 | 24 / 10 / 5 / 11 / 6 | 25 / 10 / 5 / 11 / 6 |
+| z3 | 11 / 5 / 5 / 5 / 2 | 14 / 7 / 5 / 6 / 2 |
+
+Hard gate (`clipped_major==0` ∧ overlaps==0 ∧ font caps): **8/100** at c37b1bd → **8/100** after (z0 4, z1 2, z2 0, z3 2). z1 soft floors now met on 2/25 frames (landmarks ≥ 4 was 0/25 before). The z1 `facts` p50 dropped 2→1 because country hints now compete with the new z1 event labels.
+
+**Planner flags (measured).**
+1. `clipped_major` is dominated by labels whose ANCHOR is off-screen: of 310 major-clipped boxes across all frames, only 65 (21 %) have their feature point inside the viewport. MapLibre places a symbol for any feature within its 100 px pad band; a variable-anchor label of an off-screen feature then legitimately pokes into the frame. Gating only anchored-in-view major clips would pass 57/100 (z0 21, z1 16, z2 6, z3 14). Options: (a) redefine the gate as `clipped_major_anchored == 0` (chopped label of an on-screen subject = Alan's banner); (b) add `symbol-avoid-edges`-like behaviour by giving country/continent labels `text-variable-anchor` limited to `center` (fewer poke-ins, fewer placements); (c) accept and gate density only. Decision needed.
+2. Density floors are content-bound, not layout-bound: z3 needs 24 labels/18 landmarks per 80×172-unit frame (~25 entities); the plate has 546 events over ~1.1 M units² ≈ 6.8 per z3 frame on average. Phase 2's 1,500–2,500 target is the lever; layout added +3 labels/+2 landmarks at z3 p50.
+3. 33 events sit > 2 units off x = X(year) because their year is outside their country's drawn span (list printed by `layout_countries.py`): `benchmark-plains` (lane 1993–98 in atlas but events to 2011), `expert-systems-country` (1980–82 events vs the plateau's 1982 start column), `probabilistic-robotics-marsh` (2005–07), `critics-tundra` (1975–76), `funding-passes` 1993. Either the country polygons (atlas GRID) or the country `time_range` in data/ need reconciling — content-owner call.
+4. `analytical-engine-isle` (1837–43) received the 1847 isle and `formal-logic-isles` (1666–1931) the 1666 + 1900 isles; the 1934 isle went to `computability-isle` (1936–42). Whole-isle assignment; no isle is split.

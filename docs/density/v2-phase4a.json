@@ -1,5 +1,5 @@
 {
- "timestamp": 1790125502.637195,
+ "timestamp": 1790127362.8509257,
  "target": "v2",
  "renderer": "site/v2/index.html (MapLibre GL JS)",
  "viewport": {
@@ -44,36 +44,34 @@
  "total_frames": 100,
  "land_frames": 88,
  "hard_gate_failures": 92,
- "soft_pass_rate_land": 0.0,
+ "soft_pass_rate_land": 0.022727272727272728,
  "external_requests": [],
  "console_errors": [],
- "seconds": 232.8,
+ "seconds": 238.8,
  "per_level": {
   "z0": {
    "n": 25,
    "land": 25,
-   "hard_fail": 22,
-   "soft_fail": 3,
+   "hard_fail": 21,
+   "soft_fail": 4,
    "pass": 0,
    "reasons": {
-    "clipped_major": 22,
-    "labels": 25,
-    "continents": 25
+    "clipped_major": 21,
+    "labels": 24,
+    "continents": 24
    },
    "pass_rate_land": 0.0
   },
   "z1": {
    "n": 25,
    "land": 25,
-   "hard_fail": 25,
+   "hard_fail": 23,
    "soft_fail": 0,
-   "pass": 0,
+   "pass": 2,
    "reasons": {
-    "clipped_major": 25,
-    "landmarks": 25,
-    "countries": 7
+    "clipped_major": 23
    },
-   "pass_rate_land": 0.0
+   "pass_rate_land": 0.08
   },
   "z2": {
    "n": 25,
@@ -83,22 +81,22 @@
    "pass": 0,
    "reasons": {
     "clipped_major": 25,
-    "landmarks": 8
+    "landmarks": 5
    },
    "pass_rate_land": 0.0
   },
   "z3": {
    "n": 25,
    "land": 18,
-   "hard_fail": 20,
-   "soft_fail": 1,
+   "hard_fail": 23,
+   "soft_fail": 0,
    "pass": 0,
    "reasons": {
-    "clipped_major": 20,
-    "labels": 18,
+    "clipped_major": 23,
     "landmarks": 18,
-    "facts": 9,
-    "countries": 4
+    "labels": 16,
+    "facts": 10,
+    "countries": 3
    },
    "pass_rate_land": 0.0
   }
@@ -130,7 +128,11 @@
     "facts": 0,
     "clipped": 2,
     "clipped_major": 1,
-    "clip_max_px": 103,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 105,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -140,17 +142,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12041455099052586,
+    "ink_ratio": 0.06263313149123698,
     "sea_ratio": 0.9615384615384616,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -174,23 +176,25 @@
    "link": "v2/index.html?z=3.0&x=960.9&y=648.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 7,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6,
+     "continent": 5,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 2,
-    "clipped_major": 2,
-    "clip_max_px": 100,
+    "clipped": 1,
+    "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
+    "clip_max_px": 17,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -200,27 +204,24 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.1259628130433447,
+    "ink_ratio": 0.07623434779224919,
     "sea_ratio": 0.9455128205128205,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
-     "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
-     "The Symbolic Heartland",
+     "The Connectionist Revival",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
-   "hard": [
-    "clipped_major=2"
-   ],
+   "hard": [],
    "soft": [
-    "labels=8 < 9",
-    "continents=7 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -235,48 +236,56 @@
    "link": "v2/index.html?z=3.0&x=300.1&y=544.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 8,
     "labels": {
-     "continent": 5,
+     "continent": 7,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 5
+     "continent": 7
     },
     "landmarks": 1,
     "facts": 0,
     "clipped": 2,
-    "clipped_major": 0,
-    "clip_max_px": 57,
+    "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 134,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.11351645525929274,
+    "ink_ratio": 0.07674113609043107,
     "sea_ratio": 0.967948717948718,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
+     "The Generative Coast",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
-   "hard": [],
+   "hard": [
+    "clipped_major=1"
+   ],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=8 < 9",
+    "continents=7 < 8"
    ],
    "passed": false
   },
@@ -291,42 +300,47 @@
    "link": "v2/index.html?z=3.0&x=310.4&y=579.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 7,
+    "visibleLabels": 8,
     "labels": {
-     "continent": 6,
+     "continent": 7,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6
+     "continent": 7
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 2,
+    "clipped": 3,
     "clipped_major": 1,
-    "clip_max_px": 129,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 132,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.1142423509487123,
+    "ink_ratio": 0.07576340068305244,
     "sea_ratio": 0.9615384615384616,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -334,8 +348,8 @@
     "clipped_major=1"
    ],
    "soft": [
-    "labels=7 < 9",
-    "continents=6 < 8"
+    "labels=8 < 9",
+    "continents=7 < 8"
    ],
    "passed": false
   },
@@ -363,8 +377,12 @@
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 2,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-range": 1
+    },
     "clip_max_px": 75,
     "overlaps": 0,
     "overlapPairs": [],
@@ -375,16 +393,16 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.10739844809793496,
+    "ink_ratio": 0.0566428131092148,
     "sea_ratio": 0.9711538461538461,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -408,23 +426,25 @@
    "link": "v2/index.html?z=3.0&x=1573.5&y=576.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 5,
     "labels": {
-     "continent": 5,
+     "continent": 4,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 4,
+     "continent": 3,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 2,
-    "clipped_major": 1,
-    "clip_max_px": 118,
+    "clipped": 1,
+    "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
+    "clip_max_px": 40,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -434,7 +454,7 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.08080384872421541,
+    "ink_ratio": 0.04823194509447516,
     "sea_ratio": 0.9583333333333334,
     "html_markers": 0,
     "zoom": 3,
@@ -442,17 +462,14 @@
      "SILICON RANGE",
      "The Generative Coast",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
-   "hard": [
-    "clipped_major=1"
-   ],
+   "hard": [],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=5 < 9",
+    "continents=4 < 8"
    ],
    "passed": false
   },
@@ -467,41 +484,46 @@
    "link": "v2/index.html?z=3.0&x=202.8&y=571.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 5,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 5
+     "continent": 6
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 2,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-range": 1
+    },
     "clip_max_px": 79,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.10573460165756383,
+    "ink_ratio": 0.07382916195016476,
     "sea_ratio": 0.967948717948718,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -509,8 +531,8 @@
     "clipped_major=1"
    ],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -539,8 +561,12 @@
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 2,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-ocean": 1
+    },
     "clip_max_px": 76,
     "overlaps": 0,
     "overlapPairs": [],
@@ -551,17 +577,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.13015822184993064,
+    "ink_ratio": 0.07115309638353143,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -601,7 +627,11 @@
     "facts": 0,
     "clipped": 2,
     "clipped_major": 1,
-    "clip_max_px": 103,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 106,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -611,17 +641,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12026524830719906,
+    "ink_ratio": 0.06254303904779872,
     "sea_ratio": 0.9519230769230769,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -645,41 +675,46 @@
    "link": "v2/index.html?z=3.0&x=162.2&y=495.9",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 5,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 5
+     "continent": 6
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 2,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-range": 1
+    },
     "clip_max_px": 88,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.10208313325328933,
+    "ink_ratio": 0.0720590308918784,
     "sea_ratio": 0.9711538461538461,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -687,8 +722,8 @@
     "clipped_major=1"
    ],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -719,6 +754,10 @@
     "facts": 0,
     "clipped": 3,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-ocean": 1
+    },
     "clip_max_px": 68,
     "overlaps": 0,
     "overlapPairs": [],
@@ -729,17 +768,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.13129129178854956,
+    "ink_ratio": 0.07245874330619528,
     "sea_ratio": 0.9455128205128205,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -778,9 +817,13 @@
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 1,
+    "clipped": 2,
     "clipped_major": 1,
-    "clip_max_px": 82,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 92,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -790,15 +833,15 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.09337708511529327,
+    "ink_ratio": 0.05354926227560335,
     "sea_ratio": 0.9519230769230769,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Generative Coast",
+     "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -823,23 +866,27 @@
    "link": "v2/index.html?z=3.0&x=1329.4&y=487.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 5,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 4,
+     "continent": 5,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 1,
-    "clipped_major": 0,
-    "clip_max_px": 62,
+    "clipped": 2,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 89,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -849,23 +896,26 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.09692183569867366,
+    "ink_ratio": 0.056573576883704554,
     "sea_ratio": 0.9455128205128205,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
-   "hard": [],
+   "hard": [
+    "clipped_major=2"
+   ],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -896,6 +946,11 @@
     "facts": 0,
     "clipped": 4,
     "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-ocean": 1
+    },
     "clip_max_px": 95,
     "overlaps": 0,
     "overlapPairs": [],
@@ -906,17 +961,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12726397147744786,
+    "ink_ratio": 0.06935710170399371,
     "sea_ratio": 0.9583333333333334,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
-     "The Symbolic Heartland",
+     "The Connectionist Revival",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -957,6 +1012,11 @@
     "facts": 0,
     "clipped": 3,
     "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-ocean": 1
+    },
     "clip_max_px": 90,
     "overlaps": 0,
     "overlapPairs": [],
@@ -967,17 +1027,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12811467136400995,
+    "ink_ratio": 0.06993062800877164,
     "sea_ratio": 0.9583333333333334,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
-     "The Symbolic Heartland",
+     "The Connectionist Revival",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -1002,54 +1062,57 @@
    "link": "v2/index.html?z=3.0&x=680.5&y=632.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 9,
     "labels": {
-     "continent": 7,
+     "continent": 8,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6,
+     "continent": 7,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 4,
-    "clipped_major": 1,
-    "clip_max_px": 62,
+    "clipped": 3,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-ocean": 1
+    },
+    "clip_max_px": 99,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.13112423377315685,
+    "ink_ratio": 0.08280158501169488,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
-   "soft": [
-    "labels=8 < 9",
-    "continents=7 < 8"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1079,7 +1142,11 @@
     "facts": 0,
     "clipped": 2,
     "clipped_major": 1,
-    "clip_max_px": 86,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 96,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -1089,15 +1156,15 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.09206754036657391,
+    "ink_ratio": 0.05288313546700622,
     "sea_ratio": 0.9487179487179487,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Generative Coast",
+     "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -1122,42 +1189,47 @@
    "link": "v2/index.html?z=3.0&x=302.0&y=568.5",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 7,
+    "visibleLabels": 8,
     "labels": {
-     "continent": 6,
+     "continent": 7,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6
+     "continent": 7
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 2,
     "clipped_major": 1,
-    "clip_max_px": 131,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 134,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.11361101362539962,
+    "ink_ratio": 0.07679819463794191,
     "sea_ratio": 0.9647435897435898,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -1165,8 +1237,8 @@
     "clipped_major=1"
    ],
    "soft": [
-    "labels=7 < 9",
-    "continents=6 < 8"
+    "labels=8 < 9",
+    "continents=7 < 8"
    ],
    "passed": false
   },
@@ -1195,8 +1267,12 @@
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 4,
+    "clipped": 3,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-ocean": 1
+    },
     "clip_max_px": 66,
     "overlaps": 0,
     "overlapPairs": [],
@@ -1207,17 +1283,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.1312312920787958,
+    "ink_ratio": 0.07267190016979404,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -1242,48 +1318,51 @@
    "link": "v2/index.html?z=3.0&x=255.7&y=493.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 5,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 5
+     "continent": 6
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 3,
+    "clipped": 1,
     "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
     "clip_max_px": 67,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.11049230310057155,
+    "ink_ratio": 0.07578890459291165,
     "sea_ratio": 0.9711538461538461,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
    "hard": [],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -1298,42 +1377,47 @@
    "link": "v2/index.html?z=3.0&x=425.3&y=674.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 7,
+    "visibleLabels": 8,
     "labels": {
-     "continent": 6,
+     "continent": 7,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6
+     "continent": 7
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 2,
+    "clipped": 3,
     "clipped_major": 1,
-    "clip_max_px": 103,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 106,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 8,
+    "engine_boxes": 9,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.1203100391121971,
+    "ink_ratio": 0.07686615076649826,
     "sea_ratio": 0.9647435897435898,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin"
     ]
    },
@@ -1341,8 +1425,8 @@
     "clipped_major=1"
    ],
    "soft": [
-    "labels=7 < 9",
-    "continents=6 < 8"
+    "labels=8 < 9",
+    "continents=7 < 8"
    ],
    "passed": false
   },
@@ -1357,23 +1441,25 @@
    "link": "v2/index.html?z=3.0&x=1012.8&y=641.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 7,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 6,
+     "continent": 5,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 2,
-    "clipped_major": 2,
-    "clip_max_px": 112,
+    "clipped": 1,
+    "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
+    "clip_max_px": 29,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -1383,27 +1469,24 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12248810074996377,
+    "ink_ratio": 0.0746436124533141,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
-     "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
-     "The Symbolic Heartland",
+     "The Connectionist Revival",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
-   "hard": [
-    "clipped_major=2"
-   ],
+   "hard": [],
    "soft": [
-    "labels=8 < 9",
-    "continents=7 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -1434,7 +1517,11 @@
     "facts": 0,
     "clipped": 3,
     "clipped_major": 2,
-    "clip_max_px": 152,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 125,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -1444,17 +1531,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.10519803619581097,
+    "ink_ratio": 0.06375375796109863,
     "sea_ratio": 0.9358974358974359,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -1495,6 +1582,11 @@
     "facts": 0,
     "clipped": 3,
     "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-ocean": 1
+    },
     "clip_max_px": 99,
     "overlaps": 0,
     "overlapPairs": [],
@@ -1505,17 +1597,17 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.12617881747167684,
+    "ink_ratio": 0.0666645116183165,
     "sea_ratio": 0.9519230769230769,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
      "The Antecedent Isles",
+     "The Winter Steppes",
      "The Generative Coast",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
@@ -1540,23 +1632,27 @@
    "link": "v2/index.html?z=3.0&x=1353.2&y=514.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 6,
+    "visibleLabels": 7,
     "labels": {
-     "continent": 5,
+     "continent": 6,
      "country": 0,
      "landmark": 1,
      "fact": 0
     },
     "kinds": {
      "range": 1,
-     "continent": 4,
+     "continent": 5,
      "ocean": 1
     },
     "landmarks": 1,
     "facts": 0,
-    "clipped": 1,
-    "clipped_major": 1,
-    "clip_max_px": 68,
+    "clipped": 2,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 94,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -1566,25 +1662,26 @@
     "min_font_px": 11,
     "max_font_px": 11,
     "font_cap_violations": [],
-    "ink_ratio": 0.09596578769193995,
+    "ink_ratio": 0.05560095000980206,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 3,
     "sampleTexts": [
      "SILICON RANGE",
+     "The Winter Steppes",
      "The Generative Coast",
+     "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
      "TERRA INCOGNITA"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
    "soft": [
-    "labels=6 < 9",
-    "continents=5 < 8"
+    "labels=7 < 9",
+    "continents=6 < 8"
    ],
    "passed": false
   },
@@ -1599,34 +1696,40 @@
    "link": "v2/index.html?z=4.5&x=1476.3&y=676.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 16,
+    "visibleLabels": 21,
     "labels": {
      "continent": 3,
      "country": 9,
-     "landmark": 1,
-     "fact": 3
+     "landmark": 2,
+     "fact": 7
     },
     "kinds": {
      "range": 1,
      "continent": 2,
      "ocean": 1,
-     "country": 12
+     "country": 16,
+     "summit": 1
     },
-    "landmarks": 1,
-    "facts": 3,
-    "clipped": 3,
+    "landmarks": 11,
+    "facts": 7,
+    "clipped": 4,
     "clipped_major": 2,
-    "clip_max_px": 193,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-range": 1,
+     "symbol-continent": 1
+    },
+    "clip_max_px": 126,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 19,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.16811275444422813,
+    "ink_ratio": 0.159627675721659,
     "sea_ratio": 0.7948717948717949,
     "html_markers": 0,
     "zoom": 4.5,
@@ -1637,18 +1740,17 @@
      "TERRA INCOGNITA",
      "Reasoning Ridge",
      "The Policy Coast",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
-     "The Megatron Yards",
-     "The BERT Escarpment"
-    ]
+     "The Diffusion Shoreline"
+    ],
+    "landmarks_symbols": 2
    },
    "hard": [
     "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1662,54 +1764,57 @@
    "link": "v2/index.html?z=4.5&x=530.0&y=694.9",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 11,
+    "visibleLabels": 13,
     "labels": {
-     "continent": 6,
-     "country": 3,
+     "continent": 5,
+     "country": 7,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
-     "continent": 6,
-     "country": 5
+     "continent": 5,
+     "country": 8
     },
-    "landmarks": 0,
-    "facts": 2,
+    "landmarks": 7,
+    "facts": 1,
     "clipped": 6,
-    "clipped_major": 1,
-    "clip_max_px": 210,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 2
+    },
+    "clip_max_px": 127,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 12,
+    "engine_boxes": 15,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.24828782583524722,
+    "ink_ratio": 0.1614563837674965,
     "sea_ratio": 0.8237179487179487,
     "html_markers": 0,
     "zoom": 4.5,
     "sampleTexts": [
-     "The Antecedent Isles",
      "The Winter Steppes",
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "The Benchmark Plains",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1723,32 +1828,37 @@
    "link": "v2/index.html?z=4.5&x=466.2&y=584.5",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 11,
+    "visibleLabels": 15,
     "labels": {
      "continent": 6,
-     "country": 3,
+     "country": 8,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 6,
-     "country": 5
+     "country": 9
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 6,
-    "clipped_major": 1,
-    "clip_max_px": 169,
+    "landmarks": 8,
+    "facts": 1,
+    "clipped": 8,
+    "clipped_major": 6,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-country": 5
+    },
+    "clip_max_px": 164,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 12,
+    "engine_boxes": 15,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2529973987702399,
+    "ink_ratio": 0.16014890958923933,
     "sea_ratio": 0.8461538461538461,
     "html_markers": 0,
     "zoom": 4.5,
@@ -1759,18 +1869,17 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "The Benchmark Plains",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=6"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1784,33 +1893,39 @@
    "link": "v2/index.html?z=4.5&x=796.4&y=607.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 13,
+    "visibleLabels": 15,
     "labels": {
      "continent": 5,
-     "country": 4,
+     "country": 6,
      "landmark": 1,
      "fact": 3
     },
     "kinds": {
      "range": 1,
      "continent": 5,
-     "country": 7
+     "country": 9
     },
-    "landmarks": 1,
+    "landmarks": 7,
     "facts": 3,
     "clipped": 6,
-    "clipped_major": 2,
-    "clip_max_px": 190,
+    "clipped_major": 3,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-range": 1,
+     "symbol-continent": 1,
+     "symbol-country": 1
+    },
+    "clip_max_px": 156,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 19,
+    "engine_boxes": 22,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.24473094108125296,
+    "ink_ratio": 0.15981832448275135,
     "sea_ratio": 0.8108974358974359,
     "html_markers": 0,
     "zoom": 4.5,
@@ -1821,18 +1936,17 @@
      "The Symbolic Heartland",
      "The Statistical Isthmus",
      "The Deep Learning Basin",
-     "The Funding Passes",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
      "The Attention Headwaters",
-     "The Temporal Difference Valley",
-     "The Benchmark Plains"
-    ]
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 1
    },
    "hard": [
-    "clipped_major=2"
+    "clipped_major=3"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1848,30 +1962,34 @@
    "metrics": {
     "visibleLabels": 12,
     "labels": {
-     "continent": 7,
-     "country": 3,
+     "continent": 6,
+     "country": 5,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
-     "continent": 7,
-     "country": 5
+     "continent": 6,
+     "country": 6
     },
-    "landmarks": 0,
-    "facts": 2,
+    "landmarks": 5,
+    "facts": 1,
     "clipped": 6,
-    "clipped_major": 4,
-    "clip_max_px": 204,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 114,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 16,
+    "engine_boxes": 18,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2358339848297484,
+    "ink_ratio": 0.15674762842094392,
     "sea_ratio": 0.8301282051282051,
     "html_markers": 0,
     "zoom": 4.5,
@@ -1881,19 +1999,18 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Support Vector Escarpment",
-     "The Statistical Corpus Basin"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -1907,34 +2024,37 @@
    "link": "v2/index.html?z=4.5&x=1408.7&y=498.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 19,
+    "visibleLabels": 21,
     "labels": {
-     "continent": 4,
-     "country": 10,
-     "landmark": 1,
-     "fact": 4
+     "continent": 3,
+     "country": 9,
+     "landmark": 2,
+     "fact": 7
     },
     "kinds": {
      "range": 1,
-     "continent": 3,
+     "continent": 2,
      "ocean": 1,
-     "country": 14
+     "country": 16,
+     "summit": 1
     },
-    "landmarks": 1,
-    "facts": 4,
-    "clipped": 5,
-    "clipped_major": 3,
-    "clip_max_px": 149,
+    "landmarks": 11,
+    "facts": 7,
+    "clipped": 2,
+    "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
+    "clip_max_px": 82,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 20,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.1903019161280069,
+    "ink_ratio": 0.1748279682836803,
     "sea_ratio": 0.7435897435897436,
     "html_markers": 0,
     "zoom": 4.5,
@@ -1942,22 +2062,19 @@
      "SILICON RANGE",
      "The Generative Coast",
      "The Transformer Plateau",
-     "The Deep Learning Basin",
      "TERRA INCOGNITA",
      "Reasoning Ridge",
      "The Policy Coast",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
-     "The Megatron Yards"
-    ]
+     "The Diffusion Shoreline"
+    ],
+    "landmarks_symbols": 2
    },
-   "hard": [
-    "clipped_major=3"
-   ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
-   "passed": false
+   "hard": [],
+   "soft": [],
+   "passed": true
   },
   {
    "id": "z1-006",
@@ -1970,32 +2087,36 @@
    "link": "v2/index.html?z=4.5&x=333.1&y=558.9",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 10,
+    "visibleLabels": 12,
     "labels": {
      "continent": 6,
-     "country": 2,
+     "country": 5,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 6,
-     "country": 4
+     "country": 6
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 3,
+    "landmarks": 5,
+    "facts": 1,
+    "clipped": 6,
     "clipped_major": 1,
-    "clip_max_px": 180,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 178,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 15,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.23467891631700818,
+    "ink_ratio": 0.15698339115901572,
     "sea_ratio": 0.891025641025641,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2006,19 +2127,17 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965",
-     "Cyc 1984"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2032,33 +2151,35 @@
    "link": "v2/index.html?z=4.5&x=1613.3&y=81.7",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 12,
+    "visibleLabels": 15,
     "labels": {
      "continent": 1,
-     "country": 6,
+     "country": 8,
      "landmark": 1,
-     "fact": 4
+     "fact": 5
     },
     "kinds": {
      "continent": 1,
-     "country": 10,
+     "country": 13,
      "summit": 1
     },
-    "landmarks": 1,
-    "facts": 4,
-    "clipped": 2,
-    "clipped_major": 1,
-    "clip_max_px": 40,
+    "landmarks": 9,
+    "facts": 5,
+    "clipped": 5,
+    "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
+    "clip_max_px": 53,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 19,
+    "engine_boxes": 20,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.12289799130055058,
+    "ink_ratio": 0.11172851275403402,
     "sea_ratio": 0.8205128205128205,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2066,22 +2187,19 @@
      "The Generative Coast",
      "Reasoning Ridge",
      "The Policy Coast",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
+     "The Megatron Yards",
      "The Diffusion Shoreline",
      "The Agents Causeway",
-     "o1 \u00b7 DeepSeek-R1",
-     "Pause letter \u00b7 Bletchley \u00b7 EU AI Act",
-     "Constitutional AI \u00b7 DPO"
-    ]
+     "Pause letter \u00b7 Bletchley \u00b7 EU AI Act"
+    ],
+    "landmarks_symbols": 1
    },
-   "hard": [
-    "clipped_major=1"
-   ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
-   "passed": false
+   "hard": [],
+   "soft": [],
+   "passed": true
   },
   {
    "id": "z1-008",
@@ -2094,34 +2212,39 @@
    "link": "v2/index.html?z=4.5&x=1434.9&y=455.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 18,
+    "visibleLabels": 21,
     "labels": {
-     "continent": 4,
+     "continent": 3,
      "country": 9,
-     "landmark": 1,
-     "fact": 4
+     "landmark": 2,
+     "fact": 7
     },
     "kinds": {
      "range": 1,
-     "continent": 3,
+     "continent": 2,
      "ocean": 1,
-     "country": 13
+     "country": 16,
+     "summit": 1
     },
-    "landmarks": 1,
-    "facts": 4,
+    "landmarks": 11,
+    "facts": 7,
     "clipped": 4,
-    "clipped_major": 3,
-    "clip_max_px": 166,
+    "clipped_major": 1,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 99,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 20,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.1794173632096012,
+    "ink_ratio": 0.16916214359893492,
     "sea_ratio": 0.7756410256410257,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2129,21 +2252,20 @@
      "SILICON RANGE",
      "The Generative Coast",
      "The Transformer Plateau",
-     "The Deep Learning Basin",
      "TERRA INCOGNITA",
      "Reasoning Ridge",
      "The Policy Coast",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
-     "The Megatron Yards"
-    ]
+     "The Diffusion Shoreline"
+    ],
+    "landmarks_symbols": 2
    },
    "hard": [
-    "clipped_major=3"
+    "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2157,32 +2279,36 @@
    "link": "v2/index.html?z=4.5&x=275.1&y=632.7",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 9,
+    "visibleLabels": 10,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 4,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 4
+     "country": 5
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 6,
+    "landmarks": 4,
+    "facts": 1,
+    "clipped": 4,
     "clipped_major": 1,
-    "clip_max_px": 152,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 114,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 13,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.219113669444089,
+    "ink_ratio": 0.13640982722189915,
     "sea_ratio": 0.8942307692307693,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2192,19 +2318,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965",
-     "Cyc 1984"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "Winter 1974 \u00b7 Lisp crash 1987"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2218,34 +2343,39 @@
    "link": "v2/index.html?z=4.5&x=951.5&y=549.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 15,
+    "visibleLabels": 14,
     "labels": {
      "continent": 5,
-     "country": 4,
-     "landmark": 2,
-     "fact": 4
+     "country": 5,
+     "landmark": 1,
+     "fact": 3
     },
     "kinds": {
      "range": 1,
      "continent": 5,
-     "country": 8,
-     "summit": 1
+     "country": 8
     },
-    "landmarks": 2,
-    "facts": 4,
-    "clipped": 8,
-    "clipped_major": 6,
-    "clip_max_px": 138,
+    "landmarks": 6,
+    "facts": 3,
+    "clipped": 5,
+    "clipped_major": 4,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2,
+     "symbol-country": 1,
+     "symbol-country-hint": 1
+    },
+    "clip_max_px": 123,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 23,
+    "engine_boxes": 28,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.21436929995048962,
+    "ink_ratio": 0.15512564854548713,
     "sea_ratio": 0.8076923076923077,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2256,18 +2386,17 @@
      "The Statistical Isthmus",
      "The Transformer Plateau",
      "The Deep Learning Basin",
-     "The Funding Passes",
+     "The Bayesian Plateau",
+     "The Human-Feedback Tributaries",
      "The Support Vector Escarpment",
-     "The Statistical Corpus Basin",
-     "The Corporate Lab Colonies"
-    ]
+     "The Pre-training Foothills"
+    ],
+    "landmarks_symbols": 1
    },
    "hard": [
-    "clipped_major=6"
+    "clipped_major=4"
    ],
-   "soft": [
-    "landmarks=2 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2281,32 +2410,37 @@
    "link": "v2/index.html?z=4.5&x=220.7&y=662.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 10,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 4,
      "landmark": 0,
      "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 3
+     "country": 5
     },
-    "landmarks": 0,
+    "landmarks": 4,
     "facts": 1,
     "clipped": 5,
     "clipped_major": 3,
-    "clip_max_px": 187,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2,
+     "symbol-country": 1
+    },
+    "clip_max_px": 149,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 13,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2013473819658549,
+    "ink_ratio": 0.12441053893291988,
     "sea_ratio": 0.9294871794871795,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2316,18 +2450,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "Winter 1974 \u00b7 Lisp crash 1987"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=3"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2341,33 +2475,40 @@
    "link": "v2/index.html?z=4.5&x=677.9&y=657.5",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 14,
+    "visibleLabels": 15,
     "labels": {
      "continent": 6,
-     "country": 4,
+     "country": 6,
      "landmark": 1,
-     "fact": 3
+     "fact": 2
     },
     "kinds": {
      "range": 1,
      "continent": 6,
-     "country": 7
+     "country": 8
     },
-    "landmarks": 1,
-    "facts": 3,
+    "landmarks": 7,
+    "facts": 2,
     "clipped": 7,
-    "clipped_major": 4,
-    "clip_max_px": 175,
+    "clipped_major": 5,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-range": 1,
+     "symbol-continent": 1,
+     "symbol-country": 2,
+     "symbol-country-hint": 1
+    },
+    "clip_max_px": 172,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 18,
+    "engine_boxes": 22,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.24606953074378948,
+    "ink_ratio": 0.1525242634884573,
     "sea_ratio": 0.8269230769230769,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2379,17 +2520,16 @@
      "The Symbolic Heartland",
      "The Statistical Isthmus",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Attention Headwaters",
-     "The Temporal Difference Valley"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory",
+     "The Bayesian Plateau"
+    ],
+    "landmarks_symbols": 1
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=5"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2405,30 +2545,34 @@
    "metrics": {
     "visibleLabels": 12,
     "labels": {
-     "continent": 7,
-     "country": 3,
+     "continent": 6,
+     "country": 5,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
-     "continent": 7,
-     "country": 5
+     "continent": 6,
+     "country": 6
     },
-    "landmarks": 0,
-    "facts": 2,
+    "landmarks": 5,
+    "facts": 1,
     "clipped": 5,
-    "clipped_major": 4,
-    "clip_max_px": 216,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 122,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 16,
+    "engine_boxes": 18,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.23875558508113337,
+    "ink_ratio": 0.15740652610914543,
     "sea_ratio": 0.8141025641025641,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2438,19 +2582,18 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Support Vector Escarpment",
-     "The Statistical Corpus Basin"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2464,34 +2607,39 @@
    "link": "v2/index.html?z=4.5&x=1018.7&y=517.3",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 14,
+    "visibleLabels": 16,
     "labels": {
      "continent": 4,
      "country": 5,
      "landmark": 2,
-     "fact": 3
+     "fact": 5
     },
     "kinds": {
      "range": 1,
      "continent": 4,
-     "country": 8,
+     "country": 10,
      "summit": 1
     },
-    "landmarks": 2,
-    "facts": 3,
-    "clipped": 6,
-    "clipped_major": 4,
-    "clip_max_px": 181,
+    "landmarks": 7,
+    "facts": 5,
+    "clipped": 9,
+    "clipped_major": 3,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1,
+     "symbol-country-hint": 2
+    },
+    "clip_max_px": 142,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 25,
+    "engine_boxes": 30,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.19496192574320648,
+    "ink_ratio": 0.148572078781163,
     "sea_ratio": 0.7884615384615384,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2501,19 +2649,18 @@
      "The Statistical Isthmus",
      "The Transformer Plateau",
      "The Deep Learning Basin",
+     "The Bayesian Plateau",
      "The Human-Feedback Tributaries",
      "The Support Vector Escarpment",
-     "The Statistical Corpus Basin",
-     "The Megatron Yards",
-     "The Corporate Lab Colonies"
-    ]
+     "The Pre-training Foothills",
+     "The Generative Shoreline"
+    ],
+    "landmarks_symbols": 2
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=3"
    ],
-   "soft": [
-    "landmarks=2 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2527,32 +2674,36 @@
    "link": "v2/index.html?z=4.5&x=641.5&y=402.7",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 12,
+    "visibleLabels": 13,
     "labels": {
-     "continent": 6,
-     "country": 3,
+     "continent": 7,
+     "country": 5,
      "landmark": 0,
-     "fact": 3
+     "fact": 1
     },
     "kinds": {
-     "continent": 6,
+     "continent": 7,
      "country": 6
     },
-    "landmarks": 0,
-    "facts": 3,
+    "landmarks": 5,
+    "facts": 1,
     "clipped": 5,
-    "clipped_major": 4,
-    "clip_max_px": 151,
+    "clipped_major": 3,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 3
+    },
+    "clip_max_px": 165,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 17,
+    "engine_boxes": 19,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2463522902918148,
+    "ink_ratio": 0.15336292376819843,
     "sea_ratio": 0.8205128205128205,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2562,19 +2713,18 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
+     "The Transformer Plateau",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "The Benchmark Plains",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory",
+     "The Bayesian Plateau"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=3"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2590,30 +2740,34 @@
    "metrics": {
     "visibleLabels": 12,
     "labels": {
-     "continent": 7,
-     "country": 3,
+     "continent": 6,
+     "country": 5,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
-     "continent": 7,
-     "country": 5
+     "continent": 6,
+     "country": 6
     },
-    "landmarks": 0,
-    "facts": 2,
+    "landmarks": 5,
+    "facts": 1,
     "clipped": 6,
-    "clipped_major": 4,
-    "clip_max_px": 206,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2
+    },
+    "clip_max_px": 112,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 16,
+    "engine_boxes": 18,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.23640306607934505,
+    "ink_ratio": 0.15687521351028097,
     "sea_ratio": 0.8269230769230769,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2623,19 +2777,18 @@
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Transformer Plateau",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Support Vector Escarpment",
-     "The Statistical Corpus Basin"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=4"
+    "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2649,32 +2802,36 @@
    "link": "v2/index.html?z=4.5&x=301.8&y=565.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 9,
+    "visibleLabels": 11,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 5,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 4
+     "country": 6
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 4,
+    "landmarks": 5,
+    "facts": 1,
+    "clipped": 5,
     "clipped_major": 1,
-    "clip_max_px": 135,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 96,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 15,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.226938065278438,
+    "ink_ratio": 0.15022692156391648,
     "sea_ratio": 0.9006410256410257,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2684,19 +2841,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965",
-     "Cyc 1984"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "The Approximation Shelf"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2710,34 +2866,39 @@
    "link": "v2/index.html?z=4.5&x=1423.5&y=675.0",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 18,
+    "visibleLabels": 21,
     "labels": {
-     "continent": 4,
+     "continent": 3,
      "country": 9,
-     "landmark": 1,
-     "fact": 4
+     "landmark": 2,
+     "fact": 7
     },
     "kinds": {
      "range": 1,
-     "continent": 3,
+     "continent": 2,
      "ocean": 1,
-     "country": 13
+     "country": 16,
+     "summit": 1
     },
-    "landmarks": 1,
-    "facts": 4,
+    "landmarks": 11,
+    "facts": 7,
     "clipped": 4,
-    "clipped_major": 3,
-    "clip_max_px": 159,
+    "clipped_major": 1,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 92,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 20,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.18399190600953838,
+    "ink_ratio": 0.1717875767825322,
     "sea_ratio": 0.7788461538461539,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2745,21 +2906,20 @@
      "SILICON RANGE",
      "The Generative Coast",
      "The Transformer Plateau",
-     "The Deep Learning Basin",
      "TERRA INCOGNITA",
      "Reasoning Ridge",
      "The Policy Coast",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
-     "The Megatron Yards"
-    ]
+     "The Diffusion Shoreline"
+    ],
+    "landmarks_symbols": 2
    },
    "hard": [
-    "clipped_major=3"
+    "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2773,32 +2933,36 @@
    "link": "v2/index.html?z=4.5&x=272.2&y=503.8",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 9,
+    "visibleLabels": 10,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 4,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 4
+     "country": 5
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 6,
+    "landmarks": 4,
+    "facts": 1,
+    "clipped": 4,
     "clipped_major": 1,
-    "clip_max_px": 154,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 115,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 13,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.21815883909808287,
+    "ink_ratio": 0.1359000341581738,
     "sea_ratio": 0.9102564102564102,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2808,19 +2972,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965",
-     "Cyc 1984"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "Winter 1974 \u00b7 Lisp crash 1987"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2834,22 +2997,28 @@
    "link": "v2/index.html?z=4.5&x=185.7&y=607.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 10,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 4,
      "landmark": 0,
      "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 3
+     "country": 5
     },
-    "landmarks": 0,
+    "landmarks": 4,
     "facts": 1,
-    "clipped": 5,
+    "clipped": 4,
     "clipped_major": 4,
-    "clip_max_px": 210,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2,
+     "symbol-country": 1,
+     "symbol-country-hint": 1
+    },
+    "clip_max_px": 171,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
@@ -2857,9 +3026,9 @@
     "engine_boxes": 12,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.18340806784270086,
+    "ink_ratio": 0.11453939540868703,
     "sea_ratio": 0.9423076923076923,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2869,18 +3038,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "Winter 1974 \u00b7 Lisp crash 1987"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
     "clipped_major=4"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2894,54 +3063,57 @@
    "link": "v2/index.html?z=4.5&x=532.6&y=650.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 11,
+    "visibleLabels": 13,
     "labels": {
-     "continent": 6,
-     "country": 3,
+     "continent": 5,
+     "country": 7,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
-     "continent": 6,
-     "country": 5
+     "continent": 5,
+     "country": 8
     },
-    "landmarks": 0,
-    "facts": 2,
+    "landmarks": 7,
+    "facts": 1,
     "clipped": 6,
-    "clipped_major": 1,
-    "clip_max_px": 211,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 2
+    },
+    "clip_max_px": 129,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 12,
+    "engine_boxes": 15,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2476093568769885,
+    "ink_ratio": 0.1617978949880965,
     "sea_ratio": 0.8333333333333334,
     "html_markers": 0,
     "zoom": 4.5,
     "sampleTexts": [
-     "The Antecedent Isles",
      "The Winter Steppes",
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
      "The Statistical Isthmus",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "The Benchmark Plains",
-     "Lisp 1958 \u00b7 Resolution 1965"
-    ]
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "The Bayesian Plateau",
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
-   "soft": [
-    "landmarks=0 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -2955,32 +3127,36 @@
    "link": "v2/index.html?z=4.5&x=251.9&y=542.8",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 9,
+    "visibleLabels": 10,
     "labels": {
      "continent": 5,
-     "country": 2,
+     "country": 4,
      "landmark": 0,
-     "fact": 2
+     "fact": 1
     },
     "kinds": {
      "continent": 5,
-     "country": 4
+     "country": 5
     },
-    "landmarks": 0,
-    "facts": 2,
-    "clipped": 6,
-    "clipped_major": 2,
-    "clip_max_px": 167,
+    "landmarks": 4,
+    "facts": 1,
+    "clipped": 5,
+    "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-continent": 1
+    },
+    "clip_max_px": 128,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 13,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2114750266760418,
+    "ink_ratio": 0.13141834917963346,
     "sea_ratio": 0.9134615384615384,
     "html_markers": 0,
     "zoom": 4.5,
@@ -2990,19 +3166,18 @@
      "The Cybernetic Shore",
      "The Connectionist Revival",
      "The Symbolic Heartland",
-     "The Funding Passes",
-     "The Temporal Difference Valley",
-     "Lisp 1958 \u00b7 Resolution 1965",
-     "Cyc 1984"
-    ]
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Computability Isle",
+     "The Cyc Territory",
+     "Winter 1974 \u00b7 Lisp crash 1987"
+    ],
+    "landmarks_symbols": 0
    },
    "hard": [
-    "clipped_major=2"
+    "clipped_major=1"
    ],
-   "soft": [
-    "landmarks=0 < 4",
-    "countries=2 < 3"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -3016,56 +3191,61 @@
    "link": "v2/index.html?z=4.5&x=1154.7&y=451.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 18,
+    "visibleLabels": 22,
     "labels": {
-     "continent": 3,
+     "continent": 4,
      "country": 10,
      "landmark": 2,
-     "fact": 3
+     "fact": 6
     },
     "kinds": {
      "range": 1,
-     "continent": 3,
-     "country": 13,
+     "continent": 4,
+     "country": 16,
      "summit": 1
     },
-    "landmarks": 2,
-    "facts": 3,
-    "clipped": 10,
-    "clipped_major": 9,
-    "clip_max_px": 114,
+    "landmarks": 12,
+    "facts": 6,
+    "clipped": 12,
+    "clipped_major": 11,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-continent": 2,
+     "symbol-country": 7,
+     "symbol-country-hint": 2
+    },
+    "clip_max_px": 127,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 25,
+    "engine_boxes": 27,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.1948660034943475,
+    "ink_ratio": 0.14748588338492216,
     "sea_ratio": 0.7756410256410257,
     "html_markers": 0,
     "zoom": 4.5,
     "sampleTexts": [
      "SILICON RANGE",
      "The Generative Coast",
+     "The Statistical Isthmus",
      "The Transformer Plateau",
      "The Deep Learning Basin",
      "Reasoning Ridge",
+     "The Closed Frontier",
      "The Alignment Plateau",
      "The Human-Feedback Tributaries",
-     "The Support Vector Escarpment",
-     "The Statistical Corpus Basin",
-     "The Megatron Yards"
-    ]
+     "The Support Vector Escarpment"
+    ],
+    "landmarks_symbols": 2
    },
    "hard": [
-    "clipped_major=9"
+    "clipped_major=11"
    ],
-   "soft": [
-    "landmarks=2 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -3079,33 +3259,40 @@
    "link": "v2/index.html?z=4.5&x=689.9&y=441.8",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 15,
+    "visibleLabels": 17,
     "labels": {
      "continent": 7,
-     "country": 4,
+     "country": 6,
      "landmark": 1,
      "fact": 3
     },
     "kinds": {
      "range": 1,
      "continent": 7,
-     "country": 7
+     "country": 9
     },
-    "landmarks": 1,
+    "landmarks": 7,
     "facts": 3,
-    "clipped": 8,
-    "clipped_major": 6,
-    "clip_max_px": 182,
+    "clipped": 9,
+    "clipped_major": 8,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-range": 1,
+     "symbol-continent": 3,
+     "symbol-country": 2,
+     "symbol-country-hint": 2
+    },
+    "clip_max_px": 180,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 19,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 24,
+    "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2574384076861095,
+    "ink_ratio": 0.1551360044033477,
     "sea_ratio": 0.8205128205128205,
     "html_markers": 0,
     "zoom": 4.5,
@@ -3118,16 +3305,15 @@
      "The Symbolic Heartland",
      "The Statistical Isthmus",
      "The Deep Learning Basin",
-     "The Funding Passes",
-     "The Attention Headwaters"
-    ]
+     "The Machine Translation Inlet",
+     "The Cyc Territory"
+    ],
+    "landmarks_symbols": 1
    },
    "hard": [
-    "clipped_major=6"
+    "clipped_major=8"
    ],
-   "soft": [
-    "landmarks=1 < 4"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -3141,33 +3327,38 @@
    "link": "v2/index.html?z=6.0&x=829.9&y=668.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 23,
+    "visibleLabels": 22,
     "labels": {
      "continent": 0,
      "country": 7,
-     "landmark": 11,
+     "landmark": 10,
      "fact": 5
     },
     "kinds": {
      "country": 12,
      "summit": 1,
-     "event": 10
+     "event": 9
     },
-    "landmarks": 11,
+    "landmarks": 10,
     "facts": 5,
-    "clipped": 7,
-    "clipped_major": 3,
+    "clipped": 6,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1
+    },
     "clip_max_px": 134,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 38,
+    "engine_boxes": 37,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2570488425287046,
+    "ink_ratio": 0.24993823503248577,
     "sea_ratio": 0.41666666666666663,
     "html_markers": 0,
     "zoom": 6,
@@ -3185,7 +3376,7 @@
     ]
    },
    "hard": [
-    "clipped_major=3"
+    "clipped_major=2"
    ],
    "soft": [],
    "passed": false
@@ -3217,6 +3408,11 @@
     "facts": 6,
     "clipped": 9,
     "clipped_major": 3,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-event": 2
+    },
     "clip_max_px": 48,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3261,36 +3457,41 @@
    "link": "v2/index.html?z=6.0&x=608.4&y=528.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 24,
+    "visibleLabels": 26,
     "labels": {
      "continent": 0,
-     "country": 7,
-     "landmark": 11,
+     "country": 8,
+     "landmark": 12,
      "fact": 6
     },
     "kinds": {
-     "country": 13,
-     "event": 11
+     "country": 14,
+     "event": 12
     },
-    "landmarks": 11,
+    "landmarks": 12,
     "facts": 6,
-    "clipped": 6,
+    "clipped": 8,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 1
+    },
     "clip_max_px": 158,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 39,
+    "engine_boxes": 41,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2686283160682901,
+    "ink_ratio": 0.28864156498795324,
     "sea_ratio": 0.4358974358974359,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Blackboard & Scripts Reach",
      "The Cyc Territory",
@@ -3298,9 +3499,8 @@
      "The Temporal Difference Valley",
      "The Ensemble Highlands",
      "The Early ConvNet Ridge",
-     "MYCIN \u2192 PROSPECTOR \u2192 knowledge engineeri",
-     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra",
-     "Cyc \u2192 KL-ONE \u2192 description logics"
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D",
+     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra"
     ]
    },
    "hard": [
@@ -3320,47 +3520,55 @@
    "link": "v2/index.html?z=6.0&x=179.0&y=507.3",
    "land_frame": false,
    "metrics": {
-    "visibleLabels": 7,
+    "visibleLabels": 14,
     "labels": {
      "continent": 0,
-     "country": 1,
-     "landmark": 5,
-     "fact": 1
+     "country": 7,
+     "landmark": 4,
+     "fact": 3
     },
     "kinds": {
-     "country": 2,
-     "event": 5
+     "country": 10,
+     "event": 4
     },
-    "landmarks": 5,
-    "facts": 1,
-    "clipped": 6,
-    "clipped_major": 1,
-    "clip_max_px": 72,
+    "landmarks": 4,
+    "facts": 3,
+    "clipped": 8,
+    "clipped_major": 2,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
+    "clip_max_px": 108,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 10,
+    "engine_boxes": 17,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.05356501427426958,
+    "ink_ratio": 0.19676333266736554,
     "sea_ratio": 0.8044871794871795,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Formal Logic Isles",
+     "The Computability Isle",
+     "The Analytical Engine Isle",
+     "The Neural Modelling Marshes",
      "The Game Search Foothills",
-     "Information theory \u2192 Minimax \u2192 Checkers ",
-     "Lisp Designed\n1958",
-     "Dartmouth Workshop\n1956",
-     "Samuel Checkers\n1959",
-     "Logic Theorist\n1956",
-     "Information Theory\n1948"
+     "Teleology \u2192 Macy \u2192 Cybernetics \u2192 Homeost",
+     "Weaver memo \u2192 MIT conference \u2192 Georgetow",
+     "Leibniz \u2192 Boole \u2192 Frege \u2192 Principia \u2192 G\u00f6"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
    "soft": [],
    "passed": false
@@ -3376,33 +3584,39 @@
    "link": "v2/index.html?z=6.0&x=917.8&y=716.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 24,
+    "visibleLabels": 23,
     "labels": {
      "continent": 0,
      "country": 10,
-     "landmark": 9,
+     "landmark": 8,
      "fact": 5
     },
     "kinds": {
      "country": 15,
      "summit": 2,
-     "event": 7
+     "event": 6
     },
-    "landmarks": 9,
+    "landmarks": 8,
     "facts": 5,
     "clipped": 16,
     "clipped_major": 6,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 4,
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 151,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 39,
+    "engine_boxes": 38,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2207217830114256,
+    "ink_ratio": 0.21082367646020436,
     "sea_ratio": 0.45192307692307687,
     "html_markers": 0,
     "zoom": 6,
@@ -3423,7 +3637,7 @@
     "clipped_major=6"
    ],
    "soft": [
-    "landmarks=9 < 10"
+    "landmarks=8 < 10"
    ],
    "passed": false
   },
@@ -3438,37 +3652,43 @@
    "link": "v2/index.html?z=6.0&x=668.4&y=532.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 30,
+    "visibleLabels": 31,
     "labels": {
      "continent": 0,
      "country": 12,
-     "landmark": 11,
+     "landmark": 12,
      "fact": 7
     },
     "kinds": {
      "country": 19,
-     "event": 11
+     "event": 12
     },
-    "landmarks": 11,
+    "landmarks": 12,
     "facts": 7,
     "clipped": 12,
-    "clipped_major": 9,
+    "clipped_major": 8,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 4,
+     "symbol-country-tag": 2,
+     "symbol-event": 2
+    },
     "clip_max_px": 179,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 37,
+    "engine_boxes": 39,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.26857730590068374,
+    "ink_ratio": 0.2932179582150123,
     "sea_ratio": 0.40384615384615385,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Cyc Territory",
      "The Bayesian Plateau",
@@ -3481,7 +3701,7 @@
     ]
    },
    "hard": [
-    "clipped_major=9"
+    "clipped_major=8"
    ],
    "soft": [],
    "passed": false
@@ -3513,6 +3733,12 @@
     "facts": 5,
     "clipped": 8,
     "clipped_major": 6,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 2,
+     "symbol-country-tag": 2,
+     "symbol-event": 2
+    },
     "clip_max_px": 144,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3523,7 +3749,7 @@
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2071040978024158,
+    "ink_ratio": 0.20204756977148383,
     "sea_ratio": 0.5192307692307692,
     "html_markers": 0,
     "zoom": 6,
@@ -3575,6 +3801,12 @@
     "facts": 7,
     "clipped": 17,
     "clipped_major": 13,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 7,
+     "symbol-country-tag": 5,
+     "symbol-summit": 1
+    },
     "clip_max_px": 180,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3636,6 +3868,12 @@
     "facts": 4,
     "clipped": 5,
     "clipped_major": 3,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 108,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3680,37 +3918,43 @@
    "link": "v2/index.html?z=6.0&x=662.0&y=607.5",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 29,
+    "visibleLabels": 30,
     "labels": {
      "continent": 0,
      "country": 11,
-     "landmark": 11,
+     "landmark": 12,
      "fact": 7
     },
     "kinds": {
      "country": 18,
-     "event": 11
+     "event": 12
     },
-    "landmarks": 11,
+    "landmarks": 12,
     "facts": 7,
-    "clipped": 12,
-    "clipped_major": 8,
+    "clipped": 11,
+    "clipped_major": 7,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 2,
+     "symbol-event": 2
+    },
     "clip_max_px": 176,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 37,
+    "engine_boxes": 39,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2654499815147498,
+    "ink_ratio": 0.28880119187328934,
     "sea_ratio": 0.3942307692307693,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Cyc Territory",
      "The Bayesian Plateau",
@@ -3723,7 +3967,7 @@
     ]
    },
    "hard": [
-    "clipped_major=8"
+    "clipped_major=7"
    ],
    "soft": [],
    "passed": false
@@ -3739,50 +3983,56 @@
    "link": "v2/index.html?z=6.0&x=499.6&y=505.9",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 21,
+    "visibleLabels": 22,
     "labels": {
      "continent": 0,
-     "country": 8,
+     "country": 9,
      "landmark": 8,
      "fact": 5
     },
     "kinds": {
-     "country": 13,
+     "country": 14,
      "event": 8
     },
     "landmarks": 8,
     "facts": 5,
-    "clipped": 11,
-    "clipped_major": 5,
+    "clipped": 13,
+    "clipped_major": 6,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 2,
+     "symbol-country-tag": 1,
+     "symbol-event": 3
+    },
     "clip_max_px": 139,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 22,
+    "engine_boxes": 25,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2147980624437991,
+    "ink_ratio": 0.2332315967518646,
     "sea_ratio": 0.5993589743589743,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
+     "The Critics' Tundra",
      "The Logic & Representation Plateau",
+     "The Knowledge Turn Frontier",
      "The Funding Passes",
-     "The Fifth Generation Shogunate",
      "The Blackboard & Scripts Reach",
      "The Robotics & Planning Peninsula",
      "The PDP Basin",
      "The Micro-Worlds Basin",
      "The ARPA Lab Belt",
-     "Dartmouth \u2192 Lisp \u2192 Resolution \u2192 Prolog",
-     "MYCIN \u2192 PROSPECTOR \u2192 knowledge engineeri"
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D"
     ]
    },
    "hard": [
-    "clipped_major=5"
+    "clipped_major=6"
    ],
    "soft": [
     "landmarks=8 < 10"
@@ -3816,6 +4066,13 @@
     "facts": 4,
     "clipped": 11,
     "clipped_major": 5,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-summit": 2,
+     "symbol-event": 1
+    },
     "clip_max_px": 99,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3877,6 +4134,11 @@
     "facts": 5,
     "clipped": 11,
     "clipped_major": 5,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 2
+    },
     "clip_max_px": 177,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3939,6 +4201,12 @@
     "facts": 5,
     "clipped": 13,
     "clipped_major": 3,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 95,
     "overlaps": 0,
     "overlapPairs": [],
@@ -3983,37 +4251,43 @@
    "link": "v2/index.html?z=6.0&x=683.5&y=443.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 27,
+    "visibleLabels": 28,
     "labels": {
      "continent": 0,
      "country": 12,
-     "landmark": 9,
+     "landmark": 10,
      "fact": 6
     },
     "kinds": {
      "country": 18,
-     "event": 9
+     "event": 10
     },
-    "landmarks": 9,
+    "landmarks": 10,
     "facts": 6,
     "clipped": 14,
-    "clipped_major": 9,
-    "clip_max_px": 159,
+    "clipped_major": 7,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 4,
+     "symbol-country-tag": 1,
+     "symbol-event": 2
+    },
+    "clip_max_px": 151,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 37,
+    "engine_boxes": 39,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.23949346508264008,
+    "ink_ratio": 0.2659199291916098,
     "sea_ratio": 0.45833333333333337,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Cyc Territory",
      "The Bayesian Plateau",
@@ -4026,11 +4300,9 @@
     ]
    },
    "hard": [
-    "clipped_major=9"
+    "clipped_major=7"
    ],
-   "soft": [
-    "landmarks=9 < 10"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -4060,6 +4332,12 @@
     "facts": 8,
     "clipped": 23,
     "clipped_major": 6,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 2,
+     "symbol-event": 1
+    },
     "clip_max_px": 217,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4104,33 +4382,38 @@
    "link": "v2/index.html?z=6.0&x=1473.3&y=761.3",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 26,
+    "visibleLabels": 27,
     "labels": {
      "continent": 0,
      "country": 6,
-     "landmark": 17,
+     "landmark": 18,
      "fact": 3
     },
     "kinds": {
      "country": 9,
      "summit": 4,
-     "event": 13
+     "event": 14
     },
-    "landmarks": 17,
+    "landmarks": 18,
     "facts": 3,
-    "clipped": 6,
+    "clipped": 7,
     "clipped_major": 5,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 2,
+     "symbol-event": 3
+    },
     "clip_max_px": 164,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 39,
+    "engine_boxes": 40,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.19039167668603976,
+    "ink_ratio": 0.1963374706316919,
     "sea_ratio": 0.46153846153846156,
     "html_markers": 0,
     "zoom": 6,
@@ -4180,6 +4463,12 @@
     "facts": 1,
     "clipped": 6,
     "clipped_major": 3,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-summit": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 47,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4228,33 +4517,39 @@
     "labels": {
      "continent": 0,
      "country": 11,
-     "landmark": 9,
-     "fact": 6
+     "landmark": 10,
+     "fact": 5
     },
     "kinds": {
-     "country": 17,
-     "event": 9
+     "country": 16,
+     "event": 10
     },
-    "landmarks": 9,
-    "facts": 6,
-    "clipped": 10,
-    "clipped_major": 7,
+    "landmarks": 10,
+    "facts": 5,
+    "clipped": 11,
+    "clipped_major": 6,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 1,
+     "symbol-event": 2
+    },
     "clip_max_px": 172,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 36,
+    "engine_boxes": 38,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.24520499437756788,
+    "ink_ratio": 0.2579244991642877,
     "sea_ratio": 0.47756410256410253,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Cyc Territory",
      "The Bayesian Plateau",
      "The PDP Basin",
@@ -4267,11 +4562,9 @@
     ]
    },
    "hard": [
-    "clipped_major=7"
+    "clipped_major=6"
    ],
-   "soft": [
-    "landmarks=9 < 10"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -4285,33 +4578,38 @@
    "link": "v2/index.html?z=6.0&x=859.8&y=665.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 24,
+    "visibleLabels": 23,
     "labels": {
      "continent": 0,
      "country": 9,
-     "landmark": 9,
+     "landmark": 8,
      "fact": 6
     },
     "kinds": {
      "country": 15,
      "summit": 1,
-     "event": 8
+     "event": 7
     },
-    "landmarks": 9,
+    "landmarks": 8,
     "facts": 6,
     "clipped": 9,
     "clipped_major": 6,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 3
+    },
     "clip_max_px": 170,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 38,
+    "engine_boxes": 36,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.23801864446276155,
+    "ink_ratio": 0.22812053791154033,
     "sea_ratio": 0.42307692307692313,
     "html_markers": 0,
     "zoom": 6,
@@ -4332,7 +4630,7 @@
     "clipped_major=6"
    ],
    "soft": [
-    "landmarks=9 < 10"
+    "landmarks=8 < 10"
    ],
    "passed": false
   },
@@ -4347,37 +4645,43 @@
    "link": "v2/index.html?z=6.0&x=673.0&y=645.1",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 29,
+    "visibleLabels": 30,
     "labels": {
      "continent": 0,
      "country": 12,
-     "landmark": 11,
+     "landmark": 12,
      "fact": 6
     },
     "kinds": {
      "country": 18,
-     "event": 11
+     "event": 12
     },
-    "landmarks": 11,
+    "landmarks": 12,
     "facts": 6,
-    "clipped": 11,
-    "clipped_major": 9,
+    "clipped": 13,
+    "clipped_major": 8,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 4,
+     "symbol-country-tag": 1,
+     "symbol-event": 3
+    },
     "clip_max_px": 170,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 36,
+    "engine_boxes": 38,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2694827520545585,
+    "ink_ratio": 0.2845261065541497,
     "sea_ratio": 0.41666666666666663,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Cyc Territory",
      "The Bayesian Plateau",
@@ -4390,7 +4694,7 @@
     ]
    },
    "hard": [
-    "clipped_major=9"
+    "clipped_major=8"
    ],
    "soft": [],
    "passed": false
@@ -4406,40 +4710,46 @@
    "link": "v2/index.html?z=6.0&x=415.4&y=560.8",
    "land_frame": false,
    "metrics": {
-    "visibleLabels": 19,
+    "visibleLabels": 17,
     "labels": {
      "continent": 0,
      "country": 9,
-     "landmark": 6,
-     "fact": 4
+     "landmark": 5,
+     "fact": 3
     },
     "kinds": {
-     "country": 13,
-     "event": 6
+     "country": 12,
+     "event": 5
     },
-    "landmarks": 6,
-    "facts": 4,
-    "clipped": 10,
-    "clipped_major": 7,
+    "landmarks": 5,
+    "facts": 3,
+    "clipped": 7,
+    "clipped_major": 5,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 171,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 29,
+    "engine_boxes": 30,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.2478018507051221,
+    "ink_ratio": 0.245611095817664,
     "sea_ratio": 0.6378205128205128,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
      "The Logic & Representation Plateau",
+     "The Knowledge Turn Frontier",
      "The Heuristic Search Highlands",
      "The Funding Passes",
-     "The Fifth Generation Shogunate",
      "The Blackboard & Scripts Reach",
      "The Game Search Foothills",
      "The Perceptron Escarpment",
@@ -4449,7 +4759,7 @@
     ]
    },
    "hard": [
-    "clipped_major=7"
+    "clipped_major=5"
    ],
    "soft": [],
    "passed": false
@@ -4465,37 +4775,43 @@
    "link": "v2/index.html?z=6.0&x=688.5&y=607.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 28,
+    "visibleLabels": 30,
     "labels": {
      "continent": 0,
      "country": 12,
-     "landmark": 9,
+     "landmark": 11,
      "fact": 7
     },
     "kinds": {
      "country": 19,
-     "event": 9
+     "event": 11
     },
-    "landmarks": 9,
+    "landmarks": 11,
     "facts": 7,
-    "clipped": 11,
+    "clipped": 12,
     "clipped_major": 6,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 4,
+     "symbol-country-tag": 1,
+     "symbol-event": 1
+    },
     "clip_max_px": 207,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 37,
+    "engine_boxes": 39,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.28174184381482564,
+    "ink_ratio": 0.30848011282194726,
     "sea_ratio": 0.42307692307692313,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
-     "The Knowledge Turn Frontier",
+     "The Critics' Tundra",
      "The Cyc Territory",
      "The Bayesian Plateau",
      "The PDP Basin",
@@ -4510,9 +4826,7 @@
    "hard": [
     "clipped_major=6"
    ],
-   "soft": [
-    "landmarks=9 < 10"
-   ],
+   "soft": [],
    "passed": false
   },
   {
@@ -4529,47 +4843,53 @@
     "visibleLabels": 21,
     "labels": {
      "continent": 0,
-     "country": 9,
-     "landmark": 7,
+     "country": 10,
+     "landmark": 6,
      "fact": 5
     },
     "kinds": {
-     "country": 14,
-     "event": 7
+     "country": 15,
+     "event": 6
     },
-    "landmarks": 7,
+    "landmarks": 6,
     "facts": 5,
-    "clipped": 12,
-    "clipped_major": 11,
-    "clip_max_px": 134,
+    "clipped": 13,
+    "clipped_major": 10,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 5,
+     "symbol-country-tag": 2,
+     "symbol-event": 3
+    },
+    "clip_max_px": 136,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 22,
+    "engine_boxes": 25,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.20733294127882948,
+    "ink_ratio": 0.22191899134199733,
     "sea_ratio": 0.6666666666666667,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
+     "The Critics' Tundra",
      "The Logic & Representation Plateau",
+     "The Knowledge Turn Frontier",
      "The Heuristic Search Highlands",
      "The Funding Passes",
-     "The Fifth Generation Shogunate",
      "The Blackboard & Scripts Reach",
      "The Robotics & Planning Peninsula",
      "The PDP Basin",
      "The Micro-Worlds Basin",
-     "The ARPA Lab Belt",
-     "Dartmouth \u2192 Lisp \u2192 Resolution \u2192 Prolog"
+     "The ARPA Lab Belt"
     ]
    },
    "hard": [
-    "clipped_major=11"
+    "clipped_major=10"
    ],
    "soft": [],
    "passed": false
@@ -4585,36 +4905,41 @@
    "link": "v2/index.html?z=6.0&x=600.3&y=482.3",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 23,
+    "visibleLabels": 25,
     "labels": {
      "continent": 0,
-     "country": 7,
-     "landmark": 10,
+     "country": 8,
+     "landmark": 11,
      "fact": 6
     },
     "kinds": {
-     "country": 13,
-     "event": 10
+     "country": 14,
+     "event": 11
     },
-    "landmarks": 10,
+    "landmarks": 11,
     "facts": 6,
-    "clipped": 4,
-    "clipped_major": 1,
+    "clipped": 7,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-event": 2
+    },
     "clip_max_px": 91,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 37,
+    "engine_boxes": 38,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 17,
     "font_cap_violations": [],
-    "ink_ratio": 0.27619050632157527,
+    "ink_ratio": 0.2948342255697293,
     "sea_ratio": 0.45833333333333337,
     "html_markers": 0,
     "zoom": 6,
     "sampleTexts": [
+     "The Critics' Tundra",
      "The Funding Passes",
      "The Blackboard & Scripts Reach",
      "The Cyc Territory",
@@ -4622,13 +4947,12 @@
      "The Temporal Difference Valley",
      "The Early ConvNet Ridge",
      "The Benchmark Plains",
-     "MYCIN \u2192 PROSPECTOR \u2192 knowledge engineeri",
-     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra",
-     "Cyc \u2192 KL-ONE \u2192 description logics"
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D",
+     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
    "soft": [],
    "passed": false
@@ -4644,54 +4968,60 @@
    "link": "v2/index.html?z=7.5&x=534.5&y=478.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 15,
+    "visibleLabels": 26,
     "labels": {
      "continent": 0,
-     "country": 4,
-     "landmark": 5,
-     "fact": 6
+     "country": 6,
+     "landmark": 10,
+     "fact": 10
     },
     "kinds": {
-     "country": 8,
-     "event": 7
+     "country": 12,
+     "event": 14
     },
-    "landmarks": 5,
-    "facts": 6,
-    "clipped": 6,
-    "clipped_major": 5,
+    "landmarks": 10,
+    "facts": 10,
+    "clipped": 15,
+    "clipped_major": 9,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 3,
+     "symbol-country-tag": 3,
+     "symbol-event": 1,
+     "symbol-fact": 2
+    },
     "clip_max_px": 187,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 26,
+    "engine_boxes": 37,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.19228086662864996,
+    "ink_ratio": 0.2886905717798737,
     "sea_ratio": 0.2628205128205128,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
+     "The Critics' Tundra",
+     "The Expert Systems Country",
      "The Knowledge Turn Frontier",
      "The Funding Passes",
      "The Fifth Generation Shogunate",
      "The Blackboard & Scripts Reach",
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D",
+     "XCON \u2192 Lisp machines \u2192 KL-ONE \u2192 Soar \u2192 D",
      "MYCIN \u2192 PROSPECTOR \u2192 knowledge engineeri",
-     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra",
-     "ICOT \u2192 MCC \u2192 SCI \u00b7 ESPRIT \u00b7 Alvey",
-     "Hearsay-II \u2192 Scripts \u2192 Stanford Cart",
-     "AAAI Founded\n1979",
-     "'AI Winter' Coined\n1984"
+     "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra"
     ]
    },
    "hard": [
-    "clipped_major=5"
+    "clipped_major=9"
    ],
    "soft": [
-    "labels=15 < 24",
-    "landmarks=5 < 18"
+    "landmarks=10 < 18"
    ],
    "passed": false
   },
@@ -4720,6 +5050,10 @@
     "facts": 1,
     "clipped": 1,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-fact": 1
+    },
     "clip_max_px": 184,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4755,37 +5089,59 @@
    "link": "v2/index.html?z=7.5&x=173.5&y=540.2",
    "land_frame": false,
    "metrics": {
-    "visibleLabels": 0,
+    "visibleLabels": 13,
     "labels": {
      "continent": 0,
-     "country": 0,
-     "landmark": 0,
-     "fact": 0
+     "country": 4,
+     "landmark": 4,
+     "fact": 5
     },
-    "kinds": {},
-    "landmarks": 0,
-    "facts": 0,
-    "clipped": 0,
-    "clipped_major": 0,
-    "clip_max_px": 0,
+    "kinds": {
+     "country": 7,
+     "event": 6
+    },
+    "landmarks": 4,
+    "facts": 5,
+    "clipped": 9,
+    "clipped_major": 5,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 2,
+     "symbol-country-tag": 1,
+     "symbol-event": 2
+    },
+    "clip_max_px": 192,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 3,
+    "engine_boxes": 26,
     "engine_error": null,
-    "min_font_px": null,
-    "max_font_px": null,
+    "min_font_px": 11,
+    "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0,
+    "ink_ratio": 0.16760324038787835,
     "sea_ratio": 0.7532051282051282,
     "html_markers": 0,
     "zoom": 7.5,
-    "sampleTexts": []
+    "sampleTexts": [
+     "The Cybernetic Lowlands",
+     "The Computability Isle",
+     "The Imitation Game Heights",
+     "The Neural Modelling Marshes",
+     "Teleology \u2192 Macy \u2192 Cybernetics \u2192 Homeost",
+     "Intelligent Machinery \u2192 Imitation Game",
+     "McCulloch\u2013Pitts \u2192 Hebb \u2192 Theseus \u2192 SNARC",
+     "Purpose and Teleology\n1943",
+     "Weaver's Memorandum\n1949",
+     "McCulloch\u2013Pitts Neuron\n1943"
+    ]
    },
-   "hard": [],
+   "hard": [
+    "clipped_major=5"
+   ],
    "soft": [],
-   "passed": true
+   "passed": false
   },
   {
    "id": "z3-003",
@@ -4815,6 +5171,11 @@
     "facts": 5,
     "clipped": 8,
     "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1
+    },
     "clip_max_px": 115,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4875,6 +5236,8 @@
     "facts": 0,
     "clipped": 0,
     "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
     "clip_max_px": 0,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4921,6 +5284,12 @@
     "facts": 7,
     "clipped": 11,
     "clipped_major": 6,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-event": 3,
+     "symbol-fact": 2
+    },
     "clip_max_px": 227,
     "overlaps": 0,
     "overlapPairs": [],
@@ -4983,6 +5352,11 @@
     "facts": 3,
     "clipped": 3,
     "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-event": 1,
+     "symbol-fact": 1
+    },
     "clip_max_px": 119,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5027,43 +5401,56 @@
    "link": "v2/index.html?z=7.5&x=192.9&y=575.9",
    "land_frame": false,
    "metrics": {
-    "visibleLabels": 4,
+    "visibleLabels": 20,
     "labels": {
      "continent": 0,
-     "country": 0,
-     "landmark": 2,
-     "fact": 2
+     "country": 3,
+     "landmark": 11,
+     "fact": 6
     },
     "kinds": {
-     "event": 4
+     "country": 5,
+     "event": 15
     },
-    "landmarks": 2,
-    "facts": 2,
-    "clipped": 3,
-    "clipped_major": 2,
-    "clip_max_px": 145,
+    "landmarks": 11,
+    "facts": 6,
+    "clipped": 10,
+    "clipped_major": 7,
+    "clipped_major_anchored": 3,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-event": 5,
+     "symbol-fact": 1
+    },
+    "clip_max_px": 179,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 10,
+    "engine_boxes": 32,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 14,
+    "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.037409902696294066,
+    "ink_ratio": 0.23849307954656504,
     "sea_ratio": 0.6314102564102564,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
-     "Shannon's Chess Paper\n1950",
-     "Information Theory\n1948",
-     "First game-playing programs on a stored-",
-     "Minimax search with an evaluation functi"
+     "The Cybernetic Lowlands",
+     "The Machine Translation Inlet",
+     "The Neural Modelling Marshes",
+     "Teleology \u2192 Macy \u2192 Cybernetics \u2192 Homeost",
+     "McCulloch\u2013Pitts \u2192 Hebb \u2192 Theseus \u2192 SNARC",
+     "Purpose and Teleology\n1943",
+     "Weaver's Memorandum\n1949",
+     "Wiener's Cybernetics\n1948",
+     "Grey Walter's Tortoises\n1948",
+     "McCulloch\u2013Pitts Neuron\n1943"
     ]
    },
    "hard": [
-    "clipped_major=2"
+    "clipped_major=7"
    ],
    "soft": [],
    "passed": false
@@ -5094,6 +5481,12 @@
     "facts": 3,
     "clipped": 5,
     "clipped_major": 4,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 2,
+     "symbol-event": 1
+    },
     "clip_max_px": 140,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5153,6 +5546,11 @@
     "facts": 6,
     "clipped": 6,
     "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-event": 1,
+     "symbol-fact": 1
+    },
     "clip_max_px": 130,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5200,53 +5598,58 @@
    "link": "v2/index.html?z=7.5&x=568.6&y=457.4",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 14,
+    "visibleLabels": 22,
     "labels": {
      "continent": 0,
-     "country": 2,
-     "landmark": 7,
-     "fact": 5
+     "country": 4,
+     "landmark": 10,
+     "fact": 8
     },
     "kinds": {
-     "country": 4,
-     "event": 10
+     "country": 8,
+     "event": 14
     },
-    "landmarks": 7,
-    "facts": 5,
+    "landmarks": 10,
+    "facts": 8,
     "clipped": 8,
-    "clipped_major": 0,
-    "clip_max_px": 74,
+    "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1
+    },
+    "clip_max_px": 100,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 23,
+    "engine_boxes": 34,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.1635569169304318,
+    "ink_ratio": 0.29953619351913474,
     "sea_ratio": 0.16346153846153844,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
+     "The Critics' Tundra",
+     "The Expert Systems Country",
      "The Funding Passes",
      "The Fifth Generation Shogunate",
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D",
+     "XCON \u2192 Lisp machines \u2192 KL-ONE \u2192 Soar \u2192 D",
      "Escarpment 1974 \u2192 'AI winter' 1984 \u2192 cra",
      "ICOT \u2192 MCC \u2192 SCI \u00b7 ESPRIT \u00b7 Alvey",
      "Lisp Machine Crash\n1987",
-     "'AI Winter' Coined\n1984",
-     "Strategic Computing\n1983",
-     "Fifth Generation\n1982",
-     "KL-ONE\n1985",
-     "Cyc Begins\n1984"
+     "'AI Winter' Coined\n1984"
     ]
    },
-   "hard": [],
+   "hard": [
+    "clipped_major=1"
+   ],
    "soft": [
-    "labels=14 < 24",
-    "landmarks=7 < 18",
-    "facts=5 < 6"
+    "labels=22 < 24",
+    "landmarks=10 < 18"
    ],
    "passed": false
   },
@@ -5277,6 +5680,11 @@
     "facts": 4,
     "clipped": 6,
     "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1,
+     "symbol-fact": 1
+    },
     "clip_max_px": 84,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5326,53 +5734,60 @@
    "link": "v2/index.html?z=7.5&x=606.8&y=420.8",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 17,
     "labels": {
      "continent": 0,
-     "country": 1,
-     "landmark": 5,
-     "fact": 2
+     "country": 3,
+     "landmark": 9,
+     "fact": 5
     },
     "kinds": {
-     "country": 2,
-     "event": 6
+     "country": 6,
+     "event": 11
     },
-    "landmarks": 5,
-    "facts": 2,
-    "clipped": 4,
-    "clipped_major": 1,
-    "clip_max_px": 53,
+    "landmarks": 9,
+    "facts": 5,
+    "clipped": 9,
+    "clipped_major": 2,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1,
+     "symbol-fact": 1
+    },
+    "clip_max_px": 92,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 18,
+    "engine_boxes": 26,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.08222132442723981,
+    "ink_ratio": 0.20733963718184203,
     "sea_ratio": 0.3717948717948718,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
+     "The Critics' Tundra",
+     "The Expert Systems Country",
      "The Cyc Territory",
+     "Symbol systems \u2192 Weizenbaum \u2192 Searle \u2192 D",
+     "XCON \u2192 Lisp machines \u2192 KL-ONE \u2192 Soar \u2192 D",
      "Cyc \u2192 KL-ONE \u2192 description logics",
      "SCI Cuts AI Spending\n1988",
      "Lisp Machine Crash\n1987",
      "'AI Winter' Coined\n1984",
-     "Strategic Computing\n1983",
-     "KL-ONE\n1985",
-     "Symbolics and most Lisp-machine companie"
+     "Deep Thought & HiTech\n1988"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
    "soft": [
-    "labels=8 < 24",
-    "landmarks=5 < 18",
-    "facts=2 < 6"
+    "labels=17 < 24",
+    "landmarks=9 < 18",
+    "facts=5 < 6"
    ],
    "passed": false
   },
@@ -5402,6 +5817,11 @@
     "facts": 5,
     "clipped": 4,
     "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-fact": 1
+    },
     "clip_max_px": 188,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5450,53 +5870,58 @@
    "link": "v2/index.html?z=7.5&x=929.4&y=573.7",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 12,
+    "visibleLabels": 10,
     "labels": {
      "continent": 0,
      "country": 0,
-     "landmark": 6,
-     "fact": 6
+     "landmark": 5,
+     "fact": 5
     },
     "kinds": {
-     "event": 12
+     "event": 10
     },
-    "landmarks": 6,
-    "facts": 6,
-    "clipped": 9,
-    "clipped_major": 3,
-    "clip_max_px": 104,
+    "landmarks": 5,
+    "facts": 5,
+    "clipped": 7,
+    "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1
+    },
+    "clip_max_px": 83,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 19,
+    "engine_boxes": 17,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 14,
     "font_cap_violations": [],
-    "ink_ratio": 0.10059020329603693,
+    "ink_ratio": 0.09610651393844705,
     "sea_ratio": 0.019230769230769273,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
      "Pearl Turing Award\n2011",
      "Graphical Models\n2009",
-     "DARPA Urban Challenge\n2007",
      "IBM Watson Jeopardy!\n2011",
      "Unreasonable Data\n2009",
      "Google Brain\n2011",
      "Pearl honoured for a calculus of probabi",
      "Koller & Friedman publish canonical text",
-     "CMU/GM's Boss wins, Stanford's Junior se",
-     "Ferrucci's DeepQA defeats Jennings and R"
+     "Ferrucci's DeepQA defeats Jennings and R",
+     "Halevy, Norvig & Pereira: massive corpor",
+     "Dean, Corrado & Ng start the project at "
     ]
    },
    "hard": [
-    "clipped_major=3"
+    "clipped_major=1"
    ],
    "soft": [
-    "labels=12 < 24",
-    "landmarks=6 < 18",
+    "labels=10 < 24",
+    "landmarks=5 < 18",
+    "facts=5 < 6",
     "countries=0 < 1"
    ],
    "passed": false
@@ -5512,33 +5937,39 @@
    "link": "v2/index.html?z=7.5&x=785.5&y=645.7",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 21,
+    "visibleLabels": 22,
     "labels": {
      "continent": 0,
      "country": 4,
      "landmark": 9,
-     "fact": 8
+     "fact": 9
     },
     "kinds": {
      "country": 8,
      "summit": 1,
-     "event": 12
+     "event": 13
     },
     "landmarks": 9,
-    "facts": 8,
-    "clipped": 10,
-    "clipped_major": 6,
+    "facts": 9,
+    "clipped": 11,
+    "clipped_major": 4,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-summit": 1,
+     "symbol-event": 2,
+     "symbol-fact": 1
+    },
     "clip_max_px": 131,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 34,
+    "engine_boxes": 35,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.25553580020949224,
+    "ink_ratio": 0.2778461276037965,
     "sea_ratio": 0.2628205128205128,
     "html_markers": 0,
     "zoom": 7.5,
@@ -5556,10 +5987,10 @@
     ]
    },
    "hard": [
-    "clipped_major=6"
+    "clipped_major=4"
    ],
    "soft": [
-    "labels=21 < 24",
+    "labels=22 < 24",
     "landmarks=9 < 18"
    ],
    "passed": false
@@ -5590,6 +6021,13 @@
     "facts": 8,
     "clipped": 8,
     "clipped_major": 6,
+    "clipped_major_anchored": 2,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-event": 1,
+     "symbol-fact": 3
+    },
     "clip_max_px": 176,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5652,6 +6090,13 @@
     "facts": 5,
     "clipped": 6,
     "clipped_major": 6,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-event": 1,
+     "symbol-fact": 3
+    },
     "clip_max_px": 141,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5698,52 +6143,60 @@
    "link": "v2/index.html?z=7.5&x=250.0&y=507.6",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 7,
+    "visibleLabels": 24,
     "labels": {
      "continent": 0,
-     "country": 0,
-     "landmark": 5,
-     "fact": 2
+     "country": 3,
+     "landmark": 16,
+     "fact": 5
     },
     "kinds": {
-     "event": 7
+     "country": 6,
+     "event": 18
     },
-    "landmarks": 5,
-    "facts": 2,
-    "clipped": 4,
-    "clipped_major": 1,
-    "clip_max_px": 36,
+    "landmarks": 16,
+    "facts": 5,
+    "clipped": 9,
+    "clipped_major": 4,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-country-tag": 1,
+     "symbol-event": 2
+    },
+    "clip_max_px": 113,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 18,
+    "engine_boxes": 37,
     "engine_error": null,
     "min_font_px": 11,
-    "max_font_px": 14,
+    "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.0766199896364702,
+    "ink_ratio": 0.2868839820233876,
     "sea_ratio": 0.21794871794871795,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
+     "The Machine Translation Inlet",
+     "The Imitation Game Heights",
+     "The Neural Modelling Marshes",
+     "Weaver memo \u2192 MIT conference \u2192 Georgetow",
+     "Intelligent Machinery \u2192 Imitation Game",
+     "McCulloch\u2013Pitts \u2192 Hebb \u2192 Theseus \u2192 SNARC",
+     "Weaver's Memorandum\n1949",
      "Dartmouth Workshop\n1956",
-     "Logic Theorist\n1956",
-     "Dartmouth Proposal\n1955",
-     "Samuel's Checkers\n1952",
-     "Information Theory\n1948",
-     "McCarthy, Minsky, Shannon and Rochester ",
-     "Newell, Shaw & Simon complete first arti"
+     "The Imitation Game\n1950",
+     "Logic Theorist\n1956"
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=4"
    ],
    "soft": [
-    "labels=7 < 24",
-    "landmarks=5 < 18",
-    "facts=2 < 6",
-    "countries=0 < 1"
+    "landmarks=16 < 18",
+    "facts=5 < 6"
    ],
    "passed": false
   },
@@ -5758,32 +6211,37 @@
    "link": "v2/index.html?z=7.5&x=612.3&y=601.3",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 17,
+    "visibleLabels": 18,
     "labels": {
      "continent": 0,
      "country": 3,
      "landmark": 7,
-     "fact": 7
+     "fact": 8
     },
     "kinds": {
      "country": 6,
-     "event": 11
+     "event": 12
     },
     "landmarks": 7,
-    "facts": 7,
-    "clipped": 4,
-    "clipped_major": 1,
-    "clip_max_px": 36,
+    "facts": 8,
+    "clipped": 5,
+    "clipped_major": 2,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-fact": 1
+    },
+    "clip_max_px": 72,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 29,
+    "engine_boxes": 32,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.23096669942128617,
+    "ink_ratio": 0.23911012423007116,
     "sea_ratio": 0,
     "html_markers": 0,
     "zoom": 7.5,
@@ -5801,10 +6259,10 @@
     ]
    },
    "hard": [
-    "clipped_major=1"
+    "clipped_major=2"
    ],
    "soft": [
-    "labels=17 < 24",
+    "labels=18 < 24",
     "landmarks=7 < 18"
    ],
    "passed": false
@@ -5824,17 +6282,23 @@
     "labels": {
      "continent": 0,
      "country": 3,
-     "landmark": 10,
-     "fact": 6
+     "landmark": 11,
+     "fact": 5
     },
     "kinds": {
      "country": 5,
      "event": 14
     },
-    "landmarks": 10,
-    "facts": 6,
+    "landmarks": 11,
+    "facts": 5,
     "clipped": 6,
     "clipped_major": 4,
+    "clipped_major_anchored": 1,
+    "clipped_major_by_layer": {
+     "symbol-country": 1,
+     "symbol-event": 2,
+     "symbol-fact": 1
+    },
     "clip_max_px": 169,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5845,7 +6309,7 @@
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.21722242142714257,
+    "ink_ratio": 0.2139188859554198,
     "sea_ratio": 0.3012820512820513,
     "html_markers": 0,
     "zoom": 7.5,
@@ -5857,9 +6321,9 @@
      "MIT AI \u2192 IPTO \u2192 SAIL \u2192 Edinburgh \u2192 Mansf",
      "Mansfield Amendment\n1969",
      "MIT AI Project\n1959",
+     "Lighthill Report\n1973",
      "STRIPS Planner\n1971",
-     "Perceptrons Book\n1969",
-     "A* Algorithm\n1968"
+     "Perceptrons Book\n1969"
     ]
    },
    "hard": [
@@ -5867,7 +6331,8 @@
    ],
    "soft": [
     "labels=19 < 24",
-    "landmarks=10 < 18"
+    "landmarks=11 < 18",
+    "facts=5 < 6"
    ],
    "passed": false
   },
@@ -5882,32 +6347,38 @@
    "link": "v2/index.html?z=7.5&x=681.2&y=546.2",
    "land_frame": true,
    "metrics": {
-    "visibleLabels": 16,
+    "visibleLabels": 17,
     "labels": {
      "continent": 0,
      "country": 2,
-     "landmark": 6,
+     "landmark": 7,
      "fact": 8
     },
     "kinds": {
      "country": 4,
-     "event": 12
+     "event": 13
     },
-    "landmarks": 6,
+    "landmarks": 7,
     "facts": 8,
-    "clipped": 9,
+    "clipped": 10,
     "clipped_major": 5,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-country": 2,
+     "symbol-country-tag": 2,
+     "symbol-event": 1
+    },
     "clip_max_px": 141,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 22,
+    "engine_boxes": 24,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.12354501094340958,
+    "ink_ratio": 0.13654213663942427,
     "sea_ratio": 0,
     "html_markers": 0,
     "zoom": 7.5,
@@ -5916,20 +6387,20 @@
      "The Temporal Difference Valley",
      "Cyc \u2192 KL-ONE \u2192 description logics",
      "Actor-Critic \u2192 TD(\u03bb) \u2192 Q-Learning \u2192 TD-G",
+     "Without Representation\n1991",
      "Probabilistic Reasoning\n1994",
      "Penn Treebank\n1993",
      "IBM Candide SMT\n1990",
      "AdaBoost\n1995",
-     "Deep Blue v Kasparov\n1997",
-     "AIMA Textbook\n1995"
+     "Deep Blue v Kasparov\n1997"
     ]
    },
    "hard": [
     "clipped_major=5"
    ],
    "soft": [
-    "labels=16 < 24",
-    "landmarks=6 < 18"
+    "labels=17 < 24",
+    "landmarks=7 < 18"
    ],
    "passed": false
   },
@@ -5958,6 +6429,10 @@
     "facts": 0,
     "clipped": 1,
     "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1
+    },
     "clip_max_px": 99,
     "overlaps": 0,
     "overlapPairs": [],
@@ -5998,49 +6473,57 @@
    "link": "v2/index.html?z=7.5&x=227.1&y=631.5",
    "land_frame": false,
    "metrics": {
-    "visibleLabels": 8,
+    "visibleLabels": 14,
     "labels": {
      "continent": 0,
-     "country": 1,
-     "landmark": 4,
-     "fact": 3
+     "country": 2,
+     "landmark": 8,
+     "fact": 4
     },
     "kinds": {
-     "country": 2,
-     "event": 6
+     "country": 4,
+     "event": 10
     },
-    "landmarks": 4,
-    "facts": 3,
-    "clipped": 2,
-    "clipped_major": 0,
+    "landmarks": 8,
+    "facts": 4,
+    "clipped": 4,
+    "clipped_major": 1,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {
+     "symbol-event": 1
+    },
     "clip_max_px": 107,
     "overlaps": 0,
     "overlapPairs": [],
     "box_source": "engine",
     "unmatched_boxes": 0,
-    "engine_boxes": 11,
+    "engine_boxes": 23,
     "engine_error": null,
     "min_font_px": 11,
     "max_font_px": 24,
     "font_cap_violations": [],
-    "ink_ratio": 0.11090882238827526,
+    "ink_ratio": 0.17831144437488658,
     "sea_ratio": 0.6153846153846154,
     "html_markers": 0,
     "zoom": 7.5,
     "sampleTexts": [
+     "The Neural Modelling Marshes",
      "The Game Search Foothills",
+     "McCulloch\u2013Pitts \u2192 Hebb \u2192 Theseus \u2192 SNARC",
      "Information theory \u2192 Minimax \u2192 Checkers ",
+     "SNARC\n1951",
+     "Theseus Mouse\n1950",
+     "Hebbian Learning\n1949",
      "Samuel's Checkers\n1952",
      "Strachey's Draughts\n1951",
-     "Shannon's Chess Paper\n1950",
-     "Information Theory\n1948",
-     "First game-playing programs on a stored-",
-     "Minimax search with an evaluation functi"
+     "Shannon's Chess Paper\n1950"
     ]
    },
-   "hard": [],
+   "hard": [
+    "clipped_major=1"
+   ],
    "soft": [],
-   "passed": true
+   "passed": false
   },
   {
    "id": "z3-024",
@@ -6067,6 +6550,8 @@
     "facts": 1,
     "clipped": 0,
     "clipped_major": 0,
+    "clipped_major_anchored": 0,
+    "clipped_major_by_layer": {},
     "clip_max_px": 0,
     "overlaps": 0,
     "overlapPairs": [],
