@@ -101,6 +101,22 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Judea_Pearl"
             title: "Wikipedia: Judea Pearl [5]"
+      - id: bn-structure-learning-1995
+        name: "Learning Bayes Nets"
+        year: 1995.7
+        lod: 4
+        one_line: "Heckerman, Geiger & Chickering learn Bayesian network structure from data"
+        sources:
+          - url: "https://doi.org/10.1007/BF00994016"
+            title: "Heckerman, Geiger & Chickering 1995 [98]"
+      - id: naive-bayes-optimality-1997
+        name: "Naive Bayes Optimality"
+        year: 1997.8
+        lod: 4
+        one_line: "Domingos & Pazzani explain why naive Bayes works despite dependence"
+        sources:
+          - url: "https://doi.org/10.1023/A:1007413511361"
+            title: "Domingos & Pazzani 1997 [101]"
   statistical-corpus-basin:
     hint: "IBM SMT · PageRank · Watson"
     tag: "Sphinx → IBM Models → PageRank → Watson"
@@ -273,6 +289,30 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Eugene_Charniak"
             title: "Wikipedia: Eugene Charniak [77]"
+      - id: timit-1988
+        name: "TIMIT Corpus"
+        year: 1988.5
+        lod: 3
+        one_line: "TI/MIT's TIMIT speech corpus becomes the phone-recognition benchmark"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/TIMIT"
+            title: "TIMIT — Wikipedia [93]"
+      - id: ldc-founded-1992
+        name: "LDC Founded"
+        year: 1992.5
+        lod: 3
+        one_line: "Linguistic Data Consortium founded at Penn to share speech and text corpora"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Linguistic_Data_Consortium"
+            title: "Linguistic Data Consortium — Wikipedia [96]"
+      - id: mapreduce-2004
+        name: "MapReduce"
+        year: 2004.95
+        lod: 3
+        one_line: "Dean & Ghemawat's MapReduce makes web-scale data processing routine"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/MapReduce"
+            title: "MapReduce — Wikipedia [119]"
   ensemble-highlands:
     hint: "AdaBoost · Random Forests"
     tag: "C4.5 → AdaBoost → Bagging → Random Forests"
@@ -357,6 +397,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/G%C3%B6del_Prize"
             title: "Wikipedia: Gödel Prize [60]"
+      - id: lasso-1996
+        name: "Lasso"
+        year: 1996.1
+        lod: 3
+        one_line: "Tibshirani's lasso: L1 shrinkage for sparse regression models"
+        sources:
+          - url: "https://api.crossref.org/works/10.1111/j.2517-6161.1996.tb02080.x"
+            title: "Tibshirani 1996, JRSS B [99]"
   support-vector-escarpment:
     hint: "SVM · Stanley 2005"
     tag: "SVM → Kernel Trick → SLAM → Stanley"
@@ -409,6 +457,62 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/MNIST_database"
             title: "Wikipedia: MNIST database [36]"
+      - id: svm-text-1998
+        name: "SVM Text Categorisation"
+        year: 1998.3
+        lod: 4
+        one_line: "Joachims makes SVMs the default text classifier"
+        sources:
+          - url: "https://doi.org/10.1007/BFb0026683"
+            title: "Joachims, ECML 1998 [102]"
+      - id: sift-1999
+        name: "SIFT Features"
+        year: 1999.7
+        lod: 3
+        one_line: "Lowe's scale-invariant features anchor pre-deep-learning computer vision"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Scale-invariant_feature_transform"
+            title: "Scale-invariant feature transform — Wikipedia [107]"
+      - id: isomap-lle-2000
+        name: "Isomap & LLE"
+        year: 2000.97
+        lod: 3
+        one_line: "Isomap and LLE in Science launch nonlinear manifold learning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Isomap"
+            title: "Isomap — Wikipedia [108]"
+      - id: normalized-cuts-2000
+        name: "Normalized Cuts"
+        year: 2000.6
+        lod: 4
+        one_line: "Shi & Malik's normalized cuts make spectral segmentation standard"
+        sources:
+          - url: "https://doi.org/10.1109/34.868688"
+            title: "Shi & Malik 2000, TPAMI [109]"
+      - id: libsvm-2000
+        name: "LIBSVM"
+        year: 2000.3
+        lod: 4
+        one_line: "NTU's LIBSVM becomes the standard support vector machine library"
+        sources:
+          - url: "https://www.csie.ntu.edu.tw/~cjlin/libsvm/"
+            title: "LIBSVM homepage [111]"
+      - id: mean-shift-2002
+        name: "Mean Shift"
+        year: 2002.35
+        lod: 4
+        one_line: "Comaniciu & Meer's mean shift: non-parametric mode seeking for vision"
+        sources:
+          - url: "https://doi.org/10.1109/34.1000236"
+            title: "Comaniciu & Meer 2002, TPAMI [113]"
+      - id: hog-2005
+        name: "HOG Detector"
+        year: 2005.45
+        lod: 3
+        one_line: "Dalal & Triggs: gradient histograms plus linear SVM detect pedestrians"
+        sources:
+          - url: "https://doi.org/10.1109/CVPR.2005.177"
+            title: "Dalal & Triggs, CVPR 2005 [115]"
   graphical-valley:
     hint: "Pearl 1988 · Causality"
     tag: "Pearl → Jordan → Causality → Ng & Jordan"
@@ -437,6 +541,38 @@ countries:
         sources:
           - url: "https://proceedings.neurips.cc/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html"
             title: "Ng & Jordan 2001 [81]"
+      - id: winnow-1988
+        name: "Winnow"
+        year: 1988.3
+        lod: 4
+        one_line: "Littlestone's Winnow: mistake-bound online learning with multiplicative updates"
+        sources:
+          - url: "https://doi.org/10.1007/BF00116827"
+            title: "Littlestone 1988, Machine Learning 2 [94]"
+      - id: gibbs-bayes-1990
+        name: "Gibbs for Bayesians"
+        year: 1990.45
+        lod: 4
+        one_line: "Gelfand & Smith bring Gibbs sampling into mainstream Bayesian statistics"
+        sources:
+          - url: "https://api.crossref.org/works/10.1080/01621459.1990.10476213"
+            title: "Gelfand & Smith 1990, JASA [95]"
+      - id: turbo-codes-1993
+        name: "Turbo Codes"
+        year: 1993.4
+        lod: 4
+        one_line: "Berrou et al.'s turbo codes near the Shannon limit via iterative decoding"
+        sources:
+          - url: "https://doi.org/10.1109/ICC.1993.397441"
+            title: "Berrou, Glavieux & Thitimajshima, ICC 1993 [97]"
+      - id: factor-graphs-2001
+        name: "Factor Graphs"
+        year: 2001.1
+        lod: 4
+        one_line: "Kschischang, Frey & Loeliger unify message passing with factor graphs"
+        sources:
+          - url: "https://doi.org/10.1109/18.910572"
+            title: "Kschischang, Frey & Loeliger 2001 [112]"
   probabilistic-robotics-marsh:
     hint: "Particle filters · Urban Challenge"
     tag: "Q-learning → Rhino → Minerva → Boss"
@@ -489,6 +625,62 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/DARPA_Urban_Challenge"
             title: "Wikipedia: DARPA Urban Challenge [79]"
+      - id: pomdp-planning-1998
+        name: "POMDP Planning"
+        year: 1998.4
+        lod: 4
+        one_line: "Kaelbling, Littman & Cassandra make POMDPs AI's model of acting under uncertainty"
+        sources:
+          - url: "https://doi.org/10.1016/S0004-3702%2898%2900023-X"
+            title: "Kaelbling, Littman & Cassandra 1998 [103]"
+      - id: remote-agent-1998
+        name: "Remote Agent"
+        year: 1998.81
+        lod: 3
+        one_line: "NASA's Remote Agent flies on Deep Space 1: onboard planning and diagnosis"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Space_1"
+            title: "Deep Space 1 — Wikipedia [104]"
+      - id: graphplan-1997
+        name: "Graphplan"
+        year: 1997.1
+        lod: 4
+        one_line: "Blum & Furst's planning graphs speed up classical planning"
+        sources:
+          - url: "https://doi.org/10.1016/S0004-3702%2896%2900047-1"
+            title: "Blum & Furst 1997, Artificial Intelligence 90 [105]"
+      - id: aibo-1999
+        name: "Sony AIBO"
+        year: 1999.36
+        lod: 3
+        one_line: "Sony's AIBO robot dog: first mass-market entertainment robot"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AIBO"
+            title: "AIBO — Wikipedia [106]"
+      - id: asimo-2000
+        name: "Honda ASIMO"
+        year: 2000.8
+        lod: 3
+        one_line: "Honda unveils ASIMO, the public face of humanoid robotics"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/ASIMO"
+            title: "ASIMO — Wikipedia [110]"
+      - id: roomba-2002
+        name: "Roomba"
+        year: 2002.7
+        lod: 3
+        one_line: "iRobot's Roomba brings behaviour-based robotics into millions of homes"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Roomba"
+            title: "Roomba — Wikipedia [114]"
+      - id: apprenticeship-irl-2004
+        name: "Apprenticeship IRL"
+        year: 2004.55
+        lod: 4
+        one_line: "Abbeel & Ng learn from demonstration by inverse reinforcement learning"
+        sources:
+          - url: "https://api.crossref.org/works/10.1145/1015330.1015430"
+            title: "Abbeel & Ng, ICML 2004 [118]"
   benchmark-plains:
     hint: "Deep Blue · Netflix · scikit-learn"
     tag: "ICML → AIMA → JMLR → VOC → Kaggle"
@@ -607,3 +799,51 @@ countries:
         sources:
           - url: "https://www.jmlr.org/papers/v12/pedregosa11a.html"
             title: "Pedregosa et al. 2011 [53]"
+      - id: robocup-founded-1996
+        name: "RoboCup Founded"
+        year: 1996.5
+        lod: 3
+        one_line: "RoboCup founded: robot soccer as a grand challenge for multi-agent AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/RoboCup"
+            title: "RoboCup — Wikipedia [100]"
+      - id: uct-mcts-2006
+        name: "UCT / MCTS"
+        year: 2006.7
+        lod: 3
+        one_line: "Kocsis & Szepesvári's UCT and Coulom's MCTS transform computer Go"
+        sources:
+          - url: "https://doi.org/10.1007/11871842_29"
+            title: "Kocsis & Szepesvári, ECML 2006 [116]"
+      - id: funk-svd-2006
+        name: "Funk SVD"
+        year: 2006.94
+        lod: 4
+        one_line: "Simon Funk's blog recipe: SGD matrix factorisation for the Netflix Prize"
+        sources:
+          - url: "https://sifter.org/~simon/journal/20061211.html"
+            title: "Funk, Netflix Update: Try This at Home [117]"
+      - id: caltech-101-2003
+        name: "Caltech 101"
+        year: 2003.7
+        lod: 4
+        one_line: "Fei-Fei Li, Perona and colleagues compile the Caltech 101 image dataset"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Caltech_101"
+            title: "Caltech 101 — Wikipedia [120]"
+      - id: checkers-solved-2007
+        name: "Checkers Solved"
+        year: 2007.55
+        lod: 3
+        one_line: "Schaeffer's Chinook proves perfect checkers play is a draw"
+        sources:
+          - url: "https://api.crossref.org/works/10.1126/science.1144079"
+            title: "Schaeffer et al. 2007, Science [121]"
+      - id: t-sne-2008
+        name: "t-SNE"
+        year: 2008.85
+        lod: 3
+        one_line: "van der Maaten & Hinton's t-SNE becomes the standard embedding visualiser"
+        sources:
+          - url: "https://jmlr.org/papers/v9/vandermaaten08a.html"
+            title: "van der Maaten & Hinton 2008, JMLR [122]"

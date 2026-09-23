@@ -188,6 +188,38 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29"
             title: "Deep Thought (chess computer) — Wikipedia [45]"
+      - id: intellicorp-kee-1980
+        name: "IntelliCorp KEE"
+        year: 1980.5
+        lod: 3
+        one_line: "IntelliCorp founded; its KEE shell becomes a leading expert-system tool"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/IntelliCorp_%28software%29"
+            title: "IntelliCorp (software) — Wikipedia [61]"
+      - id: eurisko-traveller-1981
+        name: "EURISKO Wins Traveller"
+        year: 1981.5
+        lod: 3
+        one_line: "Lenat's EURISKO wins the Traveller TCS championship by exploiting rule loopholes"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Eurisko"
+            title: "Eurisko — Wikipedia [62]"
+      - id: version-spaces-1982
+        name: "Version Spaces"
+        year: 1982.3
+        lod: 4
+        one_line: "Mitchell's 'Generalization as search' casts concept learning as version-space search"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Version_space_learning"
+            title: "Version space learning — Wikipedia [63]"
+      - id: sendai-fuzzy-subway-1987
+        name: "Sendai Fuzzy Subway"
+        year: 1987.54
+        lod: 3
+        one_line: "Sendai's Namboku Line opens as the first railway with fuzzy-logic speed control"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line"
+            title: "Sendai Subway Namboku Line — Wikipedia [71]"
 
   fifth-generation-shogunate:
     hint: "Fifth Generation 1982"
@@ -284,3 +316,51 @@ countries:
             title: "KL-ONE — Wikipedia [52]"
           - url: "https://en.wikipedia.org/wiki/Description_logic"
             title: "Description logic — Wikipedia [52]"
+      - id: common-lisp-cltl1-1984
+        name: "Common Lisp (CLtL1)"
+        year: 1984.5
+        lod: 3
+        one_line: "Common Lisp the Language unifies the Lisp dialects of the expert-system industry"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Common_Lisp"
+            title: "Common Lisp — Wikipedia [64]"
+      - id: symbolics-com-1985
+        name: "symbolics.com"
+        year: 1985.2
+        lod: 3
+        one_line: "A Lisp-machine maker registers symbolics.com, the first .com domain"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Symbolics"
+            title: "Symbolics — Wikipedia [65]"
+      - id: ida-star-1985
+        name: "IDA* Search"
+        year: 1985.5
+        lod: 4
+        one_line: "Korf's iterative deepening gives optimal heuristic search in linear memory"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2885%2990084-0"
+            title: "Korf 1985, Artificial Intelligence 27 [66]"
+      - id: bb1-blackboard-1985
+        name: "BB1 Blackboard Control"
+        year: 1985.6
+        lod: 4
+        one_line: "Hayes-Roth's BB1 lets blackboard systems reason about their own control"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2885%2990063-3"
+            title: "Hayes-Roth 1985, Artificial Intelligence 26 [67]"
+      - id: explanation-based-1986
+        name: "Explanation-Based Learn."
+        year: 1986.3
+        lod: 4
+        one_line: "EBL: generalise from one example using a domain theory, in Machine Learning vol. 1"
+        sources:
+          - url: "https://doi.org/10.1007/BF00116250"
+            title: "Mitchell, Keller & Kedar-Cabelli 1986 [68]"
+      - id: intention-commitment-1990
+        name: "Intention as Commitment"
+        year: 1990.3
+        lod: 4
+        one_line: "Cohen & Levesque's logic of intention grounds BDI agent architectures"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2890%2990055-5"
+            title: "Cohen & Levesque 1990, Artificial Intelligence 42 [73]"

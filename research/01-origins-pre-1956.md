@@ -12,17 +12,42 @@ Before anyone called it "artificial intelligence", two intellectual rivers were 
 | Year | Event | Why it matters | Source |
 |------|-------|----------------|--------|
 | 1666–1679 | Leibniz proposes a *characteristica universalis* and *calculus ratiocinator* — a universal formal language and mechanical rules of reasoning | The founding fantasy of mechanised reasoning; the symbolic pole's mythic origin | [1] |
+| 1673 | Leibniz presents a wooden model of his stepped reckoner to the Royal Society | Mechanical four-function calculation; adjacent-field item (calculating machinery) kept because it is the hardware twin of his *calculus ratiocinator* | [52] |
+| 1804 | Joseph Marie Jacquard patents his punched-card loom | Stored patterns on cards control a machine; adjacent-field item (machinery) kept because Babbage borrows the cards for the Analytical Engine | [53] |
+| 1822 | Babbage announces the Difference Engine (14 June 1822, Royal Astronomical Society) | First design for automatic table computation; the precursor of the Analytical Engine | [54] |
 | 1837–1843 | Babbage designs the Analytical Engine; Lovelace's 1843 notes describe programming it and argue it "has no pretensions to originate anything" | First general-purpose programmable machine design; "Lady Lovelace's objection" is answered by Turing in 1950 | [2], [3], [7] |
 | 1854 | George Boole, *An Investigation of the Laws of Thought* | Algebra of logic: reasoning as symbol manipulation | [4] |
+| 1869–1870 | Jevons has his "logic piano" built (1869) and exhibits it to the Royal Society (1870) | A mechanical computer for Boolean logic — reasoning performed by a machine | [55] |
 | 1879 | Gottlob Frege, *Begriffsschrift* | Modern predicate logic with quantifiers — the notation of symbolic AI | [5] |
+| 1890 | Hollerith's tabulating machine processes the US census | Punched-card data processing at scale; adjacent-field item (data machinery) kept because it fed the punched-card computing industry | [56] |
+| 1900 | Hilbert publishes his 23 problems (Paris) | Sets the agenda that leads to the *Entscheidungsproblem* and the question of mechanical decidability | [57] |
+| 1901 | Russell's paradox | Exposes the inconsistency of naive set theory and Frege's system; motivates *Principia Mathematica* | [58] |
+| 1906 | Andrey Markov publishes his first paper on Markov chains | Stochastic processes with memoryless transitions; adjacent-field item (probability) kept because it fed n-gram language models, HMMs and MDPs | [59] |
 | 1910–1913 | Whitehead & Russell, *Principia Mathematica* | Formal derivation of mathematics from logic; its theorems are what Logic Theorist proves in 1956 | [6] |
+| 1913–1914 | Torres Quevedo's El Ajedrecista plays a king-and-rook endgame automatically (demonstrated 1913, Paris 1914) | First automaton that plays a chess endgame without human operation — an early game-playing machine | [60] |
 | 1920s | Hilbert's programme: finitary proof of consistency/completeness/decidability of mathematics | Sets up the *Entscheidungsproblem* that Church and Turing answer | [8] |
+| 1920 | Karel Čapek's play *R.U.R.* | Introduces "robot"; adjacent-field item (fiction) kept because it fed the public imagination of artificial workers | [61] |
+| 1928–1931 | Hazen & Bush build the differential analyser at MIT | First widely practical general-purpose analogue computer; Shannon works on it before his switching thesis | [63] |
+| 1929 | Gödel proves the completeness theorem for first-order logic | Every valid first-order formula is provable — the guarantee resolution-based theorem provers later rely on | [62] |
 | 1931 | Gödel, "Über formal unentscheidbare Sätze…" | Incompleteness: limits of formal systems; later cited both for and against machine intelligence | [9] |
 | 1936 | Church, "An Unsolvable Problem of Elementary Number Theory" (lambda calculus) | Independent negative answer to the *Entscheidungsproblem*; lambda calculus later underpins Lisp | [10] |
 | 1936–37 | Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem"; Post independently publishes an equivalent worker-and-boxes model in 1936 | Defines the Turing machine and the universal machine — the theoretical computer; the equivalence of Church's, Turing's, Post's and Kleene's formulations becomes the Church–Turing thesis | [11], [44] |
+| 1936–1938 | Konrad Zuse designs (1936–37) and builds (1936–38) the Z1 in Berlin | Motor-driven mechanical binary computer; the start of Zuse's machine line | [66] |
+| 1937–1938 | Shannon's MIT master's thesis "A Symbolic Analysis of Relay and Switching Circuits" (1937; published 1938) | Maps Boolean algebra onto relay circuits — logic becomes buildable hardware | [64], [65] |
+| 1938–1939 | Turing's Princeton PhD thesis "Systems of Logic Based on Ordinals" (published 1939) | Introduces oracle machines and relative computability | [67], [68] |
+| 1939–1940 | Turing designs the British Bombe at Bletchley Park (1939), refined by Welchman (1940) | Electromechanical search over Enigma settings — mechanised hypothesis elimination | [69] |
+| 1941 | Zuse completes the Z3 (designed 1938) | Working programmable electromechanical computer | [70] |
+| 1942 | Atanasoff–Berry computer successfully tested | Electronic digital computation for linear equations; not programmable | [71] |
+| 1942 | Asimov's short story "Runaround" introduces the Three Laws of Robotics | Adjacent-field item (fiction) kept because it fed the long-running machine-ethics / AI-safety framing | [72] |
 | 1943 | McCulloch & Pitts, "A Logical Calculus of the Ideas Immanent in Nervous Activity" | First mathematical neuron; shows neural nets can compute any logical function — birth of the connectionist pole | [12] |
 | 1943 | Rosenblueth, Wiener & Bigelow, "Behavior, Purpose and Teleology" | Feedback as the basis of purposive behaviour; the cybernetics manifesto | [13] |
+| 1943–1944 | Colossus Mark 1 working at Bletchley Park by December 1943; Mark 2 runs 1 June 1944 | Programmable electronic codebreaking machine for the Lorenz cipher | [73] |
+| 1944 | Harvard Mark I in operation; von Neumann starts one of its first programs on 29 March 1944 | Large-scale automatic electromechanical calculator | [74] |
+| 1944 | von Neumann & Morgenstern, *Theory of Games and Economic Behavior* | Founds game theory; adjacent-field item kept because it fed minimax game search and multi-agent AI | [75] |
 | 1945 | von Neumann, *First Draft of a Report on the EDVAC* | Stored-program architecture; makes general-purpose programmable computers real — first realised in the Manchester Baby (21 June 1948), prototype of the Ferranti Mark 1 | [14], [50] |
+| 1945 | Vannevar Bush, "As We May Think" | Imagines the memex associative-information machine; ancestor of hypertext and augmentation research | [76] |
+| 1945–1946 | ENIAC completed (1945) and dedicated at Penn (15 Feb 1946), called a "Giant Brain" by the press | First programmable electronic general-purpose digital computer; public "electronic brain" framing | [77] |
+| 1945 | Turing completes the Automatic Computing Engine design at NPL (late 1945) | Detailed stored-program design; Turing's route from theory to hardware | [78] |
 | 1946–1953 | Macy Conferences on Cybernetics (New York) | Interdisciplinary forum where Wiener, McCulloch, Pitts, von Neumann, Shannon, Bateson, Mead etc. shaped cybernetics | [15] |
 | 1947 | Pitts & McCulloch, "How We Know Universals: The Perception of Auditory and Visual Forms" | First neural-net account of invariant pattern recognition (recognising a shape despite size/orientation) — the problem the perceptron and Pandemonium inherit | [33] |
 | 1948 | Wiener, *Cybernetics: Or Control and Communication in the Animal and the Machine* | Names the field; feedback, control, information — the frame McCarthy will deliberately avoid in 1955 | [16] |
@@ -34,19 +59,35 @@ Before anyone called it "artificial intelligence", two intellectual rivers were 
 | 1949 | Hebb, *The Organization of Behavior* | Hebbian learning rule ("cells that fire together wire together") | [20] |
 | 1949 | Warren Weaver's "Translation" memorandum (July 1949, Rockefeller Foundation) | Proposes computer translation via cryptanalysis, McCulloch–Pitts-style logic and language universals; launches funded MT research in the US | [35] |
 | 1949 | Ross Ashby builds the Homeostat; Ratio Club founded in Britain (members include Turing, Ashby, Walter and Albert Uttley; Kenneth Craik's *The Nature of Explanation*, 1943, is its acknowledged precursor) | Ultrastability/adaptation in hardware; the UK cybernetics circle — Uttley's conditional-probability nets and Craik's mental-model theory are both cited in the 1955 Dartmouth proposal | [21], [22], [48], [49] |
+| 1949 | EDSAC runs its first programs at Cambridge (6 May 1949) | Practical stored-program service machine; later runs Oettinger's learning programs | [79] |
 | 1950 | Turing, "Computing Machinery and Intelligence", *Mind* | The imitation game (Turing test); rebuts nine objections including Lovelace's | [7] |
 | 1950 | Shannon, "Programming a Computer for Playing Chess" | Minimax search with evaluation function — the template for game-playing AI | [23] |
 | 1950 | Shannon builds "Theseus", a relay-driven maze-solving mechanical mouse | First electromechanical device to learn by trial and error (it remembers the maze and takes the direct path on re-entry) | [36] |
 | 1950–1955 | Soviet press denounces cybernetics as a "reactionary pseudoscience" (1950–54); rehabilitation begins with articles in *Voprosy Filosofii* in 1955 | First state-level controversy over the field; delays Soviet cybernetics/AI until the Khrushchev thaw | [42] |
+| 1950 | Lebedev's MESM becomes operational in Kiev | First Soviet stored-program computer | [80] |
+| 1950 | Josef Kates's Bertie the Brain plays tic-tac-toe at the Canadian National Exhibition (Toronto) | Early public game-playing computer | [81] |
 | 1951 | CNRS colloque *Les machines à calculer et la pensée humaine*, Paris (8–13 Jan 1951), organised by Louis Couffignal, with Wiener, Ashby and McCulloch attending | First international conference on calculating machines and thought; continental Europe's entry point to cybernetics | [37] |
 | 1951 | Kleene's RAND memorandum on "regular events" in McCulloch–Pitts nerve nets (published 1956 as "Representation of Events in Nerve Nets and Finite Automata" in *Automata Studies*) | Regular expressions and finite automata born from analysing neural nets; adjacent-field item (theory of computation) kept because it fed the formal-language/grammar lineage (Chomsky hierarchy, era 02) | [38] |
 | 1951 | Minsky & Edmonds build SNARC at Princeton | First neural-network learning machine (40 Hebb-style synapses, reinforcement) | [24] |
 | 1951 | Strachey's draughts and Prinz's chess run on the Ferranti Mark 1 (Manchester); Strachey's love-letter generator follows on the same machine in 1952 | First game-playing programs on a stored-program computer; the love-letter generator is the first computer-generated text | [25], [46] |
 | 1951–1952 | Anthony Oettinger's "response learning" and "Shopper" programs on Cambridge's EDSAC ("Programming a Digital Computer to Learn", *Phil. Mag.* 1952) | First programs written explicitly to learn (rote memory of which shop stocks what); written under Turing's influence — the earliest UK machine-learning software | [39] |
+| 1951 | Ferranti Mark 1 delivered to Manchester (February 1951) | First commercially available general-purpose computer; host of Strachey's and Prinz's programs | [25] |
+| 1951 | UNIVAC I accepted by the US Census Bureau (31 March 1951) | Early commercial computer; later hosts Hopper's A-0 | [82] |
+| 1951 | LEO I runs its first business application | First computer used for routine office work | [83] |
+| 1951 | Ferranti's Nimrod plays Nim at the Festival of Britain | Game-playing machine built as a public demonstration | [84] |
+| 1951 | Whirlwind I operational at MIT | Real-time digital computing; ancestor of interactive computing and SAGE | [85] |
+| 1951 | Fix & Hodges introduce nearest-neighbour classification | Non-parametric pattern classification; later analysed by Cover & Hart (1967) | [86] |
+| 1951–1952 | Grace Hopper's A-0 system for the UNIVAC I | Early compiler-related tool; programming by symbolic subroutine calls | [87] |
+| 1951–1952 | IAS machine at Princeton: limited operation 1951, fully operational 10 June 1952 | Built under von Neumann's direction; realises his stored-program design | [92] |
 | 1952 | Ashby, *Design for a Brain* | Adaptive behaviour as a dynamical-systems property | [26] |
 | 1952–1955 | Arthur Samuel writes a checkers program at IBM that learns, on the IBM 701 (IBM's first commercial scientific computer, announced May 1952; publicly demonstrated 1956; paper 1959) | Coins "machine learning"; rote learning and self-play | [27], [43] |
+| 1952 | Hodgkin & Huxley model the action potential in the squid giant axon | Quantitative neuron model; adjacent-field item (neuroscience) kept because it fed spiking and biophysical neuron models | [88], [89] |
+| 1952 | Turing, "The Chemical Basis of Morphogenesis" | Reaction–diffusion pattern formation; adjacent-field item kept because it fed artificial life and self-organisation | [90], [91] |
+| 1952 | BESM-1 completed in Moscow | Fastest computer in Europe at completion | [93] |
 | 1954 | Georgetown–IBM experiment (7 Jan 1954), following the first MT conference (MIT, June 1952, organised by Yehoshua Bar-Hillel, the first full-time MT researcher) | Public demo of Russian→English machine translation; triggers a decade of MT funding, later reversed by ALPAC | [28], [40] |
+| 1954 | George Devol files his Unimate patent (10 December 1954) | Programmable industrial arm; installed on a GM line in 1961 | [94] |
 | 1955 | McCarthy, Minsky, Rochester & Shannon submit the Dartmouth proposal (31 Aug 1955) | Coins the term "artificial intelligence"; the eastern border of this region | [29] |
+| 1956 | Newell, Shaw & Simon's Information Processing Language (IPL), about 1956 | Introduces symbol processing and list processing — the programming substrate of early symbolic AI | [95] |
 
 ## Key people
 - **Gottfried Wilhelm Leibniz** (Hanover / Paris, 17th c.) — *calculus ratiocinator*: reasoning reduced to calculation; built a stepped-reckoner calculator. [1]
@@ -112,46 +153,87 @@ Before anyone called it "artificial intelligence", two intellectual rivers were 
 
 `AXES.md` §1 (decided): the mainland west coast is 1943 (McCulloch–Pitts); everything earlier is an offshore archipelago on a log-compressed scale. This file therefore yields **two** continents. Every timeline row, school bullet and key person of this file is assigned exactly once below. Rule: an item goes to *shore* if its date is ≥ 1943; a person goes with the item that carries their AI significance (Turing: 1950, not 1936). Cross-checked against the overview histories [31], [32].
 
-**Timeline rows (36)**
+**Timeline rows (77)**
 
 | # | Timeline row | Continent | Note |
 |---|---|---|---|
 | 1 | 1666–1679 Leibniz, *characteristica universalis* | archipelago (pre-1943, offshore) | outermost isle |
-| 2 | 1837–1843 Babbage / Lovelace | archipelago (pre-1943, offshore) |  |
-| 3 | 1854 Boole, *Laws of Thought* | archipelago (pre-1943, offshore) |  |
-| 4 | 1879 Frege, *Begriffsschrift* | archipelago (pre-1943, offshore) |  |
-| 5 | 1910–1913 *Principia Mathematica* | archipelago (pre-1943, offshore) | bridge to Logic Theorist (era 02) starts here |
-| 6 | 1920s Hilbert's programme | archipelago (pre-1943, offshore) |  |
-| 7 | 1931 Gödel, incompleteness | archipelago (pre-1943, offshore) |  |
-| 8 | 1936 Church, lambda calculus | archipelago (pre-1943, offshore) |  |
-| 9 | 1936–37 Turing, *On Computable Numbers* (with Post 1936) | archipelago (pre-1943, offshore) | largest, nearest isle; the shore is in sight |
-| 10 | 1943 McCulloch & Pitts | shore (1943–1955) | **the west coast itself** (`AXES.md` §1) |
-| 11 | 1943 Rosenblueth, Wiener & Bigelow | shore (1943–1955) |  |
-| 12 | 1945 von Neumann, EDVAC report (→ Manchester Baby 1948) | shore (1943–1955) |  |
-| 13 | 1946–1953 Macy Conferences | shore (1943–1955) |  |
-| 14 | 1947 Pitts & McCulloch, *How We Know Universals* | shore (1943–1955) |  |
-| 15 | 1948 Wiener, *Cybernetics* | shore (1943–1955) |  |
-| 16 | 1948 Shannon, information theory | shore (1943–1955) |  |
-| 17 | 1948 Turing, *Intelligent Machinery* | shore (1943–1955) |  |
-| 18 | 1948 von Neumann, Hixon lecture on automata | shore (1943–1955) | adjacent-field item (§2.9): fed cellular automata / artificial life |
-| 19 | 1948 Turing & Champernowne, Turochamp (Zuse's Plankalkül chess) | shore (1943–1955) |  |
-| 20 | 1948–1949 Grey Walter's tortoises | shore (1943–1955) |  |
-| 21 | 1949 Hebb, *Organization of Behavior* | shore (1943–1955) |  |
-| 22 | 1949 Weaver, "Translation" memorandum | shore (1943–1955) |  |
-| 23 | 1949 Ashby's Homeostat; Ratio Club (Uttley, Craik precursor) | shore (1943–1955) |  |
-| 24 | 1950 Turing, *Computing Machinery and Intelligence* | shore (1943–1955) |  |
-| 25 | 1950 Shannon, chess programming | shore (1943–1955) |  |
-| 26 | 1950 Shannon, Theseus maze mouse | shore (1943–1955) |  |
-| 27 | 1950–1955 Soviet denunciation / rehabilitation of cybernetics | shore (1943–1955) | controversy; non-US strand |
-| 28 | 1951 CNRS colloque, Paris (Couffignal) | shore (1943–1955) | non-US (France) strand |
-| 29 | 1951 Kleene, regular events in nerve nets | shore (1943–1955) | adjacent-field item (§2.9): fed formal-language theory |
-| 30 | 1951 Minsky & Edmonds, SNARC | shore (1943–1955) |  |
-| 31 | 1951 Strachey / Prinz on the Ferranti Mark 1 (love letters 1952) | shore (1943–1955) |  |
-| 32 | 1951–1952 Oettinger's EDSAC learning programs | shore (1943–1955) |  |
-| 33 | 1952 Ashby, *Design for a Brain* | shore (1943–1955) |  |
-| 34 | 1952–1955 Samuel's checkers (IBM 701) | shore (1943–1955) |  |
-| 35 | 1954 Georgetown–IBM experiment (MIT MT conference 1952) | shore (1943–1955) |  |
-| 36 | 1955 Dartmouth proposal | shore (1943–1955) | eastern border; the 1956 workshop itself belongs to era 02 |
+| 2 | 1673 Leibniz presents a wooden model of his stepped reckoner to the Royal… | archipelago (pre-1943, offshore) | adjacent field (see why-it-matters) |
+| 3 | 1804 Joseph Marie Jacquard patents his punched-card loom | archipelago (pre-1943, offshore) | adjacent field (see why-it-matters) |
+| 4 | 1822 Babbage announces the Difference Engine | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 5 | 1837–1843 Babbage / Lovelace | archipelago (pre-1943, offshore) |  |
+| 6 | 1854 Boole, *Laws of Thought* | archipelago (pre-1943, offshore) |  |
+| 7 | 1869–1870 Jevons has his "logic piano" built and exhibits it to the Royal Society | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 8 | 1879 Frege, *Begriffsschrift* | archipelago (pre-1943, offshore) |  |
+| 9 | 1890 Hollerith's tabulating machine processes the US census | archipelago (pre-1943, offshore) | adjacent field (see why-it-matters) |
+| 10 | 1900 Hilbert publishes his 23 problems | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 11 | 1901 Russell's paradox | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 12 | 1906 Andrey Markov publishes his first paper on Markov chains | archipelago (pre-1943, offshore) | adjacent field (see why-it-matters) |
+| 13 | 1910–1913 *Principia Mathematica* | archipelago (pre-1943, offshore) | bridge to Logic Theorist (era 02) starts here |
+| 14 | 1913–1914 Torres Quevedo's El Ajedrecista plays a king-and-rook endgame… | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 15 | 1920s Hilbert's programme | archipelago (pre-1943, offshore) |  |
+| 16 | 1920 Karel Čapek's play R.U.R. | archipelago (pre-1943, offshore) | adjacent field (see why-it-matters) |
+| 17 | 1928–1931 Hazen & Bush build the differential analyser at MIT | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 18 | 1929 Gödel proves the completeness theorem for first-order logic | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 19 | 1931 Gödel, incompleteness | archipelago (pre-1943, offshore) |  |
+| 20 | 1936 Church, lambda calculus | archipelago (pre-1943, offshore) |  |
+| 21 | 1936–37 Turing, *On Computable Numbers* (with Post 1936) | archipelago (pre-1943, offshore) | largest, nearest isle; the shore is in sight |
+| 22 | 1936–1938 Konrad Zuse designs and builds the Z1 in Berlin | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 23 | 1937–1938 Shannon's MIT master's thesis "A Symbolic Analysis of Relay and… | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 24 | 1938–1939 Turing's Princeton PhD thesis "Systems of Logic Based on Ordinals" | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 25 | 1939–1940 Turing designs the British Bombe at Bletchley Park, refined by Welchman | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 26 | 1941 Zuse completes the Z3 | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 27 | 1942 Atanasoff–Berry computer successfully tested | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 28 | 1942 Asimov's short story "Runaround" introduces the Three Laws of Robotics | archipelago (pre-1943, offshore) | added 2026-09-23 |
+| 29 | 1943 McCulloch & Pitts | shore (1943–1955) | **the west coast itself** (`AXES.md` §1) |
+| 30 | 1943 Rosenblueth, Wiener & Bigelow | shore (1943–1955) |  |
+| 31 | 1943–1944 Colossus Mark 1 working at Bletchley Park by December 1943; Mark 2… | shore (1943–1955) | added 2026-09-23 |
+| 32 | 1944 Harvard Mark I in operation; von Neumann starts one of its first… | shore (1943–1955) | added 2026-09-23 |
+| 33 | 1944 von Neumann & Morgenstern, Theory of Games and Economic Behavior | shore (1943–1955) | adjacent field (see why-it-matters) |
+| 34 | 1945 von Neumann, EDVAC report (→ Manchester Baby 1948) | shore (1943–1955) |  |
+| 35 | 1945 Vannevar Bush, "As We May Think" | shore (1943–1955) | added 2026-09-23 |
+| 36 | 1945–1946 ENIAC completed and dedicated at Penn, called a "Giant Brain" by the… | shore (1943–1955) | added 2026-09-23 |
+| 37 | 1945 Turing completes the Automatic Computing Engine design at NPL | shore (1943–1955) | added 2026-09-23 |
+| 38 | 1946–1953 Macy Conferences | shore (1943–1955) |  |
+| 39 | 1947 Pitts & McCulloch, *How We Know Universals* | shore (1943–1955) |  |
+| 40 | 1948 Wiener, *Cybernetics* | shore (1943–1955) |  |
+| 41 | 1948 Shannon, information theory | shore (1943–1955) |  |
+| 42 | 1948 Turing, *Intelligent Machinery* | shore (1943–1955) |  |
+| 43 | 1948 von Neumann, Hixon lecture on automata | shore (1943–1955) | adjacent-field item (§2.9): fed cellular automata / artificial life |
+| 44 | 1948 Turing & Champernowne, Turochamp (Zuse's Plankalkül chess) | shore (1943–1955) |  |
+| 45 | 1948–1949 Grey Walter's tortoises | shore (1943–1955) |  |
+| 46 | 1949 Hebb, *Organization of Behavior* | shore (1943–1955) |  |
+| 47 | 1949 Weaver, "Translation" memorandum | shore (1943–1955) |  |
+| 48 | 1949 Ashby's Homeostat; Ratio Club (Uttley, Craik precursor) | shore (1943–1955) |  |
+| 49 | 1949 EDSAC runs its first programs at Cambridge | shore (1943–1955) | added 2026-09-23 |
+| 50 | 1950 Turing, *Computing Machinery and Intelligence* | shore (1943–1955) |  |
+| 51 | 1950 Shannon, chess programming | shore (1943–1955) |  |
+| 52 | 1950 Shannon, Theseus maze mouse | shore (1943–1955) |  |
+| 53 | 1950–1955 Soviet denunciation / rehabilitation of cybernetics | shore (1943–1955) | controversy; non-US strand |
+| 54 | 1950 Lebedev's MESM becomes operational in Kiev | shore (1943–1955) | added 2026-09-23 |
+| 55 | 1950 Josef Kates's Bertie the Brain plays tic-tac-toe at the Canadian… | shore (1943–1955) | added 2026-09-23 |
+| 56 | 1951 CNRS colloque, Paris (Couffignal) | shore (1943–1955) | non-US (France) strand |
+| 57 | 1951 Kleene, regular events in nerve nets | shore (1943–1955) | adjacent-field item (§2.9): fed formal-language theory |
+| 58 | 1951 Minsky & Edmonds, SNARC | shore (1943–1955) |  |
+| 59 | 1951 Strachey / Prinz on the Ferranti Mark 1 (love letters 1952) | shore (1943–1955) |  |
+| 60 | 1951–1952 Oettinger's EDSAC learning programs | shore (1943–1955) |  |
+| 61 | 1951 Ferranti Mark 1 delivered to Manchester | shore (1943–1955) | added 2026-09-23 |
+| 62 | 1951 UNIVAC I accepted by the US Census Bureau | shore (1943–1955) | added 2026-09-23 |
+| 63 | 1951 LEO I runs its first business application | shore (1943–1955) | added 2026-09-23 |
+| 64 | 1951 Ferranti's Nimrod plays Nim at the Festival of Britain | shore (1943–1955) | added 2026-09-23 |
+| 65 | 1951 Whirlwind I operational at MIT | shore (1943–1955) | added 2026-09-23 |
+| 66 | 1951 Fix & Hodges introduce nearest-neighbour classification | shore (1943–1955) | added 2026-09-23 |
+| 67 | 1951–1952 Grace Hopper's A-0 system for the UNIVAC I | shore (1943–1955) | added 2026-09-23 |
+| 68 | 1951–1952 IAS machine at Princeton: limited operation 1951, fully operational… | shore (1943–1955) | added 2026-09-23 |
+| 69 | 1952 Ashby, *Design for a Brain* | shore (1943–1955) |  |
+| 70 | 1952–1955 Samuel's checkers (IBM 701) | shore (1943–1955) |  |
+| 71 | 1952 Hodgkin & Huxley model the action potential in the squid giant axon | shore (1943–1955) | adjacent field (see why-it-matters) |
+| 72 | 1952 Turing, "The Chemical Basis of Morphogenesis" | shore (1943–1955) | adjacent field (see why-it-matters) |
+| 73 | 1952 BESM-1 completed in Moscow | shore (1943–1955) | added 2026-09-23 |
+| 74 | 1954 Georgetown–IBM experiment (MIT MT conference 1952) | shore (1943–1955) |  |
+| 75 | 1954 George Devol files his Unimate patent | shore (1943–1955) | added 2026-09-23 |
+| 76 | 1955 Dartmouth proposal | shore (1943–1955) | eastern border; the 1956 workshop itself belongs to era 02 |
+| 77 | 1956 Newell, Shaw & Simon's Information Processing Language, about 1956 | shore (1943–1955) | added 2026-09-23 |
 
 **School bullets (7)**
 
@@ -245,3 +327,47 @@ Consequences for `REGISTRY.md`: the archipelago continent has `offshore: true`, 
 [49] Albert Uttley — Wikipedia (conditional-probability nets; named the Ratio Club) — https://en.wikipedia.org/wiki/Albert_Uttley (accessed 2026-09-06)
 [50] Manchester Baby — Wikipedia (first stored-program computer, 21 June 1948) — https://en.wikipedia.org/wiki/Manchester_Baby (accessed 2026-09-06)
 [51] Walter Pitts — Wikipedia (MIT / RLE group with McCulloch, Lettvin, Wiener) — https://en.wikipedia.org/wiki/Walter_Pitts (accessed 2026-09-06)
+[52] Stepped reckoner — Wikipedia (Leibniz presents a wooden model to the Royal Society, 1673) — https://en.wikipedia.org/wiki/Stepped_reckoner (accessed 2026-09-23)
+[53] Jacquard machine — Wikipedia (patented 1804) — https://en.wikipedia.org/wiki/Jacquard_machine (accessed 2026-09-23)
+[54] Difference engine — Wikipedia (Babbage announces it 14 June 1822) — https://en.wikipedia.org/wiki/Difference_engine (accessed 2026-09-23)
+[55] William Stanley Jevons — Wikipedia (logic piano built 1869, exhibited to the Royal Society 1870) — https://en.wikipedia.org/wiki/William_Stanley_Jevons (accessed 2026-09-23)
+[56] Tabulating machine — Wikipedia (Hollerith, 1890 US census) — https://en.wikipedia.org/wiki/Tabulating_machine (accessed 2026-09-23)
+[57] Hilbert's problems — Wikipedia (23 problems published 1900) — https://en.wikipedia.org/wiki/Hilbert%27s_problems (accessed 2026-09-23)
+[58] Russell's paradox — Wikipedia (published 1901) — https://en.wikipedia.org/wiki/Russell%27s_paradox (accessed 2026-09-23)
+[59] Markov chain — Wikipedia (Markov's first paper, 1906) — https://en.wikipedia.org/wiki/Markov_chain (accessed 2026-09-23)
+[60] El Ajedrecista — Wikipedia (first demonstrated 1913, Paris 1914) — https://en.wikipedia.org/wiki/El_Ajedrecista (accessed 2026-09-23)
+[61] R.U.R. — Wikipedia (Čapek's 1920 play) — https://en.wikipedia.org/wiki/R.U.R. (accessed 2026-09-23)
+[62] Gödel's completeness theorem — Wikipedia (first proved 1929) — https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem (accessed 2026-09-23)
+[63] Differential analyser — Wikipedia (Hazen & Bush, MIT, 1928–1931) — https://en.wikipedia.org/wiki/Differential_analyser (accessed 2026-09-23)
+[64] A Symbolic Analysis of Relay and Switching Circuits — Wikipedia (MIT thesis 1937, published 1938) — https://en.wikipedia.org/wiki/A_Symbolic_Analysis_of_Relay_and_Switching_Circuits (accessed 2026-09-23)
+[65] Shannon, "A Symbolic Analysis of Relay and Switching Circuits", Trans. AIEE 57 (1938), doi:10.1109/T-AIEE.1938.5057767 — https://doi.org/10.1109/T-AIEE.1938.5057767 (accessed 2026-09-23)
+[66] Z1 (computer) — Wikipedia (Zuse, built 1936–1938) — https://en.wikipedia.org/wiki/Z1_%28computer%29 (accessed 2026-09-23)
+[67] Systems of Logic Based on Ordinals — Wikipedia (Turing's Princeton PhD thesis, 1938; published 1939) — https://en.wikipedia.org/wiki/Systems_of_Logic_Based_on_Ordinals (accessed 2026-09-23)
+[68] Crossref record — Turing, "Systems of Logic Based on Ordinals", Proc. London Math. Soc. s2-45 (1939), doi:10.1112/plms/s2-45.1.161 — https://api.crossref.org/works/10.1112/plms/s2-45.1.161 (accessed 2026-09-23)
+[69] Bombe — Wikipedia (Turing's design 1939, Welchman refinement 1940) — https://en.wikipedia.org/wiki/Bombe (accessed 2026-09-23)
+[70] Z3 (computer) — Wikipedia (designed 1938, completed 1941) — https://en.wikipedia.org/wiki/Z3_%28computer%29 (accessed 2026-09-23)
+[71] Atanasoff–Berry computer — Wikipedia (successfully tested 1942) — https://en.wikipedia.org/wiki/Atanasoff%E2%80%93Berry_computer (accessed 2026-09-23)
+[72] Three Laws of Robotics — Wikipedia (introduced in "Runaround", 1942) — https://en.wikipedia.org/wiki/Three_Laws_of_Robotics (accessed 2026-09-23)
+[73] Colossus computer — Wikipedia (Mark 1 working by December 1943; Mark 2 on 1 June 1944) — https://en.wikipedia.org/wiki/Colossus_computer (accessed 2026-09-23)
+[74] Harvard Mark I — Wikipedia (von Neumann program run 29 March 1944) — https://en.wikipedia.org/wiki/Harvard_Mark_I (accessed 2026-09-23)
+[75] Theory of Games and Economic Behavior — Wikipedia (von Neumann & Morgenstern, 1944) — https://en.wikipedia.org/wiki/Theory_of_Games_and_Economic_Behavior (accessed 2026-09-23)
+[76] As We May Think — Wikipedia (Vannevar Bush, 1945) — https://en.wikipedia.org/wiki/As_We_May_Think (accessed 2026-09-23)
+[77] ENIAC — Wikipedia (completed 1945, dedicated 15 February 1946) — https://en.wikipedia.org/wiki/ENIAC (accessed 2026-09-23)
+[78] Automatic Computing Engine — Wikipedia (Turing's design completed late 1945) — https://en.wikipedia.org/wiki/Automatic_Computing_Engine (accessed 2026-09-23)
+[79] EDSAC — Wikipedia (first programs 6 May 1949) — https://en.wikipedia.org/wiki/EDSAC (accessed 2026-09-23)
+[80] MESM — Wikipedia (operational 1950) — https://en.wikipedia.org/wiki/MESM (accessed 2026-09-23)
+[81] Bertie the Brain — Wikipedia (Josef Kates, 1950 Canadian National Exhibition) — https://en.wikipedia.org/wiki/Bertie_the_Brain (accessed 2026-09-23)
+[82] UNIVAC I — Wikipedia (accepted by the Census Bureau 31 March 1951) — https://en.wikipedia.org/wiki/UNIVAC_I (accessed 2026-09-23)
+[83] LEO (computer) — Wikipedia (first business application 1951) — https://en.wikipedia.org/wiki/LEO_%28computer%29 (accessed 2026-09-23)
+[84] Nimrod (computer) — Wikipedia (Ferranti, 1951 Festival of Britain) — https://en.wikipedia.org/wiki/Nimrod_%28computer%29 (accessed 2026-09-23)
+[85] Whirlwind I — Wikipedia (operational 1951, real-time) — https://en.wikipedia.org/wiki/Whirlwind_I (accessed 2026-09-23)
+[86] k-nearest neighbors algorithm — Wikipedia (Fix & Hodges, 1951; expanded by Cover) — https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm (accessed 2026-09-23)
+[87] A-0 System — Wikipedia (Hopper, 1951–1952) — https://en.wikipedia.org/wiki/A-0_System (accessed 2026-09-23)
+[88] Hodgkin–Huxley model — Wikipedia (described 1952) — https://en.wikipedia.org/wiki/Hodgkin%E2%80%93Huxley_model (accessed 2026-09-23)
+[89] Crossref record — Hodgkin & Huxley, "A quantitative description of membrane current…", J. Physiol. (1952), doi:10.1113/jphysiol.1952.sp004764 (DOI 403 to bots) — https://api.crossref.org/works/10.1113/jphysiol.1952.sp004764 (accessed 2026-09-23)
+[90] The Chemical Basis of Morphogenesis — Wikipedia (Turing, 1952) — https://en.wikipedia.org/wiki/The_Chemical_Basis_of_Morphogenesis (accessed 2026-09-23)
+[91] Crossref record — Turing, "The chemical basis of morphogenesis", Phil. Trans. R. Soc. B (1952), doi:10.1098/rstb.1952.0012 (DOI 403 to bots) — https://api.crossref.org/works/10.1098/rstb.1952.0012 (accessed 2026-09-23)
+[92] IAS machine — Wikipedia (limited operation 1951, fully operational 10 June 1952) — https://en.wikipedia.org/wiki/IAS_machine (accessed 2026-09-23)
+[93] BESM — Wikipedia (BESM-1 completed 1952) — https://en.wikipedia.org/wiki/BESM (accessed 2026-09-23)
+[94] Unimate — Wikipedia (Devol patent filed 10 December 1954; GM line 1961) — https://en.wikipedia.org/wiki/Unimate (accessed 2026-09-23)
+[95] Information Processing Language — Wikipedia (Newell, Shaw & Simon, about 1956) — https://en.wikipedia.org/wiki/Information_Processing_Language (accessed 2026-09-23)

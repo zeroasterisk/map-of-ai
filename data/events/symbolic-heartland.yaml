@@ -103,6 +103,9 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29"
             title: "Wikipedia: John McCarthy [14]"
+      - {id: zadeh-fuzzy-sets-1965, name: "Fuzzy Sets", year: 1965.5, lod: 3, one_line: "Zadeh introduces graded set membership, root of fuzzy logic", sources: [{url: "https://en.wikipedia.org/wiki/Fuzzy_set", title: "Wikipedia: Fuzzy set [70]"}, {url: "https://doi.org/10.1016/S0019-9958%2865%2990241-X", title: "Zadeh, 'Fuzzy sets', Information and Control 8 (1965), doi:10.1016/S0019-9958(65)90241-X [71]"}]}
+      - {id: vc-theory-1971, name: "VC Theory", year: 1971.0, lod: 3, one_line: "Vapnik and Chervonenkis prove uniform convergence: capacity-based learning theory", sources: [{url: "https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_dimension", title: "Wikipedia: Vapnik–Chervonenkis dimension [82]"}, {url: "https://api.crossref.org/works/10.1137/1116025", title: "Crossref record [83]"}]}
+      - {id: actor-model-1973, name: "Actor Model", year: 1973.0, lod: 4, one_line: "Hewitt, Bishop and Steiger model concurrent computation with actors", sources: [{url: "https://en.wikipedia.org/wiki/Actor_model", title: "Wikipedia: Actor model [86]"}]}
 
   heuristic-search-highlands:
     hint: "Logic Theorist · GPS 1959"
@@ -220,6 +223,7 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Kaissa"
             title: "Wikipedia: Kaissa [47]"
+      - {id: menace-1961, name: "MENACE", year: 1961.5, lod: 3, one_line: "Michie's 304-matchbox noughts-and-crosses learner refines play by reinforcement", sources: [{url: "https://en.wikipedia.org/wiki/Matchbox_Educable_Noughts_and_Crosses_Engine", title: "Wikipedia: Matchbox Educable Noughts and Crosses Engine [66]"}]}
 
   microworlds-language-basin:
     hint: "ELIZA 1966 · SHRDLU 1970"
@@ -345,6 +349,10 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/What_Computers_Can%27t_Do"
             title: "Wikipedia: What Computers Can't Do [32]"
+      - {id: syntactic-structures-1957, name: "Syntactic Structures", year: 1957.0, lod: 3, one_line: "Chomsky's generative grammar frames language as rule-governed symbol manipulation", sources: [{url: "https://en.wikipedia.org/wiki/Syntactic_Structures", title: "Wikipedia: Syntactic Structures [58]"}]}
+      - {id: hal-9000-1968, name: "HAL 9000", year: 1968.3, lod: 4, one_line: "Kubrick's 2001 gives the public its image of general machine intelligence", sources: [{url: "https://en.wikipedia.org/wiki/HAL_9000", title: "Wikipedia: HAL 9000 [77]"}]}
+      - {id: woods-atn-1970, name: "Transition Net Grammars", year: 1970.5, lod: 3, one_line: "Woods's recursive network grammars for natural-language question answering", sources: [{url: "https://en.wikipedia.org/wiki/Augmented_transition_network", title: "Wikipedia: Augmented transition network [80]"}, {url: "https://api.crossref.org/works/10.1145/355598.362773", title: "Crossref record [81]"}]}
+      - {id: parry-1972, name: "PARRY", year: 1972.0, lod: 3, one_line: "Colby's chatbot simulates a person with paranoid schizophrenia", sources: [{url: "https://en.wikipedia.org/wiki/PARRY", title: "Wikipedia: PARRY [85]"}]}
 
   early-perceptron-strip:
     hint: "Perceptron 1957 · ADALINE"
@@ -422,6 +430,12 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Frank_Rosenblatt"
             title: "Wikipedia: Frank Rosenblatt [53]"
+      - {id: frogs-eye-1959, name: "Frog's Eye", year: 1959.0, lod: 4, one_line: "Lettvin et al. find retinal cells acting as feature detectors", sources: [{url: "https://en.wikipedia.org/wiki/Jerome_Lettvin", title: "Wikipedia: Jerome Lettvin [59]"}, {url: "https://doi.org/10.1109/JRPROC.1959.287207", title: "Lettvin, Maturana, McCulloch & Pitts, 'What the Frog's Eye Tells the Frog's Brain', Proc. IRE 47 (1959), doi:10.1109/JRPROC.1959.287207 [60]"}]}
+      - {id: hubel-wiesel-1959, name: "Hubel & Wiesel", year: 1959.8, lod: 3, one_line: "Cat visual-cortex receptive fields; hierarchical cells later inspire CNNs", sources: [{url: "https://en.wikipedia.org/wiki/David_H._Hubel", title: "Wikipedia: David H. Hubel [61]"}, {url: "https://api.crossref.org/works/10.1113/jphysiol.1959.sp006308", title: "Crossref record [62]"}]}
+      - {id: bledsoe-n-tuple-1959, name: "N-tuple Method", year: 1959.5, lod: 4, one_line: "Bledsoe's early method for learning a pattern-recognition program", sources: [{url: "https://en.wikipedia.org/wiki/Woody_Bledsoe", title: "Wikipedia: Woody Bledsoe [63]"}]}
+      - {id: neurodynamics-1962, name: "Neurodynamics", year: 1962.0, lod: 4, one_line: "Rosenblatt's book-length statement of the perceptron programme", sources: [{url: "https://en.wikipedia.org/wiki/Frank_Rosenblatt", title: "Wikipedia: Frank Rosenblatt [53]"}]}
+      - {id: cover-hart-1967, name: "Cover & Hart", year: 1967.0, lod: 4, one_line: "Error bound for nearest-neighbour classification: early learning theory", sources: [{url: "https://doi.org/10.1109/TIT.1967.1053964", title: "Cover & Hart, 'Nearest neighbor pattern classification', IEEE Trans. Inf. Theory 13 (1967), doi:10.1109/TIT.1967.1053964 [74]"}]}
+      - {id: amari-sgd-1967, name: "Amari SGD Network", year: 1967.5, lod: 3, one_line: "Amari trains a multilayer adaptive classifier by stochastic gradient descent", sources: [{url: "https://en.wikipedia.org/wiki/Shun%27ichi_Amari", title: "Wikipedia: Shun'ichi Amari [75]"}, {url: "https://doi.org/10.1109/PGEC.1967.264666", title: "Amari, 'A Theory of Adaptive Pattern Classifiers', IEEE Trans. Electronic Computers (1967), doi:10.1109/PGEC.1967.264666 [76]"}]}
 
   robotics-planning-peninsula:
     hint: "Shakey 1966 · STRIPS 1971"
@@ -576,3 +590,13 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/AI_winter"
             title: "Wikipedia: AI winter [28]"
+      - {id: man-computer-symbiosis-1960, name: "Man-Computer Symbiosis", year: 1960.2, lod: 3, one_line: "Licklider's human–computer partnership agenda, before he directs IPTO", sources: [{url: "https://doi.org/10.1109/THFE2.1960.4503259", title: "Licklider, 'Man-Computer Symbiosis', IRE Trans. Human Factors in Electronics (1960), doi:10.1109/THFE2.1960.4503259 [64]"}, {url: "https://en.wikipedia.org/wiki/Man-Computer_Symbiosis", title: "Wikipedia: Man-Computer Symbiosis [65]"}]}
+      - {id: kiev-cybernetics-1962, name: "Kiev Cybernetics Inst.", year: 1962.5, lod: 4, one_line: "Glushkov founds and directs the Institute of Cybernetics in Kiev", sources: [{url: "https://en.wikipedia.org/wiki/Victor_Glushkov", title: "Wikipedia: Victor Glushkov [68]"}]}
+      - {id: sketchpad-1963, name: "Sketchpad", year: 1963.0, lod: 4, one_line: "Sutherland's interactive graphics program; inspires GUIs and object-oriented programming", sources: [{url: "https://en.wikipedia.org/wiki/Sketchpad", title: "Wikipedia: Sketchpad [69]"}]}
+      - {id: unimate-gm-1961, name: "Unimate on GM Line", year: 1961.5, lod: 4, one_line: "First Unimate industrial robot works a General Motors assembly line", sources: [{url: "https://en.wikipedia.org/wiki/Unimate", title: "Wikipedia: Unimate [67]"}]}
+      - {id: moores-law-1965, name: "Moore's Law", year: 1965.3, lod: 4, one_line: "Gordon Moore observes integrated-circuit component counts doubling on schedule", sources: [{url: "https://en.wikipedia.org/wiki/Moore%27s_law", title: "Wikipedia: Moore's law [72]"}]}
+      - {id: first-turing-award-1966, name: "First Turing Award", year: 1966.5, lod: 4, one_line: "Alan Perlis receives the first ACM Turing Award", sources: [{url: "https://en.wikipedia.org/wiki/Turing_Award", title: "Wikipedia: Turing Award [73]"}]}
+      - {id: mother-of-all-demos-1968, name: "Mother of All Demos", year: 1968.94, lod: 3, one_line: "Engelbart demonstrates mouse, hypertext and collaboration in NLS", sources: [{url: "https://en.wikipedia.org/wiki/The_Mother_of_All_Demos", title: "Wikipedia: The Mother of All Demos [78]"}]}
+      - {id: arpanet-1969, name: "ARPANET", year: 1969.82, lod: 3, one_line: "First host-to-host connection links SRI and UCLA", sources: [{url: "https://en.wikipedia.org/wiki/ARPANET", title: "Wikipedia: ARPANET [79]"}]}
+      - {id: minsky-turing-award-1969, name: "Minsky Turing Award", year: 1969.5, lod: 4, one_line: "Marvin Minsky receives the ACM Turing Award", sources: [{url: "https://en.wikipedia.org/wiki/Marvin_Minsky", title: "Wikipedia: Marvin Minsky [30]"}]}
+      - {id: intel-4004-1971, name: "Intel 4004", year: 1971.88, lod: 4, one_line: "Intel releases the 4004, first of its line of CPUs", sources: [{url: "https://en.wikipedia.org/wiki/Intel_4004", title: "Wikipedia: Intel 4004 [84]"}]}

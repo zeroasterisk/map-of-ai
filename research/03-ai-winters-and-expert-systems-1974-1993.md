@@ -46,6 +46,26 @@ After the 1974 funding cliff, AI regrouped around a new thesis — Feigenbaum's 
 | 1991 | Brooks, "Intelligence Without Representation" (*Artificial Intelligence* 47) | The definitive anti-representationalist manifesto | [32] |
 | 1992 | Fifth Generation project's ten-year plan concludes without meeting its original goals (a wind-down phase runs to 1994); Tesauro's TD-Gammon reaches expert backgammon play | Symbolic megaproject closes in commercial failure; RL + neural nets deliver a striking result | [1], [15], [33] |
 | 1993 | Symbolics and most Lisp companies fail or exit; SCI concludes; "AI" becomes a label to avoid — eastern border of this region | Bottom of the second winter; research continues under names like machine learning, informatics, knowledge-based systems | [1], [2], [14] |
+| 1977 | Douglas Lenat receives the IJCAI Computers and Thought Award for AM, his Lisp "Automated Mathematician" | Discovery by heuristic search becomes the first celebrated AI result of the winter | [56] |
+| 1978 | Herbert Simon receives the Nobel Memorial Prize in Economic Sciences for work on decision-making in organisations | Bounded rationality, the idea behind heuristic search, is honoured outside computer science | [57] |
+| 1979 | Douglas Hofstadter publishes *Gödel, Escher, Bach: An Eternal Golden Braid* | Popular book on minds, self-reference and formal systems that brings a generation into AI | [58] |
+| 1979 | Jon Doyle, "A truth maintenance system" (*Artificial Intelligence* 12) | Belief revision for rule systems; the ancestor of the ATMS used in KEE-era expert-system shells | [59] |
+| 1980 | First International Workshop on Machine Learning at CMU, Pittsburgh (July 1980; later ICML) | Machine learning gets its own meeting, held every year since | [60] |
+| 1980 | IntelliCorp founded; it sells KEE (Knowledge Engineering Environment) for Lisp machines | One of the main expert-system shell vendors of the boom | [61] |
+| 1981 | Lenat's EURISKO wins the US Traveller TCS national championship with a fleet it designed itself; it wins again in 1982 | Heuristic discovery that exploits loopholes in the rules, an early specification-gaming story | [62] |
+| 1982 | Tom Mitchell, "Generalization as search" (*Artificial Intelligence* 18): version spaces | Casts concept learning as search through a hypothesis space; a founding text of symbolic ML | [63] |
+| 1984 | *Common Lisp the Language* (CLtL1) published, the first Common Lisp documentation (ANSI standard 1994) | Unifies the Lisp dialects the expert-system industry ran on | [64] |
+| 1985 | symbolics.com registered on 15 March 1985, the first .com domain | A Lisp-machine company is first onto the commercial Internet, just before the crash | [65] |
+| 1985 | Richard Korf, "Depth-first iterative-deepening" (*Artificial Intelligence* 27) | IDA*: optimal heuristic search in linear memory, a standard puzzle-solving tool | [66] |
+| 1985 | Barbara Hayes-Roth, "A blackboard architecture for control" (*Artificial Intelligence* 26): BB1 | Blackboard systems reason about their own control, extending Hearsay-II | [67] |
+| 1984 | Stuart & Donald Geman, "Stochastic relaxation, Gibbs distributions, and the Bayesian restoration of images" (*IEEE TPAMI* 6) | Introduces the Gibbs sampler; MCMC later powers the probabilistic turn of the 1990s | [75] |
+| 1986 | Explanation-based learning: Mitchell, Keller & Kedar-Cabelli and DeJong & Mooney in the first volume of *Machine Learning* | Learning by generalising from one worked example with a strong domain theory | [68] |
+| 1986 | Ernst Dickmanns's robot car VaMoRs (UniBw Munich) drives itself; by 1987 it reaches 96 km/h | Vision-based autonomous driving starts in Europe, far from the US expert-system boom | [69] |
+| 1987 | Eureka PROMETHEUS Project launched by European carmakers (1987–1995) | The largest driverless-car R&D programme of its time; ends in the 1994 Paris highway runs | [70] |
+| 1987 | Sendai Subway Namboku Line opens (15 July 1987), the first public railway with fuzzy-logic speed control | Fuzzy control becomes Japan's visible AI success as rule-based systems falter | [71] |
+| 1990 | Hugh Loebner launches the Loebner Prize, an annual Turing-test contest | Turns the imitation game into a yearly chatbot competition, often criticised by researchers | [72] |
+| 1990 | Cohen & Levesque, "Intention is choice with commitment" (*Artificial Intelligence* 42) | Formal logic of intention; a basis for BDI agent architectures | [73] |
+| 1991 | Rodney Brooks's six-legged robot Genghis built at MIT (around 1991) | Subsumption architecture walks with no central world model | [74] |
 
 ## Key people
 - **Edward Feigenbaum** (Stanford Heuristic Programming Project) — "father of expert systems"; Dendral, knowledge engineering, "knowledge is power"; co-author of *The Fifth Generation* (1983); Turing Award 1994. [7], [34]
@@ -179,3 +199,23 @@ After the 1974 funding cliff, AI regrouped around a new thesis — Feigenbaum's 
 [53] Qualitative reasoning — Wikipedia — https://en.wikipedia.org/wiki/Qualitative_reasoning ; Forbus 1984 https://doi.org/10.1016/0004-3702%2884%2990038-9 (accessed 2026-09-06)
 [54] CLIPS — Wikipedia — https://en.wikipedia.org/wiki/CLIPS (accessed 2026-09-06)
 [55] AAAI Conference on Artificial Intelligence — Wikipedia — https://en.wikipedia.org/wiki/AAAI_Conference_on_Artificial_Intelligence (accessed 2026-09-06)
+[56] Automated Mathematician — Wikipedia (Lenat; 1977 IJCAI Computers and Thought Award) — https://en.wikipedia.org/wiki/Automated_Mathematician (accessed 2026-09-23)
+[57] Herbert A. Simon — Wikipedia (Nobel Memorial Prize in Economic Sciences 1978) — https://en.wikipedia.org/wiki/Herbert_A._Simon (accessed 2026-09-23)
+[58] Gödel, Escher, Bach — Wikipedia (Hofstadter, 1979) — https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach (accessed 2026-09-23)
+[59] Doyle, J. (1979), A truth maintenance system, Artificial Intelligence 12(3) — https://doi.org/10.1016/0004-3702%2879%2990008-0 (accessed 2026-09-23)
+[60] International Conference on Machine Learning — Wikipedia (first workshop CMU, July 1980) — https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning (accessed 2026-09-23)
+[61] IntelliCorp (software) — Wikipedia (founded 1980; KEE) — https://en.wikipedia.org/wiki/IntelliCorp_%28software%29 (accessed 2026-09-23)
+[62] Eurisko — Wikipedia (Traveller TCS wins 1981 and 1982) — https://en.wikipedia.org/wiki/Eurisko (accessed 2026-09-23)
+[63] Mitchell, T. M. (1982), Generalization as search, Artificial Intelligence 18(2) — https://doi.org/10.1016/0004-3702%2882%2990040-6 ; Version space learning — Wikipedia — https://en.wikipedia.org/wiki/Version_space_learning (accessed 2026-09-23)
+[64] Common Lisp — Wikipedia (CLtL1 1984, CLtL2 1990, ANSI 1994) — https://en.wikipedia.org/wiki/Common_Lisp (accessed 2026-09-23)
+[65] Symbolics — Wikipedia (symbolics.com registered 15 March 1985, first .com domain) — https://en.wikipedia.org/wiki/Symbolics (accessed 2026-09-23)
+[66] Korf, R. E. (1985), Depth-first iterative-deepening: an optimal admissible tree search, Artificial Intelligence 27(1) — https://doi.org/10.1016/0004-3702%2885%2990084-0 (accessed 2026-09-23)
+[67] Hayes-Roth, B. (1985), A blackboard architecture for control, Artificial Intelligence 26(3) — https://doi.org/10.1016/0004-3702%2885%2990063-3 (accessed 2026-09-23)
+[68] Mitchell, Keller & Kedar-Cabelli (1986), Explanation-based generalization: a unifying view, Machine Learning 1(1) — https://doi.org/10.1007/BF00116250 ; DeJong & Mooney (1986), Explanation-based learning: an alternative view, Machine Learning 1(2) — https://doi.org/10.1007/BF00114116 (accessed 2026-09-23)
+[69] Ernst Dickmanns — Wikipedia (VaMoRs drives itself 1986; 96 km/h by 1987) — https://en.wikipedia.org/wiki/Ernst_Dickmanns (accessed 2026-09-23)
+[70] Eureka Prometheus Project — Wikipedia (1987–1995) — https://en.wikipedia.org/wiki/Eureka_Prometheus_Project (accessed 2026-09-23)
+[71] Sendai Subway Namboku Line — Wikipedia (opened 15 July 1987; first public railway with fuzzy-logic speed control) — https://en.wikipedia.org/wiki/Sendai_Subway_Namboku_Line (accessed 2026-09-23)
+[72] Loebner Prize — Wikipedia (launched 1990) — https://en.wikipedia.org/wiki/Loebner_Prize (accessed 2026-09-23)
+[73] Cohen, P. R. & Levesque, H. J. (1990), Intention is choice with commitment, Artificial Intelligence 42(2–3) — https://doi.org/10.1016/0004-3702%2890%2990055-5 (accessed 2026-09-23)
+[74] Genghis (robot) — Wikipedia (Brooks, MIT, around 1991) — https://en.wikipedia.org/wiki/Genghis_%28robot%29 (accessed 2026-09-23)
+[75] Geman, S. & Geman, D. (1984), Stochastic relaxation, Gibbs distributions, and the Bayesian restoration of images, IEEE TPAMI 6(6) — https://doi.org/10.1109/TPAMI.1984.4767596 (accessed 2026-09-23)
