@@ -11,8 +11,11 @@ Runs AFTER scripts/export_geojson.py and post-processes site/v2/data/{countries,
     among the missing countries by LANE SLICING: x-columns at every X(start)/X(end) of the missing countries (the
     same piecewise time axis as atlas.html, AXES.md §1), and inside each column the free strip is cut into equal
     horizontal lanes, one per country active in that column, ordered north→south by band (N1a … S2c — the order
-    atlas.html's FINE rows use). Every piece is (free ∩ column ∩ lane), so containment in the continent and zero
-    overlap with every other country are true by construction. Existing atlas.html polygons are kept untouched.
+    atlas.html's FINE rows use). Phase 4c-A: the lanes only decide OWNERSHIP; the drawn borders are a Voronoi partition
+    of the free land from seeded jittered hex-grid sites (pitch SITE_PITCH), each site owned by its lane, with ridges
+    between different owners displaced by seeded midpoint noise + Chaikin smoothing (organic_slice). Cells tile the
+    free land, so containment in the continent and zero overlap with every other country are true by construction;
+    both neighbours share each ridge polyline exactly (no gaps). A connectivity pass keeps every country in one piece.
     The Antecedent Isles are an archipelago: whole isles are assigned to the country whose time_range is nearest
     the isle's authored year (a lane cut through a 30-unit islet would make unreadable slivers).
  C. Event placement for events atlas.html could not place at lod4 (exported at X(year) × country centroid, all
@@ -86,6 +89,9 @@ BAND_ORDER = ["N1a", "N1b", "N2a", "N2b", "Ca", "Cb", "S1a", "S1b", "S2a", "S2b"
 ISLE_YEARS = [1666, 1847, 1900, 1934]      # atlas.html ISLES authored years (west→east)
 MIN_SEP = 6.0                              # plate units between event points (REFACTOR_PLAN §2.7)
 INSET = 1.5                                # keep chord points this far inside the polygon edge
+SITE_PITCH = 20.0                          # Voronoi site pitch (plate units) for organic_slice borders (task 4c-A)
+SITE_JITTER = 0.6                          # jitter as a fraction of the pitch
+RIDGE_AMP = 3.0                            # max midpoint-displacement amplitude (units) on a Voronoi ridge
 BIOME_TINT = {"highland": "#b66b30", "grassland": "#c5a64c", "forest": "#558828", "jungle": "#0f7562",
               "wetland": "#2d7eb7", "harbour": "#af974c", "mixed": "#7155b8"}
 
@@ -165,6 +171,198 @@ def lane_slice(free, missing):
             if not piece.is_empty:
                 parts[k["id"]].append(piece)
     return {kid: clean(unary_union(ps)) if ps else Polygon() for kid, ps in parts.items()}
+
+
+def noisy_line(p0, p1, amp, seed, min_seg=6.0):
+    """Seeded midpoint displacement (roughness 0.5) of the segment p0→p1: perpendicular displacement of the midpoint by
+    ±amp, recursing until segments are < min_seg units. Deterministic in (p0, p1, amp, seed). Returns a coordinate list."""
+    def h(*parts):
+        return int(hashlib.sha1("|".join(str(round(v, 3)) if isinstance(v, float) else str(v) for v in parts).encode()).hexdigest()[:8], 16) / 0xFFFFFFFF
+    def rec(a, b, amp, depth):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy)
+        if L < min_seg or depth > 8 or amp < 0.15:
+            return [b]
+        m = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+        d = (h(seed, depth, a, b) * 2 - 1) * amp
+        m = (m[0] - dy / L * d, m[1] + dx / L * d)
+        return rec(a, m, amp * 0.5, depth + 1) + rec(m, b, amp * 0.5, depth + 1)
+    return [p0] + rec(p0, p1, amp, 0)
+
+
+def chaikin(pts, n=2):
+    """Chaikin corner cutting, endpoints fixed (so shared ridge endpoints still meet). n passes."""
+    for _ in range(n):
+        if len(pts) < 3:
+            return pts
+        out = [pts[0]]
+        for a, b in zip(pts, pts[1:]):
+            out.append((0.75 * a[0] + 0.25 * b[0], 0.75 * a[1] + 0.25 * b[1]))
+            out.append((0.25 * a[0] + 0.75 * b[0], 0.25 * a[1] + 0.75 * b[1]))
+        out.append(pts[-1])
+        pts = out
+    return pts
+
+
+def organic_slice(free, missing, seed):
+    """Task 4c-A. Same lane topology as lane_slice (x-columns at every X(span) edge, equal horizontal lanes per column,
+    north→south by band) but the borders are ORGANIC: a Voronoi partition of the free land from seeded jittered sites.
+    Sites are sown on a hex grid (pitch SITE_PITCH units) over the free land; every site belongs to the country whose
+    straight lane contains it, so the lane topology (west→east by time, north→south by band) is kept while every shared
+    border becomes a polyline of Voronoi edges between jittered sites. Every cell is (voronoi ∩ free), the cells tile
+    `free`, so containment in the continent and zero overlap are true by construction and both neighbours of an edge
+    share it exactly (no gaps). Noise is sha1(seed, i, j): deterministic. Returns {id: geometry}."""
+    from shapely.geometry import MultiPoint, LineString
+    from shapely.ops import voronoi_diagram, polygonize
+    spans = {k["id"]: (X(k_span(k)[0]), X(k_span(k)[1])) for k in missing}
+    x_lo, y_lo, x_hi, y_hi = free.bounds
+    xs = sorted({x for s in spans.values() for x in s} | {x_lo, x_hi})
+    cols = []            # (xa, xb, active countries, ymin, ymax)
+    for xa, xb in zip(xs, xs[1:]):
+        if xb - xa < 1e-6:
+            continue
+        active = [k for k in missing if spans[k["id"]][0] <= xa + 1e-6 and spans[k["id"]][1] >= xb - 1e-6]
+        strip = clean(free.intersection(box(xa, -1e9, xb, 1e9)))
+        if active and not strip.is_empty:
+            cols.append((xa, xb, active, strip.bounds[1], strip.bounds[3]))
+
+    def owner(x, y):
+        for xa, xb, active, ymin, ymax in cols:
+            if xa - 1e-6 <= x <= xb + 1e-6:
+                h = (ymax - ymin) / len(active)
+                return active[min(len(active) - 1, max(0, int((y - ymin) // h)))]["id"]
+        return None
+
+    pitch = SITE_PITCH
+    sites, own = [], []
+    rows = int((y_hi - y_lo) / (pitch * 0.866)) + 2
+    ncol = int((x_hi - x_lo) / pitch) + 2
+    for j in range(rows):
+        for i in range(ncol):
+            jx = h01(f"{seed}:{i}:{j}:x") - 0.5
+            jy = h01(f"{seed}:{i}:{j}:y") - 0.5
+            x = x_lo + (i + 0.5 * (j % 2)) * pitch + jx * pitch * SITE_JITTER
+            y = y_lo + j * pitch * 0.866 + jy * pitch * SITE_JITTER
+            if not free.contains(Point(x, y)):
+                continue
+            o = owner(x, y)
+            if o is None:
+                continue
+            sites.append((x, y))
+            own.append(o)
+    # every country gets ≥ 1 site: fall back to the lane's representative point
+    for k in missing:
+        if k["id"] not in own:
+            for xa, xb, active, ymin, ymax in cols:
+                if k in active:
+                    h = (ymax - ymin) / len(active)
+                    i = active.index(k)
+                    cell = clean(free.intersection(box(xa, ymin + i * h, xb, ymin + (i + 1) * h)))
+                    if not cell.is_empty:
+                        p = cell.representative_point()
+                        sites.append((p.x, p.y))
+                        own.append(k["id"])
+                        break
+    env = box(x_lo - 50, y_lo - 50, x_hi + 50, y_hi + 50)
+    # connectivity pass on the plain cells: a country's sites must form ONE adjacency component; smaller components are
+    # relabelled to the neighbouring country they touch most (deterministic order), so no country ends up in two pieces
+    cells = list(voronoi_diagram(MultiPoint(sites), envelope=env).geoms)
+    cell_of = [Polygon()] * len(sites)
+    for cell in cells:
+        rp = cell.representative_point()
+        idx = min(range(len(sites)), key=lambda n: (sites[n][0] - rp.x) ** 2 + (sites[n][1] - rp.y) ** 2)
+        cell_of[idx] = clean(cell.intersection(free))
+    adj = {n: set() for n in range(len(sites))}
+    for n in range(len(sites)):
+        for m in range(n + 1, len(sites)):
+            if cell_of[n] is None or cell_of[m] is None or cell_of[n].is_empty or cell_of[m].is_empty:
+                continue
+            if cell_of[n].intersection(cell_of[m]).length > 0.5:
+                adj[n].add(m)
+                adj[m].add(n)
+    for _ in range(6):
+        changed = False
+        for kid in sorted({o for o in own}):
+            mine = [n for n in range(len(sites)) if own[n] == kid]
+            comps, seen = [], set()
+            for s in mine:
+                if s in seen:
+                    continue
+                comp, stack = set(), [s]
+                while stack:
+                    v = stack.pop()
+                    if v in comp:
+                        continue
+                    comp.add(v)
+                    stack.extend(w for w in adj[v] if own[w] == kid and w not in comp)
+                seen |= comp
+                comps.append(comp)
+            if len(comps) <= 1:
+                continue
+            comps.sort(key=lambda c: (-sum(cell_of[n].area for n in c), min(c)))
+            for comp in comps[1:]:
+                touch = {}
+                for n in comp:
+                    for w in adj[n]:
+                        if own[w] != kid:
+                            touch[own[w]] = touch.get(own[w], 0) + cell_of[n].intersection(cell_of[w]).length
+                if touch:
+                    new_owner = max(sorted(touch), key=lambda o: touch[o])
+                    for n in comp:
+                        own[n] = new_owner
+                    changed = True
+        if not changed:
+            break
+    ridges = voronoi_diagram(MultiPoint(sites), envelope=env, edges=True)
+    # ridges between two sites of the SAME country are dropped (no border there); the rest get seeded midpoint noise,
+    # keyed by the ridge's own (sorted) endpoints so both neighbours share one polyline
+    noisy = []
+    tree_pts = sites
+    def lines_of(g):
+        if g.geom_type == "LineString":
+            return [g]
+        return [l for sub in getattr(g, "geoms", []) for l in lines_of(sub)]
+    for seg in lines_of(ridges):
+        c = list(seg.coords)
+        for p0, p1 in zip(c, c[1:]):
+            m = ((p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2)
+            near = sorted(range(len(tree_pts)), key=lambda n: (tree_pts[n][0] - m[0]) ** 2 + (tree_pts[n][1] - m[1]) ** 2)[:2]
+            if len(near) == 2 and own[near[0]] == own[near[1]]:
+                continue
+            a, b = sorted([p0, p1])
+            L = math.hypot(b[0] - a[0], b[1] - a[1])
+            amp = min(RIDGE_AMP, 0.15 * L)
+            pts = noisy_line(a, b, amp, f"{seed}:ridge:{round(a[0], 2)}:{round(a[1], 2)}:{round(b[0], 2)}:{round(b[1], 2)}", min_seg=4.0)
+            noisy.append(LineString(chaikin(pts, 3)))
+    boundary = [free.boundary] if free.geom_type == "Polygon" else [g.boundary for g in free.geoms]
+    faces = list(polygonize(unary_union(boundary + noisy)))
+    parts = {k["id"]: [] for k in missing}
+    for face in faces:
+        rp = face.representative_point()
+        if face.area < 1e-6 or not free.buffer(1e-6).contains(rp):
+            continue
+        idx = min(range(len(sites)), key=lambda n: (sites[n][0] - rp.x) ** 2 + (sites[n][1] - rp.y) ** 2)
+        parts[own[idx]].append(face)
+    out = {kid: clean(unary_union(ps)) if ps else Polygon() for kid, ps in parts.items()}
+    # noise can pinch off a tiny enclave: hand slivers (< 4 % of the country) to the neighbour that touches them most
+    for kid, g in list(out.items()):
+        if g.geom_type != "MultiPolygon":
+            continue
+        big = max(g.geoms, key=lambda p: p.area)
+        keep = [big]
+        for p in g.geoms:
+            if p is big:
+                continue
+            if p.area >= 0.04 * g.area:
+                keep.append(p)
+                continue
+            best = max((o for o in out if o != kid), key=lambda o: out[o].intersection(p.buffer(0.01)).length, default=None)
+            if best is not None:
+                out[best] = clean(unary_union([out[best], p]))
+            else:
+                keep.append(p)
+        out[kid] = clean(unary_union(keep))
+    return out
 
 
 def isle_assign(continent, missing):
@@ -274,7 +472,7 @@ def main():
         have = [g for kid, g in existing.items() if countries_meta.get(kid, {}).get("parent_id") == cid]
         free = clean(cont.difference(unary_union(have))) if have else cont
         missing.sort(key=band_key)
-        polys = isle_assign(cont, missing) if cont.geom_type == "MultiPolygon" and cid == "antecedent-isles" else lane_slice(free, missing)
+        polys = isle_assign(cont, missing) if cont.geom_type == "MultiPolygon" and cid == "antecedent-isles" else organic_slice(free, missing, cid)
         for k in missing:
             g = polys[k["id"]]
             if g.is_empty:
