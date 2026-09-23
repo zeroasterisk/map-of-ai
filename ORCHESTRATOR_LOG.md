@@ -1541,3 +1541,38 @@ Planner decisions (binding, recorded in REFACTOR_PLAN §2.4):
 Task 0 — sampler gate re-based on `clipped_major_anchored`, `p50 sea` column, `--report` flag. Re-measured at
 1386a26 (same data/layout as 4b): hard gate 8/100 → **56/100** purely from the gate re-definition;
 p50 labels/lm/facts z0 8/1/0, z1 13/7/1, z2 25/10/5, z3 14/7/5 (docs/density/v2-phase4c-baseline.json).
+
+Tasks A–F (commits 46e1469, b373fee, 9671282; data grew 546 → 789 events from `refactor/v2-content` merges during the run):
+- A. Organic borders for the 9 generated countries: lanes decide ownership only; borders = Voronoi of seeded jittered hex
+  sites (pitch 20) with midpoint-noised + Chaikin-smoothed ridges + a connectivity pass. Axis-aligned share of generated
+  borders 0.55–0.73 → ≤ 0.10; gates kept (56/56 polygons, 0 outside parent, 0 overlap, md5-identical re-runs).
+- B. Halos ≥ 2 px in the land-fill colour on every text layer (borders knocked out under text — verified at 2× on the
+  v2c shots); event `text-radial-offset` ≥ dot radius + 2 px; continent/country titles centre-anchored only (decision 1).
+- C. Hint/tag tokens repeating a same-country event name dropped at export (8 hint / 28 tag tokens; hints re-sourced from
+  entities.json each run); the AlexNet event is `dedup`-flagged against the lod-1 "AlexNet GPUs" summit (style filter).
+- D. HUD + copy-link moved to a 28 px bottom bar outside the map canvas; the sampler measures the canvas rect.
+- E. (a) `LAT_SCALE = 1.8` vertical exaggeration in the v2 export, inverted in `toPlate` (deep links round-trip, verified).
+  Measured p50 sea_ratio z0 0.95 → 0.92, z1 0.82 → 0.67, z2 0.45 → 0.34, z3 0.29 → 0.21. (b) ocean texture NOT done.
+- F. Organic lobes over events' X(year) from same-continent donors (never emptied/halved/split/holed; atlas events carved
+  out); modified atlas polygons carry `layout: lobe` + `geom_atlas`. Events > 2 units off X(year): 117 → 62 (of 789).
+
+Before → after (p50 labels / landmarks / facts; hard gate):
+| | 4b baseline | 4c task 0 (gate only) | 4c final |
+|---|---|---|---|
+| z0 | 7/1/0 | 8/1/0 | 5/1/0 |
+| z1 | 13/7/1 | 13/7/1 | 22/10/8 |
+| z2 | 25/10/5 | 25/10/5 | 24/16/1 |
+| z3 | 14/7/5 | 14/7/5 | 8/4/3 |
+| hard gate | 8/100 | 56/100 | 73/100 (peak 75/100 after B/C/D, before E) |
+
+Planner flags (measured):
+1. z0 continent names p50 7 → 5: centre-only anchors (decision 1) collide at 412 px plate width (12 titles in ~200 px of
+   land band). Options: shorter z0 titles (`short_name`), or allow `text-variable-anchor` at z0 only.
+2. z3 density dropped (labels 14 → 8, facts 5 → 3) because LAT_SCALE 1.8 puts 1/1.8 of the land in each z3 frame; z3
+   `text-size` 14 px could shrink to 12 px, or z3 could move to zoom 7.0. Content floors remain content-bound.
+3. Hard-gate regression 75 → 73 from E (denser z2 frames → anchored clips z2 16 → 22). Residual anchored clips: 40 event
+   labels, 33 country titles across 100 frames (`clipped_major_by_layer`).
+4. 62 events still > 2 units off X(year): 15 lobe requests refused (a lobe would split/hole a donor or the target x has no
+   land in the continent — e.g. `benchmark-plains` events to 2011 at x 985 where the isthmus ends). Needs either data
+   (move those events to a country whose span covers them) or a second, non-contiguous lobe (MultiPolygon country).
+5. Task E(b) (engraved ocean texture, compass rose, cartouche) not attempted; E(a) alone was measured and kept.

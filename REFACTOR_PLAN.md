@@ -174,8 +174,10 @@ The monolithic SVG plate screenshotted into raster tiles failed Alan's review fo
 The map uses an unprojected planar coordinate system mapped to Web Mercator bounds:
 - Plate width $W = 1800$, height $H = 1050$.
 - Plate → lng/lat mapping (binding, supersedes the earlier bbox text `[[-1050, 0], [0, 1800]]`):
-  `lng = (x − 900) / 50`, `lat = −(y − 525) / 50` (1 plate unit = 0.02°; implemented in
-  `scripts/export_geojson.py`, `site/v2/index.html`, `style.json` metadata). Semantic zoom = MapLibre zoom 1:1.
+  `lng = (x − 900) / 50`, `lat = −(y − 525) · 1.8 / 50` (1 plate unit = 0.02° lng, 0.036° lat; `LAT_SCALE = 1.8` is the
+  Phase 4c task E vertical exaggeration of the land band for portrait phones — measured p50 sea_ratio z1 0.82 → 0.67,
+  z2 0.45 → 0.34; the renderer's `toPlate` inverts it so `?x=&y=` deep links round-trip unchanged; implemented in
+  `scripts/export_geojson.py`, `scripts/layout_countries.py`, `site/v2/index.html`, `style.json` metadata). Semantic zoom = MapLibre zoom 1:1.
 - **The Four Semantic Zoom Levels:**
   - **z0 World ($z = 3.0$):** Global continent shapes, ocean basins, major era dates, and the Silicon Range spine. Max font 42px.
   - **z1 Regions / Provinces ($z = 4.5$):** Continents split into labeled provinces; major landmark hints appear; mountain peaks labeled. Max font 28px.
