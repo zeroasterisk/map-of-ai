@@ -1530,3 +1530,14 @@ Hard gate (`clipped_major==0` ∧ overlaps==0 ∧ font caps): **8/100** at c37b1
 2. Density floors are content-bound, not layout-bound: z3 needs 24 labels/18 landmarks per 80×172-unit frame (~25 entities); the plate has 546 events over ~1.1 M units² ≈ 6.8 per z3 frame on average. Phase 2's 1,500–2,500 target is the lever; layout added +3 labels/+2 landmarks at z3 p50.
 3. 33 events sit > 2 units off x = X(year) because their year is outside their country's drawn span (list printed by `layout_countries.py`): `benchmark-plains` (lane 1993–98 in atlas but events to 2011), `expert-systems-country` (1980–82 events vs the plateau's 1982 start column), `probabilistic-robotics-marsh` (2005–07), `critics-tundra` (1975–76), `funding-passes` 1993. Either the country polygons (atlas GRID) or the country `time_range` in data/ need reconciling — content-owner call.
 4. `analytical-engine-isle` (1837–43) received the 1847 isle and `formal-logic-isles` (1666–1931) the 1666 + 1900 isles; the 1934 isle went to `computability-isle` (1936–42). Whole-isle assignment; no isle is split.
+
+## Phase 4c (2026-09-23) — v2 visual quality + planner decisions
+
+Planner decisions (binding, recorded in REFACTOR_PLAN §2.4):
+1. Hard clip gate = `clipped_major_anchored == 0` (anchor on-screen, < 50 % of box visible). Off-screen-anchored
+   clips are MapLibre's padding band: reported, not gated. Continent/country titles: center anchors only.
+2. Density floors stay as written (content-bound; content expanding in parallel on `refactor/v2-content`).
+
+Task 0 — sampler gate re-based on `clipped_major_anchored`, `p50 sea` column, `--report` flag. Re-measured at
+1386a26 (same data/layout as 4b): hard gate 8/100 → **56/100** purely from the gate re-definition;
+p50 labels/lm/facts z0 8/1/0, z1 13/7/1, z2 25/10/5, z3 14/7/5 (docs/density/v2-phase4c-baseline.json).

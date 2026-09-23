@@ -111,6 +111,13 @@ stays **reported, not gated**: MapLibre places symbols inside a fixed 100 px ban
 has no option to suppress edge-straddling labels (measured in Phase 4a), so `clipped == 0` is structurally
 unreachable on a continuous-pan map.
 
+Planner decision (2026-09-23, Phase 4c, supersedes the 4b wording): the hard clipping gate is
+**`clipped_major_anchored == 0`** — a placed label whose *anchor point is inside the viewport* but < 50 %
+of its box is visible. Labels anchored off-screen are MapLibre's 100 px padding band: `clipped` and
+`clipped_major` are reported, not gated. Continent/country title labels use center anchors only (no
+`text-variable-anchor`) so the big titles never render half-cut. Density floors in the table above stay as
+written: they are content-bound and content is being expanded in parallel (`refactor/v2-content`).
+
 Calibration note: min-label floors were derived from the entity target (§5.4): with ~2,000 entities
 over ~1.1 M plate units² of land, a z3 frame (~13,800 units²) contains ~25 entities on average, a z2
 frame ~200 (collision-culled to the 14–45 band by priority). If the content target is missed, the

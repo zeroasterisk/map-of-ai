@@ -433,8 +433,10 @@ def _v2_judge(level, m):
     if m.get("error"):
         hard.append(f"page error: {m['error'][:80]}")
         return hard, soft
-    if m.get("clipped_major", 0) > 0:
-        hard.append(f"clipped_major={m['clipped_major']}")
+    # Phase 4c planner decision: hard gate = clipped_major_anchored == 0 (label whose ANCHOR is inside the viewport but
+    # < 50 % of its box is visible). Major clips of off-screen anchors are MapLibre's 100 px padding band: reported only.
+    if m.get("clipped_major_anchored", 0) > 0:
+        hard.append(f"clipped_major_anchored={m['clipped_major_anchored']}")
     if m["overlaps"] > 0:
         hard.append(f"overlaps={m['overlaps']}")
     if m.get("font_cap_violations"):
@@ -503,7 +505,7 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
                         m = pg.evaluate(V2_EVAL_JS, {"classOf": V2_CLASS_OF_LAYER, "caps": V2_FONT_CAPS, "fontMin": V2_FONT_MIN})
                     except Exception as e:
                         m = {"visibleLabels": 0, "labels": {"continent": 0, "country": 0, "landmark": 0, "fact": 0}, "landmarks": 0, "facts": 0,
-                             "clipped": 0, "clipped_major": 0, "overlaps": 0, "sea_ratio": 1, "sampleTexts": [], "error": str(e)}
+                             "clipped": 0, "clipped_major": 0, "clipped_major_anchored": 0, "overlaps": 0, "sea_ratio": 1, "sampleTexts": [], "error": str(e)}
                     if errs:
                         m["console_errors"] = errs[:3]
                         console_errors.extend(errs[:3])
@@ -529,7 +531,7 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
                     records.append(rec)
                     tag = "HARD-FAIL" if hard else ("soft-fail" if soft else ("PASS" if land else "sea (skipped floors)"))
                     print(f"  {f['id']:20s} z{zoom} x={f['x']:<7} y={f['y']:<6} labels={m['visibleLabels']:>2} lm={m['landmarks']:>2} facts={m['facts']:>2} "
-                          f"clip={m['clipped']}/{m.get('clipped_major', 0)} ovl={m['overlaps']} sea={m['sea_ratio']:.2f} {tag} {'; '.join((hard + soft)[:3])}")
+                          f"clip={m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)} ovl={m['overlaps']} sea={m['sea_ratio']:.2f} {tag} {'; '.join((hard + soft)[:3])}")
                     if save_shots and (hard or f.get("pinned")):
                         pg.screenshot(path=str(SHOTS_DIR / f"v2-{'hardfail' if hard else 'pinned'}_{f['id']}.png"))
                     pg.close()
@@ -554,9 +556,9 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
     lines = [f"# Density sampler — v2 (MapLibre) — {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())}", "",
              f"Renderer `site/v2/index.html`, {VIEWPORT['width']}×{VIEWPORT['height']} CSS px @ DPR {DPR}, {total} fixture frames "
              f"({len(land_recs)} land frames with sea_ratio ≤ 0.6), {report['seconds']} s.", "",
-             f"Hard gates (clipped_major==0, overlaps==0, font caps, no HTML markers): **{total - hard_fails}/{total} frames pass**.",
+             f"Hard gates (clipped_major_anchored==0, overlaps==0, font caps, no HTML markers): **{total - hard_fails}/{total} frames pass**.",
              f"External (non-localhost) requests: {len(ext_requests)}. Console errors: {len(console_errors)}.", "",
-             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped / clipped_major | top failure reasons |", "|---|---|---|---|---|---|---|---|---|---|"]
+             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped / clipped_major / major_anchored | p50 sea | top failure reasons |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     def p50(lv, key):
         vals = sorted(r["metrics"].get(key, 0) for r in records if r["level"] == lv)
         return vals[len(vals) // 2] if vals else 0
@@ -565,21 +567,22 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
         pr = "–" if s["pass_rate_land"] is None else f"{100 * s['pass_rate_land']:.0f}%"
         top = ", ".join(f"{k}×{v}" for k, v in sorted(s["reasons"].items(), key=lambda kv: -kv[1])[:4])
         lines.append(f"| {lk} | {V2_LEVELS[lv]['zoom']} | {s['n']} | {s['land']} | {s['pass']} | {s['soft_fail']} | {s['hard_fail']} | {pr} | "
-                     f"{p50(lv, 'visibleLabels')} / {p50(lv, 'landmarks')} / {p50(lv, 'facts')} / {p50(lv, 'clipped')} / {p50(lv, 'clipped_major')} | {top} |")
-    lines += ["", "## Worst 10 frames", "", "| frame | level | labels | landmarks | facts | clip/major | ovl | sea | reasons | link |", "|---|---|---|---|---|---|---|---|---|---|"]
+                     f"{p50(lv, 'visibleLabels')} / {p50(lv, 'landmarks')} / {p50(lv, 'facts')} / {p50(lv, 'clipped')} / {p50(lv, 'clipped_major')} / {p50(lv, 'clipped_major_anchored')} | {p50(lv, 'sea_ratio'):.2f} | {top} |")
+    lines += ["", "## Worst 10 frames", "", "| frame | level | labels | landmarks | facts | clip/major/anchored | ovl | sea | reasons | link |", "|---|---|---|---|---|---|---|---|---|---|"]
     def badness(r):
         return (len(r["hard"]) * 100 + len(r["soft"]) * 10 - r["metrics"]["visibleLabels"] * 0.1) if r["land_frame"] else -1
     for r in sorted(records, key=badness, reverse=True)[:10]:
         m = r["metrics"]
-        lines.append(f"| {r['id']} | z{r['level']} | {m['visibleLabels']} | {m['landmarks']} | {m['facts']} | {m['clipped']}/{m.get('clipped_major', 0)} | {m['overlaps']} | {m['sea_ratio']:.2f} | "
+        lines.append(f"| {r['id']} | z{r['level']} | {m['visibleLabels']} | {m['landmarks']} | {m['facts']} | {m['clipped']}/{m.get('clipped_major', 0)}/{m.get('clipped_major_anchored', 0)} | {m['overlaps']} | {m['sea_ratio']:.2f} | "
                      f"{'; '.join(r['hard'] + r['soft'])[:90]} | [`?z={r['zoom']}&x={r['x']}&y={r['y']}`]({r['link']}) |")
     lines += ["", "## Measurement notes", "",
               "- `labels`/`landmarks`/`facts` = symbols MapLibre actually placed (`queryRenderedFeatures` over the symbol layers, deduped by layer+feature id).",
               "- `overlaps`/`clipped` use MapLibre's own committed collision boxes (exact placed extents, text-padding removed).",
               "- `clipped` counts every placed label whose box crosses the viewport edge by > 2 CSS px. MapLibre places symbols inside a fixed 100 px band",
               "  outside the viewport and has no option to suppress edge-straddling labels, so on a continuous-pan map this count is structurally > 0 whenever",
-              "  labels exist near the frame edge. Planner decision (Phase 4b): the HARD gate is `clipped_major == 0` (a placed label with < 50 % of its",
-              "  box visible — the half-cut banner); raw `clipped` is reported, not gated.",
+              "  labels exist near the frame edge. Planner decision (Phase 4c, supersedes 4b): the HARD gate is `clipped_major_anchored == 0` — a placed",
+              "  label whose anchor point is inside the viewport but < 50 % of its box is visible (the half-cut banner of an on-screen subject). Raw",
+              "  `clipped` and `clipped_major` (which includes labels of off-screen anchors in MapLibre's padding band) are reported, not gated.",
               "- z0/z1 frames on a portrait phone can never reach sea_ratio ≤ 0.6 (the land band is ≈560 units tall vs a 1385–3920-unit frame), so their",
               "  density floors are applied to every frame; z2/z3 floors apply to land frames only.",
               "- z1 `landmarks` = landmark-class symbols (lod 1–2 events, lod ≤ 1 summits) + country names (Phase 4b task D); `landmarks_symbols` in the JSON",
@@ -596,6 +599,7 @@ def main():
     ap.add_argument("--target", choices=["legacy", "v2"], default="legacy", help="legacy = site/index.html (Leaflet tiles); v2 = site/v2/index.html (MapLibre)")
     ap.add_argument("--levels", default=None, help="comma-separated semantic levels to run (v2 only), e.g. 1,2")
     ap.add_argument("--no-shots", action="store_true")
+    ap.add_argument("--report", default="v2-phase4a.json", help="v2 only: report file name under docs/density/")
     args = ap.parse_args()
     
     if args.generate:
@@ -604,7 +608,7 @@ def main():
         
     if args.target == "v2":
         levels = [int(l) for l in args.levels.split(",")] if args.levels else None
-        success = run_sampler_v2(port=args.port, save_shots=not args.no_shots, levels=levels)
+        success = run_sampler_v2(port=args.port, save_shots=not args.no_shots, levels=levels, report_name=args.report)
         sys.exit(0 if success else 1)
     success = run_sampler(port=args.port)
     sys.exit(0 if success else 1)
