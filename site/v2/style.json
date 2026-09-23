@@ -823,60 +823,6 @@
    }
   },
   {
-   "id": "symbol-range",
-   "type": "symbol",
-   "source": "range",
-   "minzoom": 3.0,
-   "maxzoom": 7.5,
-   "filter": [
-    "==",
-    [
-     "get",
-     "kind"
-    ],
-    "range"
-   ],
-   "layout": {
-    "text-field": [
-     "get",
-     "name"
-    ],
-    "text-font": [
-     "Cinzel Regular"
-    ],
-    "text-size": [
-     "interpolate",
-     [
-      "linear"
-     ],
-     [
-      "zoom"
-     ],
-     3.0,
-     11,
-     4.5,
-     14,
-     7.5,
-     16
-    ],
-    "text-letter-spacing": 0.3,
-    "text-max-width": 30,
-    "text-allow-overlap": false,
-    "text-ignore-placement": false,
-    "text-optional": false,
-    "text-padding": 4,
-    "symbol-sort-key": [
-     "get",
-     "rank"
-    ]
-   },
-   "paint": {
-    "text-color": "#2a1f11",
-    "text-halo-color": "#f0e4c8",
-    "text-halo-width": 1.6
-   }
-  },
-  {
    "id": "symbol-ocean",
    "type": "symbol",
    "source": "labels",
@@ -962,23 +908,36 @@
       "zoom"
      ],
      3.0,
-     13,
+     11,
      4.5,
      24,
      6.0,
      42
     ],
-    "text-max-width": 7,
+    "text-max-width": 5,
     "text-letter-spacing": 0.08,
     "text-line-height": 1.1,
     "text-allow-overlap": false,
     "text-ignore-placement": false,
     "text-optional": false,
-    "text-padding": 4,
+    "text-padding": 1,
     "symbol-sort-key": [
      "get",
      "rank"
-    ]
+    ],
+    "text-variable-anchor": [
+     "center",
+     "top",
+     "bottom",
+     "left",
+     "right",
+     "top-left",
+     "top-right",
+     "bottom-left",
+     "bottom-right"
+    ],
+    "text-radial-offset": 1.2,
+    "text-justify": "auto"
    },
    "paint": {
     "text-color": "#2a1f11",
@@ -997,6 +956,67 @@
      6.0,
      0.35
     ]
+   }
+  },
+  {
+   "id": "symbol-range",
+   "type": "symbol",
+   "source": "range",
+   "minzoom": 3.0,
+   "maxzoom": 7.5,
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "range"
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "name"
+    ],
+    "text-font": [
+     "Cinzel Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     3.0,
+     11,
+     4.5,
+     14,
+     7.5,
+     16
+    ],
+    "text-letter-spacing": 0.3,
+    "text-max-width": 30,
+    "text-allow-overlap": false,
+    "text-ignore-placement": false,
+    "text-optional": false,
+    "text-padding": 4,
+    "symbol-sort-key": [
+     "get",
+     "rank"
+    ],
+    "text-variable-anchor": [
+     "center",
+     "top",
+     "bottom"
+    ],
+    "text-radial-offset": 0.8,
+    "text-justify": "auto"
+   },
+   "paint": {
+    "text-color": "#2a1f11",
+    "text-halo-color": "#f0e4c8",
+    "text-halo-width": 1.6
    }
   }
  ]

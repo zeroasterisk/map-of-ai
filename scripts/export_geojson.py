@@ -317,10 +317,17 @@ def main():
         rng.append(feat({"type": "Point", "coordinates": to_lnglat(x, y)}, _fid=nid(), id=f"pass:{p['name']}", kind="pass", name=p.get("label") or p["name"],
                         year=p["year"], yr=str(int(p["year"])), lod=3, rank=3000 + int(2030 - p["year"]), one_line=p.get("spec", ""), thread=T["id"],
                         x=round(x, 1), y=round(y, 1)))
+    # range title: atlas.html draws `.thr-title` only at lod0 (hidden at lod≥1 by CSS), so the lod4 DOM has none — anchor
+    # the title at the ridge line midway along the range (mean of the summit cairns), where the SVG sets it at lod0
+    sx = [f["properties"]["x"] for f in rng if f["properties"]["kind"] == "summit"]
+    sy = [f["properties"]["y"] for f in rng if f["properties"]["kind"] == "summit"]
     if dom["thrTitle"]:
-        t = dom["thrTitle"]
-        rng.append(feat({"type": "Point", "coordinates": to_lnglat(t["x"], t["y"] - 3)}, _fid=nid(), id=f"range:{T['id']}", kind="range", name=t["s"],
-                        year=None, lod=0, rank=8, one_line=T.get("subtitle", ""), thread=T["id"], x=round(t["x"], 1), y=round(t["y"] - 3, 1)))
+        tx, ty = dom["thrTitle"]["x"], dom["thrTitle"]["y"] - 3
+    else:
+        tx, ty = (min(sx) + max(sx)) / 2, sum(sy) / len(sy) + 22
+    rng.append(feat({"type": "Point", "coordinates": to_lnglat(tx, ty)}, _fid=nid(), id=f"range:{T['id']}", kind="range",
+                    name=(T.get("short_name") or T["name"]).upper(), year=None, lod=0, rank=8, one_line=T.get("subtitle", ""), thread=T["id"],
+                    x=round(tx, 1), y=round(ty, 1)))
 
     def write(name, feats):
         fc = {"type": "FeatureCollection", "generated_by": "scripts/export_geojson.py", "crs_note": "lng=(x-900)/50 lat=-(y-525)/50 (plate units, 1 unit = 0.02°)",

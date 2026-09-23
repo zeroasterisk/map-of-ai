@@ -53,7 +53,7 @@ V2_LEVELS = {
 V2_FONT_CAPS = {"continent": 42, "country": 28, "landmark": 16, "fact": 13}
 V2_FONT_MIN = 11
 V2_CLASS_OF_LAYER = {   # symbol layer id → §2.3 label class
-    "symbol-continent": "continent", "symbol-ocean": "continent", "symbol-range": "continent",
+    "symbol-continent": "continent", "symbol-ocean": "continent", "symbol-range": "landmark",   # §2.4 z0: min landmarks 1 = the Silicon Range title
     "symbol-country": "country", "symbol-country-hint": "fact", "symbol-country-tag": "fact",
     "symbol-event": "landmark", "symbol-summit": "landmark", "symbol-pass": "landmark", "symbol-fact": "fact",
 }
@@ -117,7 +117,7 @@ V2_EVAL_JS = r"""(ARGS) => {
   } catch (e) { engineErr = e.message; }
   const seen = new Set(); const boxes = [];
   const counts = {continent: 0, country: 0, landmark: 0, fact: 0}; const kinds = {};
-  let clipped = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = [];
+  let clipped = 0, clippedMajor = 0, clipMax = 0, minFont = Infinity, maxFont = 0, unmatched = 0; const capViol = [];
   for (const f of feats) {
     const key = f.layer.id + ':' + f.properties.id;
     if (seen.has(key)) continue; seen.add(key);
@@ -145,7 +145,12 @@ V2_EVAL_JS = r"""(ARGS) => {
     }
     Object.assign(box, {text: text.slice(0, 40), cls, layer: f.layer.id, size});
     boxes.push(box);
-    if (box.x1 < -2 || box.x2 > vw + 2 || box.y1 < -2 || box.y2 > vh + 2) clipped++;
+    if (box.x1 < -2 || box.x2 > vw + 2 || box.y1 < -2 || box.y2 > vh + 2) {
+      clipped++;
+      const over = Math.max(-box.x1, box.x2 - vw, -box.y1, box.y2 - vh); clipMax = Math.max(clipMax, over);
+      const visW = Math.max(0, Math.min(box.x2, vw) - Math.max(box.x1, 0)), visH = Math.max(0, Math.min(box.y2, vh) - Math.max(box.y1, 0));
+      if (visW * visH < 0.5 * (box.x2 - box.x1) * (box.y2 - box.y1)) clippedMajor++;
+    }
     minFont = Math.min(minFont, size); maxFont = Math.max(maxFont, size);
     if (size > ARGS.caps[cls] + 0.01 || size < ARGS.fontMin - 0.01) capViol.push({layer: f.layer.id, size, cls});
   }
@@ -158,7 +163,7 @@ V2_EVAL_JS = r"""(ARGS) => {
   let land = 0, tot = 0; for (let gx = 0.5; gx < 12; gx++) for (let gy = 0.5; gy < 26; gy++) { tot++; if (map.queryRenderedFeatures([gx * vw / 12, gy * vh / 26], {layers: ['continent-fill']}).length) land++; }
   const total = counts.continent + counts.country + counts.landmark + counts.fact;
   const html = document.querySelectorAll('.maplibregl-marker, .leaflet-marker-icon').length;
-  return {visibleLabels: total, labels: counts, kinds, landmarks: counts.landmark, facts: counts.fact, clipped, overlaps, overlapPairs,
+  return {visibleLabels: total, labels: counts, kinds, landmarks: counts.landmark, facts: counts.fact, clipped, clipped_major: clippedMajor, clip_max_px: Math.round(clipMax), overlaps, overlapPairs,
           box_source: engineBoxes ? 'engine' : 'canvas', unmatched_boxes: unmatched, engine_boxes: engineBoxes, engine_error: engineErr,
           min_font_px: isFinite(minFont) ? minFont : null, max_font_px: maxFont || null, font_cap_violations: capViol.slice(0, 5),
           ink_ratio: ink / (vw * vh), sea_ratio: 1 - land / tot, html_markers: html, zoom, sampleTexts: boxes.slice(0, 10).map(b => b.text)};
@@ -536,11 +541,16 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
              f"({len(land_recs)} land frames with sea_ratio ≤ 0.6), {report['seconds']} s.", "",
              f"Hard gates (clipped==0, overlaps==0, font caps, no HTML markers): **{total - hard_fails}/{total} frames pass**.",
              f"External (non-localhost) requests: {len(ext_requests)}. Console errors: {len(console_errors)}.", "",
-             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | top soft reasons |", "|---|---|---|---|---|---|---|---|---|"]
+             "| level | MapLibre z | frames | land | pass | soft-fail | HARD-fail | pass rate (land) | p50 labels / landmarks / facts / clipped | top failure reasons |", "|---|---|---|---|---|---|---|---|---|---|"]
+    def p50(lv, key):
+        vals = sorted(r["metrics"][key] for r in records if r["level"] == lv)
+        return vals[len(vals) // 2] if vals else 0
     for lk, s in report["per_level"].items():
+        lv = int(lk[1])
         pr = "–" if s["pass_rate_land"] is None else f"{100 * s['pass_rate_land']:.0f}%"
         top = ", ".join(f"{k}×{v}" for k, v in sorted(s["reasons"].items(), key=lambda kv: -kv[1])[:4])
-        lines.append(f"| {lk} | {V2_LEVELS[int(lk[1])]['zoom']} | {s['n']} | {s['land']} | {s['pass']} | {s['soft_fail']} | {s['hard_fail']} | {pr} | {top} |")
+        lines.append(f"| {lk} | {V2_LEVELS[lv]['zoom']} | {s['n']} | {s['land']} | {s['pass']} | {s['soft_fail']} | {s['hard_fail']} | {pr} | "
+                     f"{p50(lv, 'visibleLabels')} / {p50(lv, 'landmarks')} / {p50(lv, 'facts')} / {p50(lv, 'clipped')} | {top} |")
     lines += ["", "## Worst 10 frames", "", "| frame | level | labels | landmarks | facts | clip | ovl | sea | reasons | link |", "|---|---|---|---|---|---|---|---|---|---|"]
     def badness(r):
         return (len(r["hard"]) * 100 + len(r["soft"]) * 10 - r["metrics"]["visibleLabels"] * 0.1) if r["land_frame"] else -1
@@ -548,6 +558,15 @@ def run_sampler_v2(port=8992, save_shots=True, levels=None, report_name="v2-phas
         m = r["metrics"]
         lines.append(f"| {r['id']} | z{r['level']} | {m['visibleLabels']} | {m['landmarks']} | {m['facts']} | {m['clipped']} | {m['overlaps']} | {m['sea_ratio']:.2f} | "
                      f"{'; '.join(r['hard'] + r['soft'])[:90]} | [`?z={r['zoom']}&x={r['x']}&y={r['y']}`]({r['link']}) |")
+    lines += ["", "## Measurement notes", "",
+              "- `labels`/`landmarks`/`facts` = symbols MapLibre actually placed (`queryRenderedFeatures` over the symbol layers, deduped by layer+feature id).",
+              "- `overlaps`/`clipped` use MapLibre's own committed collision boxes (exact placed extents, text-padding removed).",
+              "- `clipped` counts every placed label whose box crosses the viewport edge by > 2 CSS px. MapLibre places symbols inside a fixed 100 px band",
+              "  outside the viewport and has no option to suppress edge-straddling labels, so on a continuous-pan map this count is structurally > 0 whenever",
+              "  labels exist near the frame edge (`clipped_major` in the JSON = those with < 50 % of the box visible). The §2.3 premise that MapLibre hides",
+              "  edge labels does not hold; the gate is reported as specified, and the definition is flagged for the planner in ORCHESTRATOR_LOG.md.",
+              "- z0/z1 frames on a portrait phone can never reach sea_ratio ≤ 0.6 (the land band is ≈560 units tall vs a 1385–3920-unit frame), so their",
+              "  density floors are applied to every frame; z2/z3 floors apply to land frames only."]
     (DENSITY_DIR / "summary.md").write_text("\n".join(lines) + "\n")
     print(f"\nv2 sampler: {total} frames, hard-gate failures {hard_fails}, soft pass rate (land) "
           f"{(100 * report['soft_pass_rate_land']) if report['soft_pass_rate_land'] is not None else 0:.1f}% → {DENSITY_DIR / report_name}, {DENSITY_DIR / 'summary.md'}")
