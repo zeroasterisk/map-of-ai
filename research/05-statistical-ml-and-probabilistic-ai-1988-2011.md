@@ -41,6 +41,36 @@ Between the collapse of the expert-systems market and the deep-learning breakthr
 | 2009 | Halevy, Norvig & Pereira, "The Unreasonable Effectiveness of Data" (*IEEE Intelligent Systems* 24(2)); Koller & Friedman, *Probabilistic Graphical Models* (MIT Press); ImageNet first presented (CVPR 2009); Netflix Prize awarded to BellKor's Pragmatic Chaos (21 September 2009, 10.06% improvement over Cinematch) | The data-centric creed stated explicitly; graphical models get their encyclopaedic textbook; the dataset that will end the era is announced | [31][40][52][57] |
 | 2010 | Kaggle founded (April 2010); scikit-learn's first public release (v0.1, January 2010, INRIA) | Competition culture and a common Python toolkit make statistical ML a mass practice | [53][58] |
 | 2011 | IBM Watson defeats Ken Jennings and Brad Rutter on *Jeopardy!* (aired 14–16 February 2011; final score $77,147); Judea Pearl receives the Turing Award; scikit-learn paper in *JMLR* 12 | The statistical era's last great public demonstration (DeepQA used no deep networks) and its formal canonisation, just before AlexNet (2012) | [5][43][53][54] |
+| 1988 | TIMIT acoustic-phonetic speech corpus (Texas Instruments/MIT) published on CD-ROM | The shared benchmark for phone recognition, from HMMs to deep nets | [93] |
+| 1988 | Nick Littlestone, "Learning quickly when irrelevant attributes abound" (*Machine Learning* 2): Winnow | Mistake-bound online learning with multiplicative updates, the root of multiplicative-weights methods | [94] |
+| 1990 | Gelfand & Smith, "Sampling-based approaches to calculating marginal densities" (*JASA* 85) | Brings Gibbs sampling into mainstream Bayesian statistics | [95] |
+| 1992 | Linguistic Data Consortium founded at Penn with a DARPA grant | Licenses the shared corpora, such as Penn Treebank and TIMIT, that statistical NLP trains on | [96] |
+| 1993 | Berrou, Glavieux & Thitimajshima, "Near Shannon limit error-correcting coding and decoding: Turbo-codes" (ICC '93) | Iterative decoding later recognised as loopy belief propagation | [97] |
+| 1995 | Heckerman, Geiger & Chickering, "Learning Bayesian networks: the combination of knowledge and statistical data" (*Machine Learning* 20) | Learning network structure from data, not only by hand | [98] |
+| 1996 | Robert Tibshirani, "Regression shrinkage and selection via the lasso" (*JRSS B* 58) | L1 regularisation for sparse models, a cornerstone of high-dimensional statistics | [99] |
+| 1996 | RoboCup founded by Kitano, Veloso and others, an annual robot-soccer competition | A grand-challenge benchmark for multi-agent robotics and learning | [100] |
+| 1997 | Domingos & Pazzani, "On the optimality of the simple Bayesian classifier under zero-one loss" (*Machine Learning* 29) | Explains why naive Bayes works well despite its independence assumption | [101] |
+| 1998 | Thorsten Joachims, "Text categorization with support vector machines" (ECML 1998) | SVMs become the default text classifier | [102] |
+| 1998 | Kaelbling, Littman & Cassandra, "Planning and acting in partially observable stochastic domains" (*Artificial Intelligence* 101) | Makes POMDPs the standard AI model for acting under uncertainty | [103] |
+| 1998 | Muscettola et al., "Remote Agent: to boldly go where no AI system has gone before" (*Artificial Intelligence* 103); flies on Deep Space 1 (launched 24 October 1998) | Onboard AI planning, execution and diagnosis on a NASA spacecraft | [104] |
+| 1997 | Blum & Furst, "Fast planning through planning graph analysis" (*Artificial Intelligence* 90): Graphplan | A leap in classical planning speed that shaped the planning competitions | [105] |
+| 1999 | Sony releases AIBO, its robot dog (first consumer model 11 May 1999) | The first mass-market entertainment robot; later the standard RoboCup four-legged platform | [106] |
+| 1999 | David Lowe introduces SIFT (ICCV 1999; *IJCV* 2004) | Scale-invariant local features become the backbone of pre-deep-learning vision | [107] |
+| 2000 | Tenenbaum, de Silva & Langford (Isomap) and Roweis & Saul (LLE) in *Science* 290 | Manifold learning: nonlinear dimensionality reduction by preserving local geometry | [108] |
+| 2000 | Shi & Malik, "Normalized cuts and image segmentation" (*IEEE TPAMI* 22) | Spectral graph partitioning becomes a standard segmentation and clustering method | [109] |
+| 2000 | Honda unveils the humanoid robot ASIMO (October 2000) | The public face of humanoid robotics for over a decade | [110] |
+| 2000 | LIBSVM released at National Taiwan University (Chang & Lin; *ACM TIST* paper 2011) | The standard SVM library, reused inside scikit-learn and many toolkits | [111] |
+| 2001 | Kschischang, Frey & Loeliger, "Factor graphs and the sum-product algorithm" (*IEEE Trans. Information Theory* 47) | Unifies belief propagation, turbo decoding and Kalman filtering as message passing | [112] |
+| 2002 | Comaniciu & Meer, "Mean shift: a robust approach toward feature space analysis" (*IEEE TPAMI* 24) | Non-parametric mode seeking for clustering, segmentation and tracking | [113] |
+| 2002 | iRobot launches the Roomba robot vacuum (September 2002) | Behaviour-based robotics reaches millions of homes | [114] |
+| 2005 | Dalal & Triggs, "Histograms of oriented gradients for human detection" (CVPR 2005) | HOG plus linear SVM becomes the standard pedestrian detector | [115] |
+| 2006 | Kocsis & Szepesvári, "Bandit based Monte-Carlo planning" (ECML 2006): UCT; Coulom names Monte Carlo tree search (2006) | MCTS transforms computer Go and later underpins AlphaGo | [116] |
+| 2006 | Simon Funk posts "Netflix Update: Try This at Home" (11 December 2006), an SGD matrix-factorisation recipe | Latent-factor models become the core of recommender systems | [117] |
+| 2004 | Abbeel & Ng, "Apprenticeship learning via inverse reinforcement learning" (ICML 2004) | Learning from demonstration by recovering the expert's reward function | [118] |
+| 2004 | Dean & Ghemawat, "MapReduce: simplified data processing on large clusters" (OSDI 2004) | Commodity-cluster computing that makes web-scale statistical learning practical | [119] |
+| 2003 | Caltech 101 image dataset compiled by Fei-Fei Li, Perona and colleagues (September 2003) | An early multi-class object-recognition benchmark and precursor of ImageNet | [120] |
+| 2007 | Schaeffer et al., "Checkers is solved" (*Science* 317) | Chinook's search proves perfect play in checkers ends in a draw | [121] |
+| 2008 | van der Maaten & Hinton, "Visualizing data using t-SNE" (*JMLR* 9) | The standard tool for 2-D visualisation of high-dimensional embeddings | [122] |
 
 ## Key people
 - **Judea Pearl** (UCLA) — Bayesian networks, belief propagation, *Probabilistic Reasoning in Intelligent Systems* (1988), later structural causal models (*Causality*, 2000); 2011 Turing Award "for fundamental contributions to artificial intelligence through the development of a calculus for probabilistic and causal reasoning". [3][4][5][6]
@@ -207,3 +237,33 @@ Between the collapse of the expert-systems market and the deep-learning breakthr
 [90] Weka (software) — Wikipedia (Waikato, development from 1993; Java rewrite 1997; 2005 SIGKDD Service Award) — https://en.wikipedia.org/wiki/Weka_%28software%29 ; SIGKDD — Wikipedia (KDD workshops 1989–94, annual conference since 1995) — https://en.wikipedia.org/wiki/SIGKDD (accessed 2026-09-06)
 [91] WordNet — Wikipedia (Princeton, George A. Miller, begun 1985; basis of ImageNet's synsets) — https://en.wikipedia.org/wiki/WordNet (accessed 2026-09-06)
 [92] Christopher D. Manning — Wikipedia (*Foundations of Statistical Natural Language Processing*, with Schütze, 1999) — https://en.wikipedia.org/wiki/Christopher_D._Manning (accessed 2026-09-06)
+[93] TIMIT — Wikipedia (published 1988 on CD-ROM) — https://en.wikipedia.org/wiki/TIMIT (accessed 2026-09-23)
+[94] Littlestone, N. (1988), Learning quickly when irrelevant attributes abound: a new linear-threshold algorithm, Machine Learning 2 — https://doi.org/10.1007/BF00116827 (accessed 2026-09-23)
+[95] Gelfand, A. E. & Smith, A. F. M. (1990), Sampling-Based Approaches to Calculating Marginal Densities, JASA 85(410) — https://api.crossref.org/works/10.1080/01621459.1990.10476213 (accessed 2026-09-23)
+[96] Linguistic Data Consortium — Wikipedia (founded 1992, DARPA grant) — https://en.wikipedia.org/wiki/Linguistic_Data_Consortium (accessed 2026-09-23)
+[97] Berrou, Glavieux & Thitimajshima (1993), Near Shannon limit error-correcting coding and decoding: Turbo-codes, Proc. ICC '93 — https://doi.org/10.1109/ICC.1993.397441 (accessed 2026-09-23)
+[98] Heckerman, Geiger & Chickering (1995), Learning Bayesian networks: the combination of knowledge and statistical data, Machine Learning 20 — https://doi.org/10.1007/BF00994016 (accessed 2026-09-23)
+[99] Tibshirani, R. (1996), Regression Shrinkage and Selection via the Lasso, JRSS B 58(1) — https://api.crossref.org/works/10.1111/j.2517-6161.1996.tb02080.x ; Lasso (statistics) — Wikipedia — https://en.wikipedia.org/wiki/Lasso_%28statistics%29 (accessed 2026-09-23)
+[100] RoboCup — Wikipedia (founded 1996) — https://en.wikipedia.org/wiki/RoboCup (accessed 2026-09-23)
+[101] Domingos, P. & Pazzani, M. (1997), On the Optimality of the Simple Bayesian Classifier under Zero-One Loss, Machine Learning 29 — https://doi.org/10.1023/A:1007413511361 (accessed 2026-09-23)
+[102] Joachims, T. (1998), Text categorization with Support Vector Machines: learning with many relevant features, ECML 1998, LNCS 1398 — https://doi.org/10.1007/BFb0026683 (accessed 2026-09-23)
+[103] Kaelbling, Littman & Cassandra (1998), Planning and acting in partially observable stochastic domains, Artificial Intelligence 101 — https://doi.org/10.1016/S0004-3702%2898%2900023-X (accessed 2026-09-23)
+[104] Muscettola et al. (1998), Remote Agent: to boldly go where no AI system has gone before, Artificial Intelligence 103 — https://doi.org/10.1016/S0004-3702%2898%2900068-X ; Deep Space 1 — Wikipedia (launched 24 October 1998; Remote Agent) — https://en.wikipedia.org/wiki/Deep_Space_1 (accessed 2026-09-23)
+[105] Blum, A. L. & Furst, M. L. (1997), Fast planning through planning graph analysis, Artificial Intelligence 90 — https://doi.org/10.1016/S0004-3702%2896%2900047-1 (accessed 2026-09-23)
+[106] AIBO — Wikipedia (first consumer model 11 May 1999) — https://en.wikipedia.org/wiki/AIBO (accessed 2026-09-23)
+[107] Scale-invariant feature transform — Wikipedia (Lowe, 1999) — https://en.wikipedia.org/wiki/Scale-invariant_feature_transform ; Lowe (1999), Object recognition from local scale-invariant features, ICCV — https://doi.org/10.1109/ICCV.1999.790410 ; Lowe (2004), Distinctive Image Features from Scale-Invariant Keypoints, IJCV 60 — https://doi.org/10.1023/B:VISI.0000029664.99615.94 (accessed 2026-09-23)
+[108] Tenenbaum, de Silva & Langford (2000), A Global Geometric Framework for Nonlinear Dimensionality Reduction, Science 290 — https://api.crossref.org/works/10.1126/science.290.5500.2319 ; Roweis & Saul (2000), Nonlinear Dimensionality Reduction by Locally Linear Embedding, Science 290 — https://api.crossref.org/works/10.1126/science.290.5500.2323 ; Isomap — Wikipedia — https://en.wikipedia.org/wiki/Isomap (accessed 2026-09-23)
+[109] Shi, J. & Malik, J. (2000), Normalized cuts and image segmentation, IEEE TPAMI 22(8) — https://doi.org/10.1109/34.868688 (accessed 2026-09-23)
+[110] ASIMO — Wikipedia (unveiled October 2000) — https://en.wikipedia.org/wiki/ASIMO (accessed 2026-09-23)
+[111] LIBSVM homepage (NTU; history since 2000) — https://www.csie.ntu.edu.tw/~cjlin/libsvm/ ; Chang, C.-C. & Lin, C.-J. (2011), LIBSVM: a library for support vector machines, ACM TIST 2(3) — https://api.crossref.org/works/10.1145/1961189.1961199 (accessed 2026-09-23)
+[112] Kschischang, Frey & Loeliger (2001), Factor graphs and the sum-product algorithm, IEEE Trans. Information Theory 47(2) — https://doi.org/10.1109/18.910572 (accessed 2026-09-23)
+[113] Comaniciu, D. & Meer, P. (2002), Mean shift: a robust approach toward feature space analysis, IEEE TPAMI 24(5) — https://doi.org/10.1109/34.1000236 (accessed 2026-09-23)
+[114] Roomba — Wikipedia (first introduced September 2002) — https://en.wikipedia.org/wiki/Roomba (accessed 2026-09-23)
+[115] Dalal, N. & Triggs, B. (2005), Histograms of Oriented Gradients for Human Detection, CVPR 2005 — https://doi.org/10.1109/CVPR.2005.177 (accessed 2026-09-23)
+[116] Kocsis, L. & Szepesvári, C. (2006), Bandit Based Monte-Carlo Planning, ECML 2006 — https://doi.org/10.1007/11871842_29 ; Coulom, R. (2006/2007), Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search, CG 2006, LNCS 4630 — https://doi.org/10.1007/978-3-540-75538-8_7 ; Monte Carlo tree search — Wikipedia — https://en.wikipedia.org/wiki/Monte_Carlo_tree_search (accessed 2026-09-23)
+[117] Funk, S. (11 December 2006), Netflix Update: Try This at Home — https://sifter.org/~simon/journal/20061211.html (accessed 2026-09-23)
+[118] Abbeel, P. & Ng, A. Y. (2004), Apprenticeship learning via inverse reinforcement learning, ICML 2004 — https://api.crossref.org/works/10.1145/1015330.1015430 (accessed 2026-09-23)
+[119] MapReduce — Wikipedia (Dean & Ghemawat, OSDI 2004) — https://en.wikipedia.org/wiki/MapReduce (accessed 2026-09-23)
+[120] Caltech 101 — Wikipedia (created September 2003; Fei-Fei Li, Andreetto, Ranzato, Perona) — https://en.wikipedia.org/wiki/Caltech_101 (accessed 2026-09-23)
+[121] Schaeffer, J. et al. (2007), Checkers Is Solved, Science 317(5844) — https://api.crossref.org/works/10.1126/science.1144079 (accessed 2026-09-23)
+[122] van der Maaten, L. & Hinton, G. (2008), Visualizing Data using t-SNE, JMLR 9 — https://jmlr.org/papers/v9/vandermaaten08a.html (accessed 2026-09-23)

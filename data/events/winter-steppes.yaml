@@ -94,6 +94,38 @@ countries:
             title: "AI winter — Wikipedia [1]"
           - url: "https://en.wikipedia.org/wiki/History_of_artificial_intelligence"
             title: "History of artificial intelligence — Wikipedia [2]"
+      - id: ml-workshop-cmu-1980
+        name: "First ML Workshop"
+        year: 1980.5
+        lod: 3
+        one_line: "First Machine Learning workshop at CMU, the start of ICML"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/International_Conference_on_Machine_Learning"
+            title: "International Conference on Machine Learning — Wikipedia [60]"
+      - id: gibbs-sampler-1984
+        name: "Gibbs Sampler"
+        year: 1984.8
+        lod: 3
+        one_line: "Geman & Geman introduce the Gibbs sampler for Bayesian image restoration"
+        sources:
+          - url: "https://doi.org/10.1109/TPAMI.1984.4767596"
+            title: "Geman & Geman 1984, IEEE TPAMI [75]"
+      - id: vamors-1986
+        name: "VaMoRs Robot Car"
+        year: 1986.5
+        lod: 3
+        one_line: "Dickmanns's vision-guided VaMoRs van drives itself, reaching 96 km/h by 1987"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Ernst_Dickmanns"
+            title: "Ernst Dickmanns — Wikipedia [69]"
+      - id: eureka-prometheus-1987
+        name: "PROMETHEUS Project"
+        year: 1987.5
+        lod: 4
+        one_line: "European carmakers launch the Eureka PROMETHEUS driverless-car programme (1987–1995)"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Eureka_Prometheus_Project"
+            title: "Eureka Prometheus Project — Wikipedia [70]"
 
   critics-tundra:
     hint: "Chinese Room 1980"
@@ -181,6 +213,30 @@ countries:
         sources:
           - url: "https://doi.org/10.1016/0004-3702%2891%2990053-M"
             title: "Brooks, Intelligence Without Representation (1991) [32]"
+      - id: godel-escher-bach-1979
+        name: "Gödel, Escher, Bach"
+        year: 1979.0
+        lod: 3
+        one_line: "Hofstadter's GEB on minds and self-reference draws a generation into AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach"
+            title: "Gödel, Escher, Bach — Wikipedia [58]"
+      - id: loebner-prize-1990
+        name: "Loebner Prize"
+        year: 1990.5
+        lod: 3
+        one_line: "Hugh Loebner launches an annual Turing-test contest for chatbots"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Loebner_Prize"
+            title: "Loebner Prize — Wikipedia [72]"
+      - id: genghis-robot-1991
+        name: "Genghis Hexapod"
+        year: 1991.0
+        lod: 3
+        one_line: "Brooks's six-legged Genghis walks by subsumption, with no central world model"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Genghis_%28robot%29"
+            title: "Genghis (robot) — Wikipedia [74]"
 
   knowledge-turn-frontier:
     hint: "MYCIN · 'knowledge is power'"
@@ -246,6 +302,30 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Association_for_the_Advancement_of_Artificial_Intelligence"
             title: "AAAI — Wikipedia [9]"
+      - id: automated-mathematician-award-1977
+        name: "AM Computers & Thought"
+        year: 1977.6
+        lod: 4
+        one_line: "Lenat's Automated Mathematician wins the IJCAI Computers and Thought Award"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Automated_Mathematician"
+            title: "Automated Mathematician — Wikipedia [56]"
+      - id: simon-nobel-1978
+        name: "Simon's Nobel"
+        year: 1978.8
+        lod: 3
+        one_line: "Herbert Simon wins the economics Nobel for bounded rationality in decision-making"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Herbert_A._Simon"
+            title: "Herbert A. Simon — Wikipedia [57]"
+      - id: truth-maintenance-1979
+        name: "Truth Maintenance"
+        year: 1979.5
+        lod: 4
+        one_line: "Doyle's truth maintenance system gives rule systems belief revision"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2879%2990008-0"
+            title: "Doyle 1979, A truth maintenance system [59]"
 
   blackboard-scripts-reach:
     hint: "Hearsay-II 1976"

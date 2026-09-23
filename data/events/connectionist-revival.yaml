@@ -269,6 +269,54 @@ countries:
         sources:
           - url: "https://www.cs.toronto.edu/~hinton/absps/jjnh91.pdf"
             title: "Jacobs et al. 1991 [67]"
+      - id: simulated-annealing-1983
+        name: "Simulated Annealing"
+        year: 1983.37
+        lod: 3
+        one_line: "Kirkpatrick, Gelatt & Vecchi borrow annealing from physics for optimisation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Simulated_annealing"
+            title: "Simulated annealing — Wikipedia [93]"
+      - id: linsker-infomax-1988
+        name: "Linsker's Infomax"
+        year: 1988.2
+        lod: 4
+        one_line: "Linsker: self-organising layers maximise information about their input"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Infomax"
+            title: "Infomax — Wikipedia [94]"
+      - id: kosko-bam-1988
+        name: "Kosko's BAM"
+        year: 1988.1
+        lod: 4
+        one_line: "Kosko's bidirectional associative memory extends Hopfield nets to two layers"
+        sources:
+          - url: "https://doi.org/10.1109/21.87054"
+            title: "Kosko 1988, IEEE Trans. SMC [96]"
+      - id: rtrl-1989
+        name: "RTRL"
+        year: 1989.45
+        lod: 4
+        one_line: "Williams & Zipser's real-time recurrent learning trains recurrent nets online"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1989.1.2.270"
+            title: "Williams & Zipser 1989, Neural Computation [98]"
+      - id: cascade-correlation-1989
+        name: "Cascade-Correlation"
+        year: 1989.91
+        lod: 4
+        one_line: "Fahlman & Lebiere grow networks one hidden unit at a time"
+        sources:
+          - url: "https://papers.nips.cc/paper_files/paper/1989/hash/69adc1e107f7f7d035d7baf04342e1ca-Abstract.html"
+            title: "Fahlman & Lebiere, NIPS 1989 [99]"
+      - id: bptt-werbos-1990
+        name: "BPTT Tutorial"
+        year: 1990.8
+        lod: 4
+        one_line: "Werbos's backpropagation-through-time tutorial for training recurrent nets"
+        sources:
+          - url: "https://doi.org/10.1109/5.58337"
+            title: "Werbos 1990, Proc. IEEE [101]"
   temporal-difference-valley:
     hint: "TD-Gammon · Q-learning"
     tag: "Actor-Critic → TD(λ) → Q-Learning → TD-Gammon"
@@ -337,6 +385,78 @@ countries:
         sources:
           - url: "https://www.bkgm.com/articles/tesauro/tdl.html"
             title: "Tesauro 1995 [30]"
+      - id: neural-control-1990
+        name: "Neural Adaptive Control"
+        year: 1990.2
+        lod: 4
+        one_line: "Narendra & Parthasarathy bring neural networks into system identification and control"
+        sources:
+          - url: "https://doi.org/10.1109/72.80202"
+            title: "Narendra & Parthasarathy 1990 [102]"
+      - id: dyna-1990
+        name: "Dyna"
+        year: 1990.5
+        lod: 3
+        one_line: "Sutton's Dyna plans with simulated experience from a learned model"
+        sources:
+          - url: "https://doi.org/10.1016/B978-1-55860-141-3.50030-4"
+            title: "Sutton 1990, ICML [103]"
+      - id: experience-replay-1992
+        name: "Experience Replay"
+        year: 1992.3
+        lod: 3
+        one_line: "Long-Ji Lin introduces experience replay, later central to DQN"
+        sources:
+          - url: "https://doi.org/10.1007/BF00992699"
+            title: "Lin 1992, Machine Learning 8 [105]"
+      - id: td-lambda-convergence-1992
+        name: "TD(λ) Convergence"
+        year: 1992.31
+        lod: 4
+        one_line: "Dayan proves convergence of TD(λ) for general λ"
+        sources:
+          - url: "https://doi.org/10.1007/BF00992701"
+            title: "Dayan 1992, Machine Learning 8 [106]"
+      - id: rl-behavior-robots-1992
+        name: "RL Robot Behaviours"
+        year: 1992.5
+        lod: 4
+        one_line: "Mahadevan & Connell: RL learns subsumption behaviours on a real robot"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2892%2990058-6"
+            title: "Mahadevan & Connell 1992 [108]"
+      - id: rtdp-1995
+        name: "Real-Time DP"
+        year: 1995.0
+        lod: 4
+        one_line: "Barto, Bradtke & Singh link RL, heuristic search and asynchronous DP"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2894%2900011-O"
+            title: "Barto, Bradtke & Singh 1995 [112]"
+      - id: elevator-rl-1995
+        name: "Elevator RL"
+        year: 1995.9
+        lod: 4
+        one_line: "Crites & Barto: multi-agent RL beats elevator dispatch heuristics"
+        sources:
+          - url: "https://papers.nips.cc/paper_files/paper/1995/hash/390e982518a50e280d8e2b535462ec1f-Abstract.html"
+            title: "Crites & Barto, NIPS 1995 [114]"
+      - id: rl-survey-1996
+        name: "RL Survey"
+        year: 1996.3
+        lod: 4
+        one_line: "Kaelbling, Littman & Moore's JAIR survey maps reinforcement learning"
+        sources:
+          - url: "https://doi.org/10.1613/jair.301"
+            title: "Kaelbling, Littman & Moore 1996, JAIR [116]"
+      - id: td-function-approx-1997
+        name: "TD Convergence Analysis"
+        year: 1997.35
+        lod: 4
+        one_line: "Tsitsiklis & Van Roy prove linear TD convergence and show off-policy divergence"
+        sources:
+          - url: "https://doi.org/10.1109/9.580874"
+            title: "Tsitsiklis & Van Roy 1997 [117]"
   early-convnet-ridge:
     hint: "LeNet-5 · MNIST · LSTM"
     tag: "Neocognitron → Zip Codes → LSTM → LeNet-5"
@@ -413,6 +533,70 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/5.726791"
             title: "LeCun et al. 1998 [20]"
+      - id: cellular-nn-1988
+        name: "Cellular Neural Nets"
+        year: 1988.8
+        lod: 4
+        one_line: "Chua & Yang's cellular neural networks: locally coupled analog arrays"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Cellular_neural_network"
+            title: "Cellular neural network — Wikipedia [95]"
+      - id: rbf-networks-1989
+        name: "RBF Networks"
+        year: 1989.4
+        lod: 4
+        one_line: "Moody & Darken: fast-training radial basis function networks"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1989.1.2.281"
+            title: "Moody & Darken 1989, Neural Computation [97]"
+      - id: optimal-brain-damage-1989
+        name: "Optimal Brain Damage"
+        year: 1989.9
+        lod: 4
+        one_line: "LeCun, Denker & Solla prune networks by second-derivative saliency"
+        sources:
+          - url: "https://papers.nips.cc/paper_files/paper/1989/hash/6c9882bbac1c7093bd25041881277658-Abstract.html"
+            title: "LeCun, Denker & Solla, NIPS 1989 [99]"
+      - id: neural-gas-1991
+        name: "Neural Gas"
+        year: 1991.5
+        lod: 4
+        one_line: "Martinetz & Schulten's neural gas: topology-free competitive vector quantisation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Neural_gas"
+            title: "Neural gas — Wikipedia [104]"
+      - id: rprop-1993
+        name: "Rprop"
+        year: 1993.3
+        lod: 4
+        one_line: "Riedmiller & Braun's sign-based Rprop speeds up backprop training"
+        sources:
+          - url: "https://doi.org/10.1109/ICNN.1993.298623"
+            title: "Riedmiller & Braun, ICNN 1993 [109]"
+      - id: siamese-tdnn-1993
+        name: "Siamese Network"
+        year: 1993.9
+        lod: 3
+        one_line: "Bromley, LeCun et al.: twin networks learn a similarity metric for signatures"
+        sources:
+          - url: "https://papers.nips.cc/paper_files/paper/1993/hash/288cc0ff022877bd3df94bc9360b9c5d-Abstract.html"
+            title: "Bromley et al., NIPS 1993 [110]"
+      - id: spiking-third-gen-1997
+        name: "Spiking Nets 3rd Gen"
+        year: 1997.9
+        lod: 4
+        one_line: "Maass argues spiking neurons are the third generation of neural models"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Spiking_neural_network"
+            title: "Spiking neural network — Wikipedia [118]"
+      - id: rowley-face-detection-1998
+        name: "Neural Face Detection"
+        year: 1998.05
+        lod: 4
+        one_line: "Rowley, Baluja & Kanade's neural face detector leads until Viola–Jones"
+        sources:
+          - url: "https://doi.org/10.1109/34.655647"
+            title: "Rowley, Baluja & Kanade 1998, TPAMI [120]"
   approximation-bayes-shelf:
     hint: "Universal approx. · Bayesian nets"
     tag: "RBF → Universal Approx. → Bayesian Nets → Wake-Sleep"
@@ -473,3 +657,59 @@ countries:
         sources:
           - url: "https://doi.org/10.1007/978-1-4612-0745-0"
             title: "Neal 1996 [74]"
+      - id: softmax-bridle-1989
+        name: "Softmax Output"
+        year: 1989.92
+        lod: 4
+        one_line: "Bridle names the softmax output layer for probabilistic classifiers"
+        sources:
+          - url: "https://papers.nips.cc/paper_files/paper/1989/hash/0336dcbab05b9d5ad24f4333c7658a0e-Abstract.html"
+            title: "Bridle, NIPS 1989 [100]"
+      - id: bias-variance-1992
+        name: "Bias/Variance Dilemma"
+        year: 1992.05
+        lod: 3
+        one_line: "Geman, Bienenstock & Doursat frame neural generalisation as bias versus variance"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1992.4.1.1"
+            title: "Geman, Bienenstock & Doursat 1992 [107]"
+      - id: hierarchical-moe-1994
+        name: "Hierarchical MoE"
+        year: 1994.2
+        lod: 3
+        one_line: "Jordan & Jacobs train hierarchical mixtures of experts with EM"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1994.6.2.181"
+            title: "Jordan & Jacobs 1994, Neural Computation [111]"
+      - id: infomax-ica-1995
+        name: "Infomax ICA"
+        year: 1995.85
+        lod: 3
+        one_line: "Bell & Sejnowski's infomax rule separates mixed signals blindly"
+        sources:
+          - url: "https://api.crossref.org/works/10.1162/neco.1995.7.6.1129"
+            title: "Bell & Sejnowski 1995, Neural Computation [113]"
+      - id: sparse-coding-1996
+        name: "Sparse Coding"
+        year: 1996.45
+        lod: 3
+        one_line: "Olshausen & Field: sparse codes of natural images yield V1-like receptive fields"
+        sources:
+          - url: "https://doi.org/10.1038/381607a0"
+            title: "Olshausen & Field 1996, Nature [115]"
+      - id: no-free-lunch-1997
+        name: "No Free Lunch"
+        year: 1997.25
+        lod: 3
+        one_line: "Wolpert & Macready: no optimiser beats all others across all problems"
+        sources:
+          - url: "https://doi.org/10.1109/4235.585893"
+            title: "Wolpert & Macready 1997 [119]"
+      - id: kernel-pca-1998
+        name: "Kernel PCA"
+        year: 1998.5
+        lod: 4
+        one_line: "Schölkopf, Smola & Müller carry the kernel trick into PCA"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Kernel_principal_component_analysis"
+            title: "Kernel principal component analysis — Wikipedia [121]"
