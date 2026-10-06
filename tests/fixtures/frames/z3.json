@@ -1,0 +1,227 @@
+[
+  {
+    "id": "z3-000",
+    "x": 534.5,
+    "y": 478.4,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "winter-steppes"
+  },
+  {
+    "id": "z3-001",
+    "x": 1152.5,
+    "y": 357.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "transformer-plateau"
+  },
+  {
+    "id": "z3-002",
+    "x": 173.5,
+    "y": 540.2,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "cybernetic-shore"
+  },
+  {
+    "id": "z3-003",
+    "x": 1123.4,
+    "y": 703.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "deep-learning-basin"
+  },
+  {
+    "id": "z3-004",
+    "x": 1343.2,
+    "y": 211.5,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "generative-coast"
+  },
+  {
+    "id": "z3-005",
+    "x": 429.2,
+    "y": 517.8,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "symbolic-heartland"
+  },
+  {
+    "id": "z3-006",
+    "x": 1078.8,
+    "y": 766.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "deep-learning-basin"
+  },
+  {
+    "id": "z3-007",
+    "x": 192.9,
+    "y": 575.9,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "cybernetic-shore"
+  },
+  {
+    "id": "z3-008",
+    "x": 1567.6,
+    "y": 282.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "generative-coast"
+  },
+  {
+    "id": "z3-009",
+    "x": 695.4,
+    "y": 627.7,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "connectionist-revival"
+  },
+  {
+    "id": "z3-010",
+    "x": 568.6,
+    "y": 457.4,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "winter-steppes"
+  },
+  {
+    "id": "z3-011",
+    "x": 1367.9,
+    "y": 621.4,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "transformer-plateau"
+  },
+  {
+    "id": "z3-012",
+    "x": 606.8,
+    "y": 420.8,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "winter-steppes"
+  },
+  {
+    "id": "z3-013",
+    "x": 1465.6,
+    "y": 249.9,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "generative-coast"
+  },
+  {
+    "id": "z3-014",
+    "x": 929.4,
+    "y": 573.7,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "statistical-isthmus"
+  },
+  {
+    "id": "z3-015",
+    "x": 785.5,
+    "y": 645.7,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "statistical-isthmus"
+  },
+  {
+    "id": "z3-016",
+    "x": 1022.5,
+    "y": 511.1,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "deep-learning-basin"
+  },
+  {
+    "id": "z3-017",
+    "x": 876.8,
+    "y": 515.9,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "deep-learning-basin"
+  },
+  {
+    "id": "z3-018",
+    "x": 250.0,
+    "y": 507.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "cybernetic-shore"
+  },
+  {
+    "id": "z3-019",
+    "x": 612.3,
+    "y": 601.3,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "connectionist-revival"
+  },
+  {
+    "id": "z3-020",
+    "x": 408.4,
+    "y": 577.9,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "symbolic-heartland"
+  },
+  {
+    "id": "z3-021",
+    "x": 681.2,
+    "y": 546.2,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "statistical-isthmus"
+  },
+  {
+    "id": "z3-022",
+    "x": 571.9,
+    "y": 702.0,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "connectionist-revival"
+  },
+  {
+    "id": "z3-023",
+    "x": 227.1,
+    "y": 631.5,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "cybernetic-shore"
+  },
+  {
+    "id": "z3-024",
+    "x": 1541.2,
+    "y": 83.6,
+    "zoom": 4.0,
+    "level": 3,
+    "pinned": false,
+    "name": "generative-coast"
+  }
+]
