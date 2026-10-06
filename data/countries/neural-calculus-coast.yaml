@@ -1,0 +1,31 @@
+id: neural-calculus-coast
+level: country
+name: The Neural Calculus & Stored-Program Coast
+subtitle: "McCulloch–Pitts logical neurons, EDVAC architecture and Shannon information theory, 1943–1956"
+summary: >
+  The upper-central littoral of the Cybernetic Shore, where mathematical logic merged
+  with neurophysiology, communication engineering, and electronic computation. Opening
+  in 1943 with Warren McCulloch and Walter Pitts's proof that networks of threshold
+  neurons can compute any propositional logic expression, this province established
+  both the connectionist paradigm and the finite-automata tradition later formalized by
+  Stephen Kleene (1951). John von Neumann's 1945 EDVAC report synthesized McCulloch–Pitts
+  neuron notation into the stored-program computer architecture first realized on the
+  Manchester Baby (1948), while Claude Shannon's 1948 Mathematical Theory of
+  Communication quantified entropy and channel capacity, and the 1949 Weaver memorandum
+  and 1954 Georgetown–IBM experiment launched machine translation.
+time_range: {start: 1943, end: 1956}
+band: C
+sub_band: [Ca]
+biome: forest
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [12, 14, 17, 28, 33, 34, 35, 38, 50]
+sources:
+  - {url: "https://doi.org/10.1007/BF02478259", title: "McCulloch & Pitts, A Logical Calculus of the Ideas Immanent in Nervous Activity, 1943 [12]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf", title: "Shannon, A Mathematical Theory of Communication, BSTJ 1948 [17]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC", title: "Wikipedia: First Draft of a Report on the EDVAC [14]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment", title: "Wikipedia: Georgetown–IBM experiment [28]", kind: wikipedia, accessed: 2026-09-22}
+threads: [compute, language]
+status: sourced

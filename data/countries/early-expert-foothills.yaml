@@ -1,0 +1,30 @@
+id: early-expert-foothills
+level: country
+name: The MYCIN, Hearsay-II & Knowledge Foothills
+subtitle: "MYCIN certainty factors, Hearsay-II blackboards, Schank scripts and Feigenbaum's thesis, 1974–1980"
+summary: >
+  The western foothills of the Winter Steppes between the 1974 funding cliff and the
+  1980 commercial expert-systems boom, where researchers pivoted from general-purpose
+  search to domain-specific knowledge. At Stanford, Edward Shortliffe and Bruce Buchanan
+  developed MYCIN (1972–1976), a backward-chaining clinical consultation system of 600
+  production rules and certainty factors whose EMYCIN shell separated inference engine
+  from knowledge base. At CMU, Raj Reddy, Lee Erman, Victor Lesser, and Rick Hayes-Roth
+  demonstrated Hearsay-II (1976), introducing the cooperative blackboard architecture,
+  while Roger Schank and Robert Abelson formalized stereotyped Scripts (1977) at Yale and
+  Edward Feigenbaum's 1977 IJCAI address proclaimed that "knowledge is power."
+time_range: {start: 1974, end: 1980}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [3, 4, 7, 35, 37, 38, 43]
+sources:
+  - {url: "https://doi.org/10.1016/0010-4809%2875%2990009-9", title: "Shortliffe et al., Computer-Based Consultations in Clinical Therapeutics: MYCIN, 1975 [3]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf", title: "Feigenbaum, The Art of Artificial Intelligence: Knowledge Engineering, IJCAI 1977 [7]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Blackboard_system", title: "Wikipedia: Hearsay-II and Blackboard system [38]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf", title: "Nilsson, The Quest for Artificial Intelligence, 2010 [37]", kind: secondary, accessed: 2026-09-22}
+threads: [language]
+status: sourced

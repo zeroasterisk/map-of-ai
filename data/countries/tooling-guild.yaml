@@ -1,0 +1,47 @@
+id: tooling-guild
+level: country
+name: The Framework Harbour
+subtitle: "Deep-learning frameworks, libraries and accelerators, 2007–2017"
+summary: >
+  The basin's port and its toolmakers' guild, running along the Silicon River.
+  Nvidia's CUDA (2007) made GPUs programmable; Theano at MILA (from 2007) and
+  Torch7 at NYU compiled research ideas into GPU code; Caffe (Berkeley, 2013)
+  shipped the first trained-model zoo. cuDNN (October 2014) gave every framework
+  the same tuned primitives, so Keras (Chollet, March 2015), Chainer (Preferred
+  Networks, Tokyo, June 2015 — the first define-by-run library), TensorFlow
+  (Google, November 2015) and PyTorch (Facebook, January 2017) all rode one
+  channel. Google's TPU was announced at I/O 2016 after a year in production;
+  Nvidia's DGX-1 (2016) and Volta's Tensor Cores (2017) made compute strategy.
+  ICLR (first held 2013) and the Kaggle circuit — Hinton and Dahl's 2012 Merck
+  win was the first commercial conversion — were the guild's meeting hall and
+  market.
+time_range: {start: 2007, end: 2017}
+band: [S1, S2]
+biome: harbour
+parent_id: deep-learning-basin
+spatial: false
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [5, 16, 24, 39, 113, 44, 92, 115, 116, 49, 52, 53, 86, 106]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/CUDA, title: "Wikipedia: CUDA", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1410.0759, title: "Chetlur et al. (Nvidia), cuDNN: Efficient Primitives for Deep Learning, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1603.04467, title: "Abadi et al., TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems, 2016", kind: primary, accessed: 2026-09-11}
+  - {url: https://github.com/pytorch/pytorch/releases/tag/v0.1.6, title: "PyTorch v0.1.6 release (January 2017)", kind: primary, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Chainer, title: "Wikipedia: Chainer", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Tensor_Processing_Unit, title: "Wikipedia: Tensor Processing Unit", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Kaggle, title: "Wikipedia: Kaggle (Merck Molecular Activity Challenge, 2012)", kind: wikipedia, accessed: 2026-09-11}
+threads: [compute]
+neighbours:
+  - {id: gpu-convnet-school, relation: river, note: "the Silicon River: GTX 580 -> cuDNN -> DGX-1 -> TPU carries the ConvNet school"}
+  - {id: deep-rl-delta, relation: river, note: "DGX-1 donated to OpenAI (2016); Gym is the delta's benchmark port"}
+  - {id: neural-nlp-sequence-school, relation: road, note: "Theano/Torch/TensorFlow were the sequence school's workbenches"}
+  - {id: industrial-lab-founders, relation: borders, note: "TensorFlow, PyTorch and the TPU are the founders' public infrastructure"}
+status: sourced
+notes: >
+  P3-T8 school bullet 7 of 9 ("Tooling and infrastructure guild"). pending-
+  neighbour: commons-road (file 09e); pending-neighbour: silicon-river (file
+  09d). Biome harbour per AXES.md palette (benchmarks, datasets, competitions,
+  tooling = ports of entry) inside a forest continent. time_range starts 2007
+  (CUDA), one year after the parent's 2006 start: within range, so V-07 passes
+  without a time-overlap-ok token. Band span S1-S2: tooling serves the
+  perception band and the RL delta; not a single band by design (AXES.md §3
+  "record them as spans").

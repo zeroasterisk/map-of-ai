@@ -1,0 +1,52 @@
+id: alignment-critique-tributaries
+level: country
+name: The Human-Feedback Tributaries
+subtitle: "RLHF, the Anthropic split, Stochastic Parrots and the foundation-model critique, 2017–2022"
+summary: >
+  Two tributaries running along the plateau's northern rim, one from each
+  bank. On the alignment bank, Christiano et al.'s "Deep Reinforcement Learning
+  from Human Preferences" (June 2017) trained a reward model from pairwise human
+  judgements; Ouyang et al.'s InstructGPT (4 March 2022) turned that into the
+  SFT → reward model → PPO recipe that ChatGPT would ship eight months later,
+  and Dario and Daniela Amodei's departure from OpenAI to found Anthropic
+  (January 2021) made safety the charter of a separate frontier lab. On the
+  critique bank, Mitchell et al.'s "Model Cards for Model Reporting" (October
+  2018) asked for documentation; Bender, Gebru, McMillan-Major and Mitchell's
+  "On the Dangers of Stochastic Parrots" (FAccT, March 2021) questioned scale,
+  data and cost — and Google forced Gebru out (December 2020) over it; Stanford
+  CRFM's foundation-models report (August 2021) coined the umbrella term and
+  catalogued its risks; and Meta's Galactica (15 November 2022) was withdrawn
+  after three days of confident fabrications, two weeks before ChatGPT.
+time_range: {start: 2017, end: 2022}
+band: N2
+sub_band: N2a
+biome: mixed
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [19, 37, 38, 44, 68, 69, 85]}
+sources:
+  - {url: https://arxiv.org/abs/1706.03741, title: "Christiano et al., Deep Reinforcement Learning from Human Preferences, NIPS 2017", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2203.02155, title: "Ouyang et al., Training language models to follow instructions with human feedback (InstructGPT), NeurIPS 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/Stochastic_parrot, title: "Wikipedia: Stochastic parrot (Bender, Gebru, McMillan-Major & Mitchell, FAccT 2021)", kind: wikipedia, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/1810.03993, title: "Mitchell et al., Model Cards for Model Reporting, FAT* 2019", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2108.07258, title: "Bommasani et al., On the Opportunities and Risks of Foundation Models, Stanford CRFM 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/Anthropic, title: "Wikipedia: Anthropic (founded Jan 2021)", kind: wikipedia, accessed: 2026-09-18}
+threads: [safety, language]
+neighbours:
+  - {id: decoder-generative-school, relation: river, note: "the RLHF canal: InstructGPT is the crossing from the GPT ridge into the chatbot era"}
+  - {id: scaling-law-empiricists, relation: borders, note: "Stochastic Parrots and the emergence papers argue over the same scaling curve"}
+  - {id: open-replication-commons, relation: road, note: "Galactica's withdrawal and OPT's logbook are two Meta answers to the same critique"}
+  - {id: alignment-interpretability-plateau, relation: river, note: "the RLHF canal widens into the alignment plateau of file 08 (Constitutional AI, RSP)"}
+status: sourced
+notes: >
+  P3-T9 school bullet 7 of 9 ("Alignment and critique tributaries"). Neighbour
+  alignment-interpretability-plateau resolves the bullet's "alignment plateau of
+  file 08" border; pending-neighbour: ai-safety-ethics ridge (thread 09c),
+  pending-neighbour: policy-governance-coast (file 08, the Gebru/FAccT critique
+  feeds the ethics ridge). Band N2 sub-band N2a rather than a literal N1
+  (safety/ethics): the plateau's drawn territory never reaches N1 — research/07
+  describes only "a thin alignment tributary emerging at the eastern edge" and
+  the atlas grid gives the plateau N2a from 2019.6 — so the tributaries occupy
+  the plateau's own northern cape (A-K7, neighbourhood over band purity;
+  parent band includes N1 for the continent span, V-08 unaffected). The
+  rendered lane is 2019.6–2022; the 2017 preferences paper and 2018 model cards
+  are on the hover card. Biome mixed (human-written norms + RL).

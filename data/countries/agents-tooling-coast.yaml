@@ -1,0 +1,59 @@
+id: agents-tooling-coast
+level: country
+name: The Agents Causeway
+subtitle: "Tool use, protocols and coding agents from LangChain and ReAct to MCP and Claude Code, 2022–present"
+summary: >
+  The causeway runs from chat models out to systems that plan, call tools and
+  act. Agent scaffolding appeared in open source months before the labs shipped
+  it: LangChain (October 2022), ReAct, Toolformer (9 February 2023, language
+  models teaching themselves API calls) and AutoGPT (30 March 2023). OpenAI
+  added function calling to its API (13 June 2023) and, at DevDay (6 November
+  2023), the Assistants API and custom GPTs; SWE-bench (October 2023), GAIA
+  (November 2023) and Chatbot Arena (3 May 2023) became the scoreboards.
+  Cognition's Devin (12 March 2024) and the Cursor editor made coding the agent
+  beachhead; Anthropic's computer use (22 October 2024) drove a desktop from
+  screenshots, and the Model Context Protocol (25 November 2024; adopted by
+  OpenAI March 2025, donated to the Linux Foundation 9 December 2025) became
+  the standard plumbing, with Google's Agent2Agent protocol (9 April 2025)
+  layered on top. OpenAI Operator (23 January 2025), Claude Code (February
+  2025; GA May 2025), Manus (6 March 2025), ChatGPT Atlas (21 October 2025) and
+  Claude Cowork (12 January 2026) made agentic coding and browsing everyday
+  products. RT-2 (28 July 2023) and Gemini Robotics (12 March 2025) carry the
+  causeway out to the robotics islands.
+time_range: {start: 2022, end: present}
+band: S1
+sub_band: [S1a, S1b]
+biome: mixed
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [15, 16, 17, 39, 51, 53, 58, 70, 71, 77, 78, 83, 84, 89, 95, 96, 97, 114]}
+sources:
+  - {url: https://arxiv.org/abs/2210.03629, title: "Yao et al., ReAct: Synergizing Reasoning and Acting in Language Models, arXiv 2210.03629", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2302.04761, title: "Schick et al., Toolformer: Language Models Can Teach Themselves to Use Tools, arXiv 2302.04761, 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/LangChain, title: "Wikipedia: LangChain", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2310.06770, title: "Jimenez et al., SWE-bench: Can Language Models Resolve Real-World GitHub Issues?, arXiv 2310.06770, 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://cognition.ai/blog/introducing-devin, title: "Cognition, Introducing Devin, the first AI software engineer, 12 Mar 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://www.anthropic.com/news/3-5-models-and-computer-use, title: "Anthropic, Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku, 22 Oct 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://www.anthropic.com/news/model-context-protocol, title: "Anthropic, Introducing the Model Context Protocol, 25 Nov 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/, title: "Google Developers Blog, Announcing the Agent2Agent Protocol (A2A), 9 Apr 2025", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Claude_%28language_model%29, title: "Wikipedia: Claude (language model), Claude Code section", kind: wikipedia, accessed: 2026-09-06}
+threads: [rl, robotics, language]
+neighbours:
+  - {id: reasoning-test-time-compute, relation: borders, note: "o3's tool use inside the chain of thought; reasoning models are the agents' planners"}
+  - {id: closed-frontier-labs, relation: road, note: "function calling, computer use, Operator, Claude Code and Atlas ship from the frontier labs"}
+  - {id: open-weights-movement, relation: road, note: "LangChain, AutoGPT and llama.cpp are the open-source scaffolds and runtimes"}
+  - {id: diffusion-media-district, relation: borders, note: "world models (Genie 3) and VLA robotics share the embodied shore"}
+  - {id: alignment-interpretability-plateau, relation: borders, note: "prompt injection (Bing 'Sydney', Feb 2023) and agent evals are the causeway's safety questions"}
+  - {id: compute-hardware-hinterland, relation: road, note: "agent loops multiply inference demand; Groq's LPU targets that latency"}
+status: sourced
+notes: >
+  P3-T10 school bullet 5 of 8 ("Agents & tooling coast"). pending-neighbour:
+  symbolic-heartland (far west, via a long road: STRIPS, Shakey — research/08
+  says the coast "re-imports symbolic planning, tool APIs and protocols");
+  pending-neighbour: deep-rl-delta (west, file 06 "OpenAI Gym"); pending-
+  neighbour: robotics/VLA embodied shore (RT-2, Gemini Robotics, pi0, Helix).
+  Band S1: planning, search, decision and agents per AXES.md §3 ("LLM agents,
+  MCP" are the band's own examples); sub-band S1a + S1b = the whole of S1.
+  Biome mixed: research/08 calls this "the most mixed Y-position of the era"
+  and the AXES.md palette's mixed = genuinely hybrid; differing biome from the
+  jungle parent -> own texture + wash (G4). time_range = parent's whole span
+  (LangChain created 17 Oct 2022, ReAct arXiv Oct 2022).

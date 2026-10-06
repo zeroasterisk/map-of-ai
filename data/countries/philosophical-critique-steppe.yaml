@@ -1,0 +1,32 @@
+id: philosophical-critique-steppe
+level: country
+name: The Chinese Room & Symbol-System Steppe
+subtitle: "The Physical Symbol System Hypothesis, Weizenbaum, Searle's Chinese Room and Dreyfus, 1974–1993"
+summary: >
+  The upper-reasoning steppe of the Winter Steppes, where the foundational creed of
+  symbolic AI was formulated and contested across two decades. In their 1975 Turing
+  Award lecture, Allen Newell and Herbert Simon articulated the Physical Symbol System
+  Hypothesis, declaring that a physical symbol system has the necessary and sufficient
+  means for general intelligent action. That manifesto drew sustained philosophical and
+  ethical counter-fire: Joseph Weizenbaum's Computer Power and Human Reason (1976)
+  challenged the moral authority ceded to automated systems; John Searle's Chinese Room
+  thought experiment (1980) argued that syntactic symbol manipulation never yields
+  semantic intentionality; and Hubert and Stuart Dreyfus's Mind over Machine (1986) And
+  Terry Winograd's 1986 critique argued that human expertise is situated intuition rather
+  than brittle rule bases.
+time_range: {start: 1974, end: 1993}
+band: N2
+sub_band: [N2a]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [1, 2, 5, 6, 12, 44, 50]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Physical_symbol_system", title: "Wikipedia: Newell & Simon Physical Symbol System Hypothesis, 1976 [5]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1017/S0140525X00005756", title: "Searle, Minds, Brains, and Programs, Behavioral and Brain Sciences 1980 [12]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Computer_Power_and_Human_Reason", title: "Wikipedia: Weizenbaum, Computer Power and Human Reason, 1976 [6]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Hubert_Dreyfus", title: "Wikipedia: Hubert Dreyfus, Mind over Machine, 1986 [44]", kind: wikipedia, accessed: 2026-09-22}
+threads: [language, safety]
+status: sourced

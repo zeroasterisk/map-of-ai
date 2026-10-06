@@ -1,0 +1,36 @@
+id: expert-systems-plateau
+level: continent
+name: The Expert Systems Plateau
+subtitle: "Knowledge engineering, expert systems and the Fifth Generation boom, 1980–1993"
+summary: >
+  Sheltered as a warm commercial plateau between the two AI winters, the Expert Systems
+  Plateau realized Edward Feigenbaum's thesis that domain knowledge—not general heuristic
+  search—is the primary source of intelligent power. The boom ignited in 1980 when John
+  McDermott's R1/XCON rule-based configurer, built in Charles Forgy's OPS5 production
+  system, entered production at Digital Equipment Corporation, eventually saving DEC
+  twenty-five million dollars annually and inspiring two-thirds of Fortune 500 corporations
+  to establish knowledge-engineering groups. Formal knowledge representation matured in
+  parallel through McCarthy's circumscription, Reiter's default logic (1980), Brachman's
+  KL-ONE description logic (1985), Laird, Newell, and Rosenbloom's SOAR architecture
+  (1987), and Douglas Lenat's Cyc ontology project (1984). In 1982, Japan's Ministry of
+  International Trade and Industry launched the ten-year Fifth Generation Computer Systems
+  project (ICOT) around massively parallel Prolog machines, triggering matching state
+  interventions across the United States (DARPA's Strategic Computing Initiative and the
+  MCC consortium), Britain (the Alvey Programme), and Europe (ESPRIT), alongside a
+  hundred-million-dollar Lisp-machine hardware industry led by Symbolics and LMI until
+  commodity RISC workstations and maintenance brittleness closed the era by 1993.
+time_range: {start: 1980, end: 1993}
+band: N2
+biome: highland
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [7, 10, 11, 13, 14, 15, 18, 19, 20, 40, 41, 42, 45, 52]
+sources:
+  - {url: "https://doi.org/10.1016/0004-3702%2882%2990021-2", title: "McDermott, R1: A Rule-Based Configurer of Computer Systems, AI 1982 [11]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems", title: "Wikipedia: Fifth Generation Computer Systems [15]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Cyc", title: "Wikipedia: Cyc [18]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1016/0004-3702%2887%2990050-6", title: "Laird, Newell & Rosenbloom, SOAR: An Architecture for General Intelligence, 1987 [42]", kind: primary, accessed: 2026-09-22}
+threads: [compute, language, games]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 5 (The Expert Systems Plateau).

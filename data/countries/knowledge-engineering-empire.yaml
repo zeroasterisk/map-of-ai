@@ -1,0 +1,32 @@
+id: knowledge-engineering-empire
+level: country
+name: The Knowledge Engineering & XCON Empire
+subtitle: "R1/XCON at DEC, PROSPECTOR, Japan's Fifth Generation, KL-ONE, ID3 and Soar, 1980–1988"
+summary: >
+  The industrial heartland of the Expert Systems Plateau during the 1980s boom. Launched
+  into production in 1980 when John McDermott's OPS5 rule-based configurer R1/XCON began
+  validating VAX computer orders at Digital Equipment Corporation—saving DEC $25 million
+  annually by 1986—and SRI's PROSPECTOR located a Mount Tolman molybdenum deposit (1982),
+  knowledge engineering grew into a billion-dollar enterprise of Lisp machines and shell
+  vendors. In 1982 Japan's MITI inaugurated the ten-year Fifth Generation Computer
+  Systems project around parallel logic programming, while John McCarthy and Raymond
+  Reiter formalized non-monotonic reasoning (1980), Ronald Brachman introduced KL-ONE
+  description logic (1985), J. Ross Quinlan published ID3 decision-tree induction (1986),
+  and John Laird, Allen Newell, and Paul Rosenbloom unveiled the Soar cognitive
+  architecture (1987).
+time_range: {start: 1980, end: 1988}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: expert-systems-plateau
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [10, 11, 15, 25, 35, 37, 40, 42, 51, 52]
+sources:
+  - {url: "https://doi.org/10.1016/0004-3702%2882%2990021-2", title: "McDermott, R1: A Rule-Based Configurer of Computer Systems, AI 1982 [11]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems", title: "Wikipedia: Fifth Generation Computer Systems [15]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1007/BF00116251", title: "Quinlan, Induction of Decision Trees (ID3), Machine Learning 1986 [25]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1016/0004-3702%2887%2990050-6", title: "Laird, Newell & Rosenbloom, SOAR: An Architecture for General Intelligence, 1987 [42]", kind: primary, accessed: 2026-09-22}
+threads: [compute, language]
+status: sourced

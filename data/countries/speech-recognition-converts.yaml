@@ -1,0 +1,41 @@
+id: speech-recognition-converts
+level: country
+name: The Speech Conversion
+subtitle: "Deep neural network and LSTM speech recognition, 2009–2016"
+summary: >
+  The first industrial sector fully captured by deep learning. Hinton's
+  students, working with Microsoft, Google and IBM from 2009, replaced the
+  Gaussian-mixture acoustic models of HMM recognisers with deep neural networks;
+  the four labs' joint 2012 IEEE Signal Processing Magazine paper reported the
+  gains across every major system. Graves, Mohamed and Hinton's deep
+  bidirectional LSTMs (2013) and Graves's earlier CTC loss (2006) removed the
+  phonetic alignment step; Google Voice Search shipped LSTM recognition in 2015.
+  Baidu's Deep Speech (Hannun et al., December 2014) trained an end-to-end
+  recurrent recogniser on noisy speech at scale — the first landmark paper from
+  a Chinese lab — and Microsoft's Xiong and colleagues declared human parity on
+  Switchboard (5.9% word error rate, October 2016). By then the conversion begun
+  in 2009 was complete.
+time_range: {start: 2009, end: 2016}
+band: S2
+sub_band: S2b
+biome: forest
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [1, 10, 11, 105, 93, 95]}
+sources:
+  - {url: https://ieeexplore.ieee.org/document/6296526, title: "Hinton et al., Deep Neural Networks for Acoustic Modeling in Speech Recognition, IEEE SPM 2012", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1303.5778, title: "Graves, Mohamed & Hinton, Speech Recognition with Deep Recurrent Neural Networks, 2013", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1412.5567, title: "Hannun et al., Deep Speech, 2014", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1610.05256, title: "Xiong et al., Achieving Human Parity in Conversational Speech Recognition, 2016", kind: primary, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Speech_recognition, title: "Wikipedia: Speech recognition", kind: wikipedia, accessed: 2026-09-11}
+threads: [language]
+neighbours:
+  - {id: neural-nlp-sequence-school, relation: borders, note: "shared LSTM/CTC recurrent machinery; both feed the Transformer"}
+  - {id: deep-generative-shoreline, relation: borders, note: "WaveNet (2016) is the generative twin of neural ASR"}
+  - {id: chinese-state-response, relation: borders, note: "Deep Speech is Baidu Research's first city"}
+status: sourced
+notes: >
+  P3-T8 school bullet 6 of 9 ("Speech-recognition converts"). pending-neighbour:
+  hmm-speech-systems (west, HMM/GMM speech of file 05); pending-neighbour:
+  whisper-asr (east, Transformer ASR, file 07). Band S2: perception. The
+  ieeexplore.ieee.org source returns HTTP 202 to bots (checked 2026-09-11) and
+  is accepted as reachable by check_links.sh.

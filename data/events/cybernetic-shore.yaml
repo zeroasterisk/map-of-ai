@@ -1,0 +1,214 @@
+# The Cybernetic Shore — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/01-origins-pre-1956.md.
+countries:
+  neural-calculus-coast:
+    hint: "McCulloch–Pitts 1943 · Shannon 1948"
+    tag: "McCulloch–Pitts → EDVAC → Information Theory → Georgetown MT"
+    events:
+      - id: mcculloch-pitts-1943
+        name: McCulloch–Pitts Neuron
+        year: 1943.6
+        lod: 3
+        one_line: "McCulloch and Pitts prove binary threshold neuron nets compute any logical function"
+        sources:
+          - url: "https://doi.org/10.1007/BF02478259"
+            title: "McCulloch & Pitts 1943 [12]"
+      - id: edvac-report-1945
+        name: EDVAC Report
+        year: 1945.5
+        lod: 3
+        one_line: "John von Neumann formalizes the stored-program digital computer architecture"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/First_Draft_of_a_Report_on_the_EDVAC"
+            title: "von Neumann EDVAC Report 1945 [14]"
+      - id: shannon-information-theory-1948
+        name: Information Theory
+        year: 1948.5
+        lod: 3
+        one_line: "Claude Shannon defines entropy, bits and channel capacity in communication theory"
+        sources:
+          - url: "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf"
+            title: "Shannon 1948 [17]"
+      - id: von-neumann-automata-1948
+        name: Self-Reproducing Automata
+        year: 1948.7
+        lod: 4
+        one_line: "Von Neumann's Hixon lecture compares logical automata with McCulloch–Pitts nerve nets"
+        sources:
+          - url: "https://www.vordenker.de/ggphilosophy/jvn_the-general-and-logical-theory-of-automata.pdf"
+            title: "von Neumann Hixon Lecture 1948 [34]"
+      - id: weaver-translation-memo-1949
+        name: Weaver MT Memo
+        year: 1949.5
+        lod: 4
+        one_line: "Warren Weaver proposes statistical and cryptographic machine translation by computer"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Warren_Weaver"
+            title: "Weaver Translation Memorandum 1949 [35]"
+      - id: kleene-regular-events-1951
+        name: Regular Events
+        year: 1951.4
+        lod: 4
+        one_line: "Stephen Kleene characterizes nerve-net behavior via regular expressions and finite automata"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
+            title: "Kleene RAND Memo 1951 [38]"
+      - id: georgetown-ibm-1954
+        name: Georgetown–IBM MT
+        year: 1954.1
+        lod: 3
+        one_line: "Georgetown and IBM publicly demonstrate automatic Russian-to-English sentence translation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment"
+            title: "Georgetown–IBM Experiment 1954 [28]"
+
+  hebbian-synapse-shore:
+    hint: "Hebb 1949 · SNARC 1951"
+    tag: "Intelligent Machinery → Hebb Rule → SNARC → EDSAC Shopper"
+    events:
+      - id: pitts-mcculloch-universals-1947
+        name: How We Know Universals
+        year: 1947.4
+        lod: 4
+        one_line: "Pitts and McCulloch model invariant visual and auditory pattern recognition"
+        sources:
+          - url: "https://doi.org/10.1007/BF02478291"
+            title: "Pitts & McCulloch 1947 [33]"
+      - id: turing-intelligent-machinery-1948
+        name: Intelligent Machinery
+        year: 1948.6
+        lod: 3
+        one_line: "Turing's NPL report proposes training unorganised B-type connectionist neural networks"
+        sources:
+          - url: "https://weightagnostic.github.io/papers/turing1948.pdf"
+            title: "Turing NPL Report 1948 [18]"
+      - id: hebb-organization-behavior-1949
+        name: Hebbian Learning
+        year: 1949.4
+        lod: 3
+        one_line: "Donald Hebb proposes synaptic strengthening between simultaneously active neurons"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Organization_of_Behavior"
+            title: "Hebb 1949 [20]"
+      - id: snarc-minsky-1951
+        name: SNARC Machine
+        year: 1951.5
+        lod: 3
+        one_line: "Marvin Minsky and Dean Edmonds build the 40-synapse SNARC neural learning machine"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stochastic_neural_analog_reinforcement_calculator"
+            title: "Minsky & Edmonds SNARC 1951 [24]"
+      - id: oettinger-edsac-shopper-1952
+        name: EDSAC Shopper
+        year: 1952.3
+        lod: 4
+        one_line: "Anthony Oettinger programs Cambridge's EDSAC for trial-and-error response learning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Anthony_Oettinger"
+            title: "Oettinger 1952 [39]"
+      - id: farley-clark-whirlwind-1954
+        name: Whirlwind Self-Organization
+        year: 1954.6
+        lod: 4
+        one_line: "Farley and Clark simulate self-organizing threshold networks on MIT's Whirlwind"
+        sources:
+          - url: "https://doi.org/10.1109/TIT.1954.1057468"
+            title: "Farley & Clark 1954 [30]"
+
+  turing-test-headland:
+    hint: "Turing Test 1950 · Samuel 1952"
+    tag: "Turing Test → Chess Minimax → Samuel Checkers → Dartmouth Proposal"
+    events:
+      - id: turing-imitation-game-1950
+        name: The Turing Test
+        year: 1950.8
+        lod: 3
+        one_line: "Alan Turing's Mind paper poses the Imitation Game and rebuts nine objections"
+        sources:
+          - url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf"
+            title: "Turing, Computing Machinery and Intelligence, 1950 [7]"
+      - id: shannon-chess-minimax-1950
+        name: Shannon Chess Minimax
+        year: 1950.2
+        lod: 3
+        one_line: "Claude Shannon formulates minimax tree search and static evaluation for chess"
+        sources:
+          - url: "https://vision.unipv.it/IA1/ProgrammingaComputerforPlayingChess.pdf"
+            title: "Shannon 1950 [23]"
+      - id: ferranti-draughts-chess-1951
+        name: Ferranti Mark 1 Games
+        year: 1951.7
+        lod: 4
+        one_line: "Strachey's draughts and Prinz's chess run on Manchester's Ferranti Mark 1"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Ferranti_Mark_1"
+            title: "Ferranti Mark 1 1951 [25]"
+      - id: samuel-ibm701-checkers-1952
+        name: Samuel IBM 701 Checkers
+        year: 1952.8
+        lod: 3
+        one_line: "Arthur Samuel builds the first self-learning checkers program on the IBM 701"
+        sources:
+          - url: "https://doi.org/10.1147/rd.33.0210"
+            title: "Samuel 1952–1959 [27]"
+      - id: dartmouth-proposal-1955
+        name: Dartmouth AI Proposal
+        year: 1955.7
+        lod: 3
+        one_line: "McCarthy, Minsky, Rochester and Shannon coin 'artificial intelligence' in 1955 proposal"
+        sources:
+          - url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf"
+            title: "McCarthy et al. 1955 [29]"
+
+  cybernetic-feedback-lowlands:
+    hint: "Tortoises · Homeostat · Theseus"
+    tag: "Walter Tortoises → Ashby Homeostat → Ratio Club → Theseus Mouse"
+    events:
+      - id: walter-tortoises-1949
+        name: Grey Walter Tortoises
+        year: 1949.1
+        lod: 3
+        one_line: "W. Grey Walter builds autonomous light-seeking robot tortoises Elmer and Elsie"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/William_Grey_Walter"
+            title: "Grey Walter Tortoises 1948–1949 [19]"
+      - id: ashby-homeostat-1949
+        name: Ashby Homeostat
+        year: 1949.5
+        lod: 3
+        one_line: "Ross Ashby builds the Homeostat, demonstrating ultrastable adaptive equilibrium"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Homeostat"
+            title: "Ashby Homeostat 1949 [21]"
+      - id: ratio-club-1949
+        name: The Ratio Club
+        year: 1949.8
+        lod: 4
+        one_line: "Turing, Ashby, Walter and Uttley form Britain's cybernetics dining circle"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Ratio_Club"
+            title: "Ratio Club 1949 [22]"
+      - id: shannon-theseus-1950
+        name: Theseus Maze Mouse
+        year: 1950.5
+        lod: 3
+        one_line: "Claude Shannon builds Theseus, a relay-controlled mouse that learns mazes"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Claude_Shannon"
+            title: "Shannon Theseus 1950 [36]"
+      - id: paris-cybernetics-colloque-1951
+        name: Paris CNRS Colloque
+        year: 1951.1
+        lod: 4
+        one_line: "Couffignal convenes Wiener, Ashby and McCulloch in Paris on calculating machines"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Louis_Couffignal"
+            title: "CNRS Paris Colloque 1951 [37]"
+      - id: ashby-design-for-brain-1952
+        name: Design for a Brain
+        year: 1952.5
+        lod: 4
+        one_line: "Ross Ashby formalizes adaptive intelligence as a dynamical homeostatic system"
+        sources:
+          - url: "https://archive.org/details/designforbrain00ashb"
+            title: "Ashby 1952 [26]"

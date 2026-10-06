@@ -1,0 +1,84 @@
+# The Antecedent Isles — named events for the offshore pre-1943 archipelago.
+# Every row traces to research/01-origins-pre-1956.md.
+countries:
+  mathematical-logic-isles:
+    hint: "Leibniz 1666 · Boole 1854 · Gödel 1931"
+    tag: "Leibniz → Babbage/Lovelace → Boole → Frege → Gödel"
+    events:
+      - id: leibniz-calculus-1666
+        name: Calculus Ratiocinator
+        year: 1666.5
+        lod: 3
+        one_line: "Leibniz proposes a universal formal language and mechanical calculus of human reasoning"
+        sources:
+          - url: "https://plato.stanford.edu/entries/leibniz-logic-influence/"
+            title: "SEP: Leibniz's Influence on 19th Century Logic [1]"
+      - id: babbage-lovelace-1843
+        name: Analytical Engine
+        year: 1843.5
+        lod: 3
+        one_line: "Babbage designs the Analytical Engine; Ada Lovelace publishes the first algorithm and objection"
+        sources:
+          - url: "https://www.fourmilab.ch/babbage/sketch.html"
+            title: "Menabrea & Lovelace, Sketch of the Analytical Engine, 1843 [3]"
+      - id: boole-laws-of-thought-1854
+        name: Laws of Thought
+        year: 1854.5
+        lod: 3
+        one_line: "George Boole formalizes propositional logic as binary algebraic symbol manipulation"
+        sources:
+          - url: "https://www.gutenberg.org/ebooks/15114"
+            title: "Boole, An Investigation of the Laws of Thought, 1854 [4]"
+      - id: frege-begriffsschrift-1879
+        name: Begriffsschrift
+        year: 1879.5
+        lod: 4
+        one_line: "Gottlob Frege invents modern first-order predicate calculus with universal quantifiers"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Begriffsschrift"
+            title: "Wikipedia: Begriffsschrift [5]"
+      - id: principia-mathematica-1910
+        name: Principia Mathematica
+        year: 1910.5
+        lod: 4
+        one_line: "Whitehead and Russell derive mathematics from formal symbolic axioms and rules"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Principia_Mathematica"
+            title: "Wikipedia: Principia Mathematica [6]"
+      - id: godel-incompleteness-1931
+        name: Gödel Incompleteness
+        year: 1931.2
+        lod: 3
+        one_line: "Kurt Gödel proves arithmetic contains true statements unprovable within any formal system"
+        sources:
+          - url: "https://doi.org/10.1007/BF01700692"
+            title: "Gödel, Über formal unentscheidbare Sätze, 1931 [9]"
+
+  computability-turing-archipelago:
+    hint: "Church 1936 · Turing Machine 1936"
+    tag: "Hilbert Programme → Lambda Calculus → Universal Turing Machine"
+    events:
+      - id: church-lambda-calculus-1936
+        name: Lambda Calculus
+        year: 1936.3
+        lod: 3
+        one_line: "Alonzo Church resolves the Entscheidungsproblem negatively using untyped lambda calculus"
+        sources:
+          - url: "https://doi.org/10.2307/2371045"
+            title: "Church, An Unsolvable Problem of Elementary Number Theory, 1936 [10]"
+      - id: turing-universal-machine-1936
+        name: Universal Turing Machine
+        year: 1936.8
+        lod: 3
+        one_line: "Alan Turing defines the universal stored-program machine in On Computable Numbers"
+        sources:
+          - url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf"
+            title: "Turing, On Computable Numbers, 1936 [11]"
+      - id: post-production-systems-1936
+        name: Post Production Machines
+        year: 1936.9
+        lod: 4
+        one_line: "Emil Post formulates symbolic production rewriting equivalent to Turing computation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Emil_Leon_Post"
+            title: "Wikipedia: Emil Leon Post [44]"

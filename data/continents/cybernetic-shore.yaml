@@ -1,0 +1,37 @@
+id: cybernetic-shore
+level: continent
+name: The Cybernetic Shore
+subtitle: "Cybernetics, neural modelling and the first thinking-machine programmes, 1943–1956"
+summary: >
+  The Cybernetic Shore forms the westernmost coastline of the AI mainland, opening in
+  1943 when Warren McCulloch and Walter Pitts proved that networks of idealized binary
+  neurons could compute any logical proposition, while Arturo Rosenblueth, Norbert
+  Wiener, and Julian Bigelow identified negative feedback as the physical mechanism of
+  purposive behavior. Following John von Neumann's 1945 EDVAC report and the first
+  stored-program electronic computers, the Macy Conferences (1946–1953) in New York and
+  the Ratio Club in Britain united neurophysiologists, mathematicians, and engineers around
+  Wiener's Cybernetics (1948) and Claude Shannon's information theory (1948). Along the
+  embodied southern coast, W. Grey Walter built autonomous light-seeking tortoises, Ross
+  Ashby constructed the ultrastable Homeostat, Donald Hebb formulated synaptic plasticity
+  (1949), Shannon built the maze-learning mouse Theseus (1950), and Marvin Minsky and Dean
+  Edmonds wired the 40-synapse SNARC learning machine (1951). In the northern and central
+  highlands, Alan Turing's 1950 Mind paper posed the Imitation Game, Shannon and Arthur
+  Samuel pioneered chess and self-learning checkers programs, the 1954 Georgetown-IBM
+  demonstration launched machine translation, and the 1955 Dartmouth proposal coined
+  artificial intelligence.
+time_range: {start: 1943, end: 1956}
+band: [N1, N2, C, S1, S2]
+biome: mixed
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [7, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 27, 28, 29]
+sources:
+  - {url: "https://doi.org/10.1007/BF02478259", title: "McCulloch & Pitts, A Logical Calculus of the Ideas Immanent in Nervous Activity, 1943 [12]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://archive.org/details/cyberneticsorcon00wien", title: "Wiener, Cybernetics: Or Control and Communication in the Animal and the Machine, 1948 [16]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf", title: "Shannon, A Mathematical Theory of Communication, 1948 [17]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing, Computing Machinery and Intelligence, Mind 1950 [7]", kind: primary, accessed: 2026-09-22}
+  - {url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf", title: "McCarthy et al., Dartmouth Summer Research Project Proposal, 1955 [29]", kind: primary, accessed: 2026-09-22}
+threads: [compute, language, rl, robotics]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 2 (The Cybernetic Shore). Biome is mixed per SPEC.md §2.6: half formal logic / stored-program computation and half cybernetic feedback / neural modelling.

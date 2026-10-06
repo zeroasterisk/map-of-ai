@@ -1,0 +1,56 @@
+id: transformer-plateau
+level: continent
+name: The Transformer Plateau
+subtitle: "Attention, pre-trained language models and scaling laws, 2017–2022"
+summary: >
+  Between 2017 and 2022 the Transformer architecture unified deep learning across
+  language, vision, code and structural biology, while empirical scaling laws turned
+  compute into a predictable capability dial. The era opens with Vaswani et al.'s
+  "Attention Is All You Need" (June 2017), which discarded recurrence and convolution
+  in favour of self-attention, enabling massive parallelisation across GPU clusters.
+  Within two years the pre-training-plus-fine-tuning paradigm bifurcated into
+  bidirectional masked-language models (Devlin et al.'s BERT, 2018) for language
+  understanding and autoregressive generative models (Radford et al.'s GPT-1 and
+  GPT-2, 2018–2019) for open-ended generation. Kaplan et al.'s formulation of neural
+  scaling laws (January 2020) demonstrated that cross-entropy loss drops as a smooth
+  power law of compute, dataset size and parameter count, directly motivating OpenAI's
+  175-billion-parameter GPT-3 (May 2020) and revealing emergent few-shot in-context
+  learning. Attention rapidly crossed modality boundaries with the Vision Transformer
+  (ViT, 2020), CLIP (2021), Codex (2021) and DeepMind's AlphaFold 2 (2020–2021),
+  which solved the 50-year protein-folding challenge. Systems innovations including
+  Nvidia's Megatron-LM and A100 GPU alongside Microsoft's DeepSpeed made training
+  100B+ models viable, while Hoffmann et al.'s Chinchilla (2022) recalibrated
+  compute-optimal training toward token volume. The period concluded with the
+  foundational mechanisms of modern AI established: instruction tuning and
+  reinforcement learning from human feedback (InstructGPT, March 2022) assembled the
+  alignment recipe, while open-weights efforts like EleutherAI, OPT-175B and BLOOM
+  mounted early counterweights to proprietary APIs just prior to the public arrival of
+  ChatGPT in November 2022.
+time_range: {start: 2017, end: 2022}
+band: [N1, N2, C, S1, S2]
+biome: jungle
+research_ref:
+  file: research/07-transformers-and-llms-2017-2022.md
+  sources: [1, 2, 7, 9, 11, 14, 19, 20]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Attention_Is_All_You_Need", title: "Wikipedia: Attention Is All You Need", kind: wikipedia, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/1706.03762", title: "Vaswani et al., Attention Is All You Need, NIPS 2017", kind: primary, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/1810.04805", title: "Devlin et al., BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding, NAACL 2019", kind: primary, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/2001.08361", title: "Kaplan et al., Scaling Laws for Neural Language Models, arXiv 2020", kind: primary, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/2005.14165", title: "Brown et al., Language Models are Few-Shot Learners (GPT-3), NeurIPS 2020", kind: primary, accessed: 2026-09-18}
+  - {url: "https://www.nature.com/articles/s41586-021-03819-2", title: "Jumper et al., Highly accurate protein structure prediction with AlphaFold, Nature 596, 2021", kind: primary, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/2203.02155", title: "Ouyang et al., Training language models to follow instructions with human feedback (InstructGPT), NeurIPS 2022", kind: primary, accessed: 2026-09-18}
+  - {url: "https://arxiv.org/abs/2203.15556", title: "Hoffmann et al., Training Compute-Optimal Large Language Models (Chinchilla), arXiv 2022", kind: primary, accessed: 2026-09-18}
+threads: [language, compute, vision, safety]
+status: sourced
+notes: >
+  P2-T9 (REGISTRY.md row 9). Band per A-C5: AXES.md §3 / REGISTRY.md D6 "C, spreading
+  to all bands" -> home band C (language understanding and generation), spreading
+  north to N1 (safety/alignment tributaries) and N2 (symbolic / reasoning tasks,
+  AlphaFold), and south to S1 (code, tools) and S2 (perception, vision transformers,
+  diffusion backbones, systems/hardware). Time range 2017-2022 covers Vaswani 2017
+  to ChatGPT 30 Nov 2022. Neighbours left for P2-T12:
+  pending-neighbour: deep-learning-basin (west, bridge: Attention River / ILSVRC lineage);
+  pending-neighbour: generative-coast (east, canal: RLHF canal / ChatGPT threshold 30 Nov 2022);
+  pending-neighbour: statistical-isthmus (south-west).
+  authored-after-coverage-review: research/07 is Status reviewed (P1-T7).

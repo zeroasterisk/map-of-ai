@@ -1,0 +1,30 @@
+id: fifth-generation-and-cyc-highlands
+level: country
+name: The Cyc Ontology & Deep Thought Highlands
+subtitle: "Lenat's Cyc knowledge base, Deep Thought grandmaster chess and the ICOT wind-down, 1988–1993"
+summary: >
+  The eastern highlands of the Expert Systems Plateau, where encyclopaedic commonsense
+  ontologies and specialized hardware search machines carried symbolic AI through the
+  close of the Fifth Generation era. At the MCC consortium in Austin, Douglas Lenat led
+  the Cyc project (begun 1984) to hand-encode millions of default commonsense axioms into
+  a formal ontology. Concurrently at Carnegie Mellon, Hans Berliner's HiTech and
+  Feng-hsiung Hsu and Murray Campbell's custom VLSI alpha-beta search machine Deep
+  Thought defeated chess grandmasters in 1988–1989, laying the direct foundation for IBM
+  Deep Blue, while NASA's CLIPS shell standardized production rules and Japan's ICOT
+  Fifth Generation project concluded its ten-year mandate in 1992.
+time_range: {start: 1988, end: 1993}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: expert-systems-plateau
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [15, 18, 34, 35, 45, 53, 54]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Cyc", title: "Wikipedia: Cyc commonsense knowledge base [18]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29", title: "Wikipedia: Deep Thought chess computer [45]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1016/0004-3702%2893%2990068-M", title: "Lindsay, Buchanan, Feigenbaum & Lederberg, DENDRAL: A Case Study, AI 1993 [34]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/CLIPS", title: "Wikipedia: CLIPS expert system shell [54]", kind: wikipedia, accessed: 2026-09-22}
+threads: [compute, games, language]
+status: sourced

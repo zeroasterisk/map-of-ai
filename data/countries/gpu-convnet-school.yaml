@@ -1,0 +1,48 @@
+id: gpu-convnet-school
+level: country
+name: The ImageNet Escarpment
+subtitle: "GPU-trained convolutional networks for vision, 2009–2015"
+summary: >
+  The sharpest relief on the whole map. Raina, Madhavan and Ng (Stanford, 2009)
+  showed GPUs training deep models seventy times faster than CPUs; Cireşan,
+  Meier and Schmidhuber at IDSIA won traffic-sign and handwriting contests with
+  GPU convnets in 2011–12; then Krizhevsky, Sutskever and Hinton's AlexNet won
+  ILSVRC 2012 with 15.3% top-5 error against 26.2% for the runner-up. Oxford's
+  VGG and Google's Inception (2014) went to 16–22 layers, He, Zhang, Ren and
+  Sun's 152-layer ResNet (Microsoft Research Asia, 2015) took the error to
+  3.57%, below the estimated human level, and the challenge's final edition in
+  2017 closed at 2.25%. Its detection-and-segmentation province — Berkeley's
+  R-CNN family and FCN, Microsoft COCO (2014), YOLO and Freiburg's U-Net (2015)
+  — turned classification backbones into general vision. DeepFace, DeepDream,
+  style transfer and adversarial examples were its first public and first
+  cautionary by-products.
+time_range: {start: 2009, end: 2015}
+band: S2
+sub_band: S2a
+biome: forest
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [6, 12, 13, 17, 33, 34, 42, 9, 89, 90, 91, 114, 96]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/ImageNet_Large_Scale_Visual_Recognition_Challenge, title: "Wikipedia: ILSVRC", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html, title: "Krizhevsky, Sutskever & Hinton, AlexNet, NIPS 2012", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1512.03385, title: "He et al., Deep Residual Learning for Image Recognition, 2015", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1202.2745, title: "Cireşan, Meier & Schmidhuber, Multi-column Deep Neural Networks, CVPR 2012", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1311.2524, title: "Girshick et al., R-CNN, 2013", kind: primary, accessed: 2026-09-11}
+  - {url: https://ai.stanford.edu/~ang/papers/icml09-LargeScaleUnsupervisedDeepLearningGPU.pdf, title: "Raina, Madhavan & Ng, Large-scale Deep Unsupervised Learning using Graphics Processors, ICML 2009", kind: primary, accessed: 2026-09-11}
+threads: [vision, compute]
+neighbours:
+  - {id: pretraining-foothills, relation: borders, note: "pre-training gave way to supervised ReLU/dropout training after 2012"}
+  - {id: tooling-guild, relation: river, note: "the Silicon River (CUDA -> cuDNN -> DGX-1/TPU) runs through it"}
+  - {id: neural-nlp-sequence-school, relation: borders, note: "shared backbones: Show and Tell joins CNN encoders to LSTM decoders (2014)"}
+  - {id: deep-generative-shoreline, relation: borders, note: "DeepDream and style transfer (2015) are the escarpment sliding into the shoreline"}
+status: sourced
+related_facts:
+  - {id: pretraining-foothills, note: "preceded by: unsupervised pre-training / DBN work, 2006–2011 — Hinton, Bengio et al. (eclipsed after 2012)"}
+notes: >
+  P3-T8 school bullet 2 of 9 ("GPU supervised ConvNet school"). pending-
+  neighbour: convnets-bell-labs (west, LeNet/Neocognitron lineage, file 04);
+  pending-neighbour: vision-transformers (east, file 07). Name and time_range
+  follow the SPEC.md §2.10 country example; the ILSVRC 2017 close (SENet) is
+  mentioned in the summary but the school's active years end with ResNet 2015.
+  Schmidhuber/IDSIA priority vs AlexNet is a live dispute (research/06 open
+  question 2).

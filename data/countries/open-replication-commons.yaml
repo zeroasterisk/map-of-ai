@@ -1,0 +1,52 @@
+id: open-replication-commons
+level: country
+name: The Eleutherian Commons
+subtitle: "EleutherAI, the Hugging Face hub, OPT-175B, BLOOM and YaLM, 2020–2022"
+summary: >
+  The grassroots commons on the plateau's eastern slope. Hugging Face's
+  `transformers` library (2019) was already the de facto hub for sharing
+  pretrained models when EleutherAI — a collective formed on Discord in 2020 —
+  released The Pile (825 GB of open training text, 31 December 2020), then
+  GPT-Neo and GPT-J (6B) in 2021 and GPT-NeoX-20B (April 2022), the first
+  open GPT-3-class replications. The big labs followed: Meta AI's OPT-175B (3
+  May 2022) released weights to researchers on request, smaller sizes openly,
+  and the full training logbook; Yandex open-sourced YaLM-100B (June 2022,
+  800 A100s); and BigScience's BLOOM (176B, 46 languages, RAIL licence, July
+  2022), trained March–July 2022 on France's Jean Zay public supercomputer,
+  became the largest open-access LLM of the period. Together they form the
+  open-vs-closed road's first waystations, a counterweight to the GPT-3 API
+  that hands directly to Llama and Mistral in the generative coast.
+time_range: {start: 2020, end: 2022}
+band: C
+sub_band: Cb
+biome: grassland
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [22, 32, 41, 72, 73, 77]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/EleutherAI, title: "Wikipedia: EleutherAI (The Pile, GPT-Neo, GPT-J, GPT-NeoX)", kind: wikipedia, accessed: 2026-09-18}
+  - {url: https://github.com/huggingface/transformers, title: "Hugging Face, Transformers library (GitHub)", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2205.01068, title: "Zhang et al., OPT: Open Pre-trained Transformer Language Models, 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://huggingface.co/blog/bloom, title: "Hugging Face, Introducing The World's Largest Open Multilingual Language Model: BLOOM, 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2204.06745, title: "Black et al., GPT-NeoX-20B: An Open-Source Autoregressive Language Model, 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://github.com/yandex/YaLM-100B, title: "Yandex, YaLM-100B (GitHub, June 2022)", kind: primary, accessed: 2026-09-18}
+threads: [open-closed, language]
+related_facts:
+  - {id: national-champion-scalers, note: "also here, 2021–2022: the sovereign scaling enclaves — Huawei PanGu-α, BAAI Wu Dao 2.0, Baidu ERNIE 3.0, Yandex YaLM-100B, BigScience on Jean Zay"}
+neighbours:
+  - {id: decoder-generative-school, relation: road, note: "GPT-Neo/J/NeoX and OPT-175B are open replications of the GPT-3 recipe"}
+  - {id: encoder-understanding-school, relation: borders, note: "succeeds the encoder wave in the Cb lane; the Hugging Face hub carried BERT first"}
+  - {id: national-champion-scalers, relation: borders, note: "BLOOM on Jean Zay and Yandex's YaLM are both open and state- or platform-backed"}
+  - {id: systems-infrastructure-axis, relation: road, note: "OPT, BLOOM and YaLM were trained on A100 clusters with Megatron/DeepSpeed forks"}
+  - {id: alignment-critique-tributaries, relation: road, note: "OPT's published logbook answers the documentation critique"}
+  - {id: open-weights-movement, relation: bridge, note: "the open-vs-closed road: OPT -> LLaMA leak (3 Mar 2023) -> Llama/Mistral (file 08)"}
+status: sourced
+notes: >
+  P3-T9 school bullet 8 of 9 ("Open-replication commons"). Neighbour
+  open-weights-movement resolves the bullet's "Llama/Mistral in file 08"
+  border; pending-neighbour: open-closed road (thread 09e). Band C sub-band Cb:
+  language models, the southern C lane, so it meets the generative coast's
+  open-weights commons (also Cb) across the 30 Nov 2022 border — the open north
+  / closed south of research/08 becomes two continuous C lanes across both
+  continents. Biome grassland (a commons; explicit open structure, not a
+  proprietary jungle) inside a jungle continent. time_range 2020 (The Pile) to
+  2022 (BLOOM).

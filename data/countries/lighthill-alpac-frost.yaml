@@ -1,0 +1,31 @@
+id: lighthill-alpac-frost
+level: country
+name: The Lighthill & DARPA Retrenchment Frost
+subtitle: "The 1973 Lighthill Report, DARPA Speech cuts and the 1987 Lisp-machine crash, 1974–1988"
+summary: >
+  The high northern tundra of the Winter Steppes, where government funding evaluations
+  and hardware market economics twice froze general-purpose artificial intelligence
+  research. Triggered by Sir James Lighthill's 1973 UK Science Research Council report—
+  which argued that AI techniques suffered from combinatorial explosion outside toy
+  micro-worlds—and the Mansfield Amendment's redirection of DARPA toward mission-specific
+  deliverables, basic AI funding collapsed across Britain and the United States in 1974.
+  A decade later, after Roger Schank and Marvin Minsky warned at the 1984 AAAI meeting of
+  an impending "AI winter," the specialized Lisp-machine market (Symbolics, LMI) crashed
+  in 1987 under competition from commodity workstations, and DARPA's Strategic Computing
+  Initiative slashed new AI spending in 1988.
+time_range: {start: 1974, end: 1988}
+band: N1
+sub_band: [N1b]
+biome: highland
+parent_id: winter-steppes
+spatial: true
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [1, 2, 9, 13, 14, 19, 20, 36]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/AI_winter", title: "Wikipedia: AI winter [1]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Lisp_machine", title: "Wikipedia: Lisp machine [14]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative", title: "Wikipedia: Strategic Computing Initiative [19]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://aitopics.org/misc/brief-history", title: "AAAI: A Brief History of AI [36]", kind: secondary, accessed: 2026-09-22}
+threads: [compute, safety]
+status: sourced

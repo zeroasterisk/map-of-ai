@@ -1,0 +1,30 @@
+id: computability-turing-archipelago
+level: country
+name: The Computability & Universal Machine Archipelago
+subtitle: "Church's lambda calculus, the Universal Turing Machine and the Entscheidungsproblem, 1931–1942"
+summary: >
+  The easternmost island chain of the Antecedent Isles, lying immediately off the 1943
+  Cybernetic Shore and linked to the mainland by a causeway. Answering David Hilbert's
+  Entscheidungsproblem in the negative, Alonzo Church introduced the lambda calculus
+  (1936), Emil Post formulated production rewriting systems (1936), Stephen Kleene
+  developed recursive function theory, and Alan Turing published On Computable Numbers
+  (1936–1937), defining the mathematical model of the universal stored-program computer.
+  Together, the Church–Turing thesis established that every effectively calculable
+  process can be executed by a single universal symbol-manipulating machine, while
+  Church's lambda notation directly seeded John McCarthy's creation of Lisp two decades
+  later.
+time_range: {start: 1931, end: 1942}
+band: N1
+sub_band: [N1a, N1b]
+biome: highland
+parent_id: antecedent-isles
+spatial: false
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [8, 10, 11, 44]
+sources:
+  - {url: "https://doi.org/10.2307/2371045", title: "Church, An Unsolvable Problem of Elementary Number Theory, AJM 1936 [10]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf", title: "Turing, On Computable Numbers, with an Application to the Entscheidungsproblem, 1936 [11]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis", title: "Wikipedia: Church–Turing thesis [44]", kind: wikipedia, accessed: 2026-09-22}
+threads: [compute]
+status: sourced

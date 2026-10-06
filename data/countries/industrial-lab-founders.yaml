@@ -1,0 +1,41 @@
+id: industrial-lab-founders
+level: country
+name: The Corporate Lab Colonies
+subtitle: "Founding of the industrial deep-learning labs, 2011–2015"
+summary: >
+  The migration of the field's centre of gravity from universities to corporate
+  laboratories, drawn as a chain of colonies along the basin's ridge. Google
+  Brain began in 2011 with Ng, Dean and Corrado and produced DistBelief and the
+  2012 "cat" experiment; Google bought Hinton's DNNresearch (March 2013, with
+  Krizhevsky and Sutskever) and then DeepMind (January 2014, reported at
+  $400–650 million); Facebook hired LeCun to found FAIR (December 2013); Baidu
+  appointed Ng chief scientist to lead Baidu Research in Sunnyvale and Beijing
+  (May 2014). OpenAI was founded as a non-profit in December 2015 by Musk,
+  Altman, Sutskever, Brockman and others, explicitly around AI's societal
+  stakes. These five moves set the funding, compute and talent map of the
+  frontier-lab archipelago on the next two continents.
+time_range: {start: 2011, end: 2015}
+band: [C, S1]
+sub_band: [Cb, S1a]
+biome: forest
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [14, 20, 21, 45, 59, 62, 94]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/Google_Brain, title: "Wikipedia: Google Brain", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Geoffrey_Hinton, title: "Wikipedia: Geoffrey Hinton (DNNresearch acquisition, 2013)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/DeepMind, title: "Wikipedia: DeepMind", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Yann_LeCun, title: "Wikipedia: Yann LeCun (FAIR, 2013)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/Baidu, title: "Wikipedia: Baidu (Andrew Ng, Baidu Research, 2014)", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/OpenAI, title: "Wikipedia: OpenAI", kind: wikipedia, accessed: 2026-09-11}
+threads: [compute]
+neighbours:
+  - {id: deep-rl-delta, relation: borders, note: "DeepMind and OpenAI are the delta's two builders"}
+  - {id: tooling-guild, relation: borders, note: "DistBelief -> TensorFlow, Torch -> PyTorch are the colonies' public works"}
+  - {id: chinese-state-response, relation: borders, note: "Baidu Research (2014) is shared ground with the Chinese response"}
+status: sourced
+notes: >
+  P3-T8 school bullet 8 of 9 ("The industrial-lab founders"). pending-neighbour:
+  frontier-lab-archipelago (east, files 07-08). Band span C-S1 by neighbourhood
+  (AXES.md rule 2): the labs straddle language (Brain) and RL (DeepMind/OpenAI)
+  rather than sitting at the perception pole; a literal reading would give no
+  single band, so the span is recorded rather than a band_override_note.

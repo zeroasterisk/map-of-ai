@@ -1,0 +1,50 @@
+id: systems-infrastructure-axis
+level: country
+name: The Megatron Yards
+subtitle: "Megatron-LM, ZeRO/DeepSpeed, the A100 and Pathways/TPU v4, 2019–2022"
+summary: >
+  The yards where 100-billion-parameter training runs are assembled. Nvidia's
+  Megatron-LM (Shoeybi, Catanzaro et al., 17 September 2019) split a single
+  Transformer layer's matrices across GPUs — tensor parallelism — to train an
+  8.3B model; Microsoft's ZeRO (October 2019) sharded optimizer state,
+  gradients and parameters across data-parallel workers and shipped as
+  DeepSpeed, producing Turing-NLG (17B, 13 February 2020). Nvidia's Ampere A100
+  (announced 14 May 2020; 80 GB version November 2020) with TF32 and bfloat16
+  tensor cores became the workhorse accelerator of the GPT-3 era — OPT, BLOOM
+  and YaLM were all trained on A100 clusters. The two software stacks jointly
+  trained Megatron-Turing NLG 530B (January 2022), while Google's Pathways
+  system drove PaLM's 540B parameters across two TPU v4 pods (April 2022). This
+  is the axis that turned Microsoft's 2019 $1B OpenAI investment into
+  supercomputers, and the plateau's southern road to the compute hinterland of
+  the generative coast.
+time_range: {start: 2019, end: 2022}
+band: S2
+sub_band: S2a
+biome: harbour
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [23, 57, 58, 61]}
+sources:
+  - {url: https://arxiv.org/abs/1909.08053, title: "Shoeybi et al., Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism, 2019", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/1910.02054, title: "Rajbhandari et al., ZeRO: Memory Optimizations Toward Training Trillion Parameter Models, 2019", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/Ampere_%28microarchitecture%29, title: "Wikipedia: Ampere (microarchitecture) (A100, announced 14 May 2020)", kind: wikipedia, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2204.02311, title: "Chowdhery et al., PaLM: Scaling Language Modeling with Pathways, 2022", kind: primary, accessed: 2026-09-18}
+threads: [compute]
+neighbours:
+  - {id: sparse-moe-engineers, relation: borders, note: "GShard's automatic sharding and Pathways are the same engineering problem"}
+  - {id: multimodal-scientific-transformers, relation: borders, note: "ViT, CLIP and AlphaFold 2 were trained on the yards' TPU pods and GPU clusters"}
+  - {id: scaling-law-empiricists, relation: road, note: "the yards make the scaling curves affordable to test"}
+  - {id: open-replication-commons, relation: road, note: "OPT, BLOOM and YaLM were trained on A100 clusters with Megatron/DeepSpeed forks"}
+  - {id: compute-hardware-hinterland, relation: road, note: "the Silicon River runs east: A100 -> H100 (Mar 2022) -> Blackwell (file 08)"}
+status: sourced
+notes: >
+  P3-T9 school bullet 5 of 9 ("Systems & infrastructure engineers"). Neighbour
+  compute-hardware-hinterland resolves the bullet's "compute hinterland of file
+  08 to the east" border. pending-neighbour: silicon-river-hardware (thread 09d,
+  "hardware river to the south" — drawn from data/threads, not as territory);
+  pending-neighbour: tooling-guild (west, file 06, spatial: false). Band S2
+  sub-band S2a: the plateau's southernmost owned row (the grid gives the
+  plateau S2a only until 2021.3, so this lane is drawn 2019–2021.3 and the
+  2022 PaLM/MT-NLG events sit on the hover card). Biome harbour per the AXES
+  palette (tooling = ports of entry), following compute-hardware-hinterland's
+  A-K7 precedent of drawing hardware as a thin territory so the school lands on
+  the raster.

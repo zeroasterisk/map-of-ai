@@ -1,0 +1,32 @@
+id: mathematical-logic-isles
+level: country
+name: The Mathematical Logic Isles
+subtitle: "Mechanized reasoning from Leibniz and Boole to Frege, Hilbert and Gödel, 1666–1931"
+summary: >
+  The westernmost islands of the Antecedent Isles, tracing the three-century effort to
+  reduce human reasoning to explicit symbolic calculation. In the seventeenth century,
+  Gottfried Wilhelm Leibniz envisioned a characteristica universalis and calculus
+  ratiocinator—a universal formal language paired with mechanical rules of inference—and
+  constructed the Stepped Reckoner calculator. Across the nineteenth century, Charles
+  Babbage and Ada Lovelace designed the programmable Analytical Engine (1837–1843),
+  George Boole formulated the algebra of logic in An Investigation of the Laws of
+  Thought (1854), and Gottlob Frege invented modern predicate calculus with quantifiers
+  in his Begriffsschrift (1879). Culminating in Whitehead and Russell's Principia
+  Mathematica (1910–1913), David Hilbert's formalist program, and Kurt Gödel's 1931
+  incompleteness theorems, these islands forged the formal notation and proof-theoretic
+  bedrock upon which symbolic artificial intelligence was built.
+time_range: {start: 1666, end: 1931}
+band: N2
+sub_band: [N2a, N2b]
+biome: highland
+parent_id: antecedent-isles
+spatial: false
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [1, 2, 3, 4, 5, 6, 8, 9]
+sources:
+  - {url: "https://plato.stanford.edu/entries/leibniz-logic-influence/", title: "Stanford Encyclopedia of Philosophy: Leibniz's Influence on 19th Century Logic [1]", kind: secondary, accessed: 2026-09-22}
+  - {url: "https://www.gutenberg.org/ebooks/15114", title: "Boole, An Investigation of the Laws of Thought, 1854 [4]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1007/BF01700692", title: "Gödel, Über formal unentscheidbare Sätze der Principia Mathematica, 1931 [9]", kind: primary, accessed: 2026-09-22}
+threads: [compute, language]
+status: sourced

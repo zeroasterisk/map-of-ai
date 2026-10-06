@@ -1,0 +1,52 @@
+id: multimodal-scientific-transformers
+level: country
+name: The Attention Promontory
+subtitle: "Vision, image–text, protein and generalist Transformers, 2020–2022"
+summary: >
+  The promontory where attention crossed out of language. Dosovitskiy et al.'s
+  Vision Transformer (22 October 2020) cut images into 16×16 patches and
+  displaced convolutional networks at the top of image classification; OpenAI's
+  CLIP and DALL-E (5 January 2021) learned vision from natural-language
+  supervision and generated images from text, and CLIP became the conditioning
+  backbone of later diffusion models. DeepMind's AlphaFold 2 won CASP14 (30
+  November 2020) with GDT scores above 90 on roughly two-thirds of targets and
+  published in Nature (July 2021), solving the 50-year protein-structure
+  problem with attention over residue pairs. Perceiver (March 2021), Flamingo
+  (April 2022) and Gato (12 May 2022 — one Transformer for text, images, Atari
+  and robot arms) pushed toward a generalist substrate, and Whisper (September
+  2022) took speech. The diffusion headwaters rise on this bank: Ho, Jain and
+  Abbeel's DDPM (June 2020) leads, via CLIP guidance, across the bridge to the
+  generative-media district.
+time_range: {start: 2020, end: 2022}
+band: S1
+sub_band: S1b
+biome: jungle
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [13, 14, 16, 17, 40, 42, 80, 81, 82]}
+sources:
+  - {url: https://arxiv.org/abs/2010.11929, title: "Dosovitskiy et al., An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (ViT), ICLR 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2103.00020, title: "Radford et al., Learning Transferable Visual Models From Natural Language Supervision (CLIP), ICML 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://en.wikipedia.org/wiki/AlphaFold, title: "Wikipedia: AlphaFold (CASP14, Nov 2020; Nature, Jul 2021)", kind: wikipedia, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2205.06175, title: "Reed et al., A Generalist Agent (Gato), 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2006.11239, title: "Ho, Jain & Abbeel, Denoising Diffusion Probabilistic Models, NeurIPS 2020", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2204.14198, title: "Alayrac et al., Flamingo: a Visual Language Model for Few-Shot Learning, 2022", kind: primary, accessed: 2026-09-18}
+threads: [vision, language]
+neighbours:
+  - {id: decoder-generative-school, relation: bridge, note: "DALL-E is a 12B GPT-3 variant; CLIP, Codex and Whisper share the OpenAI decoder lineage"}
+  - {id: systems-infrastructure-axis, relation: borders, note: "ViT-Huge and AlphaFold 2 ran on the yards' TPU pods"}
+  - {id: sparse-moe-engineers, relation: borders, note: "both are S1 engineering provinces; Perceiver and GShard-era models share the TPU pod"}
+  - {id: gpu-convnet-school, relation: bridge, note: "ViT closes the ConvNet era of the basin (file 06, ImageNet lineage)"}
+  - {id: diffusion-media-district, relation: bridge, note: "the CLIP bridge: DDPM -> GLIDE here, DALL-E 2 / Stable Diffusion on the file-08 side"}
+status: sourced
+notes: >
+  P3-T9 school bullet 6 of 9 ("Multimodal & scientific Transformers").
+  Neighbours gpu-convnet-school and diffusion-media-district resolve the
+  bullet's computer-vision-lineage and diffusion/generative-media borders;
+  pending-neighbour: robotics VLA models (file 08/09 embodiment thread).
+  Band S1 sub-band S1b: perception-and-action work (vision, speech, Gato's
+  robot arms) sits south of the language belt; a literal reading might say S2
+  (perception) but the plateau's grid owns S2a only to 2021.3, and the school
+  spans 2020–2022 — so S1b keeps the whole span on the raster (A-K7,
+  neighbourhood over band purity). AlphaFold 2 is kept here rather than in a
+  "science AI" enclave (research/07 open question 1: no). Biome jungle =
+  parent's.

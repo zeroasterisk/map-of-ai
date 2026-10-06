@@ -1,0 +1,153 @@
+# The Winter Steppes — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/03-ai-winters-and-expert-systems-1974-1993.md.
+countries:
+  lighthill-alpac-frost:
+    hint: "Lighthill 1974 · Lisp Crash 1987"
+    tag: "First AI Winter → AAAI 1984 Warning → Lisp-Machine Collapse"
+    events:
+      - id: first-ai-winter-1974
+        name: First AI Winter
+        year: 1974.2
+        lod: 3
+        one_line: "DARPA and UK funding cuts follow the 1973 Lighthill Report on combinatorial explosion"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [1]"
+      - id: aaai-founded-1979
+        name: AAAI Founded
+        year: 1979.6
+        lod: 4
+        one_line: "American Association for Artificial Intelligence founded; first Stanford conference 1980"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Association_for_the_Advancement_of_Artificial_Intelligence"
+            title: "Wikipedia: AAAI [9]"
+      - id: symbolics-lm2-1981
+        name: Symbolics Lisp Machines
+        year: 1981.4
+        lod: 4
+        one_line: "Symbolics and LMI launch commercial Lisp workstations for symbolic AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Symbolics"
+            title: "Wikipedia: Symbolics [13]"
+      - id: darpa-sci-alvey-1983
+        name: DARPA SCI & Alvey
+        year: 1983.7
+        lod: 3
+        one_line: "US Strategic Computing Initiative and UK Alvey Programme counter Japan's Fifth Generation"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Strategic_Computing_Initiative"
+            title: "Wikipedia: Strategic Computing Initiative [19]"
+      - id: ai-winter-coined-1984
+        name: "'AI Winter' Coined"
+        year: 1984.6
+        lod: 3
+        one_line: "Roger Schank and Marvin Minsky warn at AAAI of an impending commercial AI winter"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [1]"
+      - id: lisp-machine-crash-1987
+        name: Lisp Machine Crash
+        year: 1987.4
+        lod: 3
+        one_line: "Commodity Sun and desktop workstations collapse the dedicated Lisp-machine industry"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Lisp_machine"
+            title: "Wikipedia: Lisp machine [14]"
+      - id: sci-spending-cuts-1988
+        name: DARPA SCI Retrenchment
+        year: 1988.3
+        lod: 4
+        one_line: "DARPA's Strategic Computing Initiative slashes new funding for symbolic AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [1]"
+
+  philosophical-critique-steppe:
+    hint: "Symbol Hypothesis · Chinese Room"
+    tag: "Physical Symbol System → Weizenbaum → Chinese Room → Mind over Machine"
+    events:
+      - id: physical-symbol-system-1975
+        name: Physical Symbol Hypothesis
+        year: 1975.8
+        lod: 3
+        one_line: "Newell and Simon state that physical symbol manipulation suffices for general intelligence"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Physical_symbol_system"
+            title: "Newell & Simon 1976 [5]"
+      - id: weizenbaum-human-reason-1976
+        name: Computer Power & Human Reason
+        year: 1976.3
+        lod: 4
+        one_line: "ELIZA creator Joseph Weizenbaum critiques delegating moral judgment to machines"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Computer_Power_and_Human_Reason"
+            title: "Weizenbaum 1976 [6]"
+      - id: searle-chinese-room-1980
+        name: The Chinese Room
+        year: 1980.6
+        lod: 3
+        one_line: "John Searle argues syntactic rule-following never produces genuine semantic understanding"
+        sources:
+          - url: "https://doi.org/10.1017/S0140525X00005756"
+            title: "Searle 1980 [12]"
+      - id: dreyfus-mind-over-machine-1986
+        name: Mind over Machine
+        year: 1986.3
+        lod: 3
+        one_line: "Hubert and Stuart Dreyfus argue human expertise is holistic intuition, not brittle rules"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Hubert_Dreyfus"
+            title: "Dreyfus & Dreyfus 1986 [44]"
+      - id: winograd-flores-cognition-1986
+        name: Winograd & Flores Critique
+        year: 1986.7
+        lod: 4
+        one_line: "Winograd and Flores challenge rationalist cognitivism in Understanding Computers and Cognition"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Terry_Winograd"
+            title: "Winograd & Flores 1986 [50]"
+      - id: second-winter-bottom-1993
+        name: Second Winter Trough
+        year: 1993.0
+        lod: 3
+        one_line: "Symbolics fails and researchers rebrand AI under machine learning and informatics"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter [1]"
+
+  early-expert-foothills:
+    hint: "MYCIN 1975 · Hearsay-II 1976"
+    tag: "MYCIN → Hearsay-II Blackboard → Scripts → 'Knowledge is Power'"
+    events:
+      - id: mycin-shortliffe-1975
+        name: MYCIN Diagnostic System
+        year: 1975.3
+        lod: 3
+        one_line: "Shortliffe and Buchanan build MYCIN with 600 clinical rules and certainty factors"
+        sources:
+          - url: "https://doi.org/10.1016/0010-4809%2875%2990009-9"
+            title: "Shortliffe et al. 1975 [3]"
+      - id: hearsay-ii-blackboard-1976
+        name: Hearsay-II Blackboard
+        year: 1976.6
+        lod: 3
+        one_line: "Reddy, Erman, Lesser and Hayes-Roth demonstrate cooperative blackboard speech understanding"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Blackboard_system"
+            title: "Hearsay-II 1976 [38]"
+      - id: schank-scripts-1977
+        name: Schank Scripts & Plans
+        year: 1977.3
+        lod: 4
+        one_line: "Schank and Abelson introduce stereotyped Scripts for story understanding at Yale"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Roger_Schank"
+            title: "Schank & Abelson 1977 [43]"
+      - id: feigenbaum-knowledge-power-1977
+        name: "'Knowledge is Power'"
+        year: 1977.7
+        lod: 3
+        one_line: "Edward Feigenbaum's IJCAI-77 address launches the knowledge-engineering paradigm"
+        sources:
+          - url: "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf"
+            title: "Feigenbaum IJCAI 1977 [7]"

@@ -1,0 +1,53 @@
+id: open-weights-movement
+level: country
+name: The Open-Weights Commons
+subtitle: "Llama, Mistral, DeepSeek, Qwen and the local-inference commons, 2023–present"
+summary: >
+  The open north of the coast begins with Meta's LLaMA (24 February 2023, a
+  research licence) and the 4chan torrent that leaked its weights on 3 March
+  2023: llama.cpp (10 March), Alpaca (13 March) and Vicuna (30 March) followed
+  within weeks. Llama 2 (18 July 2023, commercial licence, with Microsoft) made
+  open weights a deliberate corporate strategy; Mistral 7B (27 September 2023,
+  Apache 2.0) and Mixtral 8x7B (11 December 2023) gave Europe an open champion;
+  Llama 3 (18 April 2024) and Llama 3.1 405B (23 July 2024) reached GPT-4 class.
+  DeepSeek-V2 (7 May 2024) set off a Chinese API price war, DeepSeek-V3
+  (26 December 2024) trained a frontier-class 671B MoE at a reported ~$5.6M GPU
+  cost, and Qwen3 (28 April 2025, Apache 2.0), Kimi K2 (July 2025) and Qwen3.8
+  (12 August 2026) made trillion-parameter open weights routine from China. The
+  border moved twice in 2025–26: OpenAI released gpt-oss under Apache 2.0
+  (5 August 2025), Google shipped Gemma 4 (2 April 2026), and Meta — the lab
+  that led open weights — made Llama 4 (5 April 2025) the last Llama and
+  launched the closed Muse Spark (8 April 2026).
+time_range: {start: 2023, end: present}
+band: C
+sub_band: Cb
+biome: jungle
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [9, 10, 12, 13, 28, 30, 38, 40, 48, 52, 60, 61, 110, 116, 118, 120]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/Llama_%28language_model%29, title: "Wikipedia: Llama (language model)", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2302.13971, title: "Touvron et al., LLaMA: Open and Efficient Foundation Language Models, arXiv 2302.13971, 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://github.com/ggml-org/llama.cpp, title: "llama.cpp (GitHub)", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2310.06825, title: "Jiang et al., Mistral 7B, arXiv 2310.06825, 2023", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2407.21783, title: "Grattafiori et al., The Llama 3 Herd of Models, arXiv 2407.21783, 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://arxiv.org/abs/2412.19437, title: "DeepSeek-AI, DeepSeek-V3 Technical Report, arXiv 2412.19437, 2024", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Qwen, title: "Wikipedia: Qwen", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/, title: "Meta Newsroom, Introducing Muse Spark: MSL's First Model, 8 Apr 2026", kind: primary, accessed: 2026-09-06}
+threads: [open-closed, language]
+neighbours:
+  - {id: closed-frontier-labs, relation: wall, note: "the open-vs-closed border; Meta crossed back to the closed side with Muse Spark (Apr 2026)"}
+  - {id: reasoning-test-time-compute, relation: borders, note: "DeepSeek-R1 (MIT-licensed, Jan 2025) is the open reasoning model; GRPO came from DeepSeekMath"}
+  - {id: diffusion-media-district, relation: borders, note: "Stable Diffusion (Aug 2022) is the open-weights half of generative media"}
+  - {id: compute-hardware-hinterland, relation: road, note: "DeepSeek's efficiency and the Nvidia stock drop of 27 Jan 2025 are the export-control response"}
+  - {id: alignment-interpretability-plateau, relation: river, note: "DPO was widely adopted by open models in place of RLHF's reward model + PPO loop"}
+status: sourced
+notes: >
+  P3-T10 school bullet 2 of 8 ("Open-weights movement"). pending-neighbour:
+  commons-road / open-vs-closed road (file 09e); pending-neighbour:
+  tooling-guild (west, the basin's open-source frameworks district,
+  TensorFlow/PyTorch). Band C: the movement's artefacts are language models
+  (AXES.md §3); sub-band Cb = the lower language lane, under the closed labs in
+  Ca. Biome jungle = parent's. time_range starts 2023 (LLaMA, 24 Feb 2023),
+  within the parent's 2022–present, so V-07 passes without a time-overlap-ok
+  token. The 2026 Muse Spark and Qwen3.8 rows carry "confidence: medium" in
+  research/08 and should be drawn with frontier haze per SOURCING.md §4.

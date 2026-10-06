@@ -1,0 +1,32 @@
+id: cybernetic-feedback-lowlands
+level: country
+name: The Cybernetic Feedback & Homeostat Lowlands
+subtitle: "Wiener's Cybernetics, the Macy Conferences, Walter's tortoises, Ashby's Homeostat and Theseus, 1949–1956"
+summary: >
+  The southern embodied lowlands of the Cybernetic Shore, grounded in negative feedback,
+  teleological control, homeostasis, and autonomous electro-mechanical agents. Growing
+  out of Rosenblueth, Wiener, and Bigelow's 1943 manifesto on purposive behavior, Norbert
+  Wiener's Cybernetics (1948), and the interdisciplinary Macy Conferences (1946–1953),
+  this region modeled adaptive intelligence as dynamical interaction with an environment
+  rather than internal symbol manipulation. In Britain's Ratio Club circle, W. Grey
+  Walter built the phototropic autonomous tortoises Elmer and Elsie (1948–1949) and W.
+  Ross Ashby constructed the ultrastable Homeostat (1949) and published Design for a
+  Brain (1952), while at Bell Labs Claude Shannon built Theseus (1950), a relay-driven
+  mouse that learned mazes by trial and error.
+time_range: {start: 1949, end: 1956}
+band: S1
+sub_band: [S1a, S1b]
+biome: wetland
+parent_id: cybernetic-shore
+spatial: true
+notes: "time-overlap-ok: embodies the 1943–1955 cybernetic feedback and embodied robotics strand within the 1949–1956 S1 grid cells of cybernetic-shore"
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [13, 15, 16, 19, 21, 22, 26, 36, 37, 48]
+sources:
+  - {url: "https://doi.org/10.1086/286788", title: "Rosenblueth, Wiener & Bigelow, Behavior, Purpose and Teleology, 1943 [13]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://archive.org/details/cyberneticsorcon00wien", title: "Wiener, Cybernetics, 1948 [16]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://archive.org/details/designforbrain00ashb", title: "Ashby, Design for a Brain, 1952 [26]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/William_Grey_Walter", title: "Wikipedia: William Grey Walter and Elmer/Elsie tortoises [19]", kind: wikipedia, accessed: 2026-09-22}
+threads: [robotics, rl]
+status: sourced

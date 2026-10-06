@@ -1,0 +1,251 @@
+# Statistical Isthmus — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/05-statistical-ml-and-probabilistic-ai-1988-2011.md.
+countries:
+  bayesian-plateau:
+    hint: "Bayesian Nets · LDA 2003"
+    tag: "Pearl → Junction Tree → Variational → LDA"
+    events:
+      - id: junction-tree-1988
+        name: Junction Tree
+        year: 1993.5
+        lod: 4
+        one_line: "Lauritzen & Spiegelhalter: exact probabilistic inference on graphs"
+        sources:
+          - url: "https://doi.org/10.1111/j.2517-6161.1988.tb01721.x"
+            title: "Lauritzen & Spiegelhalter 1988 [71]"
+      - id: pearl-prob-reasoning-1988
+        name: Probabilistic Reasoning
+        year: 1994.2
+        lod: 3
+        one_line: "Judea Pearl establishes Bayesian networks as calculus for AI"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Bayesian_network"
+            title: "Wikipedia: Bayesian network [4]"
+      - id: variational-inference-1999
+        name: Variational Methods
+        year: 1999.5
+        lod: 4
+        one_line: "Jordan et al.: mean-field variational inference for large graphs"
+        sources:
+          - url: "https://doi.org/10.1023/A:1007665907178"
+            title: "Jordan et al. 1999 [80]"
+      - id: lda-topic-models-2003
+        name: Latent Dirichlet Allocation
+        year: 2003.3
+        lod: 3
+        one_line: "Blei, Ng & Jordan: generative Bayesian topic modeling at scale"
+        sources:
+          - url: "https://www.jmlr.org/papers/v3/blei03a.html"
+            title: "Blei, Ng & Jordan 2003 [22]"
+      - id: gaussian-processes-2006
+        name: Gaussian Processes
+        year: 2006.2
+        lod: 4
+        one_line: "Rasmussen & Williams: non-parametric Bayesian kernel regression"
+        sources:
+          - url: "https://gaussianprocess.org/gpml/"
+            title: "Rasmussen & Williams 2006 [83]"
+      - id: markov-logic-networks-2006
+        name: Markov Logic Nets
+        year: 2006.6
+        lod: 4
+        one_line: "Richardson & Domingos: combining first-order logic and graphs"
+        sources:
+          - url: "https://doi.org/10.1007/s10994-006-5833-1"
+            title: "Richardson & Domingos 2006 [85]"
+      - id: koller-friedman-pgm-2009
+        name: Graphical Models
+        year: 2009.7
+        lod: 3
+        one_line: "Koller & Friedman publish canonical textbook on graphical models"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Daphne_Koller"
+            title: "Wikipedia: Daphne Koller [52]"
+  statistical-corpus-basin:
+    hint: "IBM SMT · PageRank · Watson"
+    tag: "Sphinx → IBM Models → PageRank → Watson"
+    events:
+      - id: cmu-sphinx-1988
+        name: CMU Sphinx
+        year: 1988.7
+        lod: 4
+        one_line: "Kai-Fu Lee: first continuous speaker-independent speech recognizer"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/CMU_Sphinx"
+            title: "Wikipedia: CMU Sphinx [74]"
+      - id: rabiner-hmm-1989
+        name: Rabiner HMM Tutorial
+        year: 1989.2
+        lod: 4
+        one_line: "Lawrence Rabiner publishes canonical HMM tutorial for speech"
+        sources:
+          - url: "https://doi.org/10.1109/5.18626"
+            title: "Rabiner 1989 [23]"
+      - id: ibm-candide-1990
+        name: IBM Candide SMT
+        year: 1990.5
+        lod: 3
+        one_line: "Brown et al.: statistical translation replaces linguistic rules"
+        sources:
+          - url: "https://aclanthology.org/J90-2002/"
+            title: "Brown et al. 1990 [26]"
+      - id: ibm-models-1993
+        name: IBM Models 1–5
+        year: 1993.4
+        lod: 4
+        one_line: "Brown, Della Pietra & Mercer: mathematical foundation of SMT"
+        sources:
+          - url: "https://aclanthology.org/J93-2003/"
+            title: "Brown et al. 1993 [27]"
+      - id: penn-treebank-1993
+        name: Penn Treebank
+        year: 1993.6
+        lod: 3
+        one_line: "Marcus et al. release benchmark corpus for statistical parsing"
+        sources:
+          - url: "https://aclanthology.org/J93-2004/"
+            title: "Marcus et al. 1993 [73]"
+      - id: collins-parser-1997
+        name: Collins Parser
+        year: 1997.5
+        lod: 4
+        one_line: "Michael Collins: lexicalized PCFGs achieve breakthrough parsing"
+        sources:
+          - url: "https://aclanthology.org/P97-1003/"
+            title: "Collins 1997 [76]"
+      - id: pagerank-1998
+        name: Google PageRank
+        year: 1998.3
+        lod: 3
+        one_line: "Brin & Page: link structure and random walks scale web search"
+        sources:
+          - url: "https://doi.org/10.1016/S0169-7552%2898%2900110-X"
+            title: "Brin & Page 1998 [35]"
+      - id: crfs-2001
+        name: Conditional Random Fields
+        year: 2001.4
+        lod: 4
+        one_line: "Lafferty, McCallum & Pereira: discriminative sequence modeling"
+        sources:
+          - url: "http://www.cs.columbia.edu/~jebara/6772/papers/crf.pdf"
+            title: "Lafferty et al. 2001 [30]"
+      - id: bleu-metric-2002
+        name: BLEU Metric
+        year: 2002.5
+        lod: 4
+        one_line: "Papineni et al. introduce automated n-gram evaluation for MT"
+        sources:
+          - url: "https://aclanthology.org/P02-1040/"
+            title: "Papineni et al. 2002 [87]"
+      - id: unreasonable-effectiveness-2009
+        name: Unreasonable Data
+        year: 2009.3
+        lod: 3
+        one_line: "Halevy, Norvig & Pereira: massive corpora beat algorithms"
+        sources:
+          - url: "https://doi.org/10.1109/MIS.2009.36"
+            title: "Halevy et al. 2009 [31]"
+      - id: ibm-watson-jeopardy-2011
+        name: IBM Watson Jeopardy!
+        year: 2011.15
+        lod: 3
+        one_line: "Ferrucci's DeepQA defeats Jennings and Rutter on Jeopardy!"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/IBM_Watson"
+            title: "Wikipedia: IBM Watson [43]"
+  ensemble-highlands:
+    hint: "AdaBoost · Random Forests"
+    tag: "C4.5 → AdaBoost → Bagging → Random Forests"
+    events:
+      - id: c45-decision-trees-1993
+        name: C4.5 Decision Trees
+        year: 1993.2
+        lod: 4
+        one_line: "Ross Quinlan publishes C4.5, standardizing decision trees"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/C4.5_algorithm"
+            title: "Wikipedia: C4.5 [72]"
+      - id: adaboost-1995
+        name: AdaBoost
+        year: 1995.6
+        lod: 3
+        one_line: "Freund & Schapire: adaptive boosting converts weak to strong"
+        sources:
+          - url: "https://doi.org/10.1006/jcss.1997.1504"
+            title: "Freund & Schapire 1997 [15]"
+      - id: bagging-1996
+        name: Bagging Predictors
+        year: 1996.7
+        lod: 4
+        one_line: "Leo Breiman: bootstrap aggregation reduces variance"
+        sources:
+          - url: "https://doi.org/10.1007/BF00058655"
+            title: "Breiman 1996 [18]"
+      - id: random-forests-2001
+        name: Random Forests
+        year: 2001.1
+        lod: 3
+        one_line: "Breiman: ensembles of randomized trees yield top accuracy"
+        sources:
+          - url: "https://doi.org/10.1023/A:1010933404324"
+            title: "Breiman 2001 [19]"
+      - id: gradient-boosting-2001
+        name: Gradient Boosting
+        year: 2001.5
+        lod: 3
+        one_line: "Jerome Friedman: greedy function approximation via gradients"
+        sources:
+          - url: "https://doi.org/10.1214/aos/1013203451"
+            title: "Friedman 2001 [21]"
+      - id: viola-jones-2001
+        name: Viola–Jones Detector
+        year: 2001.9
+        lod: 4
+        one_line: "Viola & Jones: boosted Haar feature cascades detect faces"
+        sources:
+          - url: "https://doi.org/10.1109/CVPR.2001.990517"
+            title: "Viola & Jones 2001 [86]"
+  support-vector-escarpment:
+    hint: "SVM · Stanley 2005"
+    tag: "SVM → Kernel Trick → SLAM → Stanley"
+    events:
+      - id: svm-optimal-margin-1998
+        name: Kernel SVM
+        year: 1998.2
+        lod: 4
+        one_line: "Boser, Guyon & Vapnik apply Mercer kernels to maximal margins"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Support_vector_machine"
+            title: "Wikipedia: Support vector machine [7]"
+      - id: soft-margin-svm-1998
+        name: Soft-Margin SVM
+        year: 1998.5
+        lod: 3
+        one_line: "Cortes & Vapnik introduce soft-margin support-vector networks"
+        sources:
+          - url: "https://doi.org/10.1007/BF00994018"
+            title: "Cortes & Vapnik 1995 [10]"
+      - id: sutton-barto-book-1998
+        name: Sutton & Barto RL
+        year: 1998.7
+        lod: 4
+        one_line: "Reinforcement Learning: An Introduction becomes standard RL text"
+        sources:
+          - url: "http://incompleteideas.net/book/first/the-book.html"
+            title: "Sutton & Barto 1998 [42]"
+      - id: monte-carlo-localization-1999
+        name: Monte Carlo Localization
+        year: 1999.4
+        lod: 4
+        one_line: "Dellaert, Fox, Burgard & Thrun: particle filters for robots"
+        sources:
+          - url: "https://www.ri.cmu.edu/pub_files/pub1/dellaert_frank_1999_2/dellaert_frank_1999_2.pdf"
+            title: "Dellaert et al. 1999 [78]"
+      - id: stanley-darpa-2005
+        name: Stanley Wins DARPA
+        year: 2005.77
+        lod: 3
+        one_line: "Thrun's Stanley completes 212 km of desert to win DARPA Grand Challenge"
+        sources:
+          - url: "https://robots.stanford.edu/papers/thrun.stanley05.pdf"
+            title: "Thrun et al. 2006 [39]"

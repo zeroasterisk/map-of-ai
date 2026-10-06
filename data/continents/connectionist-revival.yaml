@@ -1,0 +1,32 @@
+id: connectionist-revival
+level: continent
+name: The Connectionist Revival
+subtitle: "Hopfield nets, backpropagation and the PDP era of neural networks, 1982–1998"
+summary: >
+  Following the first neural network winter, the second connectionist wave emerged
+  vigorously in the 1980s. John Hopfield's 1982 associative memory network imported
+  statistical physics into neural modeling, while Geoffrey Hinton and Terry Sejnowski
+  formulated the stochastic Boltzmann machine (1985). In 1986, Rumelhart, Hinton, and
+  Williams published backpropagation in Nature, and the Parallel Distributed Processing
+  (PDP) books established distributed representation as a cognitive foundation. The era
+  produced foundational modern architectures: Yann LeCun's convolutional networks for
+  zip codes (1989) and LeNet-5 (1998), Hochreiter and Schmidhuber's Long Short-Term
+  Memory (LSTM, 1997), Jordan and Elman recurrent networks (1986–1990), and Tesauro's
+  TD-Gammon (1992) uniting temporal-difference learning with neural nets. NIPS (1987)
+  and Neural Computation (1989) formed the community's lasting institutions, maintaining
+  connectionist momentum until the 2006 deep learning revolution.
+time_range: {start: 1982, end: 1998}
+band: [C, S1, S2]
+biome: forest
+research_ref:
+  file: research/04-connectionism-and-backprop-revival-1982-1998.md
+  sources: [2, 3, 5, 8, 14, 18, 19, 20, 22, 23, 29, 31, 33, 60, 62]
+sources:
+  - {url: "https://pubmed.ncbi.nlm.nih.gov/6953413/", title: "Hopfield, Neural networks and physical systems, PNAS 1982", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1038/323533a0", title: "Rumelhart, Hinton & Williams, Learning representations by back-propagating errors, Nature 1986", kind: primary, accessed: 2026-09-22}
+  - {url: "http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf", title: "LeCun et al., Backpropagation Applied to Handwritten Zip Code Recognition, 1989", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1162/neco.1997.9.8.1735", title: "Hochreiter & Schmidhuber, Long Short-Term Memory, Neural Computation 1997", kind: primary, accessed: 2026-09-22}
+threads: [vision, language, compute, rl]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 6 (The Connectionist Revival).

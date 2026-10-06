@@ -1,0 +1,31 @@
+id: hebbian-synapse-shore
+level: country
+name: The Hebbian Synapse & SNARC Shore
+subtitle: "Unorganised machines, Hebbian plasticity, SNARC and early learning programs, 1943–1956"
+summary: >
+  The lower-central neural-modelling province of the Cybernetic Shore, dedicated to how
+  networks of neurons and early digital programs adapt through experience. In 1947
+  Walter Pitts and Warren McCulloch analyzed invariant visual and auditory form
+  recognition, and in 1948 Alan Turing's NPL report Intelligent Machinery proposed
+  training unorganised B-type neural networks. Donald Hebb's The Organization of
+  Behavior (1949) introduced the correlational synaptic plasticity rule that cells
+  firing together wire together. Soon after, Marvin Minsky and Dean Edmonds built the
+  40-synapse stochastic reinforcement network SNARC (1951), Anthony Oettinger programmed
+  the EDSAC Shopper learning experiments (1951–1952), and Belmont Farley and Wesley
+  Clark simulated self-organizing neural networks on MIT's Whirlwind computer (1954).
+time_range: {start: 1943, end: 1956}
+band: C
+sub_band: [Cb]
+biome: forest
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [18, 20, 24, 30, 33, 39, 49]
+sources:
+  - {url: "https://weightagnostic.github.io/papers/turing1948.pdf", title: "Turing, Intelligent Machinery, NPL Report 1948 [18]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Organization_of_Behavior", title: "Wikipedia: Hebb, The Organization of Behavior, 1949 [20]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/Stochastic_neural_analog_reinforcement_calculator", title: "Wikipedia: SNARC, 1951 [24]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1109/TIT.1954.1057468", title: "Farley & Clark, Simulation of Self-Organizing Systems by Digital Computer, 1954 [30]", kind: primary, accessed: 2026-09-22}
+threads: [compute, rl]
+status: sourced

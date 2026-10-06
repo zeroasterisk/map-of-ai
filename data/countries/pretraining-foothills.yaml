@@ -1,0 +1,88 @@
+id: pretraining-foothills
+level: country
+name: The Pre-training Foothills
+subtitle: "Unsupervised layer-wise pre-training and energy-based deep nets, 2006\u2013\
+  2009"
+summary: "The western foothills of the basin, where the term \"deep learning\" was\
+  \ coined in earnest. Hinton, Osindero and Teh (2006) showed that a deep belief net\
+  \ could be trained one restricted Boltzmann machine at a time; Hinton and Salakhutdinov\
+  \ (Science, 2006) used the same trick for deep autoencoders, and Bengio, Lamblin,\
+  \ Popovici and Larochelle (NIPS 2006) generalised greedy layer- wise training. The\
+  \ CIFAR NCAP programme (from 2004) kept Toronto, Montr\xE9al and NYU funded through\
+  \ the lean years. Glorot and Bengio's initialisation (2010) and Nair and Hinton's\
+  \ rectified linear units (2010) then made plain supervised backprop work without\
+  \ pre-training, so by 2012 the school was eclipsed by the GPU ConvNet school it\
+  \ had enabled \u2014 and reborn a year later as the generative shoreline of VAEs\
+  \ and GANs.\n"
+time_range:
+  start: 2006
+  end: 2009
+band:
+- S1
+- S2
+sub_band:
+- S1b
+- S2a
+- S2b
+- S2c
+biome: forest
+parent_id: deep-learning-basin
+spatial: true
+research_ref:
+  file: research/06-deep-learning-revolution-2006-2017.md
+  sources:
+  - 2
+  - 3
+  - 4
+  - 83
+  - 19
+  - 77
+  - 84
+  - 85
+  - 107
+sources:
+- url: https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf
+  title: Hinton, Osindero & Teh, A Fast Learning Algorithm for Deep Belief Nets, Neural
+    Computation 2006
+  kind: primary
+  accessed: 2026-09-11
+- url: https://www.cs.toronto.edu/~hinton/absps/science.pdf
+  title: Hinton & Salakhutdinov, Reducing the Dimensionality of Data with Neural Networks,
+    Science 2006
+  kind: primary
+  accessed: 2026-09-11
+- url: https://proceedings.neurips.cc/paper/2006/hash/5da713a690c067105aeb2fae32403405-Abstract.html
+  title: Bengio et al., Greedy Layer-Wise Training of Deep Networks, NIPS 2006
+  kind: primary
+  accessed: 2026-09-11
+- url: https://proceedings.mlr.press/v9/glorot10a.html
+  title: Glorot & Bengio, Understanding the difficulty of training deep feedforward
+    neural networks, AISTATS 2010
+  kind: primary
+  accessed: 2026-09-11
+- url: https://en.wikipedia.org/wiki/Deep_belief_network
+  title: 'Wikipedia: Deep belief network'
+  kind: wikipedia
+  accessed: 2026-09-11
+- url: https://en.wikipedia.org/wiki/Canadian_Institute_for_Advanced_Research
+  title: 'Wikipedia: CIFAR (NCAP programme)'
+  kind: wikipedia
+  accessed: 2026-09-11
+threads:
+- vision
+- language
+neighbours:
+- id: gpu-convnet-school
+  relation: bridge
+  note: eclipsed after 2012 by pure supervised training with ReLU + Xavier/He init
+    + dropout
+- id: deep-generative-shoreline
+  relation: bridge
+  note: reborn as the VAE/GAN generative shoreline to the east
+status: sourced
+notes: 'P3-T8 school bullet 1 of 9 ("Unsupervised pre-training / energy-model school").
+  pending-neighbour: boltzmann-machines (west, file 04 energy-based models); pending-neighbour:
+  probabilistic-graphical-models (south, file 05 statistical ML). Band S2: connectionist
+  pole, the parent''s home band.
+
+  '

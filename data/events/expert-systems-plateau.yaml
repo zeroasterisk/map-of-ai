@@ -1,0 +1,100 @@
+# The Expert Systems Plateau — named events rendered INTO the map at zoom levels 3 and 4.
+# Every row traces to research/03-ai-winters-and-expert-systems-1974-1993.md.
+countries:
+  knowledge-engineering-empire:
+    hint: "XCON/R1 1980 · Fifth Gen 1982"
+    tag: "XCON/R1 → Fifth Generation → Cyc → KL-ONE → ID3 → Soar"
+    events:
+      - id: xcon-r1-dec-1980
+        name: XCON / R1 at DEC
+        year: 1980.3
+        lod: 3
+        one_line: "McDermott's OPS5 rule system R1/XCON configures VAX orders, saving DEC $25M yearly"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2882%2990021-2"
+            title: "McDermott 1982 [11]"
+      - id: non-monotonic-logic-1980
+        name: Non-Monotonic Logic
+        year: 1980.7
+        lod: 4
+        one_line: "McCarthy's circumscription and Reiter's default logic formalize defeasible commonsense reasoning"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2880%2990011-9"
+            title: "McCarthy & Reiter 1980 [40]"
+      - id: prospector-mount-tolman-1982
+        name: PROSPECTOR Discovery
+        year: 1982.2
+        lod: 4
+        one_line: "SRI's Bayesian rule consultant PROSPECTOR locates a Mount Tolman molybdenum deposit"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Expert_system"
+            title: "PROSPECTOR 1982 [35]"
+      - id: fifth-generation-icot-1982
+        name: Fifth Generation ICOT
+        year: 1982.4
+        lod: 3
+        one_line: "Japan's MITI launches the ten-year Fifth Generation parallel logic-programming project"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+            title: "Fifth Generation Computer Systems 1982 [15]"
+      - id: cyc-launched-1984
+        name: Cyc Project Begins
+        year: 1984.5
+        lod: 3
+        one_line: "Douglas Lenat launches Cyc at MCC to codify human commonsense knowledge"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Cyc"
+            title: "Cyc 1984 [18]"
+      - id: kl-one-description-logic-1985
+        name: KL-ONE Description Logic
+        year: 1985.3
+        lod: 4
+        one_line: "Brachman and Schmolze formalize frame-based knowledge representation in KL-ONE"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/KL-ONE"
+            title: "Brachman & Schmolze 1985 [52]"
+      - id: quinlan-id3-1986
+        name: ID3 Decision Trees
+        year: 1986.4
+        lod: 3
+        one_line: "Ross Quinlan publishes ID3 decision-tree induction in volume 1 of Machine Learning"
+        sources:
+          - url: "https://doi.org/10.1007/BF00116251"
+            title: "Quinlan 1986 [25]"
+      - id: soar-architecture-1987
+        name: Soar Cognitive Architecture
+        year: 1987.5
+        lod: 3
+        one_line: "Laird, Newell and Rosenbloom publish Soar with universal subgoaling and chunking"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2887%2990050-6"
+            title: "Laird, Newell & Rosenbloom 1987 [42]"
+
+  fifth-generation-and-cyc-highlands:
+    hint: "Deep Thought 1988 · Cyc Ontology"
+    tag: "Deep Thought → Cyc Ontology → ICOT Concludes"
+    events:
+      - id: deep-thought-chess-1988
+        name: Deep Thought & HiTech
+        year: 1988.7
+        lod: 3
+        one_line: "CMU's HiTech and Deep Thought chess machines defeat grandmasters in tournament play"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29"
+            title: "Deep Thought 1988 [45]"
+      - id: cyc-microtheories-1990
+        name: Cyc Commonsense Ontology
+        year: 1990.5
+        lod: 3
+        one_line: "Lenat's Cyc team structures hundreds of thousands of commonsense assertions into microtheories"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Cyc"
+            title: "Wikipedia: Cyc [18]"
+      - id: fifth-generation-concludes-1992
+        name: ICOT Project Concludes
+        year: 1992.4
+        lod: 3
+        one_line: "Japan's Fifth Generation project concludes after a decade of parallel logic research"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
+            title: "Fifth Generation Computer Systems 1992 [15]"

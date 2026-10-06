@@ -1,0 +1,60 @@
+id: policy-governance-coast
+level: country
+name: The Policy Coast
+subtitle: "Bletchley, the EU AI Act, executive orders, safety institutes and the ip-rights docket, 2023–present"
+summary: >
+  The northern ridge of the coast is governed ground. The Future of Life
+  Institute's pause letter (22 March 2023) and the CAIS Statement on AI Risk
+  (30 May 2023) carried existential-risk framing into mainstream politics; US
+  Executive Order 14110 on Safe, Secure, and Trustworthy AI (30 October 2023)
+  introduced compute-threshold reporting, and the Bletchley Declaration was
+  signed at the UK AI Safety Summit by 28 countries and the EU (1–2 November
+  2023), with the UK AI Safety Institute launched on 2 November and the US AISI
+  at NIST alongside. The EU AI Act passed the European Parliament on 13 March
+  2024 and entered into force on 1 August 2024 as the first comprehensive AI
+  regulation. The docket opened in parallel: Getty Images v. Stability AI
+  (January–February 2023), the New York Times v. Microsoft and OpenAI
+  (27 December 2023), RIAA v. Suno and Udio (June 2024). In January 2025 US
+  policy pivoted from safety to build-out — the BIS "AI Diffusion" export rule
+  (13 January), EO 14179 rescinding 14110 (23 January) — and the Paris AI
+  Action Summit (10–11 February 2025) renamed the agenda. The 2024 Nobel Prizes
+  in Physics (Hopfield, Hinton) and Chemistry (Baker, Hassabis, Jumper)
+  canonised the field the same season.
+time_range: {start: 2023, end: present}
+band: N1
+sub_band: N1a
+biome: highland
+parent_id: generative-coast
+research_ref: {file: research/08-generative-ai-and-agents-2022-present.md, sources: [18, 19, 23, 33, 34, 42, 50, 73, 92, 105, 106, 107]}
+sources:
+  - {url: https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023, title: "The Bletchley Declaration by Countries Attending the AI Safety Summit, 1–2 November 2023, GOV.UK", kind: official, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/Artificial_Intelligence_Act, title: "Wikipedia: Artificial Intelligence Act", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj, title: "Regulation (EU) 2024/1689 (Artificial Intelligence Act), EUR-Lex", kind: official, accessed: 2026-09-06}
+  - {url: https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence, title: "Executive Order 14110, Federal Register", kind: official, accessed: 2026-09-06}
+  - {url: https://www.federalregister.gov/documents/2025/01/31/2025-02172/removing-barriers-to-american-leadership-in-artificial-intelligence, title: "Executive Order 14179, Removing Barriers to American Leadership in Artificial Intelligence, Federal Register", kind: official, accessed: 2026-09-06}
+  - {url: https://www.gov.uk/government/news/prime-minister-launches-new-ai-safety-institute, title: "Prime Minister launches new AI Safety Institute, GOV.UK, 2 Nov 2023", kind: official, accessed: 2026-09-06}
+  - {url: https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf, title: "The New York Times Company v. Microsoft Corporation and OpenAI, complaint filed 27 Dec 2023, S.D.N.Y.", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/AI_Action_Summit, title: "Wikipedia: AI Action Summit (Paris, 10–11 Feb 2025)", kind: wikipedia, accessed: 2026-09-06}
+threads: [safety, open-closed]
+neighbours:
+  - {id: alignment-interpretability-plateau, relation: borders, note: "the safety institutes evaluate what the labs' scaling policies promise; FLI/CAIS letters sit on the shared border"}
+  - {id: closed-frontier-labs, relation: borders, note: "the labs are Bletchley's signatories and NYT v. OpenAI's defendants"}
+  - {id: diffusion-media-district, relation: road, note: "Getty v. Stability and RIAA v. Suno/Udio: the ip-rights docket comes up from the shoreline"}
+  - {id: compute-hardware-hinterland, relation: road, note: "EO 14110's compute thresholds and the BIS export controls make chips a policy instrument"}
+  - {id: open-weights-movement, relation: borders, note: "the EU AI Act's GPAI obligations and the OSI's Open Source AI Definition contest what open weights owe"}
+status: sourced
+notes: >
+  P3-T10 school bullet 7 of 8 ("Policy & governance coast"). pending-
+  neighbour: ethics tributaries (Weizenbaum -> Stochastic Parrots, file 09c);
+  pending-neighbour: existential-risk tributaries (Bostrom/FLI/CAIS, file 09c);
+  pending-neighbour: chinese-state-response (west, file 06: "the policy
+  hand-off to files 07–08"). Band N1: safety/ethics per AXES.md §3 (Bostrom,
+  Stochastic Parrots, alignment are N1 examples) and AXES.md's "safety/ethics as
+  a ridge along the northern edge"; sub-band N1a = the top row of the map.
+  Biome highland: hand-authored rules (statutes, declarations, orders) are the
+  AXES.md palette's symbolic terrain — the only non-neural biome on the coast
+  (A-K7 judgement call, alternative grassland). time_range starts 2023 (FLI
+  letter 22 Mar 2023; EO 14110 30 Oct 2023), within the parent's span. Answers
+  research/08 open question 2: governance is drawn here as territory as well
+  as on the file-09 ethics river. Open question 1 (Nobel/Turing canonisation)
+  is mentioned in the summary but not given a place.

@@ -1,0 +1,29 @@
+id: microworlds-language-basin
+level: country
+name: The Micro-Worlds Basin
+subtitle: "Semantic information processing, ELIZA, SHRDLU and frames, 1956–1974"
+summary: >
+  The natural language and knowledge representation valley at MIT, exploring domain-bounded
+  reasoning and semantic understanding. Formulated in Marvin Minsky's "Steps Toward
+  Artificial Intelligence" (1961), MIT researchers created programs like Slagle's
+  SAINT (1961), Bobrow's STUDENT (1964), and Raphael's SIR (1964). In 1966, Joseph
+  Weizenbaum built ELIZA, revealing how readily human interlocutors project deep
+  understanding onto simple pattern-matching rules. Terry Winograd's SHRDLU (1970)
+  integrated syntax, semantics, and blocks-world planning, before Marvin Minsky
+  introduced the frame theory of representation (1974), defining how structured
+  expectations and default values organize human knowledge.
+time_range: {start: 1956, end: 1974}
+band: C
+sub_band: [Cb]
+biome: highland
+parent_id: symbolic-heartland
+spatial: true
+research_ref:
+  file: research/02-dartmouth-and-early-symbolic-ai-1956-1974.md
+  sources: [11, 13, 20, 25, 29, 35, 40, 41]
+sources:
+  - {url: "https://doi.org/10.1109/JRPROC.1961.287775", title: "Minsky, Steps Toward Artificial Intelligence, 1961 [13]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf", title: "Weizenbaum, ELIZA, CACM 1966 [20]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://dspace.mit.edu/handle/1721.1/7095", title: "Winograd, SHRDLU Thesis, MIT 1971 [29]", kind: primary, accessed: 2026-09-22}
+threads: [language]
+status: sourced

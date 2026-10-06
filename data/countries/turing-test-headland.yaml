@@ -1,0 +1,31 @@
+id: turing-test-headland
+level: country
+name: The Imitation Game & Game-Search Headland
+subtitle: "Turing's Mind paper, Shannon's chess minimax, Samuel's checkers and the Dartmouth proposal, 1949–1956"
+summary: >
+  The northern highland headland of the Cybernetic Shore, where philosophy of machine
+  intelligence and heuristic game search converged on the 1955 Dartmouth proposal. In
+  1950, Alan Turing's Mind paper Computing Machinery and Intelligence replaced the
+  question "Can machines think?" with the behavioral Imitation Game and systematically
+  rebutted nine classical objections, while Claude Shannon formulated minimax search with
+  evaluation functions for computer chess. Following Turing and Champernowne's Turochamp,
+  Christopher Strachey's draughts and Dietrich Prinz's chess ran on Manchester's Ferranti
+  Mark 1 (1951), Arthur Samuel built his self-learning checkers program on the IBM 701
+  (1952–1955), and John McCarthy, Minsky, Rochester, and Shannon authored the August 1955
+  Dartmouth proposal coining artificial intelligence.
+time_range: {start: 1949, end: 1956}
+band: N2
+sub_band: [N2b]
+biome: highland
+parent_id: cybernetic-shore
+spatial: true
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [7, 23, 25, 27, 29, 41, 43, 46]
+sources:
+  - {url: "https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf", title: "Turing, Computing Machinery and Intelligence, Mind 1950 [7]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://vision.unipv.it/IA1/ProgrammingaComputerforPlayingChess.pdf", title: "Shannon, Programming a Computer for Playing Chess, Phil. Mag. 1950 [23]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1147/rd.33.0210", title: "Samuel, Some Studies in Machine Learning Using the Game of Checkers, 1959 [27]", kind: primary, accessed: 2026-09-22}
+  - {url: "http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf", title: "McCarthy et al., Dartmouth Proposal, 1955 [29]", kind: primary, accessed: 2026-09-22}
+threads: [games, rl]
+status: sourced

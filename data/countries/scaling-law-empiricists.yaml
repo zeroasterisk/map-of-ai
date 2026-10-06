@@ -1,0 +1,48 @@
+id: scaling-law-empiricists
+level: country
+name: The Scaling-Law Fault Line
+subtitle: "The Bitter Lesson, Kaplan, Chinchilla and the benchmark street, 2019–2022"
+summary: >
+  The fault line that separates the "bigger is better" plateau from the RNN
+  lowlands to the west. Rich Sutton's essay "The Bitter Lesson" (13 March 2019)
+  supplied the creed: general methods that leverage computation beat built-in
+  human knowledge. Kaplan et al. (23 January 2020) supplied the method, showing
+  that loss falls as a smooth power law in parameters, data and compute — the
+  finding that justified GPT-3's bet four months later. DeepMind's Gopher (280B,
+  8 December 2021) extended the programme and became the baseline that Hoffmann
+  et al.'s Chinchilla (29 March 2022) beat with 70B parameters trained on 1.4
+  trillion tokens, revising the recipe toward more data per parameter.
+  Capability became a leaderboard number: Hendrycks et al.'s MMLU (September
+  2020), BIG-bench's 204 tasks (June 2022) and Wei et al.'s "Emergent Abilities
+  of Large Language Models" (June 2022) framed the argument over whether scale
+  produces discontinuous jumps — the debate the next era inherits.
+time_range: {start: 2019, end: 2022}
+band: N2
+sub_band: N2b
+biome: grassland
+parent_id: transformer-plateau
+research_ref: {file: research/07-transformers-and-llms-2017-2022.md, sources: [9, 20, 49, 63, 64, 65, 70]}
+sources:
+  - {url: https://arxiv.org/abs/2001.08361, title: "Kaplan et al., Scaling Laws for Neural Language Models, 2020", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2203.15556, title: "Hoffmann et al., Training Compute-Optimal Large Language Models (Chinchilla), NeurIPS 2022", kind: primary, accessed: 2026-09-18}
+  - {url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html, title: "Sutton, The Bitter Lesson, 13 Mar 2019", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2009.03300, title: "Hendrycks et al., Measuring Massive Multitask Language Understanding (MMLU), ICLR 2021", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2206.07682, title: "Wei et al., Emergent Abilities of Large Language Models, TMLR 2022", kind: primary, accessed: 2026-09-18}
+  - {url: https://arxiv.org/abs/2112.11446, title: "Rae et al., Scaling Language Models: Methods, Analysis & Insights from Training Gopher, 2021", kind: primary, accessed: 2026-09-18}
+threads: [language, compute]
+neighbours:
+  - {id: decoder-generative-school, relation: borders, note: "GPT-3 is the scaling law's first large-scale test"}
+  - {id: encoder-understanding-school, relation: road, note: "the benchmark street runs GLUE 2018 -> SuperGLUE 2019 -> MMLU 2020 -> BIG-bench/HELM 2022"}
+  - {id: alignment-critique-tributaries, relation: borders, note: "Gopher shipped with a taxonomy of ethical and social risks; emergence and Stochastic Parrots argue over the same curve"}
+  - {id: systems-infrastructure-axis, relation: road, note: "compute-optimal training is a claim about how to spend the yards' accelerators"}
+  - {id: compute-hardware-hinterland, relation: road, note: "the compute-governance debate of file 08 starts from these curves"}
+status: sourced
+notes: >
+  P3-T9 school bullet 3 of 9 ("Scaling-law empiricists"). pending-neighbour:
+  silicon-river-hardware (thread 09d, TPUs / A100 / H100 — a road, drawn from
+  data/threads). Band N2 sub-band N2b: capability measured on knowledge and
+  reasoning benchmarks (MMLU, BIG-bench) and the emergence debate belong to the
+  reasoning band; research/07 map notes call this the "Scaling Law fault line ...
+  a sharp escarpment", so it sits on the plateau's northern shelf. Biome
+  grassland (AXES palette: statistical regularities with explicit structure —
+  power laws and leaderboards) inside a jungle continent.

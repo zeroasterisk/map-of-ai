@@ -1,0 +1,36 @@
+id: winter-steppes
+level: continent
+name: The Winter Steppes
+subtitle: "The two AI winters — funding collapse and retrenchment, 1974–1993"
+summary: >
+  Stretching across the northern highlands from the 1974 funding escarpment to the 1993
+  fog bank, the Winter Steppes record the two great retrenchments of classical artificial
+  intelligence and the philosophical critiques that accompanied them. Triggered by Sir
+  James Lighthill's 1973 report in Britain, the Mansfield Amendment's requirement for
+  mission-oriented military research in the United States, and the failure of DARPA's
+  Speech Understanding Research programme to meet unconstrained targets, the First AI
+  Winter (1974–1980) froze exploratory university funding. In the western foothills,
+  researchers retreated from general-purpose search toward domain-specific systems such
+  as MYCIN, Hearsay-II's blackboard architecture, and PROSPECTOR, while Hans Moravec's
+  Stanford Cart revealed that sensorimotor control was far harder than abstract deduction.
+  Meanwhile, Joseph Weizenbaum's Computer Power and Human Reason (1976), John Searle's
+  Chinese Room argument (1980), and Hubert and Stuart Dreyfus's Mind over Machine (1986)
+  challenged strong AI's philosophical foundations. Warned of by Roger Schank and Marvin
+  Minsky at the 1984 AAAI conference, the Second AI Winter (1987–1993) struck when the
+  specialized Lisp-machine hardware market collapsed against commodity workstations,
+  DARPA slashed Strategic Computing Initiative budgets, and expert systems proved brittle.
+time_range: {start: 1974, end: 1993}
+band: [N1, N2]
+biome: highland
+research_ref:
+  file: research/03-ai-winters-and-expert-systems-1974-1993.md
+  sources: [1, 2, 3, 5, 6, 7, 9, 12, 14, 38, 39, 44]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/AI_winter", title: "Wikipedia: AI winter [1]", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1017/S0140525X00005756", title: "Searle, Minds, Brains, and Programs, Behavioral and Brain Sciences 1980 [12]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.ijcai.org/Proceedings/77-2/Papers/092.pdf", title: "Feigenbaum, The Art of Artificial Intelligence, IJCAI 1977 [7]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://ai.stanford.edu/~nilsson/QAI/qai.pdf", title: "Nilsson, The Quest for Artificial Intelligence, 2010 [37]", kind: secondary, accessed: 2026-09-22}
+threads: [safety, compute, language]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 4 (The Winter Steppes). Spans both AI winter bands across N1–N2.

@@ -1,0 +1,29 @@
+id: bayesian-plateau
+level: country
+name: The Bayesian Plateau
+subtitle: "Probabilistic graphical models, belief propagation and variational methods, 1993–2011"
+summary: >
+  The northern highland of the isthmus, where reasoning under uncertainty was
+  formalized with directed and undirected graphs. Following Judea Pearl's belief
+  propagation foundations, Steffen Lauritzen and David Spiegelhalter's junction-tree
+  algorithm enabled exact probabilistic inference in medical diagnostic systems and
+  complex expert systems. In the late 1990s, Michael I. Jordan, Zoubin Ghahramani,
+  Tommi Jaakkola, and Lawrence Saul introduced variational methods for approximate
+  inference in complex networks, paving the way for David Blei, Andrew Ng, and
+  Jordan's Latent Dirichlet Allocation (LDA, 2003) and Daphne Koller and Nir Friedman's
+  comprehensive graphical models synthesis (2009).
+time_range: {start: 1993, end: 2011}
+band: N2
+sub_band: [N2a, N2b]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [3, 4, 5, 22, 52, 71, 80, 82]
+sources:
+  - {url: "https://en.wikipedia.org/wiki/Bayesian_network", title: "Wikipedia: Bayesian network", kind: wikipedia, accessed: 2026-09-22}
+  - {url: "https://www.jmlr.org/papers/v3/blei03a.html", title: "Blei, Ng & Jordan, Latent Dirichlet Allocation, JMLR 2003", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1023/A:1007665907178", title: "Jordan et al., Introduction to Variational Methods, 1999", kind: primary, accessed: 2026-09-22}
+threads: [compute]
+status: sourced

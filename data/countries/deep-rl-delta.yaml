@@ -1,0 +1,44 @@
+id: deep-rl-delta
+level: country
+name: The AlphaGo Delta
+subtitle: "Deep reinforcement learning from DQN to AlphaGo Zero, 2013–2017"
+summary: >
+  The RL River re-emerges from underground here and fans out into a delta. Mnih
+  and colleagues at DeepMind showed a single convolutional network learning
+  Atari games from pixels (DQN, December 2013; Nature, February 2015); A3C
+  (2016) ran policy gradients on ordinary CPUs; OpenAI Gym (2016) gave the field
+  a shared arena. Silver's AlphaGo combined learned policy and value networks
+  with Monte-Carlo tree search, beat Fan Hui 5–0 in October 2015 and Lee Sedol
+  4–1 in Seoul in March 2016 — the era's Deep-Blue moment, on a problem thought
+  to be a decade away. AlphaGo Master beat Ke Jie 3–0 (May 2017) and AlphaGo
+  Zero (October 2017) learned from self-play alone, beating the Lee Sedol
+  version 100–0 after three days. Its tree search is the one feature of the
+  basin that reaches toward the symbolic bank.
+time_range: {start: 2013, end: 2017}
+band: S1
+sub_band: S1b
+biome: wetland
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [25, 26, 99, 100, 46, 54, 69]}
+sources:
+  - {url: https://arxiv.org/abs/1312.5602, title: "Mnih et al., Playing Atari with Deep Reinforcement Learning (DQN), 2013", kind: primary, accessed: 2026-09-11}
+  - {url: https://www.nature.com/articles/nature14236, title: "Mnih et al., Human-level control through deep reinforcement learning, Nature 2015", kind: primary, accessed: 2026-09-11}
+  - {url: https://www.nature.com/articles/nature16961, title: "Silver et al., Mastering the game of Go with deep neural networks and tree search, Nature 2016", kind: primary, accessed: 2026-09-11}
+  - {url: https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol, title: "Wikipedia: AlphaGo versus Lee Sedol", kind: wikipedia, accessed: 2026-09-11}
+  - {url: https://www.nature.com/articles/nature24270, title: "Silver et al., Mastering the game of Go without human knowledge (AlphaGo Zero), Nature 2017", kind: primary, accessed: 2026-09-11}
+  - {url: https://arxiv.org/abs/1606.01540, title: "Brockman et al., OpenAI Gym, 2016", kind: primary, accessed: 2026-09-11}
+threads: [rl]
+neighbours:
+  - {id: industrial-lab-founders, relation: borders, note: "DeepMind and OpenAI are the two labs that built the delta"}
+  - {id: gpu-convnet-school, relation: borders, note: "DQN and AlphaGo policy nets are convnets applied to boards and screens"}
+  - {id: tooling-guild, relation: river, note: "OpenAI Gym and DGX-1 compute are the delta's ports"}
+status: sourced
+notes: >
+  P3-T8 school bullet 4 of 9 ("Deep reinforcement learning school"). pending-
+  neighbour: td-gammon-rl (west, Sutton-Barto RL of file 04, upstream on the RL
+  River); pending-neighbour: rlhf (east, file 07); pending-neighbour: reasoning-
+  models (east, file 08); the Tournament Road (file 09h) passes through Seoul
+  2016. Band S1: RL/control per AXES.md §3 (the parent's "deep-RL delta reaches
+  toward the middle"). Biome wetland: the AXES.md palette's RL/control terrain
+  inside a forest continent. time_range ends 2017 = parent end; AlphaGo Zero
+  (Oct 2017) sits on the eastern coast peninsula per research/06 map notes.

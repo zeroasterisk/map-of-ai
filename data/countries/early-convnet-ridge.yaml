@@ -1,0 +1,29 @@
+id: early-convnet-ridge
+level: country
+name: The Early ConvNet Ridge
+subtitle: "Neocognitron, Bell Labs digit recognition and LSTM foundations, 1982–1998"
+summary: >
+  The perception and deep architecture ridge of the second connectionist wave.
+  Building on Kunihiko Fukushima's shift-invariant Neocognitron (1980), Yann LeCun
+  and colleagues at AT&T Bell Labs trained multi-layer convolutional neural networks
+  with backpropagation for handwritten zip code recognition on postal envelopes (1989),
+  culminating in LeNet-5, commercial cheque-reading systems, and the canonical MNIST
+  benchmark dataset (1998). In parallel, Sepp Hochreiter diagnosed the fundamental
+  vanishing-gradient problem in 1991, and with Jürgen Schmidhuber invented Long Short-Term
+  Memory (LSTM, 1997) with constant error carrousels to preserve gradient flow across
+  extended temporal sequences.
+time_range: {start: 1982, end: 1998}
+band: S2
+sub_band: [S2a]
+biome: forest
+parent_id: connectionist-revival
+spatial: true
+research_ref:
+  file: research/04-connectionism-and-backprop-revival-1982-1998.md
+  sources: [5, 6, 18, 19, 20, 21, 22, 23, 24]
+sources:
+  - {url: "http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf", title: "LeCun et al., Backpropagation Applied to Handwritten Zip Code Recognition, 1989", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1162/neco.1997.9.8.1735", title: "Hochreiter & Schmidhuber, Long Short-Term Memory, Neural Computation 1997", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1109/5.726791", title: "LeCun, Bottou, Bengio & Haffner, Gradient-Based Learning Applied to Document Recognition, 1998", kind: primary, accessed: 2026-09-22}
+threads: [vision, compute]
+status: sourced

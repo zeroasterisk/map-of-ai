@@ -1,0 +1,29 @@
+id: statistical-corpus-basin
+level: country
+name: The Statistical Corpus Basin
+subtitle: "HMMs, statistical translation, and web-scale language corpora, 1988–2011"
+summary: >
+  The linguistic spine of the statistical turn, replacing hand-coded syntactic
+  grammars with data-driven probability. Frederick Jelinek's IBM Continuous Speech
+  group and Kai-Fu Lee's CMU Sphinx deployed HMMs and n-grams for continuous speech
+  recognition. IBM's Candide project (Brown et al., 1990/1993) re-founded machine
+  translation on statistical word alignments, the Penn Treebank (1993) enabled
+  Collins and Charniak's lexicalized parsers, and BLEU (2002) provided automated
+  evaluation. PageRank (1998) and Halevy, Norvig, and Pereira's 'Unreasonable
+  Effectiveness of Data' (2009) proved that web-scale data conquered algorithm
+  complexity, leading to IBM Watson's Jeopardy! victory in 2011.
+time_range: {start: 1988, end: 2011}
+band: C
+sub_band: [Ca]
+biome: grassland
+parent_id: statistical-isthmus
+spatial: true
+research_ref:
+  file: research/05-statistical-ml-and-probabilistic-ai-1988-2011.md
+  sources: [23, 25, 26, 27, 31, 35, 43, 73, 76, 87]
+sources:
+  - {url: "https://aclanthology.org/J90-2002/", title: "Brown et al., A Statistical Approach to Machine Translation, 1990", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1109/MIS.2009.36", title: "Halevy, Norvig & Pereira, The Unreasonable Effectiveness of Data, 2009", kind: primary, accessed: 2026-09-22}
+  - {url: "https://en.wikipedia.org/wiki/IBM_Watson", title: "Wikipedia: IBM Watson (Jeopardy! 2011)", kind: wikipedia, accessed: 2026-09-22}
+threads: [language]
+status: sourced

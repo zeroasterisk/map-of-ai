@@ -1,0 +1,39 @@
+id: antecedent-isles
+level: continent
+name: The Antecedent Isles
+subtitle: "Logic, computability and the mathematical prehistory of AI, 1666–1942"
+summary: >
+  Rising from the Western Sea before the 1943 mainland coast, the Antecedent Isles
+  chart the three-century mathematical and philosophical prehistory that made
+  artificial intelligence possible. On the outermost seventeenth-century island,
+  Gottfried Wilhelm Leibniz envisioned a characteristica universalis and a calculus
+  ratiocinator capable of resolving human disputes by mechanical calculation. In the
+  nineteenth century, Charles Babbage designed the programmable Analytical Engine while
+  Ada Lovelace penned the first published algorithm and posed her famous objection that
+  machines cannot originate anything new. George Boole reduced propositional reasoning
+  to algebra in 1854, and Gottlob Frege's 1879 Begriffsschrift forged modern predicate
+  logic with quantifiers—the direct formal language of symbolic AI. In the early
+  twentieth century, Whitehead and Russell's Principia Mathematica attempted to derive
+  all mathematics from logic, inspiring David Hilbert's programme to prove mathematics
+  complete, consistent, and decidable. That programme shattered against Kurt Gödel's
+  1931 incompleteness theorems, and in 1936 Alonzo Church's lambda calculus and Alan
+  Turing's universal computing machine independently answered Hilbert's
+  Entscheidungsproblem in the negative, defining mechanical computation itself on the
+  eve of the electronic computer.
+time_range: {start: 1666, end: 1942}
+offshore: true
+band: [N1, N2]
+biome: highland
+research_ref:
+  file: research/01-origins-pre-1956.md
+  sources: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 44]
+sources:
+  - {url: "https://plato.stanford.edu/entries/leibniz-logic-influence/", title: "SEP: Leibniz's Influence on 19th Century Logic [1]", kind: secondary, accessed: 2026-09-22}
+  - {url: "https://www.fourmilab.ch/babbage/sketch.html", title: "Menabrea & Lovelace, Sketch of the Analytical Engine, 1843 [3]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.gutenberg.org/ebooks/15114", title: "Boole, An Investigation of the Laws of Thought, 1854 [4]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://doi.org/10.1007/BF01700692", title: "Gödel, Über formal unentscheidbare Sätze, 1931 [9]", kind: primary, accessed: 2026-09-22}
+  - {url: "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf", title: "Turing, On Computable Numbers, 1936 [11]", kind: primary, accessed: 2026-09-22}
+threads: [compute, language]
+status: sourced
+notes: >
+  P3 continent for REGISTRY.md row 1 (The Antecedent Isles). Offshore archipelago pre-1943.
