@@ -1,0 +1,17 @@
+id: alexnet-2012
+level: city
+type: system
+name: AlexNet
+subtitle: "Wins ILSVRC 2012 with 15.3% top-5 error, 2012"
+summary: >
+  Krizhevsky, Sutskever and Hinton's eight-layer convolutional network, trained on two GTX 580 GPUs with ReLU units and dropout, won the ILSVRC 2012 classification task with a top-5 error of 15.3 percent against 26.2 percent for the runner-up. The margin convinced the computer-vision community almost overnight and is the conventional start of the deep learning revolution.
+time_range: {start: 2012-09-30, end: 2012-09-30}
+band: S2
+parent_id: deep-learning-basin
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [17, 18]}
+sources:
+  - {url: https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html, title: "Krizhevsky, Sutskever & Hinton, NIPS 2012", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/AlexNet, title: "Wikipedia: AlexNet", kind: wikipedia, accessed: 2026-09-06}
+threads: [vision, compute]
+status: verified
+verified_by: {who: "reviewer-model-B", date: 2026-09-20, method: "checked date, error rate and authors against both sources"}

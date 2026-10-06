@@ -1,0 +1,21 @@
+id: deep-learning-basin-two
+level: continent
+name: The Deep Learning Basin
+subtitle: "GPU-trained neural networks take over perception, language and control, 2006–2017"
+summary: >
+  Between 2006 and 2017 multi-layer neural networks went from an unfashionable niche to the default method for perception, language and control. Hinton's 2006 deep belief nets reopened the question of training deep models; CUDA GPUs made it cheap; ImageNet (2009) made it measurable. AlexNet's ILSVRC win in September 2012 is the fault line: to the west, hand-crafted features and statistical learning; to the east, learned representations everywhere. The years that followed saw word2vec and sequence-to-sequence models bring the method to language, DQN and AlphaGo bring it to decision-making, GANs and VAEs open generative modelling, and ResNet, batch normalisation and Adam make very deep training routine. Google Brain, DeepMind, FAIR and OpenAI formed the industrial labs that would dominate the next continent. The basin ends where attention replaces recurrence: Attention Is All You Need, June 2017, is the bridge east to the Transformer Plateau. Forest biome throughout: learned representations, trained by gradient descent on GPUs, with a reinforcement-learning delta in the south.
+time_range: {start: 2006, end: 2017}
+band: [N2, C, S1, S2]
+biome: forest
+research_ref: {file: research/06-deep-learning-revolution-2006-2017.md, sources: [1, 17, 18, 38]}
+sources:
+  - {url: https://en.wikipedia.org/wiki/Deep_learning, title: "Wikipedia: Deep learning", kind: wikipedia, accessed: 2026-09-06}
+  - {url: https://www.nature.com/articles/nature14539, title: "LeCun, Bengio & Hinton, Deep learning, Nature 2015", kind: primary, accessed: 2026-09-06}
+  - {url: https://en.wikipedia.org/wiki/AlexNet, title: "Wikipedia: AlexNet", kind: wikipedia, accessed: 2026-09-06}
+threads: [vision, language, rl, compute]
+status: sourced
+notes: >
+  Fixture copy of SPEC.md §2.10. The spec example's neighbours (statistical-isthmus,
+  transformer-plateau) are omitted here because those entities do not exist in the
+  fixture set (V-31 would fail). Schmidhuber/IDSIA priority claims vs AlexNet are a
+  live dispute; see research/06 open question 2.

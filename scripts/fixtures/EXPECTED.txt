@@ -1,0 +1,78 @@
+## valid
+validate.py: files=3 rules=25 fails=0 (V-20 skipped: --offline) (V-32 off; use --require-children)
+exit=0
+## V-01
+FAIL V-01 V-01/continents/deep-learning-basin.yaml unknown field 'colour' (SPEC.md §2.1)
+exit=1
+## V-02
+FAIL V-02 V-02/countries/gpu-convnet-school.yaml required field 'research_ref' missing or empty for level country
+exit=1
+## V-03
+FAIL V-03 V-03/cities/deep-learning-basin/AlexNet_2012.yaml id 'AlexNet_2012' does not match ^[a-z0-9]+(-[a-z0-9]+)*$ / ≤ 48 chars
+exit=1
+## V-04
+FAIL V-04 V-04/continents/gpu-convnet-school.yaml level 'country' but file is under continents/
+exit=1
+## V-05
+FAIL V-05 V-05/cities/deep-learning-basin/alexnet-2012.yaml type 'gadget' not in ['dataset', 'event', 'institution', 'lab', 'paper', 'person', 'system']
+exit=1
+## V-06
+FAIL V-06 V-06/cities/deep-learning-basin/alexnet-2012.yaml time_range.start 2012-09-30 > end 2012-09-29
+exit=1
+## V-07
+FAIL V-07 V-07/cities/deep-learning-basin/alexnet-2012.yaml time_range outside parent 'gpu-convnet-school' and no 'time-overlap-ok: <reason>' in notes
+exit=1
+## V-08
+FAIL V-08 V-08/continents/deep-learning-basin.yaml band list ['N1', 'S2'] is not contiguous in N1→N2→C→S1→S2 order
+exit=1
+## V-09
+FAIL V-09 V-09/countries/gpu-convnet-school.yaml band_override_note present but shorter than 20 chars
+exit=1
+## V-10
+FAIL V-10 V-10/continents/deep-learning-basin.yaml biome 'tundra' not in ['forest', 'grassland', 'harbour', 'highland', 'jungle', 'mixed', 'wetland']
+exit=1
+## V-11
+FAIL V-11 V-11/cities/deep-learning-basin/alexnet-2012.yaml summary has 4 words; city range is 30–150
+exit=1
+## V-12
+FAIL V-12 V-12/countries/gpu-convnet-school.yaml subtitle end '2016' != time_range.end '2015'
+exit=1
+## V-13
+FAIL V-13 V-13/continents/deep-learning-basin.yaml name 'The Deep Learning Basin' duplicates V-13/continents/deep-learning-basin-two.yaml at level continent
+exit=1
+## V-14
+FAIL V-14 V-14/continents/deep-learning-basin.yaml offshore continent must end ≤ 1943 (ends 2017)
+exit=1
+## V-20
+FAIL V-20 V-20/cities/deep-learning-basin/alexnet-2012.yaml HTTP 404 for https://en.wikipedia.org/wiki/This_Article_Does_Not_Exist_map_of_ai_fixture_404
+exit=1
+## V-21
+FAIL V-21 V-21/continents/deep-learning-basin.yaml 2 sources; continent minimum is 3
+exit=1
+## V-22
+FAIL V-22 V-22/cities/deep-learning-basin/alexnet-2012.yaml research_ref.sources [999] not found in research/06-deep-learning-revolution-2006-2017.md ## Sources
+exit=1
+## V-30
+FAIL V-30 V-30/cities/deep-learning-basin/alexnet-2012.yaml parent 'deep-learning-basin' is a continent, expected country
+exit=1
+## V-31
+FAIL V-31 V-31/continents/deep-learning-basin.yaml neighbours[0].id 'transformer-plateau' does not exist
+exit=1
+## V-32
+FAIL V-32 V-32/countries/gpu-convnet-school.yaml country 'gpu-convnet-school' has no city children
+exit=1
+## V-33
+FAIL V-33 V-33/continents/deep-learning-basin.yaml continent 'deep-learning-basin' has a parent_id (continents are roots)
+exit=1
+## V-40
+FAIL V-40 V-40/cities/deep-learning-basin/alexnet-2012.yaml adjacent_field.fed 'no-such-entity' does not exist
+exit=1
+## V-50
+FAIL V-50 V-50/cities/deep-learning-basin/alexnet-2012.yaml status verified requires verified_by
+exit=1
+## V-51
+FAIL V-51 V-51/countries/gpu-convnet-school.yaml duplicate threads ['vision']
+exit=1
+## V-60
+FAIL V-60 V-60/cities/deep-learning-basin/alexnet-2012.yaml city 'alexnet-2012' not listed in scripts/fixtures/invalid/V-60/coverage/deep-learning-basin.md
+exit=1
