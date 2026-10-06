@@ -1,0 +1,207 @@
+# One exact URL per line. Lines starting with # are comments (reason for the entry above/below).
+# openai.com returns 403 to curl
+https://openai.com/index/chatgpt/
+# api/template URLs with placeholders (SOURCING.md)
+https://api.github.com/search/repositories?
+https://api.semanticscholar.org/graph/v1/paper/arXiv
+https://huggingface.co/api/daily_papers?limit=N
+https://icml.cc/virtual/
+https://neurips.cc/virtual/
+https://news.smol.ai/
+https://x.ai/news
+# doi.org resolves to cambridge.org, which hangs bot requests past 25s (302 then stall); DOI is cited as text in research/01
+https://doi.org/10.1086/286788
+# dspace.mit.edu returns 405 to every non-browser request (bot block); MIT AI Memo 306 (Minsky frames) and Winograd thesis AI-TR-235, both pre-existing citations in research/02
+https://dspace.mit.edu/handle/1721.1/6089
+https://dspace.mit.edu/handle/1721.1/7095
+# openai.com returns 403 to curl; each verified 2026-09-13 via the OpenAI news RSS feed (200) and a web.archive.org snapshot cited alongside in research/08 [121]-[123]
+https://openai.com/index/frontier-cyber-model/
+https://openai.com/index/hugging-face-incident-and-the-road-ahead/
+https://openai.com/index/navier-stokes-solution/
+https://openai.com/index/pacing-model-development-cyber-capabilities/
+# paywalled press (403/401 to bots); verified 2026-09-13 via archived copy (FT), syndication (Reuters -> CNBC, cited alongside), reader-proxy headline+lede (The Information, Politico); research/08 [122] [124] [125]
+https://www.ft.com/content/1453e9c2-4922-482f-8720-0bafd7e07df7
+https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/
+https://www.politico.com/news/2026/08/21/openai-calls-for-stronger-ai-laws-in-california-01046512
+https://www.theinformation.com/articles/nvidia-agrees-buy-open-source-model-repository-hugging-face-12-9-billion
+# session 15 promotions (research/08 [126] [127] [130]; research/09 [d15]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; both confirmed via the OpenAI news RSS feed (200, dates 6 and 9 Sep 2026) + web.archive.org snapshots cited alongside; jalapeno (research/09 [d13], session 12) had the same archive-snapshot verification but was never allowlisted
+https://openai.com/index/an-alien-mind/
+https://openai.com/index/paul-christiano-joins-openai-foundation-board/
+https://openai.com/index/jalapeno-first-results/
+# venturebeat.com returns 429 to curl; verified via web.archive.org snapshot 20260830013256 (title + datePublished 2026-08-13) cited alongside
+https://venturebeat.com/technology/deepseek-harness-launches-as-open-source-rival-to-claude-code-alongside-v4-pro-on-api-with-higher-prices
+# globenewswire.com drops non-browser TLS connections (curl exit != 0); verified via web.archive.org snapshot 20260827075841 (title + datePublished 2026-08-19) cited alongside
+https://www.globenewswire.com/news-release/2026/08/19/3347356/0/en/cerebras-unveils-cs-4-up-to-30-times-faster-than-gpu-based-solutions.html
+# paywalled press (403/401 to bots); Bloomberg headline + publication date verified via reader proxy (r.jina.ai); Reuters headline + date via ET Telecom syndication in Google News RSS
+https://www.bloomberg.com/news/articles/2026-08-15/alibaba-ai-models-hit-3-billion-downloads-passing-meta-google
+https://www.bloomberg.com/news/articles/2026-09-11/openai-is-open-to-slowing-cutting-edge-ai-ceo-sam-altman-tells-staff
+https://www.reuters.com/business/cerebras-raises-annual-targets-strong-ai-chip-demand-2026-08-12/
+# session 16 promotions (research/08 [134] [135]; research/09 [d17] [d19]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; title + pubDate (Sun, 06 Sep 2026) confirmed via the OpenAI news RSS feed (200) + web.archive.org snapshot 20260915050818 (200) cited alongside
+https://openai.com/index/research-acceleration-view-inside-openai/
+# ft.com 403 to bots (paywall); headline, standfirst and 8 Sep 2026 date verified via web.archive.org snapshot 20260909043414 (cited alongside) and reader proxy; syndicated pickups (IT Pro, The Next Web, euractiv) listed in Google News RSS
+https://www.ft.com/content/560e1c8b-f163-4fd6-b604-e905550ac870
+# bloomberg.com 403 to bots (paywall); headline + Published Time + lede verified via reader proxy (r.jina.ai): SB Energy 2026-09-01T10:15Z (8.8 GW contracted/under construction; links the sec.gov S-1, which is 200), Microsoft 2026-09-10T21:00Z (38 GW by 2032, ~12 GW today); Reuters pickup of the Microsoft story confirmed via Google News RSS
+https://www.bloomberg.com/news/articles/2026-09-01/softbank-backed-sb-energy-files-for-ipo-to-tap-ai-power-thirst
+https://www.bloomberg.com/news/features/2026-09-10/microsoft-ai-focused-data-center-plan-to-add-26-gigawatts-of-compute
+# session 17 promotions (research/08 [137]; research/09 [d21]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; title + pubDate (Mon, 10 Aug 2026) confirmed via the OpenAI news RSS feed (200) + web.archive.org snapshot 20260914205743 (200, body text quoted in [137]) cited alongside
+https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/
+# theinformation.com (paywall) returned 200 to the checker on 2026-09-16 but is intermittently 403 (see the Hugging Face entry above); headline, datePublished 2026-08-20T16:58Z and lede verified from page metadata + web.archive.org snapshot 20260906103803 cited alongside; Reuters/Yahoo denial pickups via Google News RSS
+https://www.theinformation.com/articles/nvidia-plots-china-comeback-new-ai-chip
+# session 18 promotions (research/08 [142] [145]; research/09 [c16] [c18] [d25] [d28] [d29]); each verified 2026-09-16 as noted
+# openai.com 403 to bots; title + pubDate (Fri, 07 Aug 2026 15:20 GMT) confirmed via the OpenAI news RSS feed (200) + web.archive.org snapshot 20260916035605 (200) cited alongside
+https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/
+# reuters.com 401 + DataDome CAPTCHA to bots, no archive snapshot; headline + 9 Sep 2026 date via Google News RSS (Reuters source entry) and Seeking Alpha / Yahoo NZ syndication; content via Tom's Hardware + Unite.AI pickups (both 200) cited alongside
+https://www.reuters.com/world/openais-rogue-agents-used-least-10-more-sites-unauthorized-comms-researchers-say-2026-09-09/
+# nytimes.com 403 to bots (paywall), no archive snapshot; headline + 8 Aug 2026 date via Google News RSS (NYT source entry); permit figures (7.65 GW, 35 turbines, 33 Mt CO2/yr) via Tom's Hardware pickup (200, "according to a New York Times report on August 8") cited alongside
+https://www.nytimes.com/2026/08/08/climate/amazon-data-center-texas-pollution.html
+# bloomberg.com 403 to bots (paywall); headline + date verified via reader proxy (r.jina.ai); deal terms confirmed by CNBC's own reporting (200, "Bloomberg was first to report") cited alongside; note the staging feed's 17 Aug URL omits the www. host (Bloomberg redirects)
+https://bloomberg.com/news/articles/2026-08-17/nvidia-to-invest-up-to-105-billion-for-openai-data-center-in-ohio
+https://www.bloomberg.com/news/articles/2026-08-26/anthropic-to-pay-nscale-45-billion-for-ai-computing-power
+# session 19 promotions (research/08 [150] [155]; research/09 [e13] [e16]); each verified 2026-09-17 as noted
+# ft.com 403 to bots (paywall), no archive snapshot (Wayback CDX offline at check time); headline + Published Time 2026-08-07T04:36Z verified via reader proxy (r.jina.ai); Reuters pickup ("ByteDance targets mega AI model that could match frontier-tier scale, FT reports", 7 Aug) in Google News RSS; content via Tech Times pickup (200) cited alongside
+https://www.ft.com/content/9b8383b1-a28d-4940-8c4e-2f0cd21556ef
+# reuters.com 401 + DataDome CAPTCHA to bots, no archive snapshot; headline + 14 Aug 2026 date via Google News RSS (Reuters source entry) and DuckDuckGo; full text via Yahoo Finance syndication (200, datePublished 2026-08-14T04:21Z) cited alongside
+https://www.reuters.com/business/retail-consumer/apple-trains-its-own-ai-model-china-market-with-alibabas-support-sources-say-2026-08-14/
+# reuters.com 401 to bots; headline + date via Google News RSS (Reuters "EXCLUSIVE" entry, 16 Aug listing) resolved through the news.google.com article decoder to this URL; full text via Taipei Times syndication (200, 17 Aug 2026, byline "Reuters, WASHINGTON") cited alongside
+https://www.reuters.com/world/china/us-tell-partners-they-must-pick-sides-ai-race-with-china-2026-08-14/
+# session 20 promotions (research/08 [156]–[166]; research/09 [d30]–[d34]); each verified 2026-09-17 as noted
+# wsj.com 401 to bots (paywall); Wayback snapshot exists (20260913190605) and its <title> matches; figures via Seeking Alpha pickup (11 Aug 2026, "The $965B AI startup is targeting to go public in September or early October") cited in the entry
+https://www.wsj.com/tech/ai/anthropic-tries-to-shore-up-investor-confidence-ahead-of-blockbuster-ipo-0ff736ad
+# wsj.com 401 to bots (paywall); Wayback snapshot exists (20260910071314), <title> "Exclusive | OpenAI's Second-Quarter Sales Show Tepid Growth Compared With Anthropic" verified; figures via Yahoo Finance pickup (200, 19 Aug 2026) cited alongside
+https://www.wsj.com/tech/ai/openais-second-quarter-sales-show-tepid-growth-compared-with-anthropic-5cb42998
+# ft.com 403 to bots (paywall), no archive snapshot; headline "Anthropic investors bet on $2tn valuation in record IPO" (13 Aug 2026) via Google News RSS (Financial Times source entry); standfirst via Financial Post syndication (200) cited alongside
+https://www.ft.com/content/840ac156-af1c-4a82-b260-ae791072fcfa
+# reuters.com 401 + DataDome CAPTCHA to bots, no archive snapshot; headline + 12 Aug 2026 date via Google News RSS (Reuters source entry); full text via CTech/Calcalist syndication (200, 15 Aug 2026, "Reuters" byline) cited alongside
+https://www.reuters.com/world/inside-google-executive-moves-that-led-its-big-ai-reshuffle-2026-08-12/
+# bloomberg.com 403 to bots (paywall), no archive snapshots; headline + date for each verified via reader proxy (r.jina.ai); figures via CNBC (14/15/17 Aug, "Bloomberg was first to report"), Data Center Dynamics (10/11 Aug) and Proactive Investors (21 Aug) pickups cited alongside
+https://www.bloomberg.com/news/articles/2026-08-10/anthropic-macquarie-and-gic-form-venture-for-ai-data-centers
+https://www.bloomberg.com/news/articles/2026-08-11/anthropic-strikes-9-billion-deal-with-cloud-computing-firm-riot
+https://www.bloomberg.com/news/articles/2026-08-13/openai-s-revenue-run-rate-tops-40-billion-ahead-of-ipo
+https://www.bloomberg.com/news/articles/2026-08-14/anthropic-revenue-ahead-of-ipo-surges-over-14-fold-in-second-quarter
+https://www.bloomberg.com/news/articles/2026-08-17/anthropic-revenue-run-rate-surpasses-65-billion-ahead-of-ipo
+https://www.bloomberg.com/news/articles/2026-08-20/broadcom-seeks-more-than-60-billion-in-latest-ai-debt-deal
+# axios.com 403 to the link checker UA; full text (Ina Fried, 14 Aug 2026) via reader proxy; Wayback snapshot 20260911124150 (200) cited alongside
+https://www.axios.com/2026/08/14/openai-executive-greg-brockman-ipo
+# datacenterdynamics.com 403 to the link checker UA (Cloudflare); full text via reader proxy, both articles
+https://www.datacenterdynamics.com/en/news/gic-and-macquarie-form-theseus-infrastructure-to-serve-anthropics-data-center-needs/
+https://www.datacenterdynamics.com/en/news/riot-platforms-agrees-191mw-20-year-lease-agreement-with-anthropic-worth-91bn-report/
+# venturebeat.com 429 (rate limit) to the link checker UA; full text via reader proxy (Published Time 2026-08-11)
+https://venturebeat.com/infrastructure/mistral-ai-wants-to-build-1-gigawatt-of-european-compute-by-2030-and-lock-in-customers-now
+# session 21 — bloomberg.com 403 to bots, no archive snapshot; headline + date (20 Aug 2026, Ed Ludlow) and full text via Yahoo Finance syndication (200), cited alongside in research/08 [175] and research/09 [d35]
+https://www.bloomberg.com/news/articles/2026-08-20/google-s-waymo-has-built-a-custom-chip-for-its-robotaxis
+# wsj.com 401 to bots; headline + date (29 Aug 2026) via Google News RSS; full text (Raffaele Huang byline) via Mint/WSJ syndication (200), cited alongside in research/08 [180] and research/09 [d36]
+https://www.wsj.com/tech/ai/nvidia-wants-to-run-the-worlds-robots-china-is-an-eager-customer-bdf46169
+# genbio.ai serves a Cloudflare bot-challenge page (403) to the link checker; full text via reader proxy (Published Time 2026-08-18T09:00:38-04:00); STAT report (200) cited alongside in research/08 [172]
+https://genbio.ai/aido-cell-simulator/
+# session 22 — reuters.com 401 to bots; headline + date (6 Aug 2026) via Google News RSS; full text via Straits Times/Reuters syndication (200) and Canary Media, cited alongside in research/08 [183] and research/09 [d39]
+https://www.reuters.com/world/asia-pacific/trump-signs-executive-order-protect-us-polysilicon-industry-2026-08-06/
+# nytimes.com 403 to bots; headline, byline (Huang, Swanson), article:published_time 2026-08-10T09:02Z and standfirst read from page metadata via a Google News redirect; Gizmodo pickup (200) cited alongside in research/08 [186] and research/09 [d38]
+https://www.nytimes.com/2026/08/10/technology/memory-chip-shortage-ai.html
+# wsj.com 401 to bots; Wayback snapshot 20260820160753 (200) verifies headline, byline and lede; The News International / TechRepublic pickups (200) cited alongside in research/08 [187] and research/09 [d38]
+https://www.wsj.com/tech/apple-china-memory-chip-plan-57773a83
+# wsj.com 401 to bots; Wayback snapshot 20260815170048 (200) verifies headline + standfirst; TechCrunch pickup (200) cited alongside in research/08 [188] and research/09 [d40]
+https://www.wsj.com/tech/ai/situational-awareness-bets-400-million-on-stealth-chip-startup-after-crash-02c7374e
+# genesisopenmodels.anl.gov 403 to the link checker (bot challenge); Wayback snapshot 20260826134643 (200) cited alongside in research/08 [189]
+https://genesisopenmodels.anl.gov/
+# axios.com 403 to bots; headline + date (14 Aug 2026) via Google News RSS; primary Risk Report PDF (200) cited alongside in research/08 [196] and research/09 [c23]
+https://www.axios.com/2026/08/14/anthropic-model-2-ai-risk
+# openai.com 403 to the link checker; Wayback snapshot 20260911185518 (200) verifies text; TechCrunch pickup (200) cited alongside in research/08 [198] and research/09 [c24]
+https://openai.com/collective-cyberdefense/
+# reuters.com 401 to bots; headline + date (28 Aug 2026) via Google News RSS; ruling via WIRED, Guardian, Al Jazeera (all 200) cited alongside in research/08 [199] and research/09 [c25]
+https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/
+# investors.micron.com 403 to the link checker; full press-release text (dateline 20 Aug 2026) via reader proxy; research/08 [200] and research/09 [d41]
+https://investors.micron.com/news/press-release/2026/Micron-Unveils-Micron-Research-Labs-a-U-S--Based-Long-Horizon-Innovation-Hub-to-Shape-the-Future-of-Memory-and-AI/default.aspx
+# bloomberg.com 403 to bots; headline + date (22 Aug 2026) via Google News RSS; Reuters pickup via Yahoo Finance (200) cited alongside in research/08 [201] and research/09 [d41]
+https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15
+# wsj.com 401 to bots (paywall); Wayback snapshot 20260910004217 exists and its page metadata gives headline "Nvidia Is Spending $6 Billion to Build a Powerful U.S. Alternative to Chinese AI" + datePublished 2026-08-23; Google News RSS carries it under 23 Aug; research/08 [208] and research/09 [e18]
+https://www.wsj.com/tech/ai/nvidia-is-spending-6-billion-to-build-a-powerful-u-s-alternative-to-chinese-ai-c51c38cc
+# bloomberg.com 403 to bots (paywall, no-www canonical as staged); full Bloomberg-bylined text via Deccan Chronicle syndication (200, 27 Aug 2026) cited alongside in research/08 [210] and research/09 [e20]
+https://bloomberg.com/news/articles/2026-08-26/alibaba-releases-smaller-cost-effective-qwen-ai-model
+# reuters.com 401 to bots (paywall); headline + date (26 Aug 2026) via Google News RSS; text via Silicon Republic pickup (200) cited alongside in research/08 [211] and research/09 [e20]
+https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/
+# time.com 406 to bots; Wayback snapshot 20260916225300 exists; interview (Alex Heath, 26 Aug 2026) is the embedded source of the Sources.news digest (200) cited first in research/08 [212]; Forbes/Gizmodo pickups carry the AGI-this-year quote
+https://time.com/article/2026/08/26/openai-sam-altman-interview/
+# nytimes.com 403 to bots (paywall), no archive snapshot; headline + 6 Sep 2026 date via Google News RSS; figures ($5.6B, >$3B Blackwell servers, Aivres rename, Southeast Asia routing, ImportGenius) via Free Press Journal pickup (200, 7 Sep) cited alongside in research/08 [223] and research/09 [d42]
+https://www.nytimes.com/2026/09/06/technology/ai-chips-china-blacklist.html
+# bloomberg.com 403 to bots (paywall); headline + date (7 Sep 2026) via Google News RSS and Yahoo Finance Singapore pickup; details via The Next Web (200) cited alongside in research/08 [224] and research/09 [e22]
+https://www.bloomberg.com/news/articles/2026-09-07/bytedance-founder-joins-ai-elite-in-race-to-perfect-world-models
+# reuters.com 401 to bots (paywall); headline + date (8 Sep 2026) via Google News RSS; advisory content via NBC News and CyberScoop (both 200) cited alongside in research/08 [225] and research/09 [e21]
+https://www.reuters.com/technology/us-accuses-chinese-ai-firms-industrial-scale-theft-ai-technology-2026-09-08/
+
+# --- Session 24 ---
+# bloomberg.com 403 to bots (paywall); headline + date (27 Aug 2026) via Google News RSS (plus companion Bloomberg TV segment listing); 2030 targets via Netz-Trends (200) cited alongside in research/08 [231] and research/09 [d46]
+https://www.bloomberg.com/news/articles/2026-08-27/germany-running-short-of-ai-compute-capacity-minister-says
+# bloomberg.com 403 to bots (paywall); full text via Wayback snapshot 20260907072831 (200); Carolina Principles detail via MeriTalk (200); research/08 [239], research/09 [c31]
+https://www.bloomberg.com/news/articles/2026-09-02/us-strikes-light-touch-ai-regulation-accord-with-g20-members
+# bloomberg.com 403 to bots (paywall); headline + date (3 Sep 2026) via Google News RSS; Emil Michael X post and Lutnick quote via BigGo Finance (200); research/08 [241], research/09 [c33]
+https://www.bloomberg.com/news/articles/2026-09-03/pentagon-says-its-anthropic-ban-is-on-despite-lutnick-remarks
+# bloomberg.com 403 to bots (paywall); headline + date (8 Sep 2026) via Google News RSS; roadmap detail via TrendForce (200, on the ASML/TSMC press releases); research/08 [244], research/09 [d53]
+https://www.bloomberg.com/news/articles/2026-09-08/asml-tsmc-samsung-intel-back-12-inch-masks-for-ai-chips
+# bloomberg.com 403 to bots (paywall); headline + date (9 Sep 2026) via Google News RSS; figures via CNBC (200); research/08 [247], research/09 [d56]
+https://www.bloomberg.com/news/articles/2026-09-09/google-plans-13-billion-ai-infrastructure-investment-in-finland
+# wsj.com blocked to bots (paywall); full text via Wayback snapshot 20260910190533 (200), dated 31 Aug 2026; research/08 [234], research/09 [d49]
+https://www.wsj.com/tech/ai/the-5-5-billion-perk-softbanks-data-center-venture-offered-to-land-openai-a5c7fb5e
+# wsj.com blocked to bots (paywall); full text via Wayback snapshot 20260907002038 (200), dated 31 Aug 2026; research/08 [235], research/09 [d50]
+https://www.wsj.com/tech/ai/anthropic-signs-35-billion-cloud-deal-backed-by-nvidia-f12622f1
+# wsj.com blocked to bots (paywall); headline/date/lede via Wayback snapshot 20260914 (200), 9 Sep 2026; details via Daily Signal/DCNF and WBUR (both 200); research/08 [249], research/09 [d58]
+https://www.wsj.com/politics/policy/states-that-gave-data-centers-billions-in-tax-breaks-are-now-ripping-up-the-deals-4879c4f9
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; full text via TradingView Reuters syndication (200); research/08 [238], research/09 [c30]
+https://www.reuters.com/legal/litigation/openai-is-building-automated-shutdown-capabilities-ai-tools-letter-lawmakers-2026-09-02/
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; filing detail via Lowenstein Sandler client alert (200); research/08 [240], research/09 [c32]
+https://www.reuters.com/legal/litigation/us-government-backs-openai-new-york-times-ip-rights-case-2026-09-02/
+# reuters.com 401 to bots (paywall); full text via Wayback snapshot 20260910021209 (200), 9 Sep 2026; research/08 [248], research/09 [d57]
+https://www.reuters.com/world/asia-pacific/openai-says-working-with-samsung-next-generation-chips-deepening-cooperation-2026-09-09/
+# reuters.com 401 to bots (paywall); headline + date (11 Sep 2026) via Google News RSS; full text via Spokesman-Review syndication (200); research/08 [253], research/09 [c37]
+https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/
+# nytimes.com 403 to bots (paywall); headline + date (1 Sep 2026) via Google News RSS; policy detail via NYC Mayor's Office and K-12 Dive (both 200); research/08 [237], research/09 [c29]
+https://www.nytimes.com/2026/09/01/nyregion/ai-ban-schools-nyc.html
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260916153304 (200); date 9 Sep 2026 via Google News RSS; research/08 [252], research/09 [c36]
+https://openai.com/index/ai-policy-window/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260815181741 (200), dated 13 Aug 2026; research/08 [257]
+https://openai.com/index/previewing-ultrafast/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260824171941 (200), dated 18 Aug 2026; research/08 [260], research/09 [c39]
+https://openai.com/index/chatgpt-for-teens/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915120957 (200), dated 19 Aug 2026; research/08 [261], research/09 [c39]
+https://openai.com/index/offering-zero-data-retention-for-frontier-models/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260913234942 (200), dated 28 Aug 2026; research/08 [267]
+https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260910062021 (200), dated 1 Sep 2026; research/08 [270]
+https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915174538 (200), dated 8 Sep 2026; research/08 [275]
+https://openai.com/index/introducing-chatgpt-images-2-5/
+# openai.com 403 to the link checker; full text via Wayback snapshot 20260915202858 (200), dated 10 Sep 2026; date also via Google News RSS; research/08 [276]
+https://openai.com/index/introducing-gpt-live-1-in-the-api/
+# venturebeat.com 403/429 to bots; full text via Wayback snapshot 20260827022716 (200), dated 26 Aug 2026; research/08 [264]
+https://venturebeat.com/orchestration/salesforce-just-put-its-entire-crm-inside-claude-and-says-youll-never-need-its-app-again
+# perplexity.ai 403 to bots (Cloudflare); product page text via Wayback snapshot 20260915132159 (200); launch date 25 Aug 2026 via Google News RSS (VentureBeat, The New Stack, both 200); research/09 [e24]
+https://www.perplexity.ai/hub/products/portable-computer
+# reuters.com 401 to bots (paywall); headline + date (24 Aug 2026) via Google News RSS; details via The Next Web (200); research/08 [262], research/09 [e23]
+https://www.reuters.com/business/retail-consumer/alibaba-launches-wan30-ai-video-model-after-10-billion-share-sale-2026-08-24/
+# reuters.com 401 to bots (paywall); headline + date (26 Aug 2026) via Google News RSS; details via Ars Technica and Computerworld (both 200) quoting the investigation and Meta's confirmation; research/08 [265], research/09 [c41]
+https://www.reuters.com/investigations/mark-zuckerberg-had-bold-plan-replace-meta-staff-with-ai-heres-how-it-imploded-2026-08-26/
+# reuters.com 401 to bots (paywall); headline + date (2 Sep 2026) via Google News RSS; launch details via Business Insider (200); research/08 [273], research/09 [b23]
+https://www.reuters.com/business/autos-transportation/tesla-set-hold-cybercab-event-austin-texas-2026-09-02/
+# --- Session 26 (2026-09-17) ---
+# bloomberg.com 403 to bots (paywall); headline + date (13 Aug 2026) via Google News RSS with Reuters/Quartz pickups; deal collapse via Yahoo Finance Bloomberg syndication and Jerusalem Post (both 200, 8 Sep 2026); research/08 [289], research/09 [d60]
+https://www.bloomberg.com/news/articles/2026-08-13/anthropic-said-in-talks-to-buy-ai-startup-decart-for-6-billion
+# bloomberg.com 403 to bots (paywall); headline + date (14 Aug 2026) via Google News RSS; full text via Fortune Bloomberg syndication (200, 15 Aug 2026) and 13F figures via The Next Web (200); research/08 [290], research/09 [d61]
+https://www.bloomberg.com/news/articles/2026-08-14/nvidia-has-21-billion-spacex-stake-30-billion-in-intel-shares
+# bloomberg.com 403 to bots (paywall); headline + date (18 Aug 2026) via Google News RSS with Reuters/Quartz pickups; $10B facility and super-voting structure via BigGo Finance (200); research/08 [297], research/09 [d62]
+https://www.bloomberg.com/news/articles/2026-08-18/anthropic-pre-ipo-credit-facility-set-to-climb-past-10-billion
+# bloomberg.com 403 to bots (paywall); full text via The Japan Times Bloomberg syndication (200, 21 Aug 2026: "match or beat the size of SpaceX's record-setting IPO", $75B/$86.2B); research/08 [298], research/09 [d62]
+https://www.bloomberg.com/news/articles/2026-08-20/anthropic-expects-to-match-spacex-s-record-ipo-size-or-top-it
+# bloomberg.com 403 to bots (paywall); headline + date (20 Aug 2026) via Google News RSS with Reuters/PYMNTS pickups; policy confirmed by Anthropic's 1 Sep 2026 Enterprise Frontier Safeguards post and CNBC (both 200); research/08 [299], research/09 [c48]
+https://www.bloomberg.com/news/articles/2026-08-20/anthropic-plans-to-change-data-retention-policy-for-advanced-ai
+# bloomberg.com 403 to bots (paywall); headline + date (20 Aug 2026) via Google News RSS; trillions-of-tokens and Foundry details via The Next Web (200, 21 Aug 2026) citing Bloomberg; research/08 [301]
+https://www.bloomberg.com/news/articles/2026-08-20/meta-has-quietly-become-one-of-microsoft-s-largest-ai-customers
+# nytimes.com 403 to bots (paywall); headline "S.E.C. Investigating Near-Implosion of A.I. Hedge Fund" + date (24 Aug 2026) via Google News RSS; subpoena details via TechCrunch and CNBC (both 200) citing the Times; no Wayback snapshot; research/08 [307], research/09 [d63]
+https://www.nytimes.com/2026/08/24/business/sec-situational-awareness-investigation.html
+# nytimes.com 403 to bots (paywall); headlines + date (24 Aug 2026) via Google News RSS; drone, victim and Jetson Orin details via Meduza's summary of the Times report (200); no Wayback snapshot; research/08 [306], research/09 [b25]
+https://www.nytimes.com/2026/08/24/world/europe/ukraine-war-nvidia-ai-autonomous-drones.html
+# reuters.com 401 to bots (paywall); headline + date (25 Aug 2026) via Google News RSS; primary reporting is CNBC (200) which Reuters credits; research/08 [308]
+https://www.reuters.com/legal/litigation/us-plans-appoint-two-new-fda-deputy-commissioners-tech-drugs-cnbc-reports-2026-08-25/
+# reuters.com 401 to bots (paywall); headline + date (11 Sep 2026) via Google News RSS; $10B anchor / $100B raise / ~$2T figures via PYMNTS and Calcalist (both 200); research/08 [318], research/09 [d65]
+https://www.reuters.com/legal/transactional/nvidia-talks-invest-anthropics-mega-ipo-sources-say-2026-09-11/
