@@ -37,6 +37,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
             title: "Fifth Generation Computer Systems 1982 [15]"
+      - id: rete-algorithm-forgy-1982
+        name: Rete Rule Algorithm
+        year: 1982.6
+        lod: 4
+        one_line: "Charles Forgy publishes the Rete pattern-matching algorithm powering production rule engines"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2882%2990020-0"
+            title: "Forgy, Rete: A Fast Algorithm for the Many Pattern/Many Object Pattern Match Problem, 1982 [16]"
       - id: cyc-launched-1984
         name: Cyc Project Begins
         year: 1984.5
@@ -53,6 +61,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/KL-ONE"
             title: "Brachman & Schmolze 1985 [52]"
+      - id: clancey-heuristic-classification-1985
+        name: Heuristic Classification
+        year: 1985.7
+        lod: 4
+        one_line: "William Clancey identifies heuristic classification as the shared pattern of expert systems"
+        sources:
+          - url: "https://doi.org/10.1016/0004-3702%2885%2990016-5"
+            title: "Clancey, Heuristic Classification, 1985 [41]"
       - id: quinlan-id3-1986
         name: ID3 Decision Trees
         year: 1986.4
@@ -82,6 +98,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Deep_Thought_%28chess_computer%29"
             title: "Deep Thought 1988 [45]"
+      - id: wordnet-miller-1990
+        name: Princeton WordNet
+        year: 1990.2
+        lod: 3
+        one_line: "George Miller's Princeton team releases WordNet, the lexical ontology of English synsets"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/WordNet"
+            title: "Miller et al., WordNet, 1990 [48]"
       - id: cyc-microtheories-1990
         name: Cyc Commonsense Ontology
         year: 1990.5
@@ -98,3 +122,11 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems"
             title: "Fifth Generation Computer Systems 1992 [15]"
+      - id: chinook-checkers-1992
+        name: Chinook Checkers Match
+        year: 1992.7
+        lod: 4
+        one_line: "Jonathan Schaeffer's Chinook challenges Marion Tinsley for the world checkers championship"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Chinook_%28checkers_program%29"
+            title: "Schaeffer, Chinook, 1992 [49]"

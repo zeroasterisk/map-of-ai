@@ -13,6 +13,14 @@ countries:
         sources:
           - url: "https://plato.stanford.edu/entries/leibniz-logic-influence/"
             title: "SEP: Leibniz's Influence on 19th Century Logic [1]"
+      - id: jacquard-loom-1804
+        name: Jacquard Loom
+        year: 1804.5
+        lod: 4
+        one_line: "Joseph Marie Jacquard's punched-card loom inspires Babbage's programmable store and mill"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Jacquard_machine"
+            title: "Wikipedia: Jacquard machine [2]"
       - id: babbage-lovelace-1843
         name: Analytical Engine
         year: 1843.5
@@ -45,6 +53,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Principia_Mathematica"
             title: "Wikipedia: Principia Mathematica [6]"
+      - id: hilbert-programme-1928
+        name: Entscheidungsproblem
+        year: 1928.5
+        lod: 4
+        one_line: "Hilbert and Ackermann pose the Entscheidungsproblem: can an algorithm decide formal validity?"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Entscheidungsproblem"
+            title: "Wikipedia: Entscheidungsproblem [8]"
       - id: godel-incompleteness-1931
         name: Gödel Incompleteness
         year: 1931.2
@@ -82,3 +98,19 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Emil_Leon_Post"
             title: "Wikipedia: Emil Leon Post [44]"
+      - id: shannon-relay-thesis-1937
+        name: Shannon Relay Thesis
+        year: 1937.8
+        lod: 3
+        one_line: "Claude Shannon's master's thesis proves electrical switching circuits implement Boolean logic"
+        sources:
+          - url: "https://dspace.mit.edu/handle/1721.1/11173"
+            title: "Shannon, A Symbolic Analysis of Relay and Switching Circuits, 1937 [15]"
+      - id: zuse-z3-computer-1941
+        name: Zuse Z3 Computer
+        year: 1941.4
+        lod: 4
+        one_line: "Konrad Zuse completes the Z3, the first working programmable electromechanical computer"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Z3_%28computer%29"
+            title: "Wikipedia: Z3 (computer) [13]"

@@ -29,6 +29,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1023/A:1007665907178"
             title: "Jordan et al. 1999 [80]"
+      - id: pearl-causality-book-2000
+        name: Pearl's Causality
+        year: 2000.3
+        lod: 3
+        one_line: "Judea Pearl publishes Causality, formalizing structural causal models and do-calculus"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Causality_%28book%29"
+            title: "Pearl, Causality: Models, Reasoning, and Inference, 2000 [6]"
       - id: lda-topic-models-2003
         name: Latent Dirichlet Allocation
         year: 2003.3
@@ -53,6 +61,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1007/s10994-006-5833-1"
             title: "Richardson & Domingos 2006 [85]"
+      - id: bishop-prml-2006
+        name: Bishop's PRML
+        year: 2006.8
+        lod: 4
+        one_line: "Christopher Bishop publishes Pattern Recognition and Machine Learning"
+        sources:
+          - url: "https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"
+            title: "Bishop, Pattern Recognition and Machine Learning, 2006 [53]"
       - id: koller-friedman-pgm-2009
         name: Graphical Models
         year: 2009.7
@@ -105,6 +121,14 @@ countries:
         sources:
           - url: "https://aclanthology.org/J93-2004/"
             title: "Marcus et al. 1993 [73]"
+      - id: deep-blue-kasparov-1997
+        name: Deep Blue vs. Kasparov
+        year: 1997.36
+        lod: 3
+        one_line: "IBM's Deep Blue defeats World Chess Champion Garry Kasparov 3.5–2.5"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov"
+            title: "Campbell, Hoane & Hsu, Deep Blue, 1997 [37]"
       - id: collins-parser-1997
         name: Collins Parser
         year: 1997.5
@@ -137,6 +161,22 @@ countries:
         sources:
           - url: "https://aclanthology.org/P02-1040/"
             title: "Papineni et al. 2002 [87]"
+      - id: bengio-neural-lm-2003
+        name: Neural Language Model
+        year: 2003.2
+        lod: 3
+        one_line: "Yoshua Bengio et al. publish A Neural Probabilistic Language Model with word embeddings"
+        sources:
+          - url: "https://www.jmlr.org/papers/v3/bengio03a.html"
+            title: "Bengio et al., JMLR 2003 [32]"
+      - id: moses-smt-toolkit-2007
+        name: Moses SMT Toolkit
+        year: 2007.5
+        lod: 4
+        one_line: "Philipp Koehn et al. release Moses, standardizing open-source phrase-based SMT"
+        sources:
+          - url: "https://aclanthology.org/P07-2045/"
+            title: "Koehn et al., Moses, ACL 2007 [29]"
       - id: unreasonable-effectiveness-2009
         name: Unreasonable Data
         year: 2009.3
@@ -205,6 +245,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/CVPR.2001.990517"
             title: "Viola & Jones 2001 [86]"
+      - id: netflix-prize-2006
+        name: The Netflix Prize
+        year: 2006.75
+        lod: 3
+        one_line: "Netflix launches $1M collaborative-filtering contest won by ensemble blending"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Netflix_Prize"
+            title: "Wikipedia: Netflix Prize [36]"
   support-vector-escarpment:
     hint: "SVM · Stanley 2005"
     tag: "SVM → Kernel Trick → SLAM → Stanley"
@@ -241,6 +289,22 @@ countries:
         sources:
           - url: "https://www.ri.cmu.edu/pub_files/pub1/dellaert_frank_1999_2/dellaert_frank_1999_2.pdf"
             title: "Dellaert et al. 1999 [78]"
+      - id: sift-lowe-1999
+        name: SIFT Keypoints
+        year: 1999.7
+        lod: 3
+        one_line: "David Lowe introduces SIFT scale-invariant features for computer vision"
+        sources:
+          - url: "https://doi.org/10.1109/ICCV.1999.790410"
+            title: "Lowe, Object Recognition from Local Scale-Invariant Features, ICCV 1999 [40]"
+      - id: hog-dalal-triggs-2005
+        name: HOG Pedestrian Detector
+        year: 2005.5
+        lod: 4
+        one_line: "Dalal and Triggs combine Histograms of Oriented Gradients with linear SVMs"
+        sources:
+          - url: "https://doi.org/10.1109/CVPR.2005.177"
+            title: "Dalal & Triggs, CVPR 2005 [41]"
       - id: stanley-darpa-2005
         name: Stanley Wins DARPA
         year: 2005.77
@@ -249,3 +313,11 @@ countries:
         sources:
           - url: "https://robots.stanford.edu/papers/thrun.stanley05.pdf"
             title: "Thrun et al. 2006 [39]"
+      - id: uct-mcts-2006
+        name: UCT Monte Carlo Tree Search
+        year: 2006.4
+        lod: 3
+        one_line: "Kocsis and Szepesvári formulate UCT bandit tree search, transforming computer Go"
+        sources:
+          - url: "https://doi.org/10.1007/11871842_29"
+            title: "Kocsis & Szepesvári, Bandit Based Monte-Carlo Planning, ECML 2006 [44]"

@@ -61,6 +61,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Georgetown%E2%80%93IBM_experiment"
             title: "Georgetown–IBM Experiment 1954 [28]"
+      - id: chomsky-three-models-1956
+        name: Chomsky Hierarchy
+        year: 1956.7
+        lod: 3
+        one_line: "Noam Chomsky introduces formal phrase-structure grammars and the Chomsky hierarchy"
+        sources:
+          - url: "https://chomsky.info/1956092/"
+            title: "Chomsky, Three Models for the Description of Language, 1956 [31]"
 
   hebbian-synapse-shore:
     hint: "Hebb 1949 · SNARC 1951"
@@ -114,6 +122,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/TIT.1954.1057468"
             title: "Farley & Clark 1954 [30]"
+      - id: rochester-hebb-ibm704-1956
+        name: IBM 704 Cell Assemblies
+        year: 1956.3
+        lod: 4
+        one_line: "Nathaniel Rochester's IBM team simulates 512 Hebbian neurons on the IBM 704"
+        sources:
+          - url: "https://doi.org/10.1109/TIT.1956.1056810"
+            title: "Rochester et al., Tests on a Cell Assembly Theory, 1956 [32]"
 
   turing-test-headland:
     hint: "Turing Test 1950 · Samuel 1952"
@@ -151,6 +167,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1147/rd.33.0210"
             title: "Samuel 1952–1959 [27]"
+      - id: selfridge-dinneen-pattern-1955
+        name: Selfridge Pattern Recognition
+        year: 1955.2
+        lod: 4
+        one_line: "Oliver Selfridge and Gerald Dinneen pioneer visual feature extraction and edge operations"
+        sources:
+          - url: "https://dl.acm.org/doi/10.1145/1455292.1455310"
+            title: "Selfridge, Pattern Recognition and Modern Computers, 1955 [40]"
       - id: dartmouth-proposal-1955
         name: Dartmouth AI Proposal
         year: 1955.7

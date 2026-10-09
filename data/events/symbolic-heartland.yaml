@@ -45,6 +45,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Question_answering"
             title: "Green 1969 [35]"
+      - id: mccarthy-situations-fluents-1969
+        name: Situation Calculus
+        year: 1969.8
+        lod: 4
+        one_line: "McCarthy and Hayes introduce the Situation Calculus and formulate the Frame Problem"
+        sources:
+          - url: "http://www-formal.stanford.edu/jmc/mcchay69.pdf"
+            title: "McCarthy & Hayes 1969 [27]"
       - id: prolog-creation-1972
         name: Prolog Created
         year: 1972.4
@@ -53,6 +61,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Prolog"
             title: "Colmerauer & Kowalski 1972 [31]"
+      - id: hewitt-planner-actors-1973
+        name: Actor Model
+        year: 1973.6
+        lod: 4
+        one_line: "Carl Hewitt introduces the Actor Model of concurrent distributed artificial intelligence"
+        sources:
+          - url: "https://www.ijcai.org/Proceedings/73/Papers/027B.pdf"
+            title: "Hewitt, Bishop & Steiger, IJCAI 1973 [32]"
 
   heuristic-search-highlands:
     hint: "Logic Theorist · GPS 1959"
@@ -98,6 +114,22 @@ countries:
         sources:
           - url: "https://doi.org/10.1145/368273.368565"
             title: "Slagle 1961 [38]"
+      - id: alpha-beta-pruning-1961
+        name: Alpha–Beta Pruning
+        year: 1961.8
+        lod: 4
+        one_line: "McCarthy, Brudno and Edwards formalize alpha–beta minimax game-tree pruning"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning"
+            title: "Wikipedia: Alpha–beta pruning [14]"
+      - id: dendral-mass-spec-1965
+        name: DENDRAL Initiated
+        year: 1965.6
+        lod: 3
+        one_line: "Feigenbaum, Buchanan and Lederberg build DENDRAL to infer molecular structure from spectra"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Dendral"
+            title: "Feigenbaum, Buchanan & Lederberg 1965 [17]"
       - id: mac-hack-chess-1967
         name: Mac Hack VI
         year: 1967.3
@@ -167,6 +199,22 @@ countries:
         sources:
           - url: "https://dspace.mit.edu/handle/1721.1/7095"
             title: "Winograd 1971 [29]"
+      - id: woods-lunar-atn-1972
+        name: LUNAR ATN Parser
+        year: 1972.6
+        lod: 4
+        one_line: "William Woods builds LUNAR, answering English geology queries on Apollo moon rocks"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Augmented_transition_network"
+            title: "Woods, The Lunar Sciences Natural Language Information System, 1972 [30]"
+      - id: schank-conceptual-dependency-1972
+        name: Conceptual Dependency
+        year: 1972.9
+        lod: 4
+        one_line: "Roger Schank proposes language-free Conceptual Dependency primitives for meaning"
+        sources:
+          - url: "https://doi.org/10.1016/0010-0285%2872%2990022-9"
+            title: "Schank 1972 [34]"
       - id: minsky-frames-1974
         name: Frame Theory
         year: 1974.2
@@ -220,6 +268,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/ADALINE"
             title: "Widrow 1962 [12]"
+      - id: nilsson-learning-machines-1965
+        name: Learning Machines
+        year: 1965.2
+        lod: 4
+        one_line: "Nils Nilsson's monograph codifies linear and piecewise-linear pattern classifiers"
+        sources:
+          - url: "https://ai.stanford.edu/~nilsson/OnlinePubs-Nils/PublishedPapers/LearningMachines.pdf"
+            title: "Nilsson, Learning Machines, 1965 [15]"
 
   robotics-planning-peninsula:
     hint: "Shakey 1966 · STRIPS 1971"
@@ -241,6 +297,14 @@ countries:
         sources:
           - url: "https://doi.org/10.1109/TSSC.1968.300136"
             title: "Hart, Nilsson & Raphael 1968 [22]"
+      - id: stanford-arm-1969
+        name: The Stanford Arm
+        year: 1969.2
+        lod: 4
+        one_line: "Victor Scheinman designs the six-axis electric Stanford Arm manipulator"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Stanford_arm"
+            title: "Wikipedia: Stanford arm [28]"
       - id: perceptrons-critique-1969
         name: Perceptrons Book
         year: 1969.5
@@ -265,6 +329,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Shakey_the_robot"
             title: "Nilsson 1984 [21]"
+      - id: wabot-1-humanoid-1973
+        name: WABOT-1 Humanoid
+        year: 1973.2
+        lod: 4
+        one_line: "Waseda University unveils WABOT-1, the first full-scale anthropomorphic biped robot"
+        sources:
+          - url: "https://www.humanoid.waseda.ac.jp/booklet/kato_2.html"
+            title: "Waseda Humanoid Robotics Institute: WABOT-1, 1973 [36]"
       - id: lighthill-report-1973
         name: Lighthill Report
         year: 1973.4

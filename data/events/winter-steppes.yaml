@@ -13,6 +13,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/AI_winter"
             title: "Wikipedia: AI winter [1]"
+      - id: mansfield-amendment-darpa-1974
+        name: Mansfield Amendment Cuts
+        year: 1974.6
+        lod: 4
+        one_line: "DARPA enforces mission-directed milestones, ending undirected academic AI grants"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/AI_winter"
+            title: "Wikipedia: AI winter (Mansfield Amendment) [1]"
       - id: aaai-founded-1979
         name: AAAI Founded
         year: 1979.6
@@ -106,6 +114,22 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Terry_Winograd"
             title: "Winograd & Flores 1986 [50]"
+      - id: moravec-paradox-1988
+        name: Moravec's Paradox
+        year: 1988.5
+        lod: 3
+        one_line: "Hans Moravec observes reasoning needs little compute while perception needs billions of ops"
+        sources:
+          - url: "https://en.wikipedia.org/wiki/Moravec%27s_paradox"
+            title: "Moravec, Mind Children, 1988 [46]"
+      - id: brooks-elephants-subsumption-1990
+        name: Elephants Don't Play Chess
+        year: 1990.3
+        lod: 3
+        one_line: "Rodney Brooks champions reactive subsumption robotics without symbolic world models"
+        sources:
+          - url: "https://doi.org/10.1016/0921-8890%2890%2990003-J"
+            title: "Brooks, Elephants Don't Play Chess, 1990 [47]"
       - id: second-winter-bottom-1993
         name: Second Winter Trough
         year: 1993.0
@@ -135,6 +159,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Blackboard_system"
             title: "Hearsay-II 1976 [38]"
+      - id: internist-caduceus-1977
+        name: INTERNIST-I Medical AI
+        year: 1977.1
+        lod: 4
+        one_line: "Myers, Pople and Miller build INTERNIST-I for internal medicine across 500 diseases"
+        sources:
+          - url: "https://doi.org/10.1056/NEJM198208193070803"
+            title: "Miller, Pople & Myers, INTERNIST-I, 1982 [39]"
       - id: schank-scripts-1977
         name: Schank Scripts & Plans
         year: 1977.3

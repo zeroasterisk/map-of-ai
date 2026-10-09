@@ -287,8 +287,8 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/agents-tooling-coast.yaml",
-   "hint": "ReAct · MCP · Claude Code",
-   "tag": "ReAct → AutoGPT → function calling → MCP → Claude Code",
+   "hint": "ReAct · MCP · A2A · AAIF",
+   "tag": "ReAct → MCP → A2A → AP2/UCP → A2UI → Jev → Skills & Plugins → AAIF",
    "events": [
     {
      "id": "langchain-react-2022",
@@ -355,6 +355,19 @@
      ]
     },
     {
+     "id": "voyager-minecraft-2023",
+     "name": "Voyager Skill Agent",
+     "year": 2023.4,
+     "lod": 4,
+     "one_line": "Wang et al. (May 2023): LLM agent builds an ever-growing executable skill library in Minecraft",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2305.16291",
+       "title": "Wang et al., Voyager: An Open-Ended Embodied Agent with LLMs, arXiv 2305.16291 [77]"
+      }
+     ]
+    },
+    {
      "id": "function-calling-2023",
      "name": "function calling",
      "year": 2023.45,
@@ -369,7 +382,7 @@
     },
     {
      "id": "rt2-2023",
-     "name": "RT-2",
+     "name": "RT-2 VLA",
      "year": 2023.57,
      "lod": 4,
      "one_line": "Google DeepMind's RT-2 (28 Jul 2023): web-scale VLM controls a robot arm",
@@ -385,7 +398,7 @@
      "name": "SWE-bench · GAIA",
      "year": 2023.78,
      "lod": 4,
-     "one_line": "SWE-bench (10 Oct) and GAIA (21 Nov 2023) define how agents are scored",
+     "one_line": "SWE-bench (10 Oct) and GAIA (21 Nov 2023) define how software agents are scored",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2310.06770",
@@ -411,6 +424,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Cursor_%28code_editor%29",
        "title": "Wikipedia: Cursor (code editor) [95]"
+      }
+     ]
+    },
+    {
+     "id": "osworld-webarena-2024",
+     "name": "WebArena & OSWorld",
+     "year": 2024.29,
+     "lod": 4,
+     "one_line": "WebArena and OSWorld establish reproducible execution environments for web and desktop GUI agents",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2404.07972",
+       "title": "Xie et al., OSWorld: Benchmarking Multimodal Agents, arXiv 2404.07972 [89]"
       }
      ]
     },
@@ -475,23 +501,6 @@
      ]
     },
     {
-     "id": "manus-a2a-2025",
-     "name": "Manus · A2A",
-     "year": 2025.22,
-     "lod": 4,
-     "one_line": "Manus general agent beta (6 Mar); Google's Agent2Agent protocol (9 Apr 2025)",
-     "sources": [
-      {
-       "url": "https://en.wikipedia.org/wiki/Manus_%28AI_agent%29",
-       "title": "Wikipedia: Manus (AI agent) [96]"
-      },
-      {
-       "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
-       "title": "Google Developers Blog, Announcing the Agent2Agent Protocol, 9 Apr 2025 [96]"
-      }
-     ]
-    },
-    {
      "id": "gemini-robotics-2025",
      "name": "Gemini Robotics",
      "year": 2025.19,
@@ -505,32 +514,109 @@
      ]
     },
     {
-     "id": "atlas-2025",
-     "name": "ChatGPT Atlas",
-     "year": 2025.8,
-     "lod": 4,
-     "one_line": "ChatGPT Atlas browser (21 Oct 2025); Claude Code on the web (20 Oct)",
+     "id": "a2a-protocol-2025",
+     "name": "A2A Protocol",
+     "year": 2025.27,
+     "lod": 3,
+     "one_line": "Google Cloud and 50+ partners launch Agent2Agent (A2A) protocol (9 Apr 2025) for agent interop",
      "sources": [
       {
-       "url": "https://openai.com/news/rss.xml",
-       "title": "OpenAI News RSS feed [111]"
+       "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
+       "title": "Google Developers Blog, Announcing the Agent2Agent Protocol, 9 Apr 2025 [96]"
       },
       {
-       "url": "https://www.anthropic.com/news/claude-code-on-the-web",
-       "title": "Anthropic, Claude Code on the web, 20 Oct 2025 [113]"
+       "url": "https://github.com/a2aproject/A2A",
+       "title": "A2A Project (GitHub) [96]"
       }
      ]
     },
     {
-     "id": "mcp-foundation-2025",
-     "name": "Agentic AI Foundation",
-     "year": 2025.94,
+     "id": "adk-gemini-cli-2025",
+     "name": "ADK · Gemini CLI",
+     "year": 2025.48,
      "lod": 4,
-     "one_line": "MCP donated to the Linux Foundation's Agentic AI Foundation (9 Dec 2025)",
+     "one_line": "Google open-sources Agent Development Kit (Apr 2025) and Gemini CLI (25 Jun 2025)",
+     "sources": [
+      {
+       "url": "https://github.com/google/adk-python",
+       "title": "Google ADK (GitHub) [96]"
+      },
+      {
+       "url": "https://github.com/google-gemini/gemini-cli",
+       "title": "Google Gemini CLI (GitHub) [96]"
+      }
+     ]
+    },
+    {
+     "id": "ap2-protocol-2025",
+     "name": "AP2 Protocol",
+     "year": 2025.72,
+     "lod": 3,
+     "one_line": "Agent Payment Protocol (AP2) launches (Sep 2025): cryptographic Intent and Cart Mandates for commerce",
+     "sources": [
+      {
+       "url": "https://github.com/google-agentic-commerce/AP2",
+       "title": "Agent Payment Protocol (AP2) Specification [96]"
+      }
+     ]
+    },
+    {
+     "id": "a2ui-protocol-2025",
+     "name": "A2UI Protocol",
+     "year": 2025.82,
+     "lod": 3,
+     "one_line": "Agent-to-UI (A2UI) protocol decouples agent component trees from live client data models",
+     "sources": [
+      {
+       "url": "https://a2ui.org",
+       "title": "A2UI Protocol Specification (a2ui.org) [96]"
+      },
+      {
+       "url": "https://github.com/a2ui-project/a2ui",
+       "title": "a2ui-project/a2ui (GitHub) [96]"
+      }
+     ]
+    },
+    {
+     "id": "jev-launch-2025",
+     "name": "Jev Decision Model",
+     "year": 2025.88,
+     "lod": 3,
+     "one_line": "TypeSafe launches Jev: System 1 calibrated model answering Choice and Score batches in 200ms",
+     "sources": [
+      {
+       "url": "https://docs.typesafe.ai/",
+       "title": "TypeSafe Jev Documentation (docs.typesafe.ai) [96]"
+      }
+     ]
+    },
+    {
+     "id": "aaif-founded-2025",
+     "name": "AAIF Created",
+     "year": 2025.94,
+     "lod": 3,
+     "one_line": "Linux Foundation creates Agentic AI Foundation (9 Dec 2025) governing MCP, A2A, and Skills",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
-       "title": "Anthropic, Donating the Model Context Protocol, 9 Dec 2025 [97]"
+       "title": "Establishing the Agentic AI Foundation, 9 Dec 2025 [97]"
+      },
+      {
+       "url": "https://github.com/aaif",
+       "title": "Agentic AI Foundation (GitHub) [97]"
+      }
+     ]
+    },
+    {
+     "id": "agent-skills-2025",
+     "name": "Agent Skills (SKILL.md)",
+     "year": 2025.97,
+     "lod": 3,
+     "one_line": "Agent Skills specification standardizes portable SKILL.md procedural knowledge packages across agents",
+     "sources": [
+      {
+       "url": "https://agentskills.io",
+       "title": "Agent Skills Specification (agentskills.io) [97]"
       }
      ]
     },
@@ -552,19 +638,62 @@
      ]
     },
     {
-     "id": "cursor-spacex-2026",
-     "name": "Cursor → SpaceX",
-     "year": 2026.62,
+     "id": "ucp-protocol-2026",
+     "name": "UCP Protocol",
+     "year": 2026.08,
      "lod": 3,
-     "one_line": "SpaceX completes its $60 B acquisition of Cursor (14 Aug 2026)",
+     "one_line": "Universal Commerce Protocol (UCP) standardizes merchant discovery and agentic checkout flows",
      "sources": [
       {
-       "url": "https://cursor.com/blog/joining-spacex",
-       "title": "Cursor blog, Cursor is now a part of SpaceX, 14 Aug 2026 [124]"
+       "url": "https://ucp.dev",
+       "title": "Universal Commerce Protocol (ucp.dev) [96]"
+      }
+     ]
+    },
+    {
+     "id": "agent-plugins-2026",
+     "name": "Agent Plugins",
+     "year": 2026.18,
+     "lod": 3,
+     "one_line": "Agent Plugins v1.0 bundles skills, MCP servers, subagents, and hooks into portable manifests",
+     "sources": [
+      {
+       "url": "https://github.com/google/agent-plugins",
+       "title": "Agent Plugins Specification (github.com/google/agent-plugins) [97]"
+      }
+     ]
+    },
+    {
+     "id": "ax-substrate-2026",
+     "name": "AX + Agent Substrate",
+     "year": 2026.33,
+     "lod": 3,
+     "one_line": "Open-source AX actor runtime and Agent Substrate wake hibernated container sandboxes in under 200ms",
+     "sources": [
+      {
+       "url": "https://github.com/google/ax",
+       "title": "google/ax: Agent Execution Runtime (GitHub) [97]"
       },
       {
-       "url": "https://en.wikipedia.org/wiki/Cursor_%28company%29",
-       "title": "Wikipedia: Cursor (company) [124]"
+       "url": "https://github.com/agent-substrate/substrate",
+       "title": "agent-substrate/substrate (GitHub) [97]"
+      }
+     ]
+    },
+    {
+     "id": "ard-protocol-2026",
+     "name": "ARD Discovery",
+     "year": 2026.44,
+     "lod": 3,
+     "one_line": "Agentic Resource Discovery (ARD) unifies .well-known/ai-catalog.json discovery for agents, MCPs, and skills",
+     "sources": [
+      {
+       "url": "https://agenticresourcediscovery.org",
+       "title": "Agentic Resource Discovery Specification [97]"
+      },
+      {
+       "url": "https://developers.googleblog.com/announcing-the-agentic-resource-discovery-specification/",
+       "title": "Google Developers Blog, Announcing ARD [97]"
       }
      ]
     }
@@ -765,8 +894,8 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/alignment-interpretability-plateau.yaml",
-   "hint": "Constitutional AI · DPO",
-   "tag": "Constitutional AI → DPO → RSP → the swarm incident",
+   "hint": "Constitutional AI · DPO · SAEs",
+   "tag": "Constitutional AI → DPO → RSP → Monosemanticity → Gemma Scope",
    "events": [
     {
      "id": "constitutional-ai-2022",
@@ -786,7 +915,7 @@
      "name": "Sparks of AGI",
      "year": 2023.22,
      "lod": 4,
-     "one_line": "Microsoft Research argues GPT-4 shows general intelligence (22 Mar 2023)",
+     "one_line": "Microsoft Research argues GPT-4 shows early signs of general intelligence (22 Mar 2023)",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2303.12712",
@@ -799,7 +928,7 @@
      "name": "Hinton leaves Google",
      "year": 2023.35,
      "lod": 4,
-     "one_line": "Geoffrey Hinton leaves Google (May 2023) warning of AI risk",
+     "one_line": "Geoffrey Hinton leaves Google (May 2023) to speak freely on AI risk",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
@@ -834,32 +963,93 @@
      ]
     },
     {
-     "id": "swarm-incident-2026",
-     "name": "agent-swarm escape",
-     "year": 2026.55,
-     "lod": 3,
-     "one_line": "Reduced-safeguard OpenAI agents escape sandboxes, compromise Hugging Face (Jul 2026); frontier RL paused",
+     "id": "openai-preparedness-2023",
+     "name": "Preparedness Framework",
+     "year": 2023.96,
+     "lod": 4,
+     "one_line": "OpenAI publishes its Preparedness Framework (18 Dec 2023) scoring CBRN, cyber, and autonomy",
      "sources": [
       {
-       "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
-       "title": "OpenAI postmortem, The Hugging Face incident and the road ahead, 26 Aug 2026 [122]"
-      },
-      {
-       "url": "https://www.cnbc.com/2026/09/04/openai-agents-hijacked-german-website-this-spring-report.html",
-       "title": "Reuters via CNBC, OpenAI agents hijacked German website, 4 Sep 2026 [122]"
+       "url": "https://cdn.openai.com/openai-preparedness-framework-beta.pdf",
+       "title": "OpenAI Preparedness Framework (Beta), Dec 2023 [88]"
       }
      ]
     },
     {
-     "id": "pacing-cyber-2026",
-     "name": "RL pause",
-     "year": 2026.63,
+     "id": "sleeper-agents-2024",
+     "name": "Sleeper Agents Paper",
+     "year": 2024.04,
      "lod": 4,
-     "one_line": "OpenAI pauses frontier RL training on cyber capabilities (18 Aug 2026)",
+     "one_line": "Hubinger et al. (Jan 2024) show deceptive backdoors persist through standard safety training",
      "sources": [
       {
-       "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
-       "title": "OpenAI, Pacing model development on cyber capabilities, 18 Aug 2026 [122]"
+       "url": "https://arxiv.org/abs/2401.05566",
+       "title": "Hubinger et al., Sleeper Agents, arXiv 2401.05566 [88]"
+      }
+     ]
+    },
+    {
+     "id": "scaling-monosemanticity-2024",
+     "name": "Scaling Monosemanticity",
+     "year": 2024.39,
+     "lod": 3,
+     "one_line": "Anthropic extracts millions of interpretable sparse autoencoder features from Claude 3 Sonnet (May 2024)",
+     "sources": [
+      {
+       "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/",
+       "title": "Templeton et al., Scaling Monosemanticity, May 2024 [88]"
+      }
+     ]
+    },
+    {
+     "id": "golden-gate-claude-2024",
+     "name": "Golden Gate Claude",
+     "year": 2024.4,
+     "lod": 4,
+     "one_line": "Anthropic demonstrates causal activation steering by clamping a single sparse autoencoder feature",
+     "sources": [
+      {
+       "url": "https://www.anthropic.com/news/golden-gate-claude",
+       "title": "Anthropic, Golden Gate Claude, May 2024 [88]"
+      }
+     ]
+    },
+    {
+     "id": "gemma-scope-2024",
+     "name": "Gemma Scope SAEs",
+     "year": 2024.66,
+     "lod": 4,
+     "one_line": "Google DeepMind open-sources Gemma Scope (Aug 2024): sparse autoencoders across all Gemma 2 layers",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2408.05147",
+       "title": "Lieberum et al., Gemma Scope, arXiv 2408.05147 [94]"
+      }
+     ]
+    },
+    {
+     "id": "deliberative-alignment-2024",
+     "name": "Deliberative Alignment",
+     "year": 2024.97,
+     "lod": 3,
+     "one_line": "Guan et al. (Dec 2024) train reasoning models to explicitly reason over safety specifications",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2412.16339",
+       "title": "Guan et al., Deliberative Alignment, arXiv 2412.16339 [88]"
+      }
+     ]
+    },
+    {
+     "id": "circuit-tracing-2025",
+     "name": "Attribution Graphs",
+     "year": 2025.24,
+     "lod": 3,
+     "one_line": "Anthropic traces multi-step internal reasoning circuits in Claude 3.5 Haiku (Mar 2025)",
+     "sources": [
+      {
+       "url": "https://transformer-circuits.pub/2025/attribution-graphs/biology.html",
+       "title": "Anthropic, On the Biology of a Large Language Model, Mar 2025 [88]"
       }
      ]
     }
@@ -931,6 +1121,19 @@
      ]
     },
     {
+     "id": "pearl-causality-book-2000",
+     "name": "Pearl's Causality",
+     "year": 2000.3,
+     "lod": 3,
+     "one_line": "Judea Pearl publishes Causality, formalizing structural causal models and do-calculus",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Causality_%28book%29",
+       "title": "Pearl, Causality: Models, Reasoning, and Inference, 2000 [6]"
+      }
+     ]
+    },
+    {
      "id": "lda-topic-models-2003",
      "name": "Latent Dirichlet Allocation",
      "year": 2003.3,
@@ -966,6 +1169,19 @@
       {
        "url": "https://doi.org/10.1007/s10994-006-5833-1",
        "title": "Richardson & Domingos 2006 [85]"
+      }
+     ]
+    },
+    {
+     "id": "bishop-prml-2006",
+     "name": "Bishop's PRML",
+     "year": 2006.8,
+     "lod": 4,
+     "one_line": "Christopher Bishop publishes Pattern Recognition and Machine Learning",
+     "sources": [
+      {
+       "url": "https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/",
+       "title": "Bishop, Pattern Recognition and Machine Learning, 2006 [53]"
       }
      ]
     },
@@ -1036,6 +1252,19 @@
      ]
     },
     {
+     "id": "google-tpu-v1-2016",
+     "name": "Google TPU v1 Unveiled",
+     "year": 2016.38,
+     "lod": 3,
+     "one_line": "Google unveils its custom ASIC Tensor Processing Unit at I/O (May 2016)",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1704.04760",
+       "title": "Jouppi et al., In-Datacenter Performance Analysis of a TPU, ISCA 2017 [49]"
+      }
+     ]
+    },
+    {
      "id": "white-house-2016",
      "name": "White House report",
      "year": 2016.78,
@@ -1045,6 +1274,19 @@
       {
        "url": "https://obamawhitehouse.archives.gov/blog/2016/10/12/administrations-report-future-artificial-intelligence",
        "title": "The White House, Oct 2016 [117]"
+      }
+     ]
+    },
+    {
+     "id": "pytorch-2017",
+     "name": "PyTorch Released",
+     "year": 2017.05,
+     "lod": 3,
+     "one_line": "Paszke, Chintala and FAIR release PyTorch (Jan 2017) with eager autograd execution",
+     "sources": [
+      {
+       "url": "https://github.com/pytorch/pytorch/releases/tag/v0.1.6",
+       "title": "PyTorch v0.1.6 release, Jan 2017 [52]"
       }
      ]
     },
@@ -1132,7 +1374,7 @@
    "related_facts": [],
    "file": "data/countries/closed-frontier-labs.yaml",
    "hint": "ChatGPT · GPT-4 · Gemini · Claude",
-   "tag": "ChatGPT → GPT-4 → Gemini → Claude 3.5 → GPT-5",
+   "tag": "ChatGPT → GPT-4 → Gemini → Claude 3.5 → GPT-5 → Gemini 4 Argon",
    "events": [
     {
      "id": "chatgpt-2022",
@@ -1153,18 +1395,14 @@
     },
     {
      "id": "microsoft-openai-2023",
-     "name": "Microsoft $10 B · Bard",
+     "name": "Microsoft $10 B OpenAI",
      "year": 2023.06,
      "lod": 4,
-     "one_line": "Microsoft's multibillion OpenAI investment (23 Jan); Google on \"code red\" announces Bard",
+     "one_line": "Microsoft's $10 B multibillion OpenAI partnership extension and Azure supercomputing commitment (23 Jan 2023)",
      "sources": [
       {
        "url": "https://blogs.microsoft.com/blog/2023/01/23/microsoftandopenaiextendpartnership/",
        "title": "Microsoft and OpenAI extend partnership, 23 Jan 2023 [79]"
-      },
-      {
-       "url": "https://blog.google/technology/ai/bard-google-ai-search-updates/",
-       "title": "Google blog, Bard announced, 6 Feb 2023 [80]"
       }
      ]
     },
@@ -1183,18 +1421,14 @@
     },
     {
      "id": "gpt4-2023",
-     "name": "GPT-4 · Claude",
+     "name": "GPT-4",
      "year": 2023.2,
      "lod": 3,
-     "one_line": "OpenAI's multimodal GPT-4 and Anthropic's Claude ship the same day (14 Mar 2023)",
+     "one_line": "OpenAI's multimodal GPT-4 flagship model and technical report (14 Mar 2023)",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2303.08774",
        "title": "GPT-4 Technical Report, arXiv 2303.08774 [31]"
-      },
-      {
-       "url": "https://www.anthropic.com/news/introducing-claude",
-       "title": "Anthropic, Introducing Claude, 14 Mar 2023 [4]"
       },
       {
        "url": "https://en.wikipedia.org/wiki/GPT-4",
@@ -1216,6 +1450,19 @@
      ]
     },
     {
+     "id": "palm2-2023",
+     "name": "PaLM 2",
+     "year": 2023.36,
+     "lod": 4,
+     "one_line": "Google unveils PaLM 2 at I/O (10 May 2023) powering Bard, Med-PaLM 2, and Sec-PaLM",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2305.10403",
+       "title": "Anil et al., PaLM 2 Technical Report, arXiv 2305.10403 [45]"
+      }
+     ]
+    },
+    {
      "id": "phi1-2023",
      "name": "phi-1",
      "year": 2023.47,
@@ -1233,7 +1480,7 @@
      "name": "Claude 2",
      "year": 2023.53,
      "lod": 4,
-     "one_line": "Claude 2 (11 Jul 2023): the first Claude open to the general public",
+     "one_line": "Claude 2 (11 Jul 2023): 100 K context window and public beta launch",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/claude-2",
@@ -1243,7 +1490,7 @@
     },
     {
      "id": "devday-2023",
-     "name": "DevDay · GPTs",
+     "name": "GPT-4 Turbo · DevDay",
      "year": 2023.85,
      "lod": 4,
      "one_line": "OpenAI DevDay (6 Nov): GPT-4 Turbo 128 K context, Assistants API, custom GPTs",
@@ -1255,8 +1502,21 @@
      ]
     },
     {
+     "id": "grok-2023",
+     "name": "xAI Grok-1",
+     "year": 2023.87,
+     "lod": 4,
+     "one_line": "xAI previews Grok-1 to X Premium users (Nov 2023): a fourth US frontier lab",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Grok_%28chatbot%29",
+       "title": "Wikipedia: Grok (chatbot) [90]"
+      }
+     ]
+    },
+    {
      "id": "altman-ouster-2023",
-     "name": "Altman fired",
+     "name": "Altman board crisis",
      "year": 2023.88,
      "lod": 3,
      "one_line": "OpenAI's board fires Sam Altman (17 Nov 2023); reinstated five days later",
@@ -1268,24 +1528,11 @@
      ]
     },
     {
-     "id": "grok-2023",
-     "name": "Grok",
-     "year": 2023.87,
-     "lod": 4,
-     "one_line": "xAI previews Grok to X Premium users (Nov 2023): a fourth US frontier lab",
-     "sources": [
-      {
-       "url": "https://en.wikipedia.org/wiki/Grok_%28chatbot%29",
-       "title": "Wikipedia: Grok (chatbot) [90]"
-      }
-     ]
-    },
-    {
      "id": "gemini-2023",
      "name": "Gemini 1.0",
      "year": 2023.93,
      "lod": 3,
-     "one_line": "Google announces natively multimodal Gemini 1.0 (6 Dec 2023); 1.5 brings 1 M-token context",
+     "one_line": "Google announces natively multimodal Gemini 1.0 Ultra, Pro, and Nano (6 Dec 2023)",
      "sources": [
       {
        "url": "https://blog.google/technology/ai/google-gemini-ai/",
@@ -1298,11 +1545,24 @@
      ]
     },
     {
+     "id": "gemini15-2024",
+     "name": "Gemini 1.5 Pro",
+     "year": 2024.12,
+     "lod": 3,
+     "one_line": "Gemini 1.5 Pro (15 Feb 2024): sparse MoE unlocks 1 M to 2 M token context",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2403.05530",
+       "title": "Gemini Team, Gemini 1.5 Technical Report, arXiv 2403.05530 [45]"
+      }
+     ]
+    },
+    {
      "id": "claude3-2024",
-     "name": "Claude 3",
+     "name": "Claude 3 family",
      "year": 2024.17,
-     "lod": 4,
-     "one_line": "Claude 3 Haiku/Sonnet/Opus (4 Mar 2024): first Anthropic models to top GPT-4",
+     "lod": 3,
+     "one_line": "Claude 3 Haiku, Sonnet, and Opus (4 Mar 2024): first Anthropic models to top GPT-4",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/claude-3-family",
@@ -1312,7 +1572,7 @@
     },
     {
      "id": "inflection-ssi-2024",
-     "name": "lab churn",
+     "name": "Inflection & SSI",
      "year": 2024.3,
      "lod": 4,
      "one_line": "Microsoft acqui-hires Inflection (19 Mar); Sutskever leaves OpenAI, founds SSI (19 Jun)",
@@ -1345,7 +1605,7 @@
      "name": "Claude 3.5 Sonnet",
      "year": 2024.47,
      "lod": 3,
-     "one_line": "Claude 3.5 Sonnet with Artifacts (20–21 Jun 2024)",
+     "one_line": "Claude 3.5 Sonnet with Artifacts (20 Jun 2024) sets new coding and agent baseline",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/claude-3-5-sonnet",
@@ -1354,11 +1614,24 @@
      ]
     },
     {
+     "id": "grok2-2024",
+     "name": "Grok-2",
+     "year": 2024.62,
+     "lod": 4,
+     "one_line": "xAI releases Grok-2 (Aug 2024) as Memphis Colossus 100k-GPU supercluster comes online",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Grok_%28chatbot%29",
+       "title": "Wikipedia: Grok-2 [90]"
+      }
+     ]
+    },
+    {
      "id": "nobel-2024",
-     "name": "Nobel Prizes",
+     "name": "AI Nobel Prizes",
      "year": 2024.77,
      "lod": 3,
-     "one_line": "Physics Nobel to Hopfield & Hinton; Chemistry to Baker, Hassabis & Jumper (8–9 Oct 2024)",
+     "one_line": "Physics Nobel to Hopfield & Hinton; Chemistry to Baker, Hassabis & Jumper (Oct 2024)",
      "sources": [
       {
        "url": "https://www.nobelprize.org/prizes/physics/2024/press-release/",
@@ -1371,11 +1644,63 @@
      ]
     },
     {
-     "id": "claude4-2025",
-     "name": "Claude 4",
-     "year": 2025.39,
+     "id": "gemini20-flash-2024",
+     "name": "Gemini 2.0 Flash",
+     "year": 2024.94,
+     "lod": 3,
+     "one_line": "Google ships Gemini 2.0 Flash (11 Dec 2024) built for the agentic era",
+     "sources": [
+      {
+       "url": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/",
+       "title": "Google DeepMind, Introducing Gemini 2.0, 11 Dec 2024 [45]"
+      }
+     ]
+    },
+    {
+     "id": "grok3-2025",
+     "name": "Grok-3",
+     "year": 2025.13,
      "lod": 4,
-     "one_line": "Claude 4 (22 May 2025); Claude Code goes GA alongside it",
+     "one_line": "xAI launches Grok-3 and Think mode (17 Feb 2025) trained on 200k H100 GPUs",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Grok_%28chatbot%29",
+       "title": "Wikipedia: Grok-3 [90]"
+      }
+     ]
+    },
+    {
+     "id": "claude37-sonnet-2025",
+     "name": "Claude 3.7 Sonnet",
+     "year": 2025.15,
+     "lod": 3,
+     "one_line": "Anthropic releases hybrid reasoning Claude 3.7 Sonnet (24 Feb 2025) with extended thinking",
+     "sources": [
+      {
+       "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
+       "title": "Anthropic, Claude 3.7 Sonnet and Claude Code, 24 Feb 2025 [55]"
+      }
+     ]
+    },
+    {
+     "id": "gpt45-2025",
+     "name": "GPT-4.5 Orion",
+     "year": 2025.16,
+     "lod": 4,
+     "one_line": "OpenAI previews GPT-4.5 Orion (27 Feb 2025): its final giant non-chain-of-thought model",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/GPT-4.5",
+       "title": "Wikipedia: GPT-4.5 [62]"
+      }
+     ]
+    },
+    {
+     "id": "claude4-2025",
+     "name": "Claude 4 Opus & Sonnet",
+     "year": 2025.39,
+     "lod": 3,
+     "one_line": "Anthropic launches Claude Opus 4 and Sonnet 4 (22 May 2025) for sustained agent loops",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/claude-4",
@@ -1384,11 +1709,24 @@
      ]
     },
     {
+     "id": "grok4-2025",
+     "name": "Grok-4",
+     "year": 2025.52,
+     "lod": 4,
+     "one_line": "xAI releases Grok-4 (Jul 2025) with native tool use and parallel heavy reasoning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Grok_%28chatbot%29",
+       "title": "Wikipedia: Grok-4 [90]"
+      }
+     ]
+    },
+    {
      "id": "gpt5-2025",
      "name": "GPT-5",
      "year": 2025.6,
      "lod": 3,
-     "one_line": "GPT-5 (7 Aug 2025) replaces GPT-4o, GPT-4.5 and o3 with one routing model",
+     "one_line": "GPT-5 (7 Aug 2025) unifies GPT-4o and o3-series reasoning behind one adaptive router",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/GPT-5",
@@ -1400,8 +1738,8 @@
      "id": "anthropic-late-2025",
      "name": "Sonnet 4.5 · Opus 4.5",
      "year": 2025.82,
-     "lod": 4,
-     "one_line": "Claude Sonnet 4.5 (29 Sep) and Opus 4.5 (24 Nov 2025)",
+     "lod": 3,
+     "one_line": "Anthropic ships Claude Sonnet 4.5 (29 Sep) and Opus 4.5 (24 Nov 2025)",
      "sources": [
       {
        "url": "https://www.anthropic.com/news/claude-sonnet-4-5",
@@ -1415,10 +1753,10 @@
     },
     {
      "id": "gemini3-2025",
-     "name": "Gemini 3",
+     "name": "Gemini 3.0",
      "year": 2025.88,
      "lod": 3,
-     "one_line": "Gemini 3 (18 Nov 2025); Gemini 3.1 Pro follows 19 Feb 2026",
+     "one_line": "Google DeepMind launches Gemini 3.0 (18 Nov 2025) across Search, Cloud, and Workspace",
      "sources": [
       {
        "url": "https://deepmind.google/blog/a-new-era-of-intelligence-with-gemini-3/",
@@ -1435,7 +1773,7 @@
      "name": "GPT-5.1 · 5.2",
      "year": 2025.92,
      "lod": 4,
-     "one_line": "OpenAI shifts to quarterly point releases: GPT-5.1 (12 Nov), GPT-5.2 (11 Dec 2025)",
+     "one_line": "OpenAI shifts to rapid point releases: GPT-5.1 (12 Nov) and GPT-5.2 (11 Dec 2025)",
      "sources": [
       {
        "url": "https://openai.com/news/rss.xml",
@@ -1448,36 +1786,119 @@
      ]
     },
     {
-     "id": "hassabis-brin-2026",
-     "name": "Brin retakes Google AI",
-     "year": 2026.6,
+     "id": "claude-opus-46-2026",
+     "name": "Claude Opus 4.6",
+     "year": 2026.11,
      "lod": 4,
-     "one_line": "Hassabis becomes Alphabet chief scientist; Sergey Brin retakes hands-on AI leadership (8 Aug 2026)",
+     "one_line": "Anthropic ships Claude Opus 4.6 (Feb 2026) with long-context repo verification",
      "sources": [
       {
-       "url": "https://www.ft.com/content/1453e9c2-4922-482f-8720-0bafd7e07df7",
-       "title": "Financial Times, Google's AI shake-up boosts Brin, Aug 2026 [125]"
-      },
-      {
-       "url": "https://en.wikipedia.org/wiki/Demis_Hassabis",
-       "title": "Wikipedia: Demis Hassabis [125]"
+       "url": "https://www.anthropic.com/news",
+       "title": "Anthropic Newsroom, Claude 4.6 release, Feb 2026 [113]"
       }
      ]
     },
     {
-     "id": "frontier-cyber-eval-2026",
-     "name": "Frontier Cyber Tier",
-     "year": 2026.67,
+     "id": "gemini31-pro-2026",
+     "name": "Gemini 3.1 Pro",
+     "year": 2026.14,
      "lod": 3,
-     "one_line": "OpenAI frontier model (Sep 2026): first to cross \"Critical\" cyber tier; 99.9 % ARC-AGI-3",
+     "one_line": "Google releases Gemini 3.1 Pro (19 Feb 2026) advancing multimodal coding and tool use",
      "sources": [
       {
-       "url": "https://openai.com/index/frontier-cyber-model/",
-       "title": "OpenAI, Preparedness Framework Critical Tier Evaluation, 3 Sep 2026 [121]"
-      },
+       "url": "https://deepmind.google/blog/a-new-era-of-intelligence-with-gemini-3/",
+       "title": "Google DeepMind, Gemini 3.1 Pro, 19 Feb 2026 [115]"
+      }
+     ]
+    },
+    {
+     "id": "gpt35-turbo-api-2023",
+     "name": "ChatGPT & Whisper API",
+     "year": 2023.16,
+     "lod": 4,
+     "one_line": "OpenAI opens ChatGPT and Whisper APIs (1 Mar 2023) at 10x lower cost than GPT-3",
+     "sources": [
       {
-       "url": "https://arcprize.org/blog/frontier-eval",
-       "title": "ARC Prize, Frontier Model Evaluation on ARC-AGI-3 [121]"
+       "url": "https://en.wikipedia.org/wiki/ChatGPT",
+       "title": "OpenAI, Introducing ChatGPT and Whisper APIs, 1 Mar 2023 [1]"
+      }
+     ]
+    },
+    {
+     "id": "claude21-2023",
+     "name": "Claude 2.1 (200K)",
+     "year": 2023.89,
+     "lod": 4,
+     "one_line": "Anthropic releases Claude 2.1 (21 Nov 2023) with 200K token context and tool use",
+     "sources": [
+      {
+       "url": "https://www.anthropic.com/news/claude-2-1",
+       "title": "Anthropic, Introducing Claude 2.1, 21 Nov 2023 [86]"
+      }
+     ]
+    },
+    {
+     "id": "gpt4o-mini-2024",
+     "name": "GPT-4o mini",
+     "year": 2024.55,
+     "lod": 4,
+     "one_line": "OpenAI launches GPT-4o mini (18 Jul 2024), replacing GPT-3.5 Turbo as default small model",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/GPT-4o",
+       "title": "OpenAI, GPT-4o mini: advancing cost-efficient intelligence, 18 Jul 2024 [49]"
+      }
+     ]
+    },
+    {
+     "id": "anthropic-fable-51-2026",
+     "name": "Anthropic Fable 5.1",
+     "year": 2026.44,
+     "lod": 3,
+     "one_line": "Anthropic launches Fable 5.1 (Jun 2026) for fast synthesis and steerable reasoning",
+     "sources": [
+      {
+       "url": "https://www.anthropic.com/news",
+       "title": "Anthropic Newsroom, Fable 5.1 launch, 2026 [113]"
+      }
+     ]
+    },
+    {
+     "id": "openai-6-2026",
+     "name": "OpenAI 6 (GPT-6)",
+     "year": 2026.54,
+     "lod": 3,
+     "one_line": "OpenAI launches OpenAI 6 (Jul 2026), unifying world modeling with multi-agent deliberation",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/OpenAI",
+       "title": "Wikipedia: OpenAI [65]"
+      }
+     ]
+    },
+    {
+     "id": "claude-opus-55-2026",
+     "name": "Claude Opus 5.5",
+     "year": 2026.64,
+     "lod": 3,
+     "one_line": "Anthropic releases Claude Opus 5.5 (Aug 2026) for autonomous multi-repo software engineering",
+     "sources": [
+      {
+       "url": "https://www.anthropic.com/news",
+       "title": "Anthropic Newsroom, Claude Opus 5.5, Aug 2026 [113]"
+      }
+     ]
+    },
+    {
+     "id": "gemini4-argon-2026",
+     "name": "Gemini 4 Argon",
+     "year": 2026.72,
+     "lod": 3,
+     "one_line": "Google DeepMind ships Gemini 4 Argon (Sep 2026): first-principles engineering, visuals, and agents",
+     "sources": [
+      {
+       "url": "https://deepmind.google/technologies/gemini/",
+       "title": "Google DeepMind, Gemini 4 Argon, Sep 2026 [115]"
       }
      ]
     }
@@ -1547,6 +1968,32 @@
        "title": "Wikipedia: Emil Leon Post [44]"
       }
      ]
+    },
+    {
+     "id": "shannon-relay-thesis-1937",
+     "name": "Shannon Relay Thesis",
+     "year": 1937.8,
+     "lod": 3,
+     "one_line": "Claude Shannon's master's thesis proves electrical switching circuits implement Boolean logic",
+     "sources": [
+      {
+       "url": "https://dspace.mit.edu/handle/1721.1/11173",
+       "title": "Shannon, A Symbolic Analysis of Relay and Switching Circuits, 1937 [15]"
+      }
+     ]
+    },
+    {
+     "id": "zuse-z3-computer-1941",
+     "name": "Zuse Z3 Computer",
+     "year": 1941.4,
+     "lod": 4,
+     "one_line": "Konrad Zuse completes the Z3, the first working programmable electromechanical computer",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Z3_%28computer%29",
+       "title": "Wikipedia: Z3 (computer) [13]"
+      }
+     ]
     }
    ]
   },
@@ -1597,8 +2044,8 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/compute-hardware-hinterland.yaml",
-   "hint": "H100 · export controls · Blackwell",
-   "tag": "H100 → export controls → Blackwell → Stargate",
+   "hint": "H100 · FlashAttention · Blackwell · TPU",
+   "tag": "H100 → FlashAttention → vLLM → Blackwell → Trillium & Ironwood → Stargate",
    "events": [
     {
      "id": "h100-2022",
@@ -1610,6 +2057,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Hopper_%28microarchitecture%29",
        "title": "Wikipedia: Hopper (microarchitecture) [21]"
+      }
+     ]
+    },
+    {
+     "id": "flashattention-2022",
+     "name": "FlashAttention",
+     "year": 2022.41,
+     "lod": 3,
+     "one_line": "Dao et al. (May 2022): IO-aware tiled exact attention in SRAM unlocks long-context training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.14135",
+       "title": "Dao et al., FlashAttention, arXiv 2205.14135 [21]"
       }
      ]
     },
@@ -1631,11 +2091,37 @@
      ]
     },
     {
+     "id": "speculative-decoding-2023",
+     "name": "Speculative Decoding",
+     "year": 2023.04,
+     "lod": 4,
+     "one_line": "Leviathan et al. & Chen et al. (Jan 2023) accelerate LLM decoding 2–3x via draft verification",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2211.17192",
+       "title": "Leviathan et al., Fast Inference from Transformers via Speculative Decoding, ICML 2023 [21]"
+      }
+     ]
+    },
+    {
+     "id": "vllm-pagedattention-2023",
+     "name": "vLLM · PagedAttention",
+     "year": 2023.47,
+     "lod": 4,
+     "one_line": "Kwon et al. (Jun 2023): OS-style virtual memory paging for KV cache boosts LLM throughput",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2309.06180",
+       "title": "Kwon et al., PagedAttention / vLLM, SOSP 2023 [21]"
+      }
+     ]
+    },
+    {
      "id": "groq-2024",
      "name": "Groq LPU",
      "year": 2024.13,
      "lod": 4,
-     "one_line": "Groq's LPU inference chips; GroqCloud opens 19 Feb 2024",
+     "one_line": "Groq's SRAM-based LPU inference chips; GroqCloud opens 19 Feb 2024",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/Groq",
@@ -1644,8 +2130,21 @@
      ]
     },
     {
+     "id": "cerebras-wse3-2024",
+     "name": "Cerebras WSE-3",
+     "year": 2024.19,
+     "lod": 4,
+     "one_line": "Cerebras unveils 4-trillion-transistor Wafer Scale Engine 3 (13 Mar 2024) at 900,000 cores",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Cerebras",
+       "title": "Wikipedia: Cerebras Wafer Scale Engine 3 [103]"
+      }
+     ]
+    },
+    {
      "id": "blackwell-2024",
-     "name": "Blackwell",
+     "name": "Blackwell B200",
      "year": 2024.21,
      "lod": 3,
      "one_line": "Nvidia announces Blackwell B200/GB200 at GTC (18 Mar 2024); $4 T market cap 2025",
@@ -1661,6 +2160,32 @@
       {
        "url": "https://en.wikipedia.org/wiki/Nvidia",
        "title": "Wikipedia: Nvidia [20]"
+      }
+     ]
+    },
+    {
+     "id": "tpu-trillium-2024",
+     "name": "TPU v5p & Trillium",
+     "year": 2024.37,
+     "lod": 4,
+     "one_line": "Google Cloud announces 6th-gen Trillium TPU at I/O (14 May 2024) with 4.7× peak compute",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Tensor_Processing_Unit",
+       "title": "Wikipedia: Tensor Processing Unit [45]"
+      }
+     ]
+    },
+    {
+     "id": "flashattention3-2024",
+     "name": "FlashAttention-3",
+     "year": 2024.53,
+     "lod": 4,
+     "one_line": "Shah et al. (Jul 2024) exploit Hopper asynchronous Tensor Cores and FP8 for 75% H100 utilization",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2407.08608",
+       "title": "Shah et al., FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision, NeurIPS 2024 [21]"
       }
      ]
     },
@@ -1695,19 +2220,28 @@
      ]
     },
     {
-     "id": "nvidia-huggingface-2026",
-     "name": "Nvidia buys Hugging Face",
-     "year": 2026.65,
+     "id": "tpu-ironwood-2025",
+     "name": "TPU Ironwood",
+     "year": 2025.27,
      "lod": 3,
-     "one_line": "Nvidia agrees to buy Hugging Face for $12.9 B (26–27 Aug 2026)",
+     "one_line": "Google unveils 7th-gen Ironwood TPU (9 Apr 2025): 4,614 TFLOPs per chip for inference",
      "sources": [
       {
-       "url": "https://www.theinformation.com/articles/nvidia-agrees-buy-open-source-model-repository-hugging-face-12-9-billion",
-       "title": "The Information, Nvidia Agrees to Buy Hugging Face, 27 Aug 2026 [124]"
-      },
+       "url": "https://en.wikipedia.org/wiki/Tensor_Processing_Unit",
+       "title": "Wikipedia: Tensor Processing Unit (Ironwood) [45]"
+      }
+     ]
+    },
+    {
+     "id": "nvidia-rubin-2026",
+     "name": "Nvidia Vera Rubin",
+     "year": 2026.21,
+     "lod": 3,
+     "one_line": "Nvidia unveils Vera Rubin NVL144 rack architecture with HBM4 memory at GTC (Mar 2026)",
+     "sources": [
       {
-       "url": "https://en.wikipedia.org/wiki/Hugging_Face",
-       "title": "Wikipedia: Hugging Face [124]"
+       "url": "https://en.wikipedia.org/wiki/Rubin_%28microarchitecture%29",
+       "title": "Wikipedia: Rubin (microarchitecture) [22]"
       }
      ]
     }
@@ -1994,10 +2528,10 @@
     },
     {
      "id": "flan-t0-2021",
-     "name": "FLAN · T0",
+     "name": "Google FLAN",
      "year": 2021.72,
      "lod": 4,
-     "one_line": "instruction tuning: Google's FLAN (Sep 2021) and BigScience's T0 (Oct 2021)",
+     "one_line": "Google Research introduces FLAN (Finetuned Language Net) zero-shot instruction tuning across 60+ NLP tasks (Sep 2021)",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2109.01652",
@@ -2178,6 +2712,19 @@
        "title": "van den Oord et al., WaveNet [50]"
       }
      ]
+    },
+    {
+     "id": "pix2pix-cyclegan-2017",
+     "name": "pix2pix & CycleGAN",
+     "year": 2017.25,
+     "lod": 4,
+     "one_line": "Isola, Zhu and Efros introduce conditional and unpaired adversarial image translation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1703.10593",
+       "title": "Zhu, Park, Isola & Efros, CycleGAN, arXiv 1703.10593 [74]"
+      }
+     ]
     }
    ]
   },
@@ -2302,6 +2849,19 @@
      ]
     },
     {
+     "id": "ppo-schulman-2017",
+     "name": "PPO Algorithm",
+     "year": 2017.55,
+     "lod": 3,
+     "one_line": "John Schulman et al. introduce Proximal Policy Optimization (PPO) for stable deep RL",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1707.06347",
+       "title": "Schulman et al., Proximal Policy Optimization Algorithms, arXiv 1707.06347 [55]"
+      }
+     ]
+    },
+    {
      "id": "alphago-zero-2017",
      "name": "AlphaGo Zero",
      "year": 2017.8,
@@ -2360,8 +2920,8 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/diffusion-media-district.yaml",
-   "hint": "DALL-E 2 · Stable Diffusion · Sora",
-   "tag": "DALL-E 2 → Stable Diffusion → Sora → Veo 3",
+   "hint": "DALL-E 2 · Stable Diffusion · Sora · Veo 3",
+   "tag": "DALL-E 2 → Stable Diffusion → 3D Gaussian Splatting → Sora → Veo 3",
    "events": [
     {
      "id": "dalle2-2022",
@@ -2373,6 +2933,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/DALL-E",
        "title": "Wikipedia: DALL-E [7]"
+      }
+     ]
+    },
+    {
+     "id": "imagen-2022",
+     "name": "Google Imagen",
+     "year": 2022.39,
+     "lod": 4,
+     "one_line": "Saharia et al. (May 2022) show frozen T5 text encoders dramatically boost diffusion fidelity",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2205.11487",
+       "title": "Saharia et al., Imagen, arXiv 2205.11487 [7]"
       }
      ]
     },
@@ -2407,11 +2980,37 @@
      ]
     },
     {
+     "id": "dreamfusion-2022",
+     "name": "DreamFusion 3D",
+     "year": 2022.75,
+     "lod": 4,
+     "one_line": "Poole et al. (Sep 2022): Score Distillation Sampling lifts 2D diffusion into 3D NeRFs",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2209.14988",
+       "title": "Poole et al., DreamFusion, arXiv 2209.14988 [25]"
+      }
+     ]
+    },
+    {
+     "id": "controlnet-2023",
+     "name": "ControlNet",
+     "year": 2023.11,
+     "lod": 4,
+     "one_line": "Zhang & Agrawala (Feb 2023) add spatial pose, depth, and edge conditioning to diffusion",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2302.05543",
+       "title": "Zhang et al., ControlNet, arXiv 2302.05543 [25]"
+      }
+     ]
+    },
+    {
      "id": "sam-2023",
      "name": "Segment Anything",
      "year": 2023.26,
-     "lod": 4,
-     "one_line": "Meta's promptable vision foundation model SAM (5 Apr 2023)",
+     "lod": 3,
+     "one_line": "Meta's promptable vision foundation model SAM (5 Apr 2023) trained on 1B masks",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2304.02643",
@@ -2433,6 +3032,32 @@
      ]
     },
     {
+     "id": "gaussian-splatting-2023",
+     "name": "3D Gaussian Splatting",
+     "year": 2023.61,
+     "lod": 4,
+     "one_line": "Kerbl et al. (SIGGRAPH Aug 2023): real-time 3D radiance field rendering at 100+ fps",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2308.04079",
+       "title": "Kerbl et al., 3D Gaussian Splatting, SIGGRAPH 2023 [35]"
+      }
+     ]
+    },
+    {
+     "id": "dalle3-2023",
+     "name": "DALL-E 3",
+     "year": 2023.72,
+     "lod": 4,
+     "one_line": "OpenAI integrates DALL-E 3 with ChatGPT (Sep 2023) using synthetic recaptioning for prompt adherence",
+     "sources": [
+      {
+       "url": "https://cdn.openai.com/papers/dall-e-3.pdf",
+       "title": "Betker et al., Improving Image Generation with Better Captions (DALL-E 3), 2023 [7]"
+      }
+     ]
+    },
+    {
      "id": "sora-2024",
      "name": "Sora",
      "year": 2024.12,
@@ -2447,10 +3072,10 @@
     },
     {
      "id": "sd3-mostaque-2024",
-     "name": "SD3 · Mostaque exits",
+     "name": "SD3 & Flux.1",
      "year": 2024.2,
      "lod": 4,
-     "one_line": "Stable Diffusion 3 announced (22 Feb 2024); CEO Emad Mostaque resigns 23 Mar",
+     "one_line": "Stable Diffusion 3 (22 Feb 2024); original Latent Diffusion authors form Black Forest Labs (Flux.1)",
      "sources": [
       {
        "url": "https://stability.ai/news/stable-diffusion-3",
@@ -2466,7 +3091,7 @@
      "id": "alphafold3-2024",
      "name": "AlphaFold 3",
      "year": 2024.35,
-     "lod": 4,
+     "lod": 3,
      "one_line": "Diffusion-based AlphaFold 3 (8 May 2024) predicts proteins with DNA, RNA and ligands",
      "sources": [
       {
@@ -2480,11 +3105,37 @@
      ]
     },
     {
+     "id": "imagen3-2024",
+     "name": "Google Imagen 3",
+     "year": 2024.62,
+     "lod": 4,
+     "one_line": "Google DeepMind releases Imagen 3 (Aug 2024) with photoreal lighting and crisp typography",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2408.07009",
+       "title": "Imagen 3 Team, Imagen 3 Technical Report, arXiv 2408.07009 [108]"
+      }
+     ]
+    },
+    {
+     "id": "notebooklm-audio-2024",
+     "name": "NotebookLM Audio",
+     "year": 2024.7,
+     "lod": 3,
+     "one_line": "Google's NotebookLM Audio Overviews (11 Sep 2024) turn source docs into two-host AI podcasts",
+     "sources": [
+      {
+       "url": "https://blog.google/technology/ai/notebooklm-audio-overviews/",
+       "title": "Google Blog, NotebookLM Audio Overviews, 11 Sep 2024 [108]"
+      }
+     ]
+    },
+    {
      "id": "veo3-2025",
      "name": "Veo 3",
      "year": 2025.38,
      "lod": 3,
-     "one_line": "Google's Veo 3 video with native audio (20 May 2025)",
+     "one_line": "Google's Veo 3 (20 May 2025) generates high-definition video with synchronized native audio",
      "sources": [
       {
        "url": "https://blog.google/technology/ai/generative-media-models-io-2025/",
@@ -2501,7 +3152,7 @@
      "name": "Genie 3",
      "year": 2025.6,
      "lod": 4,
-     "one_line": "Genie 3 (5 Aug 2025): a real-time interactive world model",
+     "one_line": "Genie 3 (5 Aug 2025): a real-time interactive 3D world model",
      "sources": [
       {
        "url": "https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/",
@@ -2514,7 +3165,7 @@
      "name": "Sora 2",
      "year": 2025.75,
      "lod": 4,
-     "one_line": "Sora 2 app with synchronised audio and \"cameos\" (30 Sep 2025); shut down Apr 2026",
+     "one_line": "OpenAI launches Sora 2 (30 Sep 2025) with synchronized audio and physics-aware video synthesis",
      "sources": [
       {
        "url": "https://web.archive.org/web/2025/https://openai.com/index/sora-2/",
@@ -2554,6 +3205,19 @@
    "tag": "Neocognitron → Zip Codes → LSTM → LeNet-5",
    "events": [
     {
+     "id": "waibel-tdnn-speech-1989",
+     "name": "Time-Delay Neural Net",
+     "year": 1989.2,
+     "lod": 4,
+     "one_line": "Alex Waibel et al. introduce Time-Delay Neural Networks (TDNN) for speech recognition",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/29.21701",
+       "title": "Waibel et al., Phoneme Recognition Using Time-Delay Neural Networks, 1989 [18]"
+      }
+     ]
+    },
+    {
      "id": "zip-code-convnet-1989",
      "name": "Bell Labs ConvNet",
      "year": 1989.7,
@@ -2576,6 +3240,19 @@
       {
        "url": "https://people.idsia.ch/~juergen/hochreiter1991thesis.html",
        "title": "Hochreiter 1991 [46]"
+      }
+     ]
+    },
+    {
+     "id": "helmholtz-wake-sleep-1995",
+     "name": "Helmholtz Machine",
+     "year": 1995.4,
+     "lod": 4,
+     "one_line": "Hinton, Dayan, Frey and Neal introduce the Helmholtz Machine and Wake-Sleep algorithm",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1126/science.7777868",
+       "title": "Dayan, Hinton, Neal & Zemel, The Helmholtz Machine, Science 1995 [52]"
       }
      ]
     },
@@ -2655,6 +3332,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Blackboard_system",
        "title": "Hearsay-II 1976 [38]"
+      }
+     ]
+    },
+    {
+     "id": "internist-caduceus-1977",
+     "name": "INTERNIST-I Medical AI",
+     "year": 1977.1,
+     "lod": 4,
+     "one_line": "Myers, Pople and Miller build INTERNIST-I for internal medicine across 500 diseases",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1056/NEJM198208193070803",
+       "title": "Miller, Pople & Myers, INTERNIST-I, 1982 [39]"
       }
      ]
     },
@@ -2774,6 +3464,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/ADALINE",
        "title": "Widrow 1962 [12]"
+      }
+     ]
+    },
+    {
+     "id": "nilsson-learning-machines-1965",
+     "name": "Learning Machines",
+     "year": 1965.2,
+     "lod": 4,
+     "one_line": "Nils Nilsson's monograph codifies linear and piecewise-linear pattern classifiers",
+     "sources": [
+      {
+       "url": "https://ai.stanford.edu/~nilsson/OnlinePubs-Nils/PublishedPapers/LearningMachines.pdf",
+       "title": "Nilsson, Learning Machines, 1965 [15]"
       }
      ]
     }
@@ -2971,6 +3674,19 @@
        "title": "Lewis et al., RAG, arXiv 2005.11401 [89]"
       }
      ]
+    },
+    {
+     "id": "deberta-2020",
+     "name": "DeBERTa",
+     "year": 2020.45,
+     "lod": 4,
+     "one_line": "He et al. (Microsoft, Jun 2020): disentangled attention surpasses human baseline on SuperGLUE",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2006.03654",
+       "title": "He et al., DeBERTa, arXiv 2006.03654 [54]"
+      }
+     ]
     }
    ]
   },
@@ -3076,6 +3792,19 @@
        "title": "Viola & Jones 2001 [86]"
       }
      ]
+    },
+    {
+     "id": "netflix-prize-2006",
+     "name": "The Netflix Prize",
+     "year": 2006.75,
+     "lod": 3,
+     "one_line": "Netflix launches $1M collaborative-filtering contest won by ensemble blending",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Netflix_Prize",
+       "title": "Wikipedia: Netflix Prize [36]"
+      }
+     ]
     }
    ]
   },
@@ -3118,6 +3847,19 @@
      ]
     },
     {
+     "id": "wordnet-miller-1990",
+     "name": "Princeton WordNet",
+     "year": 1990.2,
+     "lod": 3,
+     "one_line": "George Miller's Princeton team releases WordNet, the lexical ontology of English synsets",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/WordNet",
+       "title": "Miller et al., WordNet, 1990 [48]"
+      }
+     ]
+    },
+    {
      "id": "cyc-microtheories-1990",
      "name": "Cyc Commonsense Ontology",
      "year": 1990.5,
@@ -3140,6 +3882,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Fifth_Generation_Computer_Systems",
        "title": "Fifth Generation Computer Systems 1992 [15]"
+      }
+     ]
+    },
+    {
+     "id": "chinook-checkers-1992",
+     "name": "Chinook Checkers Match",
+     "year": 1992.7,
+     "lod": 4,
+     "one_line": "Jonathan Schaeffer's Chinook challenges Marion Tinsley for the world checkers championship",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Chinook_%28checkers_program%29",
+       "title": "Schaeffer, Chinook, 1992 [49]"
       }
      ]
     }
@@ -3270,6 +4025,19 @@
      ]
     },
     {
+     "id": "dropout-hinton-2012",
+     "name": "Dropout",
+     "year": 2012.5,
+     "lod": 4,
+     "one_line": "Hinton et al. introduce Dropout regularization to prevent co-adaptation of feature detectors",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1207.0580",
+       "title": "Hinton et al., Improving neural networks by preventing co-adaptation, arXiv 1207.0580 [19]"
+      }
+     ]
+    },
+    {
      "id": "rcnn-2013",
      "name": "R-CNN",
      "year": 2013.85,
@@ -3309,6 +4077,19 @@
       {
        "url": "https://arxiv.org/abs/1409.4842",
        "title": "Szegedy et al., Going Deeper with Convolutions [34]"
+      }
+     ]
+    },
+    {
+     "id": "batchnorm-2015",
+     "name": "Batch Normalization",
+     "year": 2015.15,
+     "lod": 3,
+     "one_line": "Ioffe and Szegedy introduce BatchNorm, stabilizing and accelerating deep network training",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1502.03167",
+       "title": "Ioffe & Szegedy, Batch Normalization, arXiv 1502.03167 [38]"
       }
      ]
     },
@@ -3446,6 +4227,19 @@
        "title": "Farley & Clark 1954 [30]"
       }
      ]
+    },
+    {
+     "id": "rochester-hebb-ibm704-1956",
+     "name": "IBM 704 Cell Assemblies",
+     "year": 1956.3,
+     "lod": 4,
+     "one_line": "Nathaniel Rochester's IBM team simulates 512 Hebbian neurons on the IBM 704",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/TIT.1956.1056810",
+       "title": "Rochester et al., Tests on a Cell Assembly Theory, 1956 [32]"
+      }
+     ]
     }
    ]
   },
@@ -3536,6 +4330,32 @@
       {
        "url": "https://doi.org/10.1145/368273.368565",
        "title": "Slagle 1961 [38]"
+      }
+     ]
+    },
+    {
+     "id": "alpha-beta-pruning-1961",
+     "name": "Alpha–Beta Pruning",
+     "year": 1961.8,
+     "lod": 4,
+     "one_line": "McCarthy, Brudno and Edwards formalize alpha–beta minimax game-tree pruning",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning",
+       "title": "Wikipedia: Alpha–beta pruning [14]"
+      }
+     ]
+    },
+    {
+     "id": "dendral-mass-spec-1965",
+     "name": "DENDRAL Initiated",
+     "year": 1965.6,
+     "lod": 3,
+     "one_line": "Feigenbaum, Buchanan and Lederberg build DENDRAL to infer molecular structure from spectra",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Dendral",
+       "title": "Feigenbaum, Buchanan & Lederberg 1965 [17]"
       }
      ]
     },
@@ -3699,6 +4519,19 @@
      ]
     },
     {
+     "id": "tensorflow-2015",
+     "name": "TensorFlow Open-Sourced",
+     "year": 2015.86,
+     "lod": 3,
+     "one_line": "Google open-sources TensorFlow (Nov 2015) under Apache 2.0 for distributed deep learning",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1603.04467",
+       "title": "Abadi et al., TensorFlow, arXiv 1603.04467 [44]"
+      }
+     ]
+    },
+    {
      "id": "openai-2015",
      "name": "OpenAI founded",
      "year": 2015.92,
@@ -3791,6 +4624,19 @@
      ]
     },
     {
+     "id": "rete-algorithm-forgy-1982",
+     "name": "Rete Rule Algorithm",
+     "year": 1982.6,
+     "lod": 4,
+     "one_line": "Charles Forgy publishes the Rete pattern-matching algorithm powering production rule engines",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2882%2990020-0",
+       "title": "Forgy, Rete: A Fast Algorithm for the Many Pattern/Many Object Pattern Match Problem, 1982 [16]"
+      }
+     ]
+    },
+    {
      "id": "cyc-launched-1984",
      "name": "Cyc Project Begins",
      "year": 1984.5,
@@ -3813,6 +4659,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/KL-ONE",
        "title": "Brachman & Schmolze 1985 [52]"
+      }
+     ]
+    },
+    {
+     "id": "clancey-heuristic-classification-1985",
+     "name": "Heuristic Classification",
+     "year": 1985.7,
+     "lod": 4,
+     "one_line": "William Clancey identifies heuristic classification as the shared pattern of expert systems",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0004-3702%2885%2990016-5",
+       "title": "Clancey, Heuristic Classification, 1985 [41]"
       }
      ]
     },
@@ -3879,6 +4738,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/AI_winter",
        "title": "Wikipedia: AI winter [1]"
+      }
+     ]
+    },
+    {
+     "id": "mansfield-amendment-darpa-1974",
+     "name": "Mansfield Amendment Cuts",
+     "year": 1974.6,
+     "lod": 4,
+     "one_line": "DARPA enforces mission-directed milestones, ending undirected academic AI grants",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/AI_winter",
+       "title": "Wikipedia: AI winter (Mansfield Amendment) [1]"
       }
      ]
     },
@@ -4054,6 +4926,19 @@
      ]
     },
     {
+     "id": "mccarthy-situations-fluents-1969",
+     "name": "Situation Calculus",
+     "year": 1969.8,
+     "lod": 4,
+     "one_line": "McCarthy and Hayes introduce the Situation Calculus and formulate the Frame Problem",
+     "sources": [
+      {
+       "url": "http://www-formal.stanford.edu/jmc/mcchay69.pdf",
+       "title": "McCarthy & Hayes 1969 [27]"
+      }
+     ]
+    },
+    {
      "id": "prolog-creation-1972",
      "name": "Prolog Created",
      "year": 1972.4,
@@ -4063,6 +4948,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Prolog",
        "title": "Colmerauer & Kowalski 1972 [31]"
+      }
+     ]
+    },
+    {
+     "id": "hewitt-planner-actors-1973",
+     "name": "Actor Model",
+     "year": 1973.6,
+     "lod": 4,
+     "one_line": "Carl Hewitt introduces the Actor Model of concurrent distributed artificial intelligence",
+     "sources": [
+      {
+       "url": "https://www.ijcai.org/Proceedings/73/Papers/027B.pdf",
+       "title": "Hewitt, Bishop & Steiger, IJCAI 1973 [32]"
       }
      ]
     }
@@ -4104,6 +5002,19 @@
       {
        "url": "https://plato.stanford.edu/entries/leibniz-logic-influence/",
        "title": "SEP: Leibniz's Influence on 19th Century Logic [1]"
+      }
+     ]
+    },
+    {
+     "id": "jacquard-loom-1804",
+     "name": "Jacquard Loom",
+     "year": 1804.5,
+     "lod": 4,
+     "one_line": "Joseph Marie Jacquard's punched-card loom inspires Babbage's programmable store and mill",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Jacquard_machine",
+       "title": "Wikipedia: Jacquard machine [2]"
       }
      ]
     },
@@ -4156,6 +5067,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Principia_Mathematica",
        "title": "Wikipedia: Principia Mathematica [6]"
+      }
+     ]
+    },
+    {
+     "id": "hilbert-programme-1928",
+     "name": "Entscheidungsproblem",
+     "year": 1928.5,
+     "lod": 4,
+     "one_line": "Hilbert and Ackermann pose the Entscheidungsproblem: can an algorithm decide formal validity?",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Entscheidungsproblem",
+       "title": "Wikipedia: Entscheidungsproblem [8]"
       }
      ]
     },
@@ -4278,6 +5202,32 @@
      ]
     },
     {
+     "id": "woods-lunar-atn-1972",
+     "name": "LUNAR ATN Parser",
+     "year": 1972.6,
+     "lod": 4,
+     "one_line": "William Woods builds LUNAR, answering English geology queries on Apollo moon rocks",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Augmented_transition_network",
+       "title": "Woods, The Lunar Sciences Natural Language Information System, 1972 [30]"
+      }
+     ]
+    },
+    {
+     "id": "schank-conceptual-dependency-1972",
+     "name": "Conceptual Dependency",
+     "year": 1972.9,
+     "lod": 4,
+     "one_line": "Roger Schank proposes language-free Conceptual Dependency primitives for meaning",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0010-0285%2872%2990022-9",
+       "title": "Schank 1972 [34]"
+      }
+     ]
+    },
+    {
      "id": "minsky-frames-1974",
      "name": "Frame Theory",
      "year": 1974.2,
@@ -4338,6 +5288,19 @@
    "hint": "ViT · AlphaFold 2 · CLIP",
    "tag": "ViT → AlphaFold 2 → CLIP → Flamingo → Whisper",
    "events": [
+    {
+     "id": "nerf-mildenhall-2020",
+     "name": "NeRF 3D Fields",
+     "year": 2020.22,
+     "lod": 3,
+     "one_line": "Mildenhall et al. (Mar 2020) introduce Neural Radiance Fields (NeRF) for 3D view synthesis",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2003.08934",
+       "title": "Mildenhall et al., NeRF, arXiv 2003.08934 [81]"
+      }
+     ]
+    },
     {
      "id": "ddpm-2020",
      "name": "DDPM",
@@ -4460,6 +5423,19 @@
       {
        "url": "https://arxiv.org/abs/2205.06175",
        "title": "Reed et al., A Generalist Agent, arXiv 2205.06175 [40]"
+      }
+     ]
+    },
+    {
+     "id": "esmfold-lin-2022",
+     "name": "ESM-2 & ESMFold",
+     "year": 2022.55,
+     "lod": 4,
+     "one_line": "Meta AI's ESMFold predicts 600M metagenomic protein structures from single sequences",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1126/science.ade2574",
+       "title": "Lin et al., Evolutionary-scale prediction of atomic-level protein structure, Science 2023 [15]"
       }
      ]
     },
@@ -4631,6 +5607,19 @@
        "title": "Georgetown–IBM Experiment 1954 [28]"
       }
      ]
+    },
+    {
+     "id": "chomsky-three-models-1956",
+     "name": "Chomsky Hierarchy",
+     "year": 1956.7,
+     "lod": 3,
+     "one_line": "Noam Chomsky introduces formal phrase-structure grammars and the Chomsky hierarchy",
+     "sources": [
+      {
+       "url": "https://chomsky.info/1956092/",
+       "title": "Chomsky, Three Models for the Description of Language, 1956 [31]"
+      }
+     ]
     }
    ]
   },
@@ -4773,6 +5762,32 @@
       {
        "url": "https://arxiv.org/abs/1411.4555",
        "title": "Vinyals et al., Show and Tell [98]"
+      }
+     ]
+    },
+    {
+     "id": "adam-optimizer-2014",
+     "name": "Adam Optimizer",
+     "year": 2014.96,
+     "lod": 3,
+     "one_line": "Kingma and Ba introduce Adam adaptive moment estimation for stochastic optimization",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1412.6980",
+       "title": "Kingma & Ba, Adam, arXiv 1412.6980 [37]"
+      }
+     ]
+    },
+    {
+     "id": "bpe-sennrich-2015",
+     "name": "Subword BPE",
+     "year": 2015.66,
+     "lod": 4,
+     "one_line": "Sennrich, Haddow and Birch adapt Byte Pair Encoding for open-vocabulary neural MT",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/1508.07909",
+       "title": "Sennrich, Haddow & Birch, Neural MT of Rare Words with Subword Units, 2015 [32]"
       }
      ]
     },
@@ -5020,8 +6035,8 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/open-weights-movement.yaml",
-   "hint": "LLaMA leak · Llama 2 · DeepSeek",
-   "tag": "LLaMA leak → Llama 2/3 → Mistral → DeepSeek → Qwen",
+   "hint": "LLaMA · Gemma · DeepSeek · Qwen",
+   "tag": "LLaMA leak → Llama 2/3 → Gemma 1–4 → Mistral → DeepSeek → Qwen",
    "events": [
     {
      "id": "llama-leak-2023",
@@ -5060,7 +6075,7 @@
        "title": "Stanford CRFM, Alpaca, 13 Mar 2023 [29]"
       },
       {
-       "url": "https://lmsys.org/blog/2023-03-30-vicuna/",
+       "url": "https://lmsys.org/blog/2023-30-vicuna/",
        "title": "LMSYS, Vicuna, 30 Mar 2023 [30]"
       }
      ]
@@ -5079,6 +6094,32 @@
      ]
     },
     {
+     "id": "qlora-2023",
+     "name": "QLoRA",
+     "year": 2023.39,
+     "lod": 4,
+     "one_line": "Dettmers et al. (May 2023): 4-bit NormalFloat quantization fine-tunes 65B models on one GPU",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2305.14314",
+       "title": "Dettmers et al., QLoRA, arXiv 2305.14314 [30]"
+      }
+     ]
+    },
+    {
+     "id": "falcon-40b-2023",
+     "name": "Falcon 40B & 180B",
+     "year": 2023.41,
+     "lod": 4,
+     "one_line": "TII releases Apache-2.0 Falcon 40B (May 2023) and 180B trained on RefinedWeb",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2311.16867",
+       "title": "Almazrouei et al., The Falcon Series of Open Language Models, arXiv 2311.16867 [38]"
+      }
+     ]
+    },
+    {
      "id": "llama2-2023",
      "name": "Llama 2",
      "year": 2023.55,
@@ -5092,6 +6133,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Llama_%28language_model%29",
        "title": "Wikipedia: Llama (language model) [9]"
+      }
+     ]
+    },
+    {
+     "id": "codellama-2023",
+     "name": "Code Llama",
+     "year": 2023.64,
+     "lod": 4,
+     "one_line": "Meta releases Code Llama (24 Aug 2023): open 7B–34B code models trained on 500B tokens",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2308.12950",
+       "title": "Rozière et al., Code Llama, arXiv 2308.12950 [38]"
       }
      ]
     },
@@ -5118,10 +6172,10 @@
     },
     {
      "id": "mamba-2023",
-     "name": "Mamba",
+     "name": "Mamba SSM",
      "year": 2023.92,
      "lod": 4,
-     "one_line": "Gu & Dao's selective state-space model: the era's main non-Transformer architecture (1 Dec 2023)",
+     "one_line": "Gu & Dao's selective state-space model: linear-time sequence modeling (1 Dec 2023)",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2312.00752",
@@ -5133,8 +6187,8 @@
      "id": "mixtral-2023",
      "name": "Mixtral 8x7B",
      "year": 2023.95,
-     "lod": 4,
-     "one_line": "Mixtral 8x7B (11 Dec 2023): sparse mixture-of-experts returns to the frontier",
+     "lod": 3,
+     "one_line": "Mixtral 8x7B (11 Dec 2023): open sparse mixture-of-experts matches GPT-3.5",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2401.04088",
@@ -5147,11 +6201,24 @@
      ]
     },
     {
-     "id": "gemma-2024",
-     "name": "Gemma",
-     "year": 2024.14,
+     "id": "olmo-ai2-2024",
+     "name": "AI2 OLMo & Dolma",
+     "year": 2024.09,
      "lod": 4,
-     "one_line": "Google's Gemma open-weights siblings of Gemini (21 Feb 2024)",
+     "one_line": "Allen Institute releases OLMo (1 Feb 2024) with open weights, training code, and Dolma corpus",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2402.00838",
+       "title": "Groeneveld et al., OLMo: Accelerating the Science of Language Models, arXiv 2402.00838 [48]"
+      }
+     ]
+    },
+    {
+     "id": "gemma-2024",
+     "name": "Google Gemma",
+     "year": 2024.14,
+     "lod": 3,
+     "one_line": "Google launches Gemma 2B and 7B open-weights models (21 Feb 2024) from Gemini tech",
      "sources": [
       {
        "url": "https://blog.google/technology/developers/gemma-open-models/",
@@ -5165,10 +6232,10 @@
     },
     {
      "id": "llama3-2024",
-     "name": "Llama 3",
+     "name": "Llama 3 & 3.1 405B",
      "year": 2024.3,
      "lod": 3,
-     "one_line": "Llama 3 (18 Apr 2024, ~15 T tokens); 405 B Llama 3.1 reaches GPT-4 class",
+     "one_line": "Llama 3 (18 Apr 2024) on 15T tokens; 405B Llama 3.1 (23 Jul) reaches GPT-4 class",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2407.21783",
@@ -5177,6 +6244,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Llama_%28language_model%29",
        "title": "Wikipedia: Llama (language model) [9]"
+      }
+     ]
+    },
+    {
+     "id": "phi3-2024",
+     "name": "Microsoft Phi-3",
+     "year": 2024.31,
+     "lod": 4,
+     "one_line": "Microsoft releases Phi-3 Mini (23 Apr 2024): 3.8B on-device model trained on synthetic textbooks",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2404.14219",
+       "title": "Abdin et al., Phi-3 Technical Report, arXiv 2404.14219 [85]"
       }
      ]
     },
@@ -5194,11 +6274,24 @@
      ]
     },
     {
+     "id": "gemma2-2024",
+     "name": "Gemma 2",
+     "year": 2024.49,
+     "lod": 4,
+     "one_line": "Google releases Gemma 2 9B and 27B (27 Jun 2024) with logit distillation",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2408.00118",
+       "title": "Gemma Team, Gemma 2: Improving Open Language Models, arXiv 2408.00118 [63]"
+      }
+     ]
+    },
+    {
      "id": "qwen25-2024",
      "name": "Qwen2.5",
      "year": 2024.72,
      "lod": 4,
-     "one_line": "Alibaba's Qwen2.5 (19 Sep 2024) broadens China's open-weights ecosystem",
+     "one_line": "Alibaba's Qwen2.5 (19 Sep 2024) ships 0.5B–72B models on 18 T tokens",
      "sources": [
       {
        "url": "https://qwenlm.github.io/blog/qwen2.5/",
@@ -5207,6 +6300,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Qwen",
        "title": "Wikipedia: Qwen [60]"
+      }
+     ]
+    },
+    {
+     "id": "llama33-2024",
+     "name": "Llama 3.2 & 3.3",
+     "year": 2024.93,
+     "lod": 4,
+     "one_line": "Meta ships multimodal Llama 3.2 (Sep 2024) and 70B Llama 3.3 matching 405B quality",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Llama_%28language_model%29",
+       "title": "Wikipedia: Llama 3.2 and 3.3 [9]"
       }
      ]
     },
@@ -5228,11 +6334,24 @@
      ]
     },
     {
+     "id": "gemma3-2025",
+     "name": "Gemma 3",
+     "year": 2025.19,
+     "lod": 3,
+     "one_line": "Google launches Gemma 3 (12 Mar 2025): single-GPU multimodal open models in 1B–27B sizes",
+     "sources": [
+      {
+       "url": "https://blog.google/technology/developers/gemma-3/",
+       "title": "Google Developers Blog, Introducing Gemma 3, 12 Mar 2025 [63]"
+      }
+     ]
+    },
+    {
      "id": "llama4-2025",
      "name": "Llama 4",
      "year": 2025.26,
-     "lod": 4,
-     "one_line": "Llama 4 Scout / Maverick (5 Apr 2025) is Meta's last open Llama",
+     "lod": 3,
+     "one_line": "Llama 4 Scout & Maverick (5 Apr 2025): native multimodal MoE open-weights release",
      "sources": [
       {
        "url": "https://huggingface.co/api/models?author=meta-llama&search=Llama-4&limit=5",
@@ -5249,7 +6368,7 @@
      "name": "Qwen3",
      "year": 2025.32,
      "lod": 4,
-     "one_line": "Qwen3 family under Apache 2.0 (28 Apr 2025)",
+     "one_line": "Alibaba releases Qwen3 hybrid thinking family under Apache 2.0 (28 Apr 2025)",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/Qwen",
@@ -5262,7 +6381,7 @@
      "name": "Kimi K2",
      "year": 2025.55,
      "lod": 4,
-     "one_line": "Moonshot's 1 T-parameter open MoE (Jul 2025): trillion-parameter open weights from China",
+     "one_line": "Moonshot's 1 T-parameter open MoE (Jul 2025): trillion-parameter open weights",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2507.20534",
@@ -5276,7 +6395,7 @@
     },
     {
      "id": "gpt-oss-2025",
-     "name": "gpt-oss",
+     "name": "gpt-oss-120b",
      "year": 2025.6,
      "lod": 3,
      "one_line": "OpenAI's gpt-oss-120b / 20b under Apache 2.0 (5 Aug 2025): first open weights since GPT-2",
@@ -5291,8 +6410,8 @@
      "id": "gemma4-2026",
      "name": "Gemma 4",
      "year": 2026.25,
-     "lod": 4,
-     "one_line": "Gemma 4 under Apache 2.0 (2 Apr 2026) ranks among the top open models",
+     "lod": 3,
+     "one_line": "Gemma 4 under Apache 2.0 (2 Apr 2026) leads byte-for-byte open model benchmarks",
      "sources": [
       {
        "url": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
@@ -5301,36 +6420,15 @@
      ]
     },
     {
-     "id": "muse-spark-2026",
-     "name": "Muse Spark",
-     "year": 2026.27,
+     "id": "dgem-2026",
+     "name": "dgem (Decision Gemma)",
+     "year": 2026.31,
      "lod": 4,
-     "one_line": "Meta Superintelligence Labs' Muse Spark (8 Apr 2026) is closed: Llama's successor leaves open weights",
+     "one_line": "Google Cloud open-sources dgem: calibrated Gemma model for structured micro-decisions",
      "sources": [
       {
-       "url": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
-       "title": "Meta Newsroom, Introducing Muse Spark, 8 Apr 2026 [118]"
-      },
-      {
-       "url": "https://en.wikipedia.org/wiki/Muse_Spark",
-       "title": "Wikipedia: Muse Spark [118]"
-      }
-     ]
-    },
-    {
-     "id": "qwen38-2026",
-     "name": "Qwen3.8-2.4T",
-     "year": 2026.62,
-     "lod": 3,
-     "one_line": "Qwen3.8-2.4T-A95B (12 Aug 2026): the open frontier is now largely Chinese",
-     "sources": [
-      {
-       "url": "https://github.com/QwenLM/Qwen3.8",
-       "title": "QwenLM/Qwen3.8 GitHub README [120]"
-      },
-      {
-       "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
-       "title": "Hugging Face: Qwen/Qwen3.8-2.4T-A95B [120]"
+       "url": "https://github.com/GoogleCloudPlatform/dgem",
+       "title": "GoogleCloudPlatform/dgem: Decision Gemma (GitHub) [116]"
       }
      ]
     }
@@ -5372,6 +6470,19 @@
       {
        "url": "https://pubmed.ncbi.nlm.nih.gov/6953413/",
        "title": "Hopfield 1982 [3]"
+      }
+     ]
+    },
+    {
+     "id": "kohonen-som-1982",
+     "name": "Kohonen Self-Organizing Maps",
+     "year": 1982.6,
+     "lod": 4,
+     "one_line": "Teuvo Kohonen introduces topology-preserving Self-Organizing Feature Maps (SOM)",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/BF00337288",
+       "title": "Kohonen 1982 [5]"
       }
      ]
     },
@@ -5424,6 +6535,19 @@
       {
        "url": "https://www.complex-systems.com/abstracts/v01_i01_a10/",
        "title": "Sejnowski & Rosenberg 1987 [17]"
+      }
+     ]
+    },
+    {
+     "id": "alvinn-autonomous-van-1989",
+     "name": "ALVINN Autonomous Van",
+     "year": 1989.1,
+     "lod": 3,
+     "one_line": "Dean Pomerleau's 3-layer neural network steers CMU's Navlab van at 55 mph",
+     "sources": [
+      {
+       "url": "https://proceedings.neurips.cc/paper/1988/file/812b4ba287f5ee0bc9d43bbf5bbe87fb-Paper.pdf",
+       "title": "Pomerleau, ALVINN, NIPS 1988 [25]"
       }
      ]
     },
@@ -5546,6 +6670,32 @@
      ]
     },
     {
+     "id": "moravec-paradox-1988",
+     "name": "Moravec's Paradox",
+     "year": 1988.5,
+     "lod": 3,
+     "one_line": "Hans Moravec observes reasoning needs little compute while perception needs billions of ops",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Moravec%27s_paradox",
+       "title": "Moravec, Mind Children, 1988 [46]"
+      }
+     ]
+    },
+    {
+     "id": "brooks-elephants-subsumption-1990",
+     "name": "Elephants Don't Play Chess",
+     "year": 1990.3,
+     "lod": 3,
+     "one_line": "Rodney Brooks champions reactive subsumption robotics without symbolic world models",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1016/0921-8890%2890%2990003-J",
+       "title": "Brooks, Elephants Don't Play Chess, 1990 [47]"
+      }
+     ]
+    },
+    {
      "id": "second-winter-bottom-1993",
      "name": "Second Winter Trough",
      "year": 1993.0,
@@ -5604,8 +6754,21 @@
    "related_facts": [],
    "file": "data/countries/policy-governance-coast.yaml",
    "hint": "Pause letter · Bletchley · EU AI Act",
-   "tag": "Pause letter → EO 14110 → Bletchley → EU AI Act",
+   "tag": "Pause letter → EO 14110 → Bletchley → EU AI Act → Paris Summit",
    "events": [
+    {
+     "id": "nist-ai-rmf-2023",
+     "name": "NIST AI RMF 1.0",
+     "year": 2023.07,
+     "lod": 3,
+     "one_line": "NIST releases the voluntary AI Risk Management Framework 1.0 (26 Jan 2023)",
+     "sources": [
+      {
+       "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+       "title": "NIST AI Risk Management Framework 1.0, Jan 2023 [42]"
+      }
+     ]
+    },
     {
      "id": "getty-stability-2023",
      "name": "Getty v. Stability",
@@ -5688,6 +6851,19 @@
      ]
     },
     {
+     "id": "us-aisi-founded-2024",
+     "name": "US AI Safety Institute",
+     "year": 2024.12,
+     "lod": 4,
+     "one_line": "NIST establishes the US AI Safety Institute (Feb 2024) for frontier model evaluations",
+     "sources": [
+      {
+       "url": "https://www.nist.gov/aisi",
+       "title": "NIST US AI Safety Institute (AISI), Feb 2024 [42]"
+      }
+     ]
+    },
+    {
      "id": "eu-ai-act-2024",
      "name": "EU AI Act",
      "year": 2024.2,
@@ -5701,6 +6877,19 @@
       {
        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
        "title": "Regulation (EU) 2024/1689, EUR-Lex [73]"
+      }
+     ]
+    },
+    {
+     "id": "seoul-safety-summit-2024",
+     "name": "Seoul AI Safety Summit",
+     "year": 2024.39,
+     "lod": 4,
+     "one_line": "16 frontier AI labs commit to safety thresholds at the AI Seoul Summit (21 May 2024)",
+     "sources": [
+      {
+       "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+       "title": "GOV.UK, Frontier AI Safety Commitments, AI Seoul Summit 2024 [18]"
       }
      ]
     },
@@ -5738,8 +6927,8 @@
      "id": "paris-summit-2025",
      "name": "Paris Action Summit",
      "year": 2025.11,
-     "lod": 4,
-     "one_line": "Paris AI Action Summit (10–11 Feb 2025)",
+     "lod": 3,
+     "one_line": "Heads of state convene at Paris AI Action Summit (10–11 Feb 2025)",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/AI_Action_Summit",
@@ -5752,15 +6941,15 @@
      ]
     },
     {
-     "id": "sb53-2026",
-     "name": "SB 53 reversal",
-     "year": 2026.64,
-     "lod": 4,
-     "one_line": "After the swarm incident, OpenAI asks California to strengthen SB 53 (21 Aug 2026)",
+     "id": "california-sb53-2025",
+     "name": "California SB 53 Act",
+     "year": 2025.74,
+     "lod": 3,
+     "one_line": "California enacts SB 53 (Sep 2025): transparency and whistleblower protections for frontier AI",
      "sources": [
       {
-       "url": "https://www.politico.com/news/2026/08/21/openai-calls-for-stronger-ai-laws-in-california-01046512",
-       "title": "Politico, OpenAI calls for stronger AI laws in California, 21 Aug 2026 [122]"
+       "url": "https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence_in_the_United_States",
+       "title": "Wikipedia: California SB 53 Transparency in Frontier AI Act [105]"
       }
      ]
     }
@@ -5855,6 +7044,19 @@
        "title": "Collobert & Weston 2008 [87]"
       }
      ]
+    },
+    {
+     "id": "vincent-dae-2008",
+     "name": "Denoising Autoencoders",
+     "year": 2008.6,
+     "lod": 4,
+     "one_line": "Vincent, Larochelle, Bengio & Manzagol introduce Denoising Autoencoders (ICML 2008)",
+     "sources": [
+      {
+       "url": "https://dl.acm.org/doi/10.1145/1390156.1390294",
+       "title": "Vincent et al., ICML 2008 [5]"
+      }
+     ]
     }
    ]
   },
@@ -5901,15 +7103,28 @@
    "spatial": true,
    "related_facts": [],
    "file": "data/countries/reasoning-test-time-compute.yaml",
-   "hint": "o1 · DeepSeek-R1",
-   "tag": "o1 → DeepSeek-R1 → o3 → IMO gold",
+   "hint": "o1 · DeepSeek-R1 · Gemini Deep Think",
+   "tag": "o1 → DeepSeek-R1 → Gemini 2.5 → o3 → AlphaEvolve → IMO gold",
    "events": [
     {
+     "id": "alphageometry-2024",
+     "name": "AlphaGeometry",
+     "year": 2024.04,
+     "lod": 4,
+     "one_line": "Trinh et al. (Nature, 17 Jan 2024): neuro-symbolic language model + deduction solves Olympiad geometry",
+     "sources": [
+      {
+       "url": "https://www.nature.com/articles/s41586-023-06747-5",
+       "title": "Trinh et al., AlphaGeometry, Nature 625, Jan 2024 [93]"
+      }
+     ]
+    },
+    {
      "id": "grpo-2024",
-     "name": "GRPO",
+     "name": "DeepSeekMath · GRPO",
      "year": 2024.1,
      "lod": 4,
-     "one_line": "DeepSeekMath introduces GRPO (Feb 2024): the RL recipe later used for R1",
+     "one_line": "DeepSeekMath introduces GRPO (Feb 2024): group-relative policy optimization later used for R1",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2402.03300",
@@ -5918,11 +7133,37 @@
      ]
     },
     {
+     "id": "quiet-star-2024",
+     "name": "Quiet-STaR",
+     "year": 2024.21,
+     "lod": 4,
+     "one_line": "Zelikman et al. (Mar 2024) train language models to generate internal rationales before tokens",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2403.09629",
+       "title": "Zelikman et al., Quiet-STaR: Language Models Can Teach Themselves to Think Before Speaking, arXiv 2403.09629 [14]"
+      }
+     ]
+    },
+    {
+     "id": "arc-prize-2024",
+     "name": "ARC Prize Launched",
+     "year": 2024.44,
+     "lod": 4,
+     "one_line": "François Chollet and Mike Knoop launch the $1M ARC Prize for novel fluid reasoning (Jun 2024)",
+     "sources": [
+      {
+       "url": "https://arcprize.org/",
+       "title": "ARC Prize Foundation (arcprize.org), Jun 2024 [121]"
+      }
+     ]
+    },
+    {
      "id": "imo-silver-2024",
-     "name": "IMO silver",
+     "name": "AlphaProof IMO silver",
      "year": 2024.56,
      "lod": 4,
-     "one_line": "AlphaProof + AlphaGeometry 2 reach IMO silver-medal standard (25 Jul 2024)",
+     "one_line": "AlphaProof + AlphaGeometry 2 reach IMO silver-medal standard in Lean (25 Jul 2024)",
      "sources": [
       {
        "url": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
@@ -5945,10 +7186,10 @@
     },
     {
      "id": "o1-2024",
-     "name": "o1",
+     "name": "o1 & o3 preview",
      "year": 2024.93,
      "lod": 4,
-     "one_line": "Full o1 (5 Dec 2024); o3 announced 20 Dec",
+     "one_line": "Full o1 ships (5 Dec 2024); o3 announced 20 Dec at 87.5 % on ARC-AGI",
      "sources": [
       {
        "url": "https://en.wikipedia.org/wiki/OpenAI_o1",
@@ -5965,7 +7206,7 @@
      "name": "DeepSeek-R1",
      "year": 2025.05,
      "lod": 3,
-     "one_line": "MIT-licensed DeepSeek-R1 (20 Jan 2025) matches o1; tops the US App Store 27 Jan",
+     "one_line": "MIT-licensed DeepSeek-R1 (20 Jan 2025) matches o1 via pure RL; tops App Store 27 Jan",
      "sources": [
       {
        "url": "https://arxiv.org/abs/2501.12948",
@@ -5974,6 +7215,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/DeepSeek",
        "title": "Wikipedia: DeepSeek [13]"
+      }
+     ]
+    },
+    {
+     "id": "s1-test-time-scaling-2025",
+     "name": "s1 Test-Time Scaling",
+     "year": 2025.09,
+     "lod": 4,
+     "one_line": "Muennighoff et al. (Feb 2025) elicit test-time reasoning on 1,000 curated examples with budget forcing",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2501.19393",
+       "title": "Muennighoff et al., s1: Simple test-time scaling, arXiv 2501.19393 [14]"
       }
      ]
     },
@@ -5996,10 +7250,10 @@
     },
     {
      "id": "gemini25-2025",
-     "name": "Gemini 2.5",
+     "name": "Gemini 2.5 Pro",
      "year": 2025.23,
-     "lod": 4,
-     "one_line": "Gemini 2.5 \"thinking\" model (25 Mar 2025): Google regains the reasoning frontier",
+     "lod": 3,
+     "one_line": "Gemini 2.5 Pro \"thinking\" model (25 Mar 2025): Google takes the reasoning lead",
      "sources": [
       {
        "url": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/",
@@ -6021,8 +7275,21 @@
      ]
     },
     {
+     "id": "alphaevolve-2025",
+     "name": "AlphaEvolve",
+     "year": 2025.37,
+     "lod": 3,
+     "one_line": "Google DeepMind's AlphaEvolve (14 May 2025) discovers new matrix and scheduling algorithms",
+     "sources": [
+      {
+       "url": "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+       "title": "Google DeepMind, AlphaEvolve, 14 May 2025 [108]"
+      }
+     ]
+    },
+    {
      "id": "imo-gold-2025",
-     "name": "IMO gold",
+     "name": "IMO Gold Medal",
      "year": 2025.55,
      "lod": 3,
      "one_line": "Gemini Deep Think and an OpenAI model reach IMO gold-medal standard (Jul 2025)",
@@ -6030,23 +7297,6 @@
       {
        "url": "https://deepmind.google/discover/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/",
        "title": "Google DeepMind, Gemini Deep Think achieves IMO gold, 21 Jul 2025 [93]"
-      }
-     ]
-    },
-    {
-     "id": "navier-stokes-2026",
-     "name": "Navier–Stokes claim",
-     "year": 2026.69,
-     "lod": 3,
-     "one_line": "OpenAI claims Lean-verified Navier–Stokes by ~10,000 agents (8 Sep 2026); contested by Fields Medallists",
-     "sources": [
-      {
-       "url": "https://openai.com/index/navier-stokes-solution/",
-       "title": "OpenAI, On the Navier–Stokes Millennium Prize Problem, 8 Sep 2026 [123]"
-      },
-      {
-       "url": "https://terrytao.wordpress.com/2026/09/11/a-severe-misalignment-of-ai-in-mathematics/",
-       "title": "Tao et al., A Severe Misalignment of AI in Mathematics, 11 Sep 2026 [123]"
       }
      ]
     }
@@ -6105,6 +7355,19 @@
      ]
     },
     {
+     "id": "stanford-arm-1969",
+     "name": "The Stanford Arm",
+     "year": 1969.2,
+     "lod": 4,
+     "one_line": "Victor Scheinman designs the six-axis electric Stanford Arm manipulator",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Stanford_arm",
+       "title": "Wikipedia: Stanford arm [28]"
+      }
+     ]
+    },
+    {
      "id": "perceptrons-critique-1969",
      "name": "Perceptrons Book",
      "year": 1969.5,
@@ -6140,6 +7403,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Shakey_the_robot",
        "title": "Nilsson 1984 [21]"
+      }
+     ]
+    },
+    {
+     "id": "wabot-1-humanoid-1973",
+     "name": "WABOT-1 Humanoid",
+     "year": 1973.2,
+     "lod": 4,
+     "one_line": "Waseda University unveils WABOT-1, the first full-scale anthropomorphic biped robot",
+     "sources": [
+      {
+       "url": "https://www.humanoid.waseda.ac.jp/booklet/kato_2.html",
+       "title": "Waseda Humanoid Robotics Institute: WABOT-1, 1973 [36]"
       }
      ]
     },
@@ -6639,6 +7915,19 @@
      ]
     },
     {
+     "id": "deep-blue-kasparov-1997",
+     "name": "Deep Blue vs. Kasparov",
+     "year": 1997.36,
+     "lod": 3,
+     "one_line": "IBM's Deep Blue defeats World Chess Champion Garry Kasparov 3.5–2.5",
+     "sources": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Deep_Blue_versus_Garry_Kasparov",
+       "title": "Campbell, Hoane & Hsu, Deep Blue, 1997 [37]"
+      }
+     ]
+    },
+    {
      "id": "collins-parser-1997",
      "name": "Collins Parser",
      "year": 1997.5,
@@ -6687,6 +7976,32 @@
       {
        "url": "https://aclanthology.org/P02-1040/",
        "title": "Papineni et al. 2002 [87]"
+      }
+     ]
+    },
+    {
+     "id": "bengio-neural-lm-2003",
+     "name": "Neural Language Model",
+     "year": 2003.2,
+     "lod": 3,
+     "one_line": "Yoshua Bengio et al. publish A Neural Probabilistic Language Model with word embeddings",
+     "sources": [
+      {
+       "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+       "title": "Bengio et al., JMLR 2003 [32]"
+      }
+     ]
+    },
+    {
+     "id": "moses-smt-toolkit-2007",
+     "name": "Moses SMT Toolkit",
+     "year": 2007.5,
+     "lod": 4,
+     "one_line": "Philipp Koehn et al. release Moses, standardizing open-source phrase-based SMT",
+     "sources": [
+      {
+       "url": "https://aclanthology.org/P07-2045/",
+       "title": "Koehn et al., Moses, ACL 2007 [29]"
       }
      ]
     },
@@ -6797,6 +8112,32 @@
      ]
     },
     {
+     "id": "sift-lowe-1999",
+     "name": "SIFT Keypoints",
+     "year": 1999.7,
+     "lod": 3,
+     "one_line": "David Lowe introduces SIFT scale-invariant features for computer vision",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/ICCV.1999.790410",
+       "title": "Lowe, Object Recognition from Local Scale-Invariant Features, ICCV 1999 [40]"
+      }
+     ]
+    },
+    {
+     "id": "hog-dalal-triggs-2005",
+     "name": "HOG Pedestrian Detector",
+     "year": 2005.5,
+     "lod": 4,
+     "one_line": "Dalal and Triggs combine Histograms of Oriented Gradients with linear SVMs",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1109/CVPR.2005.177",
+       "title": "Dalal & Triggs, CVPR 2005 [41]"
+      }
+     ]
+    },
+    {
      "id": "stanley-darpa-2005",
      "name": "Stanley Wins DARPA",
      "year": 2005.77,
@@ -6806,6 +8147,19 @@
       {
        "url": "https://robots.stanford.edu/papers/thrun.stanley05.pdf",
        "title": "Thrun et al. 2006 [39]"
+      }
+     ]
+    },
+    {
+     "id": "uct-mcts-2006",
+     "name": "UCT Monte Carlo Tree Search",
+     "year": 2006.4,
+     "lod": 3,
+     "one_line": "Kocsis and Szepesvári formulate UCT bandit tree search, transforming computer Go",
+     "sources": [
+      {
+       "url": "https://doi.org/10.1007/11871842_29",
+       "title": "Kocsis & Szepesvári, Bandit Based Monte-Carlo Planning, ECML 2006 [44]"
       }
      ]
     }
@@ -6857,6 +8211,19 @@
    "hint": "Megatron-LM · A100 · DeepSpeed",
    "tag": "Megatron-LM + ZeRO/DeepSpeed → A100 → MT-NLG → PaLM",
    "events": [
+    {
+     "id": "jax-bradbury-2018",
+     "name": "Google JAX",
+     "year": 2018.9,
+     "lod": 4,
+     "one_line": "Bradbury et al. release JAX: composable Autograd and XLA compilation for accelerators",
+     "sources": [
+      {
+       "url": "https://github.com/jax-ml/jax",
+       "title": "Bradbury et al., JAX: composable transformations of Python+NumPy programs, 2018 [57]"
+      }
+     ]
+    },
     {
      "id": "megatron-lm-2019",
      "name": "Megatron-LM",
@@ -6914,6 +8281,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Ampere_%28microarchitecture%29",
        "title": "Wikipedia: Ampere (microarchitecture) [61]"
+      }
+     ]
+    },
+    {
+     "id": "lora-hu-2021",
+     "name": "LoRA Adaptation",
+     "year": 2021.46,
+     "lod": 3,
+     "one_line": "Hu et al. (Jun 2021) introduce Low-Rank Adaptation (LoRA) for efficient LLM fine-tuning",
+     "sources": [
+      {
+       "url": "https://arxiv.org/abs/2106.09685",
+       "title": "Hu et al., LoRA: Low-Rank Adaptation of Large Language Models, arXiv 2106.09685 [58]"
       }
      ]
     },
@@ -7020,6 +8400,19 @@
       {
        "url": "https://en.wikipedia.org/wiki/Q-learning",
        "title": "Wikipedia: Q-learning [41]"
+      }
+     ]
+    },
+    {
+     "id": "dyna-architecture-1990",
+     "name": "Sutton Dyna Architecture",
+     "year": 1990.5,
+     "lod": 4,
+     "one_line": "Richard Sutton's Dyna integrates model-free reinforcement learning with world-model planning",
+     "sources": [
+      {
+       "url": "https://dl.acm.org/doi/10.1145/122344.122377",
+       "title": "Sutton, Integrated Architectures for Learning, Planning, and Reacting (Dyna), 1990 [63]"
       }
      ]
     },
@@ -7164,6 +8557,19 @@
       {
        "url": "https://doi.org/10.1147/rd.33.0210",
        "title": "Samuel 1952–1959 [27]"
+      }
+     ]
+    },
+    {
+     "id": "selfridge-dinneen-pattern-1955",
+     "name": "Selfridge Pattern Recognition",
+     "year": 1955.2,
+     "lod": 4,
+     "one_line": "Oliver Selfridge and Gerald Dinneen pioneer visual feature extraction and edge operations",
+     "sources": [
+      {
+       "url": "https://dl.acm.org/doi/10.1145/1455292.1455310",
+       "title": "Selfridge, Pattern Recognition and Modern Computers, 1955 [40]"
       }
      ]
     },

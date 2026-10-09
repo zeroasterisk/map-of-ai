@@ -45,7 +45,7 @@ def load(p: Path):
         "sub_band": bands(d["sub_band"]) if d.get("sub_band") else None,
         "spatial": d.get("spatial", True) is not False,
         "related_facts": [{"id": f.get("id"), "note": f.get("note")} for f in (d.get("related_facts") or []) if isinstance(f, dict)],
-        "file": str(p.as_posix()),
+        "file": f"data/{p.parent.name}/{p.name}",
     }
 
 

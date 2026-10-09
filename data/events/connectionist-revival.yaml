@@ -13,6 +13,14 @@ countries:
         sources:
           - url: "https://pubmed.ncbi.nlm.nih.gov/6953413/"
             title: "Hopfield 1982 [3]"
+      - id: kohonen-som-1982
+        name: Kohonen Self-Organizing Maps
+        year: 1982.6
+        lod: 4
+        one_line: "Teuvo Kohonen introduces topology-preserving Self-Organizing Feature Maps (SOM)"
+        sources:
+          - url: "https://doi.org/10.1007/BF00337288"
+            title: "Kohonen 1982 [5]"
       - id: boltzmann-machine-1985
         name: Boltzmann Machine
         year: 1985.4
@@ -45,6 +53,14 @@ countries:
         sources:
           - url: "https://www.complex-systems.com/abstracts/v01_i01_a10/"
             title: "Sejnowski & Rosenberg 1987 [17]"
+      - id: alvinn-autonomous-van-1989
+        name: ALVINN Autonomous Van
+        year: 1989.1
+        lod: 3
+        one_line: "Dean Pomerleau's 3-layer neural network steers CMU's Navlab van at 55 mph"
+        sources:
+          - url: "https://proceedings.neurips.cc/paper/1988/file/812b4ba287f5ee0bc9d43bbf5bbe87fb-Paper.pdf"
+            title: "Pomerleau, ALVINN, NIPS 1988 [25]"
       - id: universal-approximation-1989
         name: Universal Approximation
         year: 1989.4
@@ -89,6 +105,14 @@ countries:
         sources:
           - url: "https://en.wikipedia.org/wiki/Q-learning"
             title: "Wikipedia: Q-learning [41]"
+      - id: dyna-architecture-1990
+        name: Sutton Dyna Architecture
+        year: 1990.5
+        lod: 4
+        one_line: "Richard Sutton's Dyna integrates model-free reinforcement learning with world-model planning"
+        sources:
+          - url: "https://dl.acm.org/doi/10.1145/122344.122377"
+            title: "Sutton, Integrated Architectures for Learning, Planning, and Reacting (Dyna), 1990 [63]"
       - id: td-gammon-1992
         name: TD-Gammon
         year: 1992.6
@@ -109,6 +133,14 @@ countries:
     hint: "LeNet-5 · MNIST · LSTM"
     tag: "Neocognitron → Zip Codes → LSTM → LeNet-5"
     events:
+      - id: waibel-tdnn-speech-1989
+        name: Time-Delay Neural Net
+        year: 1989.2
+        lod: 4
+        one_line: "Alex Waibel et al. introduce Time-Delay Neural Networks (TDNN) for speech recognition"
+        sources:
+          - url: "https://doi.org/10.1109/29.21701"
+            title: "Waibel et al., Phoneme Recognition Using Time-Delay Neural Networks, 1989 [18]"
       - id: zip-code-convnet-1989
         name: Bell Labs ConvNet
         year: 1989.7
@@ -125,6 +157,14 @@ countries:
         sources:
           - url: "https://people.idsia.ch/~juergen/hochreiter1991thesis.html"
             title: "Hochreiter 1991 [46]"
+      - id: helmholtz-wake-sleep-1995
+        name: Helmholtz Machine
+        year: 1995.4
+        lod: 4
+        one_line: "Hinton, Dayan, Frey and Neal introduce the Helmholtz Machine and Wake-Sleep algorithm"
+        sources:
+          - url: "https://doi.org/10.1126/science.7777868"
+            title: "Dayan, Hinton, Neal & Zemel, The Helmholtz Machine, Science 1995 [52]"
       - id: lstm-1997
         name: LSTM
         year: 1997.85
