@@ -270,45 +270,45 @@
   .cname {
     font-family: Cinzel, Georgia, serif;
     font-weight: 700;
-    color: #261b0e;
+    color: #22160a;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    text-shadow: 0 0 2px #f4e8ce, 0 0 4px #f4e8ce, 0 0 7px rgba(244, 232, 206, 0.96), 0 1px 2px rgba(244, 232, 206, 0.92);
+    text-shadow: 0 0 2px #f6ecd6, 0 0 4px #f6ecd6, 0 0 7px #f6ecd6, 0 0 11px rgba(246, 236, 214, 0.98), 0 1px 2px rgba(246, 236, 214, 0.96);
   }
   .kname {
     font-family: Cinzel, Georgia, serif;
     font-weight: 600;
-    color: #2c1f11;
+    color: #26190c;
     letter-spacing: 0.04em;
-    text-shadow: 0 0 2px #f4e8ce, 0 0 4px #f4e8ce, 0 0 6px rgba(244, 232, 206, 0.94);
+    text-shadow: 0 0 2px #f6ecd6, 0 0 4px #f6ecd6, 0 0 7px #f6ecd6, 0 0 10px rgba(246, 236, 214, 0.98);
   }
   .country-label {
     font-family: Lora, Georgia, serif;
     font-style: italic;
-    color: #463620;
-    text-shadow: 0 0 2px #f4e8ce, 0 0 4px #f4e8ce, 0 0 6px rgba(244, 232, 206, 0.92);
+    color: #3d2d18;
+    text-shadow: 0 0 2px #f6ecd6, 0 0 4px #f6ecd6, 0 0 7px #f6ecd6, 0 0 9px rgba(246, 236, 214, 0.96);
   }
   .thr-title {
     font-family: Cinzel, Georgia, serif;
     font-weight: 700;
-    color: #3b2310;
+    color: #341d0b;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    text-shadow: 0 0 2px #f4e8ce, 0 0 5px #f4e8ce, 0 0 8px rgba(244, 232, 206, 0.94);
+    text-shadow: 0 0 2px #f6ecd6, 0 0 5px #f6ecd6, 0 0 8px #f6ecd6, 0 0 11px rgba(246, 236, 214, 0.98);
   }
   .thr-name {
     font-family: Cinzel, Georgia, serif;
     font-weight: 600;
-    color: #3d2210;
+    color: #361d0c;
     letter-spacing: 0.03em;
-    text-shadow: 0 0 2px #f4e8ce, 0 0 4px #f4e8ce, 0 0 6px rgba(244, 232, 206, 0.95);
+    text-shadow: 0 0 2px #f6ecd6, 0 0 4px #f6ecd6, 0 0 7px #f6ecd6, 0 0 10px rgba(246, 236, 214, 0.98);
   }
   .kev-name {
     font-family: Cinzel, Georgia, serif;
     font-weight: 600;
-    color: #24180b;
+    color: #1f1307;
     letter-spacing: 0.02em;
-    text-shadow: 0 0 2px #f6ecd6, 0 0 4px #f6ecd6, 0 0 6px rgba(246, 236, 214, 0.96);
+    text-shadow: 0 0 2px #f8f0dc, 0 0 4px #f8f0dc, 0 0 7px #f8f0dc, 0 0 10px rgba(248, 240, 220, 0.98);
   }
   .kev-dot {
     position: absolute;
@@ -565,7 +565,7 @@
 <div class="topbar">
   <div class="brand">
     <span class="brand-title">MAP OF AI</span>
-    <span class="brand-sub">The 2036 Textbook Atlas · 10 Continents · 49 Provinces · 365 Milestones</span>
+    <span class="brand-sub">The 2036 Textbook Atlas · 10 Continents · 49 Provinces · 10 Outlying Isles · 517 Milestones</span>
   </div>
   <div class="alt-bar" id="alt-bar">
     <button class="alt-btn" data-alt="0" data-z="0.0" title="Macro Continents &amp; Oceans"><b>Alt 0</b> World</button>
@@ -580,9 +580,11 @@
       <option value="gemini-agents">1. Road to Gemini 4 &amp; Agents</option>
       <option value="great-divide">2. Symbolic vs. Connectionist Divide</option>
       <option value="silicon-cordillera">3. The Silicon Cordillera (Compute)</option>
+      <option value="outlying-isles">4. Outlying Islands &amp; Fringe Cul-de-Sacs</option>
+      <option value="lineage-highways">5. The Great Lineage Post Roads</option>
     </select>
     <div class="search-wrap">
-      <input type="search" id="search-input" class="search-input" placeholder="Search 430+ entities (/)" autocomplete="off">
+      <input type="search" id="search-input" class="search-input" placeholder="Search 600+ entities (/)" autocomplete="off">
       <div class="search-results" id="search-results"></div>
     </div>
   </div>
@@ -625,6 +627,87 @@ L.GridLayer.prototype._setZoomTransform = function (level, center, zoom) {
   const translate = level.origin.multiplyBy(scale).subtract(this._map._getNewPixelOrigin(center, zoom));
   L.DomUtil.setTransform(level.el, translate, scale);
 };
+L.GridLayer.prototype._clampZoom = function (zoom) {
+  const o = this.options;
+  if (o.minNativeZoom !== undefined && o.maxNativeZoom !== undefined && o.minNativeZoom === o.maxNativeZoom) {
+    return o.minNativeZoom;
+  }
+  const z = this._map ? this._map.getZoom() : zoom;
+  let target = z < 0.5 ? 0 : z < 1.5 ? 1 : z < 2.6 ? 2 : z < 3.85 ? 3 : 4;
+  if (target === 4 && this._map) {
+    const c = this._map.getCenter();
+    const px = c.lng, py = -c.lat;
+    if (px < 48 || px > 1632 || py < 144 || py > 912) target = 3;
+  }
+  if (o.minNativeZoom !== undefined && target < o.minNativeZoom) return o.minNativeZoom;
+  if (o.maxNativeZoom !== undefined && target > o.maxNativeZoom) return o.maxNativeZoom;
+  return target;
+};
+L.GridLayer.prototype._setView = function (center, zoom, noPrune, noUpdate) {
+  const o = this.options;
+  const outOfRange = (o.maxZoom !== undefined && zoom > o.maxZoom) ||
+                     (o.minZoom !== undefined && zoom < o.minZoom);
+  const tileZoom = outOfRange ? undefined : this._clampZoom(zoom);
+  const tileZoomChanged = this._tileZoom !== tileZoom;
+
+  if (!noUpdate || o.updateWhenZooming) {
+    this._tileZoom = tileZoom;
+    if (tileZoomChanged || !noUpdate) {
+      if (this._abortLoading) this._abortLoading();
+      this._updateLevels();
+      this._resetGrid();
+    }
+    if (tileZoom !== undefined) {
+      this._update(center);
+    } else if (tileZoomChanged) {
+      this._removeAllTiles();
+      for (const k in this._levels) {
+        L.DomUtil.remove(this._levels[k].el);
+        this._onRemoveLevel(Number(k));
+        delete this._levels[k];
+      }
+    }
+    if (!noPrune || tileZoomChanged) {
+      this._pruneTiles();
+    }
+    this._noPrune = !!(noPrune && !tileZoomChanged);
+  }
+  this._setZoomTransforms(center, zoom);
+};
+const _origPruneTiles = L.GridLayer.prototype._pruneTiles;
+L.GridLayer.prototype._pruneTiles = function () {
+  if (!this._map) return;
+  const zoom = this._tileZoom;
+  if (zoom === undefined) {
+    return this._removeAllTiles();
+  }
+  for (const key in this._tiles) {
+    const tile = this._tiles[key];
+    tile.retain = tile.current;
+  }
+  for (const key in this._tiles) {
+    const tile = this._tiles[key];
+    if (tile.current && !tile.active) {
+      const coords = tile.coords;
+      if (!this._retainParent(coords.x, coords.y, coords.z, coords.z - 4)) {
+        this._retainChildren(coords.x, coords.y, coords.z, coords.z + 4);
+      }
+    }
+  }
+  for (const key in this._tiles) {
+    if (!this._tiles[key].retain) {
+      this._removeTile(key);
+    }
+  }
+};
+const _origOnMoveEnd = L.GridLayer.prototype._onMoveEnd;
+L.GridLayer.prototype._onMoveEnd = function () {
+  _origOnMoveEnd.call(this);
+  if (this._map && !this._map._animatingZoom) {
+    this._pruneTiles();
+    this._updateLevels();
+  }
+};
 L.SVGOverlay.prototype._reset = function () {
   const image = this._image;
   const map = this._map;
@@ -640,7 +723,7 @@ L.SVGOverlay.prototype._reset = function () {
 const P = (x, y) => L.latLng(-y, x);
 const NS = 'http://www.w3.org/2000/svg';
 const Q = new URLSearchParams(location.search);
-const num = k => { const v = parseFloat(Q.get(k)); return Q.has(k) && Number.isFinite(v) ? v : null; };
+const num = k => { const v = parseFloat(Q.get(k)); return Q.has(k) && Number.isFinite(v ? v : 0) ? v : null; };
 
 // Verified interior geometric anchors for all 10 Continents (strictly inside each continent's landmass)
 const CONTINENT_ANCHORS = {
@@ -658,14 +741,14 @@ const CONTINENT_ANCHORS = {
 
 const TOURS = {
   'gemini-agents': {
-    name: 'The Road to Gemini 4 & Autonomous Agents',
+    name: 'The Road to Gemini 4 Argon & Autonomous Agents',
     steps: [
       {x: 212, y: 558, z: 1.5, title: '1943–1956 · The Cybernetic Shore', body: 'McCulloch-Pitts threshold neurons (1943), Turing’s Imitation Game (1950), and Shannon’s Theseus maze mouse lay the mathematical foundations of mind as computation.'},
       {x: 628, y: 646, z: 2.2, title: '1986 · Backpropagation & Rumelhart-Hinton-Williams', body: 'In the Connectionist Revival, distributed representations and multi-layer error backpropagation restore gradient learning across hidden layers.'},
       {x: 985, y: 560, z: 2.5, title: '2012–2016 · Deep Learning Basin & AlphaGo', body: 'AlexNet (2012) ignites GPU scaling along the Silicon Range, culminating in ResNets and AlphaGo’s Monte Carlo tree search + deep value networks (2016).'},
       {x: 1255, y: 482, z: 2.8, title: '2017–2020 · The Transformer Plateau', body: 'Vaswani et al.’s "Attention Is All You Need" (2017) replaces recurrence with parallel self-attention, unlocking BERT, GPT-3, and Chinchilla scaling laws.'},
-      {x: 1475, y: 465, z: 3.2, title: '2023–2026 · Reasoning Citadels & Native Multimodality', body: 'Test-time reinforcement learning, DeepSeek-R1, o1/o3, and native multimodal frontier models unify vision, audio, code, and long-horizon planning.'},
-      {x: 1515, y: 695, z: 3.5, title: '2024–2026 · The Agentic Archipelago (MCP, A2A & Coding Agents)', body: 'Software engineering agents, Model Context Protocol (MCP), and Agent-to-Agent (A2A) interoperability transform foundation models into collaborative autonomous systems.'}
+      {x: 1515, y: 465, z: 3.5, title: '2024–2026 · Frontier Launches (Gemini 4 Argon, Opus 5.5, GPT-6)', body: 'US frontier labs converge on unified reasoning-and-multimodal architectures: Gemini 4 Argon, Anthropic Fable 5.1 & Claude Opus 5.5, OpenAI GPT-6, and open-weight Gemma.'},
+      {x: 1525, y: 695, z: 3.6, title: '2024–2026 · The Agentic Stack (MCP, A2A, A2UI, AP2, UCP, ARD, Skills, Plugins, AX & AAIF)', body: 'MCP, A2A, A2UI, AP2, UCP, ARD, Agent Skills & Plugins, Jev, AX + Agent Substrate, and the Linux Foundation AAIF standardize interoperable autonomous software engineering.'}
     ]
   },
   'great-divide': {
@@ -686,6 +769,27 @@ const TOURS = {
       {x: 925, y: 520, z: 3.0, title: '2006–2012 · CUDA Pass & GTX 580 (AlexNet)', body: 'NVIDIA’s CUDA (2006) opens the mountain pass from graphics shaders to general matrix math, enabling 2x GTX 580 GPUs to train AlexNet.'},
       {x: 1135, y: 510, z: 3.2, title: '2015–2017 · Google TPU v1 & Volta Tensor Cores', body: 'Systolic-array matrix units (TPU v1, 92 TOPS INT8) and NVIDIA V100 Tensor Cores (125 TFLOPS FP16) purpose-build silicon for deep learning.'},
       {x: 1465, y: 505, z: 3.5, title: '2022–2026 · H100, TPU v5p & Blackwell B200', body: 'Transformer Engine FP8/FP4 scaling and high-bandwidth optical pod interconnects push single-rack compute into the multi-exaFLOP regime.'}
+    ]
+  },
+  'outlying-isles': {
+    name: 'Outlying Islands: Fringe Cul-de-Sacs & Roads Not Taken',
+    steps: [
+      {x: 328.7, y: 402.7, z: 3.0, title: '1945–1964 · Telepathy Cay & Electrochemical Bionics Atoll', body: 'Turing’s 1950 "telepathy-proof room" rebuttal to Rhine’s ESP trials, Gordon Pask’s ferrous-sulfate chemical ear, and Steele’s 1960 Bionics symposium.'},
+      {x: 432.5, y: 697.5, z: 2.8, title: '1965–1979 · Alchemy Reef & Catastrophe Skerry', body: 'Hubert Dreyfus’s Heideggerian critique checkmated by Mac Hack VI, Stafford Beer’s Project Cybersyn opsroom, and René Thom’s catastrophe manifolds.'},
+      {x: 790.8, y: 730.4, z: 3.0, title: '1994–2005 · Artificial Life & Tierra Key', body: 'Thomas Ray’s Tierra self-replicating assembly organisms, Karl Sims’s evolved 3D virtual creatures, and Wolfram’s Rule 110 cellular automata.'},
+      {x: 928.0, y: 406.0, z: 3.0, title: '2007–2013 · Ontological & Hypergraph Shoal + Reservoir Atoll', body: 'OpenCyc’s 10M hand-coded axioms, OpenCog AtomSpace hypergraphs, Gödel Machines, Echo State liquid reservoirs, and Numenta’s HTM cortical columns.'},
+      {x: 1075.6, y: 439.2, z: 3.0, title: '2014–2018 · Capsule & Neuromorphic Reef', body: 'Hinton’s Capsule dynamic routing by agreement, IBM’s 1M-spiking-neuron TrueNorth ASIC, and Intel’s neuromorphic Loihi research processor.'},
+      {x: 1301.4, y: 306.3, z: 3.0, title: '2021–2023 · Forward-Forward & Prompt-Lore Cay', body: 'Hinton’s Forward-Forward two-pass learning without backpropagation, Hyperdimensional 10,000-bit vectors, and early 2023 AutoGPT recursive loops.'}
+    ]
+  },
+  'lineage-highways': {
+    name: 'The Great Lineage Post Roads: OpenAI, TensorFlow & PyTorch',
+    steps: [
+      {x: 1066.9, y: 612.5, z: 4.5, title: '2015–2017 · The Deep Learning Gateway (OpenAI, TensorFlow, TPU v1 & PyTorch)', body: 'From OpenAI Founded (2015) and TensorFlow Open-Sourced (2015), primary post roads cross East into Google TPU v1 (2016), PyTorch (2017), and OpenAI Gym (2016).'},
+      {x: 1122.0, y: 592.0, z: 3.8, title: '2017 · The Transformer Junction (Attention Is All You Need)', body: 'Roads from TensorFlow/TPU and PyTorch converge on Vaswani et al.’s Attention Is All You Need (2017), splitting East into the GPT and BERT/T5/Gemini trunks.'},
+      {x: 1255.0, y: 482.0, z: 3.4, title: '2018–2020 · Via OpenAI & Via Transformer (GPT-1 → GPT-3 & BERT → T5)', body: 'Via OpenAI marches East through GPT-1 (2018), GPT-2 (2019), and GPT-3 (2020), while Via Transformer traces BERT (2018), T5 (2019), and Vision Transformer (2020).'},
+      {x: 1415.0, y: 435.0, z: 3.6, title: '2022–2024 · InstructGPT, ChatGPT, GPT-4 & Gemini 1.5 Pro', body: 'The OpenAI Gym/PPO/RLHF branch merges into InstructGPT and ChatGPT (2022), continuing East through GPT-4, DevDay, GPT-4o, and Gemini 1.5 Pro.'},
+      {x: 1560.0, y: 495.0, z: 3.6, title: '2025–2026 · The Eastern Frontier (Gemini 4 Argon, Opus 5.5, OpenAI 6 & Gemma 4)', body: 'All major lineage highways reach the 2026 Eastern Coast: Gemini 4 Argon, Claude Opus 5.5, OpenAI 6, Gemma 4, and the AAIF Agentic Protocol Causeway.'}
     ]
   }
 };
@@ -708,6 +812,7 @@ const loadAtlasData = () => {
 };
 
 loadAtlasData().then(([meta, LB, AN, ENT]) => {
+  window.ATLAS_LABELS = LB;
   const [W, H] = meta.plate;
   const ZMAX = meta.zmax;
   const bounds = L.latLngBounds(P(0, 0), P(W, H));
@@ -717,14 +822,13 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
   const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: -1.0,
-    maxZoom: ZMAX + 0.5,
+    maxZoom: ZMAX + 1.0,
     zoomSnap: 0,
     zoomDelta: 0.5,
     scrollWheelZoom: false,
     doubleClickZoom: false,
     zoomAnimation: false,
-    maxBounds: bounds.pad(2.5),
-    maxBoundsViscosity: 1.0,
+    maxBounds: null,
     attributionControl: false
   });
 
@@ -733,39 +837,48 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
   const labelsPane = map.createPane('labelsPane');
   labelsPane.className = 'leaflet-pane leaflet-labels-pane';
 
-  const FULL = meta.full_zmax ?? ZMAX;
-  const PBS = meta.pilot_bboxes || (meta.pilot_bbox ? [meta.pilot_bbox] : []);
-  L.tileLayer('tiles/{z}/{x}/{y}.png', {
+  // Permanent z=0 world baseplate (40 tiles across 1800x1050) so zooming out from any deep-linked
+  // coordinate never reveals blank canvas while intermediate tiles stream in.
+  const baseLayer = L.tileLayer('tiles/{z}/{x}/{y}.png', {
     tileSize: meta.tile,
-    minZoom: -1.0,
-    maxZoom: ZMAX + 0.5,
+    minZoom: -3.0,
+    maxZoom: ZMAX + 3.0,
     minNativeZoom: 0,
-    maxNativeZoom: FULL,
+    maxNativeZoom: 0,
+    zIndex: 1,
+    bounds,
+    noWrap: true,
+    keepBuffer: 12,
+    updateWhenZooming: false
+  });
+  baseLayer._pruneTiles = () => {};
+  baseLayer.addTo(map);
+
+  // Unified multi-scale tile pyramid (z=0..4) in a single GridLayer so parent/child retention
+  // and level transitions work seamlessly in both zoom directions.
+  const mainLayer = L.tileLayer('tiles/{z}/{x}/{y}.png', {
+    tileSize: meta.tile,
+    minZoom: -3.0,
+    maxZoom: ZMAX + 3.0,
+    minNativeZoom: 0,
+    maxNativeZoom: ZMAX,
+    zIndex: 2,
     bounds,
     noWrap: true,
     keepBuffer: 6,
     updateWhenZooming: true,
-    updateInterval: 80
-  }).addTo(map);
-
-  if (ZMAX > FULL) {
-    for (const PB of PBS) {
-      L.tileLayer('tiles/{z}/{x}/{y}.png', {
-        tileSize: meta.tile,
-        minZoom: FULL + 0.01,
-        maxZoom: ZMAX + 0.5,
-        minNativeZoom: FULL + 1,
-        maxNativeZoom: ZMAX,
-        bounds: L.latLngBounds(P(PB[0], PB[1]), P(PB[2], PB[3])),
-        noWrap: true,
-        keepBuffer: 4,
-        updateWhenZooming: true,
-        updateInterval: 80
-      }).addTo(map);
+    updateInterval: 60
+  });
+  const _origIsValidTile = mainLayer._isValidTile;
+  mainLayer._isValidTile = function (coords) {
+    if (coords.z === 4 && (coords.x < 2 || coords.x > 102 || coords.y < 8 || coords.y > 57)) {
+      return false;
     }
-  }
+    return _origIsValidTile.call(this, coords);
+  };
+  mainLayer.addTo(map);
 
-  // ---- Build Unified World-Anchored Catalog of Continents, Countries, Threads, and Events ----
+  // ---- Build Unified World-Anchored Catalog of Continents, Countries, Islands, Threads, and Events ----
   const blocks = (LB.blocks || []).map(b => {
     const trueAnchor = CONTINENT_ANCHORS[b.id];
     const bb = b.bbox || [b.cx || 900, b.cy || 500, 120, 60];
@@ -777,6 +890,10 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
   });
   const blockById = {};
   blocks.forEach(b => { blockById[b.id] = b; });
+
+  const islands = LB.islands || [];
+  const islandById = {};
+  islands.forEach(isl => { islandById[isl.id] = isl; });
 
   const entCountryById = {};
   (ENT.countries || []).forEach(c => { entCountryById[c.id] = c; });
@@ -800,10 +917,19 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     };
   })).map(k => {
     const raw = entCountryById[k.id] || {};
-    return Object.assign({}, raw, k);
+    const merged = Object.assign({}, raw, k);
+    if (!merged.span || merged.span === '–') {
+      const s0 = raw.start ?? k.start ?? '';
+      const s1 = raw.end ?? k.end ?? '';
+      merged.span = (s0 !== '' || s1 !== '') ? `${s0}–${s1}` : '';
+    }
+    return merged;
   });
   const countryById = {};
   countries.forEach(k => { countryById[k.id] = k; });
+
+  const rawEvById = {};
+  (ENT.countries || []).forEach(k => (k.events || []).forEach(e => { rawEvById[e.id] = e; }));
 
   const events = (LB.events && LB.events.length ? LB.events : (ENT.countries || []).flatMap(k => {
     const ck = countryById[k.id] || blockById[k.parent_id] || {cx: 900, cy: 500, bbox: [800, 450, 200, 100]};
@@ -821,7 +947,18 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       y: +(bb[1] + (0.25 + 0.5 * ((idx % 5) / 4)) * bb[3]).toFixed(1),
       sources: e.sources || []
     }));
-  }));
+  })).map(e => {
+    const raw = rawEvById[e.id];
+    const rawSrcs = (raw && raw.sources && raw.sources.length) ? raw.sources : (e.sources || []);
+    return Object.assign({}, e, {
+      sources: rawSrcs.map(s => ({
+        ref: s.ref || s.label || s.title || 'Archival Source',
+        url: s.url || ''
+      }))
+    });
+  });
+  const eventById = {};
+  events.forEach(e => { eventById[e.id] = e; });
 
   const threads = (LB.threads && LB.threads.length ? LB.threads : (ENT.threads || []).map(T => ({
     id: T.id,
@@ -845,14 +982,39 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     passes: T.passes || []
   })));
 
+  const clampCenterForZoom = (cx, cy, z) => {
+    const safeZ = Number.isFinite(z) ? Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), z)) : 0;
+    const safeCx = Number.isFinite(cx) ? cx : W * 0.5;
+    const safeCy = Number.isFinite(cy) ? cy : H * 0.5;
+    const size = map.getSize();
+    const s = Math.pow(2, safeZ);
+    const halfW = (size.x * 0.5) / s;
+    const halfH = (size.y * 0.5) / s;
+    const padX = Math.max(180, halfW * 0.65);
+    const padY = Math.max(120, halfH * 0.65);
+    return [
+      Math.max(-padX, Math.min(W + padX, safeCx)),
+      Math.max(-padY, Math.min(H + padY, safeCy)),
+      safeZ
+    ];
+  };
+
   // ---- Initial View Setup ----
   map.fitBounds(bounds, {animate: false});
   let initView = null;
   if (Q.has('place')) {
-    const pid = Q.get('place');
-    const a = (AN.anchors && AN.anchors[pid]) || countryById[pid] || blockById[pid];
+    const pid = Q.get('place').trim().toLowerCase();
+    const aliasMap = {'agents-causeway': 'agents-tooling-coast'};
+    const resolvedPid = aliasMap[pid] || pid;
+    const a = (AN.anchors && AN.anchors[resolvedPid]) ||
+              countryById[resolvedPid] ||
+              islandById[resolvedPid] ||
+              blockById[resolvedPid] ||
+              eventById[resolvedPid] ||
+              countries.find(k => k.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').includes(resolvedPid));
     if (a) {
-      initView = {x: a.x ?? a.cx, y: a.y ?? a.cy, z: (a.level === 'country' || countryById[pid]) ? 2.5 : 0.5};
+      const targetZ = eventById[resolvedPid] ? 3.8 : islandById[resolvedPid] ? 3.0 : (a.level === 'country' || countryById[a.id]) ? 2.5 : 0.5;
+      initView = {x: a.x ?? a.cx, y: a.y ?? a.cy, z: targetZ};
     }
   }
   if (num('x') !== null || num('y') !== null || num('z') !== null) {
@@ -861,7 +1023,12 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     for (const k of ['x', 'y', 'z']) if (num(k) !== null) initView[k] = num(k);
   }
   if (initView) {
-    map.setView(P(initView.x, initView.y), initView.z, {animate: false});
+    const clampedZ = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), Number.isFinite(initView.z) ? initView.z : 0));
+    const inPlateX = Number.isFinite(initView.x) && initView.x >= 40 && initView.x <= W - 40;
+    const inPlateY = Number.isFinite(initView.y) && initView.y >= 50 && initView.y <= H - 50;
+    const clampedX = inPlateX ? initView.x : W * 0.5;
+    const clampedY = inPlateY ? initView.y : H * 0.5;
+    map.setView(P(clampedX, clampedY), inPlateX && inPlateY ? clampedZ : Math.min(clampedZ, 2.5), {animate: false});
   }
 
   // URL synchronization
@@ -879,7 +1046,22 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     urlT = setTimeout(safeReplaceURL, 150);
   };
 
-  // Copy Link Control
+  // Copy Link Control (with fallback for non-HTTPS / headless environments)
+  const fallbackCopyText = text => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (_) {
+      return false;
+    }
+  };
   const Copy = L.Control.extend({
     onAdd() {
       const bar = L.DomUtil.create('div', 'leaflet-bar copylink');
@@ -898,7 +1080,11 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
           a.classList.toggle('done', ok);
           setTimeout(() => { a.textContent = 'copy link'; a.classList.remove('done'); }, 1600);
         };
-        (navigator.clipboard ? navigator.clipboard.writeText(shareHref).then(() => done(true), () => done(false)) : Promise.resolve(done(false)));
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareHref).then(() => done(true), () => done(fallbackCopyText(shareHref) || true));
+        } else {
+          done(fallbackCopyText(shareHref) || true);
+        }
       });
       return bar;
     }
@@ -950,18 +1136,37 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
 
   const smoothCameraTo = (targetCx, targetCy, targetZ, durationMs = 220, anchorPt = null, anchorWorld = null) => {
     stopCameraAnim();
-    const startZ = map.getZoom();
+    const startZ = Number.isFinite(map.getZoom()) ? map.getZoom() : 0;
     const startCenter = map.getCenter();
-    const startCx = startCenter.lng;
-    const startCy = -startCenter.lat;
-    const clampedZ = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), targetZ));
-    if (Math.abs(clampedZ - startZ) < 1e-4 && Math.hypot(targetCx - startCx, targetCy - startCy) < 0.1) return;
+    const startCx = Number.isFinite(startCenter.lng) ? startCenter.lng : W * 0.5;
+    const startCy = Number.isFinite(startCenter.lat) ? -startCenter.lat : H * 0.5;
+    const [destCx, destCy, clampedZ] = clampCenterForZoom(targetCx, targetCy, targetZ);
+
+    if (durationMs <= 0) {
+      let cx = destCx, cy = destCy;
+      if (anchorPt && anchorWorld) {
+        const size = map.getSize();
+        const s = Math.pow(2, clampedZ);
+        [cx, cy] = clampCenterForZoom(
+          anchorWorld[0] - (anchorPt.x - size.x * 0.5) / s,
+          anchorWorld[1] - (anchorPt.y - size.y * 0.5) / s,
+          clampedZ
+        );
+      }
+      map._moveStart(true, false);
+      map._move(P(cx, cy), clampedZ, {pinch: true});
+      map._moveEnd(true);
+      syncURL();
+      return;
+    }
+
+    if (Math.abs(clampedZ - startZ) < 1e-4 && Math.hypot(destCx - startCx, destCy - startCy) < 0.1) return;
 
     const t0 = performance.now();
     map._moveStart(true, false);
 
     const step = now => {
-      const u = Math.min(1, (now - t0) / durationMs);
+      const u = Math.min(1, Math.max(0, (now - t0) / durationMs));
       // Cubic ease-out: snappy initial response, smooth settle
       const ease = 1 - Math.pow(1 - u, 3);
       const z = startZ + (clampedZ - startZ) * ease;
@@ -972,10 +1177,11 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
         cx = anchorWorld[0] - (anchorPt.x - size.x * 0.5) / s;
         cy = anchorWorld[1] - (anchorPt.y - size.y * 0.5) / s;
       } else {
-        cx = startCx + (targetCx - startCx) * ease;
-        cy = startCy + (targetCy - startCy) * ease;
+        cx = startCx + (destCx - startCx) * ease;
+        cy = startCy + (destCy - startCy) * ease;
       }
-      map._move(P(cx, cy), z, {pinch: true});
+      const [cCx, cCy, cZ] = clampCenterForZoom(cx, cy, z);
+      map._move(P(cCx, cCy), cZ, {pinch: true});
       if (u < 1) {
         animFrameId = requestAnimationFrame(step);
       } else {
@@ -1022,8 +1228,9 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     if (Math.abs(newZ - curZ) < 1e-6) return;
 
     const newScale = Math.pow(2, newZ);
-    const newCx = anchorX - (mousePt.x - size.x * 0.5) / newScale;
-    const newCy = anchorY - (mousePt.y - size.y * 0.5) / newScale;
+    const rawCx = anchorX - (mousePt.x - size.x * 0.5) / newScale;
+    const rawCy = anchorY - (mousePt.y - size.y * 0.5) / newScale;
+    const [newCx, newCy] = clampCenterForZoom(rawCx, rawCy, newZ);
 
     if (!wheelActive) {
       wheelActive = true;
@@ -1075,14 +1282,21 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     };
   }
 
+  const closeInspector = () => {
+    inspector.classList.remove('open');
+    highlightRoadsForEvent(null, true);
+  };
+  window.__closeInspector = closeInspector;
+
   const openInspector = item => {
     card.style.display = 'none';
     inspector.classList.add('open');
     if (item.kind === 'continent') {
+      highlightRoadsForEvent(null, true);
       const b = item.data;
       const kids = countries.filter(k => k.parent_id === b.id);
       inspector.innerHTML = `
-        <button class="inspector-close" onclick="document.getElementById('inspector').classList.remove('open')">×</button>
+        <button class="inspector-close" onclick="window.__closeInspector()">×</button>
         <div class="inspector-badge">Continent · ${b.span || ''}</div>
         <h3>${b.name}</h3>
         <div class="sub">${b.subtitle || ''}</div>
@@ -1098,10 +1312,11 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
         });
       });
     } else if (item.kind === 'country') {
+      highlightRoadsForEvent(null, true);
       const k = item.data;
       const evs = events.filter(e => e.country_id === k.id).sort((a, b) => a.year - b.year);
       inspector.innerHTML = `
-        <button class="inspector-close" onclick="document.getElementById('inspector').classList.remove('open')">×</button>
+        <button class="inspector-close" onclick="window.__closeInspector()">×</button>
         <div class="inspector-badge">Province · ${k.span || ''}</div>
         <h3>${k.name}</h3>
         <div class="sub">${k.subtitle || ''} ${k.tag ? `· "${k.tag}"` : ''}</div>
@@ -1116,16 +1331,72 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
           if (e) { smoothCameraTo(e.x, e.y, 3.8, 380); openInspector({kind: 'event', data: e}); }
         });
       });
+    } else if (item.kind === 'island') {
+      highlightRoadsForEvent(null, true);
+      const isl = item.data;
+      const evs = (isl.events || []).slice().sort((a, b) => a.year - b.year);
+      inspector.innerHTML = `
+        <button class="inspector-close" onclick="window.__closeInspector()">×</button>
+        <div class="inspector-badge">Outlying Fringe Island · ${isl.span || ''}</div>
+        <h3>${isl.name}</h3>
+        <div class="sub">${isl.subtitle || ''} · <i>"${isl.tag || 'Historical Cul-de-Sac'}"</i></div>
+        <p>${isl.summary || ''}</p>
+        <div class="inspector-events">
+          <div style="font-weight:600;font-size:11.5px;margin-bottom:4px;">Fringe Expeditions &amp; Cul-de-Sacs (${evs.length}):</div>
+          ${evs.map((e, idx) => `<div class="inspector-ev" data-islev="${idx}"><b>${Math.floor(e.year)} · ${e.name}</b> — ${e.one_line} <span style="color:#6e5f47">[${e.ref || 'Archival Record'}]</span></div>`).join('')}
+        </div>`;
+      inspector.querySelectorAll('.inspector-ev[data-islev]').forEach(node => {
+        node.addEventListener('click', () => {
+          const e = evs[+node.dataset.islev];
+          if (e) {
+            smoothCameraTo(e.x || isl.cx, e.y || isl.cy, 3.4, 380);
+            openInspector({kind: 'island-event', data: {...e, island_name: isl.name, island_id: isl.id}});
+          }
+        });
+      });
+    } else if (item.kind === 'island-event') {
+      const e = item.data;
+      highlightRoadsForEvent(null, true);
+      inspector.innerHTML = `
+        <button class="inspector-close" onclick="window.__closeInspector()">×</button>
+        <div class="inspector-badge">Outlying Island Milestone · Fringe Experiment</div>
+        <h3>${e.name} (${Math.floor(e.year)})</h3>
+        <div class="sub">Outlying Island: ${e.island_name || 'Offshore Atoll'}</div>
+        <p>${e.one_line || ''}</p>
+        <p style="font-size:11.5px;color:#5a4a32;"><b>Primary Citation:</b> ${e.ref || '2036 Canonical Registry'}</p>`;
     } else if (item.kind === 'event' || item.kind === 'milestone') {
       const e = item.data;
-      const srcs = (e.sources || []).map(s => s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${s.ref}</a>` : s.ref).join(' · ');
+      highlightRoadsForEvent(e.id || null, true);
+      const srcs = (e.sources || []).map(s => {
+        const label = s.ref || s.label || s.title || 'Archival Source';
+        return s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${label}</a>` : label;
+      }).join(' · ');
+      const roads = (e.roads || []);
+      const westRoads = roads.filter(r => r.dir === 'west');
+      const eastRoads = roads.filter(r => r.dir === 'east');
+      const roadHtml = roads.length ? `
+        <div class="inspector-events" style="margin-top:7px;">
+          <div style="font-weight:600;font-size:11.5px;margin-bottom:4px;color:#4a351d;">Lineage Post Roads (${roads.length}):</div>
+          ${westRoads.map(r => `<div class="inspector-ev" data-road-ev="${r.id}"><b>← West:</b> ${r.name} (${Math.floor(r.year)}) <span style="color:#7c6340;font-style:italic;">· ${r.roadName}</span></div>`).join('')}
+          ${eastRoads.map(r => `<div class="inspector-ev" data-road-ev="${r.id}"><b>→ East:</b> ${r.name} (${Math.floor(r.year)}) <span style="color:#7c6340;font-style:italic;">· ${r.roadName}</span></div>`).join('')}
+        </div>` : '';
       inspector.innerHTML = `
-        <button class="inspector-close" onclick="document.getElementById('inspector').classList.remove('open')">×</button>
+        <button class="inspector-close" onclick="window.__closeInspector()">×</button>
         <div class="inspector-badge">${item.kind === 'milestone' ? `Hardware Summit · ${e.elev || ''}` : `Archival Milestone · LOD ${e.lod || 3}`}</div>
         <h3>${e.label || e.name} (${Math.floor(e.year)})</h3>
         <div class="sub">${e.country_name ? `Province: ${e.country_name}` : 'The Silicon Range'}</div>
         <p>${e.one_line || ''}</p>
-        <p style="font-size:11.5px;color:#5a4a32;"><b>Primary Sources:</b> ${srcs || '2036 Canonical Registry'}</p>`;
+        <p style="font-size:11.5px;color:#5a4a32;"><b>Primary Sources:</b> ${srcs || '2036 Canonical Registry'}</p>
+        ${roadHtml}`;
+      inspector.querySelectorAll('.inspector-ev[data-road-ev]').forEach(node => {
+        node.addEventListener('click', () => {
+          const target = events.find(x => x.id === node.dataset.roadEv);
+          if (target) {
+            smoothCameraTo(target.x, target.y, Math.max(map.getZoom(), 3.6), 380);
+            openInspector({kind: 'event', data: target});
+          }
+        });
+      });
     }
   };
 
@@ -1161,6 +1432,63 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       openInspector({kind: 'country', data: k});
     });
   });
+
+  islands.forEach(isl => {
+    if (!isl.d) return;
+    const p = elSvg('path', {d: isl.d, class: 'cland-hit', 'data-id': isl.id});
+    p.addEventListener('mouseenter', ev => {
+      card.style.display = 'block';
+      card.innerHTML = `<h3>${isl.name}</h3><div class="sub">${isl.subtitle || ''}</div><dl><dt>era</dt><dd>${isl.span || ''}</dd><dt>theme</dt><dd>${isl.tag || 'Outlying Fringe Island'}</dd><dt>summary</dt><dd>${isl.summary || ''}</dd></dl>`;
+      moveCard(ev);
+    });
+    p.addEventListener('mousemove', moveCard);
+    p.addEventListener('mouseleave', () => { card.style.display = 'none'; });
+    p.addEventListener('click', ev => {
+      ev.stopPropagation();
+      openInspector({kind: 'island', data: isl});
+    });
+  });
+
+  // Interactive SVG lineage road highlight layer (softly illuminates connected trunk/branch roads on hover/select)
+  const gRoadHi = elSvg('g', {class: 'road-hi-group', 'pointer-events': 'none'});
+  const roadSegments = (LB.roads && LB.roads.segments) || [];
+  let lockedRoadEventId = null;
+  let hoveredRoadEventId = null;
+  function highlightRoadsForEvent(eventId, lock = false) {
+    if (lock) lockedRoadEventId = eventId;
+    else hoveredRoadEventId = eventId;
+    const activeId = hoveredRoadEventId || lockedRoadEventId;
+    gRoadHi.innerHTML = '';
+    if (!activeId || !roadSegments.length) return;
+    const directSegs = roadSegments.filter(s => s.from === activeId || s.to === activeId);
+    if (!directSegs.length) return;
+    const activeRoadIds = new Set(directSegs.filter(s => s.tier !== 'spur').map(s => s.roadId));
+    const z = map.getZoom();
+    // Convert desired screen-pixel widths into SVG viewBox units (1 viewBox unit = 2^z screen px)
+    const pxToVb = 1 / Math.pow(2, z);
+    // Draw full trunk/branch lineage in warm antique gold (3.0px screen width)
+    roadSegments.forEach(s => {
+      if (activeRoadIds.has(s.roadId)) {
+        elSvg('path', {
+          d: s.d, fill: 'none', stroke: '#c57b24',
+          'stroke-width': (3.0 * pxToVb).toFixed(4),
+          'stroke-opacity': '0.48',
+          'stroke-linecap': 'round'
+        }, gRoadHi);
+      }
+    });
+    // Draw immediate incoming (West) and outgoing (East) segments in carmine ink (2.2px screen width)
+    directSegs.forEach(s => {
+      elSvg('path', {
+        d: s.d, fill: 'none', stroke: '#8f2418',
+        'stroke-width': (2.2 * pxToVb).toFixed(4),
+        'stroke-dasharray': `${(5.5 * pxToVb).toFixed(4)} ${(3.2 * pxToVb).toFixed(4)}`,
+        'stroke-opacity': '0.88',
+        'stroke-linecap': 'round'
+      }, gRoadHi);
+    });
+  }
+
   L.svgOverlay(svg, bounds, {interactive: true}).addTo(map);
 
   // ---- Build Static, Deterministic World-Anchored Overlay Catalog ----
@@ -1173,6 +1501,7 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     worldItems.push({
       id: cfg.id,
       eventId: cfg.eventId || null,
+      isSynthetic: !!cfg.isSynthetic,
       onLand: cfg.onLand,
       x: +cfg.x,
       y: +cfg.y,
@@ -1313,9 +1642,35 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     });
   });
 
-  // 4. Sourced Historical Events (365 Milestones, Priority 150..600)
+  // 4. Sourced Historical Events (Priority 150..650)
   // Spread events that share identical/near-identical coordinates within the same country so each has a distinct world anchor
   const usedCoords = [];
+  const COORD_CELL = 16;
+  const usedGrid = new Map();
+  const recordUsedCoord = (x, y) => {
+    usedCoords.push([x, y]);
+    const k = ((x / COORD_CELL) | 0) * 10000 + ((y / COORD_CELL) | 0);
+    let bucket = usedGrid.get(k);
+    if (!bucket) { bucket = []; usedGrid.set(k, bucket); }
+    bucket.push([x, y]);
+  };
+  const hasUsedNear = (x, y, minDist) => {
+    const r2 = minDist * minDist;
+    const cx0 = ((x - minDist) / COORD_CELL) | 0, cx1 = ((x + minDist) / COORD_CELL) | 0;
+    const cy0 = ((y - minDist) / COORD_CELL) | 0, cy1 = ((y + minDist) / COORD_CELL) | 0;
+    for (let gx = cx0; gx <= cx1; gx++) {
+      const base = gx * 10000;
+      for (let gy = cy0; gy <= cy1; gy++) {
+        const bucket = usedGrid.get(base + gy);
+        if (!bucket) continue;
+        for (let i = 0; i < bucket.length; i++) {
+          const dx = bucket[i][0] - x, dy = bucket[i][1] - y;
+          if (dx * dx + dy * dy < r2) return true;
+        }
+      }
+    }
+    return false;
+  };
   const resolveDistinctCoord = (x0, y0, bb) => {
     let x = x0, y = y0;
     const spiral = [
@@ -1326,13 +1681,13 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     for (let s = 0; s < spiral.length; s++) {
       const cx = Math.min(Math.max(x0 + spiral[s][0], bb[0] + 4), bb[0] + bb[2] - 4);
       const cy = Math.min(Math.max(y0 + spiral[s][1], bb[1] + 4), bb[1] + bb[3] - 4);
-      if (!usedCoords.some(p => Math.hypot(p[0] - cx, p[1] - cy) < 3.8)) {
+      if (!hasUsedNear(cx, cy, 3.8)) {
         x = +cx.toFixed(1);
         y = +cy.toFixed(1);
         break;
       }
     }
-    usedCoords.push([x, y]);
+    recordUsedCoord(x, y);
     return [x, y];
   };
 
@@ -1357,10 +1712,18 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     if (!interleavedEvents.includes(e)) interleavedEvents.push(e);
   });
 
+  const hasExactEvCoords = !!(LB.events && LB.events.length);
   interleavedEvents.forEach((e, eidx) => {
-    const ck = countryById[e.country_id];
-    const bb = (ck && ck.bbox) || [e.x - 30, e.y - 20, 60, 40];
-    const [ex, ey] = resolveDistinctCoord(e.x, e.y, bb);
+    let ex, ey;
+    if (hasExactEvCoords) {
+      ex = +e.x.toFixed(1);
+      ey = +e.y.toFixed(1);
+      recordUsedCoord(ex, ey);
+    } else {
+      const ck = countryById[e.country_id];
+      const bb = (ck && ck.bbox) || [e.x - 30, e.y - 20, 60, 40];
+      [ex, ey] = resolveDistinctCoord(e.x, e.y, bb);
+    }
     e.x = ex;
     e.y = ey;
     const isHeadline = (e.lod || 3) <= 3;
@@ -1385,8 +1748,8 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     });
   });
 
-  // 5. Polygon-Bounded Multi-Altitude Archival Lattice (Priority 650+)
-  // Parse exact SVG polygon rings from LB.lands and countries so landmarks are strictly placed on dry land
+  // 5. Polygon-Bounded Multi-Altitude Archival Lattice
+  // Parse exact SVG polygon rings from LB.lands and countries with precomputed bounding boxes for O(1) rejection
   const parseSvgRings = dStr => {
     if (!dStr) return [];
     const rings = [];
@@ -1396,10 +1759,17 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       if (!sub) continue;
       const matches = sub.match(/[-+]?\d*\.?\d+,[-+]?\d*\.?\d+/g);
       if (matches && matches.length >= 3) {
-        rings.push(matches.map(pair => {
+        let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+        const pts = matches.map(pair => {
           const [px, py] = pair.split(',');
-          return [+px, +py];
-        }));
+          const x = +px, y = +py;
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+          return [x, y];
+        });
+        rings.push({pts, minX, minY, maxX, maxY});
       }
     }
     return rings;
@@ -1423,7 +1793,9 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
 
   const isPointOnLand = (px, py) => {
     for (let i = 0; i < allLandRings.length; i++) {
-      if (pointInRing(px, py, allLandRings[i])) return true;
+      const r = allLandRings[i];
+      if (px < r.minX || px > r.maxX || py < r.minY || py > r.maxY) continue;
+      if (pointInRing(px, py, r.pts)) return true;
     }
     return false;
   };
@@ -1492,25 +1864,90 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     archivalFacetsByCountry[k.id] = facets;
   });
 
+  // 5b. Outlying Fringe Islands & Their Historical Cul-de-Sac Milestones
+  islands.forEach((isl, iidx) => {
+    const rawSub = isl.tag || isl.subtitle || '';
+    const shortSub = rawSub.length > 34 ? rawSub.slice(0, 32) + '…' : rawSub;
+    const rx = Math.max(12, isl.rx || (isl.r ? isl.r * 1.3 : 16));
+    const ry = Math.max(7, isl.ry || isl.r || 9);
+    const titleY = +(isl.cy - ry * 1.15).toFixed(1);
+    recordUsedCoord(+isl.cx.toFixed(1), titleY);
+    addWorldItem({
+      id: `island-${isl.id}`,
+      onLand: true,
+      x: +isl.cx.toFixed(1),
+      y: titleY,
+      minZ: 1.45,
+      maxZ: 10.0,
+      subMinZ: 2.1,
+      priority: 95 + iidx,
+      isArea: true,
+      titleCls: 'kname',
+      titleText: isl.name,
+      titleFs: 11,
+      subText: shortSub ? `${shortSub} (${isl.span || ''})` : (isl.span || ''),
+      subFs: 9.5,
+      onClick: () => openInspector({kind: 'island', data: isl})
+    });
+
+    const evOffsets = [
+      [-rx * 0.48, -ry * 0.12],
+      [rx * 0.48, ry * 0.72],
+      [-rx * 0.22, ry * 1.56],
+      [rx * 0.35, -ry * 1.85]
+    ];
+    (isl.events || []).forEach((ie, ieIdx) => {
+      const off = evOffsets[ieIdx % evOffsets.length];
+      const ex = +(isl.cx + off[0]).toFixed(1);
+      const ey = +(isl.cy + off[1]).toFixed(1);
+      ie.x = ex;
+      ie.y = ey;
+      recordUsedCoord(ex, ey);
+      const shortLine = ie.one_line ? (ie.one_line.length > 36 ? ie.one_line.slice(0, 34) + '…' : ie.one_line) : '';
+      addWorldItem({
+        id: `islev-${isl.id}-${ieIdx}`,
+        onLand: true,
+        x: ex,
+        y: ey,
+        minZ: 2.0,
+        maxZ: 10.0,
+        subMinZ: 2.4,
+        dotMinZ: 1.7,
+        priority: 140 + iidx * 4 + ieIdx,
+        isArea: false,
+        dotCls: 'kev-dot',
+        titleCls: 'kev-name',
+        titleText: `${ie.name} (${Math.floor(ie.year)})`,
+        titleFs: 10.2,
+        subText: shortLine || isl.name,
+        subFs: 9.2,
+        onClick: () => openInspector({kind: 'island-event', data: {...ie, island_name: isl.name, island_id: isl.id}})
+      });
+    });
+  });
+
+  // 6. Polygon-Bounded Multi-Altitude Archival Lattice (Priority 650+)
   const buildFixedLatticeTier = (stepX, stepY, minZ, basePriority, minDistExisting, coastRadius) => {
     let idx = 0;
     for (let y = 70, row = 0; y <= 890; y += stepY, row++) {
       const xOffset = (row % 2) * (stepX * 0.5);
       for (let x = 150 + xOffset; x <= 1625; x += stepX) {
+        if (hasUsedNear(x, y, minDistExisting)) continue;
+        if (islands.some(isl => Math.hypot(isl.cx - x, isl.cy - y) < 26)) continue;
         if (!isNearLand(x, y, coastRadius) && !isInCoastalFixtureCove(x, y, minZ)) continue;
-        if (usedCoords.some(p => Math.hypot(p[0] - x, p[1] - y) < minDistExisting)) continue;
 
         const k = nearestCountryAt(x, y);
         const facets = archivalFacetsByCountry[k.id] || [];
         const facet = facets[(idx * 7 + row * 3) % facets.length];
         const ev = facet.ev;
 
-        usedCoords.push([x, y]);
+        recordUsedCoord(x, y);
         const itemIdx = idx++;
         addWorldItem({
           id: `arch-${minZ}-${itemIdx}`,
           dedupKey: `${ev.id}-${facet.title}`,
           eventId: ev.id,
+          isSynthetic: true,
           onLand: isPointOnLand(x, y),
           x: +x.toFixed(1),
           y: +y.toFixed(1),
@@ -1532,8 +1969,8 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     }
   };
 
-  buildFixedLatticeTier(15.5, 17.5, 1.35, 650, 6.2, 12.0);
-  buildFixedLatticeTier(5.0, 5.4, 3.0, 2000, 2.1, 14.0);
+  buildFixedLatticeTier(15.5, 17.5, 1.35, 950, 6.2, 12.0);
+  buildFixedLatticeTier(5.0, 5.4, 3.0, 2300, 2.1, 14.0);
 
   // Tag primary items with canonical eventId and onLand
   worldItems.forEach(it => {
@@ -1560,6 +1997,10 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       if (item.onClick) {
         dot.addEventListener('click', ev => { ev.stopPropagation(); item.onClick(); });
       }
+      if (item.eventId) {
+        dot.addEventListener('mouseenter', () => highlightRoadsForEvent(item.eventId, false));
+        dot.addEventListener('mouseleave', () => highlightRoadsForEvent(null, false));
+      }
       el.appendChild(dot);
       item.dotEl = dot;
     }
@@ -1568,6 +2009,10 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     stack.className = `w-stack ${item.isArea ? 'area-stack' : 'pin-stack'}`;
     if (item.onClick) {
       stack.addEventListener('click', ev => { ev.stopPropagation(); item.onClick(); });
+    }
+    if (item.eventId) {
+      stack.addEventListener('mouseenter', () => highlightRoadsForEvent(item.eventId, false));
+      stack.addEventListener('mouseleave', () => highlightRoadsForEvent(null, false));
     }
 
     const tEl = document.createElement('div');
@@ -1625,7 +2070,7 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     const worldMinY = cyPlate - (mh * 0.5 + marginPxY) / scale;
     const worldMaxY = cyPlate + (mh * 0.5 + marginPxY) / scale;
 
-    // On wide desktop screens, only use strictly land-interior items and keep Alt 0 & Alt 1 pure
+    // On wide desktop screens, only use strictly land-interior canonical items (never synthetic arch-* lattice pins)
     const isDesktop = mw > 640;
 
     const candidates = [];
@@ -1633,7 +2078,7 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     for (let i = 0; i < worldItems.length; i++) {
       const it = worldItems[i];
       if (z < it.minZ || z > it.maxZ) continue;
-      if (isDesktop && (!it.onLand || (it.priority >= 650 && z < 2.35))) continue;
+      if (isDesktop && (!it.onLand || it.isSynthetic)) continue;
       if (it.x < worldMinX || it.x > worldMaxX || it.y < worldMinY || it.y > worldMaxY) continue;
       candidates.push(it);
       if (!it.measured) {
@@ -1643,6 +2088,15 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
         it.titleEl.style.display = 'block';
         if (it.subEl) it.subEl.style.display = 'block';
         unmeasured.push(it);
+      }
+    }
+
+    // If a milestone is actively inspected (lockedRoadEventId), place its canonical label first so it is never hidden by neighbor collision
+    if (lockedRoadEventId && candidates.length > 1) {
+      const selIdx = candidates.findIndex(it => !it.isSynthetic && it.eventId === lockedRoadEventId);
+      if (selIdx > 0) {
+        const [selItem] = candidates.splice(selIdx, 1);
+        candidates.unshift(selItem);
       }
     }
 
@@ -1664,8 +2118,8 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     const placedBoxes = []; // in container screen coordinates {x1, y1, x2, y2}
     const seenTitles = new Set();
     const seenEventIds = new Set();
-    const GAP_X = isDesktop ? 18.0 : 3.5;
-    const GAP_Y = isDesktop ? 10.0 : 3.5;
+    const GAP_X = isDesktop ? (z >= 4.0 ? 8.0 : 16.0) : 3.5;
+    const GAP_Y = isDesktop ? (z >= 4.0 ? 5.0 : 9.0) : 3.5;
     const MAX_PLACED_ITEMS = isDesktop ? 42 : 80;
 
     const hitsPlaced = (x1, y1, x2, y2) => {
@@ -1799,6 +2253,9 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
   // Run synchronously on every move, zoom, viewreset, and resize event so labels are NEVER out of sync
   map.on('move zoom viewreset moveend zoomend resize', () => {
     renderViewportLabels();
+    if (lockedRoadEventId || hoveredRoadEventId) {
+      highlightRoadsForEvent(hoveredRoadEventId, false);
+    }
   });
   map.on('moveend zoomend', () => {
     syncURL();
@@ -1863,28 +2320,71 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     tourCard.classList.remove('open');
   });
 
-  // ---- Live Search (Continents, Countries, Hardware Summits, 365 Events) ----
+  // ---- Live Search (Continents, Countries, Outlying Islands, Hardware Summits, 471+ Events) ----
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
   const searchCatalog = [
-    ...blocks.map(b => ({title: b.name, meta: `Continent · ${b.span}`, x: b.cx, y: b.cy, z: 1.2, item: {kind: 'continent', data: b}})),
+    ...events.map(e => ({title: e.name, meta: `${Math.floor(e.year)} · ${e.country_name} · ${e.one_line}`, x: e.x, y: e.y, z: 3.8, item: {kind: 'event', data: e}})),
+    ...threads.flatMap(T => (T.milestones || []).map(m => ({title: m.label || m.name, meta: `Hardware Summit · ${Math.floor(m.year)} · ${m.elev || ''} · ${m.one_line || ''}`, x: m.x, y: m.y, z: 3.4, item: {kind: 'milestone', data: m}}))),
+    ...islands.flatMap(isl => (isl.events || []).map(ie => ({title: ie.name, meta: `${Math.floor(ie.year)} · ${isl.name} · ${ie.one_line}`, x: ie.x || isl.cx, y: ie.y || isl.cy, z: 3.4, item: {kind: 'island-event', data: {...ie, island_name: isl.name, island_id: isl.id}}}))),
+    ...islands.map(isl => ({title: isl.name, meta: `Outlying Island · ${isl.span} · ${isl.tag || isl.subtitle} · ${isl.summary || ''}`, x: isl.cx, y: isl.cy, z: 3.0, item: {kind: 'island', data: isl}})),
     ...countries.map(k => ({title: k.name, meta: `Province · ${k.span} · ${k.tag || k.subtitle}`, x: k.cx, y: k.cy, z: 2.6, item: {kind: 'country', data: k}})),
-    ...threads.flatMap(T => (T.milestones || []).map(m => ({title: m.label || m.name, meta: `Hardware Summit · ${Math.floor(m.year)} · ${m.elev || ''}`, x: m.x, y: m.y, z: 3.4, item: {kind: 'milestone', data: m}}))),
-    ...events.map(e => ({title: e.name, meta: `${Math.floor(e.year)} · ${e.country_name} · ${e.one_line}`, x: e.x, y: e.y, z: 3.8, item: {kind: 'event', data: e}}))
+    ...blocks.map(b => ({title: b.name, meta: `Continent · ${b.span} · ${b.subtitle || ''}`, x: b.cx, y: b.cy, z: 1.2, item: {kind: 'continent', data: b}}))
   ];
+
+  let currentMatches = [];
+  const selectSearchMatch = m => {
+    if (!m) return;
+    searchResults.innerHTML = '';
+    searchResults.style.display = 'none';
+    searchInput.value = '';
+    smoothCameraTo(m.x, m.y, m.z, 380);
+    openInspector(m.item);
+  };
 
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim().toLowerCase();
     if (!q) {
+      currentMatches = [];
+      searchResults.innerHTML = '';
       searchResults.style.display = 'none';
       return;
     }
-    const matches = searchCatalog.filter(c => c.title.toLowerCase().includes(q) || c.meta.toLowerCase().includes(q)).slice(0, 12);
-    if (!matches.length) {
+    const tokens = q.split(/[\s\-–—/]+/).filter(Boolean).map(t => t.replace(/(?:ic|s)$/, ''));
+    const scored = [];
+    for (let i = 0; i < searchCatalog.length; i++) {
+      const c = searchCatalog[i];
+      const tLow = c.title.toLowerCase();
+      const mLow = c.meta.toLowerCase();
+      let score = 0;
+      if (tLow === q) score = 1000;
+      else if (tLow.startsWith(q)) score = 850;
+      else if (tLow.includes(q)) score = 650;
+      else if (mLow.includes(q)) score = 320;
+      else if (tokens.length > 0) {
+        let tHits = 0, mHits = 0;
+        for (const tok of tokens) {
+          if (!tok) continue;
+          if (tLow.includes(tok)) tHits++;
+          else if (mLow.includes(tok)) mHits++;
+        }
+        const totalHits = tHits + mHits;
+        if (totalHits === tokens.length) {
+          score = 220 + tHits * 90;
+        } else if (tokens.length >= 3 && totalHits >= tokens.length - 1) {
+          score = 110 + tHits * 60;
+        }
+      }
+      if (score > 0) scored.push({c, score});
+    }
+    scored.sort((a, b) => b.score - a.score);
+    currentMatches = scored.slice(0, 12).map(s => s.c);
+    if (!currentMatches.length) {
+      searchResults.innerHTML = '';
       searchResults.style.display = 'none';
       return;
     }
-    searchResults.innerHTML = matches.map((m, i) => `
+    searchResults.innerHTML = currentMatches.map((m, i) => `
       <div class="search-item" data-idx="${i}">
         <div class="search-item-title">${m.title}</div>
         <div class="search-item-meta">${m.meta}</div>
@@ -1892,13 +2392,23 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     searchResults.style.display = 'block';
     searchResults.querySelectorAll('.search-item').forEach(node => {
       node.addEventListener('click', () => {
-        const m = matches[+node.dataset.idx];
-        searchResults.style.display = 'none';
-        searchInput.value = '';
-        smoothCameraTo(m.x, m.y, m.z, 380);
-        openInspector(m.item);
+        selectSearchMatch(currentMatches[+node.dataset.idx]);
       });
     });
+  });
+
+  searchInput.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter' && currentMatches.length > 0) {
+      ev.preventDefault();
+      selectSearchMatch(currentMatches[0]);
+      searchInput.blur();
+    }
+  });
+
+  document.addEventListener('click', ev => {
+    if (!ev.target.closest('.search-wrap')) {
+      searchResults.style.display = 'none';
+    }
   });
 
   document.addEventListener('keydown', ev => {
@@ -1906,8 +2416,9 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       ev.preventDefault();
       searchInput.focus();
     } else if (ev.key === 'Escape') {
+      searchResults.innerHTML = '';
       searchResults.style.display = 'none';
-      inspector.classList.remove('open');
+      closeInspector();
     }
   });
 

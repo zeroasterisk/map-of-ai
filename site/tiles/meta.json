@@ -7,17 +7,30 @@
  "zmin": 0,
  "zmax": 4,
  "full_zmax": 3,
- "pilot_bbox": null,
- "pilot_bboxes": [],
+ "pilot_bbox": [
+  32,
+  128,
+  1648,
+  928
+ ],
+ "pilot_bboxes": [
+  [
+   32,
+   128,
+   1648,
+   928
+  ]
+ ],
  "source_px": [
-  14400,
-  8400
+  25856,
+  12800
  ],
  "lod": {
   "0": "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
-  "1": "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
-  "2": "+ solid country borders, + country name + one-line tag + years",
-  "3": "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)"
+  "1": "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints",
+  "2": "+ solid country borders, + fine 0.50x textures, + sub-graticule, + terrace contours, + trade roads",
+  "3": "+ syllabus view (8x): 0.28x fine textures, + vellum wash, + 5-level terrace contours & hachures, + town rosettes, + submarine cables",
+  "4": "+ archive view (16x): 0.15x micro-textures, + vellum wash, + 7-level contours, + Vauban star-citadel planimetry & quarterly meridians"
  },
  "counts": {
   "0": {
@@ -28,7 +41,7 @@
     1800,
     1050
    ],
-   "bytes": 2135739,
+   "bytes": 2189360,
    "lod": 0
   },
   "1": {
@@ -39,7 +52,7 @@
     3600,
     2100
    ],
-   "bytes": 7793939,
+   "bytes": 8182425,
    "lod": 1
   },
   "2": {
@@ -50,7 +63,7 @@
     7200,
     4200
    ],
-   "bytes": 22302484,
+   "bytes": 30902035,
    "lod": 2
   },
   "3": {
@@ -61,9 +74,114 @@
     14400,
     8400
    ],
-   "bytes": 61759741,
+   "bytes": 126328866,
    "lod": 3
+  },
+  "4": {
+   "tiles": 5050,
+   "cols": 101,
+   "rows": 200,
+   "px": [
+    25856,
+    12800
+   ],
+   "bytes": 337082751,
+   "lod": 4,
+   "regions": [
+    {
+     "bbox": [
+      32,
+      128,
+      496,
+      928
+     ],
+     "tiles": 1450,
+     "cols": 29,
+     "rows": 50,
+     "px": [
+      7424,
+      12800
+     ]
+    },
+    {
+     "bbox": [
+      496,
+      128,
+      864,
+      928
+     ],
+     "tiles": 1150,
+     "cols": 23,
+     "rows": 50,
+     "px": [
+      5888,
+      12800
+     ]
+    },
+    {
+     "bbox": [
+      864,
+      128,
+      1248,
+      928
+     ],
+     "tiles": 1200,
+     "cols": 24,
+     "rows": 50,
+     "px": [
+      6144,
+      12800
+     ]
+    },
+    {
+     "bbox": [
+      1248,
+      128,
+      1648,
+      928
+     ],
+     "tiles": 1250,
+     "cols": 25,
+     "rows": 50,
+     "px": [
+      6400,
+      12800
+     ]
+    }
+   ],
+   "bbox": [
+    32,
+    128,
+    496,
+    928
+   ],
+   "bboxes": [
+    [
+     32,
+     128,
+     496,
+     928
+    ],
+    [
+     496,
+     128,
+     864,
+     928
+    ],
+    [
+     864,
+     128,
+     1248,
+     928
+    ],
+    [
+     1248,
+     128,
+     1648,
+     928
+    ]
+   ]
   }
  },
- "bytes": 93991903
+ "bytes": 504685437
 }

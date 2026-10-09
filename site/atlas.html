@@ -500,13 +500,121 @@ window.FRONTIER = FRONTIER; window.FRONT = FRONT;
 // Antecedent isles: a small chain of 4 islands offshore, upper-left of the 1943 coast (N1–N2). v8: the chain arcs
 // down toward the mainland's narrow C-band tip, so the archipelago reads as the trail leading into the funnel's spout.
 const ISLES = [ {y: 1666, cy: BY('N1', .55), r: 12, s: 1}, {y: 1847, cy: BY('N2', .25), r: 15, s: 2}, {y: 1900, cy: BY('N1', .85), r: 14, s: 3}, {y: 1934, cy: BY('N2', .55), r: 20, s: 4} ];
-// v8: offshore rocks — tiny islets in the open sea just off the OUTER coast (never off an internal border), the way
-// an atlas illustrator marks a coast. Placed by hand in year × band, all in water the envelope leaves open; drawn in
-// their own group (#rocks), so they are not continents (not hit-tested, not gate-counted as lands) — check_layout.py
-// only asserts that each rock is clear of every land fill and of every text.
-const ROCKS = [ {y: 1946.5, cy: BY('N2', .55), r: 4.5, s: 7}, {y: 1961.5, cy: BY('N1', .8), r: 5, s: 8}, {y: 1969, cy: BY('S2', .45), r: 6, s: 9},
-                {y: 1977.2, cy: BY('S2', .25), r: 4, s: 10}, {y: 1995.5, cy: BY('N1', .45), r: 5, s: 11}, {y: 2002.5, cy: BY('S2', .65), r: 5.5, s: 12},
-                {y: 2015.6, cy: BY('N2', .3), r: 4.5, s: 13}, {y: 2010.5, cy: BY('N1', .75), r: 4, s: 14} ];
+// v8 + v14: offshore islands & skerries — outlying cul-de-sacs, non-mainstream hypotheses, and roads not taken in AI
+// history, placed in open water off the outer coast. Drawn in their own group (#rocks) so check_layout.py's mainland
+// contiguity/continent counts remain unchanged, while exportLabels() exports their polygons, metadata, and fringe
+// milestones for interactive inspection and high-zoom cartographic detail.
+const ROCKS = [
+  {
+    id: 'telepathy-ether-cay', name: 'Telepathy & Ether Cay',
+    subtitle: 'Psi phenomena, analog vitalism & Turing’s ESP rebuttal, 1945–1952', span: '1945–1952',
+    y: 1946.5, cy: BY('N2', .55), r: 5.5, s: 7, biome: 'highland', soundings: [9, 14, 21],
+    summary60: 'Early post-war cybernetics collided with parapsychology and vitalist biology. Alan Turing’s 1950 Mind paper devoted its longest rebuttal to J.B. Rhine’s extrasensory perception trials, proposing a lead-lined "telepathy-proof room" for the Imitation Game.',
+    events: [
+      {id: 'rhine-esp-1947', name: 'Rhine’s ESP Card Trials', year: 1946.2, lod: 3, one_line: 'J.B. Rhine’s Duke Parapsychology Lab statistical zener-card claims prompt Turing (1950 §6.9) to specify a telepathy-proof room.', sources: [{ref: 'Turing 1950, Mind §6.9', url: 'https://doi.org/10.1093/mind/LIX.236.433'}]},
+      {id: 'walter-cora-1951', name: 'Vacuum-Tube Reflex (CORA)', year: 1946.9, lod: 4, one_line: 'Grey Walter grafts an analog vacuum-tube conditioned-reflex circuit onto Machina Speculatrix tortoises.', sources: [{ref: 'Walter 1953, The Living Brain', url: 'https://en.wikipedia.org/wiki/William_Grey_Walter'}]}
+    ]
+  },
+  {
+    id: 'electrochemical-bionics-atoll', name: 'Electrochemical & Bionics Atoll',
+    subtitle: 'Ferrous-sulfate dendritic wires & USAF Bionics symposia, 1958–1964', span: '1958–1964',
+    y: 1961.5, cy: BY('N1', .8), r: 5.8, s: 8, biome: 'wetland', soundings: [8, 12, 19],
+    summary60: 'Before silicon integrated circuits dominated, Second-Order Cybernetics tried growing physical brains in chemical vats: Gordon Pask grew iron-wire threads in acid to evolve acoustic ears, while Jack Steele coined "Bionics" at Wright-Patterson AFB.',
+    events: [
+      {id: 'pask-chemical-ear-1958', name: 'Pask’s Electrochemical Ear', year: 1960.8, lod: 3, one_line: 'Gordon Pask grows self-assembling iron threads in ferrous sulfate acid that learn to discriminate 50 Hz vs. 100 Hz tones.', sources: [{ref: 'Pask 1959, Mechanisation of Thought Processes', url: 'https://en.wikipedia.org/wiki/Gordon_Pask'}]},
+      {id: 'steele-bionics-1960', name: 'USAF Bionics Symposium', year: 1961.6, lod: 3, one_line: 'Maj. Jack E. Steele coins "Bionics" at Dayton, funding analog frog-retina bug detectors and magnetic-drum neural nets.', sources: [{ref: 'Steele 1960, WADD TR 60-600', url: 'https://en.wikipedia.org/wiki/Bionics'}]},
+      {id: 'ashby-homeostat-1960', name: 'Ultrastable Homeostat Bath', year: 1962.2, lod: 4, one_line: 'W. Ross Ashby’s four-unit magnetic needle trough searches 390,625 random uniselector states to restore homeostasis.', sources: [{ref: 'Ashby 1960, Design for a Brain', url: 'https://en.wikipedia.org/wiki/Homeostat'}]}
+    ]
+  },
+  {
+    id: 'alchemy-phenomenology-reef', name: 'Alchemy & Phenomenology Reef',
+    subtitle: 'Heideggerian critiques, RAND "Alchemy and AI" & holographic brains, 1965–1972', span: '1965–1972',
+    y: 1969, cy: BY('S2', .45), r: 6.4, s: 9, biome: 'highland', soundings: [11, 16, 24],
+    summary60: 'Off the southern coast of the Symbolic Heartland sits Hubert Dreyfus’s Heideggerian counter-current—likening symbolic AI to medieval alchemy in his 1965 RAND memo until Richard Greenblatt’s Mac Hack VI checkmated him in 1967.',
+    events: [
+      {id: 'dreyfus-alchemy-1965', name: 'Alchemy and AI (RAND P-3244)', year: 1968.2, lod: 3, one_line: 'Hubert Dreyfus equates symbolic AI with alchemy and predicts no computer program will ever beat a 10-year-old at chess.', sources: [{ref: 'Dreyfus 1965, RAND Memo P-3244', url: 'https://www.rand.org/pubs/papers/P3244.html'}]},
+      {id: 'mac-hack-dreyfus-1967', name: 'Mac Hack VI Beats Dreyfus', year: 1969.0, lod: 3, one_line: 'Greenblatt’s PDP-6 chess program checkmates Dreyfus; SIGART headlines "A Ten Year Old Can Beat the Machine—Dreyfus."', sources: [{ref: 'Greenblatt et al. 1967, FJCC', url: 'https://en.wikipedia.org/wiki/Mac_Hack'}]},
+      {id: 'pribram-holographic-brain-1969', name: 'Holographic Brain Hypothesis', year: 1969.8, lod: 4, one_line: 'Karl Pribram models cortical memory as optical Fourier interference fringes across dendritic wavefields.', sources: [{ref: 'Pribram 1969, Scientific American', url: 'https://en.wikipedia.org/wiki/Holonomic_brain_theory'}]}
+    ]
+  },
+  {
+    id: 'catastrophe-autopoiesis-skerry', name: 'Catastrophe & Autopoiesis Skerry',
+    subtitle: 'Thom’s catastrophe manifolds, Cybersyn opsrooms & autopoietic loops, 1972–1979', span: '1972–1979',
+    y: 1977.2, cy: BY('S2', .25), r: 5.2, s: 10, biome: 'mixed', soundings: [7, 13, 18],
+    summary60: 'During the first AI Winter, fringe mathematical and cybernetic movements sought mind in René Thom’s seven elementary topological catastrophes, Maturana and Varela’s autopoietic closure, and Stafford Beer’s Project Cybersyn telex room.',
+    events: [
+      {id: 'cybersyn-opsroom-1973', name: 'Project Cybersyn Opsroom', year: 1976.6, lod: 3, one_line: 'Stafford Beer builds a hexagonal cybernetic operations room in Santiago wired to 500 factories over telex.', sources: [{ref: 'Beer 1974, Platform for Change', url: 'https://en.wikipedia.org/wiki/Project_Cybersyn'}]},
+      {id: 'thom-catastrophe-1975', name: 'Catastrophe Theory Manifolds', year: 1977.3, lod: 3, one_line: 'René Thom and E.C. Zeeman model cognitive shifts and language leaps as cusp bifurcations on smooth manifolds.', sources: [{ref: 'Thom 1975, Structural Stability', url: 'https://en.wikipedia.org/wiki/Catastrophe_theory'}]},
+      {id: 'maturana-autopoiesis-1978', name: 'Autopoietic Closure', year: 1977.9, lod: 4, one_line: 'Maturana and Varela reject symbolic input-output representations in favor of closed metabolic self-production.', sources: [{ref: 'Maturana & Varela 1980', url: 'https://en.wikipedia.org/wiki/Autopoiesis'}]}
+    ]
+  },
+  {
+    id: 'quantum-microtubule-isle', name: 'Quantum Microtubule Isle',
+    subtitle: 'Penrose-Lucas Gödelian arguments & Orch-OR tubulin coherence, 1989–1998', span: '1989–1998',
+    y: 1995.5, cy: BY('N1', .45), r: 5.8, s: 11, biome: 'highland', soundings: [10, 15, 22],
+    summary60: 'In the northern sea above the Statistical Isthmus lies the non-computable mind hypothesis: Roger Penrose and Stuart Hameroff argued from Gödel’s theorem that understanding requires quantum-gravity wave collapses inside neuronal microtubules.',
+    events: [
+      {id: 'penrose-emperor-1989', name: 'The Emperor’s New Mind', year: 1994.8, lod: 3, one_line: 'Roger Penrose argues from Gödelian incompleteness that conscious mathematical insight is non-algorithmic.', sources: [{ref: 'Penrose 1989, OUP', url: 'https://en.wikipedia.org/wiki/The_Emperor%27s_New_Mind'}]},
+      {id: 'orch-or-microtubules-1996', name: 'Orch-OR Tubulin Coherence', year: 1995.6, lod: 3, one_line: 'Penrose and Hameroff locate consciousness in cytoskeletal microtubules—challenged by Tegmark’s femtosecond decoherence bound.', sources: [{ref: 'Hameroff & Penrose 1996; Tegmark 2000', url: 'https://en.wikipedia.org/wiki/Orchestrated_objective_reduction'}]},
+      {id: 'optical-hologram-nets-1994', name: 'Photorefractive Crystal Nets', year: 1996.3, lod: 4, one_line: 'Optical neural networks store weights as volume holograms in lithium niobate crystals before CMOS scaling wins.', sources: [{ref: 'Psaltis et al. 1990, Nature', url: 'https://doi.org/10.1038/343325a0'}]}
+    ]
+  },
+  {
+    id: 'alife-tierra-key', name: 'Artificial Life & Tierra Key',
+    subtitle: 'Self-replicating assembly organisms, evolved block creatures & Rule 110, 1994–2005', span: '1994–2005',
+    y: 2002.5, cy: BY('S2', .65), r: 6.2, s: 12, biome: 'wetland', soundings: [9, 14, 20],
+    summary60: 'South of the Statistical Isthmus, the Santa Fe Artificial Life movement pursued open-ended digital evolution instead of gradient descent: Thomas Ray’s Tierra assembly parasites, Karl Sims’s block creatures, and Wolfram’s cellular automata.',
+    events: [
+      {id: 'sims-creatures-1994', name: 'Sims’s Evolved Virtual Creatures', year: 2001.8, lod: 3, one_line: 'Karl Sims co-evolves 3D rigid-body morphologies and neural controllers on a CM-5 that discover swimming and jumping.', sources: [{ref: 'Sims 1994, SIGGRAPH', url: 'https://doi.org/10.1145/192161.192167'}]},
+      {id: 'tierra-avida-2001', name: 'Tierra & Avida Digital Organisms', year: 2002.5, lod: 3, one_line: 'Self-replicating virtual CPU assembly programs spontaneously evolve parasites and logic gates without a loss function.', sources: [{ref: 'Ray 1991; Lenski et al. 2003, Nature', url: 'https://doi.org/10.1038/nature01568'}]},
+      {id: 'wolfram-nks-2002', name: 'A New Kind of Science (Rule 110)', year: 2003.2, lod: 4, one_line: 'Stephen Wolfram proposes 1D cellular automata and computational irreducibility as an alternative to continuous math.', sources: [{ref: 'Wolfram 2002, NKS', url: 'https://en.wikipedia.org/wiki/A_New_Kind_of_Science'}]}
+    ]
+  },
+  {
+    id: 'ontological-singularity-shoal', name: 'Ontological & Hypergraph Shoal',
+    subtitle: 'Hand-coded commonsense axioms, OpenCog hypergraphs & Gödel machines, 2007–2011', span: '2007–2011',
+    y: 2009.1, cy: BY('N1', .72), r: 6.2, s: 15, biome: 'highland', soundings: [11, 14, 19],
+    summary60: 'Anchored at (x=913, y=404) off the northern coast of the Deep Learning Basin, this shoal preserves pre-deep-learning efforts to construct AGI via hand-coded predicate ontologies (ResearchCyc), OpenCog AtomSpace hypergraphs, and self-rewriting Gödel Machines.',
+    events: [
+      {id: 'opencyc-ontology-2008', name: 'Cyc 10M-Axiom Ontology', year: 2008.7, lod: 3, one_line: 'Doug Lenat’s Cyc passes 25 years of manual predicate-calculus commonsense entry without statistical pretraining.', sources: [{ref: 'Lenat 1995; Matuszek et al. 2006', url: 'https://en.wikipedia.org/wiki/Cyc'}]},
+      {id: 'opencog-atomspace-2009', name: 'OpenCog AtomSpace Hypergraph', year: 2009.1, lod: 3, one_line: 'Ben Goertzel’s OpenCog combines Probabilistic Logic Networks (PLN) and evolutionary program search over hypergraphs.', sources: [{ref: 'Goertzel et al. 2008', url: 'https://en.wikipedia.org/wiki/OpenCog'}]},
+      {id: 'godel-machine-aixi-2010', name: 'Gödel Machines & AIXI-tl', year: 2009.5, lod: 4, one_line: 'Schmidhuber and Hutter formalize self-referential theorem-proving agents that rewrite their own code only upon proof of gain.', sources: [{ref: 'Schmidhuber 2007; Hutter 2005', url: 'https://arxiv.org/abs/cs/0309048'}]}
+    ]
+  },
+  {
+    id: 'reservoir-cortical-atoll', name: 'Reservoir & Cortical Atoll',
+    subtitle: 'Echo State liquid reservoirs, HTM cortical columns & ELM pseudoinverses, 2009–2013', span: '2009–2013',
+    y: 2010.6, cy: BY('N1', .75), r: 6.0, s: 14, biome: 'mixed', soundings: [12, 16, 23],
+    summary60: 'Beside Ontological Shoal at (x=950, y=406), this atoll charts the non-backprop neural paradigms of 2009–2013: Echo State and Liquid State Machines that froze random recurrent reservoirs, and Jeff Hawkins’s HTM cortical columns.',
+    events: [
+      {id: 'echo-state-liquid-2009', name: 'Echo State & Liquid Reservoirs', year: 2010.2, lod: 3, one_line: 'Jaeger and Maass freeze random recurrent spiking reservoirs and train only a linear readout—avoiding backprop through time.', sources: [{ref: 'Lukoševičius & Jaeger 2009', url: 'https://doi.org/10.1016/j.cosrev.2009.03.005'}]},
+      {id: 'htm-cortical-columns-2011', name: 'HTM Cortical Columns (Numenta)', year: 2010.6, lod: 3, one_line: 'Jeff Hawkins’s Hierarchical Temporal Memory uses Sparse Distributed Representations and Hebbian dendritic permanence.', sources: [{ref: 'Hawkins et al. 2011, Numenta', url: 'https://en.wikipedia.org/wiki/Hierarchical_temporal_memory'}]},
+      {id: 'extreme-learning-machines-2011', name: 'Extreme Learning Machines (ELM)', year: 2011.0, lod: 4, one_line: 'Single-hidden-layer networks with frozen random hidden weights solved in one Moore-Penrose pseudoinverse step.', sources: [{ref: 'Huang et al. 2006, Neurocomputing', url: 'https://doi.org/10.1016/j.neucom.2005.12.126'}]}
+    ]
+  },
+  {
+    id: 'capsule-neuromorphic-reef', name: 'Capsule & Neuromorphic Reef',
+    subtitle: 'Hinton’s Capsule dynamic routing, IBM TrueNorth spiking ASIC & DNC tapes, 2014–2018', span: '2014–2018',
+    y: 2015.6, cy: BY('N2', .3), r: 5.8, s: 13, biome: 'forest', soundings: [10, 15, 21],
+    summary60: 'Off the northern shore between the Deep Learning Basin and Transformer Plateau sits the architectural road not taken: Geoffrey Hinton’s Capsule Networks (routing-by-agreement over pose matrices), IBM’s spiking TrueNorth chip, and Differentiable Neural Computers.',
+    events: [
+      {id: 'ibm-truenorth-2014', name: 'IBM TrueNorth Spiking ASIC', year: 2015.2, lod: 3, one_line: 'DARPA SyNAPSE delivers a 1M-neuron asynchronous spiking chip running at 70 mW—incompatible with dense matrix backprop.', sources: [{ref: 'Merolla et al. 2014, Science', url: 'https://doi.org/10.1126/science.1254642'}]},
+      {id: 'capsule-networks-2017', name: 'Capsule Networks (Sabour-Hinton)', year: 2015.6, lod: 3, one_line: 'Dynamic routing-by-agreement between vector capsules aims to replace CNN max-pooling with explicit 3D part-whole pose trees.', sources: [{ref: 'Sabour, Frosst & Hinton 2017, NeurIPS', url: 'https://arxiv.org/abs/1710.09829'}]},
+      {id: 'dnc-external-tape-2016', name: 'Differentiable Neural Computer', year: 2016.0, lod: 4, one_line: 'Graves’s DNC pairs an LSTM controller with differentiable cosine-similarity RAM addressing before self-attention wins.', sources: [{ref: 'Graves et al. 2016, Nature', url: 'https://doi.org/10.1038/nature20101'}]}
+    ]
+  },
+  {
+    id: 'forward-forward-swarm-cay', name: 'Forward-Forward & Prompt-Lore Cay',
+    subtitle: 'Hinton’s Forward-Forward passes, AutoGPT infinite loops & incantation lore, 2021–2023', span: '2021–2023',
+    y: 2020.8, cy: BY('N1', .28), r: 5.6, s: 16, biome: 'jungle', soundings: [8, 13, 17],
+    summary60: 'In the northern sea off the Transformer-Generative seam lie the cul-de-sacs of the early LLM era: Geoffrey Hinton’s Forward-Forward algorithm (replacing backprop with two forward goodness passes), brittle 2023 AutoGPT infinite loops, and emotional-tipping prompt lore.',
+    events: [
+      {id: 'hinton-forward-forward-2022', name: 'Forward-Forward Algorithm', year: 2020.5, lod: 3, one_line: 'Geoffrey Hinton replaces forward/backward passes with two local "goodness" forward passes for mortal analog hardware.', sources: [{ref: 'Hinton 2022, arXiv:2212.13345', url: 'https://arxiv.org/abs/2212.13345'}]},
+      {id: 'autogpt-babyagi-loops-2023', name: 'AutoGPT & BabyAGI Loops', year: 2020.8, lod: 3, one_line: 'Early 2023 wrapper scripts chain GPT-4 with vector DBs in brittle recursive while-loops before tool-use RL and MCP.', sources: [{ref: 'Richards 2023; Nakajima 2023', url: 'https://en.wikipedia.org/wiki/AutoGPT'}]},
+      {id: 'prompt-incantation-lore-2023', name: '"Take a Deep Breath" Prompt Lore', year: 2021.1, lod: 4, one_line: 'Pre-o1 papers benchmark emotional bribery ("I will tip $200") and magic incantations before RL reasoning post-training.', sources: [{ref: 'Yang et al. 2023, OPRO', url: 'https://arxiv.org/abs/2309.03409'}]}
+    ]
+  }
+];
 const MIN_FONT = 12;
 const LABEL = {
   // v8: the shore is now the funnel's narrow tip (C only, then N2b–S1) — far too small for its name, so the label
@@ -851,9 +959,15 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const fm = el('feMerge', {}, fh); el('feMergeNode', {in: 'h'}, fm); el('feMergeNode', {in: 'SourceGraphic'}, fm);
   // texture patterns: one per biome + sea. userSpaceOnUse so the tile scale is the same in every region; per-biome
   // TILE_K normalises glyph size across textures (v5) so every biome reads at one zoom level.
+  // v14 Multi-Scale Tile Fidelity: in TILESRC mode, scale pattern size down with LOD so zooming into lod2 (4x),
+  // lod3 (8x Syllabus, viewed up to z=3.85), and lod4 (16x Archive, viewed at z=4.5) keeps raster woodcut textures
+  // near 1:1 native pixel resolution while lightening with a warm vellum wash for crisp text & vector survey detail.
+  const LOD_TEX_SCALE = TILESRC ? ([1.0, 0.82, 0.36, 0.115, 0.058][LOD] || 0.115) : 1.0;
+  const LOD_SEA_SCALE = TILESRC ? ([1.0, 0.82, 0.42, 0.15, 0.075][LOD] || 0.15) : 1.0;
+  const LOD_VELLUM = TILESRC ? ([0.0, 0.0, 0.24, 0.54, 0.66][LOD] || 0.0) : 0.0;
   const pattern = (id, href, size) => { const p = el('pattern', {id, width: size, height: size, patternUnits: 'userSpaceOnUse'}, defs); img(href, 0, 0, size, size, p); return p; };
-  Object.keys(BIOME).forEach(k => pattern('tex-' + k, TEX(k), TILE * (BIOME[k].k || 1)));
-  pattern('tex-sea', TEX('sea'), 300);
+  Object.keys(BIOME).forEach(k => pattern('tex-' + k, TEX(k), TILE * (BIOME[k].k || 1) * LOD_TEX_SCALE));
+  pattern('tex-sea', TEX('sea'), 300 * LOD_SEA_SCALE);
 
   // sea
   el('rect', {x: 0, y: 0, width: W, height: H, fill: '#dccfae'});
@@ -891,7 +1005,8 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const isLand = (i, j) => ownerAt(i, j) !== null;
   const coastLoops = trace(isLand);                 // expect exactly 1 loop: the mainland
   const isleD = ISLES.map(is => bsplinePath(islandPts(X(is.y), SY(X(is.y), is.cy), is.r, is.s)));
-  const rockD = ROCKS.map(rk => bsplinePath(islandPts(X(rk.y), SY(X(rk.y), rk.cy), rk.r, rk.s)));   // v8 offshore rocks
+  const rockPtsList = ROCKS.map(rk => islandPts(X(rk.y), SY(X(rk.y), rk.cy), rk.r, rk.s));
+  const rockD = rockPtsList.map(pts => bsplinePath(pts));   // v8 + v14 offshore fringe islands
   const landPaths = coastLoops.map(polyPath).concat(isleD);
   // the mainland silhouette as a clip, so feathered texture bleed stays on land (never over waterlines / sea)
   const clipCoast = el('clipPath', {id: 'clip-coast'}, defs); coastLoops.forEach(pts => el('path', {d: polyPath(pts)}, clipCoast));
@@ -906,15 +1021,31 @@ fetch('registry.json').then(r => r.json()).then(data => {
     el('path', {d, fill: 'none', stroke: 'url(#tex-sea)', 'stroke-width': d2 * 2 - 1.3}, gWater);
   }));
 
-  // v8 offshore rocks: a hint of shadow, one thin waterline ring, a highland-textured speck and an ink outline
+  // v8 + v14 offshore fringe islands: shadow, concentric waterline rings, biome-specific texture + wash, interior
+  // topographic contour rings, summit cairn, and at high LOD (lod>=2) reef stipples, depth soundings, and settlement rings
   const gRocks = el('g', {id: 'rocks', 'pointer-events': 'none'});
-  rockD.forEach(d => {
+  rockD.forEach((d, idx) => {
+    const rk = ROCKS[idx];
+    const rkx = X(rk.y), rky = SY(rkx, rk.cy), rBiome = rk.biome || 'highland', rTint = (BIOME[rBiome] || BIOME.highland).c;
+    const clipRk = el('clipPath', {id: 'clip-rock-' + idx}, defs); el('path', {d}, clipRk);
     el('path', {d, class: 'shadow', transform: 'translate(1.5,2)'}, gRocks);
-    el('path', {d, class: 'waterline', 'stroke-width': 7, 'stroke-opacity': .35}, gRocks);
-    el('path', {d, fill: 'none', stroke: 'url(#tex-sea)', 'stroke-width': 5.6}, gRocks);
-    el('path', {d, fill: 'url(#tex-highland)', class: 'rock'}, gRocks);
-    el('path', {d, fill: BIOME.highland.c, 'fill-opacity': TINT_WASH, class: 'tint'}, gRocks);
-    el('path', {d, class: 'coast', 'stroke-width': 1.2}, gRocks);
+    [[10, .28], [6, .45]].forEach(([w, op]) => {
+      el('path', {d, class: 'waterline', 'stroke-width': w, 'stroke-opacity': op}, gRocks);
+      el('path', {d, fill: 'none', stroke: '#dccfae', 'stroke-width': w - 1.1}, gRocks);
+      el('path', {d, fill: 'none', stroke: 'url(#tex-sea)', 'stroke-width': w - 1.1}, gRocks);
+    });
+    el('path', {d, fill: `url(#tex-${rBiome})`, class: 'rock'}, gRocks);
+    el('path', {d, fill: rTint, 'fill-opacity': TINT_WASH, class: 'tint'}, gRocks);
+    if (LOD_VELLUM > 0) el('path', {d, fill: '#f5ebd6', 'fill-opacity': LOD_VELLUM * 0.85}, gRocks);
+    // Concentric interior topographic contour rings on each island
+    const inner1 = bsplinePath(islandPts(rkx, rky, rk.r * 0.68, rk.s));
+    const inner2 = bsplinePath(islandPts(rkx, rky, rk.r * 0.38, rk.s));
+    el('path', {d: inner1, fill: 'none', stroke: '#4a361e', 'stroke-width': TILESRC && LOD >= 3 ? 0.28 : 0.45, 'stroke-opacity': 0.65, 'stroke-dasharray': '1.8 0.9', 'clip-path': `url(#clip-rock-${idx})`}, gRocks);
+    el('path', {d: inner2, fill: '#e8dac0', 'fill-opacity': 0.45, stroke: '#3b2813', 'stroke-width': TILESRC && LOD >= 3 ? 0.32 : 0.5, 'stroke-opacity': 0.78, 'clip-path': `url(#clip-rock-${idx})`}, gRocks);
+    // Geodetic summit benchmark triangle on island crest
+    const tr = TILESRC && LOD >= 3 ? 0.85 : 1.2;
+    el('path', {d: `M${f1(rkx)},${f1(rky - tr)} L${f1(rkx - tr * 0.9)},${f1(rky + tr * 0.75)} L${f1(rkx + tr * 0.9)},${f1(rky + tr * 0.75)} Z`, fill: 'none', stroke: '#2a1c0c', 'stroke-width': TILESRC && LOD >= 3 ? 0.25 : 0.45}, gRocks);
+    el('path', {d, class: 'coast', 'stroke-width': TILESRC && LOD >= 3 ? 0.75 : 1.2}, gRocks);
   });
   const gShapes = el('g', {id: 'shapes'}); const gCoast = el('g', {id: 'coast'}); const gLeaders = el('g', {id: 'leaders'}); const gLabels = el('g', {id: 'labels', 'pointer-events': 'none', filter: 'url(#halo)'});
   const card = document.getElementById('card');
@@ -969,7 +1100,17 @@ fetch('registry.json').then(r => r.json()).then(data => {
     const tint = BIOME[c.biome].c, fill = `url(#tex-${c.biome})`;
     let lands = [];
     if (c.offshore) {
-      isleD.forEach(d => { lands.push(el('path', {d, fill, class: 'land'}, g)); el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'tint'}, g); });
+      isleD.forEach((d, iIdx) => {
+        lands.push(el('path', {d, fill, class: 'land'}, g));
+        el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'tint'}, g);
+        if (LOD_VELLUM > 0) el('path', {d, fill: '#f5ebd6', 'fill-opacity': LOD_VELLUM, class: 'vellum-wash'}, g);
+        if (TILESRC && LOD >= 2) {
+          const is = ISLES[iIdx], ix = X(is.y), iy = SY(ix, is.cy);
+          [0.72, 0.46].forEach(fr => {
+            el('path', {d: bsplinePath(islandPts(ix, iy, is.r * fr, is.s)), fill: 'none', stroke: '#4a361e', 'stroke-width': LOD >= 3 ? 0.28 : 0.45, 'stroke-opacity': 0.55, 'stroke-dasharray': '2 1'}, g);
+          });
+        }
+      });
       const lx = PAD_L + ARCH_W / 2 - 22; let ly = SY(lx, BY('C', .55));
       const ts = [];
       wrap(c.name, 10).forEach(l => { ts.push(txt(lx, ly, l, 'cname', gLabels, {'font-size': 12, 'data-for': c.id})); ly += 15; });
@@ -998,6 +1139,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       el('path', {d: dilatePath(loops, FEATHER / 2), fill, filter: 'url(#feather)', 'clip-path': 'url(#clip-coast)', class: 'texbleed'}, g);
       const land = el('path', {d, fill, 'fill-opacity': 0, class: 'land'}, g); lands = [land];
       el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'tint'}, g);                                  // biome wash
+      if (LOD_VELLUM > 0) el('path', {d, fill: '#f5ebd6', 'fill-opacity': LOD_VELLUM, class: 'vellum-wash'}, g); // warm vellum lightening at high zoom for text readability
       el('path', {d, fill: 'none', stroke: tint, 'stroke-width': 16, 'stroke-opacity': TINT_BAND, 'clip-path': `url(#clip-${c.id})`, class: 'tint'}, g); // hand-tinted border band
       el('path', {d, class: 'border'}, g);
       const L = LABEL[c.id];
@@ -1064,12 +1206,22 @@ fetch('registry.json').then(r => r.json()).then(data => {
       const loops = fineTrace((i, r) => fineCell(k, i, r)); if (!loops.length) { console.warn('country has no cells', k.id); continue; }
       const d = loops.map(polyPath).join(' ');
       const g = el('g', {class: 'country' + (k.status === 'draft' ? ' draft' : ''), 'data-id': k.id, 'data-parent': k.parent_id}, gCountries);
+      g._loops = loops;
+      const clipK = el('clipPath', {id: 'clip-k-' + k.id}, defs); el('path', {d}, clipK);
       const tint = BIOME[k.biome].c; const parent = ENT.continents.find(c => c.id === k.parent_id) || {};
-      if (k.biome !== parent.biome) { el('path', {d, fill: `url(#tex-${k.biome})`, class: 'ctex'}, g); el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'ctint'}, g); }   // G4: differing biome → own texture + wash
-      else el('path', {d, fill: tint, 'fill-opacity': 0, class: 'ctint'}, g);
+      if (k.biome !== parent.biome) {
+        el('path', {d, fill: `url(#tex-${k.biome})`, class: 'ctex'}, g);
+        el('path', {d, fill: tint, 'fill-opacity': TINT_WASH, class: 'ctint'}, g);
+        if (LOD_VELLUM > 0) el('path', {d, fill: '#f5ebd6', 'fill-opacity': LOD_VELLUM, class: 'cvellum'}, g);
+      } else el('path', {d, fill: tint, 'fill-opacity': 0, class: 'ctint'}, g);
+      if (TILESRC && LOD >= 2) {
+        // Antique hand-colored province border wash (Blaeu / Cassini atlas style: pigment band along the boundary, pale vellum interior)
+        const bw = [0, 0, 7.5, 5.0, 3.2][LOD] || 4.0;
+        el('path', {d, fill: 'none', stroke: tint, 'stroke-width': bw, 'stroke-opacity': 0.38, 'clip-path': `url(#clip-k-${k.id})`, 'pointer-events': 'none'}, g);
+      }
       const land = el('path', {d, fill: tint, class: 'cland'}, g);
       el('path', {d, class: 'cborder'}, g);
-      el('path', {d, class: 'kzoom', style: 'fill:none;stroke:#3d2e1a;stroke-width:1.1;stroke-opacity:.9;stroke-dasharray:3 1.6;stroke-linejoin:round;pointer-events:none', display: 'none'}, g);   // A2 only: a readable province line (toggled with #map.zoomed)
+      el('path', {d, class: 'kzoom', style: `fill:none;stroke:#3d2e1a;stroke-width:${TILESRC && LOD >= 3 ? (LOD === 4 ? 0.55 : 0.78) : 1.1};stroke-opacity:.9;stroke-dasharray:${TILESRC && LOD >= 3 ? '2.2 1.1' : '3 1.6'};stroke-linejoin:round;pointer-events:none`, display: 'none'}, g);   // A2 only: a readable province line (toggled with #map.zoomed)
       g.addEventListener('mouseenter', kCard(k, k.related_facts, `<dt>sub-band</dt><dd>${k.sub_band.join(' + ')} (band ${k.band.join('–')})</dd><dt>biome</dt><dd><span class="sw" style="background:${tint}"></span>${k.biome}</dd><dt>neighbours</dt><dd>${k.neighbours.map(n => `${n.id} <i>(${n.relation})</i>`).join(', ')}</dd>`));
       g.addEventListener('mousemove', moveCard); g.addEventListener('mouseleave', () => card.style.display = 'none');
       // A2 label: name (≤ 60 % of the continent-name size) + subtitle (years stripped) + years, inside the polygon
@@ -1184,35 +1336,59 @@ fetch('registry.json').then(r => r.json()).then(data => {
           // inward, toward the interior, by at most SLIDE plate units (≈ 0.8 year): each column whose lane is at least
           // one label block tall and whose midpoint is not already taken by an earlier dot is tried in turn, nearest
           // first, and the first one where the label also fits wins. Events in a usable lane at their own year do not move.
-          const need = H + 2 * S.r + 2, SLIDE = 40, mid = ln => (ln[0] + ln[1]) / 2, taken = (tx, ln) => placed.some(b => b.x <= tx && tx <= b.r && b.y <= mid(ln) && mid(ln) <= b.b);
+          const need = H + 2 * S.r + 2, SLIDE = 36, mid = ln => (ln[0] + ln[1]) / 2, taken = (tx, ln) => placed.some(b => b.x <= tx && tx <= b.r && b.y <= mid(ln) && mid(ln) <= b.b);
           const cands = [];
           if (lane0 && lane0[1] - lane0[0] >= need) cands.push([x0, lane0]);
-          else { const dir = X(e.year) < bbx.x + bbx.width / 2 ? 1 : -1; if (lane0) cands.push([x0, lane0]);
-            for (let t = 2; t <= SLIDE; t += 2) { const tx = x0 + dir * t; if (tx < bbx.x + 2 || tx > bbx.x + bbx.width - 2) break; const ln = laneAt(land, bbx, tx); if (ln && ln[1] - ln[0] >= need && !taken(tx, ln)) cands.push([tx, ln]); } }
+          else {
+            const dir = X(e.year) < bbx.x + bbx.width / 2 ? 1 : -1;
+            if (lane0) cands.push([x0, lane0]);
+            for (let t = 4; t <= SLIDE; t += 4) {
+              const tx = x0 + dir * t;
+              if (tx < bbx.x + 2 || tx > bbx.x + bbx.width - 2) break;
+              const ln = laneAt(land, bbx, tx);
+              if (ln && ln[1] - ln[0] >= need * 0.75 && !taken(tx, ln)) { cands.push([tx, ln]); if (cands.length >= 4) break; }
+            }
+          }
           if (!cands.length) { window.LOD_CURATED[key].push(e.id); continue; }
-          // Sub-3px text gets integer-hinted glyph advances in Chromium even at DPR 16 (broken kerning in the z4
-          // tiles). So each event's text is laid out at a comfortable size inside its own <g transform="scale(k)"> —
-          // layout happens at fs/k >= 8 px, the raster is identical in geometry. Boxes are measured in user space.
           const KS = Math.max(1, Math.ceil(8 / (S.l || S.y)));
           const offs = [[0, S.r + 1], [0, -(H + S.r + 1)], [S.r + 2.5, -H / 2], [-(S.r + 2.5), -H / 2], [0, S.r + 6], [0, -(H + S.r + 6)]];
-          for (const d of [8, 14, 22, 30, 40, 52, 66]) for (const sg of [1, -1]) offs.push([sg * d, -H / 2], [sg * d, S.r + 2], [sg * d, -(H + S.r + 2)], [sg * d, S.r + 8], [sg * d, -(H + S.r + 8)]);
+          for (const d of [10, 18, 28, 42]) for (const sg of [1, -1]) offs.push([sg * d, -H / 2], [sg * d, S.r + 2], [sg * d, -(H + S.r + 2)]);
           const pland = gShapes.querySelector(`.continent[data-id="${k.parent_id}"] path.land`);
           const okBox = (u, strict) => strict ? fitsInside(land, u, 1) : (inFill(land, (u.x + u.r) / 2, (u.y + u.b) / 2) && fitsInside(pland, u, 1));
-          let ts = null, off = null, x = x0, dy = 0, gk = gE, dot = null;
-          for (const [cx, lane] of cands) { x = cx;
-            // the dot sits in the lane, off the country label's rows when the label spans this x
-            const lab = placed.filter(b => b.x <= x && x <= b.r && b.y < lane[1] && b.b > lane[0]); dy = (lane[0] + lane[1]) / 2;
-            if (lab.length) { const top = Math.min(...lab.map(b => b.y)), bot = Math.max(...lab.map(b => b.b)); dy = (top - lane[0] > lane[1] - bot) ? (lane[0] + top) / 2 : (bot + lane[1]) / 2; }
-            if (!inFill(land, x, dy)) { let f = null; for (let s = 1; s < 30 && f === null; s++) { if (inFill(land, x, dy - s)) f = dy - s; else if (inFill(land, x, dy + s)) f = dy + s; } if (f === null) continue; dy = f; }
-            dot = el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
-            gk = KS > 1 ? el('g', {transform: `scale(${1 / KS})`, 'data-ev': e.id}, gE) : gE;
-            const mk = (tx, ty) => { const ts = []; let yy = ty; lines.forEach(([s, cls, fs]) => { yy += fs; ts.push(txt(tx * KS, yy * KS, s, cls, gk, {'font-size': fs * KS, 'stroke-width': (cls === 'kev-name' ? 1.4 : cls === 'kev-year' ? 1.2 : 1.1) * KS, 'data-for': k.id, 'data-ev': e.id})); yy += .6; }); return ts; };
-            for (const strict of [true, false]) { for (const [dx, oy] of offs) { const cand = mk(x + dx, dy + oy); if (dx) cand.forEach(t => t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end')); const u = ubox(cand, KS);
-              if (!hitAny(u, placed) && okBox(u, strict)) { ts = cand; off = [dx, oy]; break; } cand.forEach(t => t.remove()); } if (ts) break; }
-            if (ts) break; dot.remove(); if (gk !== gE) gk.remove(); }
-          if (!ts) { window.LOD_CURATED[key].push(e.id); window.LOD_DEBUG && (window.LOD_DEBUG[e.id] = {cands, H, KS, bb: [bbx.x, bbx.y, bbx.width, bbx.height]}); continue; }
-          const u = ubox(ts, KS); placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap}); placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
-          if (Math.abs(off[0]) >= 8 || Math.abs(off[1]) > H + S.r + 4) { const ex = off[0] > 0 ? u.x : off[0] < 0 ? u.r : x, ey = off[0] ? (u.y + u.b) / 2 : (off[1] > 0 ? u.y : u.b); el('path', {d: `M${f1(x)},${f1(dy)} L${f1(ex)},${f1(ey)}`, class: 'kev-leader', 'data-for': k.id}, gE); }
+          // Measure text block dimensions once at origin to avoid thousands of DOM layout reflows
+          const maxLen = Math.max(...lines.map(l => l[0].length));
+          const estW = maxLen * S.n * 0.58 + 2, estH = H;
+          let win = null;
+          outerCand: for (const [cx, lane] of cands) {
+            for (const vf of [0.5, 0.32, 0.68]) {
+              let x = cx, dy = lane[0] + vf * (lane[1] - lane[0]);
+              const lab = placed.filter(b => b.x <= x && x <= b.r && b.y < lane[1] && b.b > lane[0]);
+              if (vf === 0.5 && lab.length) { const top = Math.min(...lab.map(b => b.y)), bot = Math.max(...lab.map(b => b.b)); dy = (top - lane[0] > lane[1] - bot) ? (lane[0] + top) / 2 : (bot + lane[1]) / 2; }
+              if (!inFill(land, x, dy)) { let f = null; for (let s = 1; s < 24 && f === null; s += 2) { if (inFill(land, x, dy - s)) f = dy - s; else if (inFill(land, x, dy + s)) f = dy + s; } if (f === null) continue; dy = f; }
+              for (const strict of [true, false]) {
+                for (const [dx, oy] of offs) {
+                  const ux = dx === 0 ? x - estW / 2 : dx > 0 ? x + dx : x + dx - estW;
+                  const uy = dy + oy;
+                  const u = {x: ux, y: uy, r: ux + estW, b: uy + estH};
+                  if (!hitAny(u, placed) && okBox(u, strict)) { win = {x, dy, dx, oy, u}; break outerCand; }
+                }
+              }
+            }
+          }
+          if (!win) { window.LOD_CURATED[key].push(e.id); continue; }
+          const {x, dy, dx, oy, u} = win;
+          el('circle', {cx: f1(x), cy: f1(dy), r: S.r, class: 'kev-dot', 'data-for': k.id, 'data-ev': e.id}, gE);
+          const gk = KS > 1 ? el('g', {transform: `scale(${1 / KS})`, 'data-ev': e.id}, gE) : gE;
+          let yy = dy + oy;
+          lines.forEach(([s, cls, fs]) => {
+            yy += fs;
+            const t = txt((x + dx) * KS, yy * KS, s, cls, gk, {'font-size': fs * KS, 'stroke-width': (cls === 'kev-name' ? 1.4 : cls === 'kev-year' ? 1.2 : 1.1) * KS, 'data-for': k.id, 'data-ev': e.id});
+            if (dx) t.setAttribute('text-anchor', dx > 0 ? 'start' : 'end');
+            yy += .6;
+          });
+          placed.push({x: u.x - S.gap, y: u.y - S.gap, r: u.r + S.gap, b: u.b + S.gap});
+          placed.push(grow({x: x - S.r, y: dy - S.r, width: 2 * S.r, height: 2 * S.r}, S.gap));
+          if (Math.abs(dx) >= 8 || Math.abs(oy) > H + S.r + 4) { const ex = dx > 0 ? u.x : dx < 0 ? u.r : x, ey = dx ? (u.y + u.b) / 2 : (oy > 0 ? u.y : u.b); el('path', {d: `M${f1(x)},${f1(dy)} L${f1(ex)},${f1(ey)}`, class: 'kev-leader', 'data-for': k.id}, gE); }
         }
       }
       [gHints, gEv3, gEv4].forEach(g => g.style.display = '');
@@ -1397,7 +1573,20 @@ fetch('registry.json').then(r => r.json()).then(data => {
         return loops;
       };
 
-      const contourLevels = [
+      const contourLevels = TILESRC && LOD >= 4 ? [
+        [0.14, 'thr-contour-basal', 4, 3.6],
+        [0.24, 'thr-contour-basal', 4, 3.3],
+        [0.36, 'thr-contour-mid',   3, 3.0],
+        [0.48, 'thr-contour-mid',   3, 2.8],
+        [0.60, 'thr-contour-index', 2, 2.5],
+        [0.74, 'thr-peak',          2, 2.1]
+      ] : TILESRC && LOD === 3 ? [
+        [0.15, 'thr-contour-basal', 4, 3.6],
+        [0.28, 'thr-contour-mid',   3, 3.3],
+        [0.42, 'thr-contour-mid',   3, 3.0],
+        [0.56, 'thr-contour-index', 3, 2.7],
+        [0.72, 'thr-peak',          2, 2.3]
+      ] : [
         [0.17, 'thr-contour-basal', 4, 3.8],
         [0.32, 'thr-contour-mid',   3, 3.4],
         [0.50, 'thr-contour-index', 3, 3.0],
@@ -1517,6 +1706,1481 @@ fetch('registry.json').then(r => r.json()).then(data => {
     }
   };
   window.drawThreads = drawThreads;
+
+  // ---- Canonical Event Coordinate & Cross-Border Lineage Highway Catalog ----
+  // Shared by both drawMultiScaleDetail() and window.exportLabels() so every red pin in index.html sits
+  // 100.0% dead-center inside its engraved Vauban star-citadel / town rosette and on its road junction.
+  // 1. Ten Continental Trunk Roads (Compiled from OKF v0.2 Knowledge Bundle `wiki/roads/*.md`)
+  const LINEAGE_TRUNKS = [
+    {
+        "id": "via-western-symbolic",
+        "name": "The Classical Logic, Expert Systems & Statistical Trunk Road",
+        "stops": [
+            "leibniz-calculus-1666",
+            "boole-laws-of-thought-1854",
+            "frege-begriffsschrift-1879",
+            "principia-mathematica-1910",
+            "hilbert-programme-1928",
+            "godel-incompleteness-1931",
+            "church-lambda-calculus-1936",
+            "turing-universal-machine-1936",
+            "shannon-relay-thesis-1937",
+            "edvac-report-1945",
+            "shannon-information-theory-1948",
+            "turing-imitation-game-1950",
+            "dartmouth-proposal-1955",
+            "dartmouth-workshop-1956",
+            "logic-theorist-1956",
+            "lisp-creation-1958",
+            "programs-common-sense-1959",
+            "resolution-principle-1965",
+            "dendral-mass-spec-1965",
+            "prolog-creation-1972",
+            "mycin-shortliffe-1975",
+            "feigenbaum-knowledge-power-1977",
+            "xcon-r1-dec-1980",
+            "rete-algorithm-forgy-1982",
+            "cyc-launched-1984",
+            "ibm-candide-1990",
+            "ibm-models-1993",
+            "penn-treebank-1993",
+            "collins-parser-1997",
+            "pagerank-1998",
+            "crfs-2001",
+            "bleu-metric-2002",
+            "moses-smt-toolkit-2007",
+            "unreasonable-effectiveness-2009",
+            "ibm-watson-jeopardy-2011"
+        ]
+    },
+    {
+        "id": "via-western-connectionist",
+        "name": "The Cybernetic, Perceptron, Backprop & Deep Learning Trunk Road",
+        "stops": [
+            "mcculloch-pitts-1943",
+            "pitts-mcculloch-universals-1947",
+            "turing-intelligent-machinery-1948",
+            "hebb-organization-behavior-1949",
+            "snarc-minsky-1951",
+            "rochester-hebb-ibm704-1956",
+            "rosenblatt-perceptron-1957",
+            "mark-1-perceptron-1960",
+            "adaline-widrow-1960",
+            "madaline-network-1962",
+            "perceptrons-critique-1969",
+            "hopfield-network-1982",
+            "boltzmann-machine-1985",
+            "nature-backprop-1986",
+            "pdp-books-1986",
+            "zip-code-convnet-1989",
+            "lenet5-mnist-1998",
+            "bengio-neural-lm-2003",
+            "dbn-2006",
+            "autoencoder-2006",
+            "greedy-layerwise-2006",
+            "vincent-dae-2008",
+            "gpu-dbn-2009",
+            "dropout-hinton-2012",
+            "alexnet-2012",
+            "dnnresearch-2013"
+        ]
+    },
+    {
+        "id": "via-openai",
+        "name": "The OpenAI Post Road (Lab to GPT & Frontier Models)",
+        "stops": [
+            "openai-2015",
+            "gpt1-2018",
+            "gpt2-2019",
+            "openai-lp-2019",
+            "gpt2-full-2019",
+            "gpt3-2020",
+            "copilot-codex-2021",
+            "instructgpt-2022",
+            "chatgpt-2022",
+            "gpt35-turbo-api-2023",
+            "gpt4-2023",
+            "devday-2023",
+            "gpt4o-2024",
+            "gpt4o-mini-2024",
+            "gpt45-2025",
+            "gpt5-2025",
+            "gpt51-52-2025",
+            "openai-6-2026"
+        ]
+    },
+    {
+        "id": "via-tensorflow-tpu",
+        "name": "The Google Brain, TensorFlow, JAX & TPU Compute Turnpike",
+        "stops": [
+            "google-brain-2011",
+            "cat-2012",
+            "distbelief-2012",
+            "tensorflow-2015",
+            "google-tpu-v1-2016",
+            "jax-bradbury-2018",
+            "palm-2022",
+            "tpu-trillium-2024",
+            "tpu-ironwood-2025"
+        ]
+    },
+    {
+        "id": "via-transformer-gemini",
+        "name": "The Attention, Transformer & Google Gemini High Road",
+        "stops": [
+            "word2vec-2013",
+            "seq2seq-2014",
+            "gnmt-2016",
+            "sparse-moe-2017",
+            "attention-is-all-you-need-2017",
+            "bert-2018",
+            "t5-2019",
+            "gshard-2020",
+            "switch-transformer-2021",
+            "lamda-2021",
+            "flan-t0-2021",
+            "palm-2022",
+            "minerva-2022",
+            "palm2-2023",
+            "gemini-2023",
+            "gemini15-2024",
+            "gemini20-flash-2024",
+            "gemini25-2025",
+            "gemini3-2025",
+            "gemini31-pro-2026",
+            "gemini4-argon-2026"
+        ]
+    },
+    {
+        "id": "via-fair-openweights",
+        "name": "The Meta FAIR, PyTorch & Llama Open-Weights Highway",
+        "stops": [
+            "fair-2013",
+            "pytorch-2017",
+            "roberta-2019",
+            "rag-2020",
+            "opt-175b-2022",
+            "esmfold-lin-2022",
+            "galactica-2022",
+            "llama-leak-2023",
+            "llama2-2023",
+            "codellama-2023",
+            "llama3-2024",
+            "llama33-2024",
+            "llama4-2025"
+        ]
+    },
+    {
+        "id": "via-deepmind-rl",
+        "name": "The DeepMind, AlphaGo, AlphaFold & Science Causeway",
+        "stops": [
+            "dqn-2013",
+            "deepmind-2014",
+            "ntm-2014",
+            "fan-hui-2015",
+            "a3c-2016",
+            "lee-sedol-2016",
+            "wavenet-2016",
+            "ke-jie-2017",
+            "alphago-zero-2017",
+            "alphafold2-2020",
+            "perceiver-2021",
+            "gopher-2021",
+            "chinchilla-2022",
+            "flamingo-2022",
+            "gato-2022",
+            "google-deepmind-2023",
+            "alphafold3-2024",
+            "nobel-2024",
+            "alphaevolve-2025"
+        ]
+    },
+    {
+        "id": "via-anthropic-alignment",
+        "name": "The Scaling Laws, Constitutional AI & Anthropic Claude Ridge Road",
+        "stops": [
+            "scaling-laws-2020",
+            "anthropic-2021",
+            "constitutional-ai-2022",
+            "claude2-2023",
+            "rsp-2023",
+            "claude21-2023",
+            "claude3-2024",
+            "claude35-2024",
+            "computer-use-2024",
+            "claude37-sonnet-2025",
+            "claude4-2025",
+            "anthropic-late-2025",
+            "claude-opus-46-2026",
+            "anthropic-fable-51-2026",
+            "claude-opus-55-2026"
+        ]
+    },
+    {
+        "id": "via-agents-protocols",
+        "name": "The Open Agentic Tooling, Protocols & AAIF Coast Road",
+        "stops": [
+            "langchain-react-2022",
+            "toolformer-2023",
+            "function-calling-2023",
+            "mcp-2024",
+            "a2a-protocol-2025",
+            "ap2-protocol-2025",
+            "a2ui-protocol-2025",
+            "aaif-founded-2025",
+            "agent-skills-2025",
+            "ucp-protocol-2026",
+            "agent-plugins-2026",
+            "ax-substrate-2026",
+            "ard-protocol-2026"
+        ]
+    },
+    {
+        "id": "via-vision-diffusion",
+        "name": "The ConvNet, GAN & Open Diffusion Media Coast Road",
+        "stops": [
+            "imagenet-2009",
+            "ilsvrc-2010",
+            "alexnet-2012",
+            "rcnn-2013",
+            "coco-2014",
+            "vgg-googlenet-2014",
+            "batchnorm-2015",
+            "unet-yolo-2015",
+            "resnet-2015",
+            "pix2pix-cyclegan-2017",
+            "ddpm-2020",
+            "diffusion-beats-gans-2021",
+            "stable-diffusion-2022",
+            "controlnet-2023",
+            "sdxl-2023",
+            "sd3-mostaque-2024"
+        ]
+    }
+];
+
+  // 2. Fourteen Cross-Province Lineage Branches (Compiled from OKF v0.2 Knowledge Bundle `wiki/roads/*.md`)
+  const LINEAGE_BRANCHES = [
+    {
+        "id": "branch-gpu-compute",
+        "name": "The PyTorch, Megatron, FlashAttention & Nvidia GPU Compute Road",
+        "stops": [
+            "tensorflow-2015",
+            "pytorch-2017",
+            "megatron-lm-2019",
+            "zero-deepspeed-2019",
+            "turing-nlg-2020",
+            "a100-2020",
+            "lora-hu-2021",
+            "mt-nlg-2022",
+            "h100-2022",
+            "flashattention-2022",
+            "speculative-decoding-2023",
+            "vllm-pagedattention-2023",
+            "blackwell-2024",
+            "flashattention3-2024",
+            "nvidia-rubin-2026"
+        ]
+    },
+    {
+        "id": "branch-tf-transformer",
+        "name": "The TensorFlow & TPU–Transformer Road",
+        "stops": [
+            "tensorflow-2015",
+            "google-tpu-v1-2016",
+            "attention-is-all-you-need-2017"
+        ]
+    },
+    {
+        "id": "branch-transformer-gpt1",
+        "name": "The Transformer–GPT Decoder Fork",
+        "stops": [
+            "attention-is-all-you-need-2017",
+            "gpt1-2018",
+            "scaling-laws-2020",
+            "gpt3-2020"
+        ]
+    },
+    {
+        "id": "branch-openai-rlhf",
+        "name": "The OpenAI Gym, PPO & RLHF Alignment Road",
+        "stops": [
+            "openai-2015",
+            "gym-2016",
+            "human-preferences-2017",
+            "ppo-schulman-2017",
+            "instructgpt-2022",
+            "dpo-2023",
+            "openai-preparedness-2023",
+            "deliberative-alignment-2024"
+        ]
+    },
+    {
+        "id": "branch-openai-reasoning",
+        "name": "The OpenAI o1, o3 & Test-Time Reasoning Branch",
+        "stops": [
+            "gpt4o-2024",
+            "o1-preview-2024",
+            "o1-2024",
+            "o3-2025",
+            "gpt5-2025"
+        ]
+    },
+    {
+        "id": "branch-google-gemma",
+        "name": "The Google Gemma & Decision Gemma Open-Weights Road",
+        "stops": [
+            "gemini-2023",
+            "gemma-2024",
+            "gemma2-2024",
+            "gemma3-2025",
+            "gemma4-2026",
+            "dgem-2026"
+        ]
+    },
+    {
+        "id": "branch-deepseek-moe",
+        "name": "The DeepSeek MoE, GRPO & R1 Reasoning Road",
+        "stops": [
+            "sparse-moe-2017",
+            "grpo-2024",
+            "deepseek-v2-2024",
+            "deepseek-v3-2024",
+            "deepseek-r1-2025",
+            "kimi-k2-2025"
+        ]
+    },
+    {
+        "id": "branch-anthropic-interp",
+        "name": "The Anthropic Mechanistic Interpretability & Safety Road",
+        "stops": [
+            "anthropic-2021",
+            "constitutional-ai-2022",
+            "rsp-2023",
+            "sleeper-agents-2024",
+            "scaling-monosemanticity-2024",
+            "golden-gate-claude-2024",
+            "circuit-tracing-2025"
+        ]
+    },
+    {
+        "id": "branch-openai-media",
+        "name": "The OpenAI Multimodal, DALL-E, Whisper & Sora Road",
+        "stops": [
+            "gpt3-2020",
+            "dalle-clip-2021",
+            "glide-2021",
+            "dalle2-2022",
+            "whisper-2022",
+            "dalle3-2023",
+            "sora-2024",
+            "sora2-2025"
+        ]
+    },
+    {
+        "id": "branch-google-media",
+        "name": "The Google Vision Transformer, Imagen, Veo & Genie World-Model Road",
+        "stops": [
+            "t5-2019",
+            "vit-2020",
+            "imagen-2022",
+            "dreamfusion-2022",
+            "imagen3-2024",
+            "notebooklm-audio-2024",
+            "veo3-2025",
+            "genie3-2025"
+        ]
+    },
+    {
+        "id": "branch-hinton-nobel",
+        "name": "The Hopfield–Hinton Physics Nobel Lineage Road",
+        "stops": [
+            "hopfield-network-1982",
+            "boltzmann-machine-1985",
+            "helmholtz-wake-sleep-1995",
+            "dbn-2006",
+            "dnnresearch-2013",
+            "vector-2017",
+            "hinton-leaves-2023",
+            "nobel-2024"
+        ]
+    },
+    {
+        "id": "branch-sutton-barto-turing",
+        "name": "The Sutton & Barto Reinforcement Learning Turing Award Road",
+        "stops": [
+            "actor-critic-1983",
+            "td-lambda-1988",
+            "q-learning-1989",
+            "dyna-architecture-1990",
+            "td-gammon-1992",
+            "reinforce-1992",
+            "sutton-barto-book-1998",
+            "bitter-lesson-2019",
+            "turing-rl-2025"
+        ]
+    },
+    {
+        "id": "branch-rnn-lstm-speech",
+        "name": "The Recurrent Net, LSTM & End-to-End Speech Road",
+        "stops": [
+            "waibel-tdnn-speech-1989",
+            "elman-srn-1990",
+            "vanishing-gradient-1991",
+            "lstm-1997",
+            "dnn-acoustic-2009",
+            "four-groups-2012",
+            "deep-lstm-speech-2013",
+            "deep-speech-2014",
+            "switchboard-2016"
+        ]
+    },
+    {
+        "id": "branch-policy-governance",
+        "name": "The International AI Governance, Safety Institutes & Legislation Post Road",
+        "stops": [
+            "white-house-2016",
+            "nist-ai-rmf-2023",
+            "eo14110-2023",
+            "bletchley-2023",
+            "us-aisi-founded-2024",
+            "eu-ai-act-2024",
+            "seoul-safety-summit-2024",
+            "eo14179-2025",
+            "paris-summit-2025",
+            "california-sb53-2025"
+        ]
+    }
+];
+
+  // 3. Fifty-Two Curated Thematic & Lab Spurs (Compiled from OKF v0.2 Knowledge Bundle `wiki/roads/*.md`)
+  const LINEAGE_SPURS = [
+    {
+        "id": "spur-chip-export-controls",
+        "name": "The Semiconductor Export Controls & AI Diffusion Spur",
+        "stops": [
+            "h100-2022",
+            "export-controls-2022",
+            "blackwell-2024",
+            "ai-diffusion-rule-2025"
+        ]
+    },
+    {
+        "id": "spur-gemma-scope-sae",
+        "name": "The Sparse Autoencoder & Gemma Scope Interpretability Spur",
+        "stops": [
+            "scaling-monosemanticity-2024",
+            "gemma-scope-2024",
+            "circuit-tracing-2025"
+        ]
+    },
+    {
+        "id": "spur-anthropic-agents",
+        "name": "The Anthropic Claude Code & Cowork Agent Spur",
+        "stops": [
+            "computer-use-2024",
+            "mcp-2024",
+            "claude-code-2025",
+            "agent-skills-2025",
+            "cowork-2026",
+            "agent-plugins-2026"
+        ]
+    },
+    {
+        "id": "spur-google-agents",
+        "name": "The Google ADK, Gemini CLI & A2UI Agent Spur",
+        "stops": [
+            "gemini20-flash-2024",
+            "a2a-protocol-2025",
+            "adk-gemini-cli-2025",
+            "a2ui-protocol-2025"
+        ]
+    },
+    {
+        "id": "spur-google-robotics",
+        "name": "The Google DeepMind Embodied VLA Robotics Spur",
+        "stops": [
+            "gato-2022",
+            "rt2-2023",
+            "gemini-robotics-2025"
+        ]
+    },
+    {
+        "id": "spur-deepmind-math-olympiad",
+        "name": "The DeepMind AlphaCode, AlphaGeometry & IMO Math Olympiad Spur",
+        "stops": [
+            "alphacode-2022",
+            "alphageometry-2024",
+            "imo-silver-2024",
+            "alphaevolve-2025",
+            "imo-gold-2025"
+        ]
+    },
+    {
+        "id": "spur-openai-agents",
+        "name": "The OpenAI Assistants & Operator Agent Spur",
+        "stops": [
+            "function-calling-2023",
+            "devday-2023",
+            "operator-2025"
+        ]
+    },
+    {
+        "id": "spur-autonomous-skill-agents",
+        "name": "The Autonomous Loop & Skill-Library Agent Spur",
+        "stops": [
+            "langchain-react-2022",
+            "autogpt-2023",
+            "voyager-minecraft-2023"
+        ]
+    },
+    {
+        "id": "spur-agent-evals-coding",
+        "name": "The Software Engineering Agent & Benchmark Spur",
+        "stops": [
+            "copilot-codex-2021",
+            "chatbot-arena-2023",
+            "swe-bench-2023",
+            "devin-2024",
+            "osworld-webarena-2024"
+        ]
+    },
+    {
+        "id": "spur-calibrated-decision-models",
+        "name": "The Calibrated Micro-Decision Model Spur",
+        "stops": [
+            "jev-launch-2025",
+            "dgem-2026"
+        ]
+    },
+    {
+        "id": "spur-ethical-ai-facct",
+        "name": "The Model Cards & FAccT Critique Spur",
+        "stops": [
+            "model-cards-2018",
+            "gebru-exit-2020",
+            "stochastic-parrots-2021"
+        ]
+    },
+    {
+        "id": "spur-stanford-crfm-eval",
+        "name": "The Stanford CRFM Foundation Models & HELM Spur",
+        "stops": [
+            "foundation-models-2021",
+            "helm-2022"
+        ]
+    },
+    {
+        "id": "spur-cot-emergence",
+        "name": "The Chain-of-Thought, Emergence & Test-Time Scaling Spur",
+        "stops": [
+            "lamda-2021",
+            "chain-of-thought-2022",
+            "emergent-2022",
+            "sparks-agi-2023",
+            "quiet-star-2024",
+            "s1-test-time-scaling-2025"
+        ]
+    },
+    {
+        "id": "spur-microsoft-copilot-phi",
+        "name": "The Microsoft OpenAI Partnership, Bing Chat & Phi Spur",
+        "stops": [
+            "openai-lp-2019",
+            "microsoft-openai-2023",
+            "bing-chat-2023",
+            "phi1-2023",
+            "phi3-2024"
+        ]
+    },
+    {
+        "id": "spur-xai-grok",
+        "name": "The xAI Grok Frontier Lineage Spur",
+        "stops": [
+            "grok-2023",
+            "grok2-2024",
+            "grok3-2025",
+            "grok4-2025"
+        ]
+    },
+    {
+        "id": "spur-openai-board-ssi",
+        "name": "The OpenAI Governance Crisis & SSI Departure Spur",
+        "stops": [
+            "devday-2023",
+            "altman-ouster-2023",
+            "inflection-ssi-2024"
+        ]
+    },
+    {
+        "id": "spur-bayesian-pgm",
+        "name": "The Bayesian Networks, Causality & Graphical Models Spur",
+        "stops": [
+            "prospector-mount-tolman-1982",
+            "junction-tree-1988",
+            "pearl-prob-reasoning-1988",
+            "variational-inference-1999",
+            "pearl-causality-book-2000",
+            "lda-topic-models-2003",
+            "gaussian-processes-2006",
+            "markov-logic-networks-2006",
+            "bishop-prml-2006",
+            "koller-friedman-pgm-2009"
+        ]
+    },
+    {
+        "id": "spur-china-sovereign-ai",
+        "name": "The Chinese AI Ecosystem, Sovereign Scale & Qwen Spur",
+        "stops": [
+            "baidu-ng-2014",
+            "deep-speech-2014",
+            "sensetime-ilsvrc-2016",
+            "china-plan-2017",
+            "pangu-alpha-2021",
+            "wu-dao-2021",
+            "ernie3-2021",
+            "qwen25-2024",
+            "qwen3-2025"
+        ]
+    },
+    {
+        "id": "spur-mechanical-computing",
+        "name": "The Mechanical & Electromechanical Computing Spur",
+        "stops": [
+            "jacquard-loom-1804",
+            "babbage-lovelace-1843",
+            "shannon-relay-thesis-1937",
+            "zuse-z3-computer-1941",
+            "edvac-report-1945"
+        ]
+    },
+    {
+        "id": "spur-post-rewriting",
+        "name": "The Post Production Systems & Formal Grammar Spur",
+        "stops": [
+            "turing-universal-machine-1936",
+            "post-production-systems-1936",
+            "kleene-regular-events-1951",
+            "chomsky-three-models-1956"
+        ]
+    },
+    {
+        "id": "spur-custom-inference-silicon",
+        "name": "The Wafer-Scale & SRAM Inference Silicon Spur",
+        "stops": [
+            "a100-2020",
+            "groq-2024",
+            "cerebras-wse3-2024"
+        ]
+    },
+    {
+        "id": "spur-stargate-datacenter",
+        "name": "The Hyperscale AI Datacenter & Stargate Spur",
+        "stops": [
+            "h100-2022",
+            "blackwell-2024",
+            "stargate-2025",
+            "nvidia-rubin-2026"
+        ]
+    },
+    {
+        "id": "spur-british-cybernetics",
+        "name": "The Ratio Club & Homeostat Cybernetics Spur",
+        "stops": [
+            "von-neumann-automata-1948",
+            "walter-tortoises-1949",
+            "ashby-homeostat-1949",
+            "ratio-club-1949",
+            "shannon-theseus-1950",
+            "paris-cybernetics-colloque-1951",
+            "oettinger-edsac-shopper-1952",
+            "ashby-design-for-brain-1952",
+            "farley-clark-whirlwind-1954"
+        ]
+    },
+    {
+        "id": "spur-character-ai",
+        "name": "The LaMDA–Character.AI Founders Spur",
+        "stops": [
+            "lamda-2021",
+            "character-ai-2021"
+        ]
+    },
+    {
+        "id": "spur-vae-gan-generative",
+        "name": "The VAE, GAN & Autoregressive Deep Generative Spur",
+        "stops": [
+            "vae-2013",
+            "gan-2014",
+            "deepdream-2015",
+            "style-transfer-2015",
+            "dcgan-2015",
+            "pixelrnn-2016",
+            "wavenet-2016",
+            "pix2pix-cyclegan-2017"
+        ]
+    },
+    {
+        "id": "spur-3d-radiance",
+        "name": "The NeRF, DreamFusion & 3D Gaussian Splatting Spur",
+        "stops": [
+            "nerf-mildenhall-2020",
+            "dreamfusion-2022",
+            "gaussian-splatting-2023"
+        ]
+    },
+    {
+        "id": "spur-midjourney-diffusion",
+        "name": "The CLIP-Guided Diffusion & Midjourney Spur",
+        "stops": [
+            "dalle-clip-2021",
+            "midjourney-2022",
+            "stable-diffusion-2022"
+        ]
+    },
+    {
+        "id": "spur-meta-vision",
+        "name": "The Vision Transformer to Segment Anything (SAM) Spur",
+        "stops": [
+            "vit-2020",
+            "sam-2023"
+        ]
+    },
+    {
+        "id": "spur-medical-expert-systems",
+        "name": "The Stanford/CMU Blackboard & Diagnostic Expert Systems Spur",
+        "stops": [
+            "mycin-shortliffe-1975",
+            "hearsay-ii-blackboard-1976",
+            "internist-caduceus-1977",
+            "prospector-mount-tolman-1982",
+            "clancey-heuristic-classification-1985",
+            "soar-architecture-1987"
+        ]
+    },
+    {
+        "id": "spur-knowledge-ontologies",
+        "name": "The Semantic Networks, Frames, Description Logic & WordNet Spur",
+        "stops": [
+            "quillian-semantic-memory-1968",
+            "schank-conceptual-dependency-1972",
+            "minsky-frames-1974",
+            "schank-scripts-1977",
+            "non-monotonic-logic-1980",
+            "cyc-launched-1984",
+            "kl-one-description-logic-1985",
+            "wordnet-miller-1990",
+            "cyc-microtheories-1990"
+        ]
+    },
+    {
+        "id": "spur-fifth-generation-icot",
+        "name": "The Japanese Fifth Generation (ICOT) & Strategic Computing Spur",
+        "stops": [
+            "prolog-creation-1972",
+            "fifth-generation-icot-1982",
+            "darpa-sci-alvey-1983",
+            "fifth-generation-concludes-1992"
+        ]
+    },
+    {
+        "id": "spur-pattern-recognition-foundations",
+        "name": "The Pandemonium & Statistical Pattern Recognition Spur",
+        "stops": [
+            "selfridge-dinneen-pattern-1955",
+            "selfridge-pandemonium-1958",
+            "adaline-widrow-1960",
+            "nilsson-learning-machines-1965"
+        ]
+    },
+    {
+        "id": "spur-pdp-applications",
+        "name": "The Kohonen SOM, NETtalk, ALVINN & Cybenko Approximation Spur",
+        "stops": [
+            "hopfield-network-1982",
+            "kohonen-som-1982",
+            "nature-backprop-1986",
+            "nettalk-1987",
+            "alvinn-autonomous-van-1989",
+            "universal-approximation-1989"
+        ]
+    },
+    {
+        "id": "spur-idsia-dannet",
+        "name": "The IDSIA Max-Pooling GPU ConvNet (DanNet) Spur",
+        "stops": [
+            "lstm-1997",
+            "gpu-dbn-2009",
+            "dannet-2011",
+            "alexnet-2012"
+        ]
+    },
+    {
+        "id": "spur-encoder-glue-benchmarks",
+        "name": "The Transfer Learning, GLUE & Encoder Pre-Training Spur",
+        "stops": [
+            "ulmfit-2018",
+            "elmo-2018",
+            "glue-2018",
+            "bert-2018",
+            "transformer-xl-2019",
+            "superglue-2019",
+            "xlnet-2019",
+            "roberta-2019",
+            "distilbert-2019",
+            "deberta-2020"
+        ]
+    },
+    {
+        "id": "spur-decision-trees-ensembles",
+        "name": "The Decision Tree, Boosting & Random Forest Spur",
+        "stops": [
+            "quinlan-id3-1986",
+            "c45-decision-trees-1993",
+            "adaboost-1995",
+            "bagging-1996",
+            "random-forests-2001",
+            "gradient-boosting-2001",
+            "viola-jones-2001",
+            "netflix-prize-2006"
+        ]
+    },
+    {
+        "id": "spur-game-tree-search",
+        "name": "The Chess, Checkers & Monte Carlo Tree Search Spur",
+        "stops": [
+            "shannon-chess-minimax-1950",
+            "ferranti-draughts-chess-1951",
+            "samuel-ibm701-checkers-1952",
+            "samuel-checkers-1959",
+            "alpha-beta-pruning-1961",
+            "mac-hack-chess-1967",
+            "deep-thought-chess-1988",
+            "chinook-checkers-1992",
+            "deep-blue-kasparov-1997",
+            "uct-mcts-2006",
+            "fan-hui-2015"
+        ]
+    },
+    {
+        "id": "spur-newell-simon-gps",
+        "name": "The Newell–Simon GPS, Heuristic Search & Physical Symbol System Spur",
+        "stops": [
+            "logic-theorist-1956",
+            "general-problem-solver-1959",
+            "geometry-prover-1959",
+            "minsky-steps-1961",
+            "saint-integrator-1961",
+            "bobrow-student-1964",
+            "human-problem-solving-1972",
+            "physical-symbol-system-1975"
+        ]
+    },
+    {
+        "id": "spur-early-nlp-microworlds",
+        "name": "The Early Machine Translation, ELIZA & SHRDLU Micro-Worlds Spur",
+        "stops": [
+            "weaver-translation-memo-1949",
+            "georgetown-ibm-1954",
+            "eliza-weizenbaum-1966",
+            "alpac-report-1966",
+            "shrdlu-blocks-1970",
+            "woods-lunar-atn-1972"
+        ]
+    },
+    {
+        "id": "spur-situation-calculus-actors",
+        "name": "The Situation Calculus, QA3 & Planner/Actor Formalisms Spur",
+        "stops": [
+            "resolution-principle-1965",
+            "qa3-deduction-1969",
+            "mccarthy-situations-fluents-1969",
+            "prolog-creation-1972",
+            "hewitt-planner-actors-1973"
+        ]
+    },
+    {
+        "id": "spur-shakey-autonomous-robotics",
+        "name": "The Shakey, STRIPS & Probabilistic Mobile Robotics Spur",
+        "stops": [
+            "shakey-project-start-1966",
+            "a-star-algorithm-1968",
+            "stanford-arm-1969",
+            "strips-planner-1971",
+            "shakey-completion-1972",
+            "wabot-1-humanoid-1973",
+            "monte-carlo-localization-1999",
+            "stanley-darpa-2005"
+        ]
+    },
+    {
+        "id": "spur-lighthill-robotics-audit",
+        "name": "The Shakey–Lighthill Robotics Audit Spur",
+        "stops": [
+            "shakey-completion-1972",
+            "lighthill-report-1973"
+        ]
+    },
+    {
+        "id": "spur-svm-classical-vision",
+        "name": "The Support Vector Machine, SIFT & HOG Vision Spur",
+        "stops": [
+            "nilsson-learning-machines-1965",
+            "svm-optimal-margin-1998",
+            "soft-margin-svm-1998",
+            "sift-lowe-1999",
+            "hog-dalal-triggs-2005",
+            "ilsvrc-2010"
+        ]
+    },
+    {
+        "id": "spur-ai-winters-funding",
+        "name": "The ALPAC, Mansfield Amendment, Lisp Machine Crash & AI Winters Spur",
+        "stops": [
+            "alpac-report-1966",
+            "first-ai-winter-1974",
+            "mansfield-amendment-darpa-1974",
+            "aaai-founded-1979",
+            "symbolics-lm2-1981",
+            "darpa-sci-alvey-1983",
+            "ai-winter-coined-1984",
+            "lisp-machine-crash-1987",
+            "sci-spending-cuts-1988",
+            "second-winter-bottom-1993"
+        ]
+    },
+    {
+        "id": "spur-philosophical-embodied-critique",
+        "name": "The Chinese Room, Dreyfus Phenomenology & Brooks Subsumption Critique Spur",
+        "stops": [
+            "eliza-weizenbaum-1966",
+            "weizenbaum-human-reason-1976",
+            "searle-chinese-room-1980",
+            "dreyfus-mind-over-machine-1986",
+            "winograd-flores-cognition-1986",
+            "moravec-paradox-1988",
+            "brooks-elephants-subsumption-1990"
+        ]
+    },
+    {
+        "id": "spur-hmm-speech-foundations",
+        "name": "The CMU Sphinx, Rabiner HMM & Statistical Speech-to-MT Spur",
+        "stops": [
+            "cmu-sphinx-1988",
+            "rabiner-hmm-1989",
+            "ibm-candide-1990"
+        ]
+    },
+    {
+        "id": "spur-neural-nlp-embeddings",
+        "name": "The Neural NLP, Bahdanau Attention & Subword BPE Spur",
+        "stops": [
+            "nlp-unified-2008",
+            "nlp-from-scratch-2011",
+            "word2vec-2013",
+            "gru-2014",
+            "attention-2014",
+            "glove-2014",
+            "show-and-tell-2014",
+            "adam-optimizer-2014",
+            "bpe-sennrich-2015",
+            "gnmt-2016"
+        ]
+    },
+    {
+        "id": "spur-eleuther-bigscience",
+        "name": "The Hugging Face, EleutherAI, BigScience & AI2 Open Commons Spur",
+        "stops": [
+            "gpt2-2019",
+            "hf-transformers-2019",
+            "distilbert-2019",
+            "the-pile-2020",
+            "gpt-j-2021",
+            "gpt-neox-2022",
+            "yalm-2022",
+            "bloom-2022",
+            "falcon-40b-2023",
+            "olmo-ai2-2024"
+        ]
+    },
+    {
+        "id": "spur-llama-community",
+        "name": "The Local Llama, llama.cpp, LLaVA & QLoRA Community Spur",
+        "stops": [
+            "llama-leak-2023",
+            "llamacpp-alpaca-2023",
+            "llava-2023",
+            "qlora-2023"
+        ]
+    },
+    {
+        "id": "spur-mistral-open",
+        "name": "The Mistral 7B & Mixtral European Open-Weights Spur",
+        "stops": [
+            "llama-leak-2023",
+            "mistral7b-2023",
+            "mixtral-2023"
+        ]
+    },
+    {
+        "id": "spur-mamba-ssm",
+        "name": "The Mamba Selective State-Space Sequence Model Spur",
+        "stops": [
+            "qlora-2023",
+            "mamba-2023",
+            "olmo-ai2-2024"
+        ]
+    },
+    {
+        "id": "spur-openai-open-weights",
+        "name": "The OpenAI Open-Weights Releases Spur (GPT-2, Whisper & gpt-oss)",
+        "stops": [
+            "gpt2-full-2019",
+            "whisper-2022",
+            "gpt-oss-2025"
+        ]
+    },
+    {
+        "id": "spur-ip-copyright-litigation",
+        "name": "The Generative AI Copyright Litigation Spur",
+        "stops": [
+            "getty-stability-2023",
+            "nyt-openai-2023",
+            "riaa-suno-2024"
+        ]
+    },
+    {
+        "id": "spur-existential-risk-letters",
+        "name": "The 2023 AI Risk & Governance Mobilization Spur",
+        "stops": [
+            "nist-ai-rmf-2023",
+            "pause-letter-2023",
+            "eo14110-2023",
+            "bletchley-2023"
+        ]
+    },
+    {
+        "id": "spur-llm-evaluation-benchmarks",
+        "name": "The MMLU, BIG-bench & ARC Prize Reasoning Evaluation Spur",
+        "stops": [
+            "mmlu-2020",
+            "big-bench-2022",
+            "arc-prize-2024",
+            "o1-2024"
+        ]
+    }
+];
+
+  const computeEventCatalog = () => {
+    if (window._EVENT_CATALOG_CACHE) return window._EVENT_CATALOG_CACHE;
+    const byCountry = {};
+    const byId = {};
+    const allEvents = [];
+
+    // Explicit plate-space anchor overrides for the 2015–2017 Deep Learning -> Foundation Model gateway
+    // so OpenAI, TensorFlow, TPU v1, PyTorch, and OpenAI Gym sit in clean, un-bunched positions with
+    // natural West-to-East road geometry across the 2015–2017 frontier.
+    const POS_OVERRIDE = {
+      'tensorflow-2015':    [1054.5, 610.2],
+      'openai-2015':        [1058.2, 601.8],
+      'google-tpu-v1-2016': [1071.5, 609.2],
+      'pytorch-2017':       [1083.8, 603.8],
+      'gym-2016':           [1078.5, 621.8],
+      'fan-hui-2015':       [1066.5, 624.8],
+      'lee-sedol-2016':     [1088.5, 617.8]
+    };
+    const FRAC_OVERRIDE = {
+      'deepmind-2014': 0.26,
+      'fair-2013': 0.78,
+      'distbelief-2012': 0.62,
+      'google-brain-2011': 0.48,
+      'sensetime-ilsvrc-2016': 0.26,
+      'white-house-2016': 0.76,
+      'china-plan-2017': 0.74,
+      'vector-2017': 0.36,
+      'ppo-schulman-2017': 0.66,
+      'alphago-zero-2017': 0.34
+    };
+    const X_BIAS_OVERRIDE = {};
+
+    for (const k of ENT.countries) {
+      const evs = (k.events || []).slice().sort((a, b) => a.year - b.year || (a.lod || 3) - (b.lod || 3));
+      if (!evs.length) { byCountry[k.id] = []; continue; }
+
+      if (k.parent_id === 'antecedent-isles') {
+        const byIsle = [[], [], [], []];
+        evs.forEach(e => {
+          let bestI = 0, bestD = 1e9;
+          ISLES.forEach((is, idx) => { const d = Math.abs(is.y - e.year); if (d < bestD) { bestD = d; bestI = idx; } });
+          byIsle[bestI].push(e);
+        });
+        const kPts = [];
+        byIsle.forEach((list, iIdx) => {
+          const is = ISLES[iIdx];
+          const ix = X(is.y), iy = SY(ix, is.cy);
+          list.forEach((e, idx) => {
+            const ang = (idx / Math.max(1, list.length)) * Math.PI * 2 - 0.7;
+            const rr = list.length === 1 ? 0 : is.r * 0.46;
+            const ex = +(ix + Math.cos(ang) * rr * 1.2).toFixed(1);
+            const ey = +(iy + Math.sin(ang) * rr).toFixed(1);
+            const item = {
+              e, id: e.id, name: e.name, year: e.year, lod: e.lod || 3, one_line: e.one_line || '',
+              country_id: k.id, country_name: k.name, parent_id: k.parent_id,
+              x: ex, y: ey, idx: kPts.length,
+              sources: (e.sources || []).map(s => ({ref: s.ref || s.label || s.title || '', url: s.url || ''}))
+            };
+            kPts.push(item);
+            byId[e.id] = item;
+            allEvents.push(item);
+          });
+        });
+        byCountry[k.id] = kPts;
+        continue;
+      }
+
+      const cg = k.spatial ? document.querySelector(`#countries .country[data-id="${k.id}"]`) : null;
+      const pg = document.querySelector(`#shapes .continent[data-id="${k.parent_id}"]`);
+      const land = (cg && cg.querySelector('path.cland')) || (pg && pg.querySelector('path.land'));
+      if (!land) { byCountry[k.id] = []; continue; }
+      const bbx = land.getBBox();
+
+      const slices = [];
+      for (let tx = bbx.x + 3.0; tx <= bbx.x + bbx.width - 3.0; tx += 1.5) {
+        let y0 = null, y1 = null;
+        for (let y = bbx.y + 1; y <= bbx.y + bbx.height - 1; y += 1.5) {
+          if (inFill(land, tx, y)) { if (y0 === null) y0 = y; y1 = y; }
+        }
+        if (y0 !== null) slices.push({tx, y0, y1, h: y1 - y0});
+      }
+      const thickSlices = slices.filter(s => s.h >= 7.0);
+      const usableSlices = thickSlices.length >= 2 ? thickSlices : (slices.filter(s => s.h >= 2.5).length ? slices.filter(s => s.h >= 2.5) : slices);
+      const xMinIn = usableSlices.length ? usableSlices[0].tx : bbx.x + 4;
+      const xMaxIn = usableSlices.length ? usableSlices[usableSlices.length - 1].tx : bbx.x + bbx.width - 4;
+
+      const rawXs = evs.map(e => X(e.year));
+      const rawMin = Math.min(...rawXs), rawMax = Math.max(...rawXs);
+      const spanIn = Math.max(1, xMaxIn - xMinIn);
+      const needRemap = (rawMin < xMinIn + 1.5) || (rawMax > xMaxIn - 1.5);
+      const tX0 = needRemap ? Math.max(xMinIn + 1.5, Math.min(rawMin, xMaxIn - spanIn * 0.78)) : rawMin;
+      const tX1 = needRemap ? Math.min(xMaxIn - 1.5, Math.max(rawMax, xMinIn + spanIn * 0.78)) : rawMax;
+
+      const sliceAt = targetX => {
+        if (!usableSlices.length) return {tx: targetX, y0: bbx.y + 4, y1: bbx.y + bbx.height - 4};
+        let best = usableSlices[0], bestD = Math.abs(best.tx - targetX);
+        for (let i = 1; i < usableSlices.length; i++) {
+          const d = Math.abs(usableSlices[i].tx - targetX);
+          if (d < bestD) { bestD = d; best = usableSlices[i]; }
+        }
+        return best;
+      };
+
+      const kPts = [];
+      evs.forEach((e, idx) => {
+        let ex, ey;
+        if (POS_OVERRIDE[e.id]) {
+          [ex, ey] = POS_OVERRIDE[e.id];
+        } else {
+          ex = X(e.year);
+          if (needRemap && rawMax > rawMin + 1e-4) {
+            const u = (ex - rawMin) / (rawMax - rawMin);
+            const rankU = evs.length > 1 ? idx / (evs.length - 1) : 0.5;
+            const blendedU = u * 0.78 + rankU * 0.22;
+            ex = tX0 + blendedU * (tX1 - tX0);
+          } else if (evs.length > 1) {
+            const rankX = xMinIn + ((idx + 0.5) / evs.length) * spanIn;
+            ex = ex * 0.88 + rankX * 0.12;
+          }
+          if (X_BIAS_OVERRIDE[e.id] !== undefined) ex += X_BIAS_OVERRIDE[e.id];
+          ex = Math.min(Math.max(ex, xMinIn), xMaxIn);
+
+          const sl = sliceAt(ex);
+          ex = sl.tx;
+          const defaultFracs = [0.50, 0.28, 0.72, 0.36, 0.64, 0.22, 0.78];
+          const frac = FRAC_OVERRIDE[e.id] !== undefined ? FRAC_OVERRIDE[e.id] : defaultFracs[idx % defaultFracs.length];
+          const padY = Math.min(3.0, Math.max(1.0, (sl.y1 - sl.y0) * 0.14));
+          ey = (sl.y0 + padY) + frac * Math.max(1.0, (sl.y1 - sl.y0) - 2 * padY);
+
+          for (let iter = 0; iter < 8; iter++) {
+            const clash = kPts.find(p => Math.hypot(p.x - ex, p.y - ey) < 5.2);
+            if (!clash) break;
+            const tryFrac = defaultFracs[(idx + iter + 1) % defaultFracs.length];
+            const candX = Math.min(Math.max(ex + (iter % 2 === 0 ? 3.2 : -3.2) * ((iter >> 1) + 1), xMinIn), xMaxIn);
+            const cSl = sliceAt(candX);
+            const cPad = Math.min(2.5, Math.max(0.8, (cSl.y1 - cSl.y0) * 0.12));
+            const candY = (cSl.y0 + cPad) + tryFrac * Math.max(1.0, (cSl.y1 - cSl.y0) - 2 * cPad);
+            if (inFill(land, cSl.tx, candY)) {
+              ex = cSl.tx;
+              ey = candY;
+            }
+          }
+        }
+
+        const item = {
+          e, id: e.id, name: e.name, year: e.year, lod: e.lod || 3, one_line: e.one_line || '',
+          country_id: k.id, country_name: k.name, parent_id: k.parent_id,
+          x: +ex.toFixed(1), y: +ey.toFixed(1), idx,
+          sources: (e.sources || []).map(s => ({ref: s.ref || s.label || s.title || '', url: s.url || ''}))
+        };
+        kPts.push(item);
+        byId[e.id] = item;
+        allEvents.push(item);
+      });
+      byCountry[k.id] = kPts;
+    }
+
+    const roadSegments = [];
+    const seenSeg = new Set();
+    const onTrunkSet = new Set();
+    const adjByEvent = {};
+
+    // Directed causal segment: idA (upstream / West predecessor) -> idB (downstream / East successor)
+    const addSegment = (idA, idB, roadId, roadName, tier) => {
+      const p0 = byId[idA], p1 = byId[idB];
+      if (!p0 || !p1 || idA === idB) return;
+      const key = idA < idB ? `${idA}|${idB}` : `${idB}|${idA}`;
+      onTrunkSet.add(idA);
+      onTrunkSet.add(idB);
+      if (seenSeg.has(key)) return;
+      seenSeg.add(key);
+      (adjByEvent[idA] = adjByEvent[idA] || []).push({dir: 'east', id: idB, name: p1.name, year: p1.year, roadId, roadName, tier});
+      (adjByEvent[idB] = adjByEvent[idB] || []).push({dir: 'west', id: idA, name: p0.name, year: p0.year, roadId, roadName, tier});
+      const dx = p1.x - p0.x, dy = p1.y - p0.y;
+      const c1x = p0.x + dx * 0.44, c1y = p0.y + dy * 0.10;
+      const c2x = p1.x - dx * 0.44, c2y = p1.y - dy * 0.10;
+      const d = `M${f1(p0.x)},${f1(p0.y)} C${f1(c1x)},${f1(c1y)} ${f1(c2x)},${f1(c2y)} ${f1(p1.x)},${f1(p1.y)}`;
+      roadSegments.push({
+        from: p0.id, to: p1.id,
+        x0: p0.x, y0: p0.y, x1: p1.x, y1: p1.y,
+        lod: Math.max(p0.lod || 3, p1.lod || 3),
+        roadId, roadName, tier, d
+      });
+    };
+
+    LINEAGE_TRUNKS.forEach(tr => {
+      const valid = tr.stops.filter(sid => byId[sid]);
+      for (let i = 0; i < valid.length - 1; i++) {
+        addSegment(valid[i], valid[i + 1], tr.id, tr.name, 'trunk');
+      }
+    });
+    LINEAGE_BRANCHES.forEach(br => {
+      const valid = br.stops.filter(sid => byId[sid]);
+      for (let i = 0; i < valid.length - 1; i++) {
+        addSegment(valid[i], valid[i + 1], br.id, br.name, 'branch');
+      }
+    });
+    LINEAGE_SPURS.forEach(sp => {
+      const valid = sp.stops.filter(sid => byId[sid]);
+      for (let i = 0; i < valid.length - 1; i++) {
+        addSegment(valid[i], valid[i + 1], sp.id, sp.name, 'spur');
+      }
+    });
+
+    window._EVENT_CATALOG_CACHE = {byCountry, byId, allEvents, roadSegments, adjByEvent, trunks: LINEAGE_TRUNKS, branches: LINEAGE_BRANCHES, spurs: LINEAGE_SPURS};
+    return window._EVENT_CATALOG_CACHE;
+  };
+  window.computeEventCatalog = computeEventCatalog;
+
+  // ---- v14 MULTI-SCALE CARTOGRAPHIC DETAIL (lod2 = 4x Provinces, lod3 = 8x Syllabus, lod4 = 16x Archive):
+  // Like Google Maps transitioning from regional terrain to detailed survey sheets and urban street plans, zooming in
+  // reveals progressively finer antique survey cartography while preserving text readability via vellum lightening.
+  const gMultiDetail = el('g', {id: 'multi-scale-detail', 'pointer-events': 'none'});
+  svg.insertBefore(gMultiDetail, gThreads);
+  const drawMultiScaleDetail = () => {
+    gMultiDetail.innerHTML = '';
+    const catalog = computeEventCatalog();
+    if (!TILESRC || LOD < 2) {
+      // On standalone atlas.html (or LOD < 2), still render the cross-border trunk & branch lineage highways
+      const gRoadsStandalone = el('g', {id: 'lineage-roads', class: 'detail-roads', 'clip-path': 'url(#clip-coast)'}, gMultiDetail);
+      catalog.roadSegments.forEach(seg => {
+        if (seg.tier === 'spur') return;
+        const isTrunk = seg.tier === 'trunk';
+        const outerW = isTrunk ? 0.56 : 0.44;
+        const innerW = outerW * 0.48;
+        el('path', {d: seg.d, fill: 'none', stroke: '#4a351d', 'stroke-width': f1(outerW), 'stroke-opacity': isTrunk ? 0.48 : 0.38, 'stroke-linecap': 'round'}, gRoadsStandalone);
+        el('path', {d: seg.d, fill: 'none', stroke: '#f6ecd7', 'stroke-width': f1(innerW), 'stroke-opacity': 0.78, 'stroke-linecap': 'round'}, gRoadsStandalone);
+      });
+      return;
+    }
+    const coastMain = gCoast.querySelector('path');
+
+    // 1. Fine Surveyor Sub-Graticule Parallels, Annual/Quarterly Meridians & Survey Crosshairs (+)
+    const gSubGrat = el('g', {class: 'detail-graticule'}, gMultiDetail);
+    const gratW = LOD >= 4 ? 0.14 : LOD === 3 ? 0.22 : 0.35;
+    FINE.forEach(([b, f0, f1_]) => {
+      const py = BY(b, (f0 + f1_) / 2);
+      el('path', {d: spinePath(py, PAD_L, W - PAD_R + 30), fill: 'none', stroke: '#6c5838', 'stroke-width': gratW, 'stroke-dasharray': LOD >= 3 ? '1.1 1.7' : '1.8 2.6', 'stroke-opacity': LOD >= 3 ? 0.34 : 0.24}, gSubGrat);
+    });
+    const yrStep = LOD >= 4 ? 0.5 : LOD === 3 ? 1.0 : 2.0;
+    for (let yr = 1944; yr <= PRESENT; yr += yrStep) {
+      if (yr < 2006 && yr % 1 !== 0) continue;
+      const x = X(yr);
+      el('line', {x1: f1(x), x2: f1(x), y1: f1(SY(x, MAP_TOP) - 45), y2: f1(RULER_Y - 10), stroke: '#6c5838', 'stroke-width': gratW * 0.9, 'stroke-dasharray': yr % 1 === 0 ? '1.2 2.0' : '0.6 1.5', 'stroke-opacity': yr % 1 === 0 ? 0.28 : 0.20}, gSubGrat);
+      if (LOD >= 3 && yr % (LOD >= 4 ? 1 : 2) === 0) {
+        BANDS.forEach(b => {
+          const cy = SY(x, BY(b, 0.5)), ch = LOD >= 4 ? 1.1 : 1.7;
+          el('path', {d: `M${f1(x - ch)},${f1(cy)} L${f1(x + ch)},${f1(cy)} M${f1(x)},${f1(cy - ch)} L${f1(x)},${f1(cy + ch)}`, fill: 'none', stroke: '#4a361e', 'stroke-width': gratW * 1.35, 'stroke-opacity': 0.48}, gSubGrat);
+        });
+      }
+    }
+    if (LOD >= 4) {
+      for (let yr = 2020.25; yr <= PRESENT; yr += 0.25) {
+        if (yr % 0.5 === 0) continue;
+        const x = X(yr);
+        el('line', {x1: f1(x), x2: f1(x), y1: f1(SY(x, MAP_TOP) - 35), y2: f1(RULER_Y - 10), stroke: '#6c5838', 'stroke-width': 0.10, 'stroke-dasharray': '0.4 1.2', 'stroke-opacity': 0.22}, gSubGrat);
+      }
+    }
+
+    // 2. Outlying Islands: Submarine Telegraph Cables to Mainland, Reef Stipple Rings & Settlement Planimetry
+    const gIsleDetail = el('g', {class: 'detail-islands'}, gMultiDetail);
+    ROCKS.forEach((rk, idx) => {
+      const rkx = X(rk.y), rky = SY(rkx, rk.cy);
+      // Find nearest mainland coastal point on the same meridian or nearby
+      let bestX = rkx, bestY = rky, bestD = 1e9;
+      for (let dx = -30; dx <= 30; dx += 4) {
+        const tx = rkx + dx;
+        for (let ty = 120; ty <= RULER_Y - 20; ty += 4) {
+          if (coastMain && inFill(coastMain, tx, ty)) {
+            const dist = Math.hypot(tx - rkx, ty - rky);
+            if (dist < bestD) { bestD = dist; bestX = tx; bestY = ty; }
+          }
+        }
+      }
+      if (bestD < 260) {
+        const mx = (rkx + bestX) / 2 + (idx % 2 === 0 ? 6 : -6), my = (rky + bestY) / 2;
+        const cableD = `M${f1(rkx)},${f1(rky)} Q${f1(mx)},${f1(my)} ${f1(bestX)},${f1(bestY)}`;
+        el('path', {d: cableD, fill: 'none', stroke: '#4b3820', 'stroke-width': LOD >= 4 ? 0.22 : 0.34, 'stroke-dasharray': LOD >= 4 ? '0.9 1.1' : '1.4 1.6', 'stroke-opacity': 0.55}, gIsleDetail);
+      }
+      // Outer coral/shoal stipple ring around each outlying island
+      const shoalPts = islandPts(rkx, rky, rk.r * 1.42, rk.s + 3);
+      el('path', {d: bsplinePath(shoalPts), fill: 'none', stroke: '#5a4326', 'stroke-width': LOD >= 4 ? 0.20 : 0.32, 'stroke-dasharray': '0.35 1.15', 'stroke-opacity': 0.58}, gIsleDetail);
+      // Fringe milestone settlements on the island
+      (rk.events || []).forEach((ev, eIdx) => {
+        if (LOD === 2 && ev.lod > 3) return;
+        const ang = (eIdx / Math.max(1, rk.events.length)) * Math.PI * 2 + 0.6;
+        const ex = rkx + Math.cos(ang) * rk.r * 0.42 * 1.25;
+        const ey = rky + Math.sin(ang) * rk.r * 0.42;
+        const sr = LOD >= 4 ? 0.55 : LOD === 3 ? 0.85 : 1.1;
+        el('circle', {cx: f1(ex), cy: f1(ey), r: f1(sr * 1.45), fill: '#f5ebd6', stroke: '#2d1e0f', 'stroke-width': f1(sr * 0.35)}, gIsleDetail);
+        el('circle', {cx: f1(ex), cy: f1(ey), r: f1(sr * 0.55), fill: '#2d1e0f'}, gIsleDetail);
+      });
+    });
+
+    // 3. Province Interior Topographic Terrace Contours, Slope Hachures, Cadastral Field Parcellation & Lineage Roads
+    const gTopo = el('g', {class: 'detail-topo', 'clip-path': 'url(#clip-coast)'}, gMultiDetail);
+    const gRoads = el('g', {id: 'lineage-roads', class: 'detail-roads', 'clip-path': 'url(#clip-coast)'}, gMultiDetail);
+    const gTowns = el('g', {class: 'detail-towns', 'clip-path': 'url(#clip-coast)'}, gMultiDetail);
+
+    // 3a-b. Render province contours, slope hachures, biome micro-cartography, and town/citadel planimetry
+    for (const k of ENT.countries.filter(k => k.spatial)) {
+      const g = gCountries.querySelector(`.country[data-id="${k.id}"]`);
+      if (!g || !g._loops) continue;
+      const land = g.querySelector('path.cland');
+      const bbx = land.getBBox();
+      const kClip = `url(#clip-k-${k.id})`;
+      const kGroup = el('g', {'clip-path': kClip}, gTopo);
+
+      const evPts = catalog.byCountry[k.id] || [];
+
+      // Engraved Vector Biome Micro-Cartography (Ordnance Survey / Cassini woodcut trees, marsh reeds, meadow tufts, crags)
+      if (LOD >= 3) {
+        const bStep = LOD >= 4 ? 7.5 : 12.5;
+        const bScale = LOD >= 4 ? 0.52 : 0.88;
+        const bSw = LOD >= 4 ? 0.14 : 0.22;
+        let bPath = '';
+        let bFillPath = '';
+        let rowIdx = 0;
+        for (let gy = bbx.y + 4; gy <= bbx.y + bbx.height - 4; gy += bStep, rowIdx++) {
+          const xOff = (rowIdx % 2) * (bStep * 0.5);
+          for (let gx = bbx.x + 4 + xOff; gx <= bbx.x + bbx.width - 4; gx += bStep) {
+            const jx = gx + (h2(Math.round(gx), Math.round(gy), 71) - 0.5) * bStep * 0.55;
+            const jy = gy + (h2(Math.round(gx), Math.round(gy), 73) - 0.5) * bStep * 0.55;
+            if (!inFill(land, jx, jy)) continue;
+            if (evPts.some(p => Math.hypot(p.x - jx, p.y - jy) < (LOD >= 4 ? 2.8 : 4.2))) continue;
+            const bm = k.biome || 'grassland';
+            const r = bScale * (0.82 + 0.35 * h2(Math.round(gx), Math.round(gy), 79));
+            if (bm === 'forest' || bm === 'jungle') {
+              const c1x = jx - r * 0.45, c1y = jy - r * 0.35, r1 = r * 0.85;
+              const c2x = jx + r * 0.55, c2y = jy - r * 0.15, r2 = r * 0.65;
+              bFillPath += `M${f1(c1x - r1)},${f1(c1y)} A${f1(r1)},${f1(r1)} 0 1,1 ${f1(c1x + r1)},${f1(c1y)} A${f1(r1 * 0.85)},${f1(r1 * 0.65)} 0 1,1 ${f1(c1x - r1)},${f1(c1y)} Z `;
+              bFillPath += `M${f1(c2x - r2)},${f1(c2y)} A${f1(r2)},${f1(r2)} 0 1,1 ${f1(c2x + r2)},${f1(c2y)} A${f1(r2 * 0.85)},${f1(r2 * 0.65)} 0 1,1 ${f1(c2x - r2)},${f1(c2y)} Z `;
+              bPath += `M${f1(c1x)},${f1(c1y + r1 * 0.4)}L${f1(c1x)},${f1(jy + r * 0.65)} M${f1(c2x)},${f1(c2y + r2 * 0.4)}L${f1(c2x)},${f1(jy + r * 0.65)} M${f1(jx - r * 1.25)},${f1(jy + r * 0.65)}L${f1(jx + r * 1.25)},${f1(jy + r * 0.65)} `;
+            } else if (bm === 'wetland') {
+              bPath += `M${f1(jx - r * 1.35)},${f1(jy + r * 0.3)}L${f1(jx + r * 1.35)},${f1(jy + r * 0.3)} M${f1(jx - r * 0.8)},${f1(jy + r * 0.35)}L${f1(jx + r * 0.8)},${f1(jy + r * 0.65)} M${f1(jx)},${f1(jy + r * 0.3)}L${f1(jx)},${f1(jy - r * 0.85)} M${f1(jx - r * 0.55)},${f1(jy + r * 0.3)}L${f1(jx - r * 0.75)},${f1(jy - r * 0.6)} M${f1(jx + r * 0.55)},${f1(jy + r * 0.3)}L${f1(jx + r * 0.75)},${f1(jy - r * 0.6)} `;
+            } else if (bm === 'highland' || bm === 'volcanic') {
+              bPath += `M${f1(jx - r * 1.15)},${f1(jy + r * 0.45)}L${f1(jx)},${f1(jy - r * 0.75)}L${f1(jx + r * 1.15)},${f1(jy + r * 0.45)} M${f1(jx)},${f1(jy - r * 0.75)}L${f1(jx + r * 0.38)},${f1(jy + r * 0.42)} `;
+            } else if (bm === 'desert' || bm === 'ice') {
+              bPath += `M${f1(jx - r * 1.2)},${f1(jy + r * 0.2)} Q${f1(jx)},${f1(jy - r * 0.55)} ${f1(jx + r * 1.2)},${f1(jy + r * 0.2)} M${f1(jx - r * 0.7)},${f1(jy + r * 0.55)}L${f1(jx + r * 0.7)},${f1(jy + r * 0.55)} `;
+            } else {
+              bPath += `M${f1(jx)},${f1(jy + r * 0.35)}L${f1(jx)},${f1(jy - r * 0.65)} M${f1(jx - r * 0.35)},${f1(jy + r * 0.35)}L${f1(jx - r * 0.8)},${f1(jy - r * 0.45)} M${f1(jx + r * 0.35)},${f1(jy + r * 0.35)}L${f1(jx + r * 0.8)},${f1(jy - r * 0.45)} M${f1(jx - r * 0.75)},${f1(jy + r * 0.38)}L${f1(jx + r * 0.75)},${f1(jy + r * 0.38)} `;
+            }
+          }
+        }
+        if (bFillPath) el('path', {d: bFillPath, fill: '#d8ccb0', 'fill-opacity': 0.55, stroke: '#4c381f', 'stroke-width': f1(bSw), 'stroke-opacity': 0.55}, kGroup);
+        if (bPath) el('path', {d: bPath, fill: 'none', stroke: '#4c381f', 'stroke-width': f1(bSw), 'stroke-opacity': 0.52, 'stroke-linecap': 'round'}, kGroup);
+      }
+
+      // Engraved Settlement Planimetry, Parish Cadastral Blocks & Citadel Rosettes at Milestone Anchors
+      if (LOD >= 3) {
+        evPts.forEach(({e, x, y, idx}) => {
+          const isMajor = (e.lod || 3) <= 3;
+          if (LOD === 3 && !isMajor) return;
+          if (LOD === 3) {
+            const r = 1.65;
+            el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 2.15), fill: 'none', stroke: '#5a4326', 'stroke-width': 0.18, 'stroke-dasharray': '0.9 0.7', 'stroke-opacity': 0.55}, gTowns);
+            el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 1.45), fill: '#f6ecd7', 'fill-opacity': 0.76, stroke: '#3a2713', 'stroke-width': 0.28}, gTowns);
+            el('path', {d: `M${f1(x - r * 1.9)},${f1(y)} L${f1(x + r * 1.9)},${f1(y)} M${f1(x)},${f1(y - r * 1.9)} L${f1(x)},${f1(y + r * 1.9)}`, stroke: '#3a2713', 'stroke-width': 0.24, 'stroke-opacity': 0.65}, gTowns);
+            el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 0.75), fill: '#ead8b8', stroke: '#2a1b0b', 'stroke-width': 0.26}, gTowns);
+          } else if (LOD >= 4) {
+            if (isMajor) {
+              const r = 1.25;
+              const rot = (idx * 17) % 35 - 17;
+              const blkG = el('g', {transform: `rotate(${rot} ${f1(x)} ${f1(y)})`}, gTowns);
+              [[-2.2, -1.5, 1.1, 0.8], [1.1, -1.5, 1.1, 0.8], [-2.2, 0.7, 1.1, 0.8], [1.1, 0.7, 1.1, 0.8]].forEach(([bx, by, bw, bh]) => {
+                el('rect', {x: f1(x + bx * r), y: f1(y + by * r), width: f1(bw * r), height: f1(bh * r), fill: '#efe1c6', 'fill-opacity': 0.62, stroke: '#4a351d', 'stroke-width': 0.12, 'stroke-opacity': 0.62}, blkG);
+              });
+              let starD = '';
+              for (let a = 0; a < 8; a++) {
+                const th = (a * Math.PI) / 4 + (idx % 2) * 0.2;
+                const rIn = r * 0.65, rOut = r * (a % 2 === 0 ? 1.95 : 1.45);
+                starD += `M${f1(x + Math.cos(th) * rIn)},${f1(y + Math.sin(th) * rIn)}L${f1(x + Math.cos(th) * rOut)},${f1(y + Math.sin(th) * rOut)}`;
+              }
+              el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 1.55), fill: '#f6ecd7', 'fill-opacity': 0.82, stroke: '#3a2713', 'stroke-width': 0.18}, gTowns);
+              el('path', {d: starD, fill: 'none', stroke: '#3a2713', 'stroke-width': 0.15, 'stroke-opacity': 0.72}, gTowns);
+              el('rect', {x: f1(x - r * 0.68), y: f1(y - r * 0.68), width: f1(r * 1.36), height: f1(r * 1.36), fill: '#ead8b8', stroke: '#2a1b0b', 'stroke-width': 0.18, transform: `rotate(${(idx * 15) % 45} ${f1(x)} ${f1(y)})`}, gTowns);
+              el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 0.28), fill: '#2a1b0b'}, gTowns);
+            } else {
+              const r = 0.78;
+              el('rect', {x: f1(x - r * 1.5), y: f1(y - r * 0.9), width: f1(r * 3.0), height: f1(r * 1.8), fill: 'none', stroke: '#5a4326', 'stroke-width': 0.10, 'stroke-dasharray': '0.5 0.4', 'stroke-opacity': 0.55}, gTowns);
+              el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 1.35), fill: '#f6ecd7', 'fill-opacity': 0.78, stroke: '#3a2713', 'stroke-width': 0.15}, gTowns);
+              el('circle', {cx: f1(x), cy: f1(y), r: f1(r * 0.55), fill: '#3a2713'}, gTowns);
+            }
+          }
+        });
+      }
+    }
+
+    // 4. Cross-Border Historical Lineage Trunk Roads, Junction Branches & Parish Spurs (lod >= 2)
+    // Clipped only to #clip-coast so highways cross province and continent boundaries seamlessly from West to East.
+    catalog.roadSegments.forEach(seg => {
+      if (LOD === 2 && seg.tier === 'spur') return;
+      if (LOD === 3 && seg.tier === 'spur' && seg.lod > 3) return;
+      if (seg.tier === 'spur') {
+        const sw = LOD >= 4 ? 0.18 : 0.26;
+        el('path', {d: seg.d, fill: 'none', stroke: '#584024', 'stroke-width': f1(sw), 'stroke-dasharray': LOD >= 4 ? '0.65 0.45' : '1.0 0.7', 'stroke-opacity': 0.36, 'stroke-linecap': 'round'}, gRoads);
+      } else {
+        const isTrunk = seg.tier === 'trunk';
+        const outerW = LOD >= 4 ? (isTrunk ? 0.42 : 0.34) : LOD === 3 ? (isTrunk ? 0.62 : 0.50) : (isTrunk ? 0.82 : 0.66);
+        const innerW = outerW * 0.48;
+        el('path', {d: seg.d, fill: 'none', stroke: '#4a351d', 'stroke-width': f1(outerW), 'stroke-opacity': isTrunk ? 0.56 : 0.46, 'stroke-linecap': 'round'}, gRoads);
+        el('path', {d: seg.d, fill: 'none', stroke: '#f6ecd7', 'stroke-width': f1(innerW), 'stroke-opacity': 0.84, 'stroke-linecap': 'round'}, gRoads);
+        if (LOD >= 4) {
+          el('path', {d: seg.d, fill: 'none', stroke: '#6b4e2b', 'stroke-width': f1(outerW * 0.15), 'stroke-dasharray': '0.45 0.55', 'stroke-opacity': 0.48}, gRoads);
+        }
+      }
+    });
+  };
+  window.drawMultiScaleDetail = drawMultiScaleDetail;
+
   // lod2/3 tile renders: a continent with spatial countries hides its own label + leader (see html.tilesrc.lod2 .haskids)
   const HASKIDS = new Set(ENT.countries.filter(k => k.spatial).map(k => k.parent_id));
   const markHasKids = () => HASKIDS.forEach(id => [...gLabels.querySelectorAll(`text[data-for="${id}"]`), ...gLeaders.querySelectorAll(`[data-for="${id}"]`)].forEach(t => t.classList.add('haskids')));
@@ -1555,8 +3219,9 @@ fetch('registry.json').then(r => r.json()).then(data => {
   const layoutAll = () => {
     if (document.documentElement.classList.contains('tilesrc')) {
       drawThreads('geometry');
+      drawMultiScaleDetail();
     } else {
-      drawThreads('geometry'); relayout(); layoutCountries(); drawThreads(); placeLod();
+      drawThreads('geometry'); drawMultiScaleDetail(); relayout(); layoutCountries(); drawThreads(); placeLod();
     }
   };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layoutAll(); document.dispatchEvent(new Event('map:ready')); });
@@ -1581,36 +3246,45 @@ fetch('registry.json').then(r => r.json()).then(data => {
       let sx = 0, sy = 0, sn = 0;
       for (let x = bb.x + 2; x <= bb.x + bb.width - 2; x += 4) for (let y = bb.y + 2; y <= bb.y + bb.height - 2; y += 4) if (inF(land, x, y)) { sx += x; sy += y; sn++; }
       const cx = sn ? sx / sn : bb.x + bb.width / 2, cy = sn ? sy / sn : bb.y + bb.height / 2;
-      const tr = (k.placement && k.placement.time_range) || k.time_range || ['', ''];
+      const tr = (k.placement && k.placement.time_range) || k.time_range || [k.start ?? '', k.end ?? ''];
       countries.push({id: k.id, name: k.name, subtitle: k.subtitle || '', parent_id: k.parent_id, biome: k.biome, tag: k.tag || '', hint: k.hint || '', summary60: k.summary60 || '', span: `${tr[0]}–${tr[1]}`, start: tr[0], end: tr[1], d: land.getAttribute('d'), bbox: [+bb.x.toFixed(1), +bb.y.toFixed(1), +bb.width.toFixed(1), +bb.height.toFixed(1)], cx: +cx.toFixed(1), cy: +cy.toFixed(1)});
     }
-    const events = [];
-    for (const k of ENT.countries) {
-      const cg = k.spatial ? document.querySelector(`#countries .country[data-id="${k.id}"]`) : null;
-      const pg = document.querySelector(`#shapes .continent[data-id="${k.parent_id}"]`);
-      const land = (cg && cg.querySelector('path.cland')) || (pg && pg.querySelector('path.land'));
-      if (!land) continue;
-      const bb = land.getBBox();
-      const evs = (k.events || []).slice().sort((a, b) => a.year - b.year || (a.lod || 3) - (b.lod || 3));
-      evs.forEach((e, idx) => {
-        let ex = Math.min(Math.max(X(e.year), bb.x + 4), bb.x + bb.width - 4);
-        let y0 = null, y1 = null;
-        for (let y = bb.y; y <= bb.y + bb.height; y += 1.5) if (inF(land, ex, y)) { if (y0 === null) y0 = y; y1 = y; }
-        if (y0 === null) {
-          for (let d = 3; d <= 60 && y0 === null; d += 3) {
-            for (const dir of [1, -1]) {
-              const tx = ex + dir * d;
-              if (tx < bb.x + 2 || tx > bb.x + bb.width - 2) continue;
-              for (let y = bb.y; y <= bb.y + bb.height; y += 2) if (inF(land, tx, y)) { if (y0 === null) y0 = y; y1 = y; }
-              if (y0 !== null) { ex = tx; break; }
-            }
-          }
-        }
-        const frac = [0.5, 0.32, 0.68, 0.24, 0.76, 0.41, 0.59][idx % 7];
-        const ey = y0 !== null ? y0 + frac * (y1 - y0) : bb.y + bb.height * frac;
-        events.push({id: e.id, name: e.name, year: e.year, lod: e.lod || 3, one_line: e.one_line || '', country_id: k.id, country_name: k.name, parent_id: k.parent_id, x: +ex.toFixed(1), y: +ey.toFixed(1), sources: (e.sources || []).map(s => ({ref: s.ref, url: s.url || ''}))});
+    const cat = computeEventCatalog();
+    const events = cat.allEvents.map(it => ({
+      id: it.id, name: it.name, year: it.year, lod: it.lod, one_line: it.one_line,
+      country_id: it.country_id, country_name: it.country_name, parent_id: it.parent_id,
+      x: it.x, y: it.y, sources: it.sources,
+      roads: cat.adjByEvent[it.id] || []
+    }));
+    const roads = {
+      trunks: cat.trunks,
+      branches: cat.branches,
+      segments: cat.roadSegments
+    };
+    const islands = ROCKS.map((rk, idx) => {
+      const rkx = X(rk.y), rky = SY(rkx, rk.cy);
+      const d = rockD[idx];
+      const evs = (rk.events || []).map((ev, eIdx) => {
+        const ang = (eIdx / Math.max(1, rk.events.length)) * Math.PI * 2 + 0.6;
+        const ex = rkx + Math.cos(ang) * rk.r * 0.42 * 1.25;
+        const ey = rky + Math.sin(ang) * rk.r * 0.42;
+        return {
+          id: ev.id, name: ev.name, year: ev.year, lod: ev.lod || 3,
+          one_line: ev.one_line || '', ref: (ev.sources && ev.sources[0] && ev.sources[0].ref) || 'Archival Record',
+          island_id: rk.id, island_name: rk.name,
+          x: +ex.toFixed(1), y: +ey.toFixed(1),
+          sources: (ev.sources || []).map(s => ({ref: s.ref, url: s.url || ''}))
+        };
       });
-    }
+      return {
+        id: rk.id, name: rk.name, subtitle: rk.subtitle, tag: rk.tag || rk.subtitle || '', span: rk.span,
+        year: rk.y, biome: rk.biome || 'highland', summary: rk.summary60 || '', summary60: rk.summary60 || '',
+        soundings: rk.soundings || [9, 14, 20],
+        d, cx: +rkx.toFixed(1), cy: +rky.toFixed(1), r: rk.r, rx: +(rk.r * 1.3).toFixed(1), ry: +rk.r.toFixed(1),
+        bbox: [+(rkx - rk.r * 1.6).toFixed(1), +(rky - rk.r * 1.4).toFixed(1), +(rk.r * 3.2).toFixed(1), +(rk.r * 2.8).toFixed(1)],
+        events: evs
+      };
+    });
     const threads = (ENT.threads || []).map(T => {
       const [b0, b1] = T.placement.band; const bank = T.placement.bank === undefined ? .5 : T.placement.bank;
       const py = bandTop(b0) + bank * (bandTop(b1) + bandH - bandTop(b0));
@@ -1624,7 +3298,7 @@ fetch('registry.json').then(r => r.json()).then(data => {
       };
     });
     if (hadLod0) document.documentElement.classList.add('lod0');
-    return {plate: [W, H], blocks: Object.values(blocks), leaders, dots, lands, countries, events, threads};
+    return {plate: [W, H], blocks: Object.values(blocks), leaders, dots, lands, countries, events, roads, islands, threads};
   };
 
   // legend: texture swatch + tint

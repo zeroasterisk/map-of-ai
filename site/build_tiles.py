@@ -51,30 +51,22 @@ def serve(root: Path, port: int):
 
 LOD_DESC = {
     0: "world view: flat tinted continents, coast, continent name only, leaders; no textures, no country layer",
-    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
-    2: "+ solid country borders, + country name + one-line tag + years",
-    3: "+ country subtitle, + headline events (labelled dots at their year; pilots: Deep Learning Basin, Transformer Plateau, Generative Coast)",
-    4: "+ all sourced events + a one-line fact under each headline event (pilots: Deep Learning Basin, Transformer Plateau, Generative Coast; elsewhere as z3)",
+    1: "+ terrain textures, + continent subtitle/years, + faint country borders, + landmark hints",
+    2: "+ solid country borders, + fine 0.50x textures, + sub-graticule, + terrace contours, + trade roads",
+    3: "+ syllabus view (8x): 0.28x fine textures, + vellum wash, + 5-level terrace contours & hachures, + town rosettes, + submarine cables",
+    4: "+ archive view (16x): 0.15x micro-textures, + vellum wash, + 7-level contours, + Vauban star-citadel planimetry & quarterly meridians",
 }
 LOD_MAX = max(LOD_DESC)
-# LOD pilot: levels above --full-zmax are rendered for these plate-space bboxes only, tile-aligned at z4 (16 plate
-# units per tile). index.html mounts each as its own bounded tile layer; every other continent keeps its z3 art at
-# zoom 4. Widening to the full plate = ~5000 more tiles.
-#   Symbolic Heartland    x 240–496, y 400–688 (Symbolic Heartland, 1956–1974)
-#   Connectionist + Isthmus x 496–768, y 416–736 (Connectionist Revival + Statistical Isthmus west)
-#   Deep Learning Basin   x 768–1216, y 304–800 (Basin + Statistical Isthmus east)
-#   Transformer Plateau   x 1056–1472, y 304–720 (8 spatial countries + z3/z4 event dots and labels) plus margin
-#   Generative Coast      x 1280–1632, y 128–880 (all 8 countries, N1a–S2c) plus margin, clipped to the plate's east edge
+# Full inhabited atlas at z4 (16 plate units per tile), partitioned into 4 contiguous tile-aligned horizontal sectors
+# so each Playwright capture stays <= 7,424 px wide while covering all 10 continents, 49 provinces, and 10 outlying islands.
 PILOT_BBOXES = {
-    "cybernetic-shore": (160, 384, 304, 672),
-    "symbolic-heartland": (240, 400, 496, 688),
-    "winter-expert": (384, 256, 656, 560),
-    "connectionist-isthmus": (496, 416, 768, 736),
-    "deep-learning-basin": (768, 304, 1216, 800),
-    "transformer-plateau": (1056, 304, 1472, 720),
-    "generative-coast": (1280, 128, 1632, 880),
+    "west-archipelago-heartland": (32, 128, 496, 928),
+    "central-steppes-isthmus": (496, 128, 864, 928),
+    "deep-learning-basin-shoals": (864, 128, 1248, 928),
+    "transformer-generative-east": (1248, 128, 1648, 928),
 }
-PILOT_BBOX = PILOT_BBOXES["deep-learning-basin"]   # back-compat name (single-bbox callers / --pilot-bbox default)
+PILOT_UNION_BBOX = [32, 128, 1648, 928]
+PILOT_BBOX = PILOT_BBOXES["deep-learning-basin-shoals"]
 
 
 def screenshot(browser, url: str, scale: int, want_labels: bool = False, clip: tuple | None = None) -> tuple[Image.Image, dict | None]:
@@ -293,6 +285,7 @@ def main():
       json.dumps(labels, separators=(",", ":")) + "\n"
   )
   pilot = a.zmax > a.full_zmax
+  union_pbs = [list(bb) for bb in pilot_bboxes] if a.pilot_bbox else [PILOT_UNION_BBOX]
   meta = {
       "plate": list(PLATE),
       "tile": a.tile,
@@ -300,9 +293,9 @@ def main():
       "zmax": max(a.zmax, 4),
       "full_zmax": min(a.zmax, a.full_zmax),
       "pilot_bbox": (
-          list(pilot_bboxes[0]) if pilot else None
+          union_pbs[0] if pilot else None
       ),  # back-compat: the first pilot region
-      "pilot_bboxes": [list(bb) for bb in pilot_bboxes] if pilot else [],
+      "pilot_bboxes": union_pbs if pilot else [],
       "source_px": counts[a.zmax]["px"],
       "lod": {str(z): LOD_DESC[min(z, LOD_MAX)] for z in counts},
       "counts": counts,

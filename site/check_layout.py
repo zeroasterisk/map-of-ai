@@ -364,8 +364,66 @@ def main():
     if not url:
         httpd = serve(Path(__file__).resolve().parent, a.port)
         url = f"http://127.0.0.1:{a.port}/atlas.html"
-    from PIL import Image  # noqa: WPS433 (only needed for the texture-variance sample)
-    import io, statistics  # noqa: E401
+    try:
+        from PIL import Image  # noqa: WPS433 (only needed for the texture-variance sample)
+    except ImportError:
+        Image = None
+    import io, statistics, struct, zlib  # noqa: E401
+
+    class _StdlibGrayPNG:
+        def __init__(self, data: bytes):
+            pos = 8
+            self.width = self.height = 0
+            col_type = 6
+            idat = bytearray()
+            while pos < len(data):
+                ln, ctype = struct.unpack(">I4s", data[pos : pos + 8])
+                chunk = data[pos + 8 : pos + 8 + ln]
+                pos += 12 + ln
+                if ctype == b"IHDR":
+                    self.width, self.height, _, col_type, _, _, _ = struct.unpack(">IIBBBBB", chunk)
+                elif ctype == b"IDAT":
+                    idat.extend(chunk)
+            raw = zlib.decompress(bytes(idat))
+            bpp = {0: 1, 2: 3, 4: 2, 6: 4}.get(col_type, 4)
+            stride = self.width * bpp
+            self._rows = []
+            prev = bytearray(stride)
+            idx = 0
+            for _ in range(self.height):
+                ft = raw[idx]
+                row = bytearray(raw[idx + 1 : idx + 1 + stride])
+                idx += 1 + stride
+                if ft == 1:
+                    for i in range(bpp, stride):
+                        row[i] = (row[i] + row[i - bpp]) & 0xFF
+                elif ft == 2:
+                    for i in range(stride):
+                        row[i] = (row[i] + prev[i]) & 0xFF
+                elif ft == 3:
+                    for i in range(stride):
+                        a_v = row[i - bpp] if i >= bpp else 0
+                        row[i] = (row[i] + ((a_v + prev[i]) >> 1)) & 0xFF
+                elif ft == 4:
+                    for i in range(stride):
+                        a_v = row[i - bpp] if i >= bpp else 0
+                        b_v = prev[i]
+                        c_v = prev[i - bpp] if i >= bpp else 0
+                        p_v = a_v + b_v - c_v
+                        pa, pb, pc = abs(p_v - a_v), abs(p_v - b_v), abs(p_v - c_v)
+                        pr = a_v if (pa <= pb and pa <= pc) else (b_v if pb <= pc else c_v)
+                        row[i] = (row[i] + pr) & 0xFF
+                self._rows.append((row, bpp))
+                prev = row
+
+        def getpixel(self, xy):
+            x, y = xy
+            row, bpp = self._rows[y]
+            o = x * bpp
+            if bpp >= 3:
+                return int(0.299 * row[o] + 0.587 * row[o + 1] + 0.114 * row[o + 2])
+            return row[o]
+
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(viewport={"width": a.width, "height": 900}, device_scale_factor=1)
@@ -422,7 +480,7 @@ def main():
     if httpd:
         httpd.shutdown()
     # 2b. texture variance from real pixels
-    im = Image.open(io.BytesIO(png)).convert("L")
+    im = Image.open(io.BytesIO(png)).convert("L") if Image is not None else _StdlibGrayPNG(png)
     texStd = {}
     for cid, pts in res["fillSamples"].items():
         vals = [int(im.getpixel((int(x), int(y))) or 0) for x, y in pts if 0 <= x < im.width and 0 <= y < im.height]  # type: ignore[arg-type]
