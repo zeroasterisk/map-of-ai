@@ -1,0 +1,37 @@
+name: Route Direct Pull Requests to A2A Cartographer Agent
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  enforce-a2a-cartographer:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.pull_request.user.login != 'zeroasterisk' &&
+      github.event.pull_request.user.login != 'map-of-ai-cartographer[bot]'
+    steps:
+      - name: Comment and close direct PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$(cat <<'EOF'
+          ### Map of AI: Contributions via A2A Cartographer Agent
+
+          Thank you for your interest in **Map of AI** (`mapofai.dev`).
+
+          This repository manages community additions, historical corrections, and lineage road proposals through our public **Agent2Agent (A2A) Cartographer Agent**:
+
+          - **A2A Agent Card Discovery**: [`https://agent.mapofai.dev/.well-known/agent-card.json`](https://agent.mapofai.dev/.well-known/agent-card.json)
+          - **A2A JSON-RPC Endpoint**: `https://agent.mapofai.dev/a2a`
+
+          Point your A2A-compatible client or agent to the Agent Card above and initiate a `SendMessage` session with a primary scholarly or archival citation (`arXiv`, `DOI`, or official release link). Validated proposals automatically open a Pull Request for maintainer review.
+          EOF
+          )"
+          gh pr close "$PR_NUMBER" --repo "$REPO"

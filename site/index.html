@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WY8JZ0C53T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WY8JZ0C53T');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Map of AI — The 2036 Textbook Atlas</title>
@@ -8,6 +17,7 @@
      Subpixel floating-point tile & overlay transforms, zero-latency velocity-proportional wheel/trackpad zoom,
      pan-invariant world-coordinate label & pin layer inside .leaflet-map-pane, 5 semantic Altitudes (z0..z4),
      Guided 2036 Textbook Tours, live search, and interactive archival citation inspector. -->
+<link rel="ai-catalog" type="application/ai-catalog+json" href="/.well-known/ai-catalog.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -537,6 +547,125 @@
   .leaflet-bar.copylink a:hover { background: #efe3c8; color: var(--ink); }
   .leaflet-bar.copylink a.done { font-style: normal; color: #2f5a2a; }
 
+  .req-btn {
+    border-color: var(--accent);
+    background: #f8eed9;
+    font-weight: 500;
+  }
+  .req-btn:hover {
+    background: #fff8e8;
+    border-color: #52160b;
+  }
+
+  /* ---- About & Request Change (A2A) Modal ---- */
+  .about-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(24, 16, 8, 0.58);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 2500;
+  }
+  .about-backdrop.open {
+    display: flex;
+  }
+  .about-modal {
+    width: 560px;
+    max-width: 100%;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    background: linear-gradient(180deg, #f9f1de 0%, #efe1c2 100%);
+    color: var(--ink);
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 18px 48px rgba(20, 12, 4, 0.62), inset 0 0 0 1px #cbb894;
+    padding: 18px 22px 16px;
+  }
+  .about-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+  .about-title {
+    font-family: Cinzel, Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .about-close {
+    appearance: none;
+    border: 1px solid #9c8864;
+    background: var(--paper-light);
+    color: var(--ink);
+    font: 13px/1 Lora, Georgia, serif;
+    padding: 3px 8px;
+    cursor: pointer;
+  }
+  .about-close:hover {
+    background: #fff9eb;
+  }
+  .about-sec-title {
+    font-family: Cinzel, Georgia, serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin: 12px 0 5px;
+  }
+  .about-p {
+    font-size: 13px;
+    line-height: 1.48;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .about-box {
+    background: rgba(255, 251, 240, 0.82);
+    border: 1px solid #b9a683;
+    padding: 9px 12px;
+    margin: 8px 0 10px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .about-box code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    background: #ede0c4;
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: #3a2310;
+  }
+  .about-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #efe3c8;
+    border: 1px dashed #8f7b57;
+    padding: 7px 10px;
+    margin-top: 8px;
+    font-size: 11.5px;
+  }
+  .about-copy-btn {
+    flex: 0 0 auto;
+    appearance: none;
+    border: 1px solid var(--accent);
+    background: #7a2414;
+    color: #f6ecd6;
+    font: 11.5px/1.2 Lora, Georgia, serif;
+    padding: 4px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .about-copy-btn:hover {
+    background: #5c1a0e;
+  }
+
   footer {
     flex: 0 0 auto;
     padding: 3px 12px;
@@ -587,6 +716,7 @@
       <input type="search" id="search-input" class="search-input" placeholder="Search 600+ entities (/)" autocomplete="off">
       <div class="search-results" id="search-results"></div>
     </div>
+    <button class="alt-btn req-btn" id="about-btn" type="button" title="About this Atlas &amp; How to Propose Changes via A2A">About / Request Change</button>
   </div>
 </div>
 
@@ -606,8 +736,39 @@
   </div>
 </div>
 
+<div class="about-backdrop" id="about-backdrop" aria-hidden="true">
+  <div class="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
+    <div class="about-head">
+      <h2 class="about-title" id="about-modal-title">MAP OF AI · ABOUT &amp; REQUEST CHANGE</h2>
+      <button class="about-close" id="about-close" type="button" aria-label="Close">Close ×</button>
+    </div>
+    <div class="about-sec-title">About the 2036 Textbook Atlas</div>
+    <p class="about-p">
+      <b>Map of AI</b> maps the history of artificial intelligence research (1666 to 2026) across 10 continents, 49 provinces, 10 outlying islands, 517 primary-sourced milestones, and 79 causal lineage post roads. West is old, East is now; North encodes formal and symbolic logic, and South encodes statistical, connectionist, and embodied learning.
+    </p>
+    <div class="about-sec-title">Want a Change Made? Have Your Agent Ask My Agent</div>
+    <p class="about-p">
+      Manual GitHub Issues, Pull Requests, and Discussions are disabled on <a href="https://github.com/zeroasterisk/map-of-ai" target="_blank" rel="noopener">github.com/zeroasterisk/map-of-ai</a>. If you want to propose a new milestone, fix a citation or date, or suggest a lineage road, <b>have your AI agent ask the Map of AI Cartographer Agent for it</b> over the <a href="https://a2a-protocol.org" target="_blank" rel="noopener">Agent2Agent (A2A) protocol</a>:
+    </p>
+    <div class="about-box">
+      <div><b>A2A Agent Host:</b> <a href="https://agent.mapofai.dev" target="_blank" rel="noopener"><code>https://agent.mapofai.dev</code></a></div>
+      <div><b>A2A Agent Card:</b> <a href="https://agent.mapofai.dev/.well-known/agent-card.json" target="_blank" rel="noopener"><code>https://agent.mapofai.dev/.well-known/agent-card.json</code></a></div>
+      <div><b>AI Catalog &amp; ARD Discovery:</b> <a href="/.well-known/ai-catalog.json" target="_blank" rel="noopener"><code>/.well-known/ai-catalog.json</code></a></div>
+      <div><b>A2A JSON-RPC Endpoint:</b> <code>https://agent.mapofai.dev/a2a</code> (A2A v1.0 &amp; v0.3)</div>
+      <div><b>Required Auth Header:</b> <code>Authorization: Bearer ghp_&lt;REDACTED_GITHUB_TOKEN&gt;</code> (<code>read:user</code> scope)</div>
+    </div>
+    <p class="about-p">
+      Point your A2A-compatible agent (such as <a href="https://github.com/a2aproject/a2a-cli" target="_blank" rel="noopener"><code>a2a-cli</code></a>, the official <a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener">A2A SDKs</a>, or <a href="https://github.com/google/adk-python" target="_blank" rel="noopener">Google ADK's <code>RemoteA2aAgent</code></a>) at the Agent Card above with a primary scholarly or archival citation (<code>arXiv</code>, <code>DOI</code>, or official technical release). Discovery is public; all <code>POST /a2a</code> calls require a read-only GitHub Bearer token (<code>read:user</code> scope, account age &ge; 30 days). See the <a href="https://github.com/zeroasterisk/map-of-ai#want-a-change-made-have-your-agent-ask-my-agent" target="_blank" rel="noopener">README Happy-Path Walkthrough</a> for copy-pasteable examples.
+    </p>
+    <div class="about-prompt">
+      <span id="about-prompt-text">Connect to the Map of AI A2A agent at https://agent.mapofai.dev (Agent Card: https://agent.mapofai.dev/.well-known/agent-card.json) using Authorization: Bearer &lt;GITHUB_TOKEN&gt; (read:user scope) and propose the following change to mapofai.dev with a primary citation:</span>
+      <button class="about-copy-btn" id="about-copy-btn" type="button">Copy Prompt</button>
+    </div>
+  </div>
+</div>
+
 <div class="card" id="card"></div>
-<footer id="foot">Map of AI · 2036 Textbook Edition · <span id="stats"></span> · <a href="atlas.html">Planimetric SVG Plate (atlas.html)</a> · <a href="static-map.html?level=2&px=1000&py=450&r=1">Tile Inspector</a></footer>
+<footer id="foot">Map of AI · 2036 Textbook Edition · <span id="stats"></span> · <a href="#request-change" id="foot-about-link">About / Request Change (A2A)</a> · <a href="atlas.html">Planimetric SVG Plate (atlas.html)</a> · <a href="static-map.html?level=2&px=1000&py=450&r=1">Tile Inspector</a></footer>
 
 <script src="atlas_data.js"></script>
 <script>
@@ -2411,6 +2572,47 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
     }
   });
 
+  const aboutBackdrop = document.getElementById('about-backdrop');
+  const aboutBtn = document.getElementById('about-btn');
+  const aboutClose = document.getElementById('about-close');
+  const footAboutLink = document.getElementById('foot-about-link');
+  const aboutCopyBtn = document.getElementById('about-copy-btn');
+  const openAboutModal = () => {
+    aboutBackdrop.classList.add('open');
+    aboutBackdrop.setAttribute('aria-hidden', 'false');
+  };
+  const closeAboutModal = () => {
+    aboutBackdrop.classList.remove('open');
+    aboutBackdrop.setAttribute('aria-hidden', 'true');
+  };
+  if (aboutBtn) aboutBtn.addEventListener('click', openAboutModal);
+  if (aboutClose) aboutClose.addEventListener('click', closeAboutModal);
+  if (footAboutLink) {
+    footAboutLink.addEventListener('click', ev => {
+      ev.preventDefault();
+      openAboutModal();
+    });
+  }
+  if (aboutBackdrop) {
+    aboutBackdrop.addEventListener('click', ev => {
+      if (ev.target === aboutBackdrop) closeAboutModal();
+    });
+  }
+  if (aboutCopyBtn) {
+    aboutCopyBtn.addEventListener('click', () => {
+      const promptText = document.getElementById('about-prompt-text').textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(() => {
+          aboutCopyBtn.textContent = 'Copied!';
+          setTimeout(() => { aboutCopyBtn.textContent = 'Copy Prompt'; }, 1600);
+        }).catch(() => {});
+      }
+    });
+  }
+  if (location.hash === '#request-change' || location.hash === '#about' || Q.get('about') === '1') {
+    openAboutModal();
+  }
+
   document.addEventListener('keydown', ev => {
     if (ev.key === '/' && document.activeElement !== searchInput) {
       ev.preventDefault();
@@ -2419,6 +2621,7 @@ loadAtlasData().then(([meta, LB, AN, ENT]) => {
       searchResults.innerHTML = '';
       searchResults.style.display = 'none';
       closeInspector();
+      closeAboutModal();
     }
   });
 

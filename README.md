@@ -1,12 +1,190 @@
 # Map of AI: The 2036 Textbook Atlas
 
-**Live interactive atlas:** [mapofai.dev](https://mapofai.dev) (mirror: [zeroasterisk.github.io/map-of-ai](https://zeroasterisk.github.io/map-of-ai/))
+**Live interactive atlas:** [mapofai.dev](https://mapofai.dev) (mirror: [zeroasterisk.github.io/map-of-ai](https://zeroasterisk.github.io/map-of-ai/))  
+**A2A Cartographer Agent:** [`https://agent.mapofai.dev`](https://agent.mapofai.dev) · **Agent Card:** [`https://agent.mapofai.dev/.well-known/agent-card.json`](https://agent.mapofai.dev/.well-known/agent-card.json) · **AI Catalog (ARD):** [`https://mapofai.dev/.well-known/ai-catalog.json`](https://mapofai.dev/.well-known/ai-catalog.json)
 
 An interactive, antique-cartographic map of the history of artificial intelligence research (1666 to 2026), inspired by [mapofmetal.com](https://mapofmetal.com) and 19th-century Swiss topographic relief plates (Eduard Imhof hillshading and Lehmann slope hachures).
 
 - West is old, East is now (`AXES.md` §1), spanning the Antecedent Isles (1666-1942) through the Transformer Plateau (2017-2022) and the Generative Coast (2022-present).
 - North to South encodes research approach (`AXES.md` §3), placing formal and symbolic work in the north (`N1`/`N2`), language and agentic synthesis along the central band (`C`), and statistical, connectionist, and embodied schools in the south (`S1`/`S2`).
 - Five semantic zoom altitudes (`Alt 0` through `Alt 4`, `z0` through `z4`) reveal detail progressively from World (`Alt 0`) to Regions (`Alt 1`), Provinces (`Alt 2`), Syllabus Milestones (`Alt 3`), and Archival Citations (`Alt 4`).
+
+---
+
+## Want a change made? Have your agent ask my agent
+
+Manual GitHub Issues, Pull Requests, and Discussions are disabled on this repository. If you want to add a historical milestone, fix a citation or date, or suggest a lineage road, **have your AI agent ask the Map of AI Cartographer Agent for it** over the [Agent2Agent (A2A) protocol](https://a2a-protocol.org):
+
+- **A2A Agent Host:** [`https://agent.mapofai.dev`](https://agent.mapofai.dev)
+- **A2A Discovery Card:** [`https://agent.mapofai.dev/.well-known/agent-card.json`](https://agent.mapofai.dev/.well-known/agent-card.json)
+- **AI Catalog & ARD Discovery (`v1.0` / `v0.5`):** [`https://mapofai.dev/.well-known/ai-catalog.json`](https://mapofai.dev/.well-known/ai-catalog.json) & [`https://agent.mapofai.dev/.well-known/ai-catalog.json`](https://agent.mapofai.dev/.well-known/ai-catalog.json)
+- **A2A JSON-RPC Endpoint:** `https://agent.mapofai.dev/a2a` (supports both A2A `1.0` and `0.3`)
+- **Authentication Scheme (`github_bearer`):** Agent Card (`/.well-known/agent-card.json`) and AI Catalog (`/.well-known/ai-catalog.json`) discovery are public. **All `POST /a2a` JSON-RPC calls** (catalog search, proposal staging, and `CONFIRM`) require a consistent upfront `Authorization: Bearer ghp_<REDACTED_GITHUB_TOKEN>` header with read-only `read:user` scope (GitHub account age `>= 30` days, max `3` PRs / 24h; zero repository write scopes required).
+
+### Happy-Path Authentication Walkthrough (Consistent Upfront Auth)
+
+Pass a single read-only GitHub token (`read:user` scope, e.g. `export GITHUB_TOKEN="ghp_<REDACTED_GITHUB_TOKEN>"` or `$(gh auth token)`) on all `POST /a2a` requests from Turn 1 through confirmation.
+
+#### Option A: Using the Official [`a2a-cli`](https://github.com/a2aproject/a2a-cli)
+
+```bash
+# 1. Inspect the public Agent Card (unauthenticated discovery)
+a2a card get https://agent.mapofai.dev
+
+# 2. Configure a read-only `read:user` GitHub token (e.g. `$(gh auth token)`)
+export GITHUB_TOKEN="ghp_<REDACTED_GITHUB_TOKEN>"
+
+# 3. Turn 1: Propose and stage a milestone with a primary citation
+#    Returns a Task in TASK_STATE_INPUT_REQUIRED (substate: proposal_staged_awaiting_confirmation)
+a2a send -a https://agent.mapofai.dev -o json \
+  --auth "Bearer ${GITHUB_TOKEN}" \
+  'Propose adding "Direct Preference Optimization (DPO)" (2023) to alignment-safety with citation https://arxiv.org/abs/2305.18290'
+
+# 4. Turn 2: Confirm the staged proposal to open a Pull Request on zeroasterisk/map-of-ai
+a2a send -a https://agent.mapofai.dev \
+  --task-id "<TASK_ID_FROM_TURN_1>" \
+  --context-id "<CONTEXT_ID_FROM_TURN_1>" \
+  --auth "Bearer ${GITHUB_TOKEN}" \
+  "CONFIRM"
+```
+
+#### Option B: Using `curl` (A2A v1.0 JSON-RPC `SendMessage`)
+
+```bash
+export GITHUB_TOKEN="ghp_<REDACTED_GITHUB_TOKEN>"
+
+# Turn 1: Stage the proposal and capture taskId + contextId
+TURN1_JSON=$(curl -sS -X POST https://agent.mapofai.dev/a2a \
+  -H "Content-Type: application/json" \
+  -H "A2A-Version: 1.0" \
+  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": "turn-1",
+    "method": "SendMessage",
+    "params": {
+      "message": {
+        "messageId": "msg-turn-1",
+        "role": "ROLE_USER",
+        "parts": [
+          {
+            "text": "Propose adding \"Direct Preference Optimization (DPO)\" (2023) to alignment-safety with citation https://arxiv.org/abs/2305.18290"
+          }
+        ]
+      }
+    }
+  }')
+
+TASK_ID=$(echo "${TURN1_JSON}" | jq -r '.result.task.id')
+CONTEXT_ID=$(echo "${TURN1_JSON}" | jq -r '.result.task.contextId')
+echo "Staged task=${TASK_ID} context=${CONTEXT_ID}"
+
+# Turn 2: Send CONFIRM to open the GitHub Pull Request
+curl -sS -X POST https://agent.mapofai.dev/a2a \
+  -H "Content-Type: application/json" \
+  -H "A2A-Version: 1.0" \
+  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -d "{
+    \"jsonrpc\": \"2.0\",
+    \"id\": \"turn-2\",
+    \"method\": \"SendMessage\",
+    \"params\": {
+      \"message\": {
+        \"messageId\": \"msg-turn-2\",
+        \"taskId\": \"${TASK_ID}\",
+        \"contextId\": \"${CONTEXT_ID}\",
+        \"role\": \"ROLE_USER\",
+        \"parts\": [{\"text\": \"CONFIRM\"}]
+      }
+    }
+  }" | jq .
+```
+
+#### Option C: Using the Python [`a2a-sdk`](https://github.com/a2aproject/a2a-python) (`httpx` + JSON-RPC)
+
+```python
+import asyncio
+import uuid
+import httpx
+
+A2A_ENDPOINT = "https://agent.mapofai.dev/a2a"
+GITHUB_TOKEN = "ghp_<REDACTED_GITHUB_TOKEN>"  # Only `read:user` scope required
+
+
+async def propose_and_confirm() -> None:
+    headers = {
+        "A2A-Version": "1.0",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+    }
+    async with httpx.AsyncClient(timeout=30.0, headers=headers) as client:
+        # Turn 1: Stage candidate milestone proposal
+        turn1 = await client.post(
+            A2A_ENDPOINT,
+            json={
+                "jsonrpc": "2.0",
+                "id": str(uuid.uuid4()),
+                "method": "SendMessage",
+                "params": {
+                    "message": {
+                        "messageId": str(uuid.uuid4()),
+                        "role": "ROLE_USER",
+                        "parts": [
+                            {
+                                "text": (
+                                    'Propose adding "Direct Preference Optimization (DPO)" '
+                                    "(2023) to alignment-safety with citation "
+                                    "https://arxiv.org/abs/2305.18290"
+                                )
+                            }
+                        ],
+                    }
+                },
+            },
+        )
+        task = turn1.json()["result"]["task"]
+        task_id, context_id = task["id"], task["contextId"]
+        print(f"Turn 1 state: {task['status']['state']} (task_id={task_id})")
+
+        # Turn 2: Confirm staged proposal to open the Pull Request
+        turn2 = await client.post(
+            A2A_ENDPOINT,
+            json={
+                "jsonrpc": "2.0",
+                "id": str(uuid.uuid4()),
+                "method": "SendMessage",
+                "params": {
+                    "message": {
+                        "messageId": str(uuid.uuid4()),
+                        "taskId": task_id,
+                        "contextId": context_id,
+                        "role": "ROLE_USER",
+                        "parts": [{"text": "CONFIRM"}],
+                    }
+                },
+            },
+        )
+        print("Turn 2 result:", turn2.json()["result"]["task"]["metadata"])
+
+
+if __name__ == "__main__":
+    asyncio.run(propose_and_confirm())
+```
+
+### Official A2A CLI & SDK Repositories
+
+Build or connect your own agent using the official [Agent2Agent (A2A)](https://github.com/a2aproject/A2A) tools and SDKs:
+
+- **A2A Protocol Specification:** [`a2aproject/A2A`](https://github.com/a2aproject/A2A) ([a2a-protocol.org](https://a2a-protocol.org))
+- **A2A CLI (`a2a`):** [`a2aproject/a2a-cli`](https://github.com/a2aproject/a2a-cli) — Official command-line client (`card get`, `send`, `task get`, `task subscribe`)
+- **A2A Inspector:** [`a2aproject/a2a-inspector`](https://github.com/a2aproject/a2a-inspector) — Interactive web inspector and validator for A2A agents
+- **Official Language SDKs:**
+  - **Python SDK (`a2a-sdk`):** [`a2aproject/a2a-python`](https://github.com/a2aproject/a2a-python)
+  - **JavaScript / TypeScript SDK (`@a2a-js/sdk`):** [`a2aproject/a2a-js`](https://github.com/a2aproject/a2a-js)
+  - **Go SDK (`a2a-go`):** [`a2aproject/a2a-go`](https://github.com/a2aproject/a2a-go)
+  - **Java SDK (`a2a-java`):** [`a2aproject/a2a-java`](https://github.com/a2aproject/a2a-java)
+  - **.NET / C# SDK (`a2a-dotnet`):** [`a2aproject/a2a-dotnet`](https://github.com/a2aproject/a2a-dotnet)
+  - **Rust SDK (`a2a-rs`):** [`a2aproject/a2a-rs`](https://github.com/a2aproject/a2a-rs)
+- **Agent Frameworks & Samples:** [Google Agent Development Kit (`google/adk-python`)](https://github.com/google/adk-python) · [`a2aproject/a2a-samples`](https://github.com/a2aproject/a2a-samples)
 
 ---
 

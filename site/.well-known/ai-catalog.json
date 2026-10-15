@@ -1,0 +1,133 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Map of AI — The 2036 Textbook Atlas",
+    "identifier": "mapofai.dev",
+    "documentationUrl": "https://mapofai.dev"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:mapofai.dev:agents:cartographer",
+      "displayName": "Map of AI Cartographer Agent",
+      "type": "application/a2a-agent-card+json",
+      "version": "1.0.0",
+      "url": "https://agent.mapofai.dev/.well-known/agent-card.json",
+      "description": "Public Agent2Agent (A2A) endpoint for Map of AI (mapofai.dev). External agents can query the 517-milestone catalog, propose primary-sourced milestones, submit citation or placement corrections, and suggest directed lineage connections for maintainer review. Requires `Authorization: Bearer <github_token>` (`read:user` scope, GitHub account age >= 30 days) on all `POST /a2a` requests.",
+      "tags": [
+        "a2a",
+        "cartography",
+        "ai-history",
+        "knowledge-graph",
+        "pull-request"
+      ],
+      "capabilities": [
+        "propose_milestone",
+        "propose_correction",
+        "propose_lineage_road",
+        "query_atlas_catalog"
+      ],
+      "representativeQueries": [
+        "Propose adding 'Direct Preference Optimization' (2023.5) to province alignment-interpretability-plateau with primary citation https://arxiv.org/abs/2305.18290 by Rafailov et al.",
+        "Search the atlas for milestones related to A2A Protocol and Transformers.",
+        "Propose a directed lineage road from 'lecun_convnet_1989' to 'alexnet_2012'."
+      ],
+      "publisher": {
+        "displayName": "Map of AI",
+        "identifier": "mapofai.dev"
+      },
+      "trustManifest": "https://agent.mapofai.dev/.well-known/ai-catalog.json",
+      "updatedAt": "2026-10-15T00:00:00Z",
+      "metadata": {
+        "protocol": "a2a",
+        "protocol_versions": [
+          "1.0",
+          "0.3"
+        ],
+        "rpc_url": "https://agent.mapofai.dev/a2a",
+        "source_repository": "https://github.com/zeroasterisk/map-of-ai",
+        "auth": {
+          "required": true,
+          "scheme": "Bearer",
+          "provider": "github.com",
+          "header": "Authorization: Bearer <github_token>",
+          "scopes": [
+            "read:user"
+          ],
+          "min_account_age_days": 30,
+          "instructions": "Supply an HTTP header `Authorization: Bearer <github_token>` with `read:user` scope (zero repository write scopes required) on all `POST /a2a` JSON-RPC calls."
+        }
+      }
+    },
+    {
+      "identifier": "urn:air:mapofai.dev:knowledge:okf-llm-wiki",
+      "displayName": "Map of AI OKF v0.2 LLM Wiki Bundle",
+      "type": "application/okf-bundle+md",
+      "version": "1.0.0",
+      "url": "https://mapofai.dev/wiki/index.md",
+      "description": "Open Knowledge Format (OKF v0.2) 601-file Markdown knowledge bundle covering 517 milestones, 49 provinces, 10 continents, and 79 causal lineage roads across the history of artificial intelligence (1666–2026).",
+      "tags": [
+        "okf",
+        "llm-wiki",
+        "ai-history",
+        "knowledge-bundle",
+        "citations"
+      ],
+      "capabilities": [
+        "tiered_markdown_navigation",
+        "citation_provenance_audit",
+        "causal_lineage_lookup"
+      ],
+      "representativeQueries": [
+        "Read the OKF index for the 2036 Textbook Atlas of AI.",
+        "Inspect the province and causal lineage edges for Transformers and Attention."
+      ],
+      "publisher": {
+        "displayName": "Map of AI",
+        "identifier": "mapofai.dev"
+      },
+      "updatedAt": "2026-10-15T00:00:00Z",
+      "metadata": {
+        "okf_version": "0.2",
+        "total_files": 601,
+        "milestones": 517,
+        "provinces": 49,
+        "continents": 10,
+        "lineage_roads": 79,
+        "auth": {
+          "required": false,
+          "scheme": "none"
+        }
+      }
+    },
+    {
+      "identifier": "urn:air:mapofai.dev:datasets:entities-catalog",
+      "displayName": "Map of AI Entities & Coordinates Catalog",
+      "type": "application/json",
+      "version": "1.0.0",
+      "url": "https://mapofai.dev/entities.json",
+      "description": "Machine-readable JSON catalog of all 517 milestones, 49 provinces, 10 continents, and 79 lineage roads with deterministic world coordinates and primary citations.",
+      "tags": [
+        "dataset",
+        "json",
+        "milestones",
+        "coordinates",
+        "ai-history"
+      ],
+      "capabilities": [
+        "catalog_lookup",
+        "coordinate_projection"
+      ],
+      "publisher": {
+        "displayName": "Map of AI",
+        "identifier": "mapofai.dev"
+      },
+      "updatedAt": "2026-10-15T00:00:00Z",
+      "metadata": {
+        "auth": {
+          "required": false,
+          "scheme": "none"
+        }
+      }
+    }
+  ]
+}
